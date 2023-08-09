@@ -23,7 +23,7 @@
 </head>
 <body>
 	<div id="app">
-		T2
+		T2 pull Å×½ºÆ®
 	</div>
 </body>
 </html>
