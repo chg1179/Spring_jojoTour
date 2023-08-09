@@ -13,7 +13,7 @@
 <body>
 <div id="app">
 	<div>
-		<input type="checkbox" v-model="acessCode">모두 동의
+		<input type="checkbox" v-model="acessCode">모두동의
 		<br>
 		<input type="checkbox" v-model="acessCode">동의
 		<br>
