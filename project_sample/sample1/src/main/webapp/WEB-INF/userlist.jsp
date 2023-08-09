@@ -42,6 +42,7 @@
 			<td>{{item.nickname}}</td>
 			<td v-if="item.status == 'U'">유저</td>
 			<td v-else="item.status == 'H'">호스트</td>
+			<td v-else="item.status == 'R'">렌트카</td>
 			<td>{{item.uName}}</td>
 			<td>{{item.phone}}</td>
 			<td>{{item.email}}</td>
@@ -77,7 +78,7 @@ var app = new Vue({
             $.ajax({
                 url : "/userList.dox",
                 dataType:"json",	
-                type : "POST", 
+                type : "POST",
                 data : nparmap,
                 success : function(data) { 
                 	self.list = data.list;

@@ -3,33 +3,28 @@ package com.example.sample1.model;
 
 public class User {
 	private String uId;
-	private String pwd;
-	private String nickname;
+	private String uPwd;
 	private String uName;
+	private String nickname;
+	private String birth;
 	private String phone;
-	private String age;
+	private String email;
 	private String addr;
 	private String status;
-	private int cnt;
-	private String banYn;
-	
+	private String banyn;
+	private String eventyn;
+	private int loginCnt;
 	public String getuId() {
 		return uId;
 	}
 	public void setuId(String uId) {
 		this.uId = uId;
 	}
-	public String getPwd() {
-		return pwd;
+	public String getuPwd() {
+		return uPwd;
 	}
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
-	}
-	public String getNickname() {
-		return nickname;
-	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setuPwd(String uPwd) {
+		this.uPwd = uPwd;
 	}
 	public String getuName() {
 		return uName;
@@ -37,17 +32,29 @@ public class User {
 	public void setuName(String uName) {
 		this.uName = uName;
 	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getBirth() {
+		return birth;
+	}
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
 	public String getPhone() {
 		return phone;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getAge() {
-		return age;
+	public String getEmail() {
+		return email;
 	}
-	public void setAge(String age) {
-		this.age = age;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getAddr() {
 		return addr;
@@ -61,17 +68,23 @@ public class User {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getCnt() {
-		return cnt;
+	public String getBanyn() {
+		return banyn;
 	}
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
+	public void setBanyn(String banyn) {
+		this.banyn = banyn;
 	}
-	public String getBanYn() {
-		return banYn;
+	public String getEventyn() {
+		return eventyn;
 	}
-	public void setBanYn(String banYn) {
-		this.banYn = banYn;
+	public void setEventyn(String eventyn) {
+		this.eventyn = eventyn;
+	}
+	public int getLoginCnt() {
+		return loginCnt;
+	}
+	public void setLoginCnt(int loginCnt) {
+		this.loginCnt = loginCnt;
 	}
 	
 }

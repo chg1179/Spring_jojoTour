@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService{
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		User user = userMapper.selectUser(map);
 		if(user != null) {
-			if(user.getCnt() >= 5) {
+			if(user.getLoginCnt() >= 5) {
 				resultMap.put("success", false);
 				resultMap.put("message", "5번 이상 실패, 관리자 문의 하셈");
 			} else {
@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService{
 			User tempUser = userMapper.userCheckId(map) ;
 			if(tempUser != null) {
 				userMapper.updateUserCnt(map);
-				int cnt = tempUser.getCnt() + 1;
+				int cnt = tempUser.getLoginCnt() + 1;
 				String message = cnt + "번 실패! \n패스워드 확인해라.";
 				if(cnt >= 5) {
 					message = "5번 이상 실패, 관리자 한테 문의하셈";
