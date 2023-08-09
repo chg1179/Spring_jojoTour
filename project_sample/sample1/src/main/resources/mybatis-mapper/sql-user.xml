@@ -3,10 +3,6 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.sample1.mapper.UserMapper">
-	<insert id="insertUser" parameterType="hashmap">
-		INSERT INTO T2_USER_TBL VALUES
-		(#{userId}, #{pw1}, #{name}, #{phone}, #{age}, #{addr}, 'U', 0, 'N')
-	</insert>
 	
 	<select id="userCnt" parameterType="hashmap" resultType="int">
 		SELECT COUNT(*) AS CNT
@@ -17,19 +13,19 @@
 	<select id="selectUser" parameterType="hashmap" resultType="com.example.sample1.model.User">
 		SELECT *
 		FROM T2_USER_TBL
-		WHERE U_ID = #{userId} AND PWD = #{pwd}
+		WHERE U_ID = #{userId} AND U_PWD = #{pwd}
 	</select>
 	
 	<update id="updateUserCnt" parameterType="hashmap">
 		UPDATE T2_USER_TBL
 		SET
-			CNT = CNT + 1
+			LOGIN_CNT = LOGIN_CNT + 1
 		WHERE U_ID = #{userId}
 	</update>
 	<update id="resetUserCnt" parameterType="hashmap">
 		UPDATE T2_USER_TBL
 		SET
-			CNT = 0
+			LOGIN_CNT = 0
 		WHERE U_ID = #{userId}
 	</update>
 	

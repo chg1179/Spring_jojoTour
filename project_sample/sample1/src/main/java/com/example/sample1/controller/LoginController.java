@@ -29,22 +29,22 @@ public class LoginController {
 	
 	@RequestMapping("/userLogin.do") 
     public String userlogin(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		session.invalidate();
 		return "/userLogin";
     }
-	
-	@RequestMapping("/hostlogin.do") 
-	public String hostlogin(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		session.invalidate();
-		return "/hostlogin";
+	@RequestMapping("/useracess.do") 
+	public String useracess(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/useracess";
 	}
-	@RequestMapping("/userlist.do") 
-	public String userList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		
-		return "/userlist";
-	}
+	@RequestMapping("/userjoin.do") 
+    public String userjoin(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+        return "/userjoin";
+    }
+	@RequestMapping("/userList.do") 
+    public String userList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+        return "/userList";
+    }
 	
-	@RequestMapping(value = "/userlogin.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/login.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String login(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
@@ -66,32 +66,6 @@ public class LoginController {
 		resultMap.put("list", list);
 		return new Gson().toJson(resultMap);
 	}
-	
-	@RequestMapping("/selectjoin.do") 
-	public String selectjoin(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/selectjoin";
-	}
-	
-	@RequestMapping("/userjoin.do") 
-    public String userjoin(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/userjoin";
-    }
-	
-	@RequestMapping("/hostjoin.do") 
-	public String hostjoin(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/hostjoin";
-	}
-	
-	@RequestMapping("/hostacess.do") 
-	public String hostacess(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/hostacess";
-	}
-	
-	@RequestMapping("/useracess.do") 
-	public String useracess(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/useracess";
-	}
-	
 	@RequestMapping(value = "/check.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String check(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -100,10 +74,4 @@ public class LoginController {
 		resultMap.put("cnt", cnt);
 		return new Gson().toJson(resultMap);
 	}
-	
-	@RequestMapping("/addr.do") 
-    public String addr(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
-		
-		return "/jusoPopup";
-    }
 }

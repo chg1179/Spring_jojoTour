@@ -23,7 +23,6 @@ public class MainController {
 	
 	@RequestMapping("/main.do") 
 	public String test(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		session.invalidate();
 		return "/main";
 	}
 }

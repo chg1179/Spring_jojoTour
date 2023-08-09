@@ -38,14 +38,13 @@ var app = new Vue({
                 dataType:"json",	
                 type : "POST",
                 data : param,
-                success : function(data) { 
+                success : function(data) {
                 	if(data.success){
                 		alert(data.message);
                 		location.href="main.do";
                 	} else {
                 		alert(data.message);
                 	}
-                	
                 }
             }); 
 		},

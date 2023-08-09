@@ -5,14 +5,13 @@ public class User {
 	private String uId;
 	private String uPwd;
 	private String uName;
-	private String nickname;
+	private String nickName;
 	private String birth;
 	private String phone;
 	private String email;
 	private String addr;
 	private String status;
-	private String banyn;
-	private String eventyn;
+	private String banYn;
 	private int loginCnt;
 	public String getuId() {
 		return uId;
@@ -32,11 +31,11 @@ public class User {
 	public void setuName(String uName) {
 		this.uName = uName;
 	}
-	public String getNickname() {
-		return nickname;
+	public String getNickName() {
+		return nickName;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	public String getBirth() {
 		return birth;
@@ -68,17 +67,11 @@ public class User {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getBanyn() {
-		return banyn;
+	public String getBanYn() {
+		return banYn;
 	}
-	public void setBanyn(String banyn) {
-		this.banyn = banyn;
-	}
-	public String getEventyn() {
-		return eventyn;
-	}
-	public void setEventyn(String eventyn) {
-		this.eventyn = eventyn;
+	public void setBanYn(String banYn) {
+		this.banYn = banYn;
 	}
 	public int getLoginCnt() {
 		return loginCnt;

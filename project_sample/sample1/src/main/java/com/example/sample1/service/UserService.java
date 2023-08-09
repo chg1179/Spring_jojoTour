@@ -7,8 +7,6 @@ import com.example.sample1.model.User;
 
 public interface UserService {
 	HashMap<String, Object> userLogin(HashMap<String, Object> map);
-
 	int searchUserCnt(HashMap<String, Object> map);
-	
 	List<User> listUser(HashMap<String, Object> map);
 }

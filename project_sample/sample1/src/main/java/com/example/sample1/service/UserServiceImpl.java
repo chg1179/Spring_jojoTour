@@ -9,12 +9,23 @@ import org.springframework.stereotype.Service;
 import com.example.sample1.mapper.UserMapper;
 import com.example.sample1.model.User;
 
+import jakarta.servlet.http.HttpSession;
+
 @Service
 public class UserServiceImpl implements UserService{
 
 	@Autowired
 	UserMapper userMapper;
 	
+	@Autowired
+	HttpSession session;
+	
+	@Override
+	public List<User> listUser(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (List<User>) userMapper.userList(map);
+	}
+
 	@Override
 	public HashMap<String, Object> userLogin(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -45,20 +56,13 @@ public class UserServiceImpl implements UserService{
 				resultMap.put("message", "없는 아이디");
 			}
 		}
-		
 		return resultMap;
 	}
-	
+
 	@Override
 	public int searchUserCnt(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return userMapper.userCnt(map);
-	}
-
-	@Override
-	public List<User> listUser(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return (List<User>) userMapper.userList(map);
 	}
 
 }
