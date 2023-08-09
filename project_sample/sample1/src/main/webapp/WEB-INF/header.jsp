@@ -93,13 +93,13 @@
 <div id="app">
 	<header id="header_box">
         <div class="logo_box">
-            <img src="img/logo.jpg" alt="logo">
+            <img src="img/header/logo.jpg" alt="logo">
         </div>
         <div class="header_menu">
             <div class="header_inner">
                 <ul class="f_header">
-                    <li><a href="javascript:;">로그인</a></li>
-                    <li><a href="javascript:;">회원가입</a></li>
+                    <li><a href="javascript:;" @click="fnLogin">로그인</a></li>
+                    <li><a href="javascript:;" @click="fnJoin">회원가입</a></li>
                     <li><a href="javascript:;">장바구니</a></li>
                 </ul>
                 <ul class="s_header">
@@ -149,6 +149,12 @@ var app = new Vue({
                 	self.list = data.list;
                 }
             }); 
+        },
+        fnLogin :function(){
+        	location.href="userlogin.do";
+        },
+        fnJoin : function(){
+        	location.href="userjoin.do";
         }
 	}, // methods
 	created : function() {
