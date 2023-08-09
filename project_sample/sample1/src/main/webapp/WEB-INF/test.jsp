@@ -22,9 +22,9 @@
 </style>
 </head>
 <body>
-<div id="app">
-	test
-</div>
+	<div id="app">
+		T2
+	</div>
 </body>
 </html>
 <script>
