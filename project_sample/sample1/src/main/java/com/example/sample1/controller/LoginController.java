@@ -27,16 +27,10 @@ public class LoginController {
 	@Autowired
 	HttpSession session;
 	
-	@RequestMapping("/main.do") 
-	public String test(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		session.invalidate();
-		return "/main";
-	}
-	
-	@RequestMapping("/userlogin.do") 
+	@RequestMapping("/userLogin.do") 
     public String userlogin(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		session.invalidate();
-		return "/userlogin";
+		return "/userLogin";
     }
 	
 	@RequestMapping("/hostlogin.do") 
