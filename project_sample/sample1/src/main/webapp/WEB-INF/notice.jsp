@@ -21,7 +21,7 @@
 </head>
 <body>
 	<div id="app">
-		T2
+	공지사항
 	</div>
 </body>
 </html>
