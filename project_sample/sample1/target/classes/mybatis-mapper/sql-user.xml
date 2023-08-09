@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.sample1.mapper.UserMapper">
+	<insert id="insertUser" parameterType="hashmap">
+		INSERT INTO T2_TBL_USER VALUES
+		(#{userId}, #{pw1}, #{name}, #{phone}, #{age}, #{addr}, 'U', 0, 'N')
+	</insert>
+	
+	<select id="userCnt" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM T2_TBL_USER
+		WHERE U_ID = #{userId}
+	</select>
+	
+	<select id="selectUser" parameterType="hashmap" resultType="com.example.sample1.model.User">
+		SELECT *
+		FROM T2_TBL_USER
+		WHERE U_ID = #{userId} AND PWD = #{pwd}
+	</select>
+	
+	<update id="updateUserCnt" parameterType="hashmap">
+		UPDATE T2_TBL_USER
+		SET
+			CNT = CNT + 1
+		WHERE U_ID = #{userId}
+	</update>
+	<update id="resetUserCnt" parameterType="hashmap">
+		UPDATE T2_TBL_USER
+		SET
+			CNT = 0
+		WHERE U_ID = #{userId}
+	</update>
+	
+	<select id="userCheckId" parameterType="hashmap" resultType="com.example.sample1.model.User">
+		SELECT *
+		FROM T2_TBL_USER
+		WHERE U_ID = #{userId}
+	</select>
+	
+	<select id="userList" parameterType="hashmap" resultType="com.example.sample1.model.User">
+		SELECT *
+		FROM T2_TBL_USER
+		WHERE STATUS = 'U' OR STATUS = 'H' OR STATUS = 'R'
+	</select>
+</mapper>
