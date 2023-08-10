@@ -19,24 +19,14 @@
 		<div><label>* 비밀번호 : <input type="password" v-model="user.pw1"></label></div>
 		<div><label>* 비밀번호 확인: <input type="password" v-model="user.pw2"></label></div>
 		<div><label>* 이름 : <input type="text" v-model="user.name"></label></div>
+		<div><label>* 닉네임 : <input type="text" v-model="user.nickName"></label></div>
+		<div><label>* 생년월일 : <input type="text" v-model="user.birth"></label></div>
 		<div><label>* 핸드폰 : <input type="text" v-model="user.phone"></label></div>
-		<div><label>생년월일 : <input type="text" v-model="user.birth"></label></div>
+		<div><label>이메일 : <input type="text" v-model="user.email"></label></div>
 		<div>주소 : <button @click="fnSearchAddr">주소 검색</button> 
 		<div v-if="user.addr != ''" ><label>도로명 주소 : <input disabled style="width : 300px;" type="text" v-model="user.addr"></label></div>
 		<div v-if="user.addrDetail != ''"><label>상세 주소 : <input  style="width : 300px;" type="text" v-model="user.addrDetail"></label></div>
 	</div>
-	
-	<div><label>이벤트 수신여부 
-		<input type="checkbox" v-model="EVENTYN">동의
-		<input type="checkbox" v-model="EVENTYN">비동의
-	</label></div>
-	
-	<!-- 이메일 수신 동의시 나오게 -->
-	<div><label>SNS 수신여부 
-		<input type="checkbox" v-model="EVENTYN">이메일
-		<input type="checkbox" v-model="EVENTYN">핸드폰
-	</label></div>
-		
 	<div><button @click="fnJoin">가입하기</button></div>
 </div>
 </body>
@@ -90,12 +80,12 @@ var app = new Vue({
 			}
 		 	var nparmap = self.user;
             $.ajax({
-                url : "add.dox",
+                url : "addr.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
-                	alert("가입 ㅊㅋ");
+                	alert("가입을 환영합니다.");
                 }
             });
 		},

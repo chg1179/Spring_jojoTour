@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="js/jquery.js"></script>
+<script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
@@ -12,17 +12,11 @@
 </head>
 <body>
 <div id="app">
-<div>
-		<input type="checkbox" v-model="acessCode">모두 동의
-		<br>
-		<input type="checkbox" v-model="acessCode">동의
-		<br>
-		<input type="checkbox" v-model="acessCode">동의
-		<br>
-		<input type="checkbox" v-model="acessCode">동의
-	</div>
+	<div><label>아이디 : <input v-model="userId"></label></div>
+	<div><label>패스워드 : <input type="password" v-model="pwd"></label></div>
 	<div>
-		<button @click="fnUserAcess">확인</button>
+		<button @click="fnLogin">로그인</button>
+		<button @click="fnJoin">회원가입</button>
 	</div>
 </div>
 </body>
@@ -44,19 +38,18 @@ var app = new Vue({
                 dataType:"json",	
                 type : "POST",
                 data : param,
-                success : function(data) { 
+                success : function(data) {
                 	if(data.success){
                 		alert(data.message);
                 		location.href="main.do";
                 	} else {
                 		alert(data.message);
                 	}
-                	
                 }
             }); 
 		},
-		fnUserAcess : function(){
-			location.href='userjoin.do';
+		fnJoin : function(){
+			location.href='join-acess.do';
 		}
 	}, // methods
 	created : function() {

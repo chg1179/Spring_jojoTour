@@ -7,8 +7,11 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
-	table{
+	.custom-table {
+		margin : auto;
+		width : 1600px;
 		border : 1px solid black;
 		border-collapse: collapse;
 		text-align : center;
@@ -21,7 +24,8 @@
 </head>
 <body>
 <div id="app">
-	<table>
+	<table class="table custom-table table-striped table-bordered">
+	<thead class="thead-dark">
 		<tr>	
 			<th></th>
 			<th>아이디</th>
@@ -30,12 +34,13 @@
 			<th>이름</th>
 			<th>핸드폰</th>
 			<th>이메일</th>
-			<th>나이</th>
+			<th>샹년월일</th>
 			<th>주소</th>
-			<th>이벤트 수신 여부</th>
+			<th>이벤트 수신</th>
 			<th>해제</th>
 			<th>정지여부</th>
 		</tr>
+		</thead>
 		<tr v-for="(item, index) in list">		
 			<td>{{index + 1}}</td>
 			<td>{{item.uId}}</td>
@@ -47,12 +52,11 @@
 			<td>{{item.phone}}</td>
 			<td>{{item.email}}</td>
 			<td>{{item.birth}}</td>
-			<td>{{item.addr}}</td>
-			<td v-if="item.eventYn == 'Y'">동의</td>
-			<td v-else="item.eventYn == 'N'">거부</td>
-			<td></td>
-			<td><button v-if="item.cnt >= 5" @click="fnReset(item)">해제</button></td>
-			<td v-if="item.banYn == 'N'"><button @click="fnBan(item, 'Y')">정지</button></td>
+			<td>{{item.addr}} {{item.addrDetail}}</td>
+			<td v-if="item.eventyn == 'Y'">동의</td>
+			<td v-else="item.eventyn == 'N'">거부</td>
+			<td><button v-if="item.loginCnt >= 5" @click="fnReset(item)">해제</button></td>
+			<td v-if="item.banyn == 'N'"><button @click="fnBan(item, 'Y')">정지</button></td>
 			<td v-else><button @click="fnBan(item, 'N')">정지해제</button></td>
 		</tr>
 	</table>
@@ -127,9 +131,9 @@ var app = new Vue({
                 }
             }); 
 		},
-		fnBan : function(item, banYn){
+		fnBan : function(item, banyn){
 			var self = this;
-			 var nparmap = {userId : item.uId, banYn : banYn};
+			 var nparmap = {userId : item.uId, banyn : banyn};
 	            $.ajax({
 	                url : "/ban.dox",
 	                dataType:"json",	

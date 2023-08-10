@@ -8,7 +8,6 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-<style>
 	table{
 		border : 1px solid black;
 		border-collapse: collapse;
@@ -18,7 +17,6 @@
 		border : 1px solid black;
 		padding : 5px 10px;
 	}
-</style>
 </style>
 </head>
 <body>

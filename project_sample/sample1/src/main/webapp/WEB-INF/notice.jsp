@@ -8,54 +8,49 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
+	table{
+		border : 1px solid black;
+		border-collapse: collapse;
+		text-align : center;
+	}
+	th, td {
+		border : 1px solid black;
+		padding : 5px 10px;
+	}
 </style>
 </head>
 <body>
-<div id="app">
-	<div><label>아이디 : <input v-model="userId"></label></div>
-	<div><label>패스워드 : <input type="password" v-model="pwd"></label></div>
-	<div>
-		<button @click="fnLogin">로그인</button>
-		<button @click="fnJoin">회원가입</button>
+	<div id="app">
+	공지사항
 	</div>
-</div>
 </body>
 </html>
 <script>
 var app = new Vue({
 	el : '#app',
 	data : {
-		list : [],
-		userId : "",
-		pwd : ""
+		list : []
 	},// data
 	methods : {
-		fnLogin : function(){
+		fnGetList : function(){
 			var self = this;
-			var param = {userId : self.userId, pwd : self.pwd};
+			var param = {};
 			$.ajax({
-                url : "login.dox",
+                url : "list.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	if(data.success){
-                		alert(data.message);
-                		location.href="main.do";
-                	} else {
-                		alert(data.message);
-                	}
-                	
+                	self.list = data.list;
+                	console.log(self.list);
                 }
             }); 
-		},
-		fnJoin : function(){
-			location.href='useracess.do';
 		}
+		
 	}, // methods
 	created : function() {
 		var self = this;
-	//	self.fnGetList();
+		self.fnGetList();
 	}// created
 });
 </script>

@@ -24,4 +24,7 @@ public interface UserMapper {
 	
 	List<User> userList(HashMap<String, Object> map);
 	
+	int userBan(HashMap<String, Object> map);
+	
+	int userReset(HashMap<String, Object> map);
 }

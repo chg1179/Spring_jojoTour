@@ -10,6 +10,7 @@ public class User {
 	private String phone;
 	private String email;
 	private String addr;
+	private String addrDetail;
 	private String status;
 	private String banyn;
 	private String eventyn;
@@ -32,11 +33,11 @@ public class User {
 	public void setuName(String uName) {
 		this.uName = uName;
 	}
-	public String getNickname() {
+	public String getNickName() {
 		return nickname;
 	}
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setNickName(String nickName) {
+		this.nickname = nickName;
 	}
 	public String getBirth() {
 		return birth;
@@ -61,6 +62,12 @@ public class User {
 	}
 	public void setAddr(String addr) {
 		this.addr = addr;
+	}
+	public String getAddrDetail() {
+		return addrDetail;
+	}
+	public void setAddDetail(String addrDetail) {
+		this.addrDetail = addrDetail;
 	}
 	public String getStatus() {
 		return status;

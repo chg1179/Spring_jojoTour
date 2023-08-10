@@ -151,10 +151,10 @@ var app = new Vue({
             }); 
         },
         fnLogin :function(){
-        	location.href="userlogin.do";
+        	location.href="userLogin.do";
         },
         fnJoin : function(){
-        	location.href="userjoin.do";
+        	location.href="userJoin.do";
         }
 	}, // methods
 	created : function() {

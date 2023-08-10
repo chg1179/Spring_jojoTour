@@ -149,6 +149,7 @@
 </head>
 <body>
 <div id="app">
+<%-- <%@ include file="header.jsp" %> --%>
 	<div id="container">
         <div class="banner_box">
             <p class="banner_text">

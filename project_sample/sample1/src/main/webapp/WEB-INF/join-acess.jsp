@@ -12,11 +12,17 @@
 </head>
 <body>
 <div id="app">
-	<div><label>아이디 : <input v-model="userId"></label></div>
-	<div><label>패스워드 : <input type="password" v-model="pwd"></label></div>
+<div>
+		<input type="checkbox" v-model="acessCode">모두 동의
+		<br>
+		<input type="checkbox" v-model="acessCode">동의
+		<br>
+		<input type="checkbox" v-model="acessCode">동의
+		<br>
+		<input type="checkbox" v-model="acessCode">동의
+	</div>
 	<div>
-		<button @click="fnLogin">로그인</button>
-		<button @click="fnUserJoin">회원가입</button>
+		<button @click="fnUserAcess">확인</button>
 	</div>
 </div>
 </body>
@@ -49,8 +55,8 @@ var app = new Vue({
                 }
             }); 
 		},
-		fnUserJoin : function(){
-			location.href='hostacess.do';
+		fnUserAcess : function(){
+			location.href='join.do';
 		}
 	}, // methods
 	created : function() {
