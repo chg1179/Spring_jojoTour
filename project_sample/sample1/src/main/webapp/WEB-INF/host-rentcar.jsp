@@ -27,6 +27,8 @@
 				<th>No.</th>
 				<th>차 이름</th>
 				<th>차 종류</th>
+				<th>주소</th>
+				<th>상세주소</th>
 				<th>렌트 금액</th>
 			</tr>		
 			
@@ -34,6 +36,8 @@
 				<td>{{item.productNo}}</td>
 				<td>{{item.productName}}</td>
 				<td>{{item.carType}}</td>
+				<td>{{item.pAddr}}</td>
+				<td>{{item.pDetailAddr}}</td>
 				<td>{{item.productPrice}}</td>
 			</tr>
 		</table>
@@ -56,7 +60,7 @@ var app = new Vue({
 			var self = this;
 			var param = {};
 			$.ajax({
-                url : "rentCarList.dox",
+                url : "rentCar.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
@@ -66,7 +70,6 @@ var app = new Vue({
                 }
             }); 
 		}
-		
 	}, // methods
 	created : function() {
 		var self = this;

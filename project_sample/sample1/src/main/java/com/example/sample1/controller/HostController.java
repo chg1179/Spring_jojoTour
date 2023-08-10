@@ -35,11 +35,5 @@ public class HostController {
         return "/host-stay";
     }
 	
-	//레저 관리 페이지
-	@RequestMapping("/host/leisure.do") 
-    public String leisure(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/host-leisure";
-    }
-	
 	
 }

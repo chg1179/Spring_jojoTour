@@ -22,27 +22,31 @@
 <body>
 	<div id="app">
 		레저
-		<!-- <table>
+		<table>
 			<tr>
 				<th>No.</th>
 				<th>레저 이름</th>
 				<th>레저 가격</th>
-				<th>레저 장소</th>
+				<th>주소</th>
+				<th>상세 주소</th>
 				<th>레저 종류</th>
 			</tr>		
 			
-			<tr  v-if="" v-for="item in list">
+			<tr v-for="item in list">
 				<td>{{item.productNo}}</td>
 				<td>{{item.productName}}</td>
-				<td>{{item.carKind}}</td>
 				<td>{{item.productPrice}}</td>
+				<td>{{item.pAddr}}</td>
+				<td>{{item.pDetailAddr}}</td>
+				<td>{{item.leisureName}}</td>
+				
 			</tr>
 		</table>
 		<div>
 			<span><button>추가</button></span>
 			<span><button>수정</button></span>
 			<span><button>삭제</button></span>
-		</div> -->
+		</div>
 	</div>
 </body>
 </html>
@@ -57,12 +61,12 @@ var app = new Vue({
 			var self = this;
 			var param = {};
 			$.ajax({
-                url : "list.dox",
+                url : "leisure.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.list = data.list;
+                	self.list = data.LeisureList;
                 	console.log(self.list);
                 }
             }); 
@@ -71,7 +75,7 @@ var app = new Vue({
 	}, // methods
 	created : function() {
 		var self = this;
-		//self.fnGetList();
+		self.fnGetList();
 	}// created
 });
 </script>
