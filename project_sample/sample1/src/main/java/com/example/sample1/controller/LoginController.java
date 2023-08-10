@@ -35,9 +35,9 @@ public class LoginController {
 	public String useracess(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		return "/useracess";
 	}
-	@RequestMapping("/userjoin.do") 
-    public String userjoin(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/userjoin";
+	@RequestMapping("/userJoin.do") 
+    public String userJoin(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+        return "/userJoin";
     }
 	@RequestMapping("/userList.do") 
     public String userList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
@@ -74,4 +74,9 @@ public class LoginController {
 		resultMap.put("cnt", cnt);
 		return new Gson().toJson(resultMap);
 	}
+	@RequestMapping("/addr.do") 
+    public String addr(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
+		
+		return "/jusoPopup";
+    }
 }
