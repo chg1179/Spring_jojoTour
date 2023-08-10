@@ -22,6 +22,27 @@
 <body>
 	<div id="app">
 		레저
+		<!-- <table>
+			<tr>
+				<th>No.</th>
+				<th>레저 이름</th>
+				<th>레저 가격</th>
+				<th>레저 장소</th>
+				<th>레저 종류</th>
+			</tr>		
+			
+			<tr  v-if="" v-for="item in list">
+				<td>{{item.productNo}}</td>
+				<td>{{item.productName}}</td>
+				<td>{{item.carKind}}</td>
+				<td>{{item.productPrice}}</td>
+			</tr>
+		</table>
+		<div>
+			<span><button>추가</button></span>
+			<span><button>수정</button></span>
+			<span><button>삭제</button></span>
+		</div> -->
 	</div>
 </body>
 </html>

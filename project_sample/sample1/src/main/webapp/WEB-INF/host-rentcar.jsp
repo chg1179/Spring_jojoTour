@@ -22,6 +22,26 @@
 <body>
 	<div id="app">
 		렌트카
+		<table>
+			<tr>
+				<th>No.</th>
+				<th>차 이름</th>
+				<th>차 종류</th>
+				<th>렌트 금액</th>
+			</tr>		
+			
+			<tr v-for="item in list">
+				<td>{{item.productNo}}</td>
+				<td>{{item.productName}}</td>
+				<td>{{item.carType}}</td>
+				<td>{{item.productPrice}}</td>
+			</tr>
+		</table>
+		<div>
+			<span><button>추가</button></span>
+			<span><button>수정</button></span>
+			<span><button>삭제</button></span>
+		</div>
 	</div>
 </body>
 </html>
@@ -36,12 +56,12 @@ var app = new Vue({
 			var self = this;
 			var param = {};
 			$.ajax({
-                url : "list.dox",
+                url : "rentCarList.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.list = data.list;
+                	self.list = data.carList;
                 	console.log(self.list);
                 }
             }); 
@@ -50,7 +70,7 @@ var app = new Vue({
 	}, // methods
 	created : function() {
 		var self = this;
-		//self.fnGetList();
+		self.fnGetList();
 	}// created
 });
 </script>
