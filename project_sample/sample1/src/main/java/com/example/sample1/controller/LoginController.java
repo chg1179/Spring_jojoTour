@@ -43,6 +43,14 @@ public class LoginController {
     public String userList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/user-list";
     }
+	@RequestMapping("/host-list.do") 
+    public String hostList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+        return "/host-list";
+    }
+	@RequestMapping("/listpage.do") 
+    public String listpage(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+        return "/listpage";
+    }
 	
 	@RequestMapping(value = "/login.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody

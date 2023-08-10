@@ -6,7 +6,7 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
-<title>User List</title>
+<title>Host List</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
 	.custom-table {
@@ -34,7 +34,7 @@
 	<thead class="thead-dark">
 		<tr>	
 			
-			<th>아이디</th>
+			<th>사업자등록번호</th>
 			<th>닉네임</th>
 			<th>이름</th>
 			<th>핸드폰</th>
@@ -46,7 +46,7 @@
 			<th>정지여부</th>
 		</tr>
 		</thead>
-		<tr v-for="(item, index) in list"  v-if="item.status =='U'">		
+		<tr v-for="(item, index) in list"  v-if="item.status =='H'">		
 			
 			<td>{{item.uId}}</td>
 			<td>{{item.nickname}}</td>
