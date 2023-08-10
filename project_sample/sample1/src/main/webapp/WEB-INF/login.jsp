@@ -49,7 +49,7 @@ var app = new Vue({
             }); 
 		},
 		fnJoin : function(){
-			location.href='useracess.do';
+			location.href='join-acess.do';
 		}
 	}, // methods
 	created : function() {

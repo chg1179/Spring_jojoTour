@@ -27,21 +27,21 @@ public class LoginController {
 	@Autowired
 	HttpSession session;
 	
-	@RequestMapping("/userLogin.do") 
-    public String userlogin(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/userLogin";
+	@RequestMapping("/login.do") 
+    public String login(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/login";
     }
-	@RequestMapping("/useracess.do") 
-	public String useracess(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/useracess";
+	@RequestMapping("/join-acess.do") 
+	public String userAcess(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/join-acess";
 	}
-	@RequestMapping("/userJoin.do") 
-    public String userJoin(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/userJoin";
+	@RequestMapping("/join.do") 
+    public String join(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+        return "/join";
     }
-	@RequestMapping("/userList.do") 
+	@RequestMapping("/user-list.do") 
     public String userList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/userList";
+        return "/user-list";
     }
 	
 	@RequestMapping(value = "/login.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -77,6 +77,6 @@ public class LoginController {
 	@RequestMapping("/addr.do") 
     public String addr(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
 		
-		return "/jusoPopup";
+		return "/juso-popup";
     }
 }
