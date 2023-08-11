@@ -6,7 +6,7 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
-<title>렌트카 관리 페이지</title>
+<title>Insert title here</title>
 <style>
 	table{
 		border : 1px solid black;
@@ -21,32 +21,7 @@
 </head>
 <body>
 	<div id="app">
-		레저
-		<table>
-			<tr>
-				<th>No.</th>
-				<th>레저 이름</th>
-				<th>레저 가격</th>
-				<th>주소</th>
-				<th>상세 주소</th>
-				<th>레저 종류</th>
-			</tr>		
-			
-			<tr v-for="item in list">
-				<td>{{item.productNo}}</td>
-				<td>{{item.productName}}</td>
-				<td>{{item.productPrice}}</td>
-				<td>{{item.pAddr}}</td>
-				<td>{{item.pDetailAddr}}</td>
-				<td>{{item.leisureName}}</td>
-				
-			</tr>
-		</table>
-		<div>
-			<span><button>추가</button></span>
-			<span><button>수정</button></span>
-			<span><button>삭제</button></span>
-		</div>
+		아이디서치
 	</div>
 </body>
 </html>
@@ -61,12 +36,12 @@ var app = new Vue({
 			var self = this;
 			var param = {};
 			$.ajax({
-                url : "leisure.dox",
+                url : "list.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.list = data.LeisureList;
+                	self.list = data.list;
                 	console.log(self.list);
                 }
             }); 

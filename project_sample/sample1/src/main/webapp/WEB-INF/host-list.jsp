@@ -151,10 +151,10 @@ var app = new Vue({
 	created : function() {
 		var self = this;
 		console.log(self.status);
-		/* if(self.status != 'A'){
+		if(self.status != 'A'){
 			alert("권한 없음");
 			location.href="../main.do";
-		}  */
+		} 
 		self.fnGetList();
 	}// created
 });

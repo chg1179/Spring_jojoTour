@@ -43,6 +43,7 @@ public class LoginController {
     public String userList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/user-list";
     }
+
 	@RequestMapping("/host-list.do") 
     public String hostList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/host-list";
@@ -51,6 +52,18 @@ public class LoginController {
     public String listpage(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/listpage";
     }
+
+	@RequestMapping("/addr.do") 
+    public String addr(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
+		
+		return "/juso-popup";
+    }
+	@RequestMapping("/id-search.do") 
+    public String idSearch(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
+		
+		return "/id-search";
+	}
+
 	
 	@RequestMapping(value = "/login.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -65,7 +78,13 @@ public class LoginController {
 		}
 		return new Gson().toJson(resultMap);
 	}
-	
+	@RequestMapping(value = "/add.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String userAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		userService.addUser(map);
+		return new Gson().toJson(resultMap);
+	}
 	@RequestMapping(value = "/userList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String userlist(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -97,9 +116,4 @@ public class LoginController {
 		userService.resetUser(map);
 		return new Gson().toJson(resultMap);
 	}
-	@RequestMapping("/addr.do") 
-    public String addr(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
-		
-		return "/juso-popup";
-    }
 }
