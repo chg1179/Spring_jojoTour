@@ -20,6 +20,13 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	HttpSession session;
 	
+
+	@Override
+	public int addUser(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.insertUser(map);
+	}
+	
 	@Override
 	public List<User> listUser(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -31,15 +38,20 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		User user = userMapper.selectUser(map);
+		int status = userMapper.statusCnt(map);
+		System.out.println(status);
 		if(user != null) {
 			if(user.getLoginCnt() >= 5) {
 				resultMap.put("success", false);
 				resultMap.put("message", "5번 이상 실패, 관리자 문의 하셈");
-			} else {
+			} else if(status == 1){
 				userMapper.resetUserCnt(map);
 				resultMap.put("success", true);
-				resultMap.put("message", user.getuName() + "님 환영합니다.");
+				resultMap.put("message", user.getStatus() + "님 환영합니다.");
 				resultMap.put("user", user);
+			} else {
+				resultMap.put("success", false);
+				resultMap.put("message", "권한을 확인하세요.");
 			}
 		} else {
 			resultMap.put("success", false);
@@ -58,7 +70,7 @@ public class UserServiceImpl implements UserService{
 		}
 		return resultMap;
 	}
-
+	
 	@Override
 	public int searchUserCnt(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -76,7 +88,5 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userMapper.userReset(map);
 	}
-
-	
 
 }

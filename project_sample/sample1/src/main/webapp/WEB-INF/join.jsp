@@ -12,7 +12,17 @@
 </head>
 <body>
 <div id="app">
-	<div>
+   	<input type="radio" name="stat" v-model="user.status" value="U" id="u" checked>
+    <label class="lBox" for="u">일반회원</label>
+    <input type="radio" name="stat"  v-model="user.status" value="H" id="h">
+    <label class="lBox" for="h">호스트</label>
+    <input type="radio" name="stat"  v-model="user.status" value="R" id="r">
+    <label class="lBox" for="r">렌터카</label>
+    <div v-if="user.status == 'H' || user.status == 'R'">
+    		<label>* 사업자 번호 : <input type="text" v-model="user.userId" @keyup="fnCheck"></label> 
+		<span v-if="user.userId != ''">{{message}}</span>
+    </div>
+	<div v-else>
 		<label>* 아이디 : <input type="text" v-model="user.userId" @keyup="fnCheck"></label> 
 		<span v-if="user.userId != ''">{{message}}</span>
 	</div>
@@ -20,7 +30,7 @@
 		<div><label>* 비밀번호 확인: <input type="password" v-model="user.pw2"></label></div>
 		<div><label>* 이름 : <input type="text" v-model="user.name"></label></div>
 		<div><label>* 닉네임 : <input type="text" v-model="user.nickName"></label></div>
-		<div><label>* 생년월일 : <input type="text" v-model="user.birth"></label></div>
+		<div><label>* 생년월일 : <input type="text" v-model="user.birth" placeholder="6자리 입력"></label></div>
 		<div><label>* 핸드폰 : <input type="text" v-model="user.phone"></label></div>
 		<div><label>이메일 : <input type="text" v-model="user.email"></label></div>
 		<div>주소 : <button @click="fnSearchAddr">주소 검색</button> 
@@ -46,7 +56,10 @@ var app = new Vue({
 			phone : "",
 			birth : "",
 			addr : "",
-			addrDetail : ""
+			addrDetail : "",
+			nickName : "",
+			email : "",
+			status : ""
 		},
 		joinFlg : false,
 		message : ""
@@ -80,12 +93,13 @@ var app = new Vue({
 			}
 		 	var nparmap = self.user;
             $.ajax({
-                url : "addr.dox",
+                url : "add.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
                 success : function(data) { 
                 	alert("가입을 환영합니다.");
+                	location.href="main.do";
                 }
             });
 		},

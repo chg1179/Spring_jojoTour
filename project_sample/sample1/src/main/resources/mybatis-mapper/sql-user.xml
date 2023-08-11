@@ -5,7 +5,7 @@
 <mapper namespace="com.example.sample1.mapper.UserMapper">
 	<insert id="insertUser" parameterType="hashmap">
 		INSERT INTO T2_USER_TBL VALUES
-		(#{userId}, #{pw1}, #{name}, #{nickName}, #{birth}, #{phone}, #{email}, #{addr}, 'U', 'N', 'N', 0)
+		(#{userId}, #{pw1}, #{name}, #{nickName}, #{birth}, #{phone}, #{email}, #{addr},#{addrDetail}, #{status}, 'N', 'N', 0)
 	</insert>
 	
 	<select id="userCnt" parameterType="hashmap" resultType="int">
@@ -37,6 +37,12 @@
 		SELECT *
 		FROM T2_USER_TBL
 		WHERE U_ID = #{userId}
+	</select>
+	
+	<select id="statusCnt" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM T2_USER_TBL
+		WHERE U_ID = #{userId} AND STATUS = #{status}
 	</select>
 	
 	<select id="userList" parameterType="hashmap" resultType="com.example.sample1.model.User">
