@@ -9,4 +9,10 @@
 		INNER JOIN T2_CAR_TYPE_TBL T
 		ON C.CAR_KIND = T.CAR_KIND
 	</select>
+	
+	<delete id="deleteRentCar" parameterType="hashmap">
+		DELETE
+		FROM T2_RENT_CAR_TBL
+		WHERE PRODUCT_NO = #{productNo}
+	</delete>
 </mapper>
