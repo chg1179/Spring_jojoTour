@@ -20,4 +20,10 @@ public class RentCarServiceImpl implements RentCarService{
 		// TODO Auto-generated method stub
 		return rentCarMapper.selectRentCarList(map);
 	}
+
+	@Override
+	public int removeRentCar(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return rentCarMapper.deleteRentCar(map);
+	}
 }

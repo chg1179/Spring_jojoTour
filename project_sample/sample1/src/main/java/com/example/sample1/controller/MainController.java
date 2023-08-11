@@ -25,4 +25,9 @@ public class MainController {
 	public String test(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		return "/main";
 	}
+	
+	@RequestMapping("/main-hotel.do") 
+	public String mainHotel(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/main-hotel";
+	}
 }

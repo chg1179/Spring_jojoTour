@@ -24,6 +24,7 @@
 		렌트카
 		<table>
 			<tr>
+				<th>선택</th>
 				<th>No.</th>
 				<th>차 이름</th>
 				<th>차 종류</th>
@@ -33,6 +34,9 @@
 			</tr>		
 			
 			<tr v-for="item in list">
+				<td>
+					<input type="radio" v-model="productNo" :value="item.productNo" name="productNo">
+				</td>
 				<td>{{item.productNo}}</td>
 				<td>{{item.productName}}</td>
 				<td>{{item.carType}}</td>
@@ -44,7 +48,7 @@
 		<div>
 			<span><button>추가</button></span>
 			<span><button>수정</button></span>
-			<span><button>삭제</button></span>
+			<span><button @click="fnRemove">삭제</button></span>
 		</div>
 	</div>
 </body>
@@ -53,7 +57,8 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		list : []
+		list : [],
+		productNo : ""
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -66,10 +71,30 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	self.list = data.carList;
-                	console.log(self.list);
                 }
             }); 
-		}
+		},
+		fnRemove : function(){
+            var self = this;
+            
+            console.log(self.productNo);
+	        if(!confirm("해당 렌트카를 삭제하시겠습니까?")){
+	        	alert("취소되었습니다.");
+	          	return;
+	        }
+            var param = {productNo : self.productNo};
+            
+            $.ajax({
+                url : "carRemove.dox",
+                dataType:"json",	
+                type : "POST", 
+                data : param,
+                success : function(data) {
+                	alert("해당 렌트카의 정보가 삭제되었습니다.");
+                	self.fnGetList();
+                }
+            });  
+        }
 	}, // methods
 	created : function() {
 		var self = this;

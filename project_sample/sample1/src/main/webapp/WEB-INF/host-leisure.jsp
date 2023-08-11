@@ -24,6 +24,7 @@
 		레저
 		<table>
 			<tr>
+				<th>선택</th>
 				<th>No.</th>
 				<th>레저 이름</th>
 				<th>레저 가격</th>
@@ -33,6 +34,7 @@
 			</tr>		
 			
 			<tr v-for="item in list">
+				<td><input type="radio"></td>
 				<td>{{item.productNo}}</td>
 				<td>{{item.productName}}</td>
 				<td>{{item.productPrice}}</td>
@@ -44,7 +46,7 @@
 		</table>
 		<div>
 			<span><button>추가</button></span>
-			<span><button>수정</button></span>
+			<span><button @click="fnEdit">수정</button></span>
 			<span><button>삭제</button></span>
 		</div>
 	</div>
@@ -70,7 +72,24 @@ var app = new Vue({
                 	console.log(self.list);
                 }
             }); 
-		}
+		},
+		fnEdit : function(){
+			$pageChange("");
+		},
+		/* fnAdd : function(){
+			var self = this;
+			var param = {};
+			$.ajax({
+                url : "leisureEdit.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	
+                }
+            }); 
+		} */
+		
 		
 	}, // methods
 	created : function() {
