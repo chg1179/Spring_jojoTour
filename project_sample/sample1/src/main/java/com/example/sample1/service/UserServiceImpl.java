@@ -89,4 +89,10 @@ public class UserServiceImpl implements UserService{
 		return userMapper.userReset(map);
 	}
 
+	@Override
+	public int joinPoint(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.joinPoint(map);
+	}
+
 }

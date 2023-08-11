@@ -64,4 +64,8 @@
 			LOGIN_CNT = '0'
 		WHERE U_ID = #{userId}
 	</update>
+		<insert id="joinPoint" parameterType="hashmap">
+		INSERT INTO T2_USER_POINT_TBL VALUES
+		(#{userId}, 500)
+	</insert>
 </mapper>

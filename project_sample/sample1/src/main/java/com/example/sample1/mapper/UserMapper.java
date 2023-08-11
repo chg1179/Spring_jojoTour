@@ -29,4 +29,6 @@ public interface UserMapper {
 	int userBan(HashMap<String, Object> map);
 	
 	int userReset(HashMap<String, Object> map);
+	
+	int joinPoint(HashMap<String, Object> map);
 }

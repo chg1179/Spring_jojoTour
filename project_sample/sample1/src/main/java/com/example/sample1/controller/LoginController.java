@@ -63,6 +63,11 @@ public class LoginController {
 		
 		return "/id-search";
 	}
+	@RequestMapping("/logout.do") 
+    public String logout(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
+		session.invalidate();
+		return "redirect:main.do";
+	}
 
 	
 	@RequestMapping(value = "/login.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -83,6 +88,7 @@ public class LoginController {
 	public String userAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		userService.addUser(map);
+		userService.joinPoint(map);
 		return new Gson().toJson(resultMap);
 	}
 	@RequestMapping(value = "/userList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

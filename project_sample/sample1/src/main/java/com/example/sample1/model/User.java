@@ -15,6 +15,8 @@ public class User {
 	private String banyn;
 	private String eventyn;
 	private int loginCnt;
+	private int point;
+	
 	public String getuId() {
 		return uId;
 	}
@@ -92,6 +94,12 @@ public class User {
 	}
 	public void setLoginCnt(int loginCnt) {
 		this.loginCnt = loginCnt;
+	}
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
 	}
 	
 }
