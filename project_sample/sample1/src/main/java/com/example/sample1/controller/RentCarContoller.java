@@ -29,7 +29,13 @@ public class RentCarContoller {
         return "/host-rentcar";
     }
 	
-	//렌트카 정보 리스트 출력 페이지
+	//렌트카 제품 추가 및 수정 페이지
+	@RequestMapping("/host/rentcarEdit.do") 
+	public String leisureEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/host-rentcar-edit";
+	}
+	
+	//렌트카 정보 리스트 출력
 	@RequestMapping(value = "/host/rentCar.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String rentCar(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -39,7 +45,7 @@ public class RentCarContoller {
 		return new Gson().toJson(resultMap);
 	}
 	
-	//렌트카 차 삭제 페이지
+	//렌트카 차 삭제
 	@RequestMapping(value = "/host/carRemove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String rentRemove(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

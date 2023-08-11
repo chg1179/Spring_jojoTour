@@ -94,7 +94,11 @@ var app = new Vue({
                 	self.fnGetList();
                 }
             });  
-        }
+        },
+		
+		
+		
+        /* $.pageChange("edit.do", {bNo : self.bNo}); */
 	}, // methods
 	created : function() {
 		var self = this;
