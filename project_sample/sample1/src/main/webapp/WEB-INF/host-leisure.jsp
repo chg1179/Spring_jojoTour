@@ -24,6 +24,7 @@
 		레저
 		<table>
 			<tr>
+				<th>선택</th>
 				<th>No.</th>
 				<th>레저 이름</th>
 				<th>레저 가격</th>
@@ -33,6 +34,7 @@
 			</tr>		
 			
 			<tr v-for="item in list">
+				<td><input type="radio"></td>
 				<td>{{item.productNo}}</td>
 				<td>{{item.productName}}</td>
 				<td>{{item.productPrice}}</td>
