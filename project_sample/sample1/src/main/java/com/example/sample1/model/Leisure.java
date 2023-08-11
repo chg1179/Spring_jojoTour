@@ -14,7 +14,6 @@ public class Leisure {
 	private String productKind;
 	private String leisureKind;
 	
-	private String leisuerKind;
-	private String leisureName;
+	private String cName;
 	
 }

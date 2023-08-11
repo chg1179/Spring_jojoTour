@@ -20,20 +20,10 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 public class HostController {
 	
-	@Autowired
-	TestService testService;
-	
 	//호스트 관리 페이지
 	@RequestMapping("/host/main.do") 
     public String test(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/host-main";
     }
-	
-	//숙박 관리 페이지
-	@RequestMapping("/host/stay.do") 
-    public String stay(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/host-stay";
-    }
-	
 	
 }

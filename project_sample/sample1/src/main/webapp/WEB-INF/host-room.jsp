@@ -6,7 +6,7 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
-<title>렌트카 관리 페이지</title>
+<title>Insert title here</title>
 <style>
 	table{
 		border : 1px solid black;
@@ -21,32 +21,25 @@
 </head>
 <body>
 	<div id="app">
-		레저
+		숙소 방 등록 페이지
 		<table>
 			<tr>
-				<th>선택</th>
 				<th>No.</th>
-				<th>레저 이름</th>
-				<th>레저 가격</th>
-				<th>주소</th>
-				<th>상세 주소</th>
-				<th>레저 종류</th>
-			</tr>		
+				<th>객실 타입</th>
+				<th>객실 가격</th>
+				<th>최대 수용 인원</th>
+			</tr>
 			
 			<tr v-for="item in list">
-				<td><input type="radio"></td>
-				<td>{{item.leisureNo}}</td>
-				<td>{{item.leisureName}}</td>
-				<td>{{item.leisurePrice}}</td>
-				<td>{{item.lAddr}}</td>
-				<td>{{item.lDetailAddr}}</td>
-				<td>{{item.cName}}</td>
+				<td>{{item.roomNo}}</td>
+				<td>{{item.roomName}}</td>
+				<td>{{item.roomPrice}}</td>
+				<td>{{item.peopleMax}}명</td>
 			</tr>
 		</table>
 		<div>
-			<span><button>추가</button></span>
-			<span><button @click="fnEdit">수정</button></span>
-			<span><button>삭제</button></span>
+			<span><button>객실 추가</button></span>
+			<span><button>객실 삭제</button></span>
 		</div>
 	</div>
 </body>
@@ -55,40 +48,23 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		list : []
+		list : [],
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
 			var param = {};
 			$.ajax({
-                url : "leisure.dox",
+                url : "roomList.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.list = data.leisureList;
+                	self.list = data.roomList;
                 	console.log(self.list);
                 }
             }); 
-		},
-		fnEdit : function(){
-			$pageChange("");
-		},
-		/* fnAdd : function(){
-			var self = this;
-			var param = {};
-			$.ajax({
-                url : "leisureEdit.dox",
-                dataType:"json",	
-                type : "POST",
-                data : param,
-                success : function(data) { 
-                	
-                }
-            }); 
-		} */
-		
+		}
 		
 	}, // methods
 	created : function() {

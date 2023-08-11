@@ -6,18 +6,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.sample1.mapper.LeisureMapper;
+import com.example.sample1.mapper.RoomMapper;
 import com.example.sample1.model.Product;
 
 @Service
-public class LeisureServiceImpl implements LeisureService{
-	
+public class RoomServiceImpl implements RoomService {
 	@Autowired
-	LeisureMapper leisureMapper;
-	
+	RoomMapper roomMapper;
+
 	@Override
-	public List<Product> searchLeisureList(HashMap<String, Object> map) {
+	public List<Product> searchRoomList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return leisureMapper.selectLeisureList(map);
+		return roomMapper.selectRoomList(map);
 	}
 }

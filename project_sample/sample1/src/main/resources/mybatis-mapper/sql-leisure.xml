@@ -3,20 +3,19 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.sample1.mapper.LeisureMapper">
-	<select id="selectLeisureList" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">
+	<select id="selectLeisureList" parameterType="hashmap" resultType="com.example.sample1.model.Product">
 		SELECT *
-		FROM T2_LEISURE_TBL L
-		INNER JOIN T2_LEISURE_TYPE_TBL T
-		ON L.LEISURE_KIND = T.LEISURE_KIND
+		FROM T2_LEISURE_TBL R
+		INNER JOIN T2_CODE_TYPE C ON R.LEISURE_KIND = C.C_KIND
 	</select>
 	
 	<update id="updateLeisure" parameterType="hashmap">
 		UPDATE T2_LEISURE_TBL
 			SET 
-				PRODUCTNAME = #{productName},
-				PRODUCTPRICE = #{productPrice},
-				P_ADDR = #{pAddr},
-				P_DETAIL_ADDR = #{pDetailAddr}
-			WHERE PRODUCT_NO = #{productNo}
+				LEISURENAME = #{leisureName},
+				LEISUREPRICE = #{leisurePrice},
+				L_ADDR = #{lAddr},
+				L_DETAIL_ADDR = #{lDetailAddr}
+			WHERE LEISURE_NO = #{leisureNo}
 	</update>
 </mapper>

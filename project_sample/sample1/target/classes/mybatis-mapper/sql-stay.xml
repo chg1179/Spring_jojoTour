@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.sample1.mapper.StayMapper">
+
+	<select id="selectStayList" parameterType="hashmap" resultType="com.example.sample1.model.Product">
+		SELECT 
+			S.STAY_NO,
+			S.STAY_NAME,
+			S.S_ADDR,
+			S.S_DETAIL_ADDR,
+			C.C_NAME
+		FROM T2_STAY_TBL S
+		INNER JOIN T2_CODE_TYPE C
+		ON S.STAY_KIND = C.C_KIND
+	</select>
+</mapper>

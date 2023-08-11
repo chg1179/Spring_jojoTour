@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.sample1.mapper.RentCarMapper;
-import com.example.sample1.model.RentCar;
+import com.example.sample1.model.Product;
 
 @Service
 public class RentCarServiceImpl implements RentCarService{
@@ -16,7 +16,7 @@ public class RentCarServiceImpl implements RentCarService{
 	RentCarMapper rentCarMapper;
 
 	@Override
-	public List<RentCar> searchRentCarList(HashMap<String, Object> map) {
+	public List<Product> searchRentCarList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return rentCarMapper.selectRentCarList(map);
 	}

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.sample1.model.RentCar;
+import com.example.sample1.model.Product;
 import com.example.sample1.service.RentCarService;
 import com.google.gson.Gson;
 
@@ -40,7 +40,7 @@ public class RentCarContoller {
 	@ResponseBody
 	public String rentCar(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<RentCar> list = rentCarService.searchRentCarList(map);
+		List<Product> list = rentCarService.searchRentCarList(map);
 		resultMap.put("carList", list);
 		return new Gson().toJson(resultMap);
 	}

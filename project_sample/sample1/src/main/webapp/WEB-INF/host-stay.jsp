@@ -17,11 +17,36 @@
 		border : 1px solid black;
 		padding : 5px 10px;
 	}
+	a {
+		
+	}
 </style>
 </head>
 <body>
 	<div id="app">
-		숙박
+		
+		<table>
+			<tr>
+				<th>No.</th>
+				<th>업체명</th>
+				<th>주소</th>
+				<th>상세 주소</th>
+				<th>숙소타입</th>
+			</tr>
+			
+			<tr v-for="item in list">
+				<td>{{item.stayNo}}</td>
+				<td><a @click="fnMove(item)" href="javascript:;">{{item.stayName}}</a></td>
+				<td>{{item.sAddr}}</td>
+				<td>{{item.sDetailAddr}}</td>
+				<td>{{item.cName}}</td>
+			</tr>
+		</table>
+		<div>
+			<span><button @click="fnAdd">숙박 업체 추가</button></span>
+			<!-- <span><button @click="">업체 정보 수정</button></span>
+			<span><button @click="fnRemove">업체 정보 삭제</button></span> -->
+		</div>
 	</div>
 </body>
 </html>
@@ -29,28 +54,34 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		list : []
+		list : [],
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
 			var param = {};
 			$.ajax({
-                url : "list.dox",
+                url : "stayList.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.list = data.list;
+                	self.list = data.stayList;
                 	console.log(self.list);
                 }
             }); 
+		},
+		fnMove : function(item){
+			$.pageChange("/host/room.do", {stayNo : item.stayNo});
+		},
+		fnAdd : function(){
+			location.href = "/host/stayAdd.do"
 		}
 		
 	}, // methods
 	created : function() {
 		var self = this;
-		//self.fnGetList();
+		self.fnGetList();
 	}// created
 });
 </script>

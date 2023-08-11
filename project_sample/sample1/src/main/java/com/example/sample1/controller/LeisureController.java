@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.sample1.model.Leisure;
+import com.example.sample1.model.Product;
 import com.example.sample1.service.LeisureService;
 import com.google.gson.Gson;
 
@@ -38,8 +38,8 @@ public class LeisureController {
 	@ResponseBody
 	public String leisureList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Leisure> list = leisureService.searchLeisureList(map);
-		resultMap.put("LeisureList", list);
+		List<Product> list = leisureService.searchLeisureList(map);
+		resultMap.put("leisureList", list);
 		return new Gson().toJson(resultMap);
 	}
 }

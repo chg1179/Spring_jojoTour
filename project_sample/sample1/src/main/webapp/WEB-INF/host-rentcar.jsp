@@ -35,14 +35,14 @@
 			
 			<tr v-for="item in list">
 				<td>
-					<input type="radio" v-model="productNo" :value="item.productNo" name="productNo">
+					<input type="radio" v-model="rentNo" :value="item.rentNo" name="rentNo">
 				</td>
-				<td>{{item.productNo}}</td>
-				<td>{{item.productName}}</td>
-				<td>{{item.carType}}</td>
-				<td>{{item.pAddr}}</td>
-				<td>{{item.pDetailAddr}}</td>
-				<td>{{item.productPrice}}</td>
+				<td>{{item.rentNo}}</td>
+				<td>{{item.rentName}}</td>
+				<td>{{item.cName}}</td>
+				<td>{{item.rAddr}}</td>
+				<td>{{item.rDetailAddr}}</td>
+				<td>{{item.rentPrice}}</td>
 			</tr>
 		</table>
 		<div>
@@ -58,7 +58,7 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-		productNo : ""
+		rentNo : ""
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -77,12 +77,12 @@ var app = new Vue({
 		fnRemove : function(){
             var self = this;
             
-            console.log(self.productNo);
+            console.log(self.rentNo);
 	        if(!confirm("해당 렌트카를 삭제하시겠습니까?")){
 	        	alert("취소되었습니다.");
 	          	return;
 	        }
-            var param = {productNo : self.productNo};
+            var param = {rentNo : self.rentNo};
             
             $.ajax({
                 url : "carRemove.dox",

@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.example.sample1.model.Product;
 
-public interface LeisureService {
-	// 레저 정보 리스트 출력
-	List<Product> searchLeisureList(HashMap<String, Object> map);
+public interface RoomService {
+	// 방 목록 출력
+		List<Product> searchRoomList(HashMap<String, Object> map);
 }
