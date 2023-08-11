@@ -4,6 +4,7 @@
 <html>
 <head>
 <script src="../js/jquery.js"></script>
+<script src="../js/jquery-1.12.4.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
@@ -64,11 +65,12 @@
             display: block;
             background-image: url(./img/main/icon_question.svg);
             background-repeat: no-repeat;
-            background-color: #FF264D;
+            background-color: #F86F03;
             background-position: 10px;
             border: none;
             color: #fff;
             font-size: 20px;
+            cursor : pointer;
         }
         /* 배너 끝 */
         .accommodation_title{
@@ -145,11 +147,33 @@
             height: 120px;
             margin-bottom: 30px;
         }
+        /* 지상레져 끝 */
+        #mask_container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top : 50px;
+            margin-bottom : 50px;
+        }
+        #mask{
+            box-sizing: border-box;
+            width: 600px;
+            position: relative;
+            overflow: hidden;
+        }
+        #slide_wrap{
+            width: 1900px;
+            height: inherit;
+        }
+        #slide_wrap img{
+        	width : 600px;
+        }
 </style>
 </head>
 <body>
-<div id="app">
+<jsp:include page="header.jsp" flush="true"></jsp:include>
 <%-- <%@ include file="header.jsp" %> --%>
+<div id="app">
 	<div id="container">
         <div class="banner_box">
             <p class="banner_text">
@@ -168,6 +192,16 @@
                 <!-- 1:1문의게시판으로 연결 -->
             </button>
         </div>
+        <div id="mask_container">
+	        <div id="mask">
+	            <div id="slide_wrap">
+	                <a href="javascript:;"><img src="./img/main/slide_leisure.jpg" alt=""></a>
+	                <a href="javascript:;"><img src="./img/main/slide_rent_car.jpg" alt=""></a>
+	                <a href="javascript:;"><img src="./img/main/slide_stay.jpg" alt=""></a>
+	            </div>
+	            <div class="slide_btn"></div>
+	        </div>
+	    </div>
         <div class="inner_con">
             <div class="accommodation">
                 <h2 class="accommodation_title">숙소 예약</h2>
@@ -332,5 +366,20 @@ var app = new Vue({
 	created : function() {
 		var self = this;
 	}// created
+});
+$(document).ready(function(){
+    $('.slide_btn').click(function(){
+        $('#slide_wrap').animate({
+            left: -600
+        }, function(){
+            $('#slide_wrap').css({left: 0}).find('img').first().appendTo('#slide_wrap');
+        });
+    });
+    function time(){
+        auto = setInterval(function(){
+            $('.slide_btn').trigger('click');
+        },3000);
+    }    
+    time();
 });
 </script>
