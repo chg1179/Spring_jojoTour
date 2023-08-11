@@ -46,7 +46,7 @@
 		</table>
 		<div>
 			<span><button>추가</button></span>
-			<span><button>수정</button></span>
+			<span><button @click="fnEdit">수정</button></span>
 			<span><button>삭제</button></span>
 		</div>
 	</div>
@@ -72,7 +72,24 @@ var app = new Vue({
                 	console.log(self.list);
                 }
             }); 
-		}
+		},
+		fnEdit : function(){
+			$pageChange("");
+		},
+		/* fnAdd : function(){
+			var self = this;
+			var param = {};
+			$.ajax({
+                url : "leisureEdit.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	
+                }
+            }); 
+		} */
+		
 		
 	}, // methods
 	created : function() {

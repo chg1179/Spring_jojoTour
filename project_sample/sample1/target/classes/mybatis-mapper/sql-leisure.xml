@@ -9,4 +9,14 @@
 		INNER JOIN T2_LEISURE_TYPE_TBL T
 		ON L.LEISURE_KIND = T.LEISURE_KIND
 	</select>
+	
+	<update id="updateLeisure" parameterType="hashmap">
+		UPDATE T2_LEISURE_TBL
+			SET 
+				PRODUCTNAME = #{productName},
+				PRODUCTPRICE = #{productPrice},
+				P_ADDR = #{pAddr},
+				P_DETAIL_ADDR = #{pDetailAddr}
+			WHERE PRODUCT_NO = #{productNo}
+	</update>
 </mapper>
