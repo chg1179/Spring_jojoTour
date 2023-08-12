@@ -3,28 +3,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="js/jquery.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
 </style>
 </head>
 <body>
-<div id="app">
-<div>
-		<input type="checkbox" v-model="acessCode">모두 동의
-		<br>
-		<input type="checkbox" v-model="acessCode">동의
-		<br>
-		<input type="checkbox" v-model="acessCode">동의
-		<br>
-		<input type="checkbox" v-model="acessCode">동의
+	<jsp:include page="header.jsp" flush="true"></jsp:include>
+	<div id="app">
+		<div>
+			<input type="checkbox" v-model="acessCode">모두 동의
+			<br>
+			<input type="checkbox" v-model="acessCode">동의
+			<br>
+			<input type="checkbox" v-model="acessCode">동의
+			<br>
+			<input type="checkbox" v-model="acessCode">동의
+		</div>
+		<div>
+			<button @click="fnUserAcess">확인</button>
+		</div>
 	</div>
-	<div>
-		<button @click="fnUserAcess">확인</button>
-	</div>
-</div>
 </body>
 </html>
 <script>

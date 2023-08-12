@@ -4,8 +4,6 @@
 <html>
 <head>
 <script src="../js/jquery.js"></script>
-<script src="../js/jquery-1.12.4.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
@@ -171,8 +169,8 @@
 </style>
 </head>
 <body>
-<jsp:include page="header.jsp" flush="true"></jsp:include>
-<%-- <%@ include file="header.jsp" %> --%>
+	<jsp:include page="header.jsp" flush="true"></jsp:include>
+	<%-- <%@ include file="header.jsp" %> --%>
 	<div id="app">
 		<div id="container">
 	        <div class="banner_box">

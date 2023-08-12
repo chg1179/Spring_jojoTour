@@ -22,15 +22,16 @@
 </style>
 </head>
 <body>
+	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<div>제목 : {{info.nTitle}}</div>
 		<div>작성자 : {{info.uId}}</div>
 		<div>작성날짜 : {{info.fWriteTime}}</div>
 		<div>내용 :<pre v-html="info.nContent"></pre></div>
-	<div>
-		<button @click="fnEdit" >수정하기</button>
-		<button @click="fnBack">되돌아가기</button>
-	</div> 
+		<div>
+			<button @click="fnEdit" >수정하기</button>
+			<button @click="fnBack">되돌아가기</button>
+		</div> 
 	</div>
 </body>
 </html>
