@@ -83,6 +83,13 @@ public class LoginController {
 		}
 		return new Gson().toJson(resultMap);
 	}
+	@RequestMapping(value = "/id-search.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String idSearch(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap = userService.selectId(map);
+		return new Gson().toJson(resultMap);
+	}
 	@RequestMapping(value = "/add.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String userAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

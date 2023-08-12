@@ -68,4 +68,9 @@
 		INSERT INTO T2_USER_POINT_TBL VALUES
 		(#{userId}, 500)
 	</insert>
+	<select id="searchId" parameterType="hashmap" resultType="com.example.sample1.model.User">
+		SELECT *
+		FROM T2_USER_TBL
+		WHERE U_NAME = #{name} AND PHONE = #{phone}
+	</select>
 </mapper>

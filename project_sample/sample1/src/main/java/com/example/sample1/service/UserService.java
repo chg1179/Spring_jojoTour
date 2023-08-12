@@ -13,4 +13,5 @@ public interface UserService {
 	int banUser(HashMap<String, Object> map);
 	int resetUser(HashMap<String, Object> map);
 	int joinPoint(HashMap<String, Object> map);
+	HashMap<String, Object> selectId(HashMap<String, Object> map);
 }

@@ -21,7 +21,14 @@
 </head>
 <body>
 	<div id="app">
-		아이디서치
+		<div><input type="text" placeholder="이름을 입력하세요." v-model="name"></div>
+		<div><input type="text" placeholder="핸드폰 번호를 입력하세요." v-model="phone"></div>
+		<div><button @click="fnIdsearch">아이디 검색</button></div>
+		<div>회원님의 정보와 일치하는 아이디 입니다.</div>
+		<div>회원 아이디 : {{message}}</div>
+		<button @click="fnPwdSearch">비밀번호 찾기</button>
+		<button @click="fnLogin">로그인 하러가기</button>
+		
 	</div>
 </body>
 </html>
@@ -29,28 +36,39 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		list : []
+		list : [],
+		name : "",
+		phone : "",
+		message : "",
+		confirm : ""
 	},// data
 	methods : {
-		fnGetList : function(){
+		fnIdsearch : function(){
 			var self = this;
-			var param = {};
+			
+			var param = {name : self.name, phone : self.phone};
 			$.ajax({
-                url : "list.dox",
+                url : "id-search.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
-                success : function(data) { 
-                	self.list = data.list;
-                	console.log(self.list);
+                success : function(data) {
+                	self.message = data.message;
+                	self.confirm = data.confirm;
+                	alert(self.confirm);
+					console.log(data);
                 }
             }); 
+		},
+		fnLogin : function(){
+			location.href="login.do";
+		},
+		fnPwdSearch : function(){
+			location.href="pwd-search.do";
 		}
-		
 	}, // methods
 	created : function() {
 		var self = this;
-		self.fnGetList();
 	}// created
 });
 </script>

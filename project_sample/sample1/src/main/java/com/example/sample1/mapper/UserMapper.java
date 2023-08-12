@@ -31,4 +31,6 @@ public interface UserMapper {
 	int userReset(HashMap<String, Object> map);
 	
 	int joinPoint(HashMap<String, Object> map);
+	
+	User searchId(HashMap<String, Object> map);
 }

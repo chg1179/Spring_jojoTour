@@ -72,6 +72,23 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
+	public HashMap<String, Object> selectId(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		User user = userMapper.searchId(map);
+		if(user != null) {
+			resultMap.put("success", true);
+			resultMap.put("message", user.getuId());
+			resultMap.put("user", user);
+			resultMap.put("confirm", "아이디가 확인되었습니다.");
+		}else {
+			resultMap.put("success", false);
+			resultMap.put("confirm", "이름과 핸드폰 번호를 정확히 적으세요.");
+		}
+		return resultMap;
+	}
+	
+	@Override
 	public int searchUserCnt(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return userMapper.userCnt(map);
