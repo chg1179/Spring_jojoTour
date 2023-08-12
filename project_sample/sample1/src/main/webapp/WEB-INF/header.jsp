@@ -188,23 +188,9 @@
 var app = new Vue({
 	el : '#header',
 	data : {
-		list : [],
 		uId : "${sessionId}"
 	},// data
 	methods : {
-		fnGetList : function(){
-            var self = this;
-            var nparmap = {};
-            $.ajax({
-                url : "list.dox",
-                dataType:"json",	
-                type : "POST", 
-                data : nparmap,
-                success : function(data) { 
-                	self.list = data.list;
-                }
-            }); 
-        },
         fnLogin :function(){
         	location.href="../login.do";
         },
@@ -226,7 +212,6 @@ var app = new Vue({
 	}, // methods
 	created : function() {
 		var self = this;
-		self.fnGetList();
 	}// created
 });
 </script>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="../js/jquery.js"></script>
+<script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <title>렌트카 제품 추가 및 수정 페이지</title>
@@ -12,6 +12,7 @@
 </head>
 <body>
 	<div id="app">
+		렌트카 제품 추가 및 수정
 		<div>
 			<!-- <input type="text" hidden/>
 			<input class="txt_input" type="text" v-model="productNo" id="pNo" disabled>
@@ -25,7 +26,7 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		info : {},
-		productNo : "${map.productNo}"
+		rentNo : "${map.rentNo}"
 	},// data
 	methods : {
 		fnGetInfo : function(){

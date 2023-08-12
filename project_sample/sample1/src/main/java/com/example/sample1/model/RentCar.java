@@ -5,14 +5,14 @@ import lombok.Data;
 @Data
 public class RentCar {
 
-	private int productNo;
+	private int rentNo;
 	private String uId;
-	private String productName;
-	private String productSales;
-	private String productPrice;
-	private String productKind;
-	private String pAddr;
-	private String pDetailAddr;
+	private String rentName;
+	private String rentSales;
+	private String rentPrice;
+	private String rentKind;
+	private String rAddr;
+	private String rDetailAddr;
 	
 	private String carKind;
 	private String carType;

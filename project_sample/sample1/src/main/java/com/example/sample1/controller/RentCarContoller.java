@@ -30,8 +30,9 @@ public class RentCarContoller {
     }
 	
 	//렌트카 제품 추가 및 수정 페이지
-	@RequestMapping("/host/rentcarEdit.do") 
+	@RequestMapping("/host/rentcar/edit.do") 
 	public String leisureEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
 		return "/host-rentcar-edit";
 	}
 	

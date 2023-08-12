@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="../js/jquery.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
@@ -20,10 +18,12 @@
 </style>
 </head>
 <body>
+	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		숙소 방 등록 페이지
 		<table>
 			<tr>
+				<th>선택</th>
 				<th>No.</th>
 				<th>객실 타입</th>
 				<th>객실 가격</th>
@@ -31,6 +31,9 @@
 			</tr>
 			
 			<tr v-for="item in list">
+				<td>
+					<input type="radio" v-model="roomNo" :value="item.roomNo" name="roomNo">
+				</td>
 				<td>{{item.roomNo}}</td>
 				<td>{{item.roomName}}</td>
 				<td>{{item.roomPrice}}</td>
@@ -49,6 +52,7 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
+		roomNo : ""
 	},// data
 	methods : {
 		fnGetList : function(){
