@@ -83,7 +83,8 @@ public class UserServiceImpl implements UserService{
 			resultMap.put("confirm", "아이디가 확인되었습니다.");
 		}else {
 			resultMap.put("success", false);
-			resultMap.put("confirm", "이름과 핸드폰 번호를 정확히 적으세요.");
+			resultMap.put("confirm", "이름과 핸드폰 번호를 정확하게 적으세요.");
+			resultMap.put("message", "");
 		}
 		return resultMap;
 	}

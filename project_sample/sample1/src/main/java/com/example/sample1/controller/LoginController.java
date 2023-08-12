@@ -68,6 +68,11 @@ public class LoginController {
 		session.invalidate();
 		return "redirect:main.do";
 	}
+	@RequestMapping("/pwd-search.do") 
+    public String pwdSearch(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
+		session.invalidate();
+		return "pwd-search";
+	}
 
 	
 	@RequestMapping(value = "/login.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

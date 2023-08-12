@@ -21,14 +21,18 @@
 </head>
 <body>
 	<div id="app">
-		<div><input type="text" placeholder="이름을 입력하세요." v-model="name"></div>
-		<div><input type="text" placeholder="핸드폰 번호를 입력하세요." v-model="phone"></div>
-		<div><button @click="fnIdsearch">아이디 검색</button></div>
-		<div>회원님의 정보와 일치하는 아이디 입니다.</div>
-		<div>회원 아이디 : {{message}}</div>
-		<button @click="fnPwdSearch">비밀번호 찾기</button>
-		<button @click="fnLogin">로그인 하러가기</button>
-		
+		<div v-if="message == ''">
+			<div><input type="text" placeholder="이름을 입력하세요." v-model="name"></div>
+			<div><input type="text" placeholder="핸드폰 번호를 입력하세요." v-model="phone"></div>
+			<button @click="fnIdsearch">아이디 검색</button>
+			<button @click="fnPwdSearch">비밀번호 찾기</button>
+		</div>
+		<div v-else>
+			<div>회원님의 정보와 일치하는 아이디 입니다.</div>
+			<div>회원 아이디 : {{message}}</div>
+			<button @click="fnPwdSearch">비밀번호 찾기</button>
+			<button @click="fnLogin">로그인 하러가기</button>
+		</div>
 	</div>
 </body>
 </html>
