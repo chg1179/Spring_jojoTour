@@ -89,44 +89,44 @@
 </style>
 </head>
 <body>
-
-<div id="app">
-    <div id="login_container">
-        <div class="login_box">
-            <div class="login_tab">
-                <input type="radio" name="selectLogin" id="user" value="U" v-model="status" checked>
-                <label for="user">일반회원</label>
-                <input type="radio" name="selectLogin" id="host" value="H" v-model="status">
-                <label for="host">숙박/레저</label>
-                <input type="radio" name="selectLogin" id="rentCar" value="R" v-model="status">
-                <label for="rentCar">렌터카</label>
-                <input type="radio" name="selectLogin" id="admin" value="A" v-model="status">
-                <label for="admin">관리자</label>
-            </div>
-            <div class="login_background">
-                <div class="login_back_inner">
-                    <div v-if="status == 'H' || status == 'R'" class="login_num">
-                        <label><input v-model="userId" placeholder="사업자 등록번호"></label>
-                    </div>
-                    <div v-else class="login_id">
-                        <label><input v-model="userId" placeholder="아이디"></label>
-                    </div>
-                    <div class="login_pwd">
-                        <label><input type="password" v-model="pwd" placeholder="패스워드"></label>
-                    </div>
-                    <div class="login_button">
-                        <button @click="fnLogin">로그인</button>
-                    </div>
-                    <div class="login_a">
-                        <a v-if="status == 'H' || status == 'R'" href="javascript:;" @click="fnSearch">사업자번호/비밀번호 찾기</a>
-                        <a v-else href="javascript:;" @click="fnSearch">아이디/비밀번호 찾기</a>
-                        <a href="javascript:;" @click="fnJoin">회원가입</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+	<jsp:include page="header.jsp" flush="true"></jsp:include>
+	<div id="app">
+	    <div id="login_container">
+	        <div class="login_box">
+	            <div class="login_tab">
+	                <input type="radio" name="selectLogin" id="user" value="U" v-model="status" checked>
+	                <label for="user">일반회원</label>
+	                <input type="radio" name="selectLogin" id="host" value="H" v-model="status">
+	                <label for="host">숙박/레저</label>
+	                <input type="radio" name="selectLogin" id="rentCar" value="R" v-model="status">
+	                <label for="rentCar">렌터카</label>
+	                <input type="radio" name="selectLogin" id="admin" value="A" v-model="status">
+	                <label for="admin">관리자</label>
+	            </div>
+	            <div class="login_background">
+	                <div class="login_back_inner">
+	                    <div v-if="status == 'H' || status == 'R'" class="login_num">
+	                        <label><input v-model="userId" placeholder="사업자 등록번호"></label>
+	                    </div>
+	                    <div v-else class="login_id">
+	                        <label><input v-model="userId" placeholder="아이디"></label>
+	                    </div>
+	                    <div class="login_pwd">
+	                        <label><input type="password" v-model="pwd" placeholder="패스워드"></label>
+	                    </div>
+	                    <div class="login_button">
+	                        <button @click="fnLogin">로그인</button>
+	                    </div>
+	                    <div class="login_a">
+	                        <a v-if="status == 'H' || status == 'R'" href="javascript:;" @click="fnSearch">사업자번호/비밀번호 찾기</a>
+	                        <a v-else href="javascript:;" @click="fnSearch">아이디/비밀번호 찾기</a>
+	                        <a href="javascript:;" @click="fnJoin">회원가입</a>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 </body>
 </html>
 <script>

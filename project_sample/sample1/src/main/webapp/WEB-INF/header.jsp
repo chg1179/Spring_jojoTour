@@ -105,83 +105,83 @@
 </style>
 </head>
 <body>
-<div id="header">
-    <header>
-        <div id="header_box">
-            <div class="logo_box">
-                <a href="javascript:;" @click="fnLogo"><img src="img/header/logo.jpg" alt="logo"></a>
-            </div>
-            <div class="header_menu">
-                <div class="header_inner">
-                    <ul v-if="uId == ''"class="f_header">
-                        <li><a href="javascript:;" @click="fnLogin">로그인</a></li>
-                        <li><a href="javascript:;" @click="fnJoin">회원가입</a></li>
-                        <li><a href="javascript:;">장바구니</a></li>
-                    </ul>
-                    <ul v-else class="f_header">
-                        <li><a href="javascript:;" @click="fnLogout">로그아웃</a></li>
-                        <li><a href="javascript:;" @click="">마이홈</a></li>
-                        <li><a href="javascript:;">장바구니</a></li>
-                    </ul>
-                    <ul class="s_header">
-                        <li class="stay">
-                            <a href="javascript:;">숙박업소</a>
-                            <ul>
-                                <li><a href="javascript:;">호텔</a></li>
-                                <li><a href="javascript:;">모텔</a></li>
-                                <li><a href="javascript:;">게스트하우스</a></li>
-                                <li><a href="javascript:;">펜션</a></li>
-                            </ul>
-                        </li>
-                        <li class="header_rentCar">
-                            <a href="javascript:;">렌터카</a>
-                            <ul>
-                                <li><a href="javascript:;">소형차</a></li>
-                                <li><a href="javascript:;">중형차</a></li>
-                                <li><a href="javascript:;">대형차</a></li>
-                                <li><a href="javascript:;">승합차</a></li>
-                            </ul>
-                        </li>
-                        <li class="header_water_leisure">
-                            <a href="javascript:;">수상 레저</a>
-                            <ul>
-                                <li><a href="javascript:;">스노쿨링</a></li>
-                                <li><a href="javascript:;">서핑</a></li>
-                                <li><a href="javascript:;">요트</a></li>
-                                <li><a href="javascript:;">제트스키</a></li>
-                            </ul>
-                        </li>
-                        <li class="header_land_leisure">
-                            <a href="javascript:;">지상 레저</a>
-                            <ul>
-                                <li><a href="javascript:;">ATV</a></li>
-                                <li><a href="javascript:;">페러글라이딩</a></li>
-                                <li><a href="javascript:;">말타기</a></li>
-                            </ul>
-                        </li>
-                        <li class="header_board">
-                            <a href="javascript:;">게시판</a>
-                            <ul>
-                                <li><a href="javascript:;" @click="fnNotice">공지사항</a></li>
-                                <li><a href="javascript:;" @click="fnFAQ">FAQ 게시판</a></li>
-                                <li><a href="javascript:;">1:1문의</a></li>
-                                <li><a href="javascript:;">자유게시판</a></li>
-                            </ul>
-                        </li>
-                        <li class="header_more">
-                            <a href="javascript:;">더보기</a>
-                            <ul>
-                                <li><a href="javascript:;">이벤트</a></li>
-                                <li><a href="javascript:;">약관 및 정책</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="header_empty_box"></div>
-</div>
+	<div id="header">
+	    <header>
+	        <div id="header_box">
+	            <div class="logo_box">
+	                <a href="javascript:;" @click="fnLogo"><img src="/img/header/logo.jpg" alt="logo"></a>
+	            </div>
+	            <div class="header_menu">
+	                <div class="header_inner">
+	                    <ul v-if="uId == ''"class="f_header">
+	                        <li><a href="javascript:;" @click="fnLogin">로그인</a></li>
+	                        <li><a href="javascript:;" @click="fnJoin">회원가입</a></li>
+	                        <li><a href="javascript:;">장바구니</a></li>
+	                    </ul>
+	                    <ul v-else class="f_header">
+	                        <li><a href="javascript:;" @click="fnLogout">로그아웃</a></li>
+	                        <li><a href="javascript:;" @click="">마이홈</a></li>
+	                        <li><a href="javascript:;">장바구니</a></li>
+	                    </ul>
+	                    <ul class="s_header">
+	                        <li class="stay">
+	                            <a href="javascript:;">숙박업소</a>
+	                            <ul>
+	                                <li><a href="javascript:;">호텔</a></li>
+	                                <li><a href="javascript:;">모텔</a></li>
+	                                <li><a href="javascript:;">게스트하우스</a></li>
+	                                <li><a href="javascript:;">펜션</a></li>
+	                            </ul>
+	                        </li>
+	                        <li class="header_rentCar">
+	                            <a href="javascript:;">렌터카</a>
+	                            <ul>
+	                                <li><a href="javascript:;">소형차</a></li>
+	                                <li><a href="javascript:;">중형차</a></li>
+	                                <li><a href="javascript:;">대형차</a></li>
+	                                <li><a href="javascript:;">승합차</a></li>
+	                            </ul>
+	                        </li>
+	                        <li class="header_water_leisure">
+	                            <a href="javascript:;">수상 레저</a>
+	                            <ul>
+	                                <li><a href="javascript:;">스노쿨링</a></li>
+	                                <li><a href="javascript:;">서핑</a></li>
+	                                <li><a href="javascript:;">요트</a></li>
+	                                <li><a href="javascript:;">제트스키</a></li>
+	                            </ul>
+	                        </li>
+	                        <li class="header_land_leisure">
+	                            <a href="javascript:;">지상 레저</a>
+	                            <ul>
+	                                <li><a href="javascript:;">ATV</a></li>
+	                                <li><a href="javascript:;">페러글라이딩</a></li>
+	                                <li><a href="javascript:;">말타기</a></li>
+	                            </ul>
+	                        </li>
+	                        <li class="header_board">
+	                            <a href="javascript:;">게시판</a>
+	                            <ul>
+	                                <li><a href="javascript:;" @click="fnNotice">공지사항</a></li>
+	                                <li><a href="javascript:;" @click="fnFAQ">FAQ 게시판</a></li>
+	                                <li><a href="javascript:;">1:1문의</a></li>
+	                                <li><a href="javascript:;">자유게시판</a></li>
+	                            </ul>
+	                        </li>
+	                        <li class="header_more">
+	                            <a href="javascript:;">더보기</a>
+	                            <ul>
+	                                <li><a href="javascript:;">이벤트</a></li>
+	                                <li><a href="javascript:;">약관 및 정책</a></li>
+	                            </ul>
+	                        </li>
+	                    </ul>
+	                </div>
+	            </div>
+	        </div>
+	    </header>
+	    <div class="header_empty_box"></div>
+	</div>
 </body>
 </html>
 <script>
@@ -206,22 +206,22 @@ var app = new Vue({
             }); 
         },
         fnLogin :function(){
-        	location.href="login.do";
+        	location.href="../login.do";
         },
         fnJoin : function(){
-        	location.href="join.do";
+        	location.href="../join.do";
         },
         fnLogo : function(){
-        	location.href="main.do";
+        	location.href="../main.do";
         },
         fnLogout : function(){
-        	location.href="logout.do";
+        	location.href="../logout.do";
         },
         fnNotice : function(){
-        	location.href="notice/list.do";
+        	location.href="../notice/list.do";
         },
         fnFAQ : function(){
-        	location.href="faq/list.do";
+        	location.href="../faq/list.do";
         }
 	}, // methods
 	created : function() {

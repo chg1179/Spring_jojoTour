@@ -12,6 +12,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<input type="button" value="槛家包府" @click="fnStayPage"/>
 		<input type="button" value="饭历包府" @click="fnLeisurePage"/>

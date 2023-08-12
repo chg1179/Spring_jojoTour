@@ -22,6 +22,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<h2>FAQ °Ô½ÃÆÇ</h2>
 		<div>

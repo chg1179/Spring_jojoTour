@@ -75,48 +75,49 @@
 </style>
 </head>
 <body>
-<div id="app">
-    <div id="join_container">
-        <div class="join_inner_con">
-            <h2 class="join_title">회원가입</h2>
-            <div class="join_inner_box">
-                <div class="join_tab">
-                    <input type="radio" name="stat" v-model="user.status" value="U" id="u" checked>
-                    <label class="lBox" for="u">일반회원</label>
-                    <input type="radio" name="stat"  v-model="user.status" value="H" id="h">
-                    <label class="lBox" for="h">호스트</label>
-                    <input type="radio" name="stat"  v-model="user.status" value="R" id="r">
-                    <label class="lBox" for="r">렌터카</label>
-                </div>
-                <div class="join_input_wrap">
-                    <div v-if="user.status == 'H' || user.status == 'R'">
-                            <label><input type="text" v-model="user.userId" @keyup="fnCheck" placeholder="사업자 번호"></label> 
-                        <span v-if="user.userId != ''">{{message}}</span>
-                    </div>
-                    <div v-else>
-                        <label><input type="text" v-model="user.userId" @keyup="fnCheck" placeholder="아이디"></label> 
-                        <span v-if="user.userId != ''">{{message}}</span>
-                    </div>
-                        <div><label><input type="password" v-model="user.pw1" placeholder="비밀번호"></label></div>
-                        <div><label><input type="password" v-model="user.pw2" placeholder="비밀번호 확인"></label></div>
-                        <div><label><input type="text" v-model="user.name" placeholder="이름"></label></div>
-                        <div><label><input type="text" v-model="user.nickName" placeholder="닉네임"></label></div>
-                        <div><label><input type="text" v-model="user.birth" placeholder="생년월일 ex)0000-00-00"></label></div>
-                        <div><label><input type="text" v-model="user.phone" placeholder=></label></div>
-                        <div><label><input type="text" v-model="user.email" placeholder="[선택]이메일"></label></div>
-
-                        
-                            
-                        <div><label class="join_btn"><button @click="fnSearchAddr">주소 검색</button></label></div>
-                        <div v-if="user.addr != ''" ><label><input disabled type="text" v-model="user.addr"></label></div>
-                        <div v-if="user.addrDetail != ''"><label><input type="text" v-model="user.addrDetail"></label></div>
-                        
-                </div>
-                <div class="join_btn"><button @click="fnJoin">가입하기</button></div>
-            </div>
-        </div>
-    </div>
-</div>
+	<jsp:include page="header.jsp" flush="true"></jsp:include>
+	<div id="app">
+	    <div id="join_container">
+	        <div class="join_inner_con">
+	            <h2 class="join_title">회원가입</h2>
+	            <div class="join_inner_box">
+	                <div class="join_tab">
+	                    <input type="radio" name="stat" v-model="user.status" value="U" id="u" checked>
+	                    <label class="lBox" for="u">일반회원</label>
+	                    <input type="radio" name="stat"  v-model="user.status" value="H" id="h">
+	                    <label class="lBox" for="h">호스트</label>
+	                    <input type="radio" name="stat"  v-model="user.status" value="R" id="r">
+	                    <label class="lBox" for="r">렌터카</label>
+	                </div>
+	                <div class="join_input_wrap">
+	                    <div v-if="user.status == 'H' || user.status == 'R'">
+	                            <label><input type="text" v-model="user.userId" @keyup="fnCheck" placeholder="사업자 번호"></label> 
+	                        <span v-if="user.userId != ''">{{message}}</span>
+	                    </div>
+	                    <div v-else>
+	                        <label><input type="text" v-model="user.userId" @keyup="fnCheck" placeholder="아이디"></label> 
+	                        <span v-if="user.userId != ''">{{message}}</span>
+	                    </div>
+	                        <div><label><input type="password" v-model="user.pw1" placeholder="비밀번호"></label></div>
+	                        <div><label><input type="password" v-model="user.pw2" placeholder="비밀번호 확인"></label></div>
+	                        <div><label><input type="text" v-model="user.name" placeholder="이름"></label></div>
+	                        <div><label><input type="text" v-model="user.nickName" placeholder="닉네임"></label></div>
+	                        <div><label><input type="text" v-model="user.birth" placeholder="생년월일 ex)0000-00-00"></label></div>
+	                        <div><label><input type="text" v-model="user.phone" placeholder=></label></div>
+	                        <div><label><input type="text" v-model="user.email" placeholder="[선택]이메일"></label></div>
+	
+	                        
+	                            
+	                        <div><label class="join_btn"><button @click="fnSearchAddr">주소 검색</button></label></div>
+	                        <div v-if="user.addr != ''" ><label><input disabled type="text" v-model="user.addr"></label></div>
+	                        <div v-if="user.addrDetail != ''"><label><input type="text" v-model="user.addrDetail"></label></div>
+	                        
+	                </div>
+	                <div class="join_btn"><button @click="fnJoin">가입하기</button></div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
 </body>
 </html>
 <script>

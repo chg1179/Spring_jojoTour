@@ -173,187 +173,187 @@
 <body>
 <jsp:include page="header.jsp" flush="true"></jsp:include>
 <%-- <%@ include file="header.jsp" %> --%>
-<div id="app">
-	<div id="container">
-        <div class="banner_box">
-            <p class="banner_text">
-                여행 가기 전이나 여행중이라도 언제든지!<br>
-                관광지, 숙박, 음식점, 쇼핑, 축제, 교통, 문화 등 제주 여행에 관해서라면 어떤 것이라도 제주관광 지식iN에 물어보세요<br>
-                비짓제주 상주 전문가를 비롯해 제주를 잘 아는 사람이라면 누구에게라도 답변 받을 수 있습니다
-            </p>
-            <div class="banner_img">
-                <img src="./img/main/banner_text.png" alt="">
-            </div>
-            <h3 class="banner_start">
-                지금 시작하세요!
-            </h3>
-            <button class="banner_question">
-                질문하기 >
-                <!-- 1:1문의게시판으로 연결 -->
-            </button>
-        </div>
-        <div id="mask_container">
-	        <div id="mask">
-	            <div id="slide_wrap">
-	                <a href="javascript:;"><img src="./img/main/slide_leisure.jpg" alt=""></a>
-	                <a href="javascript:;"><img src="./img/main/slide_rent_car.jpg" alt=""></a>
-	                <a href="javascript:;"><img src="./img/main/slide_stay.jpg" alt=""></a>
+	<div id="app">
+		<div id="container">
+	        <div class="banner_box">
+	            <p class="banner_text">
+	                여행 가기 전이나 여행중이라도 언제든지!<br>
+	                관광지, 숙박, 음식점, 쇼핑, 축제, 교통, 문화 등 제주 여행에 관해서라면 어떤 것이라도 제주관광 지식iN에 물어보세요<br>
+	                비짓제주 상주 전문가를 비롯해 제주를 잘 아는 사람이라면 누구에게라도 답변 받을 수 있습니다
+	            </p>
+	            <div class="banner_img">
+	                <img src="./img/main/banner_text.png" alt="">
 	            </div>
-	            <div class="slide_btn"></div>
+	            <h3 class="banner_start">
+	                지금 시작하세요!
+	            </h3>
+	            <button class="banner_question">
+	                질문하기 >
+	                <!-- 1:1문의게시판으로 연결 -->
+	            </button>
+	        </div>
+	        <div id="mask_container">
+		        <div id="mask">
+		            <div id="slide_wrap">
+		                <a href="javascript:;"><img src="./img/main/slide_leisure.jpg" alt=""></a>
+		                <a href="javascript:;"><img src="./img/main/slide_rent_car.jpg" alt=""></a>
+		                <a href="javascript:;"><img src="./img/main/slide_stay.jpg" alt=""></a>
+		            </div>
+		            <div class="slide_btn"></div>
+		        </div>
+		    </div>
+	        <div class="inner_con">
+	            <div class="accommodation">
+	                <h2 class="accommodation_title">숙소 예약</h2>
+	                <ul>
+	                    <li>
+	                        <a href="javascript:;" @click="fnHoel">
+	                            <div class="a_img_box">
+	                                <img src="./img/main/hotel.png" alt="">
+	                            </div>
+	                            <span>호텔</span>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="javascript:;">
+	                            <div class="a_img_box">
+	                                <img src="./img/main/motel.png" alt="">
+	                            </div>
+	                            <span>모텔</span>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="javascript:;">
+	                            <div class="a_img_box">
+	                                <img src="./img/main/guest_house.png" alt="">
+	                            </div>
+	                            <span>게스트하우스</span>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="javascript:;">
+	                            <div class="a_img_box">
+	                                <img src="./img/main/pension.png" alt="">
+	                            </div>
+	                            <span>펜션</span>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="javascript:;">
+	                            <div class="a_img_box">
+	                                <img src="./img/main/camping.png" alt="">
+	                            </div>
+	                            <span>캠핑/글램핑</span>
+	                        </a>
+	                    </li>
+	                </ul>
+	            </div>
+	            <div class="retal_car">
+	                <h2 class="retal_car_title">렌터카 예약</h2>
+	                <ul>
+	                    <li>
+	                        <a href="javascript:;">
+	                            <div class="r_img_box">
+	                                <img src="./img/main/small.png" alt="">
+	                            </div>
+	                            <span>소형차</span>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="javascript:;">
+	                            <div class="r_img_box">
+	                                <img src="./img/main/midium.png" alt="">
+	                            </div>
+	                            <span>중형차</span>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="javascript:;">
+	                            <div class="r_img_box">
+	                                <img src="./img/main/large.png" alt="">
+	                            </div>
+	                            <span>대형차</span>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="javascript:;">
+	                            <div class="r_img_box">
+	                                <img src="./img/main/very_large.png" alt="">
+	                            </div>
+	                            <span>승합차</span>
+	                        </a>
+	                    </li>
+	                </ul>
+	            </div>
+	            <div class="water_leisure">
+	                <h2 class="water_leisure_title">수상 레저 예약</h2>
+	                <ul>
+	                    <li>
+	                        <a href="javascript:;">
+	                            <div class="w_img_box">
+	                                <img src="./img/main/snorkeling.jpg" alt="">
+	                            </div>
+	                            <span>스노쿨링</span>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="javascript:;">
+	                            <div class="w_img_box">
+	                                <img src="./img/main/surfing.jpg" alt="">
+	                            </div>
+	                            <span>서핑</span>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="javascript:;">
+	                            <div class="w_img_box">
+	                                <img src="./img/main/yarcht.jpg" alt="">
+	                            </div>
+	                            <span>요트</span>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="javascript:;">
+	                            <div class="w_img_box">
+	                                <img src="./img/main/jetSki.jpg" alt="">
+	                            </div>
+	                            <span>제트스키</span>
+	                        </a>
+	                    </li>
+	                </ul>
+	            </div>
+	            <div class="land_leisure">
+	                <h2 class="water_leisure_title">지상 레저 예약</h2>
+	                <ul>
+	                    <li>
+	                        <a href="javascript:;">
+	                            <div class="l_img_box">
+	                                <img src="./img/main/atv.jpg" alt="">
+	                            </div>
+	                            <span>ATV</span>
+	                        </a>
+	                    </li>  
+	                    <li>
+	                        <a href="javascript:;">
+	                            <div class="l_img_box">
+	                                <img src="./img/main/paragliding.jpg" alt="">
+	                            </div>
+	                            <span>페러글라이딩</span>
+	                        </a>
+	                    </li>
+	                    <li>
+	                        <a href="javascript:;">
+	                            <div class="l_img_box">
+	                                <img src="./img/main/horse.png" alt="">
+	                            </div>
+	                            <span>말타기</span>
+	                        </a>
+	                    </li>
+	                </ul>
+	            </div>
 	        </div>
 	    </div>
-        <div class="inner_con">
-            <div class="accommodation">
-                <h2 class="accommodation_title">숙소 예약</h2>
-                <ul>
-                    <li>
-                        <a href="javascript:;" @click="fnHoel">
-                            <div class="a_img_box">
-                                <img src="./img/main/hotel.png" alt="">
-                            </div>
-                            <span>호텔</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <div class="a_img_box">
-                                <img src="./img/main/motel.png" alt="">
-                            </div>
-                            <span>모텔</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <div class="a_img_box">
-                                <img src="./img/main/guest_house.png" alt="">
-                            </div>
-                            <span>게스트하우스</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <div class="a_img_box">
-                                <img src="./img/main/pension.png" alt="">
-                            </div>
-                            <span>펜션</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <div class="a_img_box">
-                                <img src="./img/main/camping.png" alt="">
-                            </div>
-                            <span>캠핑/글램핑</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="retal_car">
-                <h2 class="retal_car_title">렌터카 예약</h2>
-                <ul>
-                    <li>
-                        <a href="javascript:;">
-                            <div class="r_img_box">
-                                <img src="./img/main/small.png" alt="">
-                            </div>
-                            <span>소형차</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <div class="r_img_box">
-                                <img src="./img/main/midium.png" alt="">
-                            </div>
-                            <span>중형차</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <div class="r_img_box">
-                                <img src="./img/main/large.png" alt="">
-                            </div>
-                            <span>대형차</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <div class="r_img_box">
-                                <img src="./img/main/very_large.png" alt="">
-                            </div>
-                            <span>승합차</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="water_leisure">
-                <h2 class="water_leisure_title">수상 레저 예약</h2>
-                <ul>
-                    <li>
-                        <a href="javascript:;">
-                            <div class="w_img_box">
-                                <img src="./img/main/snorkeling.jpg" alt="">
-                            </div>
-                            <span>스노쿨링</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <div class="w_img_box">
-                                <img src="./img/main/surfing.jpg" alt="">
-                            </div>
-                            <span>서핑</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <div class="w_img_box">
-                                <img src="./img/main/yarcht.jpg" alt="">
-                            </div>
-                            <span>요트</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <div class="w_img_box">
-                                <img src="./img/main/jetSki.jpg" alt="">
-                            </div>
-                            <span>제트스키</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="land_leisure">
-                <h2 class="water_leisure_title">지상 레저 예약</h2>
-                <ul>
-                    <li>
-                        <a href="javascript:;">
-                            <div class="l_img_box">
-                                <img src="./img/main/atv.jpg" alt="">
-                            </div>
-                            <span>ATV</span>
-                        </a>
-                    </li>  
-                    <li>
-                        <a href="javascript:;">
-                            <div class="l_img_box">
-                                <img src="./img/main/paragliding.jpg" alt="">
-                            </div>
-                            <span>페러글라이딩</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <div class="l_img_box">
-                                <img src="./img/main/horse.png" alt="">
-                            </div>
-                            <span>말타기</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+	</div>
 </body>
 </html>
 <script>
