@@ -1,0 +1,21 @@
+package com.example.sample1.service;
+
+import java.util.HashMap;
+import java.util.List;
+
+import com.example.sample1.model.Board;
+import com.example.sample1.model.Test;
+
+public interface BoardService {
+	//공지사항 검색
+	List<Board> searchNoticeList(HashMap<String, Object> map);
+	// 공지사항 보기
+	HashMap<String, Object> searchNoticeInfo(HashMap<String, Object> map);
+	//공지사항 삭제
+	int removeNotice(HashMap<String, Object> map);
+	// 공지사항 등록
+	int addNotice(HashMap<String, Object> map);
+	// 공지사항 수정
+	int editNotice(HashMap<String, Object> map);
+	
+}
