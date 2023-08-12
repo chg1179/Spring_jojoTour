@@ -105,7 +105,7 @@
 </style>
 </head>
 <body>
-<div id="app">
+<div id="header">
     <header>
         <div id="header_box">
             <div class="logo_box">
@@ -186,7 +186,7 @@
 </html>
 <script>
 var app = new Vue({
-	el : '#app',
+	el : '#header',
 	data : {
 		list : [],
 		uId : "${sessionId}"
