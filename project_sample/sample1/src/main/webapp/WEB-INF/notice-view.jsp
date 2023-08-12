@@ -63,7 +63,7 @@ var app = new Vue({
 	        },
 		fnEdit : function(){
 				var self = this;
-				$.pageChange("edit.do", {no : self.no});
+				$.pageChange("edit.do", {nNo : self.nNo});
 	                }
 
 	}, // methods

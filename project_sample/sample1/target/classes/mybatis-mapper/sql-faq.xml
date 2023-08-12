@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.sample1.mapper.FaqMapper">
+
+	<insert id="insertFaq" parameterType="hashmap">
+	INSERT INTO T2_FAQ_TBL 
+	VALUES
+	('2', #{fTitle}, #{fContent}, #{uId}, '0', '0', now(),now())
+	</insert>
+	
+	<select id="selectFaqList" parameterType="hashmap" 
+	resultType="com.example.sample1.model.Board">
+		SELECT *
+		FROM T2_FAQ_TBL
+		WHERE 1=1  
+		<if test="keyword != '' and keyword != null"> 
+			AND (F_TITLE LIKE '%' || #{keyword} || '%'
+				OR F_CONTENT LIKE '%' || #{keyword} ||'%')
+		</if>
+	</select>
+		
+	<select id="selectFaqInfo" parameterType="hashmap" 
+	resultType="com.example.sample1.model.Board">
+		SELECT *
+		FROM T2_FAQ_TBL
+		WHERE F_NO = #{fNo}
+	</select>
+	
+	<delete id="deleteFaq" parameterType="hashmap">
+		DELETE FROM T2_FAQ_TBL
+		WHERE F_NO = #{fNo}
+	</delete>
+	
+	<update id="faqCnt" parameterType="hashmap">
+		UPDATE T2_FAQ_TBL
+		SET
+			F_HITS = F_HITS + 1
+		WHERE F_NO = #{fNo}
+	</update>
+	
+	<update id="updateFaq" parameterType="hashmap">
+		UPDATE T2_FAQ_TBL
+		SET
+			F_TITLE = #{fTitle},
+			F_CONTENT = #{fContent},
+			F_UPDATE_TIME = now()
+		WHERE F_NO = #{fNo}
+	</update>
+</mapper>

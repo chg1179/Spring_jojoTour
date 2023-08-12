@@ -39,11 +39,11 @@
 				<th>등록 날짜</th>
 			</tr>
 			<tr v-for="item in list">
-				<th v-if="status == 'A'"><input type="radio" v-model="nNo" :value="item.nNo"></th>
-				<th>{{item.nNo}}</th>
-				<th><a @click="fnView(item.nNo)" href="javascript:;">{{item.nTitle}}</a></th>
-				<th>{{item.uId}}</th>
-				<th>{{item.nHits}}</th>
+				<th v-if="status == 'A'"><input type="radio" v-model="fNo" :value="item.fNo"></th>
+				<th>{{item.fNo}}</th>
+				<th><a @click="fnView(item.fNo)" href="javascript:;">{{item.fTitle}}</a></th>
+				<th>{{item.fId}}</th>
+				<th>{{item.fHits}}</th>
 				<th>{{item.fWriteTime}}</th>	
 			</tr>
 		</table>
@@ -59,7 +59,7 @@ var app = new Vue({
 	data : {
 		list : [],
 		keyword:"",
-		nNo : "",
+		fNo : "",
 		status : "${sessionStatus}"
 		
 	},// data
@@ -74,7 +74,7 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	console.log(data);
-                	self.list = data.noticeList;
+                	self.list = data.faqList;
                 }
             }); 
 		},
@@ -97,7 +97,7 @@ var app = new Vue({
         	if(!confirm("정말 삭제하시겠습니까?")){
         		return;
         	}
-			var param = {nNo : self.nNo};
+			var param = {fNo : self.fNo};
             $.ajax({
                 url : "remove.dox",
                 dataType:"json",	
@@ -114,8 +114,8 @@ var app = new Vue({
 	        	location.href = "add.do";
 	        }, 
 	        
- 	     fnView : function(nNo){
- 	    	$.pageChange("view.do", {nNo : nNo});	 
+ 	     fnView : function(fNo){
+ 	    	$.pageChange("view.do", {fNo : fNo});	 
 	     	},
 	        
 	      

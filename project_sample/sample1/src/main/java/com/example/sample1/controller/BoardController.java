@@ -88,10 +88,7 @@ public class BoardController {
 	}
 	
 	
-	@RequestMapping("/faq/list.do") 
-    public String faqlist(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/faq-list";
-    }
+	
 	
 	
 	

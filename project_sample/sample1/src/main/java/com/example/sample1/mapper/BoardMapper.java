@@ -22,4 +22,5 @@ public interface BoardMapper {
 	int noticeCnt(HashMap<String, Object> map);
 	
 	int updateNotice(HashMap<String, Object> map);
+
 }

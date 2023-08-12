@@ -162,7 +162,8 @@
                         <li class="header_board">
                             <a href="javascript:;">게시판</a>
                             <ul>
-                                <li><a href="javascript:;">공지사항</a></li>
+                                <li><a href="javascript:;" @click="fnNotice">공지사항</a></li>
+                                <li><a href="javascript:;" @click="fnFAQ">FAQ 게시판</a></li>
                                 <li><a href="javascript:;">1:1문의</a></li>
                                 <li><a href="javascript:;">자유게시판</a></li>
                             </ul>
@@ -215,6 +216,12 @@ var app = new Vue({
         },
         fnLogout : function(){
         	location.href="logout.do";
+        },
+        fnNotice : function(){
+        	location.href="notice/list.do";
+        },
+        fnFAQ : function(){
+        	location.href="faq/list.do";
         }
 	}, // methods
 	created : function() {

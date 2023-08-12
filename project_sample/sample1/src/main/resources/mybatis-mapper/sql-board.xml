@@ -16,8 +16,8 @@
 		FROM T2_NOTICE_TBL
 		WHERE 1=1  
 		<if test="keyword != '' and keyword != null"> 
-			AND (N_TITLE LIKE '%' || #{keyword} || '%'
-				OR N_CONTENT LIKE '%' || #{keyword} ||'%')
+		AND (N_TITLE LIKE '%' || #{keyword} || '%') 
+		OR (N_CONTENT LIKE '%' || #{keyword} || '%')
 		</if>
 	</select>
 		
@@ -45,7 +45,8 @@
 		SET
 			N_TITLE = #{nTitle},
 			N_CONTENT = #{nContent},
-			F_UPDATE_TIME = SYSDATE
+			F_UPDATE_TIME = now()
 		WHERE N_NO = #{nNo}
 	</update>
+
 </mapper>

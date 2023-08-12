@@ -18,4 +18,5 @@ public interface BoardService {
 	// 공지사항 수정
 	int editNotice(HashMap<String, Object> map);
 	
+
 }

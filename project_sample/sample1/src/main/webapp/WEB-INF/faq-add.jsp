@@ -25,13 +25,13 @@
 </head>
 <body>
 	<div id="app">
-		<label>제목 : <input v-model="info.nTitle"></label>
+		<label>제목 : <input v-model="info.fTitle"></label>
 	<div>
 	<br>
-		<vue-editor v-model="info.nContent"></vue-editor>
+		<vue-editor v-model="info.fContent"></vue-editor>
 	</div>
 	<br>
-	<button v-if="nNo == ''" @click="fnAdd">등록</button>
+	<button v-if="fNo == ''" @click="fnAdd">등록</button>
 	<button v-else @click="fnEdit">수정</button>
 	</div>
 </body>
@@ -45,10 +45,10 @@ var app = new Vue({
 	data : {
 		list : [],
 		uId:"${sessionId}",
-		nNo : "${map.nNo}",
+		fNo : "${map.fNo}",
 		info : {
-			nTitle : "",
-			nContent : ""
+			fTitle : "",
+			fContent : ""
 		}	
 	},// data
 	components: {VueEditor},
@@ -70,7 +70,7 @@ var app = new Vue({
 		},
 	     fnGetList : function(){
 				var self = this;
-				var param = {nNo : self.nNo, kind : "UPDATE"};
+				var param = {fNo : self.fNo, kind : "UPDATE"};
 				$.ajax({
 	                url : "view.dox",
 	                dataType:"json",	
@@ -99,7 +99,7 @@ var app = new Vue({
 	}, // methods
 	created : function() {
 		var self = this;
-		if(self.nNo != ""){
+		if(self.fNo != ""){
 			self.fnGetList();
 		}
 

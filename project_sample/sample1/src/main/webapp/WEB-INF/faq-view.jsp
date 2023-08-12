@@ -23,10 +23,10 @@
 </head>
 <body>
 	<div id="app">
-		<div>제목 : {{info.nTitle}}</div>
+		<div>제목 : {{info.fTitle}}</div>
 		<div>작성자 : {{info.uId}}</div>
 		<div>작성날짜 : {{info.fWriteTime}}</div>
-		<div>내용 :<pre v-html="info.nContent"></pre></div>
+		<div>내용 :<pre v-html="info.fContent"></pre></div>
 	<div>
 		<button @click="fnEdit" >수정하기</button>
 		<button @click="fnBack">되돌아가기</button>
@@ -40,13 +40,13 @@ var app = new Vue({
 	data : {
 		list : [],
 		info : {},
-		nNo : "${map.nNo}",
+		fNo : "${map.fNo}",
 		status : "${sessionStatus}"
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var param = {nNo : self.nNo, nKindNo : "UPDATE"};
+			var param = {fNo : self.fNo, fKindNo : "UPDATE"};
 			$.ajax({
                 url : "view.dox",
                 dataType:"json",	
@@ -63,13 +63,13 @@ var app = new Vue({
 	        },
 		fnEdit : function(){
 				var self = this;
-				$.pageChange("edit.do", {no : self.no});
+				$.pageChange("edit.do", {fNo : self.fNo});
 	                }
 
 	}, // methods
 	created : function() {
 		var self = this;
-		if(self.nNo != ""){
+		if(self.fNo != ""){
 			self.fnGetList();
 		}
 	}// created
