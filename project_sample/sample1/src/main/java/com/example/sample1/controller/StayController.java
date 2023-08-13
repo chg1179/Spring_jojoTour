@@ -45,4 +45,21 @@ public class StayController {
 		return new Gson().toJson(resultMap);
 	}
 	
+	// 슥소 업체 등록
+	@RequestMapping(value = "/host/stayAdd.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String stayAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		stayService.addStay(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/host/stayTypeList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String stayTypeList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Product> list = stayService.searchStayTypeList(map);
+		resultMap.put("stayTypeList", list);
+		return new Gson().toJson(resultMap);
+	}
 }

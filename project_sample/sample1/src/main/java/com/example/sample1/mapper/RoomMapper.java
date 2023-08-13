@@ -13,4 +13,6 @@ public interface RoomMapper {
 	// 숙소 방 목록 출력
 	List<Product> selectRoomList(HashMap<String, Object> map);
 	
+	// 객실 삭재
+	int deleteRoom(HashMap<String, Object> map);
 }

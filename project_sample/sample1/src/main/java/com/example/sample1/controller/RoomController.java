@@ -29,6 +29,17 @@ public class RoomController {
 		return "/host-room";
 	}
 	
+	//숙박 방 페이지
+	@RequestMapping("/host/roomAdd.do") 
+	public String roomAdd(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/host-room-add";
+	}
+	
+	//숙박 방 페이지
+	@RequestMapping("/host/roomEdit.do") 
+	public String roomEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/host-room-edit";
+	}
 	
 	// 방 목록 출력
 	@RequestMapping(value = "/host/roomList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -37,6 +48,15 @@ public class RoomController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		List<Product> list = roomService.searchRoomList(map);
 		resultMap.put("roomList", list);
+		return new Gson().toJson(resultMap);
+	}
+	// 객실 삭제
+	@RequestMapping(value = "/host/roomRemove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String roomRemove(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		roomService.removeRoom(map);
+		resultMap.put("success", "객실 삭제 성공");
 		return new Gson().toJson(resultMap);
 	}
 	

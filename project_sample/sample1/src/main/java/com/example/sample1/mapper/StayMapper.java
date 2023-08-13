@@ -12,4 +12,9 @@ public interface StayMapper {
 	// 숙소 업체 목록 출력
 	List<Product> selectStayList(HashMap<String, Object> map);
 	
-}
+	// 숙소 업체 등록
+	int insertStay(HashMap<String, Object> map);
+	
+	// 숙소 타입 리스트
+	List<Product> selectStayTypeList(HashMap<String, Object> map);
+} 

@@ -19,4 +19,10 @@ public class RoomServiceImpl implements RoomService {
 		// TODO Auto-generated method stub
 		return roomMapper.selectRoomList(map);
 	}
+
+	@Override
+	public int removeRoom(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return roomMapper.deleteRoom(map);
+	}
 }

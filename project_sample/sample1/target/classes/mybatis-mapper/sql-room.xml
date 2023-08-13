@@ -8,4 +8,9 @@
 		SELECT *
 		FROM T2_ROOM_TBL
 	</select>
+	
+	<delete id="deleteRoom" parameterType="hashmap">
+		DELETE FROM T2_ROOM_TBL WHERE 
+		ROOM_NO = #{roomNo}
+	</delete>
 </mapper>

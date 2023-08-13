@@ -21,4 +21,16 @@ public class StayServiceImpl implements StayService{
 		return stayMapper.selectStayList(map);
 	}
 
+	@Override
+	public int addStay(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return stayMapper.insertStay(map);
+	}
+
+	@Override
+	public List<Product> searchStayTypeList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return stayMapper.selectStayTypeList(map);
+	}
+
 }
