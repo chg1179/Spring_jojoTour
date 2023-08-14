@@ -11,18 +11,18 @@
 	</insert>
 	
 	<select id="selectFaqList" parameterType="hashmap" 
-	resultType="com.example.sample1.model.Board">
+	resultType="com.example.sample1.model.Faq">
 		SELECT *
 		FROM T2_FAQ_TBL
 		WHERE 1=1  
 		<if test="search != '' and search != null"> 
 			AND (F_TITLE LIKE '%' || #{search} || '%'
-				OR F_CONTENT LIKE '%' || #{search} ||'%')
+				OR U_ID LIKE '%' || #{search} ||'%')
 		</if>
 	</select>
 		
 	<select id="selectFaqInfo" parameterType="hashmap" 
-	resultType="com.example.sample1.model.Board">
+	resultType="com.example.sample1.model.Faq">
 		SELECT *
 		FROM T2_FAQ_TBL
 		WHERE F_NO = #{fNo}
@@ -48,4 +48,14 @@
 			F_UPDATE_TIME = now()
 		WHERE F_NO = #{fNo}
 	</update>
+	
+		<delete id="deleteFaqCheck" parameterType="hashmap">
+			DELETE
+			FROM T2_FAQ_TBL
+			WHERE F_NO IN
+			<foreach collection="list" item="item" open="(" close=")" separator=",">
+				#{item}
+			</foreach>
+		</delete>
+		
 </mapper>

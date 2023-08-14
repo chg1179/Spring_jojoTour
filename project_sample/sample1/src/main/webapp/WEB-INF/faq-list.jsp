@@ -39,8 +39,8 @@
 				<th>조회수</th>
 				<th>등록 날짜</th>
 			</tr>
-			<tr v-for="item in list">
-				<th v-if="status == 'A'"><input type="checkbox" v-model="fNo" :value="item.fNo"></th>
+			<tr v-for="(item, index) in list">
+				<th v-if="status == 'A'"><input type="checkbox" v-model="selectItem" :value="item.fNo"></th>
 				<th>{{item.fNo}}</th>
 				<th><a @click="fnView(item.fNo)" href="javascript:;">{{item.fTitle}}</a></th>
 				<th>{{item.fId}}</th>
@@ -48,7 +48,11 @@
 				<th>{{item.fWriteTime}}</th>	
 			</tr>
 		</table>
-	<div><button @click="fnRemove">삭제</button></div>
+	<div  v-if="status == 'A'">
+		<button @click="fnRemove">삭제</button>
+		<button @click="fnACheck">전체선택</button>
+		<button @click="fnNCheck">전체해제</button>
+	</div>
 	<div v-if="status == 'A'"><button @click="fnMove">글쓰기</button></div>
 	</div>
 	
@@ -60,14 +64,14 @@ var app = new Vue({
 	data : {
 		list : [],
 		search:"",
-		fNo : "",
-		status : "${sessionStatus}"
+		status : "${sessionStatus}",
+		selectItem:[]
 		
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var param = {search:self.search};
+			var param = {search : self.search};
 			$.ajax({
                 url : "list.dox",
                 dataType:"json",	
@@ -85,15 +89,18 @@ var app = new Vue({
         	if(!confirm("정말 삭제하시겠습니까?")){
         		return;
         	}
-			var param = {fNo : self.fNo};
+        	var fList = JSON.stringify(self.selectItem);
+			var param = {selectItem : fList};
             $.ajax({
-                url : "remove.dox",
+                url : "removeFaqCheck.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : param,
-                success : function(data) { 
-                	alert("삭제되었습니다.");
+                success : function(data) {
                 	self.fnGetList();
+                	self.selectItem = [];
+                	alert("삭제되었습니다.");
+                	
                 }
             }); 
 		},
@@ -105,7 +112,18 @@ var app = new Vue({
  	     fnView : function(fNo){
  	    	$.pageChange("view.do", {fNo : fNo});	 
 	     	},
-	        
+	     	
+		fnNCheck : function(){
+				var self = this;
+				self.fNo = [];
+			},
+		fnACheck : function(){
+				var self = this;
+				self.fNo = [];
+				for(var i=0; i<self.list.length; i++){
+					self.fNo.push(self.list[i].fNo);
+				}
+			}
 	      
 		
 	}, // methods

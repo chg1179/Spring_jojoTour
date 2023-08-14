@@ -10,6 +10,7 @@ import com.example.sample1.mapper.BoardMapper;
 import com.example.sample1.mapper.FaqMapper;
 import com.example.sample1.mapper.TestMapper;
 import com.example.sample1.model.Board;
+import com.example.sample1.model.Faq;
 import com.example.sample1.model.Test;
 
 @Service
@@ -25,7 +26,7 @@ public class FaqServiceImpl implements FaqService{
 	}
 	
 	@Override
-	public List<Board> searchFaqList(HashMap<String, Object> map) {
+	public List<Faq> searchFaqList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return faqMapper.selectFaqList(map);
 	}
@@ -51,6 +52,12 @@ public class FaqServiceImpl implements FaqService{
 	public int editFaq(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return faqMapper.updateFaq(map);
+	}
+
+	@Override
+	public int removeFaqCheck(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return faqMapper.deleteFaqCheck(map);
 	}
 
 	

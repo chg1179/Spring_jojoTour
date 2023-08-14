@@ -38,8 +38,8 @@
 				<th>조회수</th>
 				<th>등록 날짜</th>
 			</tr>
-			<tr v-for="item in list">
-				<th v-if="status == 'A'"><input type="checkbox" v-model="nNo" :value="item.nNo"></th>
+			<tr v-for="(item, index) in list">
+				<th v-if="status == 'A'"><input type="checkbox" v-model="selectItem" :value="item.nNo"></th>
 				<th>{{item.nNo}}</th>
 				<th><a @click="fnView(item.nNo)" href="javascript:;">{{item.nTitle}}</a></th>
 				<th>{{item.uId}}</th>
@@ -63,18 +63,19 @@ var app = new Vue({
 		list : [],
 		status : "${sessionStatus}",
 		search : "",
-		nNo : []
+		selectItem : []
 		
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var param = {search : self.search};
+			var nparmap = {search : self.search};
+			console.log(self.search);
 			$.ajax({
-                url : "list.dox",
+                url : "/notice/list.dox",
                 dataType:"json",	
                 type : "POST",
-                data : param,
+                data : nparmap,
                 success : function(data) { 
                 	self.list = data.noticeList;
                 	console.log(self.list);
@@ -87,15 +88,18 @@ var app = new Vue({
         	if(!confirm("정말 삭제하시겠습니까?")){
         		return;
         	}
-			var param = {nNo : self.nNo};
+        	var noList = JSON.stringify(self.selectItem);
+			var param = {selectItem : noList};
             $.ajax({
-                url : "remove.dox",
+                url : "removeNoticeCheck.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : param,
                 success : function(data) { 
-                	alert("삭제되었습니다.");
                 	self.fnGetList();
+                	self.selectItem = [];
+                	alert("삭제되었습니다.");
+
                 }
             }); 
 		},

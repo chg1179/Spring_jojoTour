@@ -17,6 +17,8 @@ public interface BoardService {
 	int addNotice(HashMap<String, Object> map);
 	// 공지사항 수정
 	int editNotice(HashMap<String, Object> map);
+	//체크박스한 게시글 삭제
+	int removeNoticeCheck(HashMap<String, Object> map);
 	
 
 }

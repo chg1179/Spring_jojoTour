@@ -4,13 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.example.sample1.model.Board;
+import com.example.sample1.model.Faq;
 import com.example.sample1.model.Test;
 
 public interface FaqService {
 
 	
 	//faq 검색
-	List<Board> searchFaqList(HashMap<String, Object> map);
+	List<Faq> searchFaqList(HashMap<String, Object> map);
 	// faq 보기
 	HashMap<String, Object> searchFaqInfo(HashMap<String, Object> map);
 	//faq 삭제
@@ -19,5 +20,7 @@ public interface FaqService {
 	int addFaq(HashMap<String, Object> map);
 	// faq 수정
 	int editFaq(HashMap<String, Object> map);
+	
+	int removeFaqCheck(HashMap<String, Object> map);
 	
 }

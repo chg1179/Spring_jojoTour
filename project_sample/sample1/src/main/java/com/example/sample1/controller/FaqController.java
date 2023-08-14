@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.sample1.model.Board;
+import com.example.sample1.model.Faq;
 import com.example.sample1.model.Test;
 import com.example.sample1.service.BoardService;
 import com.example.sample1.service.FaqService;
 import com.example.sample1.service.TestService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -61,7 +63,7 @@ public class FaqController {
 	@ResponseBody
 	public String faqoticeList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Board> list = faqService.searchFaqList(map);
+		List<Faq> list = faqService.searchFaqList(map);
 		resultMap.put("faqList", list);
 		return new Gson().toJson(resultMap);
 	}
@@ -86,6 +88,20 @@ public class FaqController {
 	public String faqEdit(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		faqService.editFaq(map);
+		return new Gson().toJson(resultMap);
+	}
+	//체크박스를 이용해 게시글 삭제
+	@RequestMapping(value = "/faq/removeFaqCheck.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String removeFaqCheck(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		System.out.println(map.get("selectItem"));
+		String json = map.get("selectItem").toString(); //Object 형으로 받고 있기 때문에 오류가 난다. 문자열으로 리턴
+		ObjectMapper mapper = new ObjectMapper();
+		List<Object> list = mapper.readValue(json, new TypeReference<List<Object>>(){});
+		map.put("list", list);//쿼리에 list 라는 값으로 보내줬음을 기억하
+		faqService.removeFaqCheck(map);
+		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
 

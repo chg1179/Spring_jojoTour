@@ -51,6 +51,12 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return boardMapper.updateNotice(map);
 	}
+
+	@Override
+	public int removeNoticeCheck(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return boardMapper.deleteNoticeCheck(map);
+	}
 	
 	
 	

@@ -22,5 +22,8 @@ public interface BoardMapper {
 	int noticeCnt(HashMap<String, Object> map);
 	
 	int updateNotice(HashMap<String, Object> map);
+	
+	//체크한 게시글 삭제
+	int deleteNoticeCheck(HashMap<String, Object> map);
 
 }

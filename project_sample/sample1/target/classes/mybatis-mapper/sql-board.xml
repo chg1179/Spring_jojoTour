@@ -15,10 +15,10 @@
 			N_NO, N_TITLE, U_ID, N_HITS, F_WRITE_TIME
 		FROM T2_NOTICE_TBL
 		WHERE 1=1  
-		<!-- <if test="search != '' and search != null"> -->
-			AND (N_TITLE LIKE '%' || #{search} || '%' 
-				OR U_ID LIKE '%' || #{search} || '%')
-		<!-- </if> -->
+		 <if test="search != '' and search != null"> 
+        	AND ( N_TITLE LIKE '%' || #{search} || '%'
+        	OR U_ID LIKE '%' || #{search} || '%')
+		 </if> 
 	</select>
 		
 	<select id="selectNoticeInfo" parameterType="hashmap" resultType="com.example.sample1.model.Board">
@@ -48,4 +48,12 @@
 		WHERE N_NO = #{nNo}
 	</update>
 
+	<delete id="deleteNoticeCheck" parameterType="hashmap">
+		DELETE
+		FROM T2_NOTICE_TBL
+		WHERE N_NO IN
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
 </mapper>
