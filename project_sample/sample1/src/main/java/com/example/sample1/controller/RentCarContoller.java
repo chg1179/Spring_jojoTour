@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.sample1.model.Product;
+import com.example.sample1.model.RentCar;
 import com.example.sample1.service.RentCarService;
 import com.google.gson.Gson;
 
@@ -44,12 +44,22 @@ public class RentCarContoller {
 	}
 	
 	//렌트카 정보 리스트 출력
-	@RequestMapping(value = "/host/rentCar.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/host/rentcar.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String rentCar(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Product> list = rentCarService.searchRentCarList(map);
+		List<RentCar> list = rentCarService.searchRentCarList(map);
 		resultMap.put("carList", list);
+		return new Gson().toJson(resultMap);
+	}
+	
+	//렌트카 상세정보 출력
+	@RequestMapping(value = "/host/rentcar/carInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String rentCarInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		RentCar info = rentCarService.searchRentCarInfo(map);
+		resultMap.put("carInfo", info);
 		return new Gson().toJson(resultMap);
 	}
 	

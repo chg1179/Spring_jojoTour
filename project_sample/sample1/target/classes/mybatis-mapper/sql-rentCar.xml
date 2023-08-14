@@ -13,6 +13,7 @@
 		SELECT *
 		FROM T2_RENT_CAR_TBL R
 		INNER JOIN T2_CODE_TYPE C ON R.RENT_KIND = C.C_KIND
+		WHERE R.RENT_NO = #{rentNo}
 	</select>
 	
 	<delete id="deleteRentCar" parameterType="hashmap">

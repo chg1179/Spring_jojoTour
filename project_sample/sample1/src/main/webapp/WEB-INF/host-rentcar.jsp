@@ -27,15 +27,9 @@
 				<th>No.</th>
 				<th>이름</th>
 				<th>분류</th>
-				<th>우편번호</th>
-				<th>주소</th>
-				<th>상세주소</th>
 				<th>렌트금액</th>
-				<th>할인율</th>
-				<th>조회수</th>
 				<th>판매수량</th>
 				<th>등록일</th>
-				<th>수정일</th>
 			</tr>		
 			
 			<tr v-for="(item, index) in list">
@@ -46,15 +40,9 @@
 				<td>{{item.rentNo}}</td>
 				<td>{{item.rentName}}</td>
 				<td>{{item.cName}}</td>
-				<td>{{item.rZipno}}</td>
-				<td>{{item.rAddr}}</td>
-				<td>{{item.rDetailAddr}}</td>
 				<td>{{item.rentPrice}}</td>
-				<td>{{item.rentSales}}</td>
-				<td>{{item.rRead}}</td>
 				<td>{{item.rResidue}}</td>
 				<td>{{item.rInsertTime}}</td>
-				<td>{{item.rUpdateTime}}</td>
 			</tr>
 		</table>
 		<div>
@@ -77,7 +65,7 @@ var app = new Vue({
 			var self = this;
 			var param = {};
 			$.ajax({
-                url : "rentCar.dox",
+                url : "rentcar.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,

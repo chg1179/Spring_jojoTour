@@ -6,53 +6,79 @@
 <meta charset="EUC-KR">
 <title>렌트카 상세정보 페이지</title>
 <style>
+	table{
+		border : 1px solid black;
+		border-collapse: collapse;
+		text-align : center;
+	}
+	th, td {
+		border : 1px solid black;
+		padding : 5px 10px;
+	}
 </style>
 </head>
 <body>
 	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<!-- 렌트카
+		<div>No.</div>
 		<table>
 			<tr>
-				<th>선택</th>
 				<th>No.</th>
+				<th>{{info.rentNo}}</th>
+			</tr>
+			<tr>
 				<th>이름</th>
+				<th>{{info.rentName}}</th>
+			</tr>
+			<tr>
 				<th>분류</th>
+				<th>{{info.cName}}</th>
+			</tr>
+			<tr>
 				<th>우편번호</th>
+				<th>{{info.rZipno}}</th>
+			</tr>
+			<tr>
 				<th>주소</th>
+				<th>{{info.rAddr}}</th>
+			</tr>
+			<tr>
 				<th>상세주소</th>
+				<th>{{info.rDetailAddr}}</th>
+			</tr>
+			<tr>
 				<th>렌트금액</th>
+				<th>{{info.rentPrice}}</th>
+			</tr>
+			<tr>
+				<th>할인금액</th>
+				<th>{{info.rentPrice * info.rentSales}}</th>
+			</tr>
+			<tr>
 				<th>할인율</th>
-				<th>조회수</th>
+				<th>{{sales}}%</th>
+			</tr>
+			<tr>
 				<th>판매수량</th>
+				<th>{{info.rResidue}}</th>
+			</tr>
+			<tr>
+				<th>조회수</th>
+				<th>{{info.rRead}}</th>
+			</tr>
+			<tr>
 				<th>등록일</th>
+				<th>{{info.rInsertTime}}</th>
+			</tr>
+			<tr>
 				<th>수정일</th>
-			</tr>		
-			
-			<tr v-for="(item, index) in list">
-				<td>
-					<input v-if="index==0" type="radio" :value="item.rentNo" @input="changeRentNo(item.rentNo)" name="rentNo" checked="checked">
-					<input v-else type="radio" :value="item.rentNo" @input="changeRentNo(item.rentNo)" name="rentNo">
-				</td>
-				<td>{{item.rentNo}}</td>
-				<td>{{item.rentName}}</td>
-				<td>{{item.cName}}</td>
-				<td>{{item.rZipno}}</td>
-				<td>{{item.rAddr}}</td>
-				<td>{{item.rDetailAddr}}</td>
-				<td>{{item.rentPrice}}</td>
-				<td>{{item.rentSales}}</td>
-				<td>{{item.rRead}}</td>
-				<td>{{item.rResidue}}</td>
-				<td>{{item.rInsertTime}}</td>
-				<td>{{item.rUpdateTime}}</td>
+				<th>{{info.rUpdateTime}}</th>
 			</tr>
 		</table>
 		<div>
-			<span><button @click="fnAdd">상품등록</button></span>
 			<span><button @click="fnUpdate">상세정보열람</button></span>
 			<span><button @click="fnRemove">삭제</button></span>
-		</div> -->
+		</div>
 	</div>
 </body>
 </html>
@@ -60,21 +86,24 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		list : [],
-		rentNo : "${map.rentNo}"
+		info : {},
+		rentNo : "${map.rentNo}",
+		sales : 0,
+		discount : 0 
+		
 	},// data
 	methods : {
 		fnGetInfo : function(){
 			var self = this;
-			var param = {};
+			var param = {rentNo : self.rentNo};
 			$.ajax({
-                url : "rentCarInfo.dox",
+                url : "carInfo.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.list = data.carList;
-                	self.rentNo = self.list[0].rentNo; //리스트의 첫 번째 값을 디폴트로 체크하고, 해당 pk 값을 받아온다.
+                	self.info = data.carInfo;
+                	self.sales = 100 - (self.info.rentSales * 100);
                 }
             }); 
 		},
@@ -107,7 +136,7 @@ var app = new Vue({
 	}, // methods
 	created : function() {
 		var self = this;
-		//self.fnGetList();
+		self.fnGetInfo();
 	}// created
 });
 </script>
