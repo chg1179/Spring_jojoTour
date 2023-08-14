@@ -69,13 +69,13 @@ var app = new Vue({
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var nparmap = {search : self.search};
-			console.log(self.search);
+			var param = {search : self.search};
+			console.log(param);
 			$.ajax({
                 url : "/notice/list.dox",
-                dataType:"json",	
+                dataType:"json",
                 type : "POST",
-                data : nparmap,
+                data : param,
                 success : function(data) { 
                 	self.list = data.noticeList;
                 	console.log(self.list);
@@ -103,29 +103,23 @@ var app = new Vue({
                 }
             }); 
 		},
-		
- 		 fnMove : function(){
+		fnMove : function(){
 	        	location.href = "add.do";
-	        }, 
-	        
- 	     fnView : function(nNo){
+		},  
+		fnView : function(nNo){
  	    	$.pageChange("view.do", {nNo : nNo});	 
-	     	},
-	     	
-			fnNCheck : function(){
-				var self = this;
-				self.nNo = [];
-			},
-			fnACheck : function(){
-				var self = this;
-				self.nNo = [];
-				for(var i=0; i<self.list.length; i++){
-					self.nNo.push(self.list[i].nNo);
-				}
+	    },
+		fnNCheck : function(){
+			var self = this;
+			self.nNo = [];
+		},
+		fnACheck : function(){
+			var self = this;
+			self.nNo = [];
+			for(var i=0; i<self.list.length; i++){
+				self.nNo.push(self.list[i].nNo);
 			}
-	        
-	      
-		
+		}
 	}, // methods
 	created : function() {
 		var self = this;

@@ -16,8 +16,8 @@
 		FROM T2_FAQ_TBL
 		WHERE 1=1  
 		<if test="search != '' and search != null"> 
-			AND (F_TITLE LIKE '%' || #{search} || '%'
-				OR U_ID LIKE '%' || #{search} ||'%')
+			AND (F_TITLE LIKE CONCAT('%',#{search},'%')
+				OR U_ID LIKE CONCAT('%',#{search},'%'))
 		</if>
 	</select>
 		

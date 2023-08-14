@@ -43,7 +43,7 @@
 				<th v-if="status == 'A'"><input type="checkbox" v-model="selectItem" :value="item.fNo"></th>
 				<th>{{item.fNo}}</th>
 				<th><a @click="fnView(item.fNo)" href="javascript:;">{{item.fTitle}}</a></th>
-				<th>{{item.fId}}</th>
+				<th>{{item.uId}}</th>
 				<th>{{item.fHits}}</th>
 				<th>{{item.fWriteTime}}</th>	
 			</tr>

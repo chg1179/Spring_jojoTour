@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class Faq {
-	
 	private int fNo;// 공지사항 번호
 	private String fTitle; // 공지사항 제목
 	private String fContent; // 공지사항 내용
+	private String uId; // 공지사항 작성자 (A 권한)
 	private int fHits; //조회수
 	private int fKindNo; // 분류
 	private String fWriteTime; // 작성일
