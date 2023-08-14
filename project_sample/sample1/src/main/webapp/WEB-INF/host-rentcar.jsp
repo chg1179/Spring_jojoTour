@@ -70,8 +70,10 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.list = data.carList;
-                	self.rentNo = self.list[0].rentNo; //리스트의 첫 번째 값을 디폴트로 체크하고, 해당 pk 값을 받아온다.
+                	if(!(data.carList == undefined)){
+                		self.list = data.carList;
+                		self.rentNo = self.list[0].rentNo; //리스트의 첫 번째 값을 디폴트로 체크하고, 해당 pk 값을 받아온다.
+        			}
                 }
             }); 
 		},

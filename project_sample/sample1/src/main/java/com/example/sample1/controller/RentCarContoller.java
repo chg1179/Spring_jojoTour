@@ -43,6 +43,13 @@ public class RentCarContoller {
 		return "/host-rentcar-view";
 	}
 	
+	//주소검색
+	@RequestMapping("/host/rentcar/addr.do") 
+	public String carAddr(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
+		
+		return "/juso-popup";
+	}
+	
 	//렌트카 정보 리스트 출력
 	@RequestMapping(value = "/host/rentcar.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody

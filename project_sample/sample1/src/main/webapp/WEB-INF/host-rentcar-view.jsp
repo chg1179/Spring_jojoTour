@@ -20,7 +20,6 @@
 <body>
 	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div>No.</div>
 		<table>
 			<tr>
 				<th>No.</th>
@@ -74,9 +73,13 @@
 				<th>수정일</th>
 				<th>{{info.rUpdateTime}}</th>
 			</tr>
+			<tr>
+				<th>파일</th>
+				<th></th>
+			</tr>
 		</table>
 		<div>
-			<span><button @click="fnUpdate">상세정보열람</button></span>
+			<span><button @click="fnUpdate">수정</button></span>
 			<span><button @click="fnRemove">삭제</button></span>
 		</div>
 	</div>
@@ -89,7 +92,7 @@ var app = new Vue({
 		info : {},
 		rentNo : "${map.rentNo}",
 		sales : 0,
-		discount : 0 
+		file : []
 		
 	},// data
 	methods : {
@@ -108,7 +111,8 @@ var app = new Vue({
             }); 
 		},
 		fnUpdate : function(){
-			$.pageChange("rentcar/edit.do", {rentNo : self.rentNo}); 
+			var self = this;
+			$.pageChange("edit.do", {rentNo : self.rentNo}); 
         },
 		fnRemove : function(){
             var self = this;
