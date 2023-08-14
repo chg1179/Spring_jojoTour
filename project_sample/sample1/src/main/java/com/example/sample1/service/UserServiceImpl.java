@@ -43,11 +43,11 @@ public class UserServiceImpl implements UserService{
 		if(user != null) {
 			if(user.getLoginCnt() >= 5) {
 				resultMap.put("success", false);
-				resultMap.put("message", "5번 이상 실패, 관리자 문의 하셈");
+				resultMap.put("message", "5번 이상 실패, 관리자에게 문의 하세요.");
 			} else if(status == 1){
 				userMapper.resetUserCnt(map);
 				resultMap.put("success", true);
-				resultMap.put("message", user.getStatus() + "님 환영합니다.");
+				resultMap.put("message", user.getNickName() + "님 환영합니다.");
 				resultMap.put("user", user);
 			} else {
 				resultMap.put("success", false);
@@ -59,13 +59,13 @@ public class UserServiceImpl implements UserService{
 			if(tempUser != null) {
 				userMapper.updateUserCnt(map);
 				int cnt = tempUser.getLoginCnt() + 1;
-				String message = cnt + "번 실패! \n패스워드 확인해라.";
+				String message = cnt + "번 실패! \n패스워드를 확인하세요.";
 				if(cnt >= 5) {
-					message = "5번 이상 실패, 관리자 한테 문의하셈";
+					message = "5번 이상 실패, 관리자 한테 문의하세요.";
 				}
 				resultMap.put("message", message);
 			} else {
-				resultMap.put("message", "없는 아이디");
+				resultMap.put("message", "없는 아이디입니다.");
 			}
 		}
 		return resultMap;

@@ -35,10 +35,13 @@
         cursor: pointer;
         box-sizing: border-box;
         margin-bottom: 20px;
-        width: 25%;
+        width: 33.333%;
         text-align: center;
         padding: 10px 0;
-        border: 1px solid black;
+		border-right : 1px solid;
+    }
+    .login_tab label:last-child{
+    	border-right : none;
     }
     .login_tab input{
         display: none;
@@ -94,21 +97,16 @@
 	    <div id="login_container">
 	        <div class="login_box">
 	            <div class="login_tab">
-	                <input type="radio" name="selectLogin" id="user" value="U" v-model="status" checked>
+	                <input type="radio" name="selectLogin" id="user" value="U" @input="checkStatus(checked)" checked="checked">
 	                <label for="user">일반회원</label>
 	                <input type="radio" name="selectLogin" id="host" value="H" v-model="status">
-	                <label for="host">숙박/레저</label>
-	                <input type="radio" name="selectLogin" id="rentCar" value="R" v-model="status">
-	                <label for="rentCar">렌터카</label>
+	                <label for="host">호스트</label>
 	                <input type="radio" name="selectLogin" id="admin" value="A" v-model="status">
 	                <label for="admin">관리자</label>
 	            </div>
 	            <div class="login_background">
 	                <div class="login_back_inner">
-	                    <div v-if="status == 'H' || status == 'R'" class="login_num">
-	                        <label><input v-model="userId" placeholder="사업자 등록번호"></label>
-	                    </div>
-	                    <div v-else class="login_id">
+	                    <div class="login_id">
 	                        <label><input v-model="userId" placeholder="아이디"></label>
 	                    </div>
 	                    <div class="login_pwd">
@@ -118,8 +116,7 @@
 	                        <button @click="fnLogin">로그인</button>
 	                    </div>
 	                    <div class="login_a">
-	                        <a v-if="status == 'H' || status == 'R'" href="javascript:;" @click="fnSearch">사업자번호/비밀번호 찾기</a>
-	                        <a v-else href="javascript:;" @click="fnSearch">아이디/비밀번호 찾기</a>
+	                        <a href="javascript:;" @click="fnSearch">아이디/비밀번호 찾기</a>
 	                        <a href="javascript:;" @click="fnJoin">회원가입</a>
 	                    </div>
 	                </div>
@@ -163,6 +160,10 @@ var app = new Vue({
 		},
 		fnJoin : function(){
 			location.href='join-acess.do';
+		},
+		checkStatus : function(checked){
+			var self = this;
+			self.checked = checked;
 		}
 	}, // methods
 	created : function() {
