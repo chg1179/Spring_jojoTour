@@ -55,22 +55,8 @@ public class LoginController {
 	}
 	@RequestMapping("/pwd-search.do") 
     public String pwdSearch(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
-		session.invalidate();
+		
 		return "pwd-search";
-	}
-
-	@RequestMapping("/join/acess.do") 
-	public String joinAcess(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/join-acess";
-	}
-	@RequestMapping("/join.do") 
-    public String join(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/join";
-    }
-	@RequestMapping("/join/select.do") 
-    public String joinSelect(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
-		session.invalidate();
-		return "join-select";
 	}
 
 	
@@ -99,14 +85,6 @@ public class LoginController {
 	public String pwdSearch(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap = userService.selectPwd(map);
-		return new Gson().toJson(resultMap);
-	}
-	@RequestMapping(value = "/add.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	@ResponseBody
-	public String userAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		userService.addUser(map);
-		userService.joinPoint(map);
 		return new Gson().toJson(resultMap);
 	}
 	

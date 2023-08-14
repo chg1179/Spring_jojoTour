@@ -79,7 +79,7 @@
 	<div id="app">
 	    <div id="join_container">
 	        <div class="join_inner_con">
-	            <h2 class="join_title">회원가입</h2>
+	            <h2 class="join_title">{{user.status}}</h2>
 	            <div class="join_inner_box">
 	                <div class="join_tab">
 	                    <input type="radio" name="stat" v-model="user.status" value="U" id="u" checked>
@@ -138,7 +138,7 @@ var app = new Vue({
 			addrDetail : "",
 			nickName : "",
 			email : "",
-			status : ""
+			status : "${map.status}"
 		},
 		joinFlg : false,
 		message : ""
