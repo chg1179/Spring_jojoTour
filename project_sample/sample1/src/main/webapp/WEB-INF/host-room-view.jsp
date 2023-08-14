@@ -25,36 +25,36 @@
 		<div>객실 상세정보 페이지</div>
 		<table>
 			<tr>
-				<th>No.</th>
-				<th>{{info.roomNo}}</th>
+				<td>No.</td>
+				<td>{{info.roomNo}}</td>
 			</tr>
 			<tr>
 				<th>이름</th>
-				<th>{{info.roomName}}</th>
+				<td>{{info.roomName}}</td>
 			</tr>
 			<tr>
 				<th>객실금액</th>
-				<th>{{info.roomPrice}}</th>
+				<td>{{info.roomPrice}}</td>
 			</tr>
 			<tr>
 				<th>할인금액</th>
-				<th>{{info.roomPrice * info.roomSales}}</th>
+				<td>{{info.roomPrice * info.roomSales}}</td>
 			</tr>
 			<tr>
 				<th>할인율</th>
-				<th>{{sales}}%</th>
+				<td>{{sales}}%</td>
 			</tr>
 			<tr>
 				<th>판매수량</th>
-				<th>{{info.roomResidue}}</th>
+				<td>{{info.roomResidue}}</td>
 			</tr>
 			<tr>
 				<th>등록일</th>
-				<th>{{info.roomInsertTime}}</th>
+				<td>{{info.roomInsertTime}}</td>
 			</tr>
 			<tr>
 				<th>수정일</th>
-				<th>{{info.roomUpdateTime}}</th>
+				<td>{{info.roomUpdateTime}}</td>
 			</tr>
 		</table>
 		<div>

@@ -22,50 +22,50 @@
 	<div id="app">
 		<table>
 			<tr>
-				<td>No.</td>
+				<th>No.</th>
 				<td><input v-model="info.rentNo" type="text" name="rentNo" id="rentCarNo" disabled></td>
 			</tr>
 			<tr>
-				<td>이름</td>
+				<th>이름</th>
 				<td><input v-model="info.rentName" type="text" name="rentName" id="rentName"></td>
 			</tr>
 			<tr>
-				<td>분류</td>
+				<th>분류</th>
 				<td><input v-model="info.cName" type="text" name="cName" id="cName"></td>
 			</tr>
 			<tr>
-				<td>우편번호</td>
+				<th>우편번호</th>
 				<td>
 					<input v-model="info.rZipno" type="text" name="rZipno" id="rZipno" disabled>
 					<button @click="fnSearchAddr">주소 검색</button>
 				</td>
 			</tr>
 			<tr>
-				<td>주소</td>
+				<th>주소</th>
 				<td><input v-model="info.rAddr" type="text" name="rAddr" id="rAddr" disabled></td>
 			</tr>
 			<tr>
-				<td>상세주소</td>
+				<th>상세주소</th>
 				<td><input v-model="info.rDetailAddr" type="text" name="rDetailAddr" id="rDetailAddr"></td>
 			</tr>
 			<tr>
-				<td>렌트금액</td>
+				<th>렌트금액</th>
 				<td><input v-model="info.rentPrice" type="text" name="rentPrice" id="rentPrice" @keyup="fnCalculator"></td>
 			</tr>
 			<tr>
-				<td>할인금액</td>
+				<th>할인금액</th>
 				<td><input v-model="discount" type="text" name="rDiscount" id="rDiscount" disabled></td>
 			</tr>
 			<tr>
-				<td>할인율(%)</td>
+				<th>할인율(%)</th>
 				<td><input v-model="sales" type="text" name="rentSales" id="rentSales" @keyup="fnCalculator"></td>
 			</tr>
 			<tr>
-				<td>판매수량</td>
+				<th>판매수량</th>
 				<td><input v-model="info.rResidue" type="text" name="rResidue" id="rResidue" disabled></td>
 			</tr>
 			<tr>
-				<td>파일</td>
+				<th>파일</th>
 				<td><input type="file" accept=".gif, .jpg, .png" id="rentFile" name="file"></td>
 			</tr>
 		</table>

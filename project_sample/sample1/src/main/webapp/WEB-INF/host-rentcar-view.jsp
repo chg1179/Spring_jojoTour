@@ -23,59 +23,59 @@
 		<table>
 			<tr>
 				<th>No.</th>
-				<th>{{info.rentNo}}</th>
+				<td>{{info.rentNo}}</td>
 			</tr>
 			<tr>
 				<th>이름</th>
-				<th>{{info.rentName}}</th>
+				<td>{{info.rentName}}</td>
 			</tr>
 			<tr>
 				<th>분류</th>
-				<th>{{info.cName}}</th>
+				<td>{{info.cName}}</td>
 			</tr>
 			<tr>
 				<th>우편번호</th>
-				<th>{{info.rZipno}}</th>
+				<td>{{info.rZipno}}</td>
 			</tr>
 			<tr>
 				<th>주소</th>
-				<th>{{info.rAddr}}</th>
+				<td>{{info.rAddr}}</td>
 			</tr>
 			<tr>
 				<th>상세주소</th>
-				<th>{{info.rDetailAddr}}</th>
+				<td>{{info.rDetailAddr}}</td>
 			</tr>
 			<tr>
 				<th>렌트금액</th>
-				<th>{{info.rentPrice}}</th>
+				<td>{{info.rentPrice}}</td>
 			</tr>
 			<tr>
 				<th>할인금액</th>
-				<th>{{info.rentPrice * info.rentSales}}</th>
+				<td>{{info.rentPrice * info.rentSales}}</td>
 			</tr>
 			<tr>
 				<th>할인율</th>
-				<th>{{sales}}%</th>
+				<td>{{sales}}%</td>
 			</tr>
 			<tr>
 				<th>판매수량</th>
-				<th>{{info.rResidue}}</th>
+				<td>{{info.rResidue}}</td>
 			</tr>
 			<tr>
 				<th>조회수</th>
-				<th>{{info.rRead}}</th>
+				<td>{{info.rRead}}</td>
 			</tr>
 			<tr>
 				<th>등록일</th>
-				<th>{{info.rInsertTime}}</th>
+				<td>{{info.rInsertTime}}</td>
 			</tr>
 			<tr>
 				<th>수정일</th>
-				<th>{{info.rUpdateTime}}</th>
+				<td>{{info.rUpdateTime}}</td>
 			</tr>
 			<tr>
 				<th>파일</th>
-				<th></th>
+				<td></td>
 			</tr>
 		</table>
 		<div>
