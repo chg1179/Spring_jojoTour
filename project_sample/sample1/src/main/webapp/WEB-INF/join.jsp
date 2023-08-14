@@ -72,8 +72,8 @@
 	<div id="app">
 	    <div id="join_container">
 	        <div class="join_inner_con">
-	            <h2 class="join_title" v-if="user.status == 'U'">일반 회원가입</h2>
-	            <h2 class="join_title" v-else>호스트 회원가입</h2>
+	            <h2 class="join_title" v-if="user.status == 'U'"><span style="color : blue;">일반</span> 회원가입</h2>
+	            <h2 class="join_title" v-else><span style="color : red;">호스트</span> 회원가입</h2>
 	            <div class="join_inner_box">
 	                <div class="join_input_wrap">
 	                    <div class="join_check_wrap">
@@ -160,7 +160,7 @@ var app = new Vue({
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
-                success : function(data) { 
+                success : function(data) {
                 	alert("가입을 환영합니다.");
                 	location.href="main.do";
                 }

@@ -30,7 +30,7 @@
             background-image: url(./img/main/main.jpg);
             background-repeat: no-repeat;
             background-size: cover;
-            height: 500px;
+            height: 700px;
             padding-top: 50px;
         }
         .banner_text{
@@ -205,7 +205,7 @@
 	                <h2 class="accommodation_title">¼÷¼Ò ¿¹¾à</h2>
 	                <ul>
 	                    <li>
-	                        <a href="javascript:;" @click="fnHoel">
+	                        <a href="javascript:;" @click="fnHotel">
 	                            <div class="a_img_box">
 	                                <img src="./img/main/hotel.png" alt="">
 	                            </div>

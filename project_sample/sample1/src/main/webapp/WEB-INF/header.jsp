@@ -64,7 +64,7 @@
             color: yellow;
         }
         .s_header{
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             cursor: context-menu;
         }
@@ -82,7 +82,7 @@
             display: block;
             position: absolute;
             color: black;
-            width: 120px;
+            width: 130px;
             border: 1px solid;
             border-radius: 10px;
             background-color: #fff;
@@ -113,9 +113,20 @@
 	            </div>
 	            <div class="header_menu">
 	                <div class="header_inner">
-	                    <ul v-if="uId == ''"class="f_header">
+	                    <ul v-if="status == ''"class="f_header">
 	                        <li><a href="javascript:;" @click="fnLogin">로그인</a></li>
 	                        <li><a href="javascript:;" @click="fnJoin">회원가입</a></li>
+	                        <li><a href="javascript:;">장바구니</a></li>
+	                    </ul>
+	                    <ul v-else-if="status == 'A'" class="f_header">
+	                        <li><a href="javascript:;" @click="fnLogout">로그아웃</a></li>
+	                        <li><a href="javascript:;" @click="fnAdminPage">관리 페이지</a></li>
+	                        <li><a href="javascript:;">장바구니</a></li>
+	                    </ul>
+	                    <ul v-else-if="status == 'H'" class="f_header">
+	                        <li><a href="javascript:;" @click="fnLogout">로그아웃</a></li>
+	                        <li><a href="javascript:;" @click="">마이홈</a></li>
+	                        <li><a href="javascript:;" @click="fnProduct">상품관리</a></li>
 	                        <li><a href="javascript:;">장바구니</a></li>
 	                    </ul>
 	                    <ul v-else class="f_header">
@@ -188,14 +199,14 @@
 var app = new Vue({
 	el : '#header',
 	data : {
-		uId : "${sessionId}"
+		status : "${sessionStatus}"
 	},// data
 	methods : {
         fnLogin :function(){
         	location.href="../login.do";
         },
         fnJoin : function(){
-        	location.href="../join.do";
+        	location.href="../join/select.do";
         },
         fnLogo : function(){
         	location.href="../main.do";
@@ -208,6 +219,14 @@ var app = new Vue({
         },
         fnFAQ : function(){
         	location.href="../faq/list.do";
+        },
+        //관리 페이지
+        fnAdminPage : function(){
+        	location.href="../admin/main.do";
+        },
+        //상품관리페이지
+        fnProduct : function(){
+        	location.href="/host/main.do";
         }
 	}, // methods
 	created : function() {

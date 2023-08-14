@@ -35,4 +35,6 @@ public interface UserMapper {
 	User searchId(HashMap<String, Object> map);
 	
 	User searchPwd(HashMap<String, Object> map);
+	
+	User selectPoint(HashMap<String, Object> map);
 }

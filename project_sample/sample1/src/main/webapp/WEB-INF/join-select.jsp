@@ -11,6 +11,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<h2>회원가입 유형선택</h2>
 		<div>개인회원과 호스트 중 원하는 유형을 선택해주세요.</div>

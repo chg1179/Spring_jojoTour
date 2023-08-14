@@ -56,6 +56,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
         <div id="id_search_wrap">
             <div class="id_search_inner">
@@ -70,7 +71,7 @@
                 </div>
                 <div v-else>
                     <div>회원님의 정보와 일치하는 아이디 입니다.</div>
-                    <div>회원 아이디 : {{message}}</div>
+                    <div style="margin-bottom : 20px;">회원 아이디 : {{message}}</div>
                     <div class="id_search_btn_box">
                         <button class="id_search_btn" @click="fnPwdSearch">비밀번호 찾기</button>
                         <button class="id_search_btn" @click="fnLogin">로그인 하러가기</button>

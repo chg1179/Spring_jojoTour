@@ -11,6 +11,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<h2>비밀번호 찾기</h2>
 		<div v-if="messagePwd == ''">
