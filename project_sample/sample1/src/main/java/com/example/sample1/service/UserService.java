@@ -14,4 +14,5 @@ public interface UserService {
 	int resetUser(HashMap<String, Object> map);
 	int joinPoint(HashMap<String, Object> map);
 	HashMap<String, Object> selectId(HashMap<String, Object> map);
+	HashMap<String, Object> selectPwd(HashMap<String, Object> map);
 }

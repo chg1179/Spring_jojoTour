@@ -12,7 +12,17 @@
 </head>
 <body>
 	<div id="app">
-		비번찾기
+		<h2>비밀번호 찾기</h2>
+		<div v-if="messagePwd == ''">
+			<div><input type="text" placeholder="아이디를 입력하세요." v-model="userId"></div>
+			<div><input type="text" placeholder="핸드폰 번호를 입력하세요." v-model="phone"></div>
+			<button @click="fnPwdSearch">비밀번호 찾기</button>
+		</div>
+		<div v-else>
+			<div>귀하의 비밀번호는 {{messagePwd}} 입니다.</div>
+			<div>변경하시겠습니까?</div>
+			<div><button>변경하러 가기</button></div>
+		</div>
 	</div>
 </body>
 </html>
@@ -20,20 +30,25 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		list : []
+		list : [],
+		userId : "",
+		phone : "",
+		messageId : "",
+		messagePwd : ""
 	},// data
 	methods : {
-		fnGetList : function(){
+		fnPwdSearch : function(){
 			var self = this;
-			var param = {};
+			var param = {userId : self.userId, phone : self.phone};
 			$.ajax({
-                url : "list.dox",
+                url : "pwdSearch.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.list = data.list;
-                	console.log(self.list);
+                	self.messageId = data.messageId;
+                	self.messagePwd = data.messagePwd;
+                	console.log(data.messageId);
                 }
             }); 
 		}
@@ -41,7 +56,6 @@ var app = new Vue({
 	}, // methods
 	created : function() {
 		var self = this;
-		self.fnGetList();
 	}// created
 });
 </script>

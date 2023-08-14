@@ -95,6 +95,13 @@ public class LoginController {
 		resultMap = userService.selectId(map);
 		return new Gson().toJson(resultMap);
 	}
+	@RequestMapping(value = "/pwdSearch.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String pwdSearch(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap = userService.selectPwd(map);
+		return new Gson().toJson(resultMap);
+	}
 	@RequestMapping(value = "/add.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String userAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

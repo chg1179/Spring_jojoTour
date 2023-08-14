@@ -73,4 +73,9 @@
 		FROM T2_USER_TBL
 		WHERE U_NAME = #{name} AND PHONE = #{phone}
 	</select>
+	<select id="searchPwd" parameterType="hashmap" resultType="com.example.sample1.model.User">
+		SELECT *
+		FROM T2_USER_TBL
+		WHERE U_ID = #{userId} AND PHONE = #{phone}
+	</select>
 </mapper>

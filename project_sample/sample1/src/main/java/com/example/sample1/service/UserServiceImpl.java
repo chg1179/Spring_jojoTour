@@ -88,7 +88,19 @@ public class UserServiceImpl implements UserService{
 		}
 		return resultMap;
 	}
-	
+	@Override
+	public HashMap<String, Object> selectPwd(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		User user = userMapper.searchPwd(map);
+		if(user != null) {
+			resultMap.put("success", true);
+			resultMap.put("messageId", user.getuId());
+			resultMap.put("messagePwd", user.getuPwd());
+			resultMap.put("user", user);
+		}
+		return resultMap;
+	}
 	@Override
 	public int searchUserCnt(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -112,5 +124,6 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userMapper.joinPoint(map);
 	}
+
 
 }
