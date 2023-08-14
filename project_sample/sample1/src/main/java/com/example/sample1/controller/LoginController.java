@@ -31,27 +31,12 @@ public class LoginController {
     public String login(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		return "/login";
     }
-	@RequestMapping("/join-acess.do") 
-	public String userAcess(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/join-acess";
-	}
-	@RequestMapping("/join.do") 
-    public String join(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/join";
-    }
 	@RequestMapping("/user-list.do") 
     public String userList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/user-list";
     }
 
-	@RequestMapping("/host-list.do") 
-    public String hostList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/host-list";
-    }
-	@RequestMapping("/listpage.do") 
-    public String listpage(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/listpage";
-    }
+	
 
 	@RequestMapping("/addr.do") 
     public String addr(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
@@ -72,6 +57,20 @@ public class LoginController {
     public String pwdSearch(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
 		session.invalidate();
 		return "pwd-search";
+	}
+
+	@RequestMapping("/join/acess.do") 
+	public String joinAcess(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/join-acess";
+	}
+	@RequestMapping("/join.do") 
+    public String join(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+        return "/join";
+    }
+	@RequestMapping("/join/select.do") 
+    public String joinSelect(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
+		session.invalidate();
+		return "join-select";
 	}
 
 	
@@ -110,14 +109,7 @@ public class LoginController {
 		userService.joinPoint(map);
 		return new Gson().toJson(resultMap);
 	}
-	@RequestMapping(value = "/userList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	@ResponseBody
-	public String userlist(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<User> list = userService.listUser(map);
-		resultMap.put("list", list);
-		return new Gson().toJson(resultMap);
-	}
+	
 	@RequestMapping(value = "/check.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String check(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

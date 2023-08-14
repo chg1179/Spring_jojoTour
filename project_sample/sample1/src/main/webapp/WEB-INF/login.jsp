@@ -159,7 +159,7 @@ var app = new Vue({
 			location.href='id-search.do';
 		},
 		fnJoin : function(){
-			location.href='join-acess.do';
+			location.href='join/select.do';
 		},
 		checkStatus : function(checked){
 			var self = this;
