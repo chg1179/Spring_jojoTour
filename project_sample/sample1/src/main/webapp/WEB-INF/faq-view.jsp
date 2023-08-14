@@ -28,7 +28,7 @@
 		<div>작성날짜 : {{info.fWriteTime}}</div>
 		<div>내용 :<pre v-html="info.fContent"></pre></div>
 	<div>
-		<button @click="fnEdit" >수정하기</button>
+		<button @click="fnEdit"   v-if="status == 'A'">수정하기</button>
 		<button @click="fnBack">되돌아가기</button>
 	</div> 
 	</div>

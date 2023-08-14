@@ -5,9 +5,9 @@
 <mapper namespace="com.example.sample1.mapper.FaqMapper">
 
 	<insert id="insertFaq" parameterType="hashmap">
-	INSERT INTO T2_FAQ_TBL 
-	VALUES
-	('2', #{fTitle}, #{fContent}, #{uId}, '0', '0', now(),now())
+	INSERT INTO T2_FAQ_TBL (F_NO, F_TITLE, F_CONTENT, U_ID, F_HITS, CATEGORY_NO, F_WRITE_TIME, F_UPDATE_TIME)
+	 SELECT MAX(F_NO) + 1, #{fTitle}, #{fContent}, #{uId}, '0', '0', now(),now()
+	 FROM T2_FAQ_TBL
 	</insert>
 	
 	<select id="selectFaqList" parameterType="hashmap" 
@@ -15,9 +15,9 @@
 		SELECT *
 		FROM T2_FAQ_TBL
 		WHERE 1=1  
-		<if test="keyword != '' and keyword != null"> 
-			AND (F_TITLE LIKE '%' || #{keyword} || '%'
-				OR F_CONTENT LIKE '%' || #{keyword} ||'%')
+		<if test="search != '' and search != null"> 
+			AND (F_TITLE LIKE '%' || #{search} || '%'
+				OR F_CONTENT LIKE '%' || #{search} ||'%')
 		</if>
 	</select>
 		

@@ -27,7 +27,8 @@ public class BoardController {
 	
 	@RequestMapping("/notice/list.do") 
     public String noticelist(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/notice-list";
+		request.setAttribute("map", map);
+		return "/notice-list";
     }
 	
 	@RequestMapping("/notice/add.do") 

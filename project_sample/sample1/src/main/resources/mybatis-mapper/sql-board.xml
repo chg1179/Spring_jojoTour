@@ -5,19 +5,20 @@
 <mapper namespace="com.example.sample1.mapper.BoardMapper">
 	
 	<insert id="insertNotice" parameterType="hashmap">
-	INSERT INTO T2_NOTICE_TBL 
-	VALUES
-	('1', #{nTitle}, #{nContent}, #{uId}, '0', '0', now(),now())
+	INSERT INTO T2_NOTICE_TBL (N_NO, N_TITLE, N_CONTENT, U_ID, N_HITS, N_KIND_NO, F_WRITE_TIME, F_UPDATE_TIME)
+	 SELECT MAX(N_NO) + 1, #{nTitle}, #{nContent}, #{uId}, '0', '0', now(),now()
+	 FROM T2_NOTICE_TBL
 	</insert>
 	
 	<select id="selectNoticeList" parameterType="hashmap" 
 	resultType="com.example.sample1.model.Board">
-		SELECT *
+		SELECT 
+			N_NO, N_TITLE, U_ID, N_HITS, F_WRITE_TIME
 		FROM T2_NOTICE_TBL
 		WHERE 1=1  
-		<if test="keyword != '' and keyword != null"> 
-		AND (N_TITLE LIKE '%' || #{keyword} || '%') 
-		OR (N_CONTENT LIKE '%' || #{keyword} || '%')
+		<if test="search != '' and search != null">
+			AND (N_TITLE LIKE '%' || #{search} || '%' 
+				OR N_CONTENT LIKE '%' || #{search} || '%')
 		</if>
 	</select>
 		

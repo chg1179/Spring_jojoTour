@@ -26,8 +26,8 @@
 	<div id="app">
 		<h2>공지사항</h2>
 		<div>
-			<label><input v-model="keyword" placeholder="키워드검색">
-				<button @click="fnSearch">검색</button>
+			<label><input type="text" v-model="search" placeholder="키워드검색" @keyup.enter="fnGetList">
+				<button @click="fnGetList">검색</button>
 			</label>
 		</div>
 		<table>
@@ -49,7 +49,7 @@
 			</tr>
 		</table>
 	<div><button @click="fnRemove">삭제</button></div>
-	<div><button @click="fnMove">글쓰기</button></div>
+	<div v-if="status == 'A'"><button @click="fnMove">글쓰기</button></div>
 	</div>
 	
 </body>
@@ -59,15 +59,15 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-		keyword:"",
 		nNo : "",
-		status : "${sessionStatus}"
+		status : "${sessionStatus}",
+		search:""
 		
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var param = {};
+			var param = {search : self.search};
 			$.ajax({
                 url : "list.dox",
                 dataType:"json",	
@@ -75,24 +75,12 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	console.log(data);
+
                 	self.list = data.noticeList;
                 }
             }); 
 		},
- 		fnSearch : function(){
-			var self = this;
-			var param = {keyword : self.keyword};
-            $.ajax({
-                url : "list.dox",
-                dataType:"json",	
-                type : "POST", 
-                data : param,
-                success : function(data) { 
-                	self.list = data.list;
-                	console.log(self.list);
-                }
-            });  
-		},
+
 		fnRemove : function(){
 			var self = this;
         	if(!confirm("정말 삭제하시겠습니까?")){
