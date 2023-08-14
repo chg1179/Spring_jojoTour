@@ -40,7 +40,7 @@
 				<th>등록 날짜</th>
 			</tr>
 			<tr v-for="item in list">
-				<th v-if="status == 'A'"><input type="radio" v-model="fNo" :value="item.fNo"></th>
+				<th v-if="status == 'A'"><input type="checkbox" v-model="fNo" :value="item.fNo"></th>
 				<th>{{item.fNo}}</th>
 				<th><a @click="fnView(item.fNo)" href="javascript:;">{{item.fTitle}}</a></th>
 				<th>{{item.fId}}</th>

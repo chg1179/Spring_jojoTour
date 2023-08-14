@@ -40,7 +40,7 @@
 				<th>등록 날짜</th>
 			</tr>
 			<tr v-for="item in list">
-				<th v-if="status == 'A'"><input type="radio" v-model="nNo" :value="item.nNo"></th>
+				<th v-if="status == 'A'"><input type="checkbox" v-model="nNo" :value="item.nNo"></th>
 				<th>{{item.nNo}}</th>
 				<th><a @click="fnView(item.nNo)" href="javascript:;">{{item.nTitle}}</a></th>
 				<th>{{item.uId}}</th>
@@ -48,7 +48,10 @@
 				<th>{{item.fWriteTime}}</th>	
 			</tr>
 		</table>
-	<div><button @click="fnRemove">삭제</button></div>
+	<div v-if="status == 'A'"><button @click="fnRemove">삭제</button>
+		<button @click="fnACheck">전체선택</button>
+		<button @click="fnNCheck">전체해제</button>
+	</div>
 	<div v-if="status == 'A'"><button @click="fnMove">글쓰기</button></div>
 	</div>
 	
@@ -59,9 +62,10 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-		nNo : "",
+		
 		status : "${sessionStatus}",
-		search:""
+		search:"",
+		nNo:[]
 		
 	},// data
 	methods : {
@@ -106,6 +110,18 @@ var app = new Vue({
  	     fnView : function(nNo){
  	    	$.pageChange("view.do", {nNo : nNo});	 
 	     	},
+	     	
+			fnNCheck : function(){
+				var self = this;
+				self.nNo = [];
+			},
+			fnACheck : function(){
+				var self = this;
+				self.nNo = [];
+				for(var i=0; i<self.list.length; i++){
+					self.nNo.push(self.list[i].nNo);
+				}
+			}
 	        
 	      
 		
