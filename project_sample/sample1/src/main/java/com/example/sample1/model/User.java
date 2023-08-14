@@ -16,6 +16,8 @@ public class User {
 	private String eventyn;
 	private int loginCnt;
 	private int point;
+	private String zipno;
+	private String delyn;
 	
 	public String getuId() {
 		return uId;
@@ -100,6 +102,18 @@ public class User {
 	}
 	public void setPoint(int point) {
 		this.point = point;
+	}
+	public String getZipno() {
+		return zipno;
+	}
+	public void setZipno(String zipno) {
+		this.zipno = zipno;
+	}
+	public String getDelyn() {
+		return delyn;
+	}
+	public void setDelyn(String delyn) {
+		this.delyn = delyn;
 	}
 	
 }

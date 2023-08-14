@@ -5,7 +5,7 @@
 <mapper namespace="com.example.sample1.mapper.UserMapper">
 	<insert id="insertUser" parameterType="hashmap">
 		INSERT INTO T2_USER_TBL VALUES
-		(#{userId}, #{pw1}, #{name}, #{nickName}, #{birth}, #{phone}, #{email}, #{addr},#{addrDetail}, #{status}, 'N', 'N', 0)
+		(#{userId}, #{pw1}, #{name}, #{nickName}, #{birth}, #{phone}, #{email}, #{zipNo}, #{addr}, #{addrDetail}, #{status}, 'N', 'N', 0, 'N')
 	</insert>
 	
 	<select id="userCnt" parameterType="hashmap" resultType="int">

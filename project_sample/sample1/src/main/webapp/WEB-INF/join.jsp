@@ -25,14 +25,23 @@
     }
     .join_inner_box{
         background-color: #F86F03;
-        border-bottom: 1px solid;
-        border-left: 1px solid;
-        border-right: 1px solid;
+        padding-top : 20px;
     }
     .join_title{
         text-align: center;
         margin: 10px;
     }
+    .join_check_wrap{
+        position: relative;
+    }
+    .join_check{
+        position: absolute;
+        top: 10px;
+        font-size: 16px;
+        width : 200px;
+        margin-left : 10px;
+    }
+
     #join_container, .join_tab, .join_addr, .join_btn{
         display: flex;
         justify-content: space-around;
@@ -40,22 +49,6 @@
     }
     .join_tab input{
         display: none;
-    }
-    .join_tab label{
-        cursor: pointer;
-        border-top: 1px solid;
-        border-left: 1px solid;
-        width: 33.333%;
-        text-align: center;
-        height: 30px;
-        line-height: 30px;
-        background-color: #FFA41B;
-    }
-    .join_tab input:checked + label{
-        background-color: #F86F03;
-    }
-    .join_tab label[for="u"]{
-        border-left: none;
     }
     .join_btn button{
         width: 200px;
@@ -79,37 +72,27 @@
 	<div id="app">
 	    <div id="join_container">
 	        <div class="join_inner_con">
-	            <h2 class="join_title">{{user.status}}</h2>
+	            <h2 class="join_title" v-if="user.status == 'U'">일반 회원가입</h2>
+	            <h2 class="join_title" v-else>호스트 회원가입</h2>
 	            <div class="join_inner_box">
-	                <div class="join_tab">
-	                    <input type="radio" name="stat" v-model="user.status" value="U" id="u" checked>
-	                    <label class="lBox" for="u">일반회원</label>
-	                    <input type="radio" name="stat"  v-model="user.status" value="H" id="h">
-	                    <label class="lBox" for="h">호스트</label>
-	                    <input type="radio" name="stat"  v-model="user.status" value="R" id="r">
-	                    <label class="lBox" for="r">렌터카</label>
-	                </div>
 	                <div class="join_input_wrap">
-	                    <div v-if="user.status == 'H' || user.status == 'R'">
-	                            <label><input type="text" v-model="user.userId" @keyup="fnCheck" placeholder="사업자 번호"></label> 
-	                        <span v-if="user.userId != ''">{{message}}</span>
-	                    </div>
-	                    <div v-else>
+	                    <div class="join_check_wrap">
 	                        <label><input type="text" v-model="user.userId" @keyup="fnCheck" placeholder="아이디"></label> 
-	                        <span v-if="user.userId != ''">{{message}}</span>
+	                        <span class="join_check" v-if="user.userId != ''">{{message}}</span>
 	                    </div>
 	                        <div><label><input type="password" v-model="user.pw1" placeholder="비밀번호"></label></div>
 	                        <div><label><input type="password" v-model="user.pw2" placeholder="비밀번호 확인"></label></div>
 	                        <div><label><input type="text" v-model="user.name" placeholder="이름"></label></div>
 	                        <div><label><input type="text" v-model="user.nickName" placeholder="닉네임"></label></div>
 	                        <div><label><input type="text" v-model="user.birth" placeholder="생년월일 ex)0000-00-00"></label></div>
-	                        <div><label><input type="text" v-model="user.phone" placeholder=></label></div>
-	                        <div><label><input type="text" v-model="user.email" placeholder="[선택]이메일"></label></div>
+	                        <div><label><input type="text" v-model="user.phone" placeholder="핸드폰 번호"></label></div>
+	                        <div><label><input type="text" v-model="user.email" placeholder="이메일"></label></div>
 	
 	                        
 	                            
 	                        <div><label class="join_btn"><button @click="fnSearchAddr">주소 검색</button></label></div>
 	                        <div v-if="user.addr != ''" ><label><input disabled type="text" v-model="user.addr"></label></div>
+	                        <div v-if="user.zipNo != ''" ><label><input disabled type="text" v-model="user.zipNo"></label></div>
 	                        <div v-if="user.addrDetail != ''"><label><input type="text" v-model="user.addrDetail"></label></div>
 	                        
 	                </div>
@@ -138,6 +121,7 @@ var app = new Vue({
 			addrDetail : "",
 			nickName : "",
 			email : "",
+			zipNo : "",
 			status : "${map.status}"
 		},
 		joinFlg : false,
@@ -209,11 +193,13 @@ var app = new Vue({
     		var self = this;
     		self.user.addr = roadAddrPart1;
     		self.user.addrDetail = addrDetail;
+    		self.user.zipNo = zipNo;
     		// 콘솔 통해 각 변수 값 찍어보고 필요한거 가져다 쓰면 됩니다.
     		console.log(roadFullAddr);
     		console.log(roadAddrPart1);
     		console.log(addrDetail);
     		console.log(engAddr);
+    		console.log(zipNo);
     	}
 	}, // methods
 	created : function() {

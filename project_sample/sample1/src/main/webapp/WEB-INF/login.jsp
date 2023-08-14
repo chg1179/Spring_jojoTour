@@ -97,11 +97,11 @@
 	    <div id="login_container">
 	        <div class="login_box">
 	            <div class="login_tab">
-	                <input type="radio" name="selectLogin" id="user" value="U" @input="checkStatus(checked)" checked="checked">
+	                <input type="radio" name="selectLogin" id="user" @input="checkStatus('U')" checked="checked">
 	                <label for="user">일반회원</label>
-	                <input type="radio" name="selectLogin" id="host" value="H" v-model="status">
+	                <input type="radio" name="selectLogin" id="host" @input="checkStatus('H')">
 	                <label for="host">호스트</label>
-	                <input type="radio" name="selectLogin" id="admin" value="A" v-model="status">
+	                <input type="radio" name="selectLogin" id="admin" @input="checkStatus('A')">
 	                <label for="admin">관리자</label>
 	            </div>
 	            <div class="login_background">
@@ -133,9 +133,23 @@ var app = new Vue({
 		list : [],
 		userId : "",
 		pwd : "",
-		status: ""
+		status: "",
+		user : ""
 	},// data
 	methods : {
+		fnGetList : function(){
+			var self = this;
+			var param = {};
+			$.ajax({
+                url : "loginCheck.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	self.status = "U";
+                }
+            }); 
+		},
 		fnLogin : function(){
 			var self = this;
 			var param = {userId : self.userId, pwd : self.pwd, status : self.status};
@@ -161,14 +175,14 @@ var app = new Vue({
 		fnJoin : function(){
 			location.href='join/select.do';
 		},
-		checkStatus : function(checked){
-			var self = this;
-			self.checked = checked;
-		}
+		checkStatus : function(status){ //라디오박스를 선택할 때 마다 status 값 변경
+        	var self = this;
+        	self.status = status;
+        }
 	}, // methods
 	created : function() {
 		var self = this;
-	//	self.fnGetList();
+	    self.fnGetList();
 	}// created
 });
 </script>

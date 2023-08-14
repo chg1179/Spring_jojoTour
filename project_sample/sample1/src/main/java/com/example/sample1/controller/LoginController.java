@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.sample1.model.Product;
 import com.example.sample1.model.User;
 import com.example.sample1.service.UserService;
 import com.google.gson.Gson;
@@ -27,39 +28,36 @@ public class LoginController {
 	@Autowired
 	HttpSession session;
 	
+	//로그인창으로 이동
 	@RequestMapping("/login.do") 
     public String login(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		return "/login";
     }
+	//유저 리스트 창으로 이동
 	@RequestMapping("/user-list.do") 
     public String userList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/user-list";
     }
-
-	
-
-	@RequestMapping("/addr.do") 
-    public String addr(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
-		
-		return "/juso-popup";
-    }
+	// 아이디 검색창으로 이동
 	@RequestMapping("/id-search.do") 
     public String idSearch(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
 		
 		return "/id-search";
 	}
+	//로그아웃 되서 메인창으로 리다렉트
 	@RequestMapping("/logout.do") 
     public String logout(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
 		session.invalidate();
 		return "redirect:main.do";
 	}
+	//패스워드 검색창으로 이동
 	@RequestMapping("/pwd-search.do") 
     public String pwdSearch(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
 		
 		return "pwd-search";
 	}
 
-	
+	//로그인
 	@RequestMapping(value = "/login.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String login(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -73,6 +71,14 @@ public class LoginController {
 		}
 		return new Gson().toJson(resultMap);
 	}
+	//로그인 창에서 유저값을 기본 U로 해줌
+	@RequestMapping(value = "/loginCheck.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String rentCar(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		return new Gson().toJson(resultMap);
+	}
+	//아이디 검색
 	@RequestMapping(value = "/id-search.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String idSearch(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -80,6 +86,7 @@ public class LoginController {
 		resultMap = userService.selectId(map);
 		return new Gson().toJson(resultMap);
 	}
+	//비번 검색
 	@RequestMapping(value = "/pwdSearch.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String pwdSearch(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
