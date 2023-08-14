@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.sample1.model.Product;
+import com.example.sample1.model.Room;
 import com.example.sample1.service.RoomService;
 import com.google.gson.Gson;
 
@@ -26,6 +26,7 @@ public class RoomController {
 	//숙박 방 페이지
 	@RequestMapping("/host/room.do") 
 	public String room(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
 		return "/host-room";
 	}
 	
@@ -36,9 +37,10 @@ public class RoomController {
 	}
 	
 	//숙박 방 페이지
-	@RequestMapping("/host/roomEdit.do") 
+	@RequestMapping("/host/roomView.do") 
 	public String roomEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/host-room-edit";
+		request.setAttribute("map", map);
+		return "/host-room-view";
 	}
 	
 	// 방 목록 출력
@@ -46,7 +48,7 @@ public class RoomController {
 	@ResponseBody
 	public String roomList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Product> list = roomService.searchRoomList(map);
+		List<Room> list = roomService.searchRoomList(map);
 		resultMap.put("roomList", list);
 		return new Gson().toJson(resultMap);
 	}
@@ -60,4 +62,13 @@ public class RoomController {
 		return new Gson().toJson(resultMap);
 	}
 	
+	// 방 정보 출력
+	@RequestMapping(value = "/host/roomInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String roomInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		Room info = roomService.searchRoomInfo(map);
+		resultMap.put("roomInfo", info);
+		return new Gson().toJson(resultMap);
+	}
 }

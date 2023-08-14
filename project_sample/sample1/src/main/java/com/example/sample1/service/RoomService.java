@@ -3,14 +3,15 @@ package com.example.sample1.service;
 import java.util.HashMap;
 import java.util.List;
 
-import com.example.sample1.model.Product;
+import com.example.sample1.model.Room;
 
 public interface RoomService {
 	// 방 목록 출력
-	List<Product> searchRoomList(HashMap<String, Object> map);
+	List<Room> searchRoomList(HashMap<String, Object> map);
 	
 	// 객실 삭제
 	int removeRoom(HashMap<String, Object> map);
 	
-	
+	// 객실 정보 출력
+	Room searchRoomInfo(HashMap<String, Object> map);
 }

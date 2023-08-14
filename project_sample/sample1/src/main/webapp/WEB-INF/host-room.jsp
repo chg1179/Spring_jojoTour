@@ -67,9 +67,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="item in list">
+					<tr v-for="(item, index) in list">
 						<td>
-							<input type="radio" v-model="roomNo" :value="item.roomNo" name="roomNo" checked="checked">
+							<input v-if="index==0" type="radio" :value="item.roomNo" @input="changeRoomNo(item.roomNo)" name="roomNo" checked="checked">
+							<input v-else type="radio" :value="item.roomNo" @input="changeRoomNo(item.roomNo)" name="roomNo">
 						</td>
 						<td>{{item.roomNo}}</td>
 						<td>{{item.roomName}}</td>
@@ -81,7 +82,7 @@
 		</div>
 		<div class="container">
 			<span><button @click="fnAdd">객실 추가</button></span>
-			<span><button @click="fnUpdate">객실 수정</button></span>
+			<span><button @click="fnView">객실 상세 정보</button></span>
 			<span><button @click="fnRemove">객실 삭제</button></span>
 		</div>
 	</div>
@@ -92,12 +93,14 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-		roomNo : ""
+		roomNo : "",
+		stayNo: "${map.stayNo}"
+		
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var param = {};
+			var param = {stayNo : self.stayNo};
 			$.ajax({
                 url : "roomList.dox",
                 dataType:"json",	
@@ -106,6 +109,9 @@ var app = new Vue({
                 success : function(data) { 
                 	self.list = data.roomList;
                 	console.log(self.list);
+                	/* if(self.list != undefined){ //리스트의 첫 번째 값을 디폴트로 체크하고, 해당 pk 값을 받아온다.
+                        self.roomNo = self.list[0].roomNo;
+                    } */
                 }
             }); 
 		},
@@ -115,10 +121,11 @@ var app = new Vue({
 			location.href = "roomAdd.do";
 		},
 		
-		// 객실 수정
-		fnUpdate : function (){
+		// 객실 상세 정보
+		fnView : function (){
 			var self = this;
-			$.pageChange("roomEdit.do", {roomNo : self.roomNo});
+			console.log(self.roomNo);
+			$.pageChange("roomView.do", {roomNo : self.roomNo});
 			
 		},
 		
@@ -138,9 +145,14 @@ var app = new Vue({
                 success : function(data) { 
                 	alert("해당 객실이 삭제되었습니다.");
                 	self.fnGetList();
+                	
                 }
             }); 
 		},
+		changeRoomNo : function(roomNo){ //라디오박스를 선택할 때 마다 pk 값 변경
+        	var self = this;
+        	self.roomNo = roomNo;
+        }
 		
  	}, // methods
 	created : function() {

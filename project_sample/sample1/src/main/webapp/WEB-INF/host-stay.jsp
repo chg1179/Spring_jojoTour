@@ -62,6 +62,7 @@
 				<table class="host-table">
 					<thead>
 						<tr>
+							<th>선택</th>
 							<th>No.</th>
 							<th>업체명</th>
 							<th>주소</th>
@@ -70,9 +71,13 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="item in list">
+						<tr v-for="(item, index) in list">
+							<td>
+								<input v-if="index==0" type="radio" :value="item.stayNo" @input="changeStayNo(item.stayNo)" name="stayNo" checked="checked">
+								<input v-else type="radio" :value="item.stayNo" @input="changeStayNo(item.stayNo)" name="stayNo">
+							</td>
 							<td>{{item.stayNo}}</td>
-							<td><a @click="fnMove" href="javascript:;" v-model="stayNo">{{item.stayName}}</a></td>
+							<td><a @click="fnMove(item.stayNo)" href="javascript:;">{{item.stayName}}</a></td>
 							<td>{{item.sAddr}}</td>
 							<td>{{item.sDetailAddr}}</td>
 							<td>{{item.cName}}</td>
@@ -83,8 +88,8 @@
 		</div>
 		<div class="container">
 			<span><button @click="fnAdd">숙박 업체 추가</button></span>
-			<!-- <span><button @click="">업체 정보 수정</button></span>
-			<span><button @click="fnRemove">업체 정보 삭제</button></span> -->
+			<span><button @click="">업체 정보 수정</button></span>
+			<span><button @click="fnRemove">업체 정보 삭제</button></span>
 		</div>
 	</div>
 </body>
@@ -108,17 +113,40 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	self.list = data.stayList;
+                	self.stayNo = self.list[0].stayNo;
                 	console.log(self.list);
                 }
             }); 
 		},
-		fnMove : function(){
+		fnRemove : function(){
 			var self = this;
-			$.pageChange("room.do", {stayNo : self.stayNo});
+			if(!confirm("해당 숙소를 삭제하시겠습니까?")){
+				alert("취소되었습니다.");
+				return;
+			}
+			var param = {stayNo : self.stayNo};
+			$.ajax({
+                url : "stayRemove.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	alert("해당 객실이 삭제되었습니다.");
+                	self.fnGetList();
+                }
+            }); 
+		},
+		fnMove : function(stayNo){
+			var self = this;
+			$.pageChange("room.do", {stayNo : stayNo});
 		},
 		fnAdd : function(){
 			location.href = "/host/stayAdd.do"
-		}
+		},
+		changeStayNo : function(stayNo){ //라디오박스를 선택할 때 마다 pk 값 변경
+        	var self = this;
+        	self.stayNo = stayNo;
+        }
 		
 	}, // methods
 	created : function() {

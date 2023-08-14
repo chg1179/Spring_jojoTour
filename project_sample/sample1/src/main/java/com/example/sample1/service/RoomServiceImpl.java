@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.sample1.mapper.RoomMapper;
-import com.example.sample1.model.Product;
+import com.example.sample1.model.Room;
 
 @Service
 public class RoomServiceImpl implements RoomService {
@@ -15,7 +15,7 @@ public class RoomServiceImpl implements RoomService {
 	RoomMapper roomMapper;
 
 	@Override
-	public List<Product> searchRoomList(HashMap<String, Object> map) {
+	public List<Room> searchRoomList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return roomMapper.selectRoomList(map);
 	}
@@ -24,5 +24,11 @@ public class RoomServiceImpl implements RoomService {
 	public int removeRoom(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return roomMapper.deleteRoom(map);
+	}
+
+	@Override
+	public Room searchRoomInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return roomMapper.selectRoomInfo(map);
 	}
 }

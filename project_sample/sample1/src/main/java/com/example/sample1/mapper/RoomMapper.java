@@ -5,14 +5,17 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.sample1.model.Product;
+import com.example.sample1.model.Room;
 
 @Mapper
 public interface RoomMapper {
 
 	// 숙소 방 목록 출력
-	List<Product> selectRoomList(HashMap<String, Object> map);
+	List<Room> selectRoomList(HashMap<String, Object> map);
 	
 	// 객실 삭재
 	int deleteRoom(HashMap<String, Object> map);
+	
+	// 객실 정보 출력
+	Room selectRoomInfo(HashMap<String, Object> map);
 }

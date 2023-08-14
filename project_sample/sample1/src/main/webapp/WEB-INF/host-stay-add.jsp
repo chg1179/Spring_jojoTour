@@ -71,7 +71,9 @@
 					서비스 안내
 				</th>
 				<td>
-					<span>편의시설</span> 서비스 타입 테이블과 조인해서 받아온 값 체크박스에 넣기
+					<div v-for="item in serviceList">
+						<label><input type="checkbox" :value="item.serviceName">{{item.serviceName}}</label>
+					</div>					
 				</td>
 			</tr>
 		</tbody>
@@ -89,7 +91,9 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		selectStayType : "",
+		stayService : "",
 		typeList : [],
+		serviceList : [],
 		info : {
 			stayName : "",
 			sAddr : "",               
@@ -117,20 +121,25 @@ var app = new Vue({
                 }
             }); 
 		},
+	
 		fnGetOption : function(){
 			var self = this;
 			var param = {};
 			$.ajax({
-                url : "stayTypeList.dox",
+                url : "stayOption.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
                 	self.typeList = data.stayTypeList;
                 	console.log(self.stayTypes);
+                	
+                	self.serviceList = data.stayServiceList;
+                	console.log(self.serviceList);
                 }
             }); 
 		},
+		
 		fnSearchAddr : function (){
 			var self = this;
     		var option = "width = 500, height = 500, top = 100, left = 200, location = no"

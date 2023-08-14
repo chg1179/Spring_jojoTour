@@ -9,7 +9,7 @@
         FROM T2_STAY_TBL
 	</insert>
 	
-	<select id="selectStayList" parameterType="hashmap" resultType="com.example.sample1.model.Product">
+	<select id="selectStayList" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
 		SELECT 
 			S.STAY_NO,
 			S.STAY_NAME,
@@ -21,8 +21,17 @@
 		ON S.STAY_KIND = C.C_KIND
 	</select>
 	
-	<select id="selectStayTypeList" parameterType="hashmap" resultType="com.example.sample1.model.Product">
+	<select id="selectStayTypeList" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
 		SELECT * FROM T2_CODE_TYPE 
 		WHERE C_TYPE = 'STAY'
+	</select>
+	
+	<delete id="deleteStay" parameterType="hashmap">
+		DELETE FROM T2_STAY_TBL
+		WHERE STAY_NO = #{stayNo}
+	</delete>
+	
+	<select id="selectServiceList" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
+		SELECT * FROM T2_SERVICE_TBL
 	</select>
 </mapper>

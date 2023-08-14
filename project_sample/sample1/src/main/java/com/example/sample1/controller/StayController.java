@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.sample1.model.Product;
+import com.example.sample1.model.Stay;
 import com.example.sample1.service.StayService;
 import com.google.gson.Gson;
 
@@ -40,7 +40,7 @@ public class StayController {
 	@ResponseBody
 	public String stayList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Product> list = stayService.searchStayList(map);
+		List<Stay> list = stayService.searchStayList(map);
 		resultMap.put("stayList", list);
 		return new Gson().toJson(resultMap);
 	}
@@ -54,12 +54,28 @@ public class StayController {
 		return new Gson().toJson(resultMap);
 	}
 	
-	@RequestMapping(value = "/host/stayTypeList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	// 숙소 옵션 리스트(타입, 편의시설)
+	@RequestMapping(value = "/host/stayOption.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String stayTypeList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	public String stayOption(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Product> list = stayService.searchStayTypeList(map);
+		List<Stay> list = stayService.searchStayTypeList(map);
 		resultMap.put("stayTypeList", list);
+		
+		List<Stay> list2 = stayService.searchServiceList(map);
+		resultMap.put("stayServiceList", list2);
+		
+		return new Gson().toJson(resultMap);
+	}
+	
+	
+	// 숙소 삭제 리스트
+	@RequestMapping(value = "/host/stayRemove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String stayRemove(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		stayService.removeStay(map);
+		resultMap.put("success", "숙소삭제성공");
 		return new Gson().toJson(resultMap);
 	}
 }
