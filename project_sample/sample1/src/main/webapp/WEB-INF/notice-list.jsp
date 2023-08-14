@@ -26,9 +26,8 @@
 	<div id="app">
 		<h2>공지사항</h2>
 		<div>
-			<label><input type="text" v-model="search" placeholder="키워드검색" @keyup.enter="fnGetList">
-				<button @click="fnGetList">검색</button>
-			</label>
+			<label><input type="text" v-model="search" @keyup.enter="fnGetList"></label>
+			<button @click="fnGetList">검색</button>
 		</div>
 		<table>
 			<tr>
@@ -62,10 +61,9 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-		
 		status : "${sessionStatus}",
-		search:"",
-		nNo:[]
+		search : "",
+		nNo : []
 		
 	},// data
 	methods : {
@@ -78,9 +76,8 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	console.log(data);
-
                 	self.list = data.noticeList;
+                	console.log(self.list);
                 }
             }); 
 		},
