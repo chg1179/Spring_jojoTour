@@ -4,23 +4,14 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>렌트카 관리 페이지</title>
+<title>렌트카 상세정보 페이지</title>
 <style>
-	table{
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
-	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
-	}
 </style>
 </head>
 <body>
 	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		렌트카
+		<!-- 렌트카
 		<table>
 			<tr>
 				<th>선택</th>
@@ -59,9 +50,9 @@
 		</table>
 		<div>
 			<span><button @click="fnAdd">상품등록</button></span>
-			<span><button @click="fnView">상세정보열람</button></span>
+			<span><button @click="fnUpdate">상세정보열람</button></span>
 			<span><button @click="fnRemove">삭제</button></span>
-		</div>
+		</div> -->
 	</div>
 </body>
 </html>
@@ -70,14 +61,14 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-		rentNo : ""
+		rentNo : "${map.rentNo}"
 	},// data
 	methods : {
-		fnGetList : function(){
+		fnGetInfo : function(){
 			var self = this;
 			var param = {};
 			$.ajax({
-                url : "rentCar.dox",
+                url : "rentCarInfo.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
@@ -87,16 +78,11 @@ var app = new Vue({
                 }
             }); 
 		},
-		fnAdd : function(){
-			location.href = "rentcar/edit.do"; 
-        },
-        fnView : function(){
-        	var self = this;
-			$.pageChange("rentcar/view.do", {rentNo : self.rentNo}); 
+		fnUpdate : function(){
+			$.pageChange("rentcar/edit.do", {rentNo : self.rentNo}); 
         },
 		fnRemove : function(){
             var self = this;
-            console.log(self.rentNo);
 	        if(!confirm("해당 렌트카를 삭제하시겠습니까?")){
 	        	alert("취소되었습니다.");
 	          	return;
@@ -110,7 +96,7 @@ var app = new Vue({
                 data : param,
                 success : function(data) {
                 	alert("해당 렌트카의 정보가 삭제되었습니다.");
-                	self.fnGetList();
+                	location.href = "../rentcar.do"; 
                 }
             });  
         },
@@ -121,7 +107,7 @@ var app = new Vue({
 	}, // methods
 	created : function() {
 		var self = this;
-		self.fnGetList();
+		//self.fnGetList();
 	}// created
 });
 </script>

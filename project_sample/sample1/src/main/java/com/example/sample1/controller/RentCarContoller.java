@@ -36,6 +36,13 @@ public class RentCarContoller {
 		return "/host-rentcar-edit";
 	}
 	
+	//렌트카 제품 상세 목록 열람 페이지
+	@RequestMapping("/host/rentcar/view.do") 
+	public String rentView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+		return "/host-rentcar-view";
+	}
+	
 	//렌트카 정보 리스트 출력
 	@RequestMapping(value = "/host/rentCar.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
