@@ -68,6 +68,7 @@
 							<th>주소</th>
 							<th>상세 주소</th>
 							<th>숙소타입</th>
+							<th>등록일</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -81,6 +82,7 @@
 							<td>{{item.sAddr}}</td>
 							<td>{{item.sDetailAddr}}</td>
 							<td>{{item.cName}}</td>
+							<td>{{item.sInsertTime}}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -88,7 +90,7 @@
 		</div>
 		<div class="container">
 			<span><button @click="fnAdd">숙박 업체 추가</button></span>
-			<span><button @click="">업체 정보 수정</button></span>
+			<span><button @click="fnUpdate">업체 정보 수정</button></span>
 			<span><button @click="fnRemove">업체 정보 삭제</button></span>
 		</div>
 	</div>
@@ -118,6 +120,10 @@ var app = new Vue({
                 }
             }); 
 		},
+		fnUpdate : function(){
+			var self = this;
+			$.pageChange("stayEdit.do", {stayNo : self.stayNo});
+		},
 		fnRemove : function(){
 			var self = this;
 			if(!confirm("해당 숙소를 삭제하시겠습니까?")){
@@ -141,7 +147,7 @@ var app = new Vue({
 			$.pageChange("room.do", {stayNo : stayNo});
 		},
 		fnAdd : function(){
-			location.href = "/host/stayAdd.do"
+			location.href = "stayAdd.do"
 		},
 		changeStayNo : function(stayNo){ //라디오박스를 선택할 때 마다 pk 값 변경
         	var self = this;

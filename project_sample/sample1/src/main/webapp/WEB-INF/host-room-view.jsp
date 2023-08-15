@@ -6,7 +6,7 @@
 <script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>객실 상세 정보</title>
 <style>
 	table{
 		border : 1px solid black;
@@ -75,7 +75,7 @@ var app = new Vue({
 		
 	},// data
 	methods : {
-		fnGetList : function(){
+		fnGetInfo : function(){
 			var self = this;
 			var param = {roomNo : self.roomNo};
 			$.ajax({
@@ -112,7 +112,7 @@ var app = new Vue({
 	}, // methods
 	created : function() {
 		var self = this;
-	//	self.fnGetList();
+		self.fnGetInfo();
 	}// created
 });
 </script>

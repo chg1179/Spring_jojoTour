@@ -9,12 +9,11 @@ public class Room {
 	private int stayNo;
 	private String roomName;
 	private int roomPrice;
-	private String roomSales;
-	private String peopleMax;
+	private double roomSales;
+	private int peopleMax;
 	private String roomInsertTime;
 	private String roomUpdateTime;
 	private int roomResidue;
-	
 	
 	// code_type
 	private String cKind;

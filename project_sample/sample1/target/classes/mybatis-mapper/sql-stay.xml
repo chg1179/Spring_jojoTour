@@ -4,34 +4,58 @@
 
 <mapper namespace="com.example.sample1.mapper.StayMapper">
 	<insert id="insertStay" parameterType="hashmap">
-		INSERT INTO T2_STAY_TBL (STAY_NO, U_ID, STAY_NAME, STAY_KIND, S_ADDR, S_DETAIL_ADDR, S_READ, S_INSERT_TIME, S_UPDATE_TIME, S_DELYN)
-        SELECT MAX(STAY_NO) + 1, 'host', #{stayName}, #{type}, #{sAddr}, #{sDetailAddr}, 0, NOW(), NOW(), 'N'
-        FROM T2_STAY_TBL
+		INSERT INTO T2_STAY_TBL (U_ID, STAY_NAME, STAY_KIND, S_ZIPNO, S_ADDR, S_DETAIL_ADDR, S_READ, S_INSERT_TIME, S_UPDATE_TIME, S_DELYN) VALUES
+		('host', #{stayName}, #{type}, #{sZipno}, #{sAddr}, #{sDetailAddr}, 0, NOW(), NOW(), 'N')
 	</insert>
-	
+	<!-- 숙소 리스트 출력 -->
 	<select id="selectStayList" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
 		SELECT 
 			S.STAY_NO,
 			S.STAY_NAME,
 			S.S_ADDR,
 			S.S_DETAIL_ADDR,
-			C.C_NAME
+			C.C_NAME,
+			S.S_INSERT_TIME
 		FROM T2_STAY_TBL S
 		INNER JOIN T2_CODE_TYPE C
 		ON S.STAY_KIND = C.C_KIND
 	</select>
 	
+	<!-- 숙소 정보 출력 -->
+	<select id="selectStayInfo" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
+		SELECT *
+		FROM T2_STAY_TBL S
+		INNER JOIN T2_CODE_TYPE C
+		ON S.STAY_KIND = C.C_KIND
+		WHERE STAY_NO = #{stayNo}
+	</select>
+	
+	<!-- 숙소 타입 리스트 -->
 	<select id="selectStayTypeList" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
 		SELECT * FROM T2_CODE_TYPE 
 		WHERE C_TYPE = 'STAY'
 	</select>
 	
+	<!-- 편의시설 리스트 -->
+	<select id="selectServiceList" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
+		SELECT * FROM T2_SERVICE_TBL
+	</select>
+	
+	<!-- 숙소 삭제 -->
 	<delete id="deleteStay" parameterType="hashmap">
 		DELETE FROM T2_STAY_TBL
 		WHERE STAY_NO = #{stayNo}
 	</delete>
 	
-	<select id="selectServiceList" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
-		SELECT * FROM T2_SERVICE_TBL
-	</select>
+	<!-- 숙소 정보 수정 -->
+	<update id="updateStayInfo" parameterType="hashmap">
+		UPDATE T2_STAY_TBL 
+		SET
+			STAY_NAME = #{stayName},
+			STAY_KIND = #{stayKind},
+			S_ZIPNO = #{sZipno},
+			S_ADDR = #{sAddr},
+			S_DETAIL_ADDR = #{sDetailAddr}
+		WHERE STAY_NO = #{stayNo}
+	</update>
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.sample1.mapper.StayMapper;
 import com.example.sample1.model.Stay;
 import com.example.sample1.service.StayService;
 import com.google.gson.Gson;
@@ -33,6 +34,13 @@ public class StayController {
 	@RequestMapping("/host/stayAdd.do") 
 	public String stayAdd(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		return "/host-stay-add";
+	}
+	
+	// 숙박 업체 수정 페이지
+	@RequestMapping("/host/stayEdit.do") 
+	public String stayEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+		return "/host-stay-edit";
 	}
 	
 	//숙소 업체 정보 출력
@@ -68,7 +76,6 @@ public class StayController {
 		return new Gson().toJson(resultMap);
 	}
 	
-	
 	// 숙소 삭제 리스트
 	@RequestMapping(value = "/host/stayRemove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -76,6 +83,25 @@ public class StayController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		stayService.removeStay(map);
 		resultMap.put("success", "숙소삭제성공");
+		return new Gson().toJson(resultMap);
+	}
+	
+	// 숙소 삭제 리스트
+	@RequestMapping(value = "/host/stayInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String stayInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		Stay info = stayService.searchStayInfo(map);
+		resultMap.put("stayInfo", info);
+		return new Gson().toJson(resultMap);
+	}
+	
+	// 숙소 수정
+	@RequestMapping(value = "/host/stayEdit.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String stayEdit(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		stayService.editStayInfo(map);
 		return new Gson().toJson(resultMap);
 	}
 }

@@ -21,4 +21,10 @@ public interface StayService {
 	
 	// 숙소 편의시설 리스트
 	List<Stay> searchServiceList(HashMap<String, Object> map);
+	
+	// 숙소 정보
+	Stay searchStayInfo(HashMap<String, Object> map);
+	
+	// 숙소 정보 수정
+	int editStayInfo(HashMap<String, Object> map);
 }

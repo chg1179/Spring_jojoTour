@@ -109,9 +109,10 @@ var app = new Vue({
                 success : function(data) { 
                 	self.list = data.roomList;
                 	console.log(self.list);
-                	/* if(self.list != undefined){ //리스트의 첫 번째 값을 디폴트로 체크하고, 해당 pk 값을 받아온다.
+                	if(self.list.length > 0){ //리스트의 첫 번째 값을 디폴트로 체크하고, 해당 pk 값을 받아온다.
                         self.roomNo = self.list[0].roomNo;
-                    } */
+                        console.log(self.roomNo);
+                    } 
                 }
             }); 
 		},
