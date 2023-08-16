@@ -19,6 +19,9 @@
 			AND (F_TITLE LIKE CONCAT('%',#{search},'%')
 				OR U_ID LIKE CONCAT('%',#{search},'%'))
 		</if>
+		<if test="category != '' and category != null">
+			AND (F_TITLE LIKE CONCAT('%',#{category},'%'))
+		</if>
 	</select>
 		
 	<select id="selectFaqInfo" parameterType="hashmap" 

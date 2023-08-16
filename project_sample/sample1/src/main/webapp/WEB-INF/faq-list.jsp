@@ -5,6 +5,9 @@
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+<script src="https://unpkg.com/vue2-editor@2.3.11/dist/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
@@ -26,7 +29,16 @@
 	<div id="app">
 		<h2>FAQ 게시판</h2>
 		<div>
-			<label><input v-model="search" placeholder="키워드검색"  @keyup.enter="fnGetList">
+		<select id="mySelect" v-model="mySelect" @click="fnGetList">
+			<option value="">:: 전체 ::</option>
+			<option value="<숙박>">숙박</option>
+			<option value="<렌트>">렌트</option>
+			<option value="<레저>">레저</option>
+			<option value="<패키지>">패키지</option>
+			<option value="<포인트>">포인트</option>
+			<option value="<기타문의>">기타문의</option>
+		</select>
+			<label><input v-model="search" placeholder="키워드검색"  @keyup.enter="fnGetList" id="myInput">
 				<button @click="fnGetList">검색</button>
 			</label>
 		</div>
@@ -46,7 +58,7 @@
 				<th>{{item.uId}}</th>
 				<th>{{item.fHits}}</th>
 				<th>{{item.fWriteTime}}</th>	
-			</tr>
+			</tr>	
 		</table>
 	<div  v-if="status == 'A'">
 		<button @click="fnRemove">삭제</button>
@@ -65,13 +77,15 @@ var app = new Vue({
 		list : [],
 		search:"",
 		status : "${sessionStatus}",
-		selectItem:[]
+		selectItem:[],
+		category:"",
+		mySelect:""
 		
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var param = {search : self.search};
+			var param = {search : self.search, category : self.mySelect};
 			$.ajax({
                 url : "list.dox",
                 dataType:"json",	
@@ -115,18 +129,26 @@ var app = new Vue({
 	     	
 		fnNCheck : function(){
 				var self = this;
-				self.fNo = [];
+				 self.selectItem = [];
 			},
 		fnACheck : function(){
-				var self = this;
-				self.fNo = [];
-				for(var i=0; i<self.list.length; i++){
-					self.fNo.push(self.list[i].fNo);
+		    var self = this;
+		    self.selectItem = [];
+		    for(var i=0; i<self.list.length; i++){
+		        self.selectItem.push(self.list[i].fNo);
 				}
 			}
 	      
 		
 	}, // methods
+	mounted: function() {
+	      const selectElement = document.getElementById('mySelect');
+	      const inputElement = document.getElementById('myInput');
+
+	      selectElement.addEventListener('change', function() {
+	          inputElement.value = this.value;
+	      });
+	   },
 	created : function() {
 		var self = this;
 		self.fnGetList();

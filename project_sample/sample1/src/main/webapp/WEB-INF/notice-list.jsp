@@ -111,13 +111,13 @@ var app = new Vue({
 	    },
 		fnNCheck : function(){
 			var self = this;
-			self.nNo = [];
+			self.selectItem = [];
 		},
 		fnACheck : function(){
 			var self = this;
-			self.nNo = [];
+			self.selectItem = [];
 			for(var i=0; i<self.list.length; i++){
-				self.nNo.push(self.list[i].nNo);
+				self.selectItem.push(self.list[i].nNo);
 			}
 		}
 	}, // methods
