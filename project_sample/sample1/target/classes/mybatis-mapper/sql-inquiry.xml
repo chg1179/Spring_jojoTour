@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.sample1.mapper.InquiryMapper">
+	
+	<select id="selectInquiryList" resultType="com.example.sample1.model.Inquiry">
+		SELECT * 
+		FROM T2_INQUIRY_TBL
+		ORDER BY I_NO DESC
+		
+	</select>
+	
+	<insert id="insertInquiry" parameterType="hashmap">
+		INSERT INTO T2_INQUIRY_TBL (I_NO, U_ID, CATEGORY_NO, I_TITLE, I_CONTENT,  I_HITS, I_WRITE_TIME, I_UPDATE_TIME, PRIVATE_YN, ANSWER_YN, DELYN)
+		 SELECT IFNULL(MAX(I_NO) + 2, 1), #{uId}, '0', #{iTitle}, #{iContent}, '0', now(),now(), 'Y', 'N', 'N'
+		 FROM T2_INQUIRY_TBL
+	</insert>
+	
+	<insert id="answerInquiry" parameterType="hashmap">
+	    INSERT INTO T2_INQUIRY_TBL (I_NO, U_ID, CATEGORY_NO, I_TITLE, I_CONTENT, I_HITS, I_WRITE_TIME, I_UPDATE_TIME, PRIVATE_YN, ANSWER_YN, DELYN)
+	    SELECT #{iNo} + 1, #{uId}, '0', #{iTitle}, #{iContent}, '0', now(), now(), 'Y', 'N', 'N'
+	    FROM T2_INQUIRY_TBL
+	</insert>
+	 
+	<select id="selectInquiryInfo" parameterType="hashmap" resultType="com.example.sample1.model.Inquiry">
+		SELECT *
+		FROM T2_INQUIRY_TBL
+		WHERE I_NO = #{iNo}
+	</select>
+	
+	<delete id="deleteInquiry" parameterType="hashmap">
+		DELETE 
+		FROM T2_INQUIRY_TBL
+		WHERE I_NO = #{iNo}
+	</delete>
+	
+	<update id="inquiryCnt" parameterType="hashmap">
+		UPDATE T2_INQUIRY_TBL
+		SET
+			I_HITS = I_HITS + 1
+		WHERE I_NO = #{iNo}
+	</update>
+	
+	<update id="updateInquiry" parameterType="hashmap">
+		UPDATE T2_INQUIRY_TBL
+		SET
+			I_TITLE = #{iTitle},
+			I_CONTENT = #{iContent},
+			I_UPDATE_TIME = now()
+		WHERE I_NO = #{iNo}
+	</update>
+
+	<delete id="deleteInquiryCheck" parameterType="hashmap">
+		DELETE
+		FROM T2_INQUIRY_TBL
+		WHERE I_NO IN
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	
+</mapper>
