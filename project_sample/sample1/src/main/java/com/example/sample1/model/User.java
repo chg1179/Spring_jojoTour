@@ -37,11 +37,11 @@ public class User {
 	public void setuName(String uName) {
 		this.uName = uName;
 	}
-	public String getNickName() {
+	public String getNickname() {
 		return nickname;
 	}
-	public void setNickName(String nickName) {
-		this.nickname = nickName;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getBirth() {
 		return birth;

@@ -39,4 +39,10 @@ public interface UserMapper {
 	User selectPoint(HashMap<String, Object> map);
 	//비번 변경
 	int changePwd(HashMap<String, Object> map);
+	//회원정보 수정
+	int changeMyInfo(HashMap<String, Object> map);
+	//회원정보수정 인풋에 글씨 넣기
+	User selectInfo(HashMap<String, Object> map);
+	//아이디 삭제(delyn = y)
+	int deleteId(HashMap<String, Object> map);
 }

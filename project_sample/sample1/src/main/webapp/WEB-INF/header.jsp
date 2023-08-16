@@ -125,13 +125,13 @@
 	                    </ul>
 	                    <ul v-else-if="status == 'H'" class="f_header">
 	                        <li><a href="javascript:;" @click="fnLogout">로그아웃</a></li>
-	                        <li><a href="javascript:;" @click="">마이홈</a></li>
+	                        <li><a href="javascript:;" @click="fnMyHome">마이홈</a></li>
 	                        <li><a href="javascript:;" @click="fnProduct">상품관리</a></li>
 	                        <li><a href="javascript:;">장바구니</a></li>
 	                    </ul>
 	                    <ul v-else class="f_header">
 	                        <li><a href="javascript:;" @click="fnLogout">로그아웃</a></li>
-	                        <li><a href="javascript:;" @click="">마이홈</a></li>
+	                        <li><a href="javascript:;" @click="fnMyHome">마이홈</a></li>
 	                        <li><a href="javascript:;">장바구니</a></li>
 	                    </ul>
 	                    <ul class="s_header">
@@ -175,7 +175,7 @@
 	                            <ul>
 	                                <li><a href="javascript:;" @click="fnNotice">공지사항</a></li>
 	                                <li><a href="javascript:;" @click="fnFAQ">FAQ 게시판</a></li>
-	                                <li><a href="javascript:;">1:1문의</a></li>
+	                                <li><a href="javascript:;" @click="fnInquiry">1:1문의</a></li>
 	                                <li><a href="javascript:;">자유게시판</a></li>
 	                            </ul>
 	                        </li>
@@ -227,6 +227,12 @@ var app = new Vue({
         //상품관리페이지
         fnProduct : function(){
         	location.href="/host/main.do";
+        },
+        fnMyHome : function(){
+        	location.href="/my/change.do";
+        },
+        fnInquiry : function(){
+            location.href="../inquiry/list.do";
         }
 	}, // methods
 	created : function() {

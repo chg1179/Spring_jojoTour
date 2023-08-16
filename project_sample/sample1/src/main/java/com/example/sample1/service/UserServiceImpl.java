@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService{
 			} else if(status == 1){
 				userMapper.resetUserCnt(map);
 				resultMap.put("success", true);
-				resultMap.put("message", user.getNickName() + "님 환영합니다.");
+				resultMap.put("message", user.getNickname() + "님 환영합니다.");
 				resultMap.put("user", user);
 			} else {
 				resultMap.put("success", false);
@@ -68,6 +68,17 @@ public class UserServiceImpl implements UserService{
 				resultMap.put("message", "없는 아이디입니다.");
 			}
 		}
+		return resultMap;
+	}
+
+	@Override
+	public HashMap<String, Object> searchInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		User user = userMapper.selectInfo(map);
+		if(user != null) {
+				resultMap.put("user", user);
+		} 
 		return resultMap;
 	}
 	
@@ -134,6 +145,19 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userMapper.changePwd(map);
 	}
+
+	@Override
+	public int updateMyInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.changeMyInfo(map);
+	}
+
+	@Override
+	public int removeId(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.deleteId(map);
+	}
+
 
 
 

@@ -14,11 +14,17 @@
 		FROM T2_USER_TBL
 		WHERE U_ID = #{userId}
 	</select>
-	
+	<!-- 로그인 -->
 	<select id="selectUser" parameterType="hashmap" resultType="com.example.sample1.model.User">
 		SELECT *
 		FROM T2_USER_TBL
 		WHERE U_ID = #{userId} AND U_PWD = #{pwd}
+	</select>
+	<!-- 회원정보 수정 인풋에 글씨 넣기 -->
+	<select id="selectInfo" parameterType="hashmap" resultType="com.example.sample1.model.User">
+		SELECT *
+		FROM T2_USER_TBL
+		WHERE U_ID = #{userId}
 	</select>
 	
 	<update id="updateUserCnt" parameterType="hashmap">
@@ -90,6 +96,26 @@
 		UPDATE T2_USER_TBL
 		SET
 			U_PWD = #{pwd1}
+		WHERE U_ID = #{userId}
+	</update>	
+	<!-- 회원정보 수정 -->
+	<update id="changeMyInfo" parameterType="hashmap">
+		UPDATE T2_USER_TBL
+		SET
+			U_NAME = #{name},
+			NICKNAME = #{nickName},
+			BIRTH = #{birth},
+			PHONE = #{phone},
+			EMAIL = #{email},
+			ADDR = #{addr},
+			ADDR_DETAIL = #{addrDetail},
+			ZIPNO = #{zipNo}
+		WHERE U_ID = #{userId}
+	</update>
+	<update id="deleteId" parameterType="hashmap">
+		UPDATE T2_USER_TBL
+		SET
+			DELYN = 'Y'
 		WHERE U_ID = #{userId}
 	</update>
 </mapper>

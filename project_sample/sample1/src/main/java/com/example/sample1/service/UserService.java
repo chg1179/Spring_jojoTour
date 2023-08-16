@@ -16,4 +16,8 @@ public interface UserService {
 	HashMap<String, Object> selectId(HashMap<String, Object> map);
 	HashMap<String, Object> selectPwd(HashMap<String, Object> map);
 	int updatePwd(HashMap<String, Object> map);
+	int updateMyInfo(HashMap<String, Object> map);
+	HashMap<String, Object> searchInfo(HashMap<String, Object> map);
+	//아이디 삭제
+	int removeId(HashMap<String, Object> map);
 }
