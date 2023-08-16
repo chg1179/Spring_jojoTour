@@ -28,10 +28,39 @@ public class RentCarServiceImpl implements RentCarService{
 		return rentCarMapper.selectRentCarInfo(map);
 	}
 	
+	//렌트카 삭제
 	@Override
 	public int removeRentCar(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return rentCarMapper.deleteRentCar(map);
+	}
+	
+	//렌트카 패키지 신청
+	@Override
+	public int addRentPack(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return rentCarMapper.insertRentPack(map);
+	}
+
+	//렌트카 패키지 신청 취소
+	@Override
+	public int removeRentPack(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return rentCarMapper.deleteRentPack(map);
+	}
+
+	//렌트카 정보 수정
+	@Override
+	public int editRentCar(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return rentCarMapper.updateRentCar(map);
+	}
+
+	//렌트카 추가
+	@Override
+	public int addRentCar(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return rentCarMapper.insertRentCar(map);
 	}
 
 }

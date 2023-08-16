@@ -14,4 +14,16 @@ public interface RentCarService {
 	
 	//렌트카 차 삭제
 	int removeRentCar(HashMap<String, Object> map);
+	
+	//렌트카 패키지 신청
+	int addRentPack(HashMap<String, Object> map);
+		
+	//렌트카 패키지 신청 취소
+	int removeRentPack(HashMap<String, Object> map);
+	
+	//렌트카 추가
+	int addRentCar(HashMap<String, Object> map);
+	
+	//렌트카 정보 수정
+	int editRentCar(HashMap<String, Object> map);
 }

@@ -20,7 +20,6 @@
 <body>
 	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		렌트카
 		<table>
 			<tr>
 				<th>선택</th>
@@ -30,25 +29,35 @@
 				<th>렌트금액</th>
 				<th>판매수량</th>
 				<th>등록일</th>
-			</tr>		
+				<th>패키지신청</th>
+			</tr>
 			
 			<tr v-for="(item, index) in list">
 				<td>
-					<input v-if="index==0" type="radio" :value="item.rentNo" @input="changeRentNo(item.rentNo)" name="rentNo" checked="checked">
-					<input v-else type="radio" :value="item.rentNo" @input="changeRentNo(item.rentNo)" name="rentNo">
+					<input v-if="index==0" type="radio" :value="item.rentNo" @input="changeRentNo(item)" name="rentNo" checked="checked">
+					<input v-else type="radio" :value="item.rentNo" @input="changeRentNo(item)" name="rentNo">
 				</td>
 				<td>{{item.rentNo}}</td>
 				<td>{{item.rentName}}</td>
 				<td>{{item.cName}}</td>
-				<td>{{item.rentPrice}}</td>
+				<td>{{item.rentPrice * item.rentSales}}원</td>
 				<td>{{item.rResidue}}</td>
 				<td>{{item.rInsertTime}}</td>
+				<td>
+					<span v-if="item.state=='A'">
+						<div>신청이 완료되었습니다.</div>
+						<div>취소는 1:1 문의를 남겨주세요.</div>
+					</span>
+					<button v-else-if="item.state=='D'" @click="fnPackDel(item.rentNo)">취소</button>
+					<button v-else @click="fnPackAdd(item.rentNo)">신청</button>
+				</td>
 			</tr>
 		</table>
 		<div>
 			<span><button @click="fnAdd">상품등록</button></span>
 			<span><button @click="fnView">상세정보열람</button></span>
 			<span><button @click="fnRemove">삭제</button></span>
+			<span><button @click="fnBack">뒤로가기</button></span>
 		</div>
 	</div>
 </body>
@@ -57,23 +66,27 @@
 var app = new Vue({
 	el : '#app',
 	data : {
+		uId : "${sessionId}",
+		status : "${sessionStatus}",
 		list : [],
-		rentNo : ""
+		rentNo : "",
+		rCnt : ""
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var param = {};
+			var param = {uId : self.uId};
 			$.ajax({
                 url : "rentcar.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
-                success : function(data) { 
-                	if(!(data.carList == undefined)){
-                		self.list = data.carList;
+                success : function(data) {
+                	self.list = data.carList;
+                	if(data.carList.length > 0){
                 		self.rentNo = self.list[0].rentNo; //리스트의 첫 번째 값을 디폴트로 체크하고, 해당 pk 값을 받아온다.
-        			}
+                		self.rCnt = self.list[0].rCnt;
+                	}
                 }
             }); 
 		},
@@ -82,19 +95,24 @@ var app = new Vue({
         },
         fnView : function(){
         	var self = this;
-			$.pageChange("rentcar/view.do", {rentNo : self.rentNo}); 
+			$.pageChange("rentcar/view.do", {rentNo : self.rentNo, rCnt : self.rCnt}); 
         },
 		fnRemove : function(){
             var self = this;
-            console.log(self.rentNo);
 	        if(!confirm("해당 렌트카를 삭제하시겠습니까?")){
 	        	alert("취소되었습니다.");
 	          	return;
 	        }
-            var param = {rentNo : self.rentNo};
-            
+	        
+	        //해당 렌트카가 패키지 신청이 되어있다면 삭제 불가능
+	        if(self.rCnt != 0){
+	        	alert("패키지 신청한 렌트카의 정보는 삭제가 불가능합니다.");
+	        	return;
+	        }
+	        
+			var param = {rentNo : self.rentNo};
             $.ajax({
-                url : "carRemove.dox",
+                url : "rentcar/carRemove.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : param,
@@ -102,12 +120,54 @@ var app = new Vue({
                 	alert("해당 렌트카의 정보가 삭제되었습니다.");
                 	self.fnGetList();
                 }
-            });  
+            });
         },
-        changeRentNo : function(rentNo){ //라디오박스를 선택할 때 마다 pk 값 변경
+        changeRentNo : function(item){ //라디오박스를 선택할 때 마다 pk 값 변경
         	var self = this;
-        	self.rentNo = rentNo;
-        }
+        	self.rentNo = item.rentNo;
+        	self.rCnt = item.rCnt;
+        	console.log(item);
+        },
+        fnPackAdd : function(rentNo){
+			var self = this;
+			console.log(rentNo);
+			if(!confirm("패키지를 신청하시겠습니까?")){
+	        	alert("신청이 취소되었습니다.");
+	          	return;
+	        }
+			var param = {rentNo : rentNo};
+			$.ajax({
+                url : "rentPackAdd.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) {
+                	alert("패키지 신청이 완료되었습니다.");
+                	self.fnGetList();
+                }
+			});
+        },
+        fnPackDel : function(rentNo){
+			var self = this;
+			if(!confirm("패키지 신청을 취소하시겠습니까?")){
+	        	alert("변경이 취소되었습니다.");
+	          	return;
+	        }
+			var param = {rentNo : rentNo};
+			$.ajax({
+                url : "rentPackDel.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) {
+                	alert("패키지 신청이 취소되었습니다.");
+                	self.fnGetList();
+                }
+			});
+        },
+        fnBack : function(){
+        	location.href = "main.do"; 
+		}
 	}, // methods
 	created : function() {
 		var self = this;

@@ -16,6 +16,7 @@ import com.example.sample1.service.RentCarService;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class RentCarContoller {
@@ -26,21 +27,45 @@ public class RentCarContoller {
 	//렌트카 관리 페이지
 	@RequestMapping("/host/rentcar.do") 
     public String rentcar(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/host-rentcar";
+		HttpSession session = request.getSession(); String status = (String)
+		session.getAttribute("sessionStatus"); //다운캐스팅
+		
+		if(!status.equals("H")) { 
+			return "redirect:../main.do"; //호스트가 아닐 때
+		}
+		else {
+			return "/host-rentcar";
+		}
     }
 	
 	//렌트카 제품 추가 및 수정 페이지
 	@RequestMapping("/host/rentcar/edit.do") 
 	public String leisureEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		request.setAttribute("map", map);
-		return "/host-rentcar-edit";
+		HttpSession session = request.getSession(); String status = (String)
+		session.getAttribute("sessionStatus"); //다운캐스팅
+				
+		if(!status.equals("H")) { 
+			return "redirect:../main.do"; //호스트가 아닐 때
+		}
+		else {
+			request.setAttribute("map", map);
+			return "/host-rentcar-edit";
+		}
 	}
 	
 	//렌트카 제품 상세 목록 열람 페이지
 	@RequestMapping("/host/rentcar/view.do") 
 	public String rentView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		request.setAttribute("map", map);
-		return "/host-rentcar-view";
+		HttpSession session = request.getSession(); String status = (String)
+		session.getAttribute("sessionStatus"); //다운캐스팅
+				
+		if(!status.equals("H")) { 
+			return "redirect:../main.do"; //호스트가 아닐 때
+		}
+		else {
+			request.setAttribute("map", map);
+			return "/host-rentcar-view";
+		}
 	}
 	
 	//주소검색
@@ -71,12 +96,52 @@ public class RentCarContoller {
 	}
 	
 	//렌트카 차 삭제
-	@RequestMapping(value = "/host/carRemove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/host/rentcar/carRemove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String rentRemove(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		rentCarService.removeRentCar(map);
 		resultMap.put("success", "렌터카정보삭제완료");
+		return new Gson().toJson(resultMap);
+	}
+	
+	//렌트카 패키지 신청
+	@RequestMapping(value = "/host/rentPackAdd.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String rentPackAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		rentCarService.addRentPack(map);
+		resultMap.put("success", "렌터카패키지신청완료");
+		return new Gson().toJson(resultMap);
+	}
+	
+	//렌트카 패키지 신청 취소
+	@RequestMapping(value = "/host/rentPackDel.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String rentPackDel(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		rentCarService.removeRentPack(map);
+		resultMap.put("success", "렌트카패키지신청취소");
+		return new Gson().toJson(resultMap);
+	}
+	
+	//렌트카 추가
+	@RequestMapping(value = "/host/rentcar/addRentCar.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String addRentCar(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		rentCarService.addRentCar(map);
+		resultMap.put("success", "렌트카추가");
+		return new Gson().toJson(resultMap);
+	}
+	
+	//렌트카 정보 수정
+	@RequestMapping(value = "/host/rentcar/editRentCar.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String editRentCar(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		rentCarService.editRentCar(map);
+		resultMap.put("success", "렌트카정보수정");
 		return new Gson().toJson(resultMap);
 	}
 }
