@@ -45,9 +45,9 @@ public class AdminController {
     public String adminMain(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/admin-main";
     }
-	@RequestMapping("/admin/package.do")
+	@RequestMapping("/admin/packagereq.do")
     public String adminPackage(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/package-list";
+        return "/package-req";
     }
 	
 	@RequestMapping(value = "/userList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

@@ -91,7 +91,7 @@
 			<tr>
 				
 				<td style="width : 60px; font-weight : bold;">·»ÅÍÄ«</td>
-				<td>{{item.rentName}}</td>
+				<td><a href="javascript:;" @click="fnView">{{item.rentName}}</a></td>
 			</tr>
 		</tbody>
 	</table>
@@ -133,7 +133,11 @@ var app = new Vue({
 	                	self.fnGetList();
 	                }
 	            }); 
-		}
+		},
+		fnView : function(){
+        	var self = this;
+			$.pageChange("../host/rentcar/view.do", {rentNo : self.rentNo}); 
+        }
 	}, // methods
 	created : function() {
 		var self = this;

@@ -43,7 +43,7 @@ var app = new Vue({
 			location.href = "/admin/user.do";
 		},
 		fnPackage : function(){
-			location.href = "/admin/package.do";
+			location.href = "/admin/packagereq.do";
 		}
 	}, // methods
 	created : function() {
