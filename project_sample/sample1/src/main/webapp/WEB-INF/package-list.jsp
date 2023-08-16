@@ -71,15 +71,14 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-		status : "${sessionStatus}",
-		userList : []
+		status : "${sessionStatus}"
 	},// data
 	methods : {
 		fnGetList : function(){
             var self = this;
             var nparmap = {};
             $.ajax({
-                url : "/userList.dox",
+                url : "/packageList.dox",
                 dataType:"json",	
                 type : "POST",
                 data : nparmap,
@@ -87,63 +86,7 @@ var app = new Vue({
                 	self.list = data.list;
                 }
             }); 
-		},
-		 pageChange : function(url, param) {
-				var target = "_self";
-				if(param == undefined){
-					return;
-				}
-				var form = document.createElement("form"); 
-					form.name = "dataform";
-					form.action = url;
-					form.method = "post";
-					form.target = target;
-				for(var name in param){
-					var item = name;
-					var val = "";
-					if(param[name] instanceof Object){
-						val = JSON.stringify(param[name]);
-					} else {
-						val = param[name];
-					}
-					var input = document.createElement("input");
-					input.type = "hidden";
-					input.name = item;
-					input.value = val;
-					form.insertBefore(input, null);
-				}
-				document.body.appendChild(form);
-				form.submit();
-				document.body.removeChild(form);
-			},
-		fnReset : function(item){
-            var self = this;
-            var nparmap = {userId : item.uId};
-            $.ajax({
-                url : "/reset.dox",
-                dataType:"json",	
-                type : "POST", 
-                data : nparmap,
-                success : function(data) { 
-                	alert("해제되었습니다");
-                	self.fnGetList();
-                }
-            }); 
-		},
-		fnBan : function(item, banyn){
-			var self = this;
-			 var nparmap = {userId : item.uId, banyn : banyn};
-	            $.ajax({
-	                url : "/ban.dox",
-	                dataType:"json",	
-	                type : "POST", 
-	                data : nparmap,
-	                success : function(data) { 
-	                	alert("수정되었습니다");
-	                	self.fnGetList();
-	                }
-	            }); 
-		}	
+		}
 	}, // methods
 	created : function() {
 		var self = this;

@@ -29,6 +29,7 @@
 </style>
 </head>
 <body>
+<jsp:include page="header.jsp" flush="true"></jsp:include>
 <div id="app">
 	<table class="table custom-table table-striped table-bordered">
 	<thead class="thead-dark">
