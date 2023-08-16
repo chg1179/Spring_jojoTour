@@ -70,10 +70,7 @@ public class LoginController {
 			session.setAttribute("sessionId", user.getuId());
 			session.setAttribute("sessionName", user.getuName());
 			session.setAttribute("sessionStatus", user.getStatus());
-			session.setAttribute("sessionNickname", user.getNickname());
-			session.setAttribute("sessionBirth", user.getBirth());
-			session.setAttribute("sessionPhone", user.getPhone());
-			session.setAttribute("sessionEmail", user.getEmail());
+			session.setAttribute("sessionUpwd", user.getuPwd());
 		}
 		return new Gson().toJson(resultMap);
 	}

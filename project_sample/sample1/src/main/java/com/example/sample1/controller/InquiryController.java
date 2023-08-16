@@ -113,9 +113,11 @@ public class InquiryController {
 	@RequestMapping(value = "/inquiry/answer.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String inquiryAnswer(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		inquiryService.replyInquiry(map);
-		return new Gson().toJson(resultMap);
-	}	
+	    HashMap<String, Object> resultMap = new HashMap<String, Object>();
+	    String iNo = (String) map.get("iNo");
+	    map.put("iNo", iNo);
+	    inquiryService.replyInquiry(map);
+	    return new Gson().toJson(resultMap);
+	}
 
 }

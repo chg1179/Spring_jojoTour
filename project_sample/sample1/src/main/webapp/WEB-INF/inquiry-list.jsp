@@ -37,7 +37,9 @@
 			<tr v-for="(item, index) in list">
 				<th v-if="status == 'A'"><input type="checkbox" v-model="selectItem" :value="item.iNo"></th>
 				<th>{{item.iNo}}</th>
-				<th><a @click="fnView(item.iNo)" href="javascript:;">{{item.iTitle}}</a></th>
+				<th>
+					<a @click="handleTitleClick(item.uId, item.iNo, item.iTitle)" href="javascript:;">{{ item.iTitle }}</a>
+				</th>
 				<th>{{item.uId}}</th>
 				<th>{{item.iHits}}</th>
 				<th>{{item.iWriteTime}}</th>	
@@ -104,8 +106,15 @@ var app = new Vue({
 		fnMove : function(){
 	        	location.href = "add.do";
 		},  
-		fnView : function(iNo){
- 	    	$.pageChange("view.do", {iNo : iNo});	 
+	    handleTitleClick(uId, iNo, iTitle) {
+	        if (this.status === 'A' || this.uId === uId) {
+	            // 만족하는 경우 처리할 로직 (여기서는 페이지 이동 등을 수행)
+	            $.pageChange("view.do", { iNo: iNo });
+	        } else {
+	            // 만족하지 않는 경우 알림 창을 띄움
+	            alert("권한 없음");
+	            // 또는 다른 처리를 수행할 수 있음
+	        }
 	    },
 		fnNCheck : function(){
 			var self = this;

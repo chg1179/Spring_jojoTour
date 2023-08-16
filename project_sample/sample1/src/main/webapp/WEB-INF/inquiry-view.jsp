@@ -22,15 +22,18 @@
 <body>
 	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div>제목 : {{info.iTitle}}</div>
-		<div>작성자 : {{info.uId}}</div>
-		<div>작성날짜 : {{info.iWriteTime}}</div>
-		<div>내용 :<pre v-html="info.iContent"></pre></div>
-		<div>
-			<button @click="fnEdit" v-if="uId == info.uId" >수정하기</button>
-			<button @click="fnAnswer" v-if="status == 'A'" >답변하기</button>
-			<button @click="fnBack">되돌아가기</button>
-		</div> 
+		<div v-if="!showApp">비밀번호 입력 : <input v-model="enteredPwd" @keyup.enter="fnPwd"><button @click="fnPwd">비밀번호 확인</button></div>
+		<div v-if="showApp">
+			<div>제목 : {{info.iTitle}}</div>
+			<div>작성자 : {{info.uId}}</div>
+			<div>작성날짜 : {{info.iWriteTime}}</div>
+			<div>내용 :<pre v-html="info.iContent"></pre></div>
+			<div>
+				<button @click="fnEdit" v-if="uId == info.uId" >수정하기</button>
+				<button @click="fnAnswer" v-if="status == 'A'" >답변하기</button>
+				<button @click="fnBack">되돌아가기</button>
+			</div> 
+		</div>
 	</div>
 </body>
 </html>
@@ -42,7 +45,10 @@ var app = new Vue({
 		info : {},
 		iNo : "${map.iNo}",
 		status : "${sessionStatus}",
-		uId : "${sessionId}"
+		uId : "${sessionId}",
+		uPwd: "${sessionUpwd}",      
+		enteredPwd: "",
+        showApp: false
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -69,9 +75,17 @@ var app = new Vue({
 	    fnAnswer : function(iNo){
 	    	var self = this;
 	    	location.href = "answer.do";
-	    }
-	        
+	    },
 
+	    fnPwd: function() {
+	    	var self = this;
+	        if (self.enteredPwd === self.uPwd) {
+	        	self.showApp = true;
+	        } else {
+	          alert("비밀번호가 일치하지 않습니다.");
+	        }
+	      }
+	        
 	}, // methods
 	created : function() {
 		var self = this;
