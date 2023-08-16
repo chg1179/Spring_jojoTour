@@ -24,10 +24,10 @@ public class HostController {
 	//호스트 관리 페이지
 	@RequestMapping("/host/main.do") 
     public String test(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		HttpSession session = request.getSession(); String status = (String)
-		session.getAttribute("sessionStatus"); //다운캐스팅
+		HttpSession session = request.getSession(); 
+		String status = (String) session.getAttribute("sessionStatus"); //다운캐스팅
 				
-		if(!status.equals("H")) { 
+		if(!status.equals("H") || status.equals("") || session == null || !request.isRequestedSessionIdValid()) { 
 			return "redirect:../main.do"; //호스트가 아닐 때
 		}
 		else {

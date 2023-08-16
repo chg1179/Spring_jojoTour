@@ -5,6 +5,9 @@
 <head>
 <meta charset="EUC-KR">
 <title>렌트카 관리 페이지</title>
+<!-- 페이징 추가 1 -->
+<script src="https://unpkg.com/vuejs-paginate@latest"></script>
+<script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <style>
 	table{
 		border : 1px solid black;
@@ -14,6 +17,36 @@
 	th, td {
 		border : 1px solid black;
 		padding : 5px 10px;
+	}
+	<!-- 페이징 추가 2-->
+	.pagination {
+        margin:24px;
+        display: inline-flex;
+        
+    }
+    .pagination li {
+	    min-width:32px;
+	    padding:2px 6px;
+	    text-align:center;
+	    margin:0 3px;
+	    border-radius: 6px;
+	    border:1px solid #eee;
+	    color:#666;
+	    display : inline;
+	}
+	.pagination li:hover {
+	    background: #E4DBD6;
+	}
+	.page-item a {
+	    color:#666;
+	    text-decoration: none;
+	}
+	.pagination li.active {
+	    background-color : #E7AA8D;
+	    color:#fff;
+	}
+	.pagination li.active a {
+	    color:#fff;
 	}
 </style>
 </head>
@@ -53,6 +86,18 @@
 				</td>
 			</tr>
 		</table>
+		<template>
+		  <paginate
+		    :page-count="pageCount"
+		    :page-range="3"
+		    :margin-pages="2"
+		    :click-handler="fnSearch"
+		    :prev-text="'<'"
+		    :next-text="'>'"
+		    :container-class="'pagination'"
+		    :page-class="'page-item'">
+		  </paginate>
+		</template>
 		<div>
 			<span><button @click="fnAdd">상품등록</button></span>
 			<span><button @click="fnView">상세정보열람</button></span>
@@ -63,6 +108,8 @@
 </body>
 </html>
 <script>
+<!-- 페이징 추가 4 -->
+Vue.component('paginate', VuejsPaginate)
 var app = new Vue({
 	el : '#app',
 	data : {
@@ -70,11 +117,17 @@ var app = new Vue({
 		status : "${sessionStatus}",
 		list : [],
 		rentNo : "",
-		rCnt : ""
+		rCnt : "",
+		<!-- 페이징 추가 5 -->
+		selectPage: 1,
+		pageCount: 1,
+		cnt : 0
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
+			var startNum = ((self.selectPage-1) * 10);
+    		var lastNum = 10;
 			var param = {uId : self.uId};
 			$.ajax({
                 url : "rentcar.dox",
@@ -86,9 +139,29 @@ var app = new Vue({
                 	if(data.carList.length > 0){
                 		self.rentNo = self.list[0].rentNo; //리스트의 첫 번째 값을 디폴트로 체크하고, 해당 pk 값을 받아온다.
                 		self.rCnt = self.list[0].rCnt;
+                		self.pageCount = Math.ceil(self.cnt / 10);
                 	}
                 }
             }); 
+		},
+		<!-- 페이징 추가 7-->
+		fnSearch : function(pageNum){
+			var self = this;
+			self.selectPage = pageNum;
+			var startNum = ((pageNum-1) * 10);
+			var lastNum = 10;
+			var nparmap = {startNum : startNum, lastNum : lastNum};
+			$.ajax({
+				url : "rentcar.dox",
+				dataType : "json",
+				type : "POST",
+				data : nparmap,
+				success : function(data) {
+					self.list = data.list;
+					self.cnt = data.cnt;
+					self.pageCount = Math.ceil(self.cnt / 10);
+				}
+			});
 		},
 		fnAdd : function(){
 			location.href = "rentcar/edit.do"; 
