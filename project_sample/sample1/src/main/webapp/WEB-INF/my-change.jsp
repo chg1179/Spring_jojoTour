@@ -11,6 +11,7 @@
 </style>
 </head>
 <body>
+	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<h2>회원정보수정</h2>
 		<table>

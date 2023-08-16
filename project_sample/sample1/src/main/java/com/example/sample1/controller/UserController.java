@@ -34,6 +34,11 @@ public class UserController {
 
         return "/my-change";
     }
+	@RequestMapping("/my/booking.do") 
+    public String booking(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+
+        return "/my-booking";
+    }
 	@RequestMapping(value = "/my/change.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String myChange(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

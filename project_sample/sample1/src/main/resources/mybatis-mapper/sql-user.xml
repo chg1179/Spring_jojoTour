@@ -112,10 +112,16 @@
 			ZIPNO = #{zipNo}
 		WHERE U_ID = #{userId}
 	</update>
+	<!-- 회원탈퇴 -->
 	<update id="deleteId" parameterType="hashmap">
 		UPDATE T2_USER_TBL
 		SET
 			DELYN = 'Y'
 		WHERE U_ID = #{userId}
 	</update>
+	<select id="selectOrder" parameterType="hashmap" resultType="com.example.sample1.model.User">
+		SELECT *
+		FROM T2_ORDER_TBL
+		WHERE U_ID = #{userId}
+	</select>
 </mapper>

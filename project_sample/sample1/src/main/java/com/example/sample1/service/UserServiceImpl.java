@@ -44,11 +44,16 @@ public class UserServiceImpl implements UserService{
 			if(user.getLoginCnt() >= 5) {
 				resultMap.put("success", false);
 				resultMap.put("message", "5번 이상 실패, 관리자에게 문의 하세요.");
-			} else if(status == 1){
-				userMapper.resetUserCnt(map);
-				resultMap.put("success", true);
-				resultMap.put("message", user.getNickname() + "님 환영합니다.");
-				resultMap.put("user", user);
+			} else if(status == 1) {
+				if(user.getDelyn().equals("Y")) {
+					resultMap.put("success", false);
+					resultMap.put("message", user.getuId() + "는 탈퇴한 회원입니다.");
+				}else {
+					userMapper.resetUserCnt(map);
+					resultMap.put("success", true);
+					resultMap.put("message", user.getNickname() + "님 환영합니다.");
+					resultMap.put("user", user);
+				}
 			} else {
 				resultMap.put("success", false);
 				resultMap.put("message", "권한을 확인하세요.");

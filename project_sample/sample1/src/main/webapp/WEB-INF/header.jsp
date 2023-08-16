@@ -209,7 +209,8 @@ var app = new Vue({
         	location.href="../join/select.do";
         },
         fnLogo : function(){
-        	location.href="../main.do";
+        	location.href="/main.do";
+        	/* ../main.do로 가면 경로가 한번 거쳐서 나감 */
         },
         fnLogout : function(){
         	location.href="../logout.do";
