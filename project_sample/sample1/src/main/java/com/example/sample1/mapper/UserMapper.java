@@ -37,4 +37,6 @@ public interface UserMapper {
 	User searchPwd(HashMap<String, Object> map);
 	
 	User selectPoint(HashMap<String, Object> map);
+	//비번 변경
+	int changePwd(HashMap<String, Object> map);
 }
