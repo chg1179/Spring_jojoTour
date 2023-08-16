@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.sample1.model.Admin;
 import com.example.sample1.model.User;
 import com.example.sample1.service.AdminService;
 import com.google.gson.Gson;
@@ -49,13 +50,28 @@ public class AdminController {
         return "/package-list";
     }
 	
-	
 	@RequestMapping(value = "/userList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String userList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		List<User> list = adminService.listUser(map);
 		resultMap.put("list", list);
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/packageList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String packageList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Admin> list = adminService.requestList(map);
+		resultMap.put("list", list);
+		return new Gson().toJson(resultMap);
+	}
+	@RequestMapping(value = "/requestApp.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String requestApp(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		adminService.appRequest(map);
 		return new Gson().toJson(resultMap);
 	}
 }
