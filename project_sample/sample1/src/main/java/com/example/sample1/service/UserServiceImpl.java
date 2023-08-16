@@ -80,10 +80,10 @@ public class UserServiceImpl implements UserService{
 			resultMap.put("success", true);
 			resultMap.put("message", user.getuId());
 			resultMap.put("user", user);
-			resultMap.put("confirm", "아이디가 확인되었습니다.");
+			resultMap.put("confirm", "아이디를 찾았습니다.");
 		}else {
 			resultMap.put("success", false);
-			resultMap.put("confirm", "이름과 핸드폰 번호를 정확하게 적으세요.");
+			resultMap.put("confirm", "일치하는 아이디가 없습니다.");
 			resultMap.put("message", "");
 		}
 		return resultMap;
@@ -97,7 +97,11 @@ public class UserServiceImpl implements UserService{
 			resultMap.put("success", true);
 			resultMap.put("messageId", user.getuId());
 			resultMap.put("messagePwd", user.getuPwd());
+			resultMap.put("confirm", "비밀번호를 찾았습니다.");
 			resultMap.put("user", user);
+		}else {
+			resultMap.put("success", false);
+			resultMap.put("confirm", "일치하는 아이디가 없습니다.");
 		}
 		return resultMap;
 	}
@@ -123,6 +127,12 @@ public class UserServiceImpl implements UserService{
 	public int joinPoint(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return userMapper.joinPoint(map);
+	}
+
+	@Override
+	public int updatePwd(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.changePwd(map);
 	}
 
 

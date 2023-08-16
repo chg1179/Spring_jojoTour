@@ -33,7 +33,7 @@ public class LoginController {
     public String login(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		return "/login";
     }
-
+	
 	// 아이디 검색창으로 이동
 	@RequestMapping("/id-search.do") 
     public String idSearch(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
@@ -46,11 +46,17 @@ public class LoginController {
 		session.invalidate();
 		return "redirect:main.do";
 	}
-	//패스워드 검색창으로 이동
-	@RequestMapping("/pwd-search.do") 
+	//패스워드 검색창
+	@RequestMapping("pwd/search.do") 
     public String pwdSearch(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
-		
+		request.setAttribute("map", map);
 		return "pwd-search";
+	}
+	//패스워드 변경창
+	@RequestMapping("pwd/change.do") 
+    public String pwdChange(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
+		request.setAttribute("map", map);
+		return "pwd-change";
 	}
 
 	//로그인
@@ -83,11 +89,19 @@ public class LoginController {
 		return new Gson().toJson(resultMap);
 	}
 	//비번 검색
-	@RequestMapping(value = "/pwdSearch.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/pwd/search.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String pwdSearch(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap = userService.selectPwd(map);
+		return new Gson().toJson(resultMap);
+	}
+	//비번 변경
+	@RequestMapping(value = "/pwd/change.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String updatePwd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		userService.updatePwd(map);
 		return new Gson().toJson(resultMap);
 	}
 	

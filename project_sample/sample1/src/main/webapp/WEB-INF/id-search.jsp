@@ -95,6 +95,14 @@ var app = new Vue({
 	methods : {
 		fnIdsearch : function(){
 			var self = this;
+			if(self.name == ''){
+				alert("이름을 입력하세요.");
+				return;
+			}
+			if(self.phone == ''){
+				alert("핸드폰 번호를 입력하세요.");
+				return;
+			}
 			
 			var param = {name : self.name, phone : self.phone};
 			$.ajax({
@@ -114,7 +122,8 @@ var app = new Vue({
 			location.href="login.do";
 		},
 		fnPwdSearch : function(){
-			location.href="pwd-search.do";
+			var self = this;
+			$.pageChange("pwd/search.do", {userId : self.message});
 		}
 	}, // methods
 	created : function() {
