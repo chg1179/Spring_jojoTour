@@ -33,11 +33,7 @@ public class LoginController {
     public String login(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		return "/login";
     }
-	//유저 리스트 창으로 이동
-	@RequestMapping("/user-list.do") 
-    public String userList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/user-list";
-    }
+
 	// 아이디 검색창으로 이동
 	@RequestMapping("/id-search.do") 
     public String idSearch(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
