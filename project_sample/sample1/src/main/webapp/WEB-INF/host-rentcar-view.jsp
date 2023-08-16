@@ -26,12 +26,12 @@
 				<td>{{info.rentNo}}</td>
 			</tr>
 			<tr>
-				<th>이름</th>
-				<td>{{info.rentName}}</td>
-			</tr>
-			<tr>
 				<th>분류</th>
 				<td>{{info.cName}}</td>
+			</tr>
+			<tr>
+				<th>이름</th>
+				<td>{{info.rentName}}</td>
 			</tr>
 			<tr>
 				<th>우편번호</th>
@@ -50,7 +50,7 @@
 				<td>{{info.rentPrice}}</td>
 			</tr>
 			<tr>
-				<th>할인금액</th>
+				<th>할인적용금액</th>
 				<td>{{info.rentPrice * info.rentSales}}</td>
 			</tr>
 			<tr>
@@ -74,13 +74,21 @@
 				<td>{{info.rUpdateTime}}</td>
 			</tr>
 			<tr>
-				<th>파일</th>
+				<th>썸네일파일</th>
 				<td></td>
 			</tr>
+			<tr>
+				<th>파일</th>
+				<td>개수만큼출력</td>
+			</tr>
 		</table>
-		<div>
+		<div v-if="rCnt == 0">
 			<span><button @click="fnUpdate">수정</button></span>
 			<span><button @click="fnRemove">삭제</button></span>
+			<span><button @click="fnBack">뒤로가기</button></span>
+		</div>
+		<div v-else>
+			<span><button @click="fnBack">뒤로가기</button></span>
 		</div>
 	</div>
 </body>
@@ -89,8 +97,10 @@
 var app = new Vue({
 	el : '#app',
 	data : {
+		status : "${sessionStatus}",
 		info : {},
 		rentNo : "${map.rentNo}",
+		rCnt : "${map.rCnt}",
 		sales : 0,
 		file : []
 		
@@ -120,6 +130,7 @@ var app = new Vue({
 	        	alert("취소되었습니다.");
 	          	return;
 	        }
+	        
             var param = {rentNo : self.rentNo};
             
             $.ajax({
@@ -136,7 +147,10 @@ var app = new Vue({
         changeRentNo : function(rentNo){ //라디오박스를 선택할 때 마다 pk 값 변경
         	var self = this;
         	self.rentNo = rentNo;
-        }
+        },
+        fnBack : function(){
+        	location.href = "../rentcar.do"; 
+		}
 	}, // methods
 	created : function() {
 		var self = this;

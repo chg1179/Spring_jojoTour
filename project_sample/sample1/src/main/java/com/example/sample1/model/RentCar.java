@@ -24,4 +24,7 @@ public class RentCar {
 	private String cName;
 	private String cType;
 	
+	private String state; 
+	
+	private int rCnt;
 }
