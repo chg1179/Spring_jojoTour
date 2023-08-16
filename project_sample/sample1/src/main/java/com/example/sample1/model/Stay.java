@@ -15,6 +15,7 @@ public class Stay {
 	private String sInsertTime;
 	private String sUpdateTime;
 	private String sDelyn;
+	private int cnt;
 	
 	// code_type
 	private String cKind;

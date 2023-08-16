@@ -29,12 +29,20 @@
 				<td>{{info.roomNo}}</td>
 			</tr>
 			<tr>
-				<th>이름</th>
+				<th>객실타입</th>
 				<td>{{info.roomName}}</td>
+			</tr>
+			<tr>
+				<th>수용인원</th>
+				<td>최대 {{info.peopleMax}}명</td>
 			</tr>
 			<tr>
 				<th>객실금액</th>
 				<td>{{info.roomPrice}}</td>
+			</tr>
+			<tr>
+				<th>남은객실</th>
+				<td>{{info.roomResidue}}</td>
 			</tr>
 			<tr>
 				<th>할인금액</th>
@@ -58,8 +66,9 @@
 			</tr>
 		</table>
 		<div>
-			<span><button @click="">수정</button></span>
+			<span><button @click="fnEdit">수정</button></span>
 			<span><button @click="fnRemove">삭제</button></span>
+			<span><button @click="fnBack">돌아가기</button></span>
 		</div>
 	</div>
 </body>
@@ -70,6 +79,7 @@ var app = new Vue({
 	data : {
 		info : {},
 		roomNo : "${map.roomNo}",
+		stayNo : "${map.stayNo}",
 		sales : 0,
 		discount : 0
 		
@@ -107,6 +117,15 @@ var app = new Vue({
                 	
                 }
             }); 
+		},
+		fnEdit : function(){
+			var self = this;
+			$.pageChange("roomEdit.do", {roomNo : self.roomNo , stayNo : self.stayNo});
+		},
+		fnBack : function(){
+			var self = this;
+			var url = "room.do?stayNo=" + encodeURIComponent(self.stayNo);
+		    window.location.href = url;
 		}
 		
 	}, // methods

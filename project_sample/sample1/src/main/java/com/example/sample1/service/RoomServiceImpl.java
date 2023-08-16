@@ -31,4 +31,16 @@ public class RoomServiceImpl implements RoomService {
 		// TODO Auto-generated method stub
 		return roomMapper.selectRoomInfo(map);
 	}
+
+	@Override
+	public int addRoom(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return roomMapper.insertRoom(map);
+	}
+
+	@Override
+	public int editRoom(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return roomMapper.updateRoom(map);
+	}
 }

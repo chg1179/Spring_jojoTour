@@ -102,12 +102,13 @@ var app = new Vue({
 	data : {
 		list : [],
 		status : "${sessionStatus}",
+		uId : "${sessionId}",
 		stayNo : ""
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var param = {};
+			var param = {uId : self.uId};
 			$.ajax({
                 url : "stayList.dox",
                 dataType:"json",	
@@ -115,13 +116,18 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	self.list = data.stayList;
-                	self.stayNo = self.list[0].stayNo;
-                	console.log(self.list);
+                	if(self.list.length > 0){
+                		self.stayNo = self.list[0].stayNo; //리스트의 첫 번째 값을 디폴트로 체크하고, 해당 pk 값을 받아온다.
+                		console.log(self.list);
+                	}
+                	
+                	
                 }
             }); 
 		},
 		fnUpdate : function(){
 			var self = this;
+			console.log(self.stayNo);
 			$.pageChange("stayEdit.do", {stayNo : self.stayNo});
 		},
 		fnRemove : function(){
@@ -144,7 +150,8 @@ var app = new Vue({
 		},
 		fnMove : function(stayNo){
 			var self = this;
-			$.pageChange("room.do", {stayNo : stayNo});
+		//	console.log(item.stayName);
+  			$.pageChange("room.do", {stayNo : stayNo});
 		},
 		fnAdd : function(){
 			location.href = "stayAdd.do"
@@ -158,10 +165,13 @@ var app = new Vue({
 	created : function() {
 		var self = this;
 		console.log(self.status);
-		/*  if(self.status != 'H'){
+		if(self.status != 'H'){
 			alert("권한 없음");
 			location.href="../main.do";
-		} */
+		}
+		if(self.uId){
+			
+		}
 		self.fnGetList();
 	}// created
 });

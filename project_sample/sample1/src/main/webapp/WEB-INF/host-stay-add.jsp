@@ -66,16 +66,8 @@
 				</td>
 			</tr>
 			<tr>
-				<th>
-					편의시설
-					<br>
-					서비스 안내
-				</th>
-				<td>
-					<div v-for="item in serviceList">
-						<label><input type="checkbox" :value="item.serviceName">{{item.serviceName}}</label>
-					</div>					
-				</td>
+				<th>파일</th>
+				<td><input type="file" accept=".gif, .jpg, .png" id="stayFile" name="file"></td>
 			</tr>
 		</tbody>
 		</table>
@@ -92,14 +84,13 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		selectStayType : "",
-		stayService : "",
 		typeList : [],
-		serviceList : [],
 		info : {
 			stayName : "",
 			sAddr : "",               
 			sDetailAddr : "",
 		},
+		uId : "${sessionId}"
 		
 	},// data
 	methods : {
@@ -110,7 +101,8 @@ var app = new Vue({
 				sAddr: self.info.sAddr,
 				sDetailAddr: self.info.sDetailAddr,
 				sZipno: self.info.sZipno,
-				type: self.selectStayType
+				type: self.selectStayType,
+				uId : self.uId
 			}
 			$.ajax({
                 url : "stayAdd.dox",
@@ -135,9 +127,6 @@ var app = new Vue({
                 success : function(data) { 
                 	self.typeList = data.stayTypeList;
                 	console.log(self.typeList);
-                	
-                	self.serviceList = data.stayServiceList;
-                	console.log(self.serviceList);
                 }
             }); 
 		},

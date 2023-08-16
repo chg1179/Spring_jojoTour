@@ -5,20 +5,15 @@
 <mapper namespace="com.example.sample1.mapper.StayMapper">
 	<insert id="insertStay" parameterType="hashmap">
 		INSERT INTO T2_STAY_TBL (U_ID, STAY_NAME, STAY_KIND, S_ZIPNO, S_ADDR, S_DETAIL_ADDR, S_READ, S_INSERT_TIME, S_UPDATE_TIME, S_DELYN) VALUES
-		('host', #{stayName}, #{type}, #{sZipno}, #{sAddr}, #{sDetailAddr}, 0, NOW(), NOW(), 'N')
+		(#{uId}, #{stayName}, #{type}, #{sZipno}, #{sAddr}, #{sDetailAddr}, 0, NOW(), NOW(), 'N')
 	</insert>
 	<!-- 숙소 리스트 출력 -->
 	<select id="selectStayList" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
-		SELECT 
-			S.STAY_NO,
-			S.STAY_NAME,
-			S.S_ADDR,
-			S.S_DETAIL_ADDR,
-			C.C_NAME,
-			S.S_INSERT_TIME
+		SELECT *
 		FROM T2_STAY_TBL S
 		INNER JOIN T2_CODE_TYPE C
 		ON S.STAY_KIND = C.C_KIND
+		WHERE U_ID = #{uId}
 	</select>
 	
 	<!-- 숙소 정보 출력 -->
@@ -38,7 +33,12 @@
 	
 	<!-- 편의시설 리스트 -->
 	<select id="selectServiceList" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
-		SELECT * FROM T2_SERVICE_TBL
+		SELECT * 
+		FROM T2_SERVICE_TBL S
+		INNER JOIN T2_ROOM_SERVICE_TBL RS
+		ON S.SERVICE_NO = RS.SERVICE_NO
+		INNER JOIN T2_ROOM_TBL R
+		ON RS.ROOM_NO = R.ROOM_NO
 	</select>
 	
 	<!-- 숙소 삭제 -->

@@ -18,4 +18,10 @@ public interface RoomMapper {
 	
 	// 객실 정보 출력
 	Room selectRoomInfo(HashMap<String, Object> map);
+	
+	// 객실 추가
+	int insertRoom(HashMap<String, Object> map);
+	
+	// 객실 정보 수정
+	int updateRoom(HashMap<String, Object> map);
 }

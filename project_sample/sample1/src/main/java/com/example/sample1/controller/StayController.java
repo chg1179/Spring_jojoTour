@@ -17,6 +17,7 @@ import com.example.sample1.service.StayService;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class StayController {
@@ -27,20 +28,46 @@ public class StayController {
 	//숙박 관리 페이지
 	@RequestMapping("/host/stay.do") 
     public String stay(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/host-stay";
+		HttpSession session = request.getSession(); String status = (String)
+		session.getAttribute("sessionStatus"); //다운캐스팅
+				
+		if(!status.equals("H")) { 
+			return "redirect:../main.do"; //호스트가 아닐 때
+		}
+		else {
+			request.setAttribute("map", map);
+			return "/host-stay";
+		}
     }
 	
 	// 숙박 업체 추가 페이지
 	@RequestMapping("/host/stayAdd.do") 
 	public String stayAdd(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/host-stay-add";
+		HttpSession session = request.getSession(); String status = (String)
+		session.getAttribute("sessionStatus"); //다운캐스팅
+				
+		if(!status.equals("H")) { 
+			return "redirect:../main.do"; //호스트가 아닐 때
+		}
+		else {
+			request.setAttribute("map", map);
+			return "/host-stay-add";
+		}
 	}
 	
 	// 숙박 업체 수정 페이지
 	@RequestMapping("/host/stayEdit.do") 
 	public String stayEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		request.setAttribute("map", map);
-		return "/host-stay-edit";
+		HttpSession session = request.getSession(); String status = (String)
+		session.getAttribute("sessionStatus"); //다운캐스팅
+				
+		if(!status.equals("H")) { 
+			return "redirect:../main.do"; //호스트가 아닐 때
+		}
+		else {
+			request.setAttribute("map", map);
+			return "/host-stay-edit";
+		}
 	}
 	
 	//숙소 업체 정보 출력

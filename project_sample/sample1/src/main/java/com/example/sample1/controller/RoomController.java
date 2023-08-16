@@ -16,6 +16,7 @@ import com.example.sample1.service.RoomService;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class RoomController {
@@ -26,21 +27,61 @@ public class RoomController {
 	//숙박 방 페이지
 	@RequestMapping("/host/room.do") 
 	public String room(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		request.setAttribute("map", map);
-		return "/host-room";
+		HttpSession session = request.getSession(); String status = (String)
+		session.getAttribute("sessionStatus"); //다운캐스팅
+				
+		if(!status.equals("H")) { 
+			return "redirect:../main.do"; //호스트가 아닐 때
+		}
+		else {
+			request.setAttribute("map", map);
+			return "/host-room";
+		}
 	}
 	
 	//숙박 방 페이지
 	@RequestMapping("/host/roomAdd.do") 
 	public String roomAdd(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/host-room-add";
+		HttpSession session = request.getSession(); String status = (String)
+		session.getAttribute("sessionStatus"); //다운캐스팅
+				
+		if(!status.equals("H")) { 
+			return "redirect:../main.do"; //호스트가 아닐 때
+		}
+		else {
+			request.setAttribute("map", map);
+			return "/host-room-add";
+		}
 	}
 	
-	//숙박 방 페이지
+	//숙박 방 상세정보 페이지
 	@RequestMapping("/host/roomView.do") 
+	public String roomView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		HttpSession session = request.getSession(); String status = (String)
+		session.getAttribute("sessionStatus"); //다운캐스팅
+				
+		if(!status.equals("H")) { 
+			return "redirect:../main.do"; //호스트가 아닐 때
+		}
+		else {
+			request.setAttribute("map", map);
+			return "/host-room-view";
+		}
+	}
+	
+	//숙박 방 수정 페이지
+	@RequestMapping("/host/roomEdit.do") 
 	public String roomEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		request.setAttribute("map", map);
-		return "/host-room-view";
+		HttpSession session = request.getSession(); String status = (String)
+		session.getAttribute("sessionStatus"); //다운캐스팅
+				
+		if(!status.equals("H")) { 
+			return "redirect:../main.do"; //호스트가 아닐 때
+		}
+		else {
+			request.setAttribute("map", map);
+			return "/host-room-edit";
+		}
 	}
 	
 	// 방 목록 출력
@@ -69,6 +110,26 @@ public class RoomController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		Room info = roomService.searchRoomInfo(map);
 		resultMap.put("roomInfo", info);
+		return new Gson().toJson(resultMap);
+	}
+	
+	// 객실 등록
+	@RequestMapping(value = "/host/roomAdd.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String roomAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		roomService.addRoom(map);
+		resultMap.put("success", "객실 등록 성공");
+		return new Gson().toJson(resultMap);
+	}
+	
+	// 객실 정보 수정
+	@RequestMapping(value = "/host/roomEdit.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String roomEdit(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		roomService.editRoom(map);
+		resultMap.put("success", "객실 수정 성공");
 		return new Gson().toJson(resultMap);
 	}
 }

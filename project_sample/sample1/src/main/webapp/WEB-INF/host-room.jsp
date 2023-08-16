@@ -54,6 +54,7 @@
 	<div id="app">
 	<div class="container">
 		<h3>숙소 방 등록 페이지</h3>
+		
 	</div>
 		<div class="container">
 			<table class="host-table">
@@ -63,6 +64,7 @@
 						<th>No.</th>
 						<th>객실 타입</th>
 						<th>객실 가격</th>
+						<th>남은 객실</th>
 						<th>최대 수용 인원</th>
 					</tr>
 				</thead>
@@ -75,6 +77,7 @@
 						<td>{{item.roomNo}}</td>
 						<td>{{item.roomName}}</td>
 						<td>{{item.roomPrice}}</td>
+						<td>{{item.roomResidue}}</td>
 						<td>{{item.peopleMax}}명</td>
 					</tr>
 				</tbody>
@@ -94,7 +97,8 @@ var app = new Vue({
 	data : {
 		list : [],
 		roomNo : "",
-		stayNo: "${map.stayNo}"
+		stayNo : "${map.stayNo}",
+		stayName : "${map.stayName}"
 		
 	},// data
 	methods : {
@@ -119,14 +123,17 @@ var app = new Vue({
 		
 		// 객실 추가
 		fnAdd : function(){
-			location.href = "roomAdd.do";
+			var self = this;
+			console.log(self.stayNo);
+			$.pageChange("roomAdd.do", {stayNo : self.stayNo});
 		},
 		
 		// 객실 상세 정보
 		fnView : function (){
 			var self = this;
 			console.log(self.roomNo);
-			$.pageChange("roomView.do", {roomNo : self.roomNo});
+			console.log(self.stayNo);
+			$.pageChange("roomView.do", {roomNo : self.roomNo, stayNo : self.stayNo});
 			
 		},
 		

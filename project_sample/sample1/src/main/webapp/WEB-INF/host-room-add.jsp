@@ -20,8 +20,8 @@
 <body>
 <jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		숙소 업체 추가 페이지
-		<!-- <table>
+		객실 추가 페이지
+		<table>
 			<tbody>
 				<tr>
 					<th>
@@ -29,33 +29,25 @@
 					</th>
 					<td>
 						<div>
-							<span>객실명</span>
+							<span>객실유형</span>
 							<span>
-								<input type="text" v-model="info.roomName" name="roomName">
+								<input type="text" v-model="info.roomName" name="roomName" id="roomName">
+							</span>
+						</div>
+						<div>
+							<span>가격</span>
+							<span>
+								<input type="text" v-model="info.roomPrice" name="roomPrice" id="roomPrice">
 							</span>
 						</div>
 						<div>
 							<span>인원</span>
 							<span>
-								<select v-model="selectPeopleMax">
-									<option value="">선택하세요</option>
-									<option v-for="">선택하세요</option>
+								<select v-model="peopleMaxValue" >
+									<option :key="index" :value="item.value" v-for="(item, index) in selectList">{{item.text}}</option>
 								</select>
 							</span>
 						</div>
-					</td>
-				</tr>
-				<tr>
-					<th>
-						숙소 유형				
-					</th>
-					<td>
-						<span>
-							<select v-model="selectStayType">
-								<option value="">선택하세요</option>
-								<option v-for="stayType in typeList" :value="stayType.cKind">{{stayType.cName}}</option>
-							</select>
-						</span>
 					</td>
 				</tr>
 				<tr>
@@ -65,14 +57,18 @@
 						서비스 안내
 					</th>
 					<td>
-						<div v-for="item in serviceList">
-							<label><input type="checkbox" :value="item.serviceName">{{item.serviceName}}</label>
+						<div v-for="item in serviceList" :key="item.serviceName">
+							<label><input type="checkbox" :value="item.serviceName" v-model="info.serviceList">{{item.serviceName}}</label>
 						</div>					
 					</td>
 				</tr>
+				<tr>
+					<th>파일</th>
+					<td><input type="file" accept=".gif, .jpg, .png" id="stayFile" name="file"></td>
+				</tr>
 			</tbody>
-		</table> -->
-		<button @click="fnRoomAdd">숙소 등록</button>
+		</table>
+		<button @click="fnRoomAdd">객실 등록</button>
 	</div>
 </body>
 </html>
@@ -80,20 +76,68 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		list : []
+		peopleMaxValue : "",
+		uId : "${sessionId}",
+		stayNo : "${map.stayNo}",
+		info : {
+			roomName : "",
+			roomPrice : "",
+			roomSales : "",
+			peopleMax : 0,
+			serviceList : []
+		},
+		selectList : [
+			{value:"1", text : "1 명"},			
+			{value:"2", text : "2 명"},			
+			{value:"3", text : "3 명"},			
+			{value:"4", text : "4 명"},			
+			{value:"5", text : "5 명"},			
+			{value:"6", text : "6 명"},			
+			{value:"7", text : "7 명"},			
+			{value:"8", text : "8 명"},			
+			{value:"9", text : "9 명"},			
+			{value:"10", text : "10 명"},			
+				
+		]
 	},// data
 	methods : {
-		fnRoomAdd : function(){
+
+		fnGetOption : function(){
 			var self = this;
 			var param = {};
 			$.ajax({
-                url : "list.dox",
+                url : "stayOption.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.list = data.list;
-                	console.log(self.list);
+                	self.serviceList = data.stayServiceList;
+                	console.log(self.serviceList);
+                }
+            }); 
+		},
+		fnRoomAdd : function(){
+			if(!confirm("객실을 등록하시겠습니까?")){
+				alert("취소되었습니다.");
+				return;
+			}
+			var self = this;
+			var param = {
+				roomName : self.info.roomName,
+				roomPrice : self.info.roomPrice,
+				peopleMax : self.peopleMaxValue,
+				stayNo : self.stayNo,
+				uId : self.uId,
+				serviceList : self.info.serviceList // 선택된 값 배열 전달
+			};
+			$.ajax({
+                url : "roomAdd.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+            		alert("객실이 등록되었습니다.");
+            		location.href="/host/stay.do";
                 }
             }); 
 		}
@@ -101,7 +145,8 @@ var app = new Vue({
 	}, // methods
 	created : function() {
 		var self = this;
-//		self.fnGetList();
+		self.fnGetOption();
+		console.log(self.roomName);
 	}// created
 });
 </script>
