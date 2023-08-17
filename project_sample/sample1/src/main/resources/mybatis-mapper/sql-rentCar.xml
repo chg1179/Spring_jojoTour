@@ -14,7 +14,14 @@
 			GROUP BY PRODUCT_NO
 		) P ON P.PRODUCT_NO = R.RENT_NO
 		WHERE R_DELYN = 'N' AND U_ID = #{uId}
-		ORDER BY R.RENT_NO
+		ORDER BY R.RENT_NO DESC
+		LIMIT #{startNum}, #{lastNum}
+	</select>
+	
+	<select id="selectCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM T2_RENT_CAR_TBL
+		WHERE R_DELYN = 'N' AND U_ID = #{uId}
 	</select>
 	
 	<select id="selectRentCarInfo" parameterType="hashmap" resultType="com.example.sample1.model.RentCar">
@@ -42,7 +49,7 @@
 		WHERE PRODUCT_NO = #{rentNo} AND PRODUCT_KIND = 'RENT'
 	</delete>
 	
-	<insert id="insertRentCar" parameterType="hashmap">
+	<insert id="insertRentCar" parameterType="hashmap" useGeneratedKeys="true" keyProperty="rentNo" keyColumn="rentNo">
 		INSERT INTO T2_RENT_CAR_TBL(
 			U_ID, RENT_NAME, RENT_KIND, RENT_PRICE, RENT_SALES
 			, R_ZIPNO, R_ADDR, R_DETAIL_ADDR
@@ -69,4 +76,19 @@
 			R_RESIDUE = #{rResidue}
 		WHERE RENT_NO = #{rentNo}
 	</delete>
+	
+	<insert id="insertRentImg" parameterType="hashmap">
+		INSERT INTO T2_RENT_IMG_TBL(
+			RENT_NO, IMG_NAME, IMG_SAVE_NAME, IMG_PATH, IMG_DATE, MAIN_YN
+		)
+		VALUES(
+			#{rentNo}, #{imgName}, #{imgSaveName}, #{imgPath}, now(), #{mainYN}
+		)
+	</insert>
+	
+	<select id="selectCarImgList" parameterType="hashmap" resultType="com.example.sample1.model.RentCarImg">
+		SELECT *
+		FROM T2_RENT_IMG_TBL
+		WHERE RENT_NO = #{rentNo}
+	</select>
 </mapper>

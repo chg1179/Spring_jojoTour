@@ -74,20 +74,25 @@
 				<td>{{info.rUpdateTime}}</td>
 			</tr>
 			<tr>
-				<th>썸네일파일</th>
-				<td></td>
+				<th>썸네일 이미지</th>
+				<td v-for="(item, index) in imgList" v-if="item.mainYN =='Y'">
+					<div>{{item.imgName}}</div>
+					<img :src="item.imgPath">
+				</td>
 			</tr>
 			<tr>
-				<th>파일</th>
-				<td>개수만큼출력</td>
+				<th>상세정보 이미지</th>
+				<td v-for="(item, index) in imgList" v-if="item.mainYN =='N'">
+					<div>{{item.imgName}}</div>
+					<img :src="item.imgPath">
+				</td>
 			</tr>
 		</table>
-		<div v-if="rCnt == 0">
-			<span><button @click="fnUpdate">수정</button></span>
-			<span><button @click="fnRemove">삭제</button></span>
-			<span><button @click="fnBack">뒤로가기</button></span>
-		</div>
-		<div v-else>
+		<div>
+			<span v-if="rCnt == 0">
+				<span><button @click="fnUpdate">수정</button></span>
+				<span><button @click="fnRemove">삭제</button></span>
+			</span>
 			<span><button @click="fnBack">뒤로가기</button></span>
 		</div>
 	</div>
@@ -102,7 +107,7 @@ var app = new Vue({
 		rentNo : "${map.rentNo}",
 		rCnt : "${map.rCnt}",
 		sales : 0,
-		file : []
+		imgList : []
 		
 	},// data
 	methods : {
@@ -117,6 +122,24 @@ var app = new Vue({
                 success : function(data) { 
                 	self.info = data.carInfo;
                 	self.sales = 100 - (self.info.rentSales * 100);
+                	self.fnGetImgList();
+                }
+            }); 
+		},
+		fnGetImgList : function(){
+			var self = this;
+			var param = {rentNo : self.rentNo};
+			$.ajax({
+                url : "carImgList.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	self.imgList = data.carImgList;
+                	// 앞 경로로 상대 경로 수정
+                	for(var i=0;i< self.imgList.length;i++){
+                		self.imgList[i].imgPath = "../"+self.imgList[i].imgPath; 
+                	}
                 }
             }); 
 		},

@@ -6,11 +6,15 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.sample1.model.RentCar;
+import com.example.sample1.model.RentCarImg;
 
 @Mapper
 public interface RentCarMapper {
 	//렌트카 정보 리스트 출력
 	List<RentCar> selectRentCarList(HashMap<String, Object> map);
+	
+	// 전체 갯수
+	int selectCnt(HashMap<String, Object> map);
 	
 	//렌트카 상세 정보 출력
 	RentCar selectRentCarInfo(HashMap<String, Object> map);
@@ -29,4 +33,10 @@ public interface RentCarMapper {
 	
 	//렌트카 정보 수정
 	int updateRentCar(HashMap<String, Object> map);
+	
+	//렌트카 이미지 추가
+	int insertRentImg(HashMap<String, Object> map);
+	
+	//렌트카 이미지 리스트
+	List<RentCarImg> selectCarImgList(HashMap<String, Object> map);
 }

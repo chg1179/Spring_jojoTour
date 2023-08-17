@@ -5,7 +5,6 @@
 <head>
 <meta charset="EUC-KR">
 <title>렌트카 관리 페이지</title>
-<!-- 페이징 추가 1 -->
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <style>
@@ -18,11 +17,11 @@
 		border : 1px solid black;
 		padding : 5px 10px;
 	}
-	<!-- 페이징 추가 2-->
 	.pagination {
         margin:24px;
         display: inline-flex;
-        
+    }
+    ul {
     }
     .pagination li {
 	    min-width:32px;
@@ -108,7 +107,6 @@
 </body>
 </html>
 <script>
-<!-- 페이징 추가 4 -->
 Vue.component('paginate', VuejsPaginate)
 var app = new Vue({
 	el : '#app',
@@ -118,7 +116,6 @@ var app = new Vue({
 		list : [],
 		rentNo : "",
 		rCnt : "",
-		<!-- 페이징 추가 5 -->
 		selectPage: 1,
 		pageCount: 1,
 		cnt : 0
@@ -128,7 +125,8 @@ var app = new Vue({
 			var self = this;
 			var startNum = ((self.selectPage-1) * 10);
     		var lastNum = 10;
-			var param = {uId : self.uId};
+			var param = {uId : self.uId, startNum : startNum, lastNum : lastNum};
+			console.log(param);
 			$.ajax({
                 url : "rentcar.dox",
                 dataType:"json",	
@@ -136,28 +134,28 @@ var app = new Vue({
                 data : param,
                 success : function(data) {
                 	self.list = data.carList;
+                	self.cnt = data.cnt;
+            		self.pageCount = Math.ceil(self.cnt / 10);
                 	if(data.carList.length > 0){
                 		self.rentNo = self.list[0].rentNo; //리스트의 첫 번째 값을 디폴트로 체크하고, 해당 pk 값을 받아온다.
                 		self.rCnt = self.list[0].rCnt;
-                		self.pageCount = Math.ceil(self.cnt / 10);
                 	}
                 }
             }); 
 		},
-		<!-- 페이징 추가 7-->
 		fnSearch : function(pageNum){
 			var self = this;
 			self.selectPage = pageNum;
 			var startNum = ((pageNum-1) * 10);
 			var lastNum = 10;
-			var nparmap = {startNum : startNum, lastNum : lastNum};
+			var param = {uId : self.uId, startNum : startNum, lastNum : lastNum};
 			$.ajax({
 				url : "rentcar.dox",
 				dataType : "json",
 				type : "POST",
-				data : nparmap,
+				data : param,
 				success : function(data) {
-					self.list = data.list;
+					self.list = data.carList;
 					self.cnt = data.cnt;
 					self.pageCount = Math.ceil(self.cnt / 10);
 				}

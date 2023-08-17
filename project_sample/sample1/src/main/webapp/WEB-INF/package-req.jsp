@@ -112,7 +112,7 @@
 		</thead>
 		<tbody >
 			<tr v-for="item in leisureList">		
-				<td name="leisure" style="width : 80px"><input type="radio" :value="item.leisuretNo" v-model="selectLeisure"></td>
+				<td name="leisure" style="width : 80px"><input type="radio" :value="item.leisureNo" v-model="selectLeisure"></td>
 				
 				<td style="width : 120px">{{item.uId}}</td>
 				
@@ -216,12 +216,14 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	self.leisureList = data.list;
+                	console.log(self.leisureList);
                 }
             }); 
 		},
 		fnYbtn : function(selectRoom, selectRent, selectLeisure){
 			var self = this;
 			var nparmap = {selectRoom : self.selectRoom, selectRent : self.selectRent, selectLeisure : self.selectLeisure};
+			console.log(nparmap);
 			if(selectRoom == ""|| selectRoom == null || selectRent == "" ||  selectRent == null || selectLeisure == "" || selectLeisure == null){
 				alert("숙소, 레저, 렌트카를 선택해주세요.");
 				return;

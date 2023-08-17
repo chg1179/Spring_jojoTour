@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.sample1.mapper.RentCarMapper;
 import com.example.sample1.model.RentCar;
+import com.example.sample1.model.RentCarImg;
 
 @Service
 public class RentCarServiceImpl implements RentCarService{
@@ -15,10 +16,14 @@ public class RentCarServiceImpl implements RentCarService{
 	@Autowired
 	RentCarMapper rentCarMapper;
 
+	//리스트 출력
 	@Override
-	public List<RentCar> searchRentCarList(HashMap<String, Object> map) {
+	public HashMap<String, Object> searchRentCarList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return rentCarMapper.selectRentCarList(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("carList", rentCarMapper.selectRentCarList(map));
+		resultMap.put("cnt", rentCarMapper.selectCnt(map));
+		return resultMap;
 	}
 
 	//상세정보 출력
@@ -58,9 +63,26 @@ public class RentCarServiceImpl implements RentCarService{
 
 	//렌트카 추가
 	@Override
-	public int addRentCar(HashMap<String, Object> map) {
+	public HashMap<String, Object> addRentCar(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return rentCarMapper.insertRentCar(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		rentCarMapper.insertRentCar(map);
+		resultMap.put("rentNo", map.get("rentNo"));
+		return resultMap;
+	}
+
+	//렌트카 이미지 추가
+	@Override
+	public int addRentImg(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return rentCarMapper.insertRentImg(map);
+	}
+
+	//렌트카 이미지 리스트
+	@Override
+	public List<RentCarImg> searchCarImgList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return rentCarMapper.selectCarImgList(map);
 	}
 
 }

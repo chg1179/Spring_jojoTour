@@ -27,12 +27,12 @@ public class HostController {
 		HttpSession session = request.getSession(); 
 		String status = (String) session.getAttribute("sessionStatus"); //다운캐스팅
 				
-		if(!status.equals("H") || status.equals("") || session == null || !request.isRequestedSessionIdValid()) { 
-			return "redirect:../main.do"; //호스트가 아닐 때
-		}
-		else {
+		//if(!status.equals("H")) { 
+		//	return "redirect:../main.do"; //호스트가 아닐 때
+		//}
+		//else {
 			return "/host-main";
-		}
+		//}
     }
 	
 }

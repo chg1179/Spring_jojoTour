@@ -5,6 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>렌트카 제품 추가 및 수정 페이지</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
 	table{
 		border : 1px solid black;
@@ -64,18 +65,17 @@
 				<td><input v-model="info.rResidue" type="text" name="rResidue" id="rResidue"></td>
 			</tr>
 			<tr>
-				<th>썸네일파일</th>
+				<th>썸네일이미지</th>
 				<td>
-					<input type="file" accept=".gif, .jpg, .png" id="rentFile" name="file">
-					<input type="button" value="파일삭제조건넣기">
+					<input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange(Y)">
+					<a href="javascript:;" v-if="fileYFlg"><i class="fa-solid fa-xmark fa-2xs"></i></a>
 				</td>
 			</tr>
 			<tr>
-				<th>파일</th>
+				<th>상세정보이미지</th>
 				<td>
-					<input type="file" accept=".gif, .jpg, .png" id="rentFile" name="file">
-					<input type="button" value="파일삭제조건넣기">
-					<input type="button" value="파일추가조건넣기">
+					<input type="file" accept=".gif, .jpg, .png" id="fileN" name="fileN" @change="fnFlgChange(N)">
+					<a href="javascript:;" v-if="fileNFlg"><i class="fa-solid fa-xmark fa-2xs"></i></a>
 				</td>
 			</tr>
 		</table>
@@ -107,7 +107,8 @@ var app = new Vue({
 			rResidue : ""
 		},
 		sales : 0,
-		fileFlg : false
+		fileYFlg : false,
+		fileNFlg : false
 	},// data
 	methods : {
 		fnGetInfo : function(){
@@ -126,6 +127,18 @@ var app = new Vue({
 		},
 		fnAdd : function(){
 			var self = this;
+			
+			var fileCheck = document.getElementById("fileY").value;
+			if(!fileCheck){
+				alert("썸네일용 이미지를 첨부해 주세요");
+				return;
+			}
+			fileCheck = document.getElementById("fileN").value;
+			if(!fileCheck){
+				alert("상세정보 이미지를 첨부해 주세요");
+				return;
+			}
+			
 			if(!confirm("렌트카를 추가하시겠습니까?")){
 	        	alert("취소되었습니다.");
 	          	return;
@@ -141,16 +154,36 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) {
-                	alert("렌트카 등록이 완료되었습니다.");
-                	location.href = "../rentcar.do"; 
-                	/*
-                	파일 업로드
                 	var form = new FormData();
-	       	        form.append( "file1",  $("#file1")[0].files[0] );
-	       	     	form.append( "idx",  data.idx); // pk
-	           		self.upload(form);  */
+	       	        form.append( "files",  $("#fileY")[0].files[0]);
+	       	     	form.append( "rentNo",  data.rentNo); // 제품 pk
+	       	     	form.append( "mainYN",  "Y");
+	           		self.upload(form);
+	           		
+	           		var form2 = new FormData();
+	       	        form2.append( "files",  $("#fileN")[0].files[0]);
+	       	     	form2.append( "rentNo",  data.rentNo); // 제품 pk
+	       	     	form2.append( "mainYN",  "N");
+	           		self.upload(form2);
+	           		
+	           		alert("등록이 완료되었습니다.");
+                	location.href = '../rentcar.do'; 
                 }
             });
+		},
+		// 파일 업로드
+	    upload : function(form){
+	    	var self = this;
+	         $.ajax({
+	             url : "fileUpload.dox"
+	           , type : "POST"
+	           , processData : false
+	           , contentType : false
+	           , data : form
+	           , success:function(response) { 
+	        	   
+	           }
+	       });
 		},
 		fnEdit : function(){
 			var self = this;
@@ -218,12 +251,19 @@ var app = new Vue({
 				, success:function(response) {  
 				}
 	       });
+		},
+		fnFlgChange : function(mainYN){
+			if(!fileCheck){
+				alert("썸네일용 이미지를 첨부해 주세요");
+				return;
+			}
 		}
 	}, // methods
 	created : function() {
 		var self = this;
 		if(self.rentNo != ""){
 			self.fnGetInfo();
+			self.fnGetImgList();
 		}
 	}// created
 });
