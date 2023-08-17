@@ -27,11 +27,11 @@ public class AdminServiceImpl implements AdminService {
 		return (List<User>) userMapper.userList(map);
 	}
 
-	//리퀘스트 리스트
+	//리퀘스트 넣기
 	@Override
-	public List<Admin> requestList(HashMap<String, Object> map) {
+	public int requestInsert(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (List<Admin>) adminMapper.selectRequest(map);
+		return adminMapper.insertRequest(map);
 	}
 
 	//리퀘스트 신청 허용

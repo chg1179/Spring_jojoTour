@@ -10,8 +10,8 @@ public interface AdminService {
 	
 	//유저관리
 	List<User> listUser(HashMap<String, Object> map);
-	//리퀘스트 보기
-	List<Admin> requestList(HashMap<String, Object> map);
+	//리퀘스트 넣기
+	int requestInsert(HashMap<String, Object> map);
 	//리퀘스트 신청 허용
 	int appRequest(HashMap<String, Object> map);
 	//렌트카 리퀘스트 리스트

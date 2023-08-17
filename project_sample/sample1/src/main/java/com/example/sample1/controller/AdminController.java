@@ -59,14 +59,6 @@ public class AdminController {
 		return new Gson().toJson(resultMap);
 	}
 	
-	@RequestMapping(value = "/packageList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	@ResponseBody
-	public String packageList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Admin> list = adminService.requestList(map);
-		resultMap.put("list", list);
-		return new Gson().toJson(resultMap);
-	}
 	
 	@RequestMapping(value = "/packageRentList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -100,6 +92,7 @@ public class AdminController {
 	public String requestApp(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		adminService.appRequest(map);
+		adminService.requestInsert(map);
 		return new Gson().toJson(resultMap);
 	}
 }
