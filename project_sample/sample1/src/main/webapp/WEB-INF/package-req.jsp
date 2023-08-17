@@ -8,34 +8,52 @@
 <meta charset="EUC-KR">
 <title>User List</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-weight: lighter;
+	}
 	table {
 		margin : 30px auto;
 		width : 1400px;
 		border-collapse: collapse;
 		text-align : center;
 		font-size : 14px;
-		font-family: Arial, sans-serif;
-   		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     	border-radius: 5px;
+    	background-color: #f4f4f4;
+  	 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	}
 	th {
-		padding : 5px 10px;
+		 padding : 5px 10px;
+		 border: 1px solid #ddd;
+		 color : white;
+		 background-color: #f8852a;
 	}
 	tr {
-		border-bottom: 1px solid black;
+		border-bottom: 1px solid white;
 		padding : 5px 10px;
 	}
 	td {
-		border : 1px solid black;
 		padding : 5px 10px;
-		border-bottom: 1px solid #ddd;
+		border-left-width: 2px;
+		
 	}
-
+	tr:hover {
+	    background-color: #EEEEEE;
+	    color : black;
+	  }
 	#abtn {
-	margin : 5px auto;
-		width : 60px;
-		height: 30px;
+		margin : 5px auto;
+		border-radius : 20px;
+		border : 1px solid #f8852a;
+		width : 80px;
+		height: 40px;
+		background-color: #f8852a;
+		color : white;
 	} 
+	#abtn:hover {
+	    background-color: #f89552;
+	  }
 </style>
 </head>
 <body>
@@ -47,10 +65,14 @@
 	</div>
 	<table>
 		<thead>
+			<tr > 
+				<td colspan="4" style="text-align:left; padding-left: 30px; font-size: 20px; color:#F86F03;">숙소</td>
+			</tr>
 			<tr>	
 				<th>선택</th>
 				<th>호스트</th>	
 				<th>숙소명</th>
+				<th>룸</th>
 				<th>현황</th>
 			<tr>
 		</thead>
@@ -60,6 +82,8 @@
 				
 				<td style="width : 120px">{{item.uId}}</td>
 				
+			    <td><a href="javascript:;" @click="fnStayView">{{item.stayName}}</a></td>
+			    
 			    <td><a href="javascript:;" @click="fnRoomView">{{item.roomName}}</a></td>
 			    
 			    <td v-if="item.state == 'D'" style="width : 80px">
@@ -72,9 +96,13 @@
 		</tbody>
 	</table>
 	
+	<hr style="width: 1300px; margin: 2px auto;">
 	
 	<table>
 		<thead>
+			<tr > 
+				<td colspan="4" style="text-align:left; padding-left: 30px; font-size: 20px; color:#F86F03;">레저</td>
+			</tr>
 			<tr>	
 				<th>선택</th>
 				<th>호스트</th>
@@ -100,12 +128,18 @@
 		</tbody>
 	</table>
 	
+	<hr style="width: 1300px; margin: 2px auto;">
+	
 	<table>
 		<thead>
+			<tr> 
+				<td colspan="4" style="text-align:left; padding-left: 30px; font-size: 20px; color:#F86F03;">렌트카</td>
+			</tr>
 			<tr>	
 				<th>선택</th>
 				<th>호스트</th>	
-				<th>렌트카</th>
+				<th>차종</th>
+				<th>차급</th>
 				<th>현황</th>
 			<tr>
 		</thead>
@@ -117,6 +151,8 @@
 				
 			    <td><a href="javascript:;" @click="fnRentView">{{item.rentName}}</a></td>
 			    
+			    <td>{{item.rentKind}}</td>
+			    
 			    <td v-if="item.state == 'D'" style="width : 80px">
 			    	<div> 보 류 중 </div>
 			    </td>
@@ -126,7 +162,7 @@
 			</tr>
 		</tbody>
 	</table>
-	<div style="text-align : center;"><input type="button" value="허 용" id="abtn" @click="fnYbtn(item.roomNo, item.rentNo, item.leisureNo)"></div>
+	<div style="text-align : center;"><input type="button" value="허 용" id="abtn" @click="fnYbtn(selectRoom, selectRent, selectLeisure)"></div>
 </div>
 </body>
 </html>
@@ -183,9 +219,15 @@ var app = new Vue({
                 }
             }); 
 		},
-		fnYbtn : function(roomNo, rentNo, leisureNo){
+		fnYbtn : function(selectRoom, selectRent, selectLeisure){
 			var self = this;
-			var nparmap = {roomNo : roomNo, rentNo : rentNo, leisureNo : leisureNo};
+			var nparmap = {selectRoom : self.selectRoom, selectRent : self.selectRent, selectLeisure : self.selectLeisure};
+			if(selectRoom == ""|| selectRoom == null || selectRent == "" ||  selectRent == null || selectLeisure == "" || selectLeisure == null){
+				alert("숙소, 레저, 렌트카를 선택해주세요.");
+				return;
+			}else{
+				alert("선택잘됨");
+			}
 			 $.ajax({
 	                url : "/requestApp.dox",
 	                dataType:"json",
@@ -200,6 +242,10 @@ var app = new Vue({
 	                }
 	            }); 
 		},
+		fnStayView : function(){
+        	var self = this;
+			$.pageChange("../host/stay/view.do", {stayNo : self.stayNo}); 
+        },
 		fnRentView : function(){
         	var self = this;
 			$.pageChange("../host/rentcar/view.do", {rentNo : self.rentNo}); 

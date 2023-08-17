@@ -26,16 +26,20 @@
 	
 	<select id="rentRequest" parameterType="hashmap" resultType="com.example.sample1.model.Admin">
 		SELECT * FROM T2_PACKAGE_REQUEST_TBL P
-		INNER JOIN T2_RENT_CAR_TBL R ON R.RENT_NO = P.PRODUCT_NO; 
+		INNER JOIN T2_RENT_CAR_TBL R ON R.RENT_NO = P.PRODUCT_NO
+		WHERE PRODUCT_KIND = 'RENT';
 	</select>
 	
 	<select id="roomRequest" parameterType="hashmap" resultType="com.example.sample1.model.Admin">
 		SELECT * FROM T2_PACKAGE_REQUEST_TBL P
-		INNER JOIN T2_ROOM_TBL S ON S.ROOM_NO = P.PRODUCT_NO; 
+		INNER JOIN T2_ROOM_TBL S ON S.ROOM_NO = P.PRODUCT_NO
+		INNER JOIN T2_STAY_TBL S1 ON S.STAY_NO = S1.STAY_NO
+		WHERE PRODUCT_KIND = 'STAY'; 
 	</select>
 	
 	<select id="leisureRequest" parameterType="hashmap" resultType="com.example.sample1.model.Admin">
 		SELECT * FROM T2_PACKAGE_REQUEST_TBL P
-		INNER JOIN T2_LEISURE_TBL L ON L.LEISURE_NO = P.PRODUCT_NO; 
+		INNER JOIN T2_LEISURE_TBL L ON L.LEISURE_NO = P.PRODUCT_NO
+		WHERE PRODUCT_KIND = 'LEISURE'; 
 	</select>
 </mapper>

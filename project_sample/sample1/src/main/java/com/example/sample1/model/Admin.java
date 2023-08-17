@@ -11,6 +11,7 @@ public class Admin {
 	//room
 	private int roomNo;
 	private int stayNo;
+	private String stayName;
 	private String roomName;
 	private int roomPrice;
 	private double roomSales;
@@ -43,6 +44,9 @@ public class Admin {
 	private String pDetailAddr;
 	private String productKind;
 	private String leisureKind;
+	private String leisureName;
+	private String leisureNo;
+	private String leisurePrice;
 	
 	//inner
 	private String uId;
