@@ -24,4 +24,18 @@
 	  AND LEISURE_NO = #{leisureNo};
 	</update>
 	
+	<select id="rentRequest" parameterType="hashmap" resultType="com.example.sample1.model.Admin">
+		SELECT * FROM T2_PACKAGE_REQUEST_TBL P
+		INNER JOIN T2_RENT_CAR_TBL R ON R.RENT_NO = P.PRODUCT_NO; 
+	</select>
+	
+	<select id="roomRequest" parameterType="hashmap" resultType="com.example.sample1.model.Admin">
+		SELECT * FROM T2_PACKAGE_REQUEST_TBL P
+		INNER JOIN T2_ROOM_TBL S ON S.ROOM_NO = P.PRODUCT_NO; 
+	</select>
+	
+	<select id="leisureRequest" parameterType="hashmap" resultType="com.example.sample1.model.Admin">
+		SELECT * FROM T2_PACKAGE_REQUEST_TBL P
+		INNER JOIN T2_LEISURE_TBL L ON L.LEISURE_NO = P.PRODUCT_NO; 
+	</select>
 </mapper>

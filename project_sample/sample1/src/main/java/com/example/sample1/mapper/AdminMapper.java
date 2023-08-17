@@ -13,4 +13,10 @@ public interface AdminMapper {
 	List<Admin> selectRequest(HashMap<String, Object> map);
 	//리퀘스트 허용
 	int requestApp(HashMap<String, Object> map);
+	//렌트카 리퀘스트 리스트
+	List<Admin> rentRequest(HashMap<String, Object> map);
+	//룸 리퀘스트 리스트
+	List<Admin> roomRequest(HashMap<String, Object> map);
+	//레져 리퀘스트 리스트
+	List<Admin> leisureRequest(HashMap<String, Object> map);
 }

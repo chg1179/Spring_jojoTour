@@ -20,21 +20,45 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	AdminMapper adminMapper;
 	
+	//유저리스트
 	@Override
 	public List<User> listUser(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return (List<User>) userMapper.userList(map);
 	}
 
+	//리퀘스트 리스트
 	@Override
 	public List<Admin> requestList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return (List<Admin>) adminMapper.selectRequest(map);
 	}
 
+	//리퀘스트 신청 허용
 	@Override
 	public int appRequest(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return adminMapper.requestApp(map);
+	}
+
+	//렌트카 리퀘스트 리스트
+	@Override
+	public List<Admin> requestRent(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminMapper.rentRequest(map);
+	}
+
+	//룸 리퀘스트 리스트
+	@Override
+	public List<Admin> requestRoom(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminMapper.roomRequest(map);
+	}
+
+	//레져 리퀘스트 리스트
+	@Override
+	public List<Admin> requestLeisure(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminMapper.leisureRequest(map);
 	}
 }
