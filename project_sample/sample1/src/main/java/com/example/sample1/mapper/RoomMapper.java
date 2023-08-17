@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.sample1.model.Room;
+import com.example.sample1.model.Stay;
 
 @Mapper
 public interface RoomMapper {
@@ -22,6 +23,19 @@ public interface RoomMapper {
 	// 객실 추가
 	int insertRoom(HashMap<String, Object> map);
 	
+	// 숙소 편의시설 리스트
+	List<Room> selectServiceList(HashMap<String, Object> map);
+	
 	// 객실 정보 수정
 	int updateRoom(HashMap<String, Object> map);
+	
+	// 숙박 패키지 신청
+	int insertRoomPack(HashMap<String, Object> map);
+	
+	// 숙박 패키지 신청 삭제
+	int deleteRoomPack(HashMap<String, Object> map);
+	
+	// 체크된 룸서비스 값 인서트
+	int insertRoomService(HashMap<String, Object> map);
+
 }

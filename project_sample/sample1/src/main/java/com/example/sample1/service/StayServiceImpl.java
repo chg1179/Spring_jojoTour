@@ -39,11 +39,6 @@ public class StayServiceImpl implements StayService{
 		return stayMapper.deleteStay(map);
 	}
 
-	@Override
-	public List<Stay> searchServiceList(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return stayMapper.selectServiceList(map);
-	}
 
 	@Override
 	public Stay searchStayInfo(HashMap<String, Object> map) {

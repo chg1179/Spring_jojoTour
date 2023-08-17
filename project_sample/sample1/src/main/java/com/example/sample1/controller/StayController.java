@@ -97,9 +97,6 @@ public class StayController {
 		List<Stay> list = stayService.searchStayTypeList(map);
 		resultMap.put("stayTypeList", list);
 		
-		List<Stay> list2 = stayService.searchServiceList(map);
-		resultMap.put("stayServiceList", list2);
-		
 		return new Gson().toJson(resultMap);
 	}
 	

@@ -66,6 +66,7 @@
 						<th>객실 가격</th>
 						<th>남은 객실</th>
 						<th>최대 수용 인원</th>
+						<th>패키지 신청</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -79,6 +80,14 @@
 						<td>{{item.roomPrice}}</td>
 						<td>{{item.roomResidue}}</td>
 						<td>{{item.peopleMax}}명</td>
+						<td>
+							<span v-if="item.state=='A'">
+								<div>신청이 완료되었습니다.</div>
+								<div>취소는 1:1 문의를 남겨주세요.</div>
+							</span>
+							<button v-else-if="item.state=='D'" @click="fnPackDel(item.roomNo)">취소</button>
+							<button v-else @click="fnPackAdd(item.roomNo)">신청</button>
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -97,6 +106,7 @@ var app = new Vue({
 	data : {
 		list : [],
 		roomNo : "",
+		uId : "${sessionId}",
 		stayNo : "${map.stayNo}",
 		stayName : "${map.stayName}"
 		
@@ -104,7 +114,7 @@ var app = new Vue({
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var param = {stayNo : self.stayNo};
+			var param = {stayNo : self.stayNo, uId : self.uId};
 			$.ajax({
                 url : "roomList.dox",
                 dataType:"json",	
@@ -115,7 +125,6 @@ var app = new Vue({
                 	console.log(self.list);
                 	if(self.list.length > 0){ //리스트의 첫 번째 값을 디폴트로 체크하고, 해당 pk 값을 받아온다.
                         self.roomNo = self.list[0].roomNo;
-                        console.log(self.roomNo);
                     } 
                 }
             }); 
@@ -160,7 +169,45 @@ var app = new Vue({
 		changeRoomNo : function(roomNo){ //라디오박스를 선택할 때 마다 pk 값 변경
         	var self = this;
         	self.roomNo = roomNo;
-        }
+        },
+        fnPackAdd : function(roomNo){
+			var self = this;
+			console.log(roomNo);
+			if(!confirm("패키지를 신청하시겠습니까?")){
+	        	alert("신청이 취소되었습니다.");
+	          	return;
+	        }
+			var param = {roomNo : roomNo};
+			$.ajax({
+                url : "roomPackAdd.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) {
+                	alert("패키지 신청이 완료되었습니다.");
+                	self.fnGetList();
+                }
+			});
+        },
+        fnPackDel : function(roomNo){
+			var self = this;
+			if(!confirm("패키지 신청을 취소하시겠습니까?")){
+	        	alert("변경이 취소되었습니다.");
+	          	return;
+	        }
+			var param = {roomNo : roomNo};
+			$.ajax({
+                url : "roomPackDel.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) {
+                	console.log(roomNo);
+                	alert("패키지 신청이 취소되었습니다.");
+                	self.fnGetList();
+                }
+			});
+        },
 		
  	}, // methods
 	created : function() {

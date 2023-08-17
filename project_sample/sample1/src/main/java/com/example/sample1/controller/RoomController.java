@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.sample1.model.Room;
 import com.example.sample1.service.RoomService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -118,8 +120,15 @@ public class RoomController {
 	@ResponseBody
 	public String roomAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		roomService.addRoom(map);
-		resultMap.put("success", "객실 등록 성공");
+		
+		String json = map.get("selectServiceList").toString();
+		
+		ObjectMapper mapper = new ObjectMapper();
+		List<Object> list = mapper.readValue(json, new TypeReference<List<Object>>(){});
+		map.put("list", list);
+		
+		resultMap = roomService.addRoom(map);
+		/* resultMap.put("success", "객실 등록 성공"); */
 		return new Gson().toJson(resultMap);
 	}
 	
@@ -132,4 +141,36 @@ public class RoomController {
 		resultMap.put("success", "객실 수정 성공");
 		return new Gson().toJson(resultMap);
 	}
+	
+	// 객실 패키지 신청
+	@RequestMapping(value = "/host/roomPackAdd.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String roomPackAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		roomService.addRoomPack(map);
+		resultMap.put("success", "객실 수정 성공");
+		return new Gson().toJson(resultMap);
+	}
+	
+	// 객실 패키지 신청
+	@RequestMapping(value = "/host/roomPackDel.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String roomPackDel(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		roomService.removeRoomPack(map);
+		resultMap.put("success", "객실 수정 성공");
+		return new Gson().toJson(resultMap);
+	}
+	
+	// 숙소 옵션 리스트(타입, 편의시설)
+	@RequestMapping(value = "/host/roomOption.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String roomOption(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		List<Room> list = roomService.searchServiceList(map);
+		resultMap.put("roomServiceList", list);
+		return new Gson().toJson(resultMap);
+	}
+		
 }

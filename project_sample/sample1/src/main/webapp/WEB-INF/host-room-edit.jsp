@@ -37,6 +37,10 @@
 				<td><input v-model="info.roomPrice" type="text" name="roomPrice" id="roomPrice"></td>
 			</tr>
 			<tr>
+				<th>할인율</th>
+				<td><input v-model="info.roomSales" type="text" name="roomSales" id="roomSales"></td>
+			</tr>
+			<tr>
 				<th>남은 객실</th>
 				<td><input v-model="info.roomResidue" type="text" name="roomResidue" id="roomResidue"></td>
 			</tr>
@@ -108,6 +112,7 @@ var app = new Vue({
 					roomPrice : self.info.roomPrice,
 					peopleMax : self.info.peopleMax,
 					roomResidue : self.info.roomResidue,
+					roomSales : self.info.roomSales,
 					roomNo : self.roomNo
 				};
 			$.ajax({

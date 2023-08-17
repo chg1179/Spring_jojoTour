@@ -22,7 +22,5 @@ public class Stay {
 	private String cName;
 	private String cType;
 	
-	// service
-	private String serviceNo;
-	private String serviceName;
+	
 }

@@ -19,8 +19,7 @@ public interface StayService {
 	// 숙소 업체 삭제
 	int removeStay(HashMap<String, Object> map);
 	
-	// 숙소 편의시설 리스트
-	List<Stay> searchServiceList(HashMap<String, Object> map);
+	
 	
 	// 숙소 정보
 	Stay searchStayInfo(HashMap<String, Object> map);

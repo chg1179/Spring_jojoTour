@@ -21,8 +21,7 @@ public interface StayMapper {
 	// 숙소 업체 삭제
 	int deleteStay(HashMap<String, Object> map);
 	
-	// 숙소 편의시설 리스트
-	List<Stay> selectServiceList(HashMap<String, Object> map);
+	
 	
 	// 숙소 정보
 	Stay selectStayInfo(HashMap<String, Object> map);

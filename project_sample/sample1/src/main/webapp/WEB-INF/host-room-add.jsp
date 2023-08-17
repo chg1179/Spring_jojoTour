@@ -9,7 +9,7 @@
 	table{
 		border : 1px solid black;
 		border-collapse: collapse;
-		text-align : center;
+		/* text-align : center; */
 	}
 	th, td {
 		border : 1px solid black;
@@ -41,6 +41,12 @@
 							</span>
 						</div>
 						<div>
+							<span>할인율</span>
+							<span>
+								<input type="text" v-model="info.roomSales" name="roomSales" id="roomSales">
+							</span>
+						</div>
+						<div>
 							<span>인원</span>
 							<span>
 								<select v-model="peopleMaxValue" >
@@ -58,7 +64,7 @@
 					</th>
 					<td>
 						<div v-for="item in serviceList" :key="item.serviceName">
-							<label><input type="checkbox" :value="item.serviceName" v-model="info.serviceList">{{item.serviceName}}</label>
+							<label><input type="checkbox" :value="item.serviceNo" v-model="selectServiceList">{{item.serviceName}}</label>
 						</div>					
 					</td>
 				</tr>
@@ -76,15 +82,18 @@
 var app = new Vue({
 	el : '#app',
 	data : {
+		serviceList : [], // 출력을 위한 서비스 리스트
+		selectServiceList : [], // 체크한 값을 넣기 위한 서비스 리스트
 		peopleMaxValue : "",
 		uId : "${sessionId}",
 		stayNo : "${map.stayNo}",
+		serviceNo : 0,
 		info : {
+			roomNo : 0,
 			roomName : "",
 			roomPrice : "",
 			roomSales : "",
 			peopleMax : 0,
-			serviceList : []
 		},
 		selectList : [
 			{value:"1", text : "1 명"},			
@@ -101,35 +110,42 @@ var app = new Vue({
 		]
 	},// data
 	methods : {
-
+		// 룸서비스 리스트
 		fnGetOption : function(){
 			var self = this;
 			var param = {};
 			$.ajax({
-                url : "stayOption.dox",
+                url : "roomOption.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.serviceList = data.stayServiceList;
+                	self.serviceList = data.roomServiceList;
                 	console.log(self.serviceList);
                 }
             }); 
 		},
 		fnRoomAdd : function(){
+			var self = this;
 			if(!confirm("객실을 등록하시겠습니까?")){
 				alert("취소되었습니다.");
 				return;
 			}
-			var self = this;
+			
+			var sList = JSON.stringify(self.selectServiceList);
 			var param = {
 				roomName : self.info.roomName,
 				roomPrice : self.info.roomPrice,
 				peopleMax : self.peopleMaxValue,
 				stayNo : self.stayNo,
 				uId : self.uId,
-				serviceList : self.info.serviceList // 선택된 값 배열 전달
+				roomNo : self.info.roomNo,
+				serviceNo : self.serviceNo,
+				selectServiceList : sList
 			};
+			console.log(self.selectServiceList);
+			console.log(sList); 
+			
 			$.ajax({
                 url : "roomAdd.dox",
                 dataType:"json",	
@@ -137,7 +153,9 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
             		alert("객실이 등록되었습니다.");
-            		location.href="/host/stay.do";
+            	//	location.href="/host/stay.do";
+            		self.selectServiceList = [];
+            		console.log(self.roomNo);
                 }
             }); 
 		}
@@ -146,7 +164,6 @@ var app = new Vue({
 	created : function() {
 		var self = this;
 		self.fnGetOption();
-		console.log(self.roomName);
 	}// created
 });
 </script>
