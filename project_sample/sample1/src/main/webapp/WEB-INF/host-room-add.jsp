@@ -56,18 +56,7 @@
 						</div>
 					</td>
 				</tr>
-				<tr>
-					<th>
-						편의시설
-						<br>
-						서비스 안내
-					</th>
-					<td>
-						<div v-for="item in serviceList" :key="item.serviceName">
-							<label><input type="checkbox" :value="item.serviceNo" v-model="selectServiceList">{{item.serviceName}}</label>
-						</div>					
-					</td>
-				</tr>
+				
 				<tr>
 					<th>파일</th>
 					<td><input type="file" accept=".gif, .jpg, .png" id="stayFile" name="file"></td>
@@ -82,8 +71,6 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		serviceList : [], // 출력을 위한 서비스 리스트
-		selectServiceList : [], // 체크한 값을 넣기 위한 서비스 리스트
 		peopleMaxValue : "",
 		uId : "${sessionId}",
 		stayNo : "${map.stayNo}",
@@ -111,28 +98,12 @@ var app = new Vue({
 	},// data
 	methods : {
 		// 룸서비스 리스트
-		fnGetOption : function(){
-			var self = this;
-			var param = {};
-			$.ajax({
-                url : "roomOption.dox",
-                dataType:"json",	
-                type : "POST",
-                data : param,
-                success : function(data) { 
-                	self.serviceList = data.roomServiceList;
-                	console.log(self.serviceList);
-                }
-            }); 
-		},
 		fnRoomAdd : function(){
 			var self = this;
 			if(!confirm("객실을 등록하시겠습니까?")){
 				alert("취소되었습니다.");
 				return;
 			}
-			
-			var sList = JSON.stringify(self.selectServiceList);
 			var param = {
 				roomName : self.info.roomName,
 				roomPrice : self.info.roomPrice,
@@ -140,12 +111,8 @@ var app = new Vue({
 				stayNo : self.stayNo,
 				uId : self.uId,
 				roomNo : self.info.roomNo,
-				serviceNo : self.serviceNo,
-				selectServiceList : sList
+				
 			};
-			console.log(self.selectServiceList);
-			console.log(sList); 
-			
 			$.ajax({
                 url : "roomAdd.dox",
                 dataType:"json",	
@@ -153,9 +120,9 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
             		alert("객실이 등록되었습니다.");
-            	//	location.href="/host/stay.do";
+            		location.href="/host/stay.do";
             		self.selectServiceList = [];
-            		console.log(self.roomNo);
+            	//	console.log(self.roomNo);
                 }
             }); 
 		}

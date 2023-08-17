@@ -1,5 +1,6 @@
 package com.example.sample1.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,11 +23,32 @@ public class StayServiceImpl implements StayService{
 	}
 
 	@Override
-	public int addStay(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return stayMapper.insertStay(map);
+	public HashMap<String, Object> addStay(HashMap<String, Object> map) {
+	    HashMap<String, Object> resultMap = new HashMap<String, Object>();
+	    
+	    // 객실 기본 정보 삽입
+	    stayMapper.insertStay(map);
+	    
+	    // 추가된 숙소의 stayNo를 가져옴
+	    Integer stayNo = (Integer) map.get("stayNo");
+	    
+	    // 선택된 서비스 리스트를 가져옴
+	    List<Integer> selectServiceList = (List<Integer>) map.get("selectServiceList");
+	    
+        for (int i = 0; i < selectServiceList.size(); i++) {
+            Integer serviceNo = selectServiceList.get(i);
+            
+            HashMap<String, Object> serviceMap = new HashMap<String, Object>();
+            serviceMap.put("stayNo", stayNo);
+            serviceMap.put("serviceNo", serviceNo);
+            
+            // 데이터베이스에 서비스 인서트
+            stayMapper.insertStayService(serviceMap);
+        }
+	    
+	    return resultMap;
 	}
-
+	
 	@Override
 	public List<Stay> searchStayTypeList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -39,7 +61,6 @@ public class StayServiceImpl implements StayService{
 		return stayMapper.deleteStay(map);
 	}
 
-
 	@Override
 	public Stay searchStayInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -51,7 +72,16 @@ public class StayServiceImpl implements StayService{
 		// TODO Auto-generated method stub
 		return stayMapper.updateStayInfo(map);
 	}
-
-
 	
+	// 숙소 서비스 목록 출력
+	@Override
+	public List<Stay> searchServiceList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return stayMapper.selectServiceList(map);
+	}
+
+	/*
+	 * @Override public int addStayService(HashMap<String, Object> map) { // TODO
+	 * Auto-generated method stub return stayMapper.insertStayService(map); }
+	 */
 }

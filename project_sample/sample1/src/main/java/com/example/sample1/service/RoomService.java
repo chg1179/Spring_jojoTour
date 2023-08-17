@@ -17,7 +17,7 @@ public interface RoomService {
 	Room searchRoomInfo(HashMap<String, Object> map);
 	
 	// 객실 추가
-	HashMap<String, Object> addRoom(HashMap<String, Object> map);
+	int addRoom(HashMap<String, Object> map);
 	
 	// 객실 정보 수정
 	int editRoom(HashMap<String, Object> map);
@@ -28,6 +28,4 @@ public interface RoomService {
 	// 숙박 패키지 신청 취소
 	int removeRoomPack(HashMap<String, Object> map);
 	
-	// 숙소 편의시설 리스트
-	List<Room> searchServiceList(HashMap<String, Object> map);
 }

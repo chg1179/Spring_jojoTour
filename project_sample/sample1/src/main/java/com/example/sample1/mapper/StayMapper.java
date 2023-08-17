@@ -21,11 +21,16 @@ public interface StayMapper {
 	// 숙소 업체 삭제
 	int deleteStay(HashMap<String, Object> map);
 	
-	
-	
 	// 숙소 정보
 	Stay selectStayInfo(HashMap<String, Object> map);
 	
 	// 숙소 정보 수정
 	int updateStayInfo(HashMap<String, Object> map);
+	
+	// 숙소 서비스 리스트
+	List<Stay> selectServiceList(HashMap<String, Object> map);
+	
+	// 체크된 룸서비스 값 인서트
+	int insertStayService(HashMap<String, Object> map);
+	
 } 

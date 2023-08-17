@@ -66,6 +66,18 @@
 				</td>
 			</tr>
 			<tr>
+				<th>
+					편의시설
+					<br>
+					서비스 안내
+				</th>
+				<td>
+					<div v-for="item in serviceList" :key="item.serviceNo">
+						<label><input type="checkbox" :value="item.serviceNo" v-model="selectServiceList">{{item.serviceName}}</label>
+					</div>					
+				</td>
+			</tr>
+			<tr>
 				<th>파일</th>
 				<td><input type="file" accept=".gif, .jpg, .png" id="stayFile" name="file"></td>
 			</tr>
@@ -83,9 +95,13 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 var app = new Vue({
 	el : '#app',
 	data : {
+		serviceList : [], // 출력을 위한 서비스 리스트
+		selectServiceList : [], // 체크한 값을 넣기 위한 서비스 리스트
 		selectStayType : "",
+		serviceNo : 0,
 		typeList : [],
 		info : {
+			stayNo : 0,
 			stayName : "",
 			sAddr : "",               
 			sDetailAddr : "",
@@ -94,31 +110,10 @@ var app = new Vue({
 		
 	},// data
 	methods : {
-		fnStayAdd : function(){
-			var self = this;
-			var param = {
-				stayName: self.info.stayName,
-				sAddr: self.info.sAddr,
-				sDetailAddr: self.info.sDetailAddr,
-				sZipno: self.info.sZipno,
-				type: self.selectStayType,
-				uId : self.uId
-			}
-			$.ajax({
-                url : "stayAdd.dox",
-                dataType:"json",	
-                type : "POST",
-                data : param,
-                success : function(data) { 
-                	alert("숙소가 등록되었습니다.");
-                	location.href="/host/stay.do";
-                }
-            }); 
-		},
-	
+
 		fnGetOption : function(){
 			var self = this;
-			var param = {};
+			var param = {stayNo : self.stayNo};
 			$.ajax({
                 url : "stayOption.dox",
                 dataType:"json",	
@@ -127,10 +122,46 @@ var app = new Vue({
                 success : function(data) { 
                 	self.typeList = data.stayTypeList;
                 	console.log(self.typeList);
+                	
+                	self.serviceList = data.stayServiceList;
+                	console.log(self.serviceList);
                 }
             }); 
 		},
 		
+		fnStayAdd : function(){
+			var self = this;
+			if(!confirm("숙소를 등록하시겠습니까?")){
+				alert("취소되었습니다.");
+				return;
+			}
+			var sList = JSON.stringify(self.selectServiceList);
+			var param = {
+				stayNo : self.info.stayNo,
+				stayName: self.info.stayName,
+				sAddr: self.info.sAddr,
+				sDetailAddr: self.info.sDetailAddr,
+				sZipno: self.info.sZipno,
+				type: self.selectStayType,
+				uId : self.uId,
+				serviceNo : self.serviceNo,
+				selectServiceList : sList
+			}
+			console.log(self.selectServiceList);
+			console.log(sList); 
+			$.ajax({
+                url : "stayAdd.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	alert("숙소가 등록되었습니다.");
+                	location.href="/host/stay.do";
+                	
+                }
+            }); 
+		},
+	
 		fnSearchAddr : function (){
 			var self = this;
     		var option = "width = 500, height = 500, top = 100, left = 200, location = no"

@@ -121,13 +121,7 @@ public class RoomController {
 	public String roomAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		
-		String json = map.get("selectServiceList").toString();
-		
-		ObjectMapper mapper = new ObjectMapper();
-		List<Object> list = mapper.readValue(json, new TypeReference<List<Object>>(){});
-		map.put("list", list);
-		
-		resultMap = roomService.addRoom(map);
+		roomService.addRoom(map);
 		/* resultMap.put("success", "객실 등록 성공"); */
 		return new Gson().toJson(resultMap);
 	}
@@ -162,15 +156,5 @@ public class RoomController {
 		return new Gson().toJson(resultMap);
 	}
 	
-	// 숙소 옵션 리스트(타입, 편의시설)
-	@RequestMapping(value = "/host/roomOption.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	@ResponseBody
-	public String roomOption(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		
-		List<Room> list = roomService.searchServiceList(map);
-		resultMap.put("roomServiceList", list);
-		return new Gson().toJson(resultMap);
-	}
-		
+	
 }

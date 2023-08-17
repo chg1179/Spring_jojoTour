@@ -2,6 +2,7 @@ package com.example.sample1.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.sample1.mapper.StayMapper;
 import com.example.sample1.model.Stay;
 import com.example.sample1.service.StayService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -86,6 +89,14 @@ public class StayController {
 	public String stayAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		stayService.addStay(map);
+		
+		String json = map.get("selectServiceList").toString();
+		
+		ObjectMapper mapper = new ObjectMapper();
+		List<Object> list = mapper.readValue(json, new TypeReference<List<Object>>(){});
+		map.put("list", list);
+		
+		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
 	
@@ -93,10 +104,12 @@ public class StayController {
 	@RequestMapping(value = "/host/stayOption.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String stayOption(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		HashMap<String, Object> resultMap = new HashMap<String, Object>(); 
 		List<Stay> list = stayService.searchStayTypeList(map);
 		resultMap.put("stayTypeList", list);
 		
+		List<Stay> list2 = stayService.searchServiceList(map);
+		resultMap.put("stayServiceList", list2);
 		return new Gson().toJson(resultMap);
 	}
 	
@@ -128,4 +141,6 @@ public class StayController {
 		stayService.editStayInfo(map);
 		return new Gson().toJson(resultMap);
 	}
+	
+			
 }
