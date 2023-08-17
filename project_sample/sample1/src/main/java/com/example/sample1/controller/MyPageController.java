@@ -11,12 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.sample1.model.Inquiry;
 import com.example.sample1.model.MyPage;
 import com.example.sample1.service.MyPageService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
-import aj.org.objectweb.asm.TypeReference;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -63,6 +62,12 @@ public class MyPageController {
 
         return "/my-inquiry";
     }
+	
+	@RequestMapping("my/inquiry/edit.do") 
+    public String inquiryEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+        return "/my-inquiry-edit";
+    }	
 	@RequestMapping(value = "order.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String order(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -92,7 +97,7 @@ public class MyPageController {
 		resultMap.put("reviewCnt", reviewCnt);
 		return new Gson().toJson(resultMap);
 	}
-	@RequestMapping(value = "/my/remove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/my/r_remove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String remove(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
@@ -112,6 +117,36 @@ public class MyPageController {
 	public String reviewEdit(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		myPageService.updateReview(map);
+		return new Gson().toJson(resultMap);
+	}
+	@RequestMapping(value = "/my/inquiry.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String myInquiry(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Inquiry> list = myPageService.searchInquiry(map);
+		resultMap.put("list", list);
+		return new Gson().toJson(resultMap);
+	}
+	@RequestMapping(value = "/my/i_remove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String deleteInquiry(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		myPageService.removeInquiry(map);
+		return new Gson().toJson(resultMap);
+	}
+	@RequestMapping(value = "/my/inquiry/inquiryInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String inquiryInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		Inquiry info = myPageService.searchInquiryInfo(map);
+		resultMap.put("info", info);
+		return new Gson().toJson(resultMap);
+	}
+	@RequestMapping(value = "/my/inquiry/inquiryEdit.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String inquiryEdit(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		myPageService.updateInquiry(map);
 		return new Gson().toJson(resultMap);
 	}
 }

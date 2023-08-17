@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.sample1.mapper.MyPageMapper;
+import com.example.sample1.model.Inquiry;
 import com.example.sample1.model.MyPage;
 
 import jakarta.servlet.http.HttpSession;
@@ -60,6 +61,30 @@ public class MyPageServiceImpl implements MyPageService{
 	public int updateReview(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return myPageMapper.editReview(map);
+	}
+
+	@Override
+	public List<Inquiry> searchInquiry(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.selectInquiry(map);
+	}
+
+	@Override
+	public int removeInquiry(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.deleteInquiry(map);
+	}
+
+	@Override
+	public Inquiry searchInquiryInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.selectInquiryInfo(map);
+	}
+
+	@Override
+	public int updateInquiry(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.editInquiry(map);
 	}
 	
 

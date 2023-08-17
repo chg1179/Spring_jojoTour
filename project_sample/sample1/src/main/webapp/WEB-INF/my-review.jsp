@@ -25,6 +25,7 @@
 <jsp:include page="header.jsp" flush="true"></jsp:include>
 <jsp:include page="my-page.jsp" flush="true"></jsp:include>
 	<div id="app">
+		<h2>나의 이용후기 {{reviewCnt}}건</h2>
 		<table>
 			<tr>
 				<th></th>
@@ -52,7 +53,7 @@
 				
 				
 				</td>
-				<td v-html="item.rContent"></td>
+				<td><div v-html="item.rContent"></div></td>
 				<td>{{item.rWriteTime}}</td>
 				<td>{{item.rUpdateTime}}</td>
 				<td>{{item.rStar}}</td>
@@ -106,7 +107,7 @@ var app = new Vue({
 			}
 			var param = {rNo : self.rNo};
 			$.ajax({
-                url : "remove.dox",
+                url : "r_remove.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,

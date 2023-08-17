@@ -38,12 +38,40 @@
 		FROM T2_REVIEW_TBL
 		WHERE R_NO = #{rNo}
 	</select>
-	
+	<!-- 나의 리뷰 수정하기 -->
 	<update id="editReview" parameterType="hashmap">
 		UPDATE T2_REVIEW_TBL
 		SET
 			R_CONTENT = #{rContent},
 			R_UPDATE_TIME = NOW()
 		WHERE R_NO = #{rNo}
+	</update>
+	<!-- 나의 1:1문의 불러오기 -->
+	<select id="selectInquiry" parameterType="hashmap" resultType="com.example.sample1.model.Inquiry">
+		SELECT *
+		FROM T2_INQUIRY_TBL
+		WHERE U_ID = #{userId}
+	</select>
+	<!--나의 1:1문의 삭제 -->
+	<update id="deleteInquiry" parameterType="hashmap">
+		UPDATE T2_INQUIRY_TBL
+		SET
+			DELYN = 'Y'
+		WHERE I_NO = #{iNo}
+	</update>
+	<!-- 나의 1:1문의 수정창 -->
+	<select id="selectInquiryInfo" parameterType="hashmap" resultType="com.example.sample1.model.Inquiry">
+		SELECT *
+		FROM T2_INQUIRY_TBL
+		WHERE I_NO = #{iNo}
+	</select>
+	<!-- 나의 1:1문의 수정하기 -->
+	<update id="editInquiry" parameterType="hashmap">
+		UPDATE T2_INQUIRY_TBL
+		SET
+			I_TITLE = #{iTitle},
+			I_CONTENT = #{iContent},
+			I_UPDATE_TIME = NOW()
+		WHERE I_NO = #{iNo}
 	</update>
 </mapper>
