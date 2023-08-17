@@ -176,7 +176,7 @@
 	                                <li><a href="javascript:;" @click="fnNotice">공지사항</a></li>
 	                                <li><a href="javascript:;" @click="fnFAQ">FAQ 게시판</a></li>
 	                                <li><a href="javascript:;" @click="fnInquiry">1:1문의</a></li>
-	                                <li><a href="javascript:;">자유게시판</a></li>
+	                                <li><a href="javascript:;" @click="fnFree">자유게시판</a></li>
 	                            </ul>
 	                        </li>
 	                        <li class="header_more">
@@ -234,6 +234,9 @@ var app = new Vue({
         },
         fnInquiry : function(){
             location.href="../inquiry/list.do";
+        },
+        fnFree : function(){
+        	location.href="../free/list.do";
         }
 	}, // methods
 	created : function() {
