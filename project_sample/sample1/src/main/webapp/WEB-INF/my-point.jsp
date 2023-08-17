@@ -8,10 +8,10 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-	.order{
+	.point{
 		background-color : buttonface;
 	}
-    .order::after{
+    .point::after{
         content: ">";
         position: absolute;
         color: rgb(28, 111, 235);
@@ -25,18 +25,10 @@
 <jsp:include page="header.jsp" flush="true"></jsp:include>
 <jsp:include page="my-page.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div>예약내역
-			<div v-if="order.useYnc == 'N'">사용전</div>
-			<div v-if="order.useYnc == 'Y'">사용완료</div>
-			<div v-if="order.useYnc == 'C'">예약취소</div>
-		</div>
-		<div>결제날짜{{order.paymentDate}}</div>
-		<div>주문번호 {{order.productNo}}</div>
-		<div>결제금액 {{order.payment}}</div>
-		<div>주문제품
-			<div v-if="order.productKind == 'STAY'">숙박</div>
-			<div v-if="order.productKind == 'RENT'">렌트카</div>
-			<div v-if="order.productKind == 'LEISURE'">레저</div>
+		<h2>포인트</h2>
+		<div>
+			<p>내 포인트</p>
+			<h3>{{point.point}}</h3>
 		</div>
 	</div>
 </body>
@@ -47,20 +39,20 @@ var app = new Vue({
 	data : {
 		list : [],
 		userId : "${sessionId}",
-		order : ""
+		point : ""
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
 			var param = {userId : self.userId};
 			$.ajax({
-                url : "/order.dox",
+                url : "/my/userPoint.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.order = data.order;
-                	console.log(self.order);
+                	self.point = data.point;
+                	console.log(self.point);
                 }
             }); 
 		}

@@ -13,6 +13,16 @@ public class MyPage {
 	private String useYnc;
 	private int deduPoint;
 	private int payment;
+	private int point;
+	private int rNo;
+	private String rContent;
+	private int rHits;
+	private String rWriteTime;
+	private String rUpdateTime;
+	private String delyn;
+	private int rStar;
+	private int recommend;
+	
 	public int getOrderNo() {
 		return orderNo;
 	}
@@ -78,6 +88,48 @@ public class MyPage {
 	}
 	public void setPayment(int payment) {
 		this.payment = payment;
+	}
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
+	public String getrContent() {
+		return rContent;
+	}
+	public void setrContent(String rContent) {
+		this.rContent = rContent;
+	}
+	public int getrHits() {
+		return rHits;
+	}
+	public void setrHits(int rHits) {
+		this.rHits = rHits;
+	}
+	public String getrWriteTime() {
+		return rWriteTime;
+	}
+	public void setrWriteTime(String rWriteTime) {
+		this.rWriteTime = rWriteTime;
+	}
+	public String getrUpdateTime() {
+		return rUpdateTime;
+	}
+	public void setrUpdateTime(String rUpdateTime) {
+		this.rUpdateTime = rUpdateTime;
+	}
+	public int getrStar() {
+		return rStar;
+	}
+	public void setrStar(int rStar) {
+		this.rStar = rStar;
+	}
+	public int getRecommend() {
+		return recommend;
+	}
+	public void setRecommend(int recommend) {
+		this.recommend = recommend;
 	}
 	
 }

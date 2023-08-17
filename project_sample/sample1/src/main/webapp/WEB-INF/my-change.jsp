@@ -8,10 +8,22 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
+	.change{
+		background-color : buttonface;
+	}
+    .change::after{
+        content: ">";
+        position: absolute;
+        color: rgb(28, 111, 235);
+        font-size: 30px;
+        top: 0;
+        right: 0;
+    }
 </style>
 </head>
 <body>
-	<jsp:include page="header.jsp" flush="true"></jsp:include>
+<jsp:include page="header.jsp" flush="true"></jsp:include>
+<jsp:include page="my-page.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<h2>회원정보수정</h2>
 		<table>

@@ -8,36 +8,23 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-	.order{
+	.inquiry{
 		background-color : buttonface;
 	}
-    .order::after{
+    .inquiry::after{
         content: ">";
         position: absolute;
         color: rgb(28, 111, 235);
         font-size: 30px;
         top: 0;
-        right: 0;
-    }
+        right : 0;
 </style>
 </head>
 <body>
 <jsp:include page="header.jsp" flush="true"></jsp:include>
 <jsp:include page="my-page.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div>예약내역
-			<div v-if="order.useYnc == 'N'">사용전</div>
-			<div v-if="order.useYnc == 'Y'">사용완료</div>
-			<div v-if="order.useYnc == 'C'">예약취소</div>
-		</div>
-		<div>결제날짜{{order.paymentDate}}</div>
-		<div>주문번호 {{order.productNo}}</div>
-		<div>결제금액 {{order.payment}}</div>
-		<div>주문제품
-			<div v-if="order.productKind == 'STAY'">숙박</div>
-			<div v-if="order.productKind == 'RENT'">렌트카</div>
-			<div v-if="order.productKind == 'LEISURE'">레저</div>
-		</div>
+		1:1 문의내역
 	</div>
 </body>
 </html>
@@ -45,22 +32,20 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		list : [],
-		userId : "${sessionId}",
-		order : ""
+		list : []
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var param = {userId : self.userId};
+			var param = {};
 			$.ajax({
-                url : "/order.dox",
+                url : "list.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.order = data.order;
-                	console.log(self.order);
+                	self.list = data.list;
+                	console.log(self.list);
                 }
             }); 
 		}

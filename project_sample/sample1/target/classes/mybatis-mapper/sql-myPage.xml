@@ -8,4 +8,42 @@
 		FROM T2_ORDER_TBL
 		WHERE U_ID = #{userId}
 	</select>
+	<select id="selectPoint" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
+		SELECT *
+		FROM T2_USER_POINT_TBL
+		WHERE U_ID = #{userId}
+	</select>
+	<!-- 나의 리뷰 불러오기 -->
+	<select id="selectReview" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
+		SELECT *
+		FROM T2_REVIEW_TBL
+		WHERE U_ID = #{userId}
+	</select>
+    <!-- 나의 리뷰 카운트 -->
+	<select id="selectReviewCnt" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM T2_REVIEW_TBL
+		WHERE U_ID = #{userId}
+	</select>
+	<!--나의 리뷰 삭제 -->
+	<update id="deleteReview" parameterType="hashmap">
+		UPDATE T2_REVIEW_TBL
+		SET
+			DELYN = 'Y'
+		WHERE R_NO = #{rNo}
+	</update>
+	<!-- 나의 리뷰 수정창 -->
+	<select id="selectReviewInfo" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
+		SELECT *
+		FROM T2_REVIEW_TBL
+		WHERE R_NO = #{rNo}
+	</select>
+	
+	<update id="editReview" parameterType="hashmap">
+		UPDATE T2_REVIEW_TBL
+		SET
+			R_CONTENT = #{rContent},
+			R_UPDATE_TIME = NOW()
+		WHERE R_NO = #{rNo}
+	</update>
 </mapper>

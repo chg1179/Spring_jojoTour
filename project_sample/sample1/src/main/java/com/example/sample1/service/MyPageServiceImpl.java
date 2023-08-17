@@ -1,6 +1,7 @@
 package com.example.sample1.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import jakarta.servlet.http.HttpSession;
 public class MyPageServiceImpl implements MyPageService{
 
 	@Autowired
-	MyPageMapper orderMapper;
+	MyPageMapper myPageMapper;
 	
 	@Autowired
 	HttpSession session;
@@ -22,7 +23,43 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public MyPage searchOrder(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return orderMapper.selectOrder(map);
+		return myPageMapper.selectOrder(map);
+	}
+
+	@Override
+	public MyPage searchPoint(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.selectPoint(map);
+	}
+
+	@Override
+	public List<MyPage> searchReview(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.selectReview(map);
+	}
+
+	@Override
+	public int searchReviewCnt(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.selectReviewCnt(map);
+	}
+
+	@Override
+	public int removeReview(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.deleteReview(map);
+	}
+
+	@Override
+	public MyPage searchReviewInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.selectReviewInfo(map);
+	}
+
+	@Override
+	public int updateReview(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.editReview(map);
 	}
 	
 

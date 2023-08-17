@@ -71,6 +71,13 @@ public class LoginController {
 			session.setAttribute("sessionName", user.getuName());
 			session.setAttribute("sessionStatus", user.getStatus());
 			session.setAttribute("sessionUpwd", user.getuPwd());
+			session.setAttribute("sessionNickname", user.getNickname());
+			session.setAttribute("sessionBirth", user.getBirth());
+			session.setAttribute("sessionPhone", user.getPhone());
+			session.setAttribute("sessionEmail", user.getEmail());
+			session.setAttribute("sessionAddr", user.getAddr());
+			session.setAttribute("sessionAddrDetail", user.getAddrDetail());
+			session.setAttribute("sessionZipNo", user.getZipno());
 		}
 		return new Gson().toJson(resultMap);
 	}
