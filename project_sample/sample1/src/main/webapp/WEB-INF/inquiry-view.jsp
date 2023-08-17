@@ -62,6 +62,9 @@ var app = new Vue({
                 success : function(data) { 
                 	self.info = data.info;
                 	console.log(data);
+                	if (self.info.iTitle.indexOf("<비밀>") === -1|| self.status === 'A') {
+                        self.showApp = true;
+                    }
                 }
             }); 
 		},
@@ -72,21 +75,27 @@ var app = new Vue({
 				var self = this;
 				$.pageChange("edit.do", {iNo : self.iNo});
 	        },
-	    fnAnswer : function(iNo){
+	    fnAnswer : function(iNo,iTitle){
 	    	var self = this;
-	    	location.href = "answer.do";
+	    	location.href = "answer.do?iNo=" + self.iNo + "&iTitle=" + self.info.iTitle;
 	    },
 
 	    fnPwd: function() {
 	    	var self = this;
 	        if (self.enteredPwd === self.uPwd) {
-	        	self.showApp = true;
+	        	if(self.uId === self.info.uId){
+	        		self.showApp = true;
+	        	} else{
+	        		alert("작성자의 ID와 비밀번호가 일치하지 않습니다.");
+	        	} 
+	        	
 	        } else {
 	          alert("비밀번호가 일치하지 않습니다.");
 	        }
 	      }
 	        
 	}, // methods
+
 	created : function() {
 		var self = this;
 		if(self.iNo != ""){

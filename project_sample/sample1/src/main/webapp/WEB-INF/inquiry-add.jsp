@@ -26,6 +26,7 @@
 <body>
 	<div id="app">
 		<label>제목 : <input v-model="info.iTitle"></label>
+		<input type="checkbox"v-model="fnSecret"> 비밀글
 	<div>
 	<br>
 		<vue-editor v-model="info.iContent"></vue-editor>
@@ -49,7 +50,8 @@ var app = new Vue({
 		info : {
 			iTitle : "<비밀>",
 			iContent : ""
-		}	
+		},
+		fnSecret : true
 	},// data
 	components: {VueEditor},
 	methods : {
@@ -94,9 +96,19 @@ var app = new Vue({
 	                	location.href = "list.do";
 	                }
 	            }); 
-			} 
+			},
 		
 	}, // methods
+	watch: {
+	    fnSecret: function(newFnSecret) {
+	    	var self = this;
+	        if (!newFnSecret) {
+	        	self.info.iTitle = "";
+	        } else {
+	        	self.info.iTitle = "<비밀>";
+	        }
+	    }
+	},
 	created : function() {
 		var self = this;
 		if(self.iNo != ""){

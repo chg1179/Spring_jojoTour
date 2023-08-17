@@ -106,16 +106,14 @@ var app = new Vue({
 		fnMove : function(){
 	        	location.href = "add.do";
 		},  
-	    handleTitleClick(uId, iNo, iTitle) {
-	        if (this.status === 'A' || this.uId === uId) {
-	            // 만족하는 경우 처리할 로직 (여기서는 페이지 이동 등을 수행)
-	            $.pageChange("view.do", { iNo: iNo });
-	        } else {
-	            // 만족하지 않는 경우 알림 창을 띄움
-	            alert("권한 없음");
-	            // 또는 다른 처리를 수행할 수 있음
-	        }
-	    },
+		handleTitleClick(uId, iNo, iTitle) {
+		    var self = this;
+		    if ((self.status === 'A' || self.uId === uId) || iTitle !== '<비밀>') {
+		        $.pageChange("view.do", { iNo: iNo });
+		    } else {
+		        alert("권한 없음");
+		    }
+		},
 		fnNCheck : function(){
 			var self = this;
 			self.selectItem = [];

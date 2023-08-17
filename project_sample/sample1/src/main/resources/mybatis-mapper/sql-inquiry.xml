@@ -12,15 +12,21 @@
 	</select>
 	
 	<insert id="insertInquiry" parameterType="hashmap">
-		INSERT INTO T2_INQUIRY_TBL (I_NO, U_ID, CATEGORY_NO, I_TITLE, I_CONTENT,  I_HITS, I_WRITE_TIME, I_UPDATE_TIME, PRIVATE_YN, ANSWER_YN, DELYN)
-		 SELECT IFNULL(MAX(I_NO) + 2, 1), #{uId}, '0', #{iTitle}, #{iContent}, '0', now(),now(), 'Y', 'N', 'N'
-		 FROM T2_INQUIRY_TBL
+	    INSERT INTO T2_INQUIRY_TBL 
+	        (I_NO, U_ID, CATEGORY_NO, I_TITLE, I_CONTENT,  I_HITS, I_WRITE_TIME, I_UPDATE_TIME, PRIVATE_YN, ANSWER_YN, DELYN, PARENT_NO)
+	    SELECT	
+	        (SELECT IFNULL(MAX(I_NO), 0) + 1), #{uId}, '0', #{iTitle}, #{iContent}, '0', now(), now(), 'Y', 'N', 'N', #{parentNo}
+	    FROM T2_INQUIRY_TBL
 	</insert>
 	
 	<insert id="answerInquiry" parameterType="hashmap">
-	    INSERT INTO T2_INQUIRY_TBL (I_NO, U_ID, CATEGORY_NO, I_TITLE, I_CONTENT, I_HITS, I_WRITE_TIME, I_UPDATE_TIME, PRIVATE_YN, ANSWER_YN, DELYN)
-	    SELECT #{iNo} + 1, #{uId}, '0', #{iTitle}, #{iContent}, '0', now(), now(), 'Y', 'N', 'N'
+	    INSERT INTO T2_INQUIRY_TBL 
+	        (I_NO, U_ID, CATEGORY_NO, I_TITLE, I_CONTENT, I_HITS, I_WRITE_TIME, I_UPDATE_TIME, PRIVATE_YN, ANSWER_YN, DELYN, PARENT_NO)
+	    SELECT 
+	        #{iNo}, #{uId}, '0', #{iTitle}, #{iContent}, '0', now(), now(), 'Y', 'N', 'N',
+	        CASE WHEN #{parentNo} IS NULL OR #{parentNo} = '' THEN NULL ELSE #{parentNo} END
 	    FROM T2_INQUIRY_TBL
+	    WHERE I_NO = #{parentNo}
 	</insert>
 	 
 	<select id="selectInquiryInfo" parameterType="hashmap" resultType="com.example.sample1.model.Inquiry">
