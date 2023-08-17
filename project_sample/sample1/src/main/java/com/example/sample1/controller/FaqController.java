@@ -75,13 +75,7 @@ public class FaqController {
 		resultMap = faqService.searchFaqInfo(map);
 		return new Gson().toJson(resultMap);
 	}
-	@RequestMapping(value = "/faq/remove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	@ResponseBody
-	public String faqRemove(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		faqService.removeFaq(map);
-		return new Gson().toJson(resultMap);
-	}
+
 	
 	@RequestMapping(value = "/faq/edit.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.sample1.mapper.FreeMapper">
+
+	<insert id="insertFree" parameterType="hashmap">
+		INSERT INTO T2_FREE_TBL (FREE_NO, FREE_TITLE, FREE_CONTENT, U_ID, F_HITS, F_WRITE_TIME, F_UPDATE_TIME, DELYN, NOTIFY_CNT)
+		 SELECT MAX(FREE_NO) + 1, #{freeTitle}, #{freeContent}, #{uId}, '0', now(), now(), 'N', '0'
+		 FROM T2_FREE_TBL
+	</insert>
+	
+	<select id="selectFreeList" parameterType="hashmap" 
+	resultType="com.example.sample1.model.Free">
+		SELECT *
+      FROM T2_FREE_TBL F
+      LEFT JOIN (
+         SELECT COUNT(*) COMM_CNT, FREE_NO
+         FROM T2_COMMENT_TBL
+         GROUP BY FREE_NO
+      ) C ON  F.FREE_NO = C.FREE_NO
+      WHERE 1=1
+      <if test="search != '' and search != null"> 
+      AND (FREE_TITLE LIKE CONCAT('%',               #{search},'%')
+            OR U_ID LIKE CONCAT('%',#{search},'%'))
+      </if>
+	</select>
+
+		<select id="selectFreeInfo" parameterType="hashmap" 
+		resultType="com.example.sample1.model.Free">
+			SELECT *
+			FROM T2_FREE_TBL
+			WHERE FREE_NO = #{freeNo}
+		</select>
+		
+				
+		<select id="selectFreeComment" parameterType="hashmap" resultType="com.example.sample1.model.Free">
+			SELECT *
+			FROM T2_COMMENT_TBL
+			WHERE FREE_NO = #{freeNo} AND DELYN = 'N'
+			ORDER BY C_WRITE_TIME ASC
+		</select>
+		
+	<insert id="insertFreeComment" parameterType="hashmap">
+	    INSERT INTO T2_COMMENT_TBL 
+	        (C_NO, FREE_NO, COMM, U_ID, C_WRITE_TIME, C_UPDATE_TIME, DELYN, NOTIFY_CNT)
+	     SELECT 
+	     	#{cNo} , #{freeNo}, #{comment}, #{uId}, now(), now(), 'N', '0'
+	     FROM 
+	     	T2_FREE_TBL
+	</insert>
+		
+	<delete id="deleteFreeComment" parameterType="hashmap">
+		DELETE 
+		FROM T2_COMMENT_TBL
+		WHERE C_NO = #{cNo}
+	</delete>
+
+	
+	<update id="freeCnt" parameterType="hashmap">
+		UPDATE T2_FREE_TBL
+		SET
+			F_HITS = F_HITS + 1
+		WHERE FREE_NO = #{freeNo}
+	</update>
+	
+	<update id="updateFree" parameterType="hashmap">
+		UPDATE T2_FREE_TBL
+		SET
+			FREE_TITLE = #{freeTitle},
+			FREE_CONTENT = #{freeContent},
+			F_UPDATE_TIME = now()
+		WHERE FREE_NO = #{freeNo}
+	</update>
+	
+		<delete id="deleteFreeCheck" parameterType="hashmap">
+			DELETE
+			FROM T2_FREE_TBL
+			WHERE FREE_NO IN
+			<foreach collection="list" item="item" open="(" close=")" separator=",">
+				#{item}
+			</foreach>
+		</delete>
+
+</mapper>
