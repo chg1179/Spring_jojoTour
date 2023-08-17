@@ -13,15 +13,10 @@
 	</select>
 	
 	<update id="requestApp" parameterType="hashmap">
-	UPDATE T2_PACKAGE_REQUEST_TBL P
-		LEFT OUTER JOIN T2_ROOM_TBL S ON ROOM_NO = PRODUCT_NO AND PRODUCT_KIND = 'STAY'
-		LEFT OUTER JOIN T2_RENT_CAR_TBL R ON RENT_NO = PRODUCT_NO AND PRODUCT_KIND = 'RENT'
-		LEFT OUTER JOIN T2_LEISURE_TBL L ON LEISURE_NO = PRODUCT_NO AND PRODUCT_KIND = 'LEISURE'
+	UPDATE T2_PACKAGE_REQUEST_TBL
 	SET 
 		STATE = 'A'
-	WHERE ROOM_NO = #{roomNo} 
-	  AND RENT_NO = #{rentNo} 
-	  AND LEISURE_NO = #{leisureNo};
+	WHERE PRODUCT_NO IN (#{selectRoom}, #{selectRent}, #{selectLeisure});
 	</update>
 	
 	<select id="rentRequest" parameterType="hashmap" resultType="com.example.sample1.model.Admin">

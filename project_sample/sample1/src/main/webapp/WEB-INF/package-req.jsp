@@ -78,7 +78,8 @@
 		</thead>
 		<tbody >
 			<tr v-for="item in roomList">		
-				<td name="room" style="width : 80px"><input type="radio" :value="item.roomNo" v-model="selectRoom"></td>
+				<td v-if="item.state =='D'" name="room" style="width : 80px"><input type="radio" :value="item.roomNo" v-model="selectRoom"></td>
+				<td v-else></td>
 				
 				<td style="width : 120px">{{item.uId}}</td>
 				
@@ -106,16 +107,20 @@
 			<tr>	
 				<th>선택</th>
 				<th>호스트</th>
+				<th>레저종류</th>
 				<th>레저명</th>
 				<th>현황</th>
 			<tr>
 		</thead>
 		<tbody >
 			<tr v-for="item in leisureList">		
-				<td name="leisure" style="width : 80px"><input type="radio" :value="item.leisureNo" v-model="selectLeisure"></td>
+				<td v-if="item.state =='D'" name="leisure" style="width : 80px"><input type="radio" :value="item.leisureNo" v-model="selectLeisure"></td>
+				<td v-else></td>
 				
 				<td style="width : 120px">{{item.uId}}</td>
 				
+			    <td>{{item.leisureKind}}</td>
+			    
 			    <td><a href="javascript:;" @click="fnleisureView">{{item.leisureName}}</a></td>
 			    
 			    <td v-if="item.state == 'D'" style="width : 80px">
@@ -145,7 +150,8 @@
 		</thead>
 		<tbody >
 			<tr v-for="item in rentList">		
-				<td name="rent" style="width : 80px"><input type="radio" :value="item.rentNo" v-model="selectRent"></td>
+				<td v-if="item.state =='D'" name="rent" style="width : 80px"><input type="radio" :value="item.rentNo" v-model="selectRent"></td>
+				<td v-else></td>
 				
 				<td style="width : 120px">{{item.uId}}</td>
 				
@@ -177,7 +183,8 @@ var app = new Vue({
 		selectRoom : "",
 		selectLeisure : "",
 		selectRent : "",
-		status : "${sessionStatus}"
+		status : "${sessionStatus}",
+		state : "${state}"
 	},// data
 	methods : {
 		fnRentList : function(){
@@ -216,7 +223,6 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	self.leisureList = data.list;
-                	console.log(self.leisureList);
                 }
             }); 
 		},
@@ -237,7 +243,6 @@ var app = new Vue({
 	                data : nparmap,
 	                success : function(data) { 
 	                	alert("허용되었습니다.");
-	                	self.info = data.info;
 	                	self.fnRentList();
 	            		self.fnRoomList();
 	            		self.fnLeisureList();
