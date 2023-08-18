@@ -31,4 +31,5 @@ public interface StayService {
 	/*
 	 * // 숙소 편의시설 인서트 int addStayService(HashMap<String, Object> map);
 	 */
+	
 }

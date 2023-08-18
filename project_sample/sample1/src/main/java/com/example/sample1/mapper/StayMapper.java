@@ -33,4 +33,5 @@ public interface StayMapper {
 	// 체크된 룸서비스 값 인서트
 	int insertStayService(HashMap<String, Object> map);
 	
+	
 } 

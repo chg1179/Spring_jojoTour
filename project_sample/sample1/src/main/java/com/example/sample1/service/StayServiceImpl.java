@@ -83,8 +83,8 @@ public class StayServiceImpl implements StayService{
 		return stayMapper.selectServiceList(map);
 	}
 
-	/*
-	 * @Override public int addStayService(HashMap<String, Object> map) { // TODO
-	 * Auto-generated method stub return stayMapper.insertStayService(map); }
-	 */
+
+
+
+	
 }
