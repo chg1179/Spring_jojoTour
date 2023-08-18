@@ -29,6 +29,22 @@
         </div>
         <br>
         <button @click="fnAdd">등록</button>
+        
+        <ul>
+            <li v-for="item in list" :key="item.iNo">
+                {{ item.iTitle }}
+                <button @click="toggleReplyForm(item.iNo)">답글 달기</button>
+                <div v-if="showReplyForm === item.iNo">
+                    <input type="text" v-model="newReply" placeholder="답글 내용">
+                    <button @click="addReply(item.iNo, item.parentNo)">답글 등록</button>
+                </div>
+                <ul>
+                    <li v-for="reply in item.replies" :key="reply.iNo">
+                        {{ reply.title }}
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </body>
 </html>
@@ -46,7 +62,9 @@ var app = new Vue({
             iTitle: "<답변완료>",
             iContent: "항상 감사합니다^^"
         },
-        parentNo: ""
+        parentNo: "",
+        newReply: '', // 새 답글 내용
+        showReplyForm: null
     },
     components: {VueEditor},
     methods: {
@@ -79,6 +97,24 @@ var app = new Vue({
                     self.parentNo = data.info.iNo;
                 }
             });
+        },
+        toggleReplyForm(postId) {
+            this.showReplyForm = (this.showReplyForm === postId) ? null : postId;
+            this.newReply = ''; // 답글 폼을 열 때마다 초기화
+        },
+        addReply(postId, iNo) {
+            if (this.newReply === '') {
+                return; // 빈 답글은 등록하지 않음
+            }
+            // 서버에 답글 추가 요청을 보내는 코드
+            // 여기서는 간략히 처리한다고 가정
+            this.list.push({
+                iNo: this.list.length + 1,
+                iNo: iNo,
+                iTitle: this.newReply,
+                replies: []
+            });
+            this.newReply = ''; // 답글 등록 후 초기화
         }
     }, // methods
     created: function () {
