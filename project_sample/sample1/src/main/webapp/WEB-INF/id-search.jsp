@@ -17,6 +17,7 @@
         align-items: center;
         justify-content: center;
         height: 100vh;
+        margin-top : -200px;
     }
     .id_search_inner{
         text-align: center;

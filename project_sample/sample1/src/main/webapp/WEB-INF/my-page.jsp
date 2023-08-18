@@ -23,7 +23,7 @@
     }
     .my_page_title{
         width: 200px;
-        background-color: #FFA41B;
+        background: linear-gradient(to right, #ff9900, #ff3333);
         text-align: center;
         padding: 5px;
         box-sizing: border-box;

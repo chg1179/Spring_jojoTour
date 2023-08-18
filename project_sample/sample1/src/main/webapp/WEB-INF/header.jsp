@@ -24,7 +24,7 @@
             height: 100%;
         }
         header{
-            background-color: #F86F03;
+            background: linear-gradient(to right, #ff9900, #ff3333);
             position : fixed;
             width : 100%;
             z-index : 1;
@@ -145,7 +145,7 @@
 	                            </ul>
 	                        </li>
 	                        <li class="header_rentCar">
-	                            <a href="javascript:;">렌터카</a>
+	                            <a href="javascript:;" @click="fnRentCar">렌터카</a>
 	                            <ul>
 	                                <li><a href="javascript:;">소형차</a></li>
 	                                <li><a href="javascript:;">중형차</a></li>
@@ -230,13 +230,16 @@ var app = new Vue({
         	location.href="/host/main.do";
         },
         fnMyHome : function(){
-        	location.href="/my/change.do";
+        	location.href="/my/order.do";
         },
         fnInquiry : function(){
             location.href="../inquiry/list.do";
         },
         fnFree : function(){
         	location.href="../free/list.do";
+        },
+        fnRentCar : function(){
+        	location.href="../rentcar.do";
         }
 	}, // methods
 	created : function() {
