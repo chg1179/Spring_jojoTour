@@ -64,13 +64,13 @@
 			<tr >		
 				<td rowspan="3" style="width : 80px">{{item.packageNo}}</td>
 					
-				<td rowspan="3" style="font-size: 20px;">{{item.packageName}}</td>
+				<td rowspan="3" style="font-size: 20px;"><a href="javascript:;" @click="fnPackageView">{{item.packageName}}</a></td>
 				
 				<td style="background-color:#f8852a; color : white; width: 60px;">숙소</td>
 				
-				<td style="width : 300px">{{item.stayName}}</td>
+				<td style="width : 300px"><a href="javascript:;" @click="fnStayView">{{item.stayName}}</a></td>
 				
-				<td style="width : 200px">{{item.roomName}}</td>
+				<td style="width : 200px"><a href="javascript:;" @click="fnRoomView">{{item.roomName}}</a></td>
 				
 			   <td style="width: 100px;"> {{item.roomPrice}}원</td>
 			   
@@ -78,15 +78,15 @@
 			</tr>
 			<tr>
 				<td style="background-color:#f8852a; color : white;">레저</td>
-				<td>{{item.leisureName}}</td>
+				<td><a href="javascript:;" @click="fnLeisureView">{{item.leisureName}}</a></td>
 				<td>{{item.leisureKind}}</td>
-				<td >{{item.leisurePrice}}원</td>
+				<td>{{item.leisurePrice}}원</td>
 			</tr>
 			<tr>
 				<td style="background-color:#f8852a; color : white;">렌트카</td>
-				<td>{{item.rentName}}</td>
+				<td><a href="javascript:;" @click="fnRentView">{{item.rentName}}</a></td>
 				<td>{{item.rentKind}}</td>
-				<td> {{item.rentPrice}}원</td>
+				<td>{{item.rentPrice}}원</td>
 			</tr>
 		</tbody>
 	</table>
@@ -119,6 +119,22 @@ var app = new Vue({
 		fnPackageView : function(){
         	var self = this;
 			$.pageChange("../admin/packagereq.do", {packageNo : self.packageNo}); 
+        },
+        fnStayView : function(){
+        	var self = this;
+			$.pageChange("../admin/stay.do", {stayNo : self.stayNo}); 
+        },
+        fnRoomView : function(){
+        	var self = this;
+			$.pageChange("../admin/room.do", {roomNo : self.roomNo}); 
+        },
+        fnRentView : function(){
+        	var self = this;
+			$.pageChange("../admin/rent.do", {rentNo : self.rentNo}); 
+        },
+        fnLeisureView : function(){
+        	var self = this;
+			$.pageChange("../admin/leisure.do", {leisureNo : self.leisureNo}); 
         }
 	}, // methods
 	created : function() {
