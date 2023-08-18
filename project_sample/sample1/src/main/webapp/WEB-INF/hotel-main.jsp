@@ -91,6 +91,10 @@
        		margin-inline-end : 0px;
        		padding-inline-start: 
        }
+       
+       ul a:hover{
+		text-decoration: underline;
+	}
         
 </style>
 </head>
@@ -143,10 +147,9 @@
     </div>
     <div class="list-wrop">
    		<ul>
-   			<a href="">상세페이지로 이동</a>
 	    	<li v-for="item in list">
 		    	<div class="name">
-		    		<div><a href="">{{item.stayName}}</a></div>
+		    		<div><a @click="fnDetail">{{item.stayName}}</a></div>
 				</div>	
 			</li>
 	    </ul>
@@ -183,6 +186,10 @@ var app = new Vue({
                 	console.log(self.list);
                 }
             }); 
+		},
+		fnDetail : function(){
+			var self = this;
+			$.pageChange("hotelDetail.do", {stayNo : self.stayNo});
 		}
 	}, // methods
 	created : function() {

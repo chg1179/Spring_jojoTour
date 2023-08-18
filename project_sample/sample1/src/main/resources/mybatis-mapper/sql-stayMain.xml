@@ -15,4 +15,10 @@
 		SELECT * 
 		FROM T2_SERVICE_TBL
 	</select>
+	
+	<select id="selectRoomList" parameterType="hashmap" resultType="com.example.sample1.model.Room">
+		SELECT *
+		FROM T2_ROOM_TBL
+		WHERE STAY_NO = #{stayNo}
+	</select>
 </mapper>

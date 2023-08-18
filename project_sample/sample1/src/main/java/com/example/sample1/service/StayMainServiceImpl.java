@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.sample1.mapper.StayMainMapper;
+import com.example.sample1.model.Room;
 import com.example.sample1.model.Stay;
 
 @Service
@@ -25,6 +26,12 @@ public class StayMainServiceImpl implements StayMainService{
 	public List<Stay> searchServiceList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return stayMainMapper.selectServiceList(map);
+	}
+
+	@Override
+	public List<Room> searchRoomList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return stayMainMapper.selectRoomList(map);
 	}
 	
 	
