@@ -26,10 +26,13 @@ public interface RentCarService {
 	HashMap<String, Object> addRentCar(HashMap<String, Object> map);
 	
 	//렌트카 정보 수정
-	int editRentCar(HashMap<String, Object> map);
+	HashMap<String, Object> editRentCar(HashMap<String, Object> map);
 	
 	//렌트카 이미지 추가
 	int addRentImg(HashMap<String, Object> map);
+	
+	//렌트카 이미지 수정
+	int editRentCarImg(HashMap<String, Object> map);
 	
 	// 렌트카 이미지 출력
 	List<RentCarImg> searchCarImgList(HashMap<String, Object> map);

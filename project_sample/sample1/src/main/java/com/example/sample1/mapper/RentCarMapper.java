@@ -40,6 +40,9 @@ public interface RentCarMapper {
 	//렌트카 이미지 추가
 	int insertRentImg(HashMap<String, Object> map);
 	
+	//렌트카 이미지 수정
+	int updateRentCarImg(HashMap<String, Object> map);
+	
 	//렌트카 이미지 리스트
 	List<RentCarImg> selectCarImgList(HashMap<String, Object> map);
 }

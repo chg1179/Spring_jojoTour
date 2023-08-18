@@ -95,7 +95,7 @@
 				<th>썸네일이미지</th>
 				<td>
 					<div class="filebox">
-					    <input class="upload-name" id="fileYName" value="첨부파일" placeholder="첨부파일">
+					    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly>
 					    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
 					    <label for="fileY">이미지선택</label> 
 					    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
@@ -106,7 +106,7 @@
 				<th>상세정보이미지</th>
 				<td>
 					<div class="filebox">
-					    <input class="upload-name" id="fileNName" value="첨부파일" placeholder="첨부파일">
+					    <input class="upload-name" id="fileNName" placeholder="첨부파일" readonly>
 					    <a href="javascript:;" v-if="fileNFlg" @click="fnDelFile('N')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
 					    <label for="fileN">이미지선택</label> 
 					    <input type="file" accept=".gif, .jpg, .png" id="fileN" name="fileN" @change="fnFlgChange('N')">
@@ -253,11 +253,10 @@ var app = new Vue({
 				return;
 			}
 			fileCheck = document.getElementById("fileN").value;
-			if(!fileCheck && !self.fileYFlg){
+			if(!fileCheck && !self.fileNFlg){
 				alert("상세정보 이미지를 첨부해 주세요");
 				return;
 			}
-			
 			if(!confirm("해당 정보를 수정하시겠습니까?")){
 	        	alert("취소되었습니다.");
 	          	return;
@@ -273,16 +272,39 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) {
-                	alert("정보 수정이 완료되었습니다.");
-                	$.pageChange("view.do", {rentNo : self.rentNo, rCnt : 0}); 
-                	/*
-                	파일 업로드
-                	var form = new FormData();
-	       	        form.append( "file1",  $("#file1")[0].files[0] );
-	       	     	form.append( "idx",  data.idx); // pk
-	           		self.upload(form);  */ 
+                	//파일을 수정하지 않았다면 변경X
+                	for(var i=0;i< self.imgList.length;i++){
+                		if(self.imgList[i].mainYN == 'Y' && $("#fileY")[0].files[0]){
+                			var form = new FormData();
+                			form.append( "files", $("#fileY")[0].files[0]);
+                			form.append( "imgNo", self.imgList[i].imgNo); //사진 pk
+                			self.fileChange(form);
+                		} else if(self.imgList[i].mainYN == 'N' && $("#fileN")[0].files[0]){
+                			var form2 = new FormData();
+        	       	        form2.append( "files", $("#fileN")[0].files[0]);
+        	       	     	form2.append( "imgNo", self.imgList[i].imgNo); //사진 pk
+        	       	     	self.fileChange(form2);
+                		}
+                	}
+	           		alert("정보 수정이 완료되었습니다.");
+                	$.pageChange("view.do", {rentNo : self.rentNo, rCnt : 0});
+	       	     	
                 }
             });
+		},
+		// 파일 업데이트
+	    fileChange : function(form){
+	    	var self = this;
+	         $.ajax({
+	             url : "fileChange.dox"
+	           , type : "POST"
+	           , processData : false
+	           , contentType : false
+	           , data : form
+	           , success:function(response) { 
+	        	   
+	           }
+	       });
 		},
 		fnBack : function(){
 			location.href = "../rentcar.do"; 

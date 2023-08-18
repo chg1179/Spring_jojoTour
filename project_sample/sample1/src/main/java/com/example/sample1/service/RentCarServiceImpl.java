@@ -55,13 +55,6 @@ public class RentCarServiceImpl implements RentCarService{
 		return rentCarMapper.deleteRentPack(map);
 	}
 
-	//렌트카 정보 수정
-	@Override
-	public int editRentCar(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return rentCarMapper.updateRentCar(map);
-	}
-
 	//렌트카 추가
 	@Override
 	public HashMap<String, Object> addRentCar(HashMap<String, Object> map) {
@@ -72,6 +65,15 @@ public class RentCarServiceImpl implements RentCarService{
 		return resultMap;
 	}
 
+	//렌트카 정보 수정
+	@Override
+	public HashMap<String, Object> editRentCar(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		rentCarMapper.updateRentCar(map);
+		return resultMap;
+	}
+
 	//렌트카 이미지 추가
 	@Override
 	public int addRentImg(HashMap<String, Object> map) {
@@ -79,6 +81,13 @@ public class RentCarServiceImpl implements RentCarService{
 		return rentCarMapper.insertRentImg(map);
 	}
 
+	//렌트카 이미지 수정
+	@Override
+	public int editRentCarImg(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return rentCarMapper.updateRentCarImg(map);
+	}
+	
 	//렌트카 이미지 리스트
 	@Override
 	public List<RentCarImg> searchCarImgList(HashMap<String, Object> map) {

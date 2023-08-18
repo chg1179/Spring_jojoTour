@@ -156,7 +156,7 @@ var app = new Vue({
 				data : param,
 				success : function(data) {
 					self.list = data.carList;
-					self.rentNo = self.list[0].rentNo;
+					self.rentNo = self.list[0].rentNo; //페이징시 맨 위에 값을 디폴트로 설정한다.
 					self.cnt = data.cnt;
 					self.pageCount = Math.ceil(self.cnt / 10);
 				}

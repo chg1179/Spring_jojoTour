@@ -147,8 +147,7 @@ public class RentCarContoller {
 	@ResponseBody
 	public String editRentCar(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		rentCarService.editRentCar(map);
-		resultMap.put("success", "렌트카정보수정");
+		resultMap = rentCarService.editRentCar(map);
 		return new Gson().toJson(resultMap);
 	}
 	
@@ -159,7 +158,7 @@ public class RentCarContoller {
         String url = null;
         String path="c:\\img\\rentCar";
         try {
- 
+        	Thread.sleep(100);//같은 파일명을 넣지 않기 위해
             //String uploadpath = request.getServletContext().getRealPath(path);
             String uploadpath = path;
             String originFilename = multi.getOriginalFilename();
@@ -199,7 +198,54 @@ public class RentCarContoller {
         }
         return null;
     }
-    
+	
+	//렌트카 이미지 수정
+	@RequestMapping("/host/rentcar/fileChange.dox")
+	public String change(@RequestParam("files") MultipartFile multi, @RequestParam("imgNo") int imgNo, HttpServletRequest request, HttpServletResponse response, Model model)
+	{
+		String url = null;
+        String path="c:\\img\\rentCar";
+        try {
+        	Thread.sleep(100);//같은 파일명을 넣지 않기 위해
+            //String uploadpath = request.getServletContext().getRealPath(path);
+            String uploadpath = path;
+            String originFilename = multi.getOriginalFilename();
+            String extName = originFilename.substring(originFilename.lastIndexOf("."),originFilename.length());
+            long size = multi.getSize();
+            String saveFileName = genSaveFileName(extName);
+            
+            System.out.println("uploadpath : " + uploadpath);
+            System.out.println("originFilename : " + originFilename);
+            System.out.println("extensionName : " + extName);
+            System.out.println("size : " + size);
+            System.out.println("saveFileName : " + saveFileName);
+            String path2 = System.getProperty("user.dir");
+            System.out.println("Working Directory = " + path2 + "\\src\\webapp\\img\\rentCar");
+            if(!multi.isEmpty())
+            {
+                File file = new File(path2 + "\\src\\main\\webapp\\img\\rentCar", saveFileName);
+                multi.transferTo(file);
+                
+                HashMap<String, Object> map = new HashMap<String, Object>();
+                map.put("imgName", originFilename);
+                map.put("imgSaveName", saveFileName);
+                map.put("imgPath", "../img/rentCar/" + saveFileName);
+                map.put("imgNo", imgNo);
+                
+                // insert 쿼리 실행
+                rentCarService.editRentCarImg(map);
+                
+                model.addAttribute("imgName", multi.getOriginalFilename());
+                model.addAttribute("uploadPath", file.getAbsolutePath());
+                
+                return null;
+            }
+        }catch(Exception e) {
+            System.out.println(e);
+        }
+        return null;
+	}
+	
     // 현재 시간을 기준으로 파일 이름 생성
     private String genSaveFileName(String extName) {
         String fileName = "";
@@ -217,8 +263,6 @@ public class RentCarContoller {
         return fileName;
     }
     
-    
-    //렌터카 이미지 리스트
 	//렌트카 정보 리스트 출력
 	@RequestMapping(value = "/host/rentcar/carImgList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody

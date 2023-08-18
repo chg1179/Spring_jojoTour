@@ -93,11 +93,14 @@
 		)
 	</insert>
 	
-	<update id="changeRentCarImg" parameterType="hashmap">
+	<update id="updateRentCarImg" parameterType="hashmap">
 		UPDATE T2_RENT_IMG_TBL
 		SET
-			IMG_DELYN = 'Y'
-		WHERE RENT_NO = #{rentNo}
+			IMG_NAME = #{imgName},
+			IMG_SAVE_NAME = #{imgSaveName},
+			IMG_PATH = #{imgPath},
+			IMG_DATE = now()
+		WHERE IMG_NO = #{imgNo} 
 	</update>
 	
 	<select id="selectCarImgList" parameterType="hashmap" resultType="com.example.sample1.model.RentCarImg">
