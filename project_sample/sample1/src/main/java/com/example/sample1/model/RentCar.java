@@ -27,4 +27,12 @@ public class RentCar {
 	private String state; 
 	
 	private int rCnt;
+	
+	private int imgNo;
+	private String imgName;
+	private String imgSaveName;
+	private String imgPath;
+	private String imgDate;
+	private String mainYn;
+	private String imgDelYn;
 }

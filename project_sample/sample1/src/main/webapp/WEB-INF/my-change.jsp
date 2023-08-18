@@ -180,6 +180,10 @@ var app = new Vue({
 				alert("생년월일을 정확하게 작성해주세요.");
 				return;
 			}
+			if(self.user.phone.length > 11){
+				alert("핸드폰번호에서 - 없이 입력하세요.");
+				return;
+			}
 			var param = self.user;
 			$.ajax({
                 url : "/my/change.dox",

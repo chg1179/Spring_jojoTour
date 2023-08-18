@@ -56,6 +56,17 @@
 		margin-top: 60px;
 		color : #5c5c5c;
 	}
+	@media (max-width : 1400px){
+		.my_order_box{
+			width: 600px;
+		}
+	}
+	
+	@media (max-width : 1000px){
+		.my_order_box{
+			width: 500px;
+		}
+	}
 </style>
 </head>
 <body>
