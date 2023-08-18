@@ -5,8 +5,8 @@
 <mapper namespace="com.example.sample1.mapper.AdminMapper">
 	
 	<select id="insertRequest" parameterType="hashmap" resultType="com.example.sample1.model.Admin">
-		INSERT INTO T2_REQUEST_APP_TBL (ROOM_NO, RENT_NO, LEISURE_NO)
-		VALUES (#{selectRoom}, #{selectRent}, #{selectLeisure)
+		INSERT INTO T2_PACKAGE_APP_TBL (ROOM_NO, RENT_NO, LEISURE_NO)
+		VALUES (#{selectRoom}, #{selectRent}, #{selectLeisure})
 	</select>
 	
 	<update id="requestApp" parameterType="hashmap">

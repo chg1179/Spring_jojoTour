@@ -45,7 +45,7 @@ public class Admin {
 	private String productKind;
 	private String leisureKind;
 	private String leisureName;
-	private String leisureNo;
+	private int leisureNo;
 	private String leisurePrice;
 	
 	//inner

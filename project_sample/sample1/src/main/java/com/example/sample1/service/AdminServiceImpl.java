@@ -29,7 +29,7 @@ public class AdminServiceImpl implements AdminService {
 
 	//리퀘스트 넣기
 	@Override
-	public int requestInsert(HashMap<String, Object> map) {
+	public Integer requestInsert(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return adminMapper.insertRequest(map);
 	}
