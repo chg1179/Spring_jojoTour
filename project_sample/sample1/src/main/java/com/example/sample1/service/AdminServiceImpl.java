@@ -61,4 +61,10 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return adminMapper.leisureRequest(map);
 	}
+
+	@Override
+	public List<Admin> searchReqList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminMapper.selectReqList(map);
+	}
 }

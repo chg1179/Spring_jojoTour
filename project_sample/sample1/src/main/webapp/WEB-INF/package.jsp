@@ -6,7 +6,7 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
-<title>User List</title>
+<title>Package List Page</title>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 	body {
@@ -38,21 +38,9 @@
 		border-left-width: 2px;
 		
 	}
-	tr:hover {
+	td:hover {
 	    background-color: #EEEEEE;
 	    color : black;
-	  }
-	#abtn {
-		margin : 5px auto;
-		border-radius : 20px;
-		border : 1px solid #f8852a;
-		width : 80px;
-		height: 40px;
-		background-color: #f8852a;
-		color : white;
-	} 
-	#abtn:hover {
-	    background-color: #f89552;
 	  }
 </style>
 </head>
@@ -60,115 +48,50 @@
 <jsp:include page="header.jsp" flush="true"></jsp:include>
 <div id="app">
 	<div style="text-align : center; margin: 20px auto;">
-		<h2>패키지 신청 목록</h2>
+		<h2 style="color:#F86F03;">패키지 목록</h2>
 		<hr style="width: 1000px; margin: 2px auto;">
 	</div>
 	<table>
 		<thead>
-			<tr > 
-				<td colspan="4" style="text-align:left; padding-left: 30px; font-size: 20px; color:#F86F03;">숙소</td>
-			</tr>
 			<tr>	
-				<th>선택</th>
-				<th>호스트</th>	
-				<th>숙소명</th>
-				<th>룸</th>
-				<th>현황</th>
+				<th>번호</th>
+				<th>패키지명</th>	
+				<th colspan="3">구성</th>
+				<th colspan="2">가격</th>
 			<tr>
 		</thead>
-		<tbody >
-			<tr v-for="item in roomList">		
-				<td v-if="item.state =='D'" name="room" style="width : 80px"><input type="radio" :value="item.roomNo" v-model="selectRoom"></td>
-				<td v-else> --- </td>
+		<tbody v-for="item in list">
+			<tr >		
+				<td rowspan="3" style="width : 80px">{{item.packageNo}}</td>
+					
+				<td rowspan="3" style="font-size: 20px;">{{item.packageName}}</td>
 				
-				<td style="width : 120px">{{item.uId}}</td>
+				<td style="background-color:#f8852a; color : white; width: 60px;">숙소</td>
 				
-			    <td><a href="javascript:;" @click="fnStayView">{{item.stayName}}</a></td>
-			    
-			    <td style="width : 300px"><a href="javascript:;" @click="fnRoomView">{{item.roomName}}</a></td>
-			    
-			    <td v-if="item.state == 'D'" style="width : 80px">
-			    	<div> 보 류 중 </div>
-			    </td>
-			    <td v-else>
-			  	  <div > 신청완료 </div>
-			  	</td>
+				<td style="width : 300px">{{item.stayName}}</td>
+				
+				<td style="width : 200px">{{item.roomName}}</td>
+				
+			   <td style="width: 100px;"> {{item.roomPrice}}원</td>
+			   
+			    <td rowspan="3" style="width: 200px; border-left-style:dotted; border-left-color: #f8852a;"><span style="color:#f8852a">TOTAL : </span>{{ item.roomPrice + item.rentPrice + item.leisurePrice }}원</td>
+			</tr>
+			<tr>
+				<td style="background-color:#f8852a; color : white;">레저</td>
+				<td>{{item.leisureName}}</td>
+				<td>{{item.leisureKind}}</td>
+				<td >{{item.leisurePrice}}원</td>
+			</tr>
+			<tr>
+				<td style="background-color:#f8852a; color : white;">렌트카</td>
+				<td>{{item.rentName}}</td>
+				<td>{{item.rentKind}}</td>
+				<td> {{item.rentPrice}}원</td>
 			</tr>
 		</tbody>
 	</table>
 	
-	<hr style="width: 1300px; margin: 2px auto;">
 	
-	<table>
-		<thead>
-			<tr > 
-				<td colspan="4" style="text-align:left; padding-left: 30px; font-size: 20px; color:#F86F03;">레저</td>
-			</tr>
-			<tr>	
-				<th>선택</th>
-				<th>호스트</th>
-				<th>레저명</th>
-				<th>레저종류</th>
-				<th>현황</th>
-			<tr>
-		</thead>
-		<tbody >
-			<tr v-for="item in leisureList">		
-				<td v-if="item.state =='D'" name="leisure" style="width : 80px"><input type="radio" :value="item.leisureNo" v-model="selectLeisure"></td>
-				<td v-else> --- </td>
-				
-				<td style="width : 120px">{{item.uId}}</td>
-			
-			    <td><a href="javascript:;" @click="fnleisureView">{{item.leisureName}}</a></td>
-			    
-			    <td style="width : 300px">{{item.leisureKind}}</td>
-			    
-			    <td v-if="item.state == 'D'" style="width : 80px">
-			    	<div> 보 류 중 </div>
-			    </td>
-			    <td v-else>
-			  	  <div > 신청완료 </div>
-			  	</td>
-			</tr>
-		</tbody>
-	</table>
-	
-	<hr style="width: 1300px; margin: 2px auto;">
-	
-	<table>
-		<thead>
-			<tr> 
-				<td colspan="4" style="text-align:left; padding-left: 30px; font-size: 20px; color:#F86F03;">렌트카</td>
-			</tr>
-			<tr>	
-				<th>선택</th>
-				<th>호스트</th>	
-				<th>차종</th>
-				<th>차급</th>
-				<th>현황</th>
-			<tr>
-		</thead>
-		<tbody >
-			<tr v-for="item in rentList">		
-				<td v-if="item.state =='D'" name="rent" style="width : 80px"><input type="radio" :value="item.rentNo" v-model="selectRent"></td>
-				<td v-else> --- </td>
-				
-				<td style="width : 120px">{{item.uId}}</td>
-				
-			    <td><a href="javascript:;" @click="fnRentView">{{item.rentName}}</a></td>
-			    
-			    <td style="width : 300px">{{item.rentKind}}</td>
-			    
-			    <td v-if="item.state == 'D'" style="width : 80px">
-			    	<div> 보 류 중 </div>
-			    </td>
-			    <td v-else>
-			  	  <div > 신청완료 </div>
-			  	</td>
-			</tr>
-		</tbody>
-	</table>
-	<div style="text-align : center;"><input type="button" value="허 용" id="abtn" @click="fnYbtn(selectRoom, selectRent, selectLeisure)"></div>
 </div>
 </body>
 </html>
@@ -176,105 +99,37 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		item : [],
-		rentList : [],
-		roomList : [],
-		leisureList : [],
-		selectRoom : "",
-		selectLeisure : "",
-		selectRent : "",
-		status : "${sessionStatus}",
-		state : "${state}"
+		list : [],
+		status : "${sessionStatus}"
 	},// data
 	methods : {
-		fnRentList : function(){
+		fnGetList : function(){
             var self = this;
             var nparmap = {};
             $.ajax({
-                url : "/packageRentList.dox",
+                url : "/packageList.dox",
                 dataType:"json",
                 type : "POST",
                 data : nparmap,
                 success : function(data) { 
-                	self.rentList = data.list;
+                	self.list = data.list;
                 }
             }); 
 		},
-		fnRoomList : function(){
-            var self = this;
-            var nparmap = {};
-            $.ajax({
-                url : "/packageRoomList.dox",
-                dataType:"json",
-                type : "POST",
-                data : nparmap,
-                success : function(data) { 
-                	self.roomList = data.list;
-                }
-            }); 
-		},
-		fnLeisureList : function(){
-            var self = this;
-            var nparmap = {};
-            $.ajax({
-                url : "/packageLeisureList.dox",
-                dataType:"json",
-                type : "POST",
-                data : nparmap,
-                success : function(data) { 
-                	self.leisureList = data.list;
-                }
-            }); 
-		},
-		fnYbtn : function(selectRoom, selectRent, selectLeisure){
-			var self = this;
-			var nparmap = {selectRoom : self.selectRoom, selectRent : self.selectRent, selectLeisure : self.selectLeisure};
-			console.log(nparmap);
-			if(selectRoom == ""|| selectRoom == null || selectRent == "" ||  selectRent == null || selectLeisure == "" || selectLeisure == null){
-				alert("숙소, 레저, 렌트카를 선택해주세요.");
-				return;
-			}
-			 $.ajax({
-	                url : "/requestApp.dox",
-	                dataType:"json",
-	                type : "POST",
-	                data : nparmap,
-	                success : function(data) { 
-	                	alert("허용되었습니다.");
-	                	self.fnRentList();
-	            		self.fnRoomList();
-	            		self.fnLeisureList();
-	                }
-	            }); 
-		},
-		fnStayView : function(){
+		fnPackageView : function(){
         	var self = this;
-			$.pageChange("../host/stay/view.do", {stayNo : self.stayNo}); 
-        },
-		fnRentView : function(){
-        	var self = this;
-			$.pageChange("../host/rentcar/view.do", {rentNo : self.rentNo}); 
-        },
-        fnRoomView : function(){
-        	var self = this;
-			$.pageChange("../host/room/view.do", {roomNo : self.roomNo}); 
-        },
-        fnleisureView : function(){
-        	var self = this;
-			$.pageChange("../host/leisure/view.do", {leisureNo : self.leisureNo}); 
+			$.pageChange("../admin/packagereq.do", {packageNo : self.packageNo}); 
         }
 	}, // methods
 	created : function() {
 		var self = this;
 		console.log(self.status);
 		
-		 if(self.status != 'A'){
+		 if(self.status == 'U'){
 			alert("권한 없음");
 			location.href="../main.do";
 		}  
-		self.fnRentList();
-		self.fnRoomList();
-		self.fnLeisureList();
+		self.fnGetList();
 	}// created
 });
 </script>

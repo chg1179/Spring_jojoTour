@@ -4,10 +4,10 @@
 
 <mapper namespace="com.example.sample1.mapper.AdminMapper">
 	
-	<select id="insertRequest" parameterType="hashmap" resultType="com.example.sample1.model.Admin">
-		INSERT INTO T2_PACKAGE_APP_TBL (ROOM_NO, RENT_NO, LEISURE_NO)
-		VALUES (#{selectRoom}, #{selectRent}, #{selectLeisure})
-	</select>
+	<insert id="insertRequest" parameterType="hashmap">
+		INSERT INTO T2_PACKAGE_APP_TBL (PACKAGE_NAME, ROOM_NO, RENT_NO, LEISURE_NO)
+		VALUES (#{packageName}, #{selectRoom}, #{selectRent}, #{selectLeisure})
+	</insert>
 	
 	<update id="requestApp" parameterType="hashmap">
 	UPDATE T2_PACKAGE_REQUEST_TBL
@@ -34,4 +34,15 @@
 		INNER JOIN T2_LEISURE_TBL L ON L.LEISURE_NO = P.PRODUCT_NO
 		WHERE PRODUCT_KIND = 'LEISURE'; 
 	</select>
+	
+	<select id="selectReqList" parameterType="hashmap" resultType="com.example.sample1.model.Admin">
+		SELECT * 
+		FROM T2_PACKAGE_APP_TBL P
+		INNER JOIN T2_LEISURE_TBL L ON P.LEISURE_NO = L.LEISURE_NO 
+		INNER JOIN T2_RENT_CAR_TBL R ON P.RENT_NO = R.RENT_NO 
+		INNER JOIN T2_ROOM_TBL S ON P.ROOM_NO = S.ROOM_NO
+		INNER JOIN T2_STAY_TBL S1 ON S.STAY_NO = S1.STAY_NO
+
+	</select>
+	
 </mapper>

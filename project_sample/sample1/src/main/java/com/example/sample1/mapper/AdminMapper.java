@@ -19,4 +19,6 @@ public interface AdminMapper {
 	List<Admin> roomRequest(HashMap<String, Object> map);
 	//레져 리퀘스트 리스트
 	List<Admin> leisureRequest(HashMap<String, Object> map);
+	//허용 리퀘스트 리스트
+	List<Admin> selectReqList(HashMap<String, Object> map);
 }

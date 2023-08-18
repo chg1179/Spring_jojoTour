@@ -6,7 +6,7 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
-<title>User List</title>
+<title>Package Request Page</title>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 	body {
@@ -91,7 +91,7 @@
 			    	<div> 보 류 중 </div>
 			    </td>
 			    <td v-else>
-			  	  <div > 신청완료 </div>
+			  	  <div style="color : #f8852a"> 신청완료 </div>
 			  	</td>
 			</tr>
 		</tbody>
@@ -127,7 +127,7 @@
 			    	<div> 보 류 중 </div>
 			    </td>
 			    <td v-else>
-			  	  <div > 신청완료 </div>
+			  	  <div style="color : #f8852a"> 신청완료 </div>
 			  	</td>
 			</tr>
 		</tbody>
@@ -163,7 +163,7 @@
 			    	<div> 보 류 중 </div>
 			    </td>
 			    <td v-else>
-			  	  <div > 신청완료 </div>
+			  	  <div style="color : #f8852a"> 신청완료 </div>
 			  	</td>
 			</tr>
 		</tbody>
@@ -228,7 +228,12 @@ var app = new Vue({
 		},
 		fnYbtn : function(selectRoom, selectRent, selectLeisure){
 			var self = this;
-			var nparmap = {selectRoom : self.selectRoom, selectRent : self.selectRent, selectLeisure : self.selectLeisure};
+			var packageName = prompt("패키지 이름을 입력해주세요.")
+			if (packageName == null || packageName == "") {
+				alert("이름을 입력해주세요.");
+				return;
+			}
+			var nparmap = {selectRoom : self.selectRoom, selectRent : self.selectRent, selectLeisure : self.selectLeisure, packageName : packageName};
 			console.log(nparmap);
 			if(selectRoom == ""|| selectRoom == null || selectRent == "" ||  selectRent == null || selectLeisure == "" || selectLeisure == null){
 				alert("숙소, 레저, 렌트카를 선택해주세요.");

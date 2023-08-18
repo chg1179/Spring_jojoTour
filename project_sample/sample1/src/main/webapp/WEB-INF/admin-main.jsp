@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>호스트 행정 페이지</title>
+<title>Admin Main Page</title>
 <style>
 	#app {
 		margin : 20px auto;

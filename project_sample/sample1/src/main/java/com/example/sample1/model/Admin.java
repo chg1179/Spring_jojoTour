@@ -25,7 +25,7 @@ public class Admin {
 	private String rentName;
 	private String rentKind;
 	private double rentSales;
-	private String rentPrice;
+	private int rentPrice;
 	private String rZipno;
 	private String rAddr;
 	private String rDetailAddr;
@@ -39,15 +39,20 @@ public class Admin {
 	private int productNo;
 	private String productName;
 	private String productSales;
-	private String productPrice;
+	private int productPrice;
 	private String pAddr;
 	private String pDetailAddr;
 	private String productKind;
 	private String leisureKind;
 	private String leisureName;
 	private int leisureNo;
-	private String leisurePrice;
+	private int leisurePrice;
 	
 	//inner
 	private String uId;
+	
+	//package
+	private String packageNo;
+	private String packageName;
+	
 }

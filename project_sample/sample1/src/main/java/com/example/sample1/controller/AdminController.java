@@ -49,6 +49,10 @@ public class AdminController {
     public String adminPackage(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         return "/package-req";
     }
+	@RequestMapping("/admin/package.do")
+    public String packageList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+        return "/package";
+    }
 	
 	@RequestMapping(value = "/userList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -93,6 +97,15 @@ public class AdminController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		adminService.appRequest(map);
 		adminService.requestInsert(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/packageList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String packageList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Admin> list = adminService.searchReqList(map);
+		resultMap.put("list", list);
 		return new Gson().toJson(resultMap);
 	}
 }

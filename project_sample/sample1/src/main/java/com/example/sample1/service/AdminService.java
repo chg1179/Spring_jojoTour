@@ -20,4 +20,6 @@ public interface AdminService {
 	List<Admin> requestRoom(HashMap<String, Object> map);
 	//레져 리퀘스트 리스트
 	List<Admin> requestLeisure(HashMap<String, Object> map);
+	//허용 리퀘스트 리스트
+	List<Admin> searchReqList(HashMap<String, Object> map);
 }
