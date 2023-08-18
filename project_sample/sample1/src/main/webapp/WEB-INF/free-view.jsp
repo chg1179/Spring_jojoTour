@@ -57,7 +57,6 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		list : [],
 		info : {},
 		freeNo : "${map.freeNo}",
 		status : "${sessionStatus}",

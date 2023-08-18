@@ -5,6 +5,7 @@
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="path/to/font-awesome/css/all.min.css">
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>

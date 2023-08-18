@@ -44,10 +44,8 @@
 	<insert id="insertFreeComment" parameterType="hashmap">
 	    INSERT INTO T2_COMMENT_TBL 
 	        (C_NO, FREE_NO, COMM, U_ID, C_WRITE_TIME, C_UPDATE_TIME, DELYN, NOTIFY_CNT)
-	     SELECT 
-	     	#{cNo} , #{freeNo}, #{comment}, #{uId}, now(), now(), 'N', '0'
-	     FROM 
-	     	T2_FREE_TBL
+	     VALUES
+	     	(#{cNo} , #{freeNo}, #{comment}, #{uId}, NOW(), NOW(), 'N', '0')
 	</insert>
 		
 	<delete id="deleteFreeComment" parameterType="hashmap">
