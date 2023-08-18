@@ -31,12 +31,19 @@
 		WHERE R.RENT_NO = #{rentNo} AND R_DELYN = 'N'
 	</select>
 	
-	<delete id="deleteRentCar" parameterType="hashmap">
+	<update id="deleteRentCar" parameterType="hashmap">
 		UPDATE T2_RENT_CAR_TBL
 		SET
 			R_DELYN = 'Y'
 		WHERE RENT_NO = #{rentNo}
-	</delete>
+	</update>
+	
+	<update id="deleteRentCarImg" parameterType="hashmap">
+		UPDATE T2_RENT_IMG_TBL
+		SET
+			IMG_DELYN = 'Y'
+		WHERE RENT_NO = #{rentNo}
+	</update>
 	
 	<insert id="insertRentPack" parameterType="hashmap">
 		INSERT INTO T2_PACKAGE_REQUEST_TBL VALUES
@@ -62,7 +69,7 @@
 		)
 	</insert>
 	
-	<delete id="updateRentCar" parameterType="hashmap">
+	<update id="updateRentCar" parameterType="hashmap">
 		UPDATE T2_RENT_CAR_TBL
 		SET
 			RENT_NAME = #{rentName},
@@ -75,16 +82,23 @@
 			R_UPDATE_TIME = now(),
 			R_RESIDUE = #{rResidue}
 		WHERE RENT_NO = #{rentNo}
-	</delete>
+	</update>
 	
 	<insert id="insertRentImg" parameterType="hashmap">
 		INSERT INTO T2_RENT_IMG_TBL(
-			RENT_NO, IMG_NAME, IMG_SAVE_NAME, IMG_PATH, IMG_DATE, MAIN_YN
+			RENT_NO, IMG_NAME, IMG_SAVE_NAME, IMG_PATH, IMG_DATE, MAIN_YN, IMG_DELYN
 		)
 		VALUES(
-			#{rentNo}, #{imgName}, #{imgSaveName}, #{imgPath}, now(), #{mainYN}
+			#{rentNo}, #{imgName}, #{imgSaveName}, #{imgPath}, now(), #{mainYN}, 'N'
 		)
 	</insert>
+	
+	<update id="changeRentCarImg" parameterType="hashmap">
+		UPDATE T2_RENT_IMG_TBL
+		SET
+			IMG_DELYN = 'Y'
+		WHERE RENT_NO = #{rentNo}
+	</update>
 	
 	<select id="selectCarImgList" parameterType="hashmap" resultType="com.example.sample1.model.RentCarImg">
 		SELECT *

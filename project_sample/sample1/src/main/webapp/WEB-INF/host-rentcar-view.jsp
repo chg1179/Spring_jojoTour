@@ -79,6 +79,7 @@
 					<div>{{item.imgName}}</div>
 					<img :src="item.imgPath">
 				</td>
+				<td v-if="imgList.length == 0"></td>
 			</tr>
 			<tr>
 				<th>상세정보 이미지</th>
@@ -86,6 +87,7 @@
 					<div>{{item.imgName}}</div>
 					<img :src="item.imgPath">
 				</td>
+				<td v-if="imgList.length == 0"></td>
 			</tr>
 		</table>
 		<div>
@@ -131,7 +133,7 @@ var app = new Vue({
 			var param = {rentNo : self.rentNo};
 			$.ajax({
                 url : "carImgList.dox",
-                dataType:"json",	
+                dataType:"json",
                 type : "POST",
                 data : param,
                 success : function(data) { 

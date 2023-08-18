@@ -11,4 +11,5 @@ public class RentCarImg {
 	private String imgPath;
 	private String imgDate;
 	private String mainYN;
+	private String imgDelYN;
 }

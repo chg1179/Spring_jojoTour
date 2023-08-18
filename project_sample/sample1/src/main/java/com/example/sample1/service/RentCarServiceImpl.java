@@ -37,6 +37,7 @@ public class RentCarServiceImpl implements RentCarService{
 	@Override
 	public int removeRentCar(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
+		rentCarMapper.deleteRentCarImg(map);
 		return rentCarMapper.deleteRentCar(map);
 	}
 	

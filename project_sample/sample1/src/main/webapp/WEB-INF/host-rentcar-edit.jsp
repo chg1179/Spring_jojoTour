@@ -16,6 +16,33 @@
 		border : 1px solid black;
 		padding : 5px 10px;
 	}
+	.filebox .upload-name {
+	    display: inline-block;
+	    height: 40px;
+	    padding: 0 10px;
+	    vertical-align: middle;
+	    border: 1px solid #dddddd;
+	    width: 50%;
+	    color: #999999;
+	}
+	.filebox label {
+	    display: inline-block;
+	    padding: 10px 10px;
+	    color: #fff;
+	    vertical-align: middle;
+	    background-color: #999999;
+	    cursor: pointer;
+	    height: 20px;
+	    margin-left: 5px;
+	}
+	.filebox input[type="file"] {
+	    position: absolute;
+	    width: 0;
+	    height: 0;
+	    padding: 0;
+	    overflow: hidden;
+	    border: 0;
+	}
 </style>
 </head>
 <body>
@@ -67,15 +94,23 @@
 			<tr>
 				<th>썸네일이미지</th>
 				<td>
-					<input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange(Y)">
-					<a href="javascript:;" v-if="fileYFlg"><i class="fa-solid fa-xmark fa-2xs"></i></a>
+					<div class="filebox">
+					    <input class="upload-name" id="fileYName" value="첨부파일" placeholder="첨부파일">
+					    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
+					    <label for="fileY">이미지선택</label> 
+					    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
+					</div>
 				</td>
 			</tr>
 			<tr>
 				<th>상세정보이미지</th>
 				<td>
-					<input type="file" accept=".gif, .jpg, .png" id="fileN" name="fileN" @change="fnFlgChange(N)">
-					<a href="javascript:;" v-if="fileNFlg"><i class="fa-solid fa-xmark fa-2xs"></i></a>
+					<div class="filebox">
+					    <input class="upload-name" id="fileNName" value="첨부파일" placeholder="첨부파일">
+					    <a href="javascript:;" v-if="fileNFlg" @click="fnDelFile('N')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
+					    <label for="fileN">이미지선택</label> 
+					    <input type="file" accept=".gif, .jpg, .png" id="fileN" name="fileN" @change="fnFlgChange('N')">
+					</div>
 				</td>
 			</tr>
 		</table>
@@ -108,7 +143,8 @@ var app = new Vue({
 		},
 		sales : 0,
 		fileYFlg : false,
-		fileNFlg : false
+		fileNFlg : false,
+		imgList : []
 	},// data
 	methods : {
 		fnGetInfo : function(){
@@ -125,9 +161,33 @@ var app = new Vue({
                 }
             }); 
 		},
+		fnGetImgList : function(){
+			var self = this;
+			var param = {rentNo : self.rentNo};
+			$.ajax({
+                url : "carImgList.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	self.imgList = data.carImgList;
+                	// 필수로 첨부파일을 등록했기 때문에 수정시에는 X(파일삭제) 출력
+        			self.fileYFlg = true;
+        			self.fileNFlg = true;
+                	// 상대 경로 수정 (한 칸 더 이전 경로)
+                	for(var i=0;i< self.imgList.length;i++){
+                		self.imgList[i].imgPath = "../"+self.imgList[i].imgPath;
+                		if(self.imgList[i].mainYN == 'Y'){
+                			document.getElementById("fileYName").value = self.imgList[i].imgName;
+                		} else if(self.imgList[i].mainYN == 'N'){
+                			document.getElementById("fileNName").value = self.imgList[i].imgName;
+                		}
+                	}
+                }
+            }); 
+		},
 		fnAdd : function(){
 			var self = this;
-			
 			var fileCheck = document.getElementById("fileY").value;
 			if(!fileCheck){
 				alert("썸네일용 이미지를 첨부해 주세요");
@@ -187,13 +247,23 @@ var app = new Vue({
 		},
 		fnEdit : function(){
 			var self = this;
+			var fileCheck = document.getElementById("fileY").value;
+			if(!fileCheck && !self.fileYFlg){
+				alert("썸네일용 이미지를 첨부해 주세요");
+				return;
+			}
+			fileCheck = document.getElementById("fileN").value;
+			if(!fileCheck && !self.fileYFlg){
+				alert("상세정보 이미지를 첨부해 주세요");
+				return;
+			}
+			
 			if(!confirm("해당 정보를 수정하시겠습니까?")){
 	        	alert("취소되었습니다.");
 	          	return;
 	        }
 			
 			self.info.rentSales = 1 - (self.sales / 100);
-			console.log(self.info);
 			var param = self.info;
 			param.rentNo = self.rentNo;
 			
@@ -204,7 +274,7 @@ var app = new Vue({
                 data : param,
                 success : function(data) {
                 	alert("정보 수정이 완료되었습니다.");
-                	$.pageChange("view.do", {rentNo : self.rentNo, rCnt : self.rCnt}); 
+                	$.pageChange("view.do", {rentNo : self.rentNo, rCnt : 0}); 
                 	/*
                 	파일 업로드
                 	var form = new FormData();
@@ -252,10 +322,43 @@ var app = new Vue({
 				}
 	       });
 		},
+		//파일이 선택됐는지 확인 (선택됐다면 x버튼이 나온다.)
 		fnFlgChange : function(mainYN){
-			if(!fileCheck){
-				alert("썸네일용 이미지를 첨부해 주세요");
-				return;
+			var self = this;
+			if(mainYN == 'Y'){
+				var fileCheck = document.getElementById("fileY").value;
+				if(!fileCheck){
+					document.getElementById("fileYName").value = "";
+					self.fileYFlg = false;
+					return;
+				} else{
+					document.getElementById("fileYName").value = $("#fileY")[0].files[0].name;
+					self.fileYFlg = true;
+					return;
+				}
+			} else if(mainYN == 'N'){
+				var fileCheck = document.getElementById("fileN").value;
+				if(!fileCheck){
+					document.getElementById("fileNName").value = "";
+					self.fileNFlg = false;
+					return;
+				} else{
+					document.getElementById("fileNName").value = $("#fileN")[0].files[0].name;
+					self.fileNFlg = true;
+					return;
+				}
+			}
+		},
+		fnDelFile : function(mainYN){
+			var self = this;
+			if(mainYN == 'Y'){
+				document.getElementById("fileY").value = "";
+				document.getElementById("fileYName").value = "";
+				self.fileYFlg = false;
+			} else if(mainYN == 'N'){
+				document.getElementById("fileN").value = "";
+				document.getElementById("fileNName").value = "";
+				self.fileNFlg = false;
 			}
 		}
 	}, // methods
