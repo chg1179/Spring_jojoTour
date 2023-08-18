@@ -19,54 +19,136 @@
         top: 0;
         right: 0;
     }
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#my_change_container{
+		margin-top : 50px;
+		float : left;
+	}
+	.change_box{
+		margin: 20px;
+		width: 640px;
+	}
+	.change_box button{
+		cursor: pointer;
+	}
+	.change_table, .change_table td{
+		border: 1px solid #ccc;
+		border-collapse: collapse;
+	}
+	.change_table{
+		margin: 30px 0px;
+	}
+	.change_table tr td{
+		padding: 15px;
+		box-sizing: border-box;
+	}
+	.change_table tr td:first-child{
+		background-color: #FFA41B;
+		color: #fff;
+		font-weight: bold;
+		padding-right: 30px;
+		box-sizing: border-box;
+	}
+	.change_table tr td:last-child{
+		padding-right: 100px;
+		box-sizing: border-box;
+	}
+	.change_table tr td input{
+		display: inline-block;
+		height: 40px;
+	}
+	.change_email input{
+		width: 300px;
+	}
+	.change_addr_title button{
+		padding: 2px;
+		background-color: #F86F03;
+		color: #fff;
+
+	}
+	.change_addr input{
+		width: 400px;
+	}
+	.change_del_btn{
+		display: flex;
+		justify-content: right;
+		margin-right: 10px;
+	}
+	.change_del_btn button{
+		padding: 5px;
+		color: #fff;
+		background-color: #505050;
+		outline: none;
+		border: none;
+	}
+	.change_update_btn{
+		display: flex;
+		justify-content: center;
+	}
+	.change_update_btn button{
+		background-color: #F86F03;
+		color: #fff;
+		border: none;
+		padding: 10px 35px;
+		font-weight: bold;
+		font-size: 16px;
+	}
+
 </style>
 </head>
 <body>
 <jsp:include page="header.jsp" flush="true"></jsp:include>
 <jsp:include page="my-page.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<h2>회원정보수정</h2>
-		<table>
-			<tr>
-				<td>아이디</td>
-				<td>{{user.userId}}</td>
-			</tr>
-			<tr>
-				<td>이름</td>
-				<td><input type="text" value="user.name" v-model="user.name"></td>
-			</tr>
-			<tr>
-				<td>닉네임</td>
-				<td><input type="text" value="user.nickName" v-model="user.nickName"></td>
-			</tr>
-			<tr>
-				<td>생년월일</td>
-				<td><input type="text" value="user.birth" v-model="user.birth" placeholder="8자리 입력"></td>
-			</tr>
-			<tr>
-				<td>연락처</td>
-				<td><input type="text" value="user.phone" v-model="user.phone" placeholder="-없이 입력하세요."></td>
-			</tr>
-			<tr>
-				<td>이메일</td>
-				<td><input type="text" value="user.email" v-model="user.email"></td>
-			</tr>
-			<tr>
-				<td><button @click="fnSearchAddr">주소검색</button></td>
-				<td><input disabled type="text" value="user.addr" v-model="user.addr"></td>
-			</tr>
-			<tr>
-				<td>우편번호</td>
-				<td><input disabled type="text" value="user.zipNo" v-model="user.zipNo"></td>
-			</tr>
-			<tr>
-				<td>상세 주소</td>
-				<td><input type="text" value="user.addrDetail" v-model="user.addrDetail"></td>
-			</tr>
-			
-		</table>
-		<button @click="fnDelYn">회원탈퇴</button>
-		<button @click="fnMyChange">수정완료</button>
+		<div id="my_change_container">
+			<div class="change_box">
+				<h2>회원정보수정</h2>
+				<table class="change_table">
+					<tr>
+						<td>아이디</td>
+						<td>{{user.userId}}</td>
+					</tr>
+					<tr>
+						<td>이름</td>
+						<td><input type="text" value="user.name" v-model="user.name"></td>
+					</tr>
+					<tr>
+						<td>닉네임</td>
+						<td><input type="text" value="user.nickName" v-model="user.nickName"></td>
+					</tr>
+					<tr>
+						<td>생년월일</td>
+						<td><input type="text" value="user.birth" v-model="user.birth" placeholder="8자리 입력"></td>
+					</tr>
+					<tr>
+						<td>연락처</td>
+						<td><input type="text" value="user.phone" v-model="user.phone" placeholder="-없이 입력하세요."></td>
+					</tr>
+					<tr>
+						<td>이메일</td>
+						<td class="change_email"><input type="text" value="user.email" v-model="user.email"></td>
+					</tr>
+					<tr>
+						<td class="change_addr_title">주소 <button @click="fnSearchAddr">검색</button></td>
+						<td class="change_addr"><input disabled type="text" value="user.addr" v-model="user.addr"></td>
+					</tr>
+					<tr>
+						<td>우편번호</td>
+						<td><input disabled type="text" value="user.zipNo" v-model="user.zipNo"></td>
+					</tr>
+					<tr>
+						<td>상세 주소</td>
+						<td><input type="text" value="user.addrDetail" v-model="user.addrDetail"></td>
+					</tr>
+					
+				</table>
+				<div class="change_del_btn"><button @click="fnDelYn">회원탈퇴</button></div>
+				<div class="change_update_btn"><button @click="fnMyChange">수정완료</button></div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

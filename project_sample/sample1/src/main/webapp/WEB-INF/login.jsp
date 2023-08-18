@@ -110,7 +110,7 @@
 	                        <label><input v-model="userId" placeholder="아이디"></label>
 	                    </div>
 	                    <div class="login_pwd">
-	                        <label><input type="password" v-model="pwd" placeholder="패스워드"></label>
+	                        <label><input type="password" v-model="pwd" placeholder="패스워드"  @keyup.enter="fnLogin"></label>
 	                    </div>
 	                    <div class="login_button">
 	                        <button @click="fnLogin">로그인</button>
