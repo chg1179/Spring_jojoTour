@@ -22,6 +22,7 @@ public class StayServiceImpl implements StayService{
 		return stayMapper.selectStayList(map);
 	}
 
+
 	@Override
 	public HashMap<String, Object> addStay(HashMap<String, Object> map) {
 	    HashMap<String, Object> resultMap = new HashMap<String, Object>();
@@ -30,16 +31,18 @@ public class StayServiceImpl implements StayService{
 	    stayMapper.insertStay(map);
 	    
 	    // 추가된 숙소의 stayNo를 가져옴
-	    Integer stayNo = (Integer) map.get("stayNo");
+	    String stayNo = (String) map.get("stayNo");
 	    
 	    // 선택된 서비스 리스트를 가져옴
-	    List<Integer> selectServiceList = (List<Integer>) map.get("selectServiceList");
-	    
+		/*
+		 * List<String> selectServiceList = (List<String>)map.get("selectServiceList");
+		 */
+	    List<Object> selectServiceList = new ArrayList<Object>();
         for (int i = 0; i < selectServiceList.size(); i++) {
-            Integer serviceNo = selectServiceList.get(i);
+        	Integer serviceNo = (Integer)selectServiceList.get(i);
             
             HashMap<String, Object> serviceMap = new HashMap<String, Object>();
-            serviceMap.put("stayNo", stayNo);
+//          serviceMap.put("stayNo", stayNo);
             serviceMap.put("serviceNo", serviceNo);
             
             // 데이터베이스에 서비스 인서트

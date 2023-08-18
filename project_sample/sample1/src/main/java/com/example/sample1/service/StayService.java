@@ -3,7 +3,6 @@ package com.example.sample1.service;
 import java.util.HashMap;
 import java.util.List;
 
-import com.example.sample1.model.Room;
 import com.example.sample1.model.Stay;
 
 public interface StayService {
@@ -11,7 +10,7 @@ public interface StayService {
 	// 숙소 업체 목록 출력
 	List<Stay> searchStayList(HashMap<String, Object> map);
 	
-	// 숙소 업체 등록
+	// 숙소 업체 등록, 편의시설 인서트
 	HashMap<String, Object> addStay(HashMap<String, Object> map);
 	
 	// 숙소 타입 리스트

@@ -2,7 +2,6 @@ package com.example.sample1.controller;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.sample1.mapper.StayMapper;
 import com.example.sample1.model.Stay;
 import com.example.sample1.service.StayService;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -34,13 +32,13 @@ public class StayController {
 		HttpSession session = request.getSession(); String status = (String)
 		session.getAttribute("sessionStatus"); //다운캐스팅
 				
-		if(!status.equals("H")) { 
+		/*if(!status.equals("H")) { 
 			return "redirect:../main.do"; //호스트가 아닐 때
 		}
-		else {
+		else {*/
 			request.setAttribute("map", map);
 			return "/host-stay";
-		}
+//		}
     }
 	
 	// 숙박 업체 추가 페이지
@@ -49,13 +47,13 @@ public class StayController {
 		HttpSession session = request.getSession(); String status = (String)
 		session.getAttribute("sessionStatus"); //다운캐스팅
 				
-		if(!status.equals("H")) { 
+		/*if(!status.equals("H")) { 
 			return "redirect:../main.do"; //호스트가 아닐 때
 		}
-		else {
+		else { */
 			request.setAttribute("map", map);
 			return "/host-stay-add";
-		}
+			/* } */
 	}
 	
 	// 숙박 업체 수정 페이지
@@ -88,14 +86,16 @@ public class StayController {
 	@ResponseBody
 	public String stayAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		stayService.addStay(map);
 		
-		String json = map.get("selectServiceList").toString();
-		
-		ObjectMapper mapper = new ObjectMapper();
-		List<Object> list = mapper.readValue(json, new TypeReference<List<Object>>(){});
+		List<Integer> list = (List<Integer>) map.get("selectServiceList");
 		map.put("list", list);
 		
+		for(int i=0; i<list.size(); i++) {
+			int str = list.get(i);
+			System.out.println(str);
+		} 
+		
+		stayService.addStay(map);
 		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}

@@ -72,7 +72,7 @@
 					서비스 안내
 				</th>
 				<td>
-					<div v-for="item in serviceList" :key="item.serviceNo">
+					<div v-for="item in serviceList">
 						<label><input type="checkbox" :value="item.serviceNo" v-model="selectServiceList">{{item.serviceName}}</label>
 					</div>					
 				</td>
@@ -135,7 +135,6 @@ var app = new Vue({
 				alert("취소되었습니다.");
 				return;
 			}
-			var sList = JSON.stringify(self.selectServiceList);
 			var param = {
 				stayNo : self.info.stayNo,
 				stayName: self.info.stayName,
@@ -145,10 +144,10 @@ var app = new Vue({
 				type: self.selectStayType,
 				uId : self.uId,
 				serviceNo : self.serviceNo,
-				selectServiceList : sList
+				selectServiceList : self.selectServiceList
 			}
 			console.log(self.selectServiceList);
-			console.log(sList); 
+			console.log(self.selectServiceList[2]); 
 			$.ajax({
                 url : "stayAdd.dox",
                 dataType:"json",	
@@ -156,8 +155,10 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	alert("숙소가 등록되었습니다.");
-                	location.href="/host/stay.do";
-                	
+               		//location.href="/host/stay.do";
+               		console.log(self.stayNo);
+               		console.log(self.selectServiceList);
+        			console.log(self.selectServiceList[2]); 
                 }
             }); 
 		},
