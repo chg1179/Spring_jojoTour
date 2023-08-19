@@ -203,27 +203,27 @@ var app = new Vue({
 	},// data
 	methods : {
         fnLogin :function(){
-        	location.href="../login.do";
+        	location.href="/login.do";
         },
         fnJoin : function(){
-        	location.href="../join/select.do";
+        	location.href="/join/select.do";
         },
         fnLogo : function(){
         	location.href="/main.do";
         	/* ../main.do로 가면 경로가 한번 거쳐서 나감 */
         },
         fnLogout : function(){
-        	location.href="../logout.do";
+        	location.href="/logout.do";
         },
         fnNotice : function(){
-        	location.href="../notice/list.do";
+        	location.href="/notice/list.do";
         },
         fnFAQ : function(){
-        	location.href="../faq/list.do";
+        	location.href="/faq/list.do";
         },
         //관리 페이지
         fnAdminPage : function(){
-        	location.href="../admin/main.do";
+        	location.href="/admin/main.do";
         },
         //상품관리페이지
         fnProduct : function(){
@@ -233,13 +233,13 @@ var app = new Vue({
         	location.href="/my/order.do";
         },
         fnInquiry : function(){
-            location.href="../inquiry/list.do";
+            location.href="/inquiry/list.do";
         },
         fnFree : function(){
-        	location.href="../free/list.do";
+        	location.href="/free/list.do";
         },
         fnRentCar : function(){
-        	location.href="../rentcar.do";
+        	location.href="/rentcar.do";
         }
 	}, // methods
 	created : function() {
