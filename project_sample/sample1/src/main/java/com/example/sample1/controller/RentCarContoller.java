@@ -158,7 +158,7 @@ public class RentCarContoller {
         String url = null;
         String path="c:\\img\\rentCar";
         try {
-        	Thread.sleep(100);//같은 파일명을 넣지 않기 위해
+        	Thread.sleep(1000);//같은 파일명을 넣지 않기 위해
             //String uploadpath = request.getServletContext().getRealPath(path);
             String uploadpath = path;
             String originFilename = multi.getOriginalFilename();
@@ -206,7 +206,7 @@ public class RentCarContoller {
 		String url = null;
         String path="c:\\img\\rentCar";
         try {
-        	Thread.sleep(100);//같은 파일명을 넣지 않기 위해
+        	Thread.sleep(1000);//같은 파일명을 넣지 않기 위해
             //String uploadpath = request.getServletContext().getRealPath(path);
             String uploadpath = path;
             String originFilename = multi.getOriginalFilename();
@@ -258,6 +258,10 @@ public class RentCarContoller {
         fileName += calendar.get(Calendar.MINUTE);
         fileName += calendar.get(Calendar.SECOND);
         fileName += calendar.get(Calendar.MILLISECOND);
+        
+        //시간이 겹치면서 파일명 중복으로 인해 고유한 파일 이름을 만들도록 하기 위함
+        long currentTimeMillis = System.currentTimeMillis();
+        fileName += currentTimeMillis;
         fileName += extName;
         
         return fileName;

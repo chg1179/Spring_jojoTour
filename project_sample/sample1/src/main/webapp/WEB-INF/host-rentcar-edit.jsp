@@ -48,76 +48,78 @@
 <body>
 	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<table>
-			<tr>
-				<th>분류</th>
-				<td>
-					<select v-model="info.rentKind">
-						<option value="SMALL">소형차</option>
-						<option value="MIDDLE">중형차</option>
-						<option value="LARGE">대형차</option>
-						<option value="VAN">승합차</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>이름</th>
-				<td><input v-model="info.rentName" type="text" name="rentName" id="rentName"></td>
-			</tr>
-			<tr>
-				<th>우편번호</th>
-				<td>
-					<input v-model="info.rZipno" type="text" name="rZipno" id="rZipno" disabled>
-					<button @click="fnSearchAddr">주소 검색</button>
-				</td>
-			</tr>
-			<tr>
-				<th>주소</th>
-				<td><input v-model="info.rAddr" type="text" name="rAddr" id="rAddr" disabled></td>
-			</tr>
-			<tr>
-				<th>상세주소</th>
-				<td><input v-model="info.rDetailAddr" type="text" name="rDetailAddr" id="rDetailAddr"></td>
-			</tr>
-			<tr>
-				<th>렌트금액</th>
-				<td><input v-model="info.rentPrice" type="text" name="rentPrice" id="rentPrice"></td>
-			</tr>
-			<tr>
-				<th>할인율(%)</th>
-				<td><input v-model="sales" type="text" name="rentSales" id="rentSales" @keyup="fnPercent"></td>
-			</tr>
-			<tr>
-				<th>판매수량</th>
-				<td><input v-model="info.rResidue" type="text" name="rResidue" id="rResidue"></td>
-			</tr>
-			<tr>
-				<th>썸네일이미지</th>
-				<td>
-					<div class="filebox">
-					    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly>
-					    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
-					    <label for="fileY">이미지선택</label> 
-					    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>상세정보이미지</th>
-				<td>
-					<div class="filebox">
-					    <input class="upload-name" id="fileNName" placeholder="첨부파일" readonly>
-					    <a href="javascript:;" v-if="fileNFlg" @click="fnDelFile('N')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
-					    <label for="fileN">이미지선택</label> 
-					    <input type="file" accept=".gif, .jpg, .png" id="fileN" name="fileN" @change="fnFlgChange('N')">
-					</div>
-				</td>
-			</tr>
-		</table>
-		<div>
-			<button v-if="rentNo == ''" @click="fnAdd">등록</button>
-			<button v-else @click="fnEdit">수정</button>
-			<span><button @click="fnBack">취소</button></span>
+		<div id="container">
+			<table>
+				<tr>
+					<th>분류</th>
+					<td>
+						<select v-model="info.rentKind">
+							<option value="SMALL">소형차</option>
+							<option value="MIDDLE">중형차</option>
+							<option value="LARGE">대형차</option>
+							<option value="VAN">승합차</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>이름</th>
+					<td><input v-model="info.rentName" type="text" maxlength="15" name="rentName" id="rentName"></td>
+				</tr>
+				<tr>
+					<th>우편번호</th>
+					<td>
+						<input v-model="info.rZipno" type="text" name="rZipno" id="rZipno" disabled>
+						<button @click="fnSearchAddr">주소 검색</button>
+					</td>
+				</tr>
+				<tr>
+					<th>주소</th>
+					<td><input v-model="info.rAddr" type="text" name="rAddr" id="rAddr" disabled></td>
+				</tr>
+				<tr>
+					<th>상세주소</th>
+					<td><input v-model="info.rDetailAddr" type="text" maxlength="50" name="rDetailAddr" id="rDetailAddr"></td>
+				</tr>
+				<tr>
+					<th>렌트금액</th>
+					<td><input v-model="info.rentPrice" type="text" maxlength="10" name="rentPrice" id="rentPrice"></td>
+				</tr>
+				<tr>
+					<th>할인율(%)</th>
+					<td><input v-model="sales" type="text" name="rentSales" maxlength="2" placeholder="0" id="rentSales" @keyup="fnPercent"></td>
+				</tr>
+				<tr>
+					<th>판매수량</th>
+					<td><input v-model="info.rResidue" type="text" maxlength="10" name="rResidue" id="rResidue"></td>
+				</tr>
+				<tr>
+					<th>썸네일이미지</th>
+					<td>
+						<div class="filebox">
+						    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly>
+						    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
+						    <label for="fileY">이미지선택</label> 
+						    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>상세정보이미지</th>
+					<td>
+						<div class="filebox">
+						    <input class="upload-name" id="fileNName" placeholder="첨부파일" readonly>
+						    <a href="javascript:;" v-if="fileNFlg" @click="fnDelFile('N')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
+						    <label for="fileN">이미지선택</label> 
+						    <input type="file" accept=".gif, .jpg, .png" id="fileN" name="fileN" @change="fnFlgChange('N')">
+						</div>
+					</td>
+				</tr>
+			</table>
+			<div>
+				<button v-if="rentNo == ''" @click="fnAdd">등록</button>
+				<button v-else @click="fnEdit">수정</button>
+				<span><button @click="fnBack">취소</button></span>
+			</div>
 		</div>
 	</div>
 </body>
@@ -141,7 +143,7 @@ var app = new Vue({
 			rentSales : "",
 			rResidue : ""
 		},
-		sales : 0,
+		sales : "",
 		fileYFlg : false,
 		fileNFlg : false,
 		imgList : []
@@ -188,6 +190,51 @@ var app = new Vue({
 		},
 		fnAdd : function(){
 			var self = this;
+			if(self.info.rentName==""){
+				alert("이름을 입력해주세요.");
+				return;
+			}
+			if(self.info.rAddr=="" || self.info.rDetailAddr==""){
+				alert("주소를 입력해주세요.");
+				return;
+			}
+			
+			var regex = new RegExp(/^[0-9]+$/);
+			if(self.info.rentPrice==""){
+				alert("렌트 금액을 입력해주세요.");
+				return;
+			}
+			if(!regex.test(self.info.rentPrice)){
+				alert("렌트 금액은 숫자만 입력해주세요.");
+				return;
+			}
+			if(self.info.rentPrice < 1000){
+				alert("렌트 금액은 1000원 이상으로 입력해주세요.");
+				return;
+			}
+			if(!regex.test(self.sales)){
+				if(!(self.sales=="")){
+					alert("할인율은 숫자만 입력해주세요.");
+					return;
+				}
+			}
+			if(self.sales < 0 || self.sales >= 100){
+				alert("할인율은 0~99 사이의 숫자만 입력해주세요.");
+				return;
+			}
+			if(self.info.rResidue==""){
+				alert("판매하실 수량을 입력해주세요.");
+				return;
+			}
+			if(!regex.test(self.info.rResidue)){
+				alert("판매하실 수량은 숫자만 입력해주세요.");
+				return;
+			}
+			if(self.info.rResidue <= 0){
+				alert("판매수량은 0보다 큰 숫자로 입력해주세요.");
+				return;
+			}
+			
 			var fileCheck = document.getElementById("fileY").value;
 			if(!fileCheck){
 				alert("썸네일용 이미지를 첨부해 주세요");
@@ -204,6 +251,10 @@ var app = new Vue({
 	          	return;
 	        }
 			
+			//할인율을 입력하지 않으면 자동으로 0으로 판단.
+			if(self.sales==""){
+				self.sales = 0;
+			}
 			self.info.rentSales = 1 - (self.sales / 100);
 			var param = self.info;
 			param.uId = self.uId;
@@ -247,6 +298,51 @@ var app = new Vue({
 		},
 		fnEdit : function(){
 			var self = this;
+			if(self.info.rentName==""){
+				alert("이름을 입력해주세요.");
+				return;
+			}
+			if(self.info.rAddr=="" || self.info.rDetailAddr==""){
+				alert("주소를 입력해주세요.");
+				return;
+			}
+			
+			var regex = new RegExp(/^[0-9]+$/);
+			if(self.info.rentPrice==""){
+				alert("렌트 금액을 입력해주세요.");
+				return;
+			}
+			if(!regex.test(self.info.rentPrice)){
+				alert("렌트 금액은 숫자만 입력해주세요.");
+				return;
+			}
+			if(self.info.rentPrice < 1000){
+				alert("렌트 금액은 1000원 이상으로 입력해주세요.");
+				return;
+			}
+			if(!regex.test(self.sales)){
+				if(!(self.sales=="")){
+					alert("할인율은 숫자만 입력해주세요.");
+					return;
+				}
+			}
+			if(self.sales < 0 || self.sales >= 100){
+				alert("할인율은 0~99 사이의 숫자만 입력해주세요.");
+				return;
+			}
+			if(self.info.rResidue==""){
+				alert("판매하실 수량을 입력해주세요.");
+				return;
+			}
+			if(!regex.test(self.info.rResidue)){
+				alert("판매하실 수량은 숫자만 입력해주세요.");
+				return;
+			}
+			if(self.info.rResidue <= 0){
+				alert("판매수량은 0보다 큰 숫자로 입력해주세요.");
+				return;
+			}
+			
 			var fileCheck = document.getElementById("fileY").value;
 			if(!fileCheck && !self.fileYFlg){
 				alert("썸네일용 이미지를 첨부해 주세요");
@@ -262,6 +358,10 @@ var app = new Vue({
 	          	return;
 	        }
 			
+			//할인율을 입력하지 않으면 자동으로 0으로 판단.
+			if(self.sales==""){
+				self.sales = 0;
+			}
 			self.info.rentSales = 1 - (self.sales / 100);
 			var param = self.info;
 			param.rentNo = self.rentNo;
