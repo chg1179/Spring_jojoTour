@@ -10,7 +10,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="header.jsp" flush="true"></jsp:include>
+	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<input type="button" value="숙소관리" @click="fnStayPage"/>
 		<input type="button" value="레저관리" @click="fnLeisurePage"/>
@@ -22,6 +22,7 @@
 var app = new Vue({
 	el : '#app',
 	data : {
+		status : "${sessionStatus}"
 	},// data
 	methods : {
 		fnStayPage : function(){
@@ -35,6 +36,11 @@ var app = new Vue({
 		}
 	}, // methods
 	created : function() {
+		var self = this;
+		if(self.status !== "H"){
+			alert("호스트만 접근할 수 있습니다.");
+			location.href="../main.do";
+		} 
 	}// created
 });
 </script>

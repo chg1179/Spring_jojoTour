@@ -50,7 +50,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="header.jsp" flush="true"></jsp:include>
+	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 	<div class="container">
 		<h3>숙소 방 등록 페이지</h3>

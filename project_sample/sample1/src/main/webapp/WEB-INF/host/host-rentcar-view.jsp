@@ -18,7 +18,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="header.jsp" flush="true"></jsp:include>
+	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<table>
 			<tr>
@@ -179,7 +179,12 @@ var app = new Vue({
 	}, // methods
 	created : function() {
 		var self = this;
-		self.fnGetInfo();
+		if(self.status !== "H"){
+			alert("호스트만 접근할 수 있습니다.");
+			location.href="../../main.do";
+		} else {
+			self.fnGetInfo();
+		}
 	}// created
 });
 </script>

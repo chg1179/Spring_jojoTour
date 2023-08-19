@@ -31,14 +31,9 @@ public class StayController {
     public String stay(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		HttpSession session = request.getSession(); String status = (String)
 		session.getAttribute("sessionStatus"); //다운캐스팅
-				
-		/*if(!status.equals("H")) { 
-			return "redirect:../main.do"; //호스트가 아닐 때
-		}
-		else {*/
-			request.setAttribute("map", map);
-			return "/host-stay";
-//		}
+		
+		request.setAttribute("map", map);
+		return "/host/host-stay";
     }
 	
 	// 숙박 업체 추가 페이지
@@ -46,14 +41,9 @@ public class StayController {
 	public String stayAdd(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		HttpSession session = request.getSession(); String status = (String)
 		session.getAttribute("sessionStatus"); //다운캐스팅
-				
-		/*if(!status.equals("H")) { 
-			return "redirect:../main.do"; //호스트가 아닐 때
-		}
-		else { */
-			request.setAttribute("map", map);
-			return "/host-stay-add";
-			/* } */
+		
+		request.setAttribute("map", map);
+		return "/host/host-stay-add";
 	}
 	
 	// 숙박 업체 수정 페이지
@@ -61,14 +51,9 @@ public class StayController {
 	public String stayEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		HttpSession session = request.getSession(); String status = (String)
 		session.getAttribute("sessionStatus"); //다운캐스팅
-				
-		if(!status.equals("H")) { 
-			return "redirect:../main.do"; //호스트가 아닐 때
-		}
-		else {
-			request.setAttribute("map", map);
-			return "/host-stay-edit";
-		}
+
+		request.setAttribute("map", map);
+		return "/host/host-stay-edit";
 	}
 	
 	//숙소 업체 정보 출력

@@ -46,7 +46,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="header.jsp" flush="true"></jsp:include>
+	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<div id="container">
 			<table>
@@ -132,6 +132,7 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		uId : "${sessionId}",
+		status : "${sessionStatus}",
 		rentNo : "${map.rentNo}",
 		info : {
 			rentKind : "SMALL",
@@ -486,9 +487,14 @@ var app = new Vue({
 	}, // methods
 	created : function() {
 		var self = this;
-		if(self.rentNo != ""){
-			self.fnGetInfo();
-			self.fnGetImgList();
+		if(self.status !== "H"){
+			alert("호스트만 접근할 수 있습니다.");
+			location.href="../../main.do";
+		} else {
+			if(self.rentNo != ""){
+				self.fnGetInfo();
+				self.fnGetImgList();
+			}
 		}
 	}// created
 });

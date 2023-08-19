@@ -25,14 +25,7 @@ public class HostController {
 	@RequestMapping("/host/main.do") 
     public String test(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		HttpSession session = request.getSession(); 
-		String status = (String) session.getAttribute("sessionStatus"); //다운캐스팅
-				
-		//if(!status.equals("H")) { 
-		//	return "redirect:../main.do"; //호스트가 아닐 때
-		//}
-		//else {
-			return "/host-main";
-		//}
+		return "/host/host-main";
     }
 	
 }

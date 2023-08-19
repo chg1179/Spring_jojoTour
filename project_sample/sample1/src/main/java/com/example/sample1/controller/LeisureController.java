@@ -25,13 +25,13 @@ public class LeisureController {
 	//레저 관리 페이지
 	@RequestMapping("/host/leisure.do") 
     public String leisure(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/host-leisure";
+        return "/host/host-leisure";
     }
 	
 	// 레저 수정 페이지
 	@RequestMapping("/host/leisureEdit.do") 
 	public String leisureEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/host-leisure-edit";
+		return "/host/host-leisure-edit";
 	}
 	
 	@RequestMapping(value = "/host/leisure.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

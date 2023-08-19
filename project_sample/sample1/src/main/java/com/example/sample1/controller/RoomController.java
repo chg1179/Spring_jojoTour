@@ -31,14 +31,9 @@ public class RoomController {
 	public String room(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		HttpSession session = request.getSession(); String status = (String)
 		session.getAttribute("sessionStatus"); //다운캐스팅
-				
-		if(!status.equals("H")) { 
-			return "redirect:../main.do"; //호스트가 아닐 때
-		}
-		else {
-			request.setAttribute("map", map);
-			return "/host-room";
-		}
+		
+		request.setAttribute("map", map);
+		return "/host/host-room";
 	}
 	
 	//숙박 방 페이지
@@ -46,14 +41,9 @@ public class RoomController {
 	public String roomAdd(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		HttpSession session = request.getSession(); String status = (String)
 		session.getAttribute("sessionStatus"); //다운캐스팅
-				
-		if(!status.equals("H")) { 
-			return "redirect:../main.do"; //호스트가 아닐 때
-		}
-		else {
-			request.setAttribute("map", map);
-			return "/host-room-add";
-		}
+		
+		request.setAttribute("map", map);
+		return "/host/host-room-add";
 	}
 	
 	//숙박 방 상세정보 페이지
@@ -61,14 +51,9 @@ public class RoomController {
 	public String roomView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		HttpSession session = request.getSession(); String status = (String)
 		session.getAttribute("sessionStatus"); //다운캐스팅
-				
-		if(!status.equals("H")) { 
-			return "redirect:../main.do"; //호스트가 아닐 때
-		}
-		else {
-			request.setAttribute("map", map);
-			return "/host-room-view";
-		}
+		
+		request.setAttribute("map", map);
+		return "/host/host-room-view";
 	}
 	
 	//숙박 방 수정 페이지
@@ -76,14 +61,9 @@ public class RoomController {
 	public String roomEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		HttpSession session = request.getSession(); String status = (String)
 		session.getAttribute("sessionStatus"); //다운캐스팅
-				
-		if(!status.equals("H")) { 
-			return "redirect:../main.do"; //호스트가 아닐 때
-		}
-		else {
-			request.setAttribute("map", map);
-			return "/host-room-edit";
-		}
+		
+		request.setAttribute("map", map);
+		return "/host/host-room-edit";
 	}
 	
 	// 방 목록 출력

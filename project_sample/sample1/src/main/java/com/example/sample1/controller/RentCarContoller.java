@@ -35,12 +35,7 @@ public class RentCarContoller {
 		HttpSession session = request.getSession(); String status = (String)
 		session.getAttribute("sessionStatus"); //다운캐스팅
 		
-		if(!status.equals("H")) { 
-			return "redirect:../main.do"; //호스트가 아닐 때
-		}
-		else {
-			return "/host-rentcar";
-		}
+		return "/host/host-rentcar";
     }
 	
 	//렌트카 제품 추가 및 수정 페이지
@@ -48,14 +43,8 @@ public class RentCarContoller {
 	public String leisureEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		HttpSession session = request.getSession(); String status = (String)
 		session.getAttribute("sessionStatus"); //다운캐스팅
-				
-		if(!status.equals("H")) { 
-			return "redirect:../main.do"; //호스트가 아닐 때
-		}
-		else {
-			request.setAttribute("map", map);
-			return "/host-rentcar-edit";
-		}
+		request.setAttribute("map", map);
+		return "/host/host-rentcar-edit";
 	}
 	
 	//렌트카 제품 상세 목록 열람 페이지
@@ -64,13 +53,8 @@ public class RentCarContoller {
 		HttpSession session = request.getSession(); String status = (String)
 		session.getAttribute("sessionStatus"); //다운캐스팅
 				
-		if(!status.equals("H")) { 
-			return "redirect:../main.do"; //호스트가 아닐 때
-		}
-		else {
-			request.setAttribute("map", map);
-			return "/host-rentcar-view";
-		}
+		request.setAttribute("map", map);
+		return "/host/host-rentcar-view";
 	}
 	
 	//주소검색
@@ -259,7 +243,7 @@ public class RentCarContoller {
         fileName += calendar.get(Calendar.SECOND);
         fileName += calendar.get(Calendar.MILLISECOND);
         
-        //시간이 겹치면서 파일명 중복으로 인해 고유한 파일 이름을 만들도록 하기 위함
+        //초 단위의 시간이 겹치면서 파일명 중복이 일어나기 때문에 고유한 파일 이름을 만들도록 하기 위함
         long currentTimeMillis = System.currentTimeMillis();
         fileName += currentTimeMillis;
         fileName += extName;
