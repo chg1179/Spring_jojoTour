@@ -20,82 +20,84 @@
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<table>
-			<tr>
-				<th>No.</th>
-				<td>{{info.rentNo}}</td>
-			</tr>
-			<tr>
-				<th>분류</th>
-				<td>{{info.cName}}</td>
-			</tr>
-			<tr>
-				<th>이름</th>
-				<td>{{info.rentName}}</td>
-			</tr>
-			<tr>
-				<th>우편번호</th>
-				<td>{{info.rZipno}}</td>
-			</tr>
-			<tr>
-				<th>주소</th>
-				<td>{{info.rAddr}}</td>
-			</tr>
-			<tr>
-				<th>상세주소</th>
-				<td>{{info.rDetailAddr}}</td>
-			</tr>
-			<tr>
-				<th>렌트금액</th>
-				<td>{{info.rentPrice}}</td>
-			</tr>
-			<tr>
-				<th>할인적용금액</th>
-				<td>{{info.rentPrice * info.rentSales}}</td>
-			</tr>
-			<tr>
-				<th>할인율</th>
-				<td>{{sales}}%</td>
-			</tr>
-			<tr>
-				<th>판매수량</th>
-				<td>{{info.rResidue}}</td>
-			</tr>
-			<tr>
-				<th>조회수</th>
-				<td>{{info.rRead}}</td>
-			</tr>
-			<tr>
-				<th>등록일</th>
-				<td>{{info.rInsertTime}}</td>
-			</tr>
-			<tr>
-				<th>수정일</th>
-				<td>{{info.rUpdateTime}}</td>
-			</tr>
-			<tr>
-				<th>썸네일 이미지</th>
-				<td v-for="(item, index) in imgList" v-if="item.mainYN =='Y'">
-					<div>{{item.imgName}}</div>
-					<img :src="item.imgPath">
-				</td>
-				<td v-if="imgList.length == 0"></td>
-			</tr>
-			<tr>
-				<th>상세정보 이미지</th>
-				<td v-for="(item, index) in imgList" v-if="item.mainYN =='N'">
-					<div>{{item.imgName}}</div>
-					<img :src="item.imgPath">
-				</td>
-				<td v-if="imgList.length == 0"></td>
-			</tr>
-		</table>
-		<div>
-			<span v-if="rCnt == 0">
-				<span><button @click="fnUpdate">수정</button></span>
-				<span><button @click="fnRemove">삭제</button></span>
-			</span>
-			<span><button @click="fnBack">뒤로가기</button></span>
+		<div id="container">
+			<table>
+				<tr>
+					<th>No.</th>
+					<td>{{info.rentNo}}</td>
+				</tr>
+				<tr>
+					<th>분류</th>
+					<td>{{info.cName}}</td>
+				</tr>
+				<tr>
+					<th>이름</th>
+					<td>{{info.rentName}}</td>
+				</tr>
+				<tr>
+					<th>우편번호</th>
+					<td>{{info.rZipno}}</td>
+				</tr>
+				<tr>
+					<th>주소</th>
+					<td>{{info.rAddr}}</td>
+				</tr>
+				<tr>
+					<th>상세주소</th>
+					<td>{{info.rDetailAddr}}</td>
+				</tr>
+				<tr>
+					<th>렌트금액</th>
+					<td>{{info.rentPrice}}</td>
+				</tr>
+				<tr>
+					<th>할인적용금액</th>
+					<td>{{info.rentPrice * info.rentSales}}</td>
+				</tr>
+				<tr>
+					<th>할인율</th>
+					<td>{{sales}}%</td>
+				</tr>
+				<tr>
+					<th>판매수량</th>
+					<td>{{info.rResidue}}</td>
+				</tr>
+				<tr>
+					<th>조회수</th>
+					<td>{{info.rRead}}</td>
+				</tr>
+				<tr>
+					<th>등록일</th>
+					<td>{{info.rInsertTime}}</td>
+				</tr>
+				<tr>
+					<th>수정일</th>
+					<td>{{info.rUpdateTime}}</td>
+				</tr>
+				<tr>
+					<th>썸네일 이미지</th>
+					<td v-for="(item, index) in imgList" v-if="item.mainYN =='Y'">
+						<div>{{item.imgName}}</div>
+						<img :src="item.imgPath">
+					</td>
+					<td v-if="imgList.length == 0"></td>
+				</tr>
+				<tr>
+					<th>상세정보 이미지</th>
+					<td v-for="(item, index) in imgList" v-if="item.mainYN =='N'">
+						<div>{{item.imgName}}</div>
+						<img :src="item.imgPath">
+					</td>
+					<td v-if="imgList.length == 0"></td>
+				</tr>
+			</table>
+			<div>
+				<span v-if="rCnt == 0">
+					<span><button @click="fnUpdate">수정</button></span>
+					<span><button @click="fnRemove">삭제</button></span>
+				</span>
+				<span><button @click="fnBack">뒤로가기</button></span>
+			</div>
 		</div>
 	</div>
 </body>

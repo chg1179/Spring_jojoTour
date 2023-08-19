@@ -101,19 +101,17 @@ var app = new Vue({
 		serviceNo : 0,
 		typeList : [],
 		info : {
-			stayNo : 0,
 			stayName : "",
 			sAddr : "",               
-			sDetailAddr : "",
+			sDetailAddr : ""
 		},
 		uId : "${sessionId}"
-		
 	},// data
 	methods : {
 
 		fnGetOption : function(){
 			var self = this;
-			var param = {stayNo : self.stayNo};
+			var param = {};
 			$.ajax({
                 url : "stayOption.dox",
                 dataType:"json",	
@@ -135,17 +133,14 @@ var app = new Vue({
 				alert("취소되었습니다.");
 				return;
 			}
-			var param = {
-				stayNo : self.info.stayNo,
-				stayName: self.info.stayName,
-				sAddr: self.info.sAddr,
-				sDetailAddr: self.info.sDetailAddr,
-				sZipno: self.info.sZipno,
-				type: self.selectStayType,
-				uId : self.uId,
-				serviceNo : self.serviceNo,
-				selectServiceList : self.selectServiceList
-			}
+			
+			var noServiceList = JSON.stringify(self.selectServiceList); //문자열 형태로 형변환
+			var param = self.info;
+			param.uId = self.uId;
+			param.type = self.selectStayType;
+			param.serviceNo = self.serviceNo;
+			param.selectServiceList = noServiceList;
+			
 			console.log(self.selectServiceList);
 			console.log(self.selectServiceList[2]); 
 			$.ajax({
@@ -155,10 +150,7 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	alert("숙소가 등록되었습니다.");
-               		//location.href="/host/stay.do";
-               		console.log(self.stayNo);
-               		console.log(self.selectServiceList);
-        			console.log(self.selectServiceList[2]); 
+               		location.href="/host/stay.do";
                 }
             }); 
 		},

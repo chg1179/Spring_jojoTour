@@ -70,18 +70,17 @@ public class StayController {
 	@RequestMapping(value = "/host/stayAdd.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String stayAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		
+		
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		String json = map.get("selectServiceList").toString();
 		
-		List<Integer> list = (List<Integer>) map.get("selectServiceList");
-		map.put("list", list);
+		ObjectMapper mapper = new ObjectMapper();
+		List<Object> list = mapper.readValue(json, new TypeReference<List<Object>>(){});
+		map.put("serviceList", list);
 		
-		for(int i=0; i<list.size(); i++) {
-			int str = list.get(i);
-			System.out.println(str);
-		} 
-		
-		stayService.addStay(map);
-		resultMap.put("message", "success");
+		resultMap = stayService.addStay(map);
+		//resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
 	

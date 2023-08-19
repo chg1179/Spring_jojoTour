@@ -52,56 +52,58 @@
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<table>
-			<tr>
-				<th>선택</th>
-				<th>No.</th>
-				<th>이름</th>
-				<th>분류</th>
-				<th>렌트금액</th>
-				<th>판매수량</th>
-				<th>등록일</th>
-				<th>패키지신청</th>
-			</tr>
-			
-			<tr v-for="(item, index) in list">
-				<td>
-					<input v-if="index==indexNo" type="radio" :value="item.rentNo" @input="changeRentNo(item, index)" name="rentNo" checked="checked">
-					<input v-else type="radio" :value="item.rentNo" @input="changeRentNo(item, index)" name="rentNo">
-				</td>
-				<td>{{item.rentNo}}</td>
-				<td>{{item.rentName}}</td>
-				<td>{{item.cName}}</td>
-				<td>{{item.rentPrice * item.rentSales}}원</td>
-				<td>{{item.rResidue}}</td>
-				<td>{{item.rInsertTime}}</td>
-				<td>
-					<span v-if="item.state=='A'">
-						<div>신청이 완료되었습니다.</div>
-						<div>취소는 1:1 문의를 남겨주세요.</div>
-					</span>
-					<button v-else-if="item.state=='D'" @click="fnPackDel(item.rentNo)">취소</button>
-					<button v-else @click="fnPackAdd(item.rentNo)">신청</button>
-				</td>
-			</tr>
-		</table>
-		<template>
-		  <paginate
-		    :page-count="pageCount"
-		    :page-range="3"
-		    :margin-pages="2"
-		    :click-handler="fnSearch"
-		    :prev-text="'<'"
-		    :next-text="'>'"
-		    :container-class="'pagination'"
-		    :page-class="'page-item'">
-		  </paginate>
-		</template>
-		<div>
-			<span><button @click="fnAdd">상품등록</button></span>
-			<span><button @click="fnView">상세정보열람</button></span>
-			<span><button @click="fnRemove">삭제</button></span>
-			<span><button @click="fnBack">뒤로가기</button></span>
+		<div id="container">
+			<table>
+				<tr>
+					<th>선택</th>
+					<th>No.</th>
+					<th>이름</th>
+					<th>분류</th>
+					<th>렌트금액</th>
+					<th>판매수량</th>
+					<th>등록일</th>
+					<th>패키지신청</th>
+				</tr>
+				
+				<tr v-for="(item, index) in list">
+					<td>
+						<input v-if="index==indexNo" type="radio" :value="item.rentNo" @input="changeRentNo(item, index)" name="rentNo" checked="checked">
+						<input v-else type="radio" :value="item.rentNo" @input="changeRentNo(item, index)" name="rentNo">
+					</td>
+					<td>{{item.rentNo}}</td>
+					<td>{{item.rentName}}</td>
+					<td>{{item.cName}}</td>
+					<td>{{item.rentPrice * item.rentSales}}원</td>
+					<td>{{item.rResidue}}</td>
+					<td>{{item.rInsertTime}}</td>
+					<td>
+						<span v-if="item.state=='A'">
+							<div>신청이 완료되었습니다.</div>
+							<div>취소는 1:1 문의를 남겨주세요.</div>
+						</span>
+						<button v-else-if="item.state=='D'" @click="fnPackDel(item.rentNo)">취소</button>
+						<button v-else @click="fnPackAdd(item.rentNo)">신청</button>
+					</td>
+				</tr>
+			</table>
+			<template>
+			  <paginate
+			    :page-count="pageCount"
+			    :page-range="3"
+			    :margin-pages="2"
+			    :click-handler="fnSearch"
+			    :prev-text="'<'"
+			    :next-text="'>'"
+			    :container-class="'pagination'"
+			    :page-class="'page-item'">
+			  </paginate>
+			</template>
+			<div>
+				<span><button @click="fnAdd">상품등록</button></span>
+				<span><button @click="fnView">상세정보열람</button></span>
+				<span><button @click="fnRemove">삭제</button></span>
+				<span><button @click="fnBack">뒤로가기</button></span>
+			</div>
 		</div>
 	</div>
 </body>
