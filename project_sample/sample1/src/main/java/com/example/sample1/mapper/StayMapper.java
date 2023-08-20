@@ -12,6 +12,9 @@ public interface StayMapper {
 	// 숙소 업체 목록 출력
 	List<Stay> selectStayList(HashMap<String, Object> map);
 	
+	// 전체 갯수
+	int selectCnt(HashMap<String, Object> map);
+	
 	// 숙소 업체 등록
 	int insertStay(HashMap<String, Object> map);
 	
@@ -32,6 +35,5 @@ public interface StayMapper {
 	
 	// 체크된 룸서비스 값 인서트
 	int insertStayService(HashMap<String, Object> map);
-	
 	
 } 

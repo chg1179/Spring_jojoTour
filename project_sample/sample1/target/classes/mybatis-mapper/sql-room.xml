@@ -18,6 +18,7 @@
 			GROUP BY PRODUCT_NO
 		) P ON P.PRODUCT_NO = R.ROOM_NO
 		WHERE ROOM_DELYN = 'N' AND U_ID = #{uId} AND S.STAY_NO = #{stayNo}
+		ORDER BY R.ROOM_NO DESC
 	</select>
 	
 	<select id="selectRoomInfo" parameterType="hashmap" resultType="com.example.sample1.model.Room">

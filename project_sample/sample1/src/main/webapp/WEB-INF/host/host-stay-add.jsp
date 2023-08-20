@@ -129,6 +129,7 @@ var app = new Vue({
 		
 		fnStayAdd : function(){
 			var self = this;
+		
 			if(!confirm("숙소를 등록하시겠습니까?")){
 				alert("취소되었습니다.");
 				return;
@@ -165,7 +166,7 @@ var app = new Vue({
     		self.info.sZipno = zipNo;
     		self.info.sAddr = roadAddrPart1;
             self.info.sDetailAddr = addrDetail;
-    		// 콘솔 통해 각 변수 값 찍어보고 필요한거 가져다 쓰면 됩니다.
+            
     		console.log(roadFullAddr);
     		console.log(roadAddrPart1);
     		console.log(addrDetail);

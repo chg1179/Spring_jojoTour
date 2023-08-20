@@ -25,13 +25,14 @@ public class StayMainController {
 	
 	@RequestMapping("/stay/hotel.do") 
 	public String mainStay(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/hotel-main";
+		request.setAttribute("map", map);
+		return "/stay/hotel-main";
 	}
 	
-	@RequestMapping("/stay/hotelDetail.do") 
+	@RequestMapping("/stay/detail.do") 
 	public String hotelDetail(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/hotel-detail";
+		return "/stay/hotel-detail";
 	}
 	
 	//숙소 업체 정보 출력
@@ -48,15 +49,24 @@ public class StayMainController {
 		
 		return new Gson().toJson(resultMap);
 		
-		
 	}
-	//숙소 업체 정보 출력
+	//숙소 룸 리스트 출력
 	@RequestMapping(value = "/stay/roomList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String roomList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		List<Room> list = stayMainService.searchRoomList(map);
 		resultMap.put("roomList", list);
+		return new Gson().toJson(resultMap);
+		
+	}
+	
+	//숙소 룸 리스트 출력
+	@RequestMapping(value = "/stay/jjimAdd.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String jjimAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		stayMainService.addJjim(map);
 		return new Gson().toJson(resultMap);
 		
 	}

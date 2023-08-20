@@ -14,4 +14,7 @@ public interface StayMainService {
 	List<Stay> searchServiceList(HashMap<String, Object> map);
 	
 	List<Room> searchRoomList(HashMap<String, Object> map);
+	
+	// 찜 인서트
+	int addJjim(HashMap<String, Object> map);
 }

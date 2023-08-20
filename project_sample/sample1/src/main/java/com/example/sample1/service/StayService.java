@@ -8,7 +8,7 @@ import com.example.sample1.model.Stay;
 public interface StayService {
 	
 	// 숙소 업체 목록 출력
-	List<Stay> searchStayList(HashMap<String, Object> map);
+	HashMap<String, Object> searchStayList(HashMap<String, Object> map);
 	
 	// 숙소 업체 등록, 편의시설 인서트
 	HashMap<String, Object> addStay(HashMap<String, Object> map);
@@ -27,9 +27,5 @@ public interface StayService {
 	
 	// 숙소 정보 수정
 	int editStayInfo(HashMap<String, Object> map);
-	
-	/*
-	 * // 숙소 편의시설 인서트 int addStayService(HashMap<String, Object> map);
-	 */
 	
 }

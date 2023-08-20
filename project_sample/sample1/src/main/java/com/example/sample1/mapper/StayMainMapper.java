@@ -19,4 +19,7 @@ public interface StayMainMapper {
 	
 	// 호텔 상세 정보 
 	List<Room> selectRoomList(HashMap<String, Object> map);
+	
+	// 찜 인서트
+	int insertJjim(HashMap<String, Object> map);
 }

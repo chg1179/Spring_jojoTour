@@ -25,4 +25,6 @@ public class Stay {
 	// service
 	private int serviceNo;
 	private String serviceName;
+	
+	private int sCnt;
 }
