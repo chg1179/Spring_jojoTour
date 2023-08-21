@@ -61,7 +61,7 @@ public class RentCarContoller {
 	@RequestMapping("/host/rentcar/addr.do") 
 	public String carAddr(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
 		
-		return "/juso-popup";
+		return "/login/juso-popup";
 	}
 	
 	//렌트카 정보 리스트 출력

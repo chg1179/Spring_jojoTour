@@ -60,7 +60,7 @@ public class LeisureController {
 	@RequestMapping("/host/leisure/addr.do") 
 	public String leisureAddr(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
 		
-		return "/juso-popup";
+		return "/login/juso-popup";
 	}
 	
 	//레저 정보 리스트 출력
