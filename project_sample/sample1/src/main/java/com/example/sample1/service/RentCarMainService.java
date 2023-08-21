@@ -11,4 +11,6 @@ public interface RentCarMainService {
 	HashMap<String, Object> searchCarKind(HashMap<String, Object> map);
 	//렌트카 상세페이지
 	RentCar searchRentCarInfo(HashMap<String, Object> map);
+	//렌트카 이미지출력
+	List<RentCarImg> searchCarImgList(HashMap<String, Object> map);
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.sample1.model.RentCar;
+import com.example.sample1.model.RentCarImg;
 import com.example.sample1.service.RentCarMainService;
 import com.google.gson.Gson;
 
@@ -79,6 +80,14 @@ public class RentCarMainController {
 		resultMap.put("rentcarinfo", info);
 		return new Gson().toJson(resultMap);
 	}
-	
+	//렌트카 정보 리스트 출력
+	@RequestMapping(value = "/rentcar/carImgList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String rentCarImgList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<RentCarImg> list = rentCarMainService.searchCarImgList(map);
+		resultMap.put("carImgList", list);
+		return new Gson().toJson(resultMap);
+	}
 
 }

@@ -1,12 +1,14 @@
 package com.example.sample1.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.sample1.mapper.RentCarMainMapper;
 import com.example.sample1.model.RentCar;
+import com.example.sample1.model.RentCarImg;
 
 @Service
 public class RentCarMainServiceImpl implements RentCarMainService{
@@ -36,6 +38,13 @@ public class RentCarMainServiceImpl implements RentCarMainService{
 	public RentCar searchRentCarInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return rentCarMainMapper.selectRentCarInfo(map);
+	}
+	
+	//렌트카 이미지 리스트
+	@Override
+	public List<RentCarImg> searchCarImgList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return rentCarMainMapper.selectCarImgList(map);
 	}
 
 

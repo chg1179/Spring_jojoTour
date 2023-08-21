@@ -22,7 +22,7 @@
 		<p>차량 이름 : {{info.rentName}}</p> 
 		<p>차량 종류 : {{info.rentKind}}</p> 
 		<p v-for="item in imgList">상세 이미지 : {{item.imgName}}
-			<img :src="item.imgPath">
+			<img :src="item.imgPath" alt="">
 		</p>
 		
 		<p>렌트금액 : {{info.rentPrice}} / 할인율 : {{sales}}%</p>
@@ -62,7 +62,6 @@ var app = new Vue({
                 }
             }); 
 		},
-		
 		fnGetImgList : function(){
 			var self = this;
 			var param = {rentNo : self.rentNo};
@@ -75,11 +74,12 @@ var app = new Vue({
                 	self.imgList = data.carImgList;
                 	// 앞 경로로 상대 경로 수정
                 	for(var i=0;i< self.imgList.length;i++){
-                		self.imgList[i].imgPath = "../" + self.imgList[i].imgPath; 
+                		self.imgList[i].imgPath = "../"+self.imgList[i].imgPath; 
                 	}
                 }
             }); 
 		},
+
 
 		fnBack : function(){
 			var self = this;
