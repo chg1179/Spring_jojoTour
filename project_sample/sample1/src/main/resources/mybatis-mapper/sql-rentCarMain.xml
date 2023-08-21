@@ -47,7 +47,7 @@
 		INNER JOIN T2_RENT_IMG_TBL I ON C.RENT_NO = I.RENT_NO
 		WHERE 1=1 AND MAIN_YN = 'Y'
 		<if test="rentCarKeyword != '' and rentCarKeyword != null"> 
-			AND (RENT_NAME LIKE '%' || #{rentCarKeyword} || '%')
+			AND RENT_NAME LIKE CONCAT('%',#{rentCarKeyword},'%')
 		</if>
 	</select>
 	<select id="selectCarSearchListCnt" resultType="int">
@@ -56,7 +56,7 @@
 		INNER JOIN T2_RENT_IMG_TBL I ON C.RENT_NO = I.RENT_NO
 		WHERE 1=1 AND MAIN_YN = 'Y'
 		<if test="rentCarKeyword != '' and rentCarKeyword != null"> 
-			AND (RENT_NAME LIKE '%' || #{rentCarKeyword} || '%')
+			AND RENT_NAME LIKE CONCAT('%',#{rentCarKeyword},'%')
 		</if>
 	</select>
 </mapper>
