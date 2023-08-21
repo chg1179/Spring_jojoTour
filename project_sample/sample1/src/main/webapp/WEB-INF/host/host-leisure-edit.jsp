@@ -53,11 +53,20 @@
 				<tr>
 					<th>분류</th>
 					<td>
-						<select v-model="info.leisureKind">
-							<option value="JETSKI">제트스키</option>
+						<select v-model="info.cType" @change="changeType(info.cType)">
+							<option value="WATER">수상</option>
+							<option value="GROUND">지상</option>
+						</select>
+						<select v-if='info.cType=="WATER"' v-model="info.leisureKind">
 							<option value="SNORKE">스노쿨링</option>
 							<option value="SURFING">서핑</option>
 							<option value="YACHT">요트</option>
+							<option value="JETSKI">제트스키</option>
+						</select>
+						<select v-if='info.cType=="GROUND"' v-model="info.leisureKind">
+							<option value="ATV">ATV</option>
+							<option value="GLIDER">패러글라이딩</option>
+							<option value="HORSE">말타기</option>
 						</select>
 					</td>
 				</tr>
@@ -136,7 +145,7 @@ var app = new Vue({
 		leisureNo : "${map.leisureNo}",
 		info : {
 			cType : "WATER",
-			leisureKind : "SMALL",
+			leisureKind : "SNORKE",
 			leisureName : "",
 			lZipno : "",
 			lAddr : "",
@@ -162,6 +171,7 @@ var app = new Vue({
                 success : function(data) { 
                 	self.info = data.leisureInfo;
                 	self.sales = 100 - (self.info.leisureSales * 100);
+                	console.log(self.info);
                 }
             }); 
 		},
@@ -477,6 +487,14 @@ var app = new Vue({
 		},
 		waiting : function (wait) {
 			console.log(wait);
+		},
+		changeType : function (cType) {
+			var self = this;
+			if(cType == "WATER"){
+				self.info.leisureKind = "SNORKE";
+			} else if(cType == "GROUND"){
+				self.info.leisureKind = "ATV";
+			}
 		}
 	}, // methods
 	created : function() {

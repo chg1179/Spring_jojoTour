@@ -20,7 +20,6 @@
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-	숙소 정보 수정 페이지
 		<table>
 			<tr>
 				<th>No.</th>
@@ -61,8 +60,11 @@
 				</th>
 				<td>
 					<div v-for="item in serviceList">
-						<label><input type="checkbox" :value="item.serviceNo" v-model="selectServiceList">{{item.serviceName}}</label>
-					</div>					
+					    <label>
+					        <input type="checkbox" :value="item.serviceNo" :checked="isServiceChecked(item)">
+					        {{ item.serviceName }}
+					    </label>
+					</div>			
 				</td>
 			</tr>
 			<tr>
@@ -85,18 +87,17 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 var app = new Vue({
 	el : '#app',
 	data : {
+		typeList : [],
 		serviceList : [], // 출력을 위한 서비스 리스트
-		selectServiceList : [], // 체크한 값을 넣기 위한 서비스 리스트
+		checkList : [], // 체크한 값을 넣기 위한 서비스 리스트
 		info : {
 			stayName : "",
 			stayKind : "",
 			sZipNo : "",
 			sAddr : "",
-			sDetailAddr : "",
-			
+			sDetailAddr : ""
 		},
-		stayNo : "${map.stayNo}",
-		typeList : [],
+		stayNo : "${map.stayNo}"
 	},// data
 	methods : {
 		fnGetInfo : function(){
@@ -110,7 +111,22 @@ var app = new Vue({
                 success : function(data) { 
                 	self.info = data.stayInfo;
                 	console.log(self.info);
-                	
+                	self.fnGetCheckList();
+                }
+            }); 
+		},
+		//해당 숙박업소의 체크되었던 편의시설 리스트를 가져옴
+		fnGetCheckList : function(){
+			var self = this;
+			var param = {stayNo : self.stayNo};
+			$.ajax({
+                url : "checkList.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	self.checkList = data.checkList;
+                	console.log(self.checkList);
                 }
             }); 
 		},
@@ -139,14 +155,12 @@ var app = new Vue({
 				return;
 			}
 			
-			var noServiceList = JSON.stringify(self.selectServiceList); //문자열 형태로 형변환
+			var noServiceList = JSON.stringify(self.checkList); //문자열 형태로 형변환
 			var param = self.info;
 			param.stayNo = self.stayNo;
 			param.serviceNo = self.serviceNo;
-			param.selectServiceList = noServiceList;
+			param.checkList = noServiceList;
 			
-			console.log(self.selectServiceList);
-			console.log(self.selectServiceList[2]); 
 			$.ajax({
                 url : "stayEdit.dox",
                 dataType:"json",	
@@ -160,7 +174,6 @@ var app = new Vue({
                 }
             }); 
 		},
-		
 		fnSearchAddr : function (){
 			var self = this;
     		var option = "width = 500, height = 500, top = 100, left = 200, location = no"
@@ -172,7 +185,10 @@ var app = new Vue({
             self.info.sDetailAddr = addrDetail;
             
             console.log(zipNo);
-    	}
+    	},
+    	isServiceChecked(service) {
+            return this.checkList.some(item => item.serviceNo === service.serviceNo);
+        }
 	}, // methods
 	created : function() {
 		var self = this;

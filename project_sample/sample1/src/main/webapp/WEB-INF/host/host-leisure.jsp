@@ -74,8 +74,8 @@
 					<td>{{item.leisureNo}}</td>
 					<td>{{item.leisureName}}</td>
 					<td>
-						<span v-if='item.type="WATER"'>수상</span>
-						<span v-else-if='item.type="GROUND"'>지상</span>
+						<span v-if='item.cType=="WATER"'>수상</span>
+						<span v-else-if='item.cType=="GROUND"'>지상</span>
 					</td>
 					<td>{{item.cName}}</td>
 					<td>{{item.leisurePrice * item.leisureSales}}원</td>

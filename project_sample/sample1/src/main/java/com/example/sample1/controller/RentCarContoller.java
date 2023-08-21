@@ -147,6 +147,8 @@ public class RentCarContoller {
             String originFilename = multi.getOriginalFilename();
             String extName = originFilename.substring(originFilename.lastIndexOf("."),originFilename.length());
             long size = multi.getSize();
+            
+            Thread.sleep(1000); // 시간 중복을 피하기 위함
             String saveFileName = getSaveFileName(extName);
             
             System.out.println("uploadpath : " + uploadpath);
@@ -200,6 +202,8 @@ public class RentCarContoller {
             String originFilename = multi.getOriginalFilename();
             String extName = originFilename.substring(originFilename.lastIndexOf("."),originFilename.length());
             long size = multi.getSize();
+            
+            Thread.sleep(1000); // 시간 중복을 피하기 위함
             String saveFileName = getSaveFileName(extName);
             
             System.out.println("uploadpath : " + uploadpath);

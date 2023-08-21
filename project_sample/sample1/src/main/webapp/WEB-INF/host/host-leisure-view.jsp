@@ -29,8 +29,8 @@
 				<tr>
 					<th>분류</th>
 					<td>
-						<span v-if='info.type="WATER"'>수상</span>
-						<span v-else-if='info.type="GROUND"'>지상</span>
+						<span v-if='info.cType=="WATER"'>수상</span>
+						<span v-else-if='info.cType=="GROUND"'>지상</span>
 					</td>
 				</tr>
 				<tr>
@@ -114,7 +114,18 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		status : "${sessionStatus}",
-		info : {},
+		info : {
+			cType : "",
+			leisureKind : "",
+			leisureName : "",
+			lZipno : "",
+			lAddr : "",
+			lDetailAddr : "",
+			lentPrice : "",
+			lentSales : "",
+			lResidue : "",
+			leisureNo : ""
+		},
 		leisureNo : "${map.leisureNo}",
 		lCnt : "${map.lCnt}",
 		sales : 0,
@@ -134,6 +145,7 @@ var app = new Vue({
                 	self.info = data.leisureInfo;
                 	self.sales = 100 - (self.info.leisureSales * 100);
                 	self.fnGetImgList();
+                	console.log(self.info);
                 }
             }); 
 		},

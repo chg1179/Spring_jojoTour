@@ -135,7 +135,7 @@ public class LeisureController {
 	}
 	
 	//레저 이미지 추가
-	@RequestMapping("leisureFileUpload.dox")
+	@RequestMapping("/host/leisure/leisureFileUpload.dox")
     public String result(@RequestParam("files") MultipartFile multi, @RequestParam("leisureNo") int leisureNo, @RequestParam("mainYN") String mainYN, HttpServletRequest request,HttpServletResponse response, Model model)
     {
         String url = null;
@@ -146,7 +146,9 @@ public class LeisureController {
             String originFilename = multi.getOriginalFilename();
             String extName = originFilename.substring(originFilename.lastIndexOf("."),originFilename.length());
             long size = multi.getSize();
-            String saveFileName = genSaveFileName(extName);
+            
+            Thread.sleep(1000); // 시간 중복을 피하기 위함
+            String saveFileName = getSaveFileName(extName);
             
             System.out.println("uploadpath : " + uploadpath);
             System.out.println("originFilename : " + originFilename);
@@ -193,7 +195,9 @@ public class LeisureController {
             String originFilename = multi.getOriginalFilename();
             String extName = originFilename.substring(originFilename.lastIndexOf("."),originFilename.length());
             long size = multi.getSize();
-            String saveFileName = genSaveFileName(extName);
+            
+            Thread.sleep(1000); // 시간 중복을 피하기 위함
+            String saveFileName = getSaveFileName(extName);
             
             System.out.println("uploadpath : " + uploadpath);
             System.out.println("originFilename : " + originFilename);
@@ -228,7 +232,7 @@ public class LeisureController {
 	}
 	
     // 현재 시간을 기준으로 파일 이름 생성
-    private String genSaveFileName(String extName) {
+    private String getSaveFileName(String extName) {
         String fileName = "";
         
         Calendar calendar = Calendar.getInstance();

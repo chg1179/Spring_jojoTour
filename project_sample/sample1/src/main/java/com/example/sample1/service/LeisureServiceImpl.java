@@ -62,6 +62,7 @@ public class LeisureServiceImpl implements LeisureService{
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		leisureMapper.insertLeisure(map);
 		resultMap.put("leisureNo", map.get("leisureNo"));
+		System.out.println(map.get("leisureNo"));
 		return resultMap;
 	}
 
