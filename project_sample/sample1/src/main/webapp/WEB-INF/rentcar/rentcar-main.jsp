@@ -140,7 +140,7 @@
 					<label class="rentcar_btn" for="m_rentcar">중형차</label>
 				</li>
 				<li>
-					<input type="radio" name="rentcar" id="l_rentcar" @input="test('LARGE')">
+					<input type="radio" name="rentcar" id="l_rentcar" @input="checkRentKind('LARGE')">
 					<label class="rentcar_btn" for="l_rentcar">대형차</label>
 				</li>
 				<li>
@@ -150,7 +150,7 @@
 			</ul>
 		<div id="rentcar_main_container">
 			<div class="rentcar_main_wrap">
-				<div v-for="item in list" class="rentcar_main_box">
+				<div v-for="item in list" class="rentcar_main_box" @click="fnRentCarView(item.rentNo)">
 					<div class="rentcar_main_img">
 						<img :src="item.imgPath" alt="">
 					</div>
@@ -249,6 +249,12 @@ var app = new Vue({
 		},
 		test : function(kind){
 			$.pageChange("rentcar.do", {rentKind : kind});
+		},
+		fnRentCarView : function(rentNo){
+			var self = this;
+			console.log(rentNo);
+			$.pageChange("rentcar/view.do", {rentNo : rentNo});
+			
 		}
 	}, // methods
 	created : function() {
