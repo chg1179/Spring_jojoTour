@@ -36,4 +36,15 @@ public interface StayMapper {
 	// 체크된 룸서비스 값 인서트
 	int insertStayService(HashMap<String, Object> map);
 	
+	// 체크된 룸서비스 없데이트
+	int updateStayService(HashMap<String, Object> map);
+	
+	// 체크된 서비스 리스트
+	List<Stay> checkServiceList(HashMap<String, Object> map);
+	
+	// 서비스 삭제
+	int deleteService(HashMap<String, Object> map);
+	
+	// 수정시 서비스 다시 인서트
+	int insertService2(HashMap<String, Object> map);
 } 

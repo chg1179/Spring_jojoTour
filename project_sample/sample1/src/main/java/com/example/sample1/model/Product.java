@@ -10,16 +10,25 @@ public class Product {
 	// stay
 	private int stayNo;
 	private String stayName;
+	private String stayKind;
+	private String sZipno;
 	private String sAddr;
 	private String sDetailAddr;
-	private String stayKind;
+	private String sRead;
+	private String sInsertTime;
+	private String sUpdateTime;
+	private String sDelyn;
+	private int cnt;
 	
 	// room
 	private int roomNo;
 	private String roomName;
 	private int roomPrice;
-	private String roomSales;
-	private String peopleMax;
+	private double roomSales;
+	private int peopleMax;
+	private String roomInsertTime;
+	private String roomUpdateTime;
+	private int roomResidue;
 	
 	// rent
 	private int rentNo;
@@ -43,4 +52,6 @@ public class Product {
 	private String cKind;
 	private String cName;
 	private String cType;
+	
+	private int minPrice;
 }

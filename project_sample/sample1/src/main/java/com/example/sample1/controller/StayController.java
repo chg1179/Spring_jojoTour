@@ -83,11 +83,12 @@ public class StayController {
 		map.put("serviceList", list);
 		
 		resultMap = stayService.addStay(map);
+		
 		//resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
 	
-	// 숙소 옵션 리스트(타입, 편의시설)
+	// 숙소 옵션 리스트(타입, 편의시설, 체크된 편의시설)
 	@RequestMapping(value = "/host/stayOption.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String stayOption(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -97,7 +98,9 @@ public class StayController {
 		
 		List<Stay> list2 = stayService.searchServiceList(map);
 		resultMap.put("stayServiceList", list2);
+		
 		return new Gson().toJson(resultMap);
+		
 	}
 	
 	// 숙소 삭제 리스트
@@ -125,9 +128,35 @@ public class StayController {
 	@ResponseBody
 	public String stayEdit(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		stayService.editStayInfo(map);
+		String json = map.get("selectServiceList").toString();
+		
+		ObjectMapper mapper = new ObjectMapper();
+		List<Object> list = mapper.readValue(json, new TypeReference<List<Object>>(){});
+		map.put("list", list);
+		
+	      for(int i=0;i<list.size();i++) {
+	         //Object obj = list[i]; //오류
+	         //Object obj = list.get(i); //리스트는 get 메소드를 이용해 접근해야 한다.
+	         Integer str = (Integer) list.get(i); //출력하기 위해서는 문자열 형태로 다운 캐스팅을 해주어야 한다.
+	         System.out.println(str);
+	      }
+	      
+	   // 삭제
+	      stayService.removeService(map);
+	      resultMap = stayService.editStayInfo(map);
+		
+		//resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
 	
+	// 체크된 서비스 리스트
+	@RequestMapping(value = "/host/checkList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String checkList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<Stay> list = stayService.checkServiceList(map);
+		resultMap.put("checkList", list);
+		return new Gson().toJson(resultMap);
+	}
 			
 }

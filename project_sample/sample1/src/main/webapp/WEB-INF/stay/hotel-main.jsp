@@ -150,6 +150,9 @@ ul a:hover {
 #content {
     overflow: hidden;
 }
+.stay-info{
+	margin-bottom: 20px;
+}
 .sub_wra
 </style>
 </head>
@@ -157,6 +160,7 @@ ul a:hover {
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<%-- <%@ include file="header.jsp" %> --%>
 	<div id="app">
+		
 		<div class="banner_box">
 			<p class="banner_text">호텔</p>
 		</div>
@@ -171,7 +175,8 @@ ul a:hover {
 
 				<h3>상세조건</h3>
 				<div class="btn-wrap">
-					<span><button>초기화</button></span> <span><button>적용</button></span>
+					<span><button>초기화</button></span> 
+					<span><button>적용</button></span>
 				</div>
 
 				<section>
@@ -201,10 +206,9 @@ ul a:hover {
 			<div class="list-wrap">
 				<ul>
 					<li v-for="item in list">
-						<div class="name">
-							<div>
-								<a @click="fnDetail(item)">{{item.stayName}}</a>
-							</div>
+						<div class="stay-info">
+							<div><a @click="fnDetail(item.stayNo)">{{item.stayName}}</a></div>
+							<div>{{item.minPrice}}원</div>
 						</div>
 					</li>
 				</ul>
@@ -220,9 +224,9 @@ var app = new Vue({
 		serviceList : [],
 		list : [],
 		selectServiceList : [],
+		
 	},// data
 	methods : {
-		
 		// 호텔 리스트 
 		fnGetList : function(){
 			var self = this;
@@ -235,16 +239,15 @@ var app = new Vue({
                 success : function(data) { 
                 	self.list = data.stayList;
                 	console.log(self.list);
-                	
                 	self.serviceList = data.serviceList;
-                	console.log(self.list);
+                	console.log(self.serviceList);
                 }
             }); 
 		},
-		fnDetail : function(item){
+		fnDetail : function(stayNo){
 			var self = this;
-			console.log(item.stayName);
-			$.pageChange("detail.do", {stayNo : item.stayNo, stayName : item.stayName, sAddr : item.sAddr});
+			console.log(stayNo);
+			$.pageChange("detail.do", {stayNo : stayNo}); 
 		}
 	}, // methods
 	created : function() {

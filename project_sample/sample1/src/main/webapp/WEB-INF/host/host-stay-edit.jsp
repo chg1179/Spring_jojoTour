@@ -54,6 +54,19 @@
 				<td><input v-model="info.sDetailAddr" type="text" name="sDetailAddr" id="sDetailAddr"></td>
 			</tr>
 			<tr>
+				<th>
+					편의시설
+					<br>
+					서비스 안내
+				</th>
+				<td>
+					<div v-for="item in serviceList">
+						<label><input type="checkbox" :value="item.serviceNo" v-model="selectServiceList">{{item.serviceName}}</label>
+					</div>					
+				</td>
+			</tr>
+			<tr>
+			<tr>
 				<th>파일</th>
 				<td><input type="file" accept=".gif, .jpg, .png" id="stayFile" name="file"></td>
 			</tr>
@@ -72,7 +85,16 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 var app = new Vue({
 	el : '#app',
 	data : {
-		info : {},
+		serviceList : [], // 출력을 위한 서비스 리스트
+		selectServiceList : [], // 체크한 값을 넣기 위한 서비스 리스트
+		info : {
+			stayName : "",
+			stayKind : "",
+			sZipNo : "",
+			sAddr : "",
+			sDetailAddr : "",
+			
+		},
 		stayNo : "${map.stayNo}",
 		typeList : [],
 	},// data
@@ -88,6 +110,7 @@ var app = new Vue({
                 success : function(data) { 
                 	self.info = data.stayInfo;
                 	console.log(self.info);
+                	
                 }
             }); 
 		},
@@ -102,6 +125,10 @@ var app = new Vue({
                 success : function(data) { 
                 	self.typeList = data.stayTypeList;
                 	console.log(self.typeList);
+                	
+                	self.serviceList = data.stayServiceList;
+                	console.log(self.serviceList);
+                	
                 }
             }); 
 		},
@@ -111,14 +138,15 @@ var app = new Vue({
 				alert("취소되었습니다.");
 				return;
 			}
-			var param = {
-					stayName : self.info.stayName, 
-					stayKind : self.info.stayKind, 
-					sZipno : self.info.sZipno, 
-					sAddr : self.info.sAddr, 
-					sDetailAddr : self.info.sDetailAddr, 
-					stayNo : self.stayNo
-				};
+			
+			var noServiceList = JSON.stringify(self.selectServiceList); //문자열 형태로 형변환
+			var param = self.info;
+			param.stayNo = self.stayNo;
+			param.serviceNo = self.serviceNo;
+			param.selectServiceList = noServiceList;
+			
+			console.log(self.selectServiceList);
+			console.log(self.selectServiceList[2]); 
 			$.ajax({
                 url : "stayEdit.dox",
                 dataType:"json",	

@@ -220,9 +220,7 @@ Vue.component('paginate', VuejsPaginate)
 			fnUpdate : function() {
 				var self = this;
 				console.log(self.stayNo);
-				$.pageChange("stayEdit.do", {
-					stayNo : self.stayNo
-				});
+				$.pageChange("stayEdit.do", {stayNo : self.stayNo});
 			},
 			fnRemove : function() {
 				var self = this;

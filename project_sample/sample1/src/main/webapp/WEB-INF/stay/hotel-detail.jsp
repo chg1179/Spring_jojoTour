@@ -64,18 +64,19 @@
 		<div class="stay">
 			<div class="left">이미지</div>
 			<div class="right">
-				<div>{{stayName}}</div>
-				<div>{{sAddr}}</div>
+				<div>{{info.stayName}}</div>
+				<div>{{info.sAddr}}</div>
 			</div>
 		</div>
 	</div>
 	<div class="room-box">
 		<div class="room" v-for="item in list">
+			<div>방 번호: {{item.roomNo}}</div>
 			<div>방정보 : {{item.roomName}}</div>
 			<div>가격 : {{item.roomPrice}}</div>
 			
-			<button @click="fnJjim">찜</button>
-			<button @click="">장바구니</button>					
+			<button @click="fnJjim(item)">찜</button>
+			<button @click="fnCart">장바구니</button>					
 			<button @click="">예약하기</button>		
 		</div>
 	</div>
@@ -88,9 +89,12 @@ var app = new Vue({
 	data : {
 		list : [],
 		stayNo : "${map.stayNo}",
-		stayName : "${map.stayName}",
-		sAddr : "${map.sAddr}",
 		uId : "${sessionId}",
+		info : {
+			stayName : "",
+			sAddr : "",
+			cKind : ""
+		},
 		
 		
 	},// data
@@ -106,32 +110,37 @@ var app = new Vue({
                 success : function(data) { 
                 	self.list = data.roomList;
                 	console.log(self.list);
-                	console.log(self.stayName);
+                	
+                	self.info = data.stayInfo;
+                	console.log(data.stayInfo);
                 }
             }); 
 		},
-		/* fnCart : function(){
+		fnCart : function(){
 			var self = this;
+			if(!confirm("장바구니에 담으시겠습니까?")){
+				
+			}
 			var param = {};
 			$.ajax({
-                url : "roomList.dox",
+                url : "addCart.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.list = data.roomList;
-                	console.log(self.list);
-                	console.log(self.stayName);
+                	
                 }
             }); 
-		}, */
-		fnJjim : function(){
+		},
+		fnJjim : function(item){
 			var self = this;
 			if(!confirm("찜목록에 추가하시겠습니까?")){
 				alert("취소되었습니다.");
 				return;
 			}
-			var param = {uId : self.uId, roomNo : self.roomNo}; // 룸넘버 넘기기
+			var param = {uId : self.uId, roomNo : item.roomNo}; // 룸넘버 넘기기
+			console.log(item.roomNo);
+			console.log(item.cKind);
 			$.ajax({
                 url : "jjimAdd.dox",
                 dataType:"json",	
@@ -139,6 +148,8 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	alert("찜 목록에 추가되었습니다.");
+                	
+                	console.log(self.cType);
                 	self.fnGetList();
                 }
             }); 

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.sample1.model.Room;
+import com.example.sample1.model.Product;
 import com.example.sample1.model.Stay;
 import com.example.sample1.service.StayMainService;
 import com.google.gson.Gson;
@@ -40,7 +40,7 @@ public class StayMainController {
 	@ResponseBody
 	public String stayList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Stay> list = stayMainService.showStayList(map);
+		List<Product> list = stayMainService.showStayList(map);
 		resultMap.put("stayList", list);
 		
 		List<Stay> list2 = stayMainService.searchServiceList(map);
@@ -55,13 +55,16 @@ public class StayMainController {
 	@ResponseBody
 	public String roomList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Room> list = stayMainService.searchRoomList(map);
+		List<Product> list = stayMainService.searchRoomList(map);
 		resultMap.put("roomList", list);
+		
+		Product info = stayMainService.searchStayInfo(map);
+		resultMap.put("stayInfo", info);
 		return new Gson().toJson(resultMap);
 		
 	}
 	
-	//숙소 룸 리스트 출력
+	//숙소 찜 인서트
 	@RequestMapping(value = "/stay/jjimAdd.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String jjimAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -70,4 +73,5 @@ public class StayMainController {
 		return new Gson().toJson(resultMap);
 		
 	}
+	
 }
