@@ -24,12 +24,14 @@
 		FROM T2_SERVICE_TBL
 	</select>
 	
+	<!-- 방정보 출력 -->
 	<select id="selectRoomList" parameterType="hashmap" resultType="com.example.sample1.model.Room">
 		SELECT *
 		FROM T2_ROOM_TBL
 		WHERE STAY_NO = #{stayNo} AND ROOM_DELYN = 'N'
 	</select>
 	
+	<!-- 숙소 정보 출력 -->
 	<select id="selectStayInfo" parameterType="hashmap" resultType="com.example.sample1.model.Product">
 		SELECT *
 		FROM T2_STAY_TBL S
@@ -38,8 +40,9 @@
 		WHERE STAY_NO = #{stayNo} AND S_DELYN = 'N'
 	</select>
 	
+	<!-- 찜 인서트 -->
 	<insert id="insertJjim" parameterType="hashmap">
 		INSERT INTO T2_JJIM_TBL VALUES
-		(#{uId}, #{roomNo}, #{cKind})
+		(#{uId}, #{roomNo}, 'STAY')
 	</insert>
 </mapper>

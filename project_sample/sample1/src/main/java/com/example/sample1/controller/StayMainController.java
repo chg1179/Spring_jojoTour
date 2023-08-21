@@ -29,10 +29,10 @@ public class StayMainController {
 		return "/stay/hotel-main";
 	}
 	
-	@RequestMapping("/stay/detail.do") 
+	@RequestMapping("/stay/view.do") 
 	public String hotelDetail(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/stay/hotel-detail";
+		return "/stay/hotel-view";
 	}
 	
 	//숙소 업체 정보 출력

@@ -19,4 +19,7 @@ public class Room {
 	
 	private String state;
 	
+	// 찜
+	private String productKind;
+	private int productNo;
 }

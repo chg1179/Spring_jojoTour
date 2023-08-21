@@ -160,60 +160,16 @@ ul a:hover {
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<%-- <%@ include file="header.jsp" %> --%>
 	<div id="app">
+		<div class="stay-type">
+			<select v-model="info.stayKind">
+				<option value="HOTEL">호텔</option>
+				<option value="MOTEL">모텔</option>
+				<option value="PENSION">펜션</option>
+				<option value="GUEST">게스트하우스</option>
+				<option value="CAMPING">캠핑</option>
+			</select>
+		</div>
 		
-		<div class="banner_box">
-			<p class="banner_text">호텔</p>
-		</div>
-		<div id="content" class="sub-wrap">
-			<div class="filter-wrap">
-				<div>
-					<h3 class="filter-header">필터</h3>
-				</div>
-				<section class="date-wrap">
-					<strong>날짜</strong>
-				</section>
-
-				<h3>상세조건</h3>
-				<div class="btn-wrap">
-					<span><button>초기화</button></span> 
-					<span><button>적용</button></span>
-				</div>
-
-				<section>
-					<strong>숙소명</strong>
-					<div>
-						<input type="text" placeholder="검색 키워드를 입력해주세요">
-					</div>
-				</section>
-
-				<section>
-					<strong>인원</strong> <span> <select>
-							<option value="">선택하세요</option>
-							<option value="1">1명</option>
-							<!-- 추후 수정 -->
-					</select>
-					</span>
-				</section>
-
-				<section>
-					<div v-for="item in serviceList">
-						<label><input type="checkbox" v-model="selectServiceList"
-							:value="item.serviceNo">{{item.serviceName}}</label>
-					</div>
-				</section>
-			</div>
-
-			<div class="list-wrap">
-				<ul>
-					<li v-for="item in list">
-						<div class="stay-info">
-							<div><a @click="fnDetail(item.stayNo)">{{item.stayName}}</a></div>
-							<div>{{item.minPrice}}원</div>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
 	</div>
 </body>
 </html>
@@ -228,31 +184,25 @@ var app = new Vue({
 	},// data
 	methods : {
 		// 호텔 리스트 
-		fnGetList : function(){
+		fnGetInfo : function(){
 			var self = this;
 			var param = {};
 			$.ajax({
-                url : "stayList.dox",
+                url : "stayInfo.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
                 	self.list = data.stayList;
                 	console.log(self.list);
-                	self.serviceList = data.serviceList;
-                	console.log(self.serviceList);
                 }
             }); 
 		},
-		fnDetail : function(stayNo){
-			var self = this;
-			console.log(stayNo);
-			$.pageChange("view.do", {stayNo : stayNo , productKind : "STAY"}); 
-		}
+		
 	}, // methods
 	created : function() {
 		var self = this;
-		self.fnGetList();
+	//	self.fnGetList();
 	}// created
 });
 
