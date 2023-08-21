@@ -19,6 +19,12 @@ public interface StayMainService {
 	// 찜 인서트
 	int addJjim(HashMap<String, Object> map);
 	
-	// 숙소 정보 출력
+	// 상세페이지 숙소 정보 출력
 	Product searchStayInfo(HashMap<String, Object> map);
+	
+	// 메인 숙소 정보
+	Stay searchStayView(HashMap<String, Object> map);
+	
+	// 장바구니 인서트
+	int addCart(HashMap<String, Object> map);
 }

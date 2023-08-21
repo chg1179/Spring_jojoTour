@@ -160,9 +160,8 @@ ul a:hover {
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<%-- <%@ include file="header.jsp" %> --%>
 	<div id="app">
-		
 		<div class="banner_box">
-			<p class="banner_text">호텔</p>
+			<p class="banner_text">숙박</p>
 		</div>
 		<div id="content" class="sub-wrap">
 			<div class="filter-wrap">
@@ -175,34 +174,54 @@ ul a:hover {
 
 				<h3>상세조건</h3>
 				<div class="btn-wrap">
-					<span><button>초기화</button></span> 
-					<span><button>적용</button></span>
+					<span><button @click="fnReset">초기화</button></span> 
+					<span><button @click="fnSearch">적용</button></span>
 				</div>
 
 				<section>
 					<strong>숙소명</strong>
 					<div>
-						<input type="text" placeholder="검색 키워드를 입력해주세요">
+						<input type="text" v-model="stayKeyword" placeholder="검색 키워드를 입력해주세요">
 					</div>
 				</section>
 
 				<section>
-					<strong>인원</strong> <span> <select>
+					<strong>인원</strong> <span> 
+					<select v-model="info.peopleMax">
 							<option value="">선택하세요</option>
 							<option value="1">1명</option>
+							<option value="2">2명</option>
+							<option value="3">3명</option>
+							<option value="4">4명</option>
+							<option value="5">5명</option>
+							<option value="6">6명</option>
+							<option value="7">7명</option>
+							<option value="8">8명</option>
+							<option value="9">9명</option>
+							<option value="10">10명</option>
 							<!-- 추후 수정 -->
 					</select>
 					</span>
 				</section>
 
 				<section>
+					
 					<div v-for="item in serviceList">
 						<label><input type="checkbox" v-model="selectServiceList"
 							:value="item.serviceNo">{{item.serviceName}}</label>
 					</div>
 				</section>
 			</div>
-
+			
+			<div class="stay-type">
+				<select v-model="info.stayKind">
+					<option value="HOTEL">호텔</option>
+					<option value="MOTEL">모텔</option>
+					<option value="PENSION">펜션</option>
+					<option value="GUEST">게스트하우스</option>
+					<option value="CAMPING">캠핑</option>
+				</select>
+			</div>
 			<div class="list-wrap">
 				<ul>
 					<li v-for="item in list">
@@ -224,13 +243,18 @@ var app = new Vue({
 		serviceList : [],
 		list : [],
 		selectServiceList : [],
+		stayKeyword : "",
+		info : {
+			stayKind : "",
+			peopleMax : 0
+		},
 		
 	},// data
 	methods : {
 		// 호텔 리스트 
 		fnGetList : function(){
 			var self = this;
-			var param = {};
+			var param = {stayKeyword : self.stayKeyword};
 			$.ajax({
                 url : "stayList.dox",
                 dataType:"json",	
@@ -239,8 +263,22 @@ var app = new Vue({
                 success : function(data) { 
                 	self.list = data.stayList;
                 	console.log(self.list);
+                	
                 	self.serviceList = data.serviceList;
                 	console.log(self.serviceList);
+                }
+            }); 
+		},
+		fnGetInfo : function(){
+			var self = this;
+			var param = {};
+			$.ajax({
+                url : "stayView.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	self.info = data.stayInfo;
                 }
             }); 
 		},
@@ -248,6 +286,23 @@ var app = new Vue({
 			var self = this;
 			console.log(stayNo);
 			$.pageChange("view.do", {stayNo : stayNo , productKind : "STAY"}); 
+		},
+		fnReset : function(){
+			var self = this;
+			location.href = "/stay/hotel.do";
+		},
+		fnSearch : function(){
+			var self = this;
+			var param = {};
+			$.ajax({
+                url : "stayView.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	self.info = data.stayInfo;
+                }
+            }); 
 		}
 	}, // methods
 	created : function() {

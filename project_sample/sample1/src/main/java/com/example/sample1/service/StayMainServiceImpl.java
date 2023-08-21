@@ -49,6 +49,18 @@ public class StayMainServiceImpl implements StayMainService{
 		return stayMainMapper.selectStayInfo(map);
 	}
 
+	@Override
+	public Stay searchStayView(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return stayMainMapper.selectStayView(map);
+	}
+
+	@Override
+	public int addCart(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return stayMainMapper.insertCart(map);
+	}
+
 	
 	
 }

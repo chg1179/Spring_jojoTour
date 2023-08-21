@@ -76,7 +76,7 @@
 			<div>가격 : {{item.roomPrice}}</div>
 			
 			<button @click="fnJjim(item.roomNo)">찜</button>
-			<button @click="fnCart">장바구니</button>					
+			<button @click="fnCart(item)">장바구니</button>					
 			<button @click="">예약하기</button>		
 		</div>
 	</div>
@@ -90,7 +90,6 @@ var app = new Vue({
 		list : [],
 		stayNo : "${map.stayNo}",
 		uId : "${sessionId}",
-		productKind : "${map.productKind}",
 		info : {
 			stayName : "",
 			sAddr : "",
@@ -117,26 +116,12 @@ var app = new Vue({
                 }
             }); 
 		},
-		fnCart : function(){
-			var self = this;
-			if(!confirm("장바구니에 담으시겠습니까?")){
-				alert("취소되었습니다.");
-			}
-			var param = {};
-			$.ajax({
-                url : "addCart.dox",
-                dataType:"json",	
-                type : "POST",
-                data : param,
-                success : function(data) { 
-                	alert("상품이 장바구니에 담겼습니다.");
-                	self.fnGetList();
-                }
-            }); 
-		},
 		fnJjim : function(roomNo){
 			var self = this;
-			
+			if(self.uId == ""){
+				alert("로그인 후 이용 가능한 서비스입니다.");
+				return;
+			}
 			if(!confirm("찜목록에 추가하시겠습니까?")){
 				alert("취소되었습니다.");
 				return;
@@ -150,6 +135,31 @@ var app = new Vue({
                 success : function(data) { 
                 	alert("찜 목록에 추가되었습니다.");
                 	console.log(roomNo);
+                	self.fnGetList();
+                }
+            }); 
+		},
+		fnCart : function(item){
+			var self = this;
+			if(self.uId == ""){
+				alert("로그인 후 이용 가능한 서비스입니다.");
+				return;
+			}
+			
+			if(!confirm("장바구니에 담으시겠습니까?")){
+				alert("취소되었습니다.");
+				return;
+			}
+			console.log(item.roomNo);
+			console.log(item.peopleMax);
+			var param = {uId : self.uId, roomNo : item.roomNo, peopleMax : item.peopleMax};
+			$.ajax({
+                url : "addCart.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	alert("상품이 장바구니에 담겼습니다.");
                 	self.fnGetList();
                 }
             }); 

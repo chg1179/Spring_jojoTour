@@ -74,4 +74,24 @@ public class StayMainController {
 		
 	}
 	
+	//메인 숙소 정보
+	@RequestMapping(value = "/stay/stayView.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String stayView(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		Stay info = stayMainService.searchStayView(map);
+		resultMap.put("stayInfo", info);
+		return new Gson().toJson(resultMap);
+		
+	}
+	
+	//메인 숙소 정보
+	@RequestMapping(value = "/stay/addCart.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String addCart(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		stayMainService.addCart(map);
+		return new Gson().toJson(resultMap);
+	}
+	
 }

@@ -23,6 +23,12 @@ public interface StayMainMapper {
 	// 찜 인서트
 	int insertJjim(HashMap<String, Object> map);
 	
-	// 숙소 정보 출력
+	// 상세페이지 숙소 정보 출력 
 	Product selectStayInfo(HashMap<String, Object> map);
+	
+	// 메인페이지 숙소 정보 
+	Stay selectStayView(HashMap<String, Object> map);
+	
+	// 장바구니 인서트
+	int insertCart(HashMap<String, Object> map);
 }

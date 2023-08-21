@@ -15,7 +15,11 @@
 			FROM T2_ROOM_TBL
 			GROUP BY STAY_NO
 		) R ON S.STAY_NO = R.STAY_NO
-		WHERE S.STAY_KIND = 'HOTEL'
+		WHERE 1=1
+		<if test="stayKeyword != '' and stayKeyword != null"> 
+			AND STAY_NAME LIKE CONCAT('%',#{stayKeyword},'%')
+		</if>
+		<!-- WHERE S.STAY_KIND = 'HOTEL' -->
 	</select>
 	
 	<!-- 편의시설 리스트 -->
@@ -40,9 +44,21 @@
 		WHERE STAY_NO = #{stayNo} AND S_DELYN = 'N'
 	</select>
 	
+	<select id="selectStayView" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
+		SELECT *
+		FROM T2_STAY_TBL S
+		INNER JOIN T2_CODE_TYPE C
+		ON S.STAY_KIND = C.C_KIND
+	</select>
+	
 	<!-- 찜 인서트 -->
 	<insert id="insertJjim" parameterType="hashmap">
 		INSERT INTO T2_JJIM_TBL VALUES
 		(#{uId}, #{roomNo}, 'STAY')
+	</insert>
+	
+	<insert id="insertCart" parameterType="hashmap">
+		INSERT INTO T2_CART_TBL(U_ID, PRODUCT_KIND, PRODUCT_NO, PEOPLE) VALUES
+		(#{uId}, 'STAY', #{roomNo}, #{peopleMax})
 	</insert>
 </mapper>
