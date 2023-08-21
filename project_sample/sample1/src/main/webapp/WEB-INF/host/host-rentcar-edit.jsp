@@ -272,6 +272,8 @@ var app = new Vue({
 	       	     	form.append( "mainYN",  "Y");
 	           		self.upload(form);
 	           		
+	           		setTimeout(self.waiting("wait"), 3000);
+	           		
 	           		var form2 = new FormData();
 	       	        form2.append( "files",  $("#fileN")[0].files[0]);
 	       	     	form2.append( "rentNo",  data.rentNo); // 제품 pk
@@ -380,11 +382,13 @@ var app = new Vue({
                 			form.append( "files", $("#fileY")[0].files[0]);
                 			form.append( "imgNo", self.imgList[i].imgNo); //사진 pk
                 			self.fileChange(form);
+                			setTimeout(self.waiting("wait"), 3000);
                 		} else if(self.imgList[i].mainYN == 'N' && $("#fileN")[0].files[0]){
                 			var form2 = new FormData();
         	       	        form2.append( "files", $("#fileN")[0].files[0]);
         	       	     	form2.append( "imgNo", self.imgList[i].imgNo); //사진 pk
         	       	     	self.fileChange(form2);
+        	       	     	setTimeout(self.waiting("wait"), 3000);
                 		}
                 	}
 	           		alert("정보 수정이 완료되었습니다.");
@@ -483,6 +487,9 @@ var app = new Vue({
 				document.getElementById("fileNName").value = "";
 				self.fileNFlg = false;
 			}
+		},
+		waiting : function (wait) {
+			console.log(wait);
 		}
 	}, // methods
 	created : function() {

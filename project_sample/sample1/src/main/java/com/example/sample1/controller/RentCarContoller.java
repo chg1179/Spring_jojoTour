@@ -163,10 +163,11 @@ public class RentCarContoller {
 
                 HashMap<String, Object> map = new HashMap<String, Object>();
                 map.put("imgSaveName", saveFileName);
+                //이미 테이블에 등록된 파일명을 받아왔을 때
                 if(rentCarService.searchImgCnt(map) != 0) {
                 	saveFileName += "1";
                 }
-                Thread.sleep(1000);//같은 파일명을 넣지 않기 위해
+                
                 map.put("imgName", originFilename);
                 map.put("imgSaveName", saveFileName);
                 map.put("imgPath", "../img/rentCar/" + saveFileName);
@@ -213,11 +214,12 @@ public class RentCarContoller {
                 File file = new File(path2 + "\\src\\main\\webapp\\img\\rentCar", saveFileName);
                 multi.transferTo(file);
                 
+                //이미 테이블에 등록된 파일명을 받아왔을 때
                 HashMap<String, Object> map = new HashMap<String, Object>();
                 if(rentCarService.searchImgCnt(map) != 0) {
                 	saveFileName += "1";
                 }
-                Thread.sleep(1000);//같은 파일명을 넣지 않기 위해
+                
                 map.put("imgSaveName", saveFileName);
                 map.put("imgName", originFilename);
                 map.put("imgSaveName", saveFileName);
@@ -248,8 +250,6 @@ public class RentCarContoller {
         fileName += calendar.get(Calendar.DATE);
         fileName += calendar.get(Calendar.HOUR);
         fileName += calendar.get(Calendar.MINUTE);
-        fileName += calendar.get(Calendar.SECOND);
-        fileName += calendar.get(Calendar.MILLISECOND);
         
         //초 단위의 시간이 겹치면서 파일명 중복이 일어나기 때문에 고유한 파일 이름을 만들도록 하기 위함
         long currentTimeMillis = System.currentTimeMillis();
