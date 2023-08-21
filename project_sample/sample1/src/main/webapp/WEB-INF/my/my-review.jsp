@@ -8,42 +8,57 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-	.inquiry{
+	.review{
 		background-color : buttonface;
 	}
-    .inquiry::after{
+    .review::after{
         content: ">";
         position: absolute;
         color: rgb(28, 111, 235);
         font-size: 30px;
         top: 0;
-        right : 0;
+        right: 0;
+    }
 </style>
 </head>
 <body>
-<jsp:include page="header.jsp" flush="true"></jsp:include>
+<jsp:include page="../header.jsp" flush="true"></jsp:include>
 <jsp:include page="my-page.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<h2>1:1 문의 내역</h2>
+		<h2>나의 이용후기 {{reviewCnt}}건</h2>
 		<table>
 			<tr>
 				<th></th>
-				<th>게시글 번호</th>
-				<th>제목</th>
+				<th>번호</th>
+				<th>아이디</th>
+				<th>카테고리</th>
 				<th>내용</th>
+				<th>작성날짜</th>
+				<th>수정날짜</th>
+				<th>별점</th>
 				<th>조회수</th>
-				<th>등록날짜</th>
+				<th>추천수</th>
 			</tr>
-			<tr v-for="(item, index) in list" v-if="item.delyn =='N'">
+			<tr v-for="(item, index) in list" v-if="item.delyn == 'N'">
 				<td>
-					<input v-if="index == 0" type="radio" :value="item.iNo" @input="changeINo(item)" name="iNo" checked="checked">
-					<input v-else type="radio" :value="item.iNo" @input="changeINo(item)" name="iNo">
+					<input v-if="index == 0" type="radio" :value="item.rNo" @input="changeRNo(item)" name="rNo" checked="checked">
+					<input v-else type="radio" :value="item.rNo" @input="changeRNo(item)" name="rNo">
 				</td>
-				<td>{{item.iNo}}</td>
-				<td>{{item.iTitle}}</td>
-				<td><div v-html="item.iContent"></div></td>
-				<td>{{item.iHits}}</td>
-				<td>{{item.iWriteTime}}</td>
+				<td>{{index+1}}</td>
+				<td>{{userId}}</td>
+				<td>
+					<div v-if="item.productKind == 'STAY'">숙박</div>
+					<div v-else-if="item.productKind == 'RENT'">렌트카</div>
+					<div v-else>레저</div>
+				
+				
+				</td>
+				<td><div v-html="item.rContent"></div></td>
+				<td>{{item.rWriteTime}}</td>
+				<td>{{item.rUpdateTime}}</td>
+				<td>{{item.rStar}}</td>
+				<td>{{item.rHits}}</td>
+				<td>{{item.recommend}}</td>
 			</tr>
 		</table>
 		<button @click="fnEdit">수정하기</button>
@@ -56,37 +71,43 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-		userId : "${sessionId}"
+		userId : "${sessionId}",
+		reviewCnt : "",
+		rNo : ""
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
 			var param = {userId : self.userId};
 			$.ajax({
-                url : "inquiry.dox",
+                url : "userReview.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
-                success : function(data) {
+                success : function(data) { 
                 	self.list = data.list;
+                	self.reviewCnt = data.reviewCnt;
+                	console.log(data.list.length);
+                	console.log(self.list);
                 	if(data.list.length > 0){
-                		self.iNo = self.list[0].iNo;
+                		self.rNo = self.list[0].rNo;
                 	}
                 }
             }); 
 		},
-		changeINo : function(item){
+		changeRNo : function(item){
 			var self = this;
-			self.iNo = item.iNo;
+			self.rNo = item.rNo;
+			console.log(item);
 		},
 		fnRemove : function(){
 			var self = this;
 			if(!confirm("정말 삭제하시겠습니까?")){
 				return;
 			}
-			var param = {iNo : self.iNo};
+			var param = {rNo : self.rNo};
 			$.ajax({
-                url : "i_remove.dox",
+                url : "r_remove.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
@@ -96,10 +117,9 @@ var app = new Vue({
                 }
             });
 		},
-
 		fnEdit : function(){
 			var self = this;
-			$.pageChange("inquiry/edit.do", {iNo : self.iNo});
+			$.pageChange("review/edit.do", {rNo : self.rNo});
 		}
 		
 	}, // methods

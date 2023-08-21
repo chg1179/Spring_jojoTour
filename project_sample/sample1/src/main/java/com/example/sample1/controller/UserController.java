@@ -32,7 +32,7 @@ public class UserController {
 	@RequestMapping("/my/change.do") 
     public String join(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 
-        return "/my-change";
+        return "/my/my-change";
     }
 	@RequestMapping("/my/booking.do") 
     public String booking(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{

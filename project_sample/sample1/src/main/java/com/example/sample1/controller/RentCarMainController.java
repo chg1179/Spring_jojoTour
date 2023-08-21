@@ -29,7 +29,7 @@ public class RentCarMainController {
 	
 	@RequestMapping("/rentcar.do") 
     public String rentcar(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/rentcar-main";
+        return "/rentcar/rentcar-main";
     }
 	
 	@RequestMapping(value = "/rentCarMain.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
@@ -41,6 +41,20 @@ public class RentCarMainController {
 		map.put("startNum", startNum);
 		map.put("lastNum", lastNum);
 		resultMap = rentCarMainService.searchCarList(map);
+	    System.out.println(map);
+	    System.out.println(resultMap);
+
+		return new Gson().toJson(resultMap);
+	}
+	@RequestMapping(value = "/kindCheck.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String rentcarKind(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = rentCarMainService.searchCarKind(map);
 	    System.out.println(map);
 	    System.out.println(resultMap);
 

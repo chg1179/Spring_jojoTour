@@ -143,7 +143,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="header.jsp" flush="true"></jsp:include>
+	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<div id="join_select_container">
 			<div class="join_select_wrap">

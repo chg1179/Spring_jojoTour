@@ -8,4 +8,5 @@ import com.example.sample1.model.RentCarImg;
 
 public interface RentCarMainService {
 	HashMap<String, Object> searchCarList(HashMap<String, Object> map);
+	HashMap<String, Object> searchCarKind(HashMap<String, Object> map);
 }

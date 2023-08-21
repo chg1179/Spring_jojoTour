@@ -31,14 +31,14 @@ public class LoginController {
 	//로그인창으로 이동
 	@RequestMapping("/login.do") 
     public String login(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/login";
+		return "/login/login";
     }
 	
 	// 아이디 검색창으로 이동
 	@RequestMapping("/id-search.do") 
     public String idSearch(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
 		
-		return "/id-search";
+		return "/login/id-search";
 	}
 	//로그아웃 되서 메인창으로 리다렉트
 	@RequestMapping("/logout.do") 
@@ -50,13 +50,13 @@ public class LoginController {
 	@RequestMapping("pwd/search.do") 
     public String pwdSearch(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
 		request.setAttribute("map", map);
-		return "pwd-search";
+		return "/login/pwd-search";
 	}
 	//패스워드 변경창
 	@RequestMapping("pwd/change.do") 
     public String pwdChange(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
 		request.setAttribute("map", map);
-		return "pwd-change";
+		return "/login/pwd-change";
 	}
 
 	//로그인

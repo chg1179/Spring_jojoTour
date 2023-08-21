@@ -10,7 +10,18 @@
 		INNER JOIN T2_RENT_IMG_TBL I ON C.RENT_NO = I.RENT_NO
 		LIMIT #{startNum}, #{lastNum}
 	</select>
-		<select id="selectCarCnt" resultType="int">
+	<select id="selectCarCnt" resultType="int">
 		SELECT COUNT(*) FROM T2_RENT_CAR_TBL
+	</select>
+	<select id="selectCarKind" parameterType="hashmap" resultType="com.example.sample1.model.RentCar">
+		SELECT *
+		FROM T2_RENT_CAR_TBL C
+		INNER JOIN T2_RENT_IMG_TBL I ON C.RENT_NO = I.RENT_NO
+		WHERE RENT_KIND = #{kind}
+		LIMIT #{startNum}, #{lastNum}
+	</select>
+	<select id="selectCarKindCnt" resultType="int">
+		SELECT COUNT(*) FROM T2_RENT_CAR_TBL
+		WHERE RENT_KIND = #{kind}
 	</select>
 </mapper>

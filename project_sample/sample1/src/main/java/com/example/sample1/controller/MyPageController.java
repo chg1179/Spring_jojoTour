@@ -30,43 +30,43 @@ public class MyPageController {
 	@RequestMapping("/my/page.do") 
     public String page(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 
-        return "/my-page";
+        return "/my/my-page";
     }
 
 	@RequestMapping("/my/order.do") 
     public String order(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 
-        return "/my-order";
+        return "my/my-order";
     }
 
 	@RequestMapping("/my/point.do") 
     public String point(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 
-        return "/my-point";
+        return "/my/my-point";
     }
 
 	@RequestMapping("/my/review.do") 
     public String review(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 
-        return "/my-review";
+        return "/my/my-review";
     }	
 
 	@RequestMapping("my/review/edit.do") 
     public String reviewEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-        return "/my-review-edit";
+        return "/my/my-review-edit";
     }	
 	
 	@RequestMapping("/my/inquiry.do") 
     public String inquiry(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 
-        return "/my-inquiry";
+        return "/my/my-inquiry";
     }
 	
 	@RequestMapping("my/inquiry/edit.do") 
     public String inquiryEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-        return "/my-inquiry-edit";
+        return "/my/my-inquiry-edit";
     }	
 	@RequestMapping(value = "order.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody

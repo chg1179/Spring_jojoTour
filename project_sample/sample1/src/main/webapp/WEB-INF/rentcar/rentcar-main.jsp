@@ -15,8 +15,6 @@
        margin:24px;
        display: inline-flex;
    }
-   ul {
-   }
    .pagination li {
       min-width:32px;
       padding:2px 6px;
@@ -52,6 +50,37 @@
 	justify-content: space-between;
 	flex-wrap: wrap;
    }
+   
+	.rentcar_list{
+		display: flex;
+		justify-content: space-between;
+		width: 500px;
+		margin: 50px auto;
+
+	}
+	.rentcar_list li{
+		display: block;
+		width: 100px;
+		height: 50px;
+		line-height: 50px;
+	}
+	.rentcar_list li input{
+		display: none;
+	}
+	.rentcar_list li label{
+		box-sizing: border-box;
+		border: 1px solid #ccc;
+		width: 100%;
+		height: 100%;
+		display: block;
+		text-align: center;
+	}
+	.rentcar_list li input:checked + label{
+		border: 1px solid black;
+		background: linear-gradient(to right, #ff9900, #ff3333);
+		color: #fff;
+		font-weight: bold;
+	}
    .rentcar_main_box{
 	width: calc(33.333% - 10px);
 	box-sizing: border-box;
@@ -59,6 +88,7 @@
 	position: relative;
 	margin: 10px 0;
 	cursor : pointer;
+	border-radius: 30px;
    }
    .rentcar_main_box img{
 	width: 100%;
@@ -94,8 +124,30 @@
 </style>
 </head>
 <body>
-<jsp:include page="header.jsp" flush="true"></jsp:include>
+<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
+			<ul class="rentcar_list">
+				<li>
+					<input type="radio" name="rentcar" id="all_rentcar" @input="fnGetList" checked>
+					<label class="rentcar_btn" for="all_rentcar">전체</label>
+				</li>
+				<li>
+					<input type="radio" name="rentcar" id="s_rentcar" @input="checkRentKind('SMALL')">
+					<label class="rentcar_btn" for="s_rentcar">소형차</label>
+				</li>
+				<li>
+					<input type="radio" name="rentcar" id="m_rentcar" @input="checkRentKind('MIDDLE')">
+					<label class="rentcar_btn" for="m_rentcar">중형차</label>
+				</li>
+				<li>
+					<input type="radio" name="rentcar" id="l_rentcar" @input="checkRentKind('LARGE')">
+					<label class="rentcar_btn" for="l_rentcar">대형차</label>
+				</li>
+				<li>
+					<input type="radio" name="rentcar" id="v_rentcar" @input="checkRentKind('VAN')">
+					<label class="rentcar_btn" for="v_rentcar">승합차</label>
+				</li>
+			</ul>
 		<div id="rentcar_main_container">
 			<div class="rentcar_main_wrap">
 				<div v-for="item in list" class="rentcar_main_box">
@@ -143,7 +195,7 @@ var app = new Vue({
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var startNum = ((self.selectPage-1) * 10);
+			var startNum = ((self.selectPage-1) * 9);
     		var lastNum = 9;
 			var param = {startNum : startNum, lastNum : lastNum};
 			$.ajax({
@@ -154,15 +206,14 @@ var app = new Vue({
                 success : function(data) { 
                 	self.list = data.list;
 					self.cnt = data.cnt;
-					self.pageCount = Math.ceil(self.cnt / 10);
-					console.log(self.list);
+					self.pageCount = Math.ceil(self.cnt / 9);
                 }
             }); 
 		},
 		fnSearch : function(pageNum){
 			var self = this;
 			self.selectPage = pageNum;
-			var startNum = ((pageNum-1) * 10);
+			var startNum = ((pageNum-1) * 9);
 			var lastNum = 9;
 			var nparmap = {startNum : startNum, lastNum : lastNum};
 			$.ajax({
@@ -173,9 +224,27 @@ var app = new Vue({
 				success : function(data) {
 					self.list = data.list;
 					self.cnt = data.cnt;
-					self.pageCount = Math.ceil(self.cnt / 10);
+					self.pageCount = Math.ceil(self.cnt / 9);
 				}
 			});
+		},
+		checkRentKind : function(kind){
+			var self = this;
+			var startNum = ((self.selectPage-1) * 9);
+    		var lastNum = 9;
+			var param = {startNum : startNum, lastNum : lastNum, kind : kind};
+			$.ajax({
+                url : "kindCheck.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	console.log(data);
+                	self.list = data.list;
+					self.cnt = data.cnt;
+					self.pageCount = Math.ceil(self.cnt / 9);
+                }
+            }); 
 		}
 	}, // methods
 	created : function() {

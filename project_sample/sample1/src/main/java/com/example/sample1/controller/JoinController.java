@@ -31,22 +31,22 @@ public class JoinController {
 	@RequestMapping("/join.do") 
     public String join(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-        return "/join";
+        return "/login/join";
     }
 	@RequestMapping("/join/select.do") 
     public String joinSelect(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
 		
-		return "join-select";
+		return "/login/join-select";
 	}
 	@RequestMapping("/join/acess.do") 
 	public String joinAcess(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/join-acess";
+		return "/login/join-acess";
 	}
 	@RequestMapping("/addr.do") 
     public String addr(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception{
 		
-		return "/juso-popup";
+		return "/login/juso-popup";
     }
 	@RequestMapping(value = "/add.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
