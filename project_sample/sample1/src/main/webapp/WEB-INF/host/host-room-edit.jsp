@@ -38,7 +38,7 @@
 			</tr>
 			<tr>
 				<th>할인율</th>
-				<td><input v-model="info.roomSales" type="text" name="roomSales" id="roomSales"></td>
+				<td><input v-model="sales" type="text" name="roomSales" id="roomSales"></td>
 			</tr>
 			<tr>
 				<th>남은 객실</th>
@@ -82,9 +82,9 @@ var app = new Vue({
 			{value:"7", text : "7 명"},			
 			{value:"8", text : "8 명"},			
 			{value:"9", text : "9 명"},			
-			{value:"10", text : "10 명"},			
-				
-		]
+			{value:"10", text : "10 명"}
+		],
+		sales : ""
 	},// data
 	methods : {
 		fnGetInfo : function(){
@@ -97,7 +97,7 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	self.info = data.roomInfo;
-                	console.log(self.info);
+                	self.sales = 100 - (self.info.roomSales * 100);
                 }
             }); 
 		},
@@ -107,6 +107,10 @@ var app = new Vue({
 				alert("취소되었습니다.");
 				return;
 			}
+			if(self.sales==""){
+				self.sales = 0;
+			}
+			self.info.roomSales = 1 - (self.sales / 100);
 			var param = {
 					roomName : self.info.roomName, 
 					roomPrice : self.info.roomPrice,
@@ -122,6 +126,7 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	alert("수정되었습니다.");
+                	$.pageChange("roomView.do", {roomNo : self.roomNo, stayNo : self.stayNo});
                 	self.fnGetInfo();
                 }
             }); 

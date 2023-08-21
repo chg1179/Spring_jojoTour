@@ -44,7 +44,8 @@
 			ROOM_PRICE = #{roomPrice},
 			PEOPLE_MAX = #{peopleMax},
 			ROOM_RESIDUE = #{roomResidue},
-			ROOM_SALES = #{roomSales}
+			ROOM_SALES = #{roomSales},
+			ROOM_UPDATE_TIME = now()
 		WHERE ROOM_NO = #{roomNo}
 	</update>
 	

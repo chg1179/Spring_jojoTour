@@ -171,7 +171,6 @@ var app = new Vue({
                 success : function(data) { 
                 	self.info = data.leisureInfo;
                 	self.sales = 100 - (self.info.leisureSales * 100);
-                	console.log(self.info);
                 }
             }); 
 		},
