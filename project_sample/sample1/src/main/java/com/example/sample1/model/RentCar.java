@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class RentCar {
-
 	private int rentNo;
 	private String uId;
 	private String rentName;

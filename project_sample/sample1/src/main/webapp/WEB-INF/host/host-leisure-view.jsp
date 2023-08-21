@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>렌터카 상세정보 페이지</title>
+<title>레저 상세정보 페이지</title>
 <style>
 	table{
 		border : 1px solid black;
@@ -24,35 +24,42 @@
 			<table>
 				<tr>
 					<th>No.</th>
-					<td>{{info.rentNo}}</td>
+					<td>{{info.leisureNo}}</td>
 				</tr>
 				<tr>
 					<th>분류</th>
+					<td>
+						<span v-if='info.type="WATER"'>수상</span>
+						<span v-else-if='info.type="GROUND"'>지상</span>
+					</td>
+				</tr>
+				<tr>
+					<th>분야</th>
 					<td>{{info.cName}}</td>
 				</tr>
 				<tr>
-					<th>렌터카명</th>
-					<td>{{info.rentName}}</td>
+					<th>레저명</th>
+					<td>{{info.leisureName}}</td>
 				</tr>
 				<tr>
 					<th>우편번호</th>
-					<td>{{info.rZipno}}</td>
+					<td>{{info.lZipno}}</td>
 				</tr>
 				<tr>
 					<th>주소</th>
-					<td>{{info.rAddr}}</td>
+					<td>{{info.lAddr}}</td>
 				</tr>
 				<tr>
 					<th>상세주소</th>
-					<td>{{info.rDetailAddr}}</td>
+					<td>{{info.lDetailAddr}}</td>
 				</tr>
 				<tr>
-					<th>렌트금액</th>
-					<td>{{info.rentPrice}}</td>
+					<th>레저금액</th>
+					<td>{{info.leisurePrice}}</td>
 				</tr>
 				<tr>
 					<th>할인적용금액</th>
-					<td>{{info.rentPrice * info.rentSales}}</td>
+					<td>{{info.leisurePrice * info.leisureSales}}</td>
 				</tr>
 				<tr>
 					<th>할인율</th>
@@ -60,19 +67,19 @@
 				</tr>
 				<tr>
 					<th>판매수량</th>
-					<td>{{info.rResidue}}</td>
+					<td>{{info.lResidue}}</td>
 				</tr>
 				<tr>
 					<th>조회수</th>
-					<td>{{info.rRead}}</td>
+					<td>{{info.lRead}}</td>
 				</tr>
 				<tr>
 					<th>등록일</th>
-					<td>{{info.rInsertTime}}</td>
+					<td>{{info.lInsertTime}}</td>
 				</tr>
 				<tr>
 					<th>수정일</th>
-					<td>{{info.rUpdateTime}}</td>
+					<td>{{info.lUpdateTime}}</td>
 				</tr>
 				<tr>
 					<th>썸네일 이미지</th>
@@ -92,7 +99,7 @@
 				</tr>
 			</table>
 			<div>
-				<span v-if="rCnt == 0">
+				<span v-if="lCnt == 0">
 					<span><button @click="fnUpdate">수정</button></span>
 					<span><button @click="fnRemove">삭제</button></span>
 				</span>
@@ -108,8 +115,8 @@ var app = new Vue({
 	data : {
 		status : "${sessionStatus}",
 		info : {},
-		rentNo : "${map.rentNo}",
-		rCnt : "${map.rCnt}",
+		leisureNo : "${map.leisureNo}",
+		lCnt : "${map.lCnt}",
 		sales : 0,
 		imgList : []
 		
@@ -117,29 +124,29 @@ var app = new Vue({
 	methods : {
 		fnGetInfo : function(){
 			var self = this;
-			var param = {rentNo : self.rentNo};
+			var param = {leisureNo : self.leisureNo};
 			$.ajax({
-                url : "carInfo.dox",
+                url : "leisureInfo.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.info = data.carInfo;
-                	self.sales = 100 - (self.info.rentSales * 100);
+                	self.info = data.leisureInfo;
+                	self.sales = 100 - (self.info.leisureSales * 100);
                 	self.fnGetImgList();
                 }
             }); 
 		},
 		fnGetImgList : function(){
 			var self = this;
-			var param = {rentNo : self.rentNo};
+			var param = {leisureNo : self.leisureNo};
 			$.ajax({
-                url : "carImgList.dox",
+                url : "leisureImgList.dox",
                 dataType:"json",
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.imgList = data.carImgList;
+                	self.imgList = data.leisureImgList;
                 	// 앞 경로로 상대 경로 수정
                 	for(var i=0;i< self.imgList.length;i++){
                 		self.imgList[i].imgPath = "../"+self.imgList[i].imgPath; 
@@ -149,34 +156,34 @@ var app = new Vue({
 		},
 		fnUpdate : function(){
 			var self = this;
-			$.pageChange("edit.do", {rentNo : self.rentNo}); 
+			$.pageChange("edit.do", {leisureNo : self.leisureNo}); 
         },
 		fnRemove : function(){
             var self = this;
-	        if(!confirm("해당 렌터카를 삭제하시겠습니까?")){
+	        if(!confirm("해당 레저를 삭제하시겠습니까?")){
 	        	alert("취소되었습니다.");
 	          	return;
 	        }
 	        
-            var param = {rentNo : self.rentNo};
+            var param = {leisureNo : self.leisureNo};
             
             $.ajax({
-                url : "carRemove.dox",
+                url : "leisureRemove.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : param,
                 success : function(data) {
-                	alert("해당 렌터카의 정보가 삭제되었습니다.");
-                	location.href = "../rentcar.do"; 
+                	alert("해당 레저의 정보가 삭제되었습니다.");
+                	location.href = "../leisure.do"; 
                 }
             });  
         },
-        changeRentNo : function(rentNo){ //라디오박스를 선택할 때 마다 pk 값 변경
+        changeLeisureNo : function(leisureNo){ //라디오박스를 선택할 때 마다 pk 값 변경
         	var self = this;
-        	self.rentNo = rentNo;
+        	self.leisureNo = leisureNo;
         },
         fnBack : function(){
-        	location.href = "../rentcar.do"; 
+        	location.href = "../leisure.do"; 
 		}
 	}, // methods
 	created : function() {

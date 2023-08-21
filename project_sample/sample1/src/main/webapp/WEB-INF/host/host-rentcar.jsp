@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>렌트카 관리 페이지</title>
+<title>렌터카 관리 페이지</title>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <style>
@@ -57,7 +57,7 @@
 				<tr>
 					<th>선택</th>
 					<th>No.</th>
-					<th>이름</th>
+					<th>렌터카명</th>
 					<th>분류</th>
 					<th>렌트금액</th>
 					<th>판매수량</th>
@@ -139,6 +139,7 @@ var app = new Vue({
                 	self.list = data.carList;
                 	self.cnt = data.cnt;
             		self.pageCount = Math.ceil(self.cnt / 10);
+            		console.log(self.list);
                 	if(data.carList.length > 0){
                 		self.rentNo = self.list[0].rentNo; //리스트의 첫 번째 값을 디폴트로 체크하고, 해당 pk 값을 받아온다.
                 		self.rCnt = self.list[0].rCnt;
@@ -181,14 +182,14 @@ var app = new Vue({
         },
 		fnRemove : function(){
             var self = this;
-	        if(!confirm("해당 렌트카를 삭제하시겠습니까?")){
+	        if(!confirm("해당 렌터카를 삭제하시겠습니까?")){
 	        	alert("취소되었습니다.");
 	          	return;
 	        }
 	        
-	        //해당 렌트카가 패키지 신청이 되어있다면 삭제 불가능
+	        //해당 렌터카가 패키지 신청이 되어있다면 삭제 불가능
 	        if(self.rCnt != 0){
-	        	alert("패키지 신청한 렌트카의 정보는 삭제가 불가능합니다.");
+	        	alert("패키지 신청한 렌터카의 정보는 삭제가 불가능합니다.");
 	        	return;
 	        }
 	        
@@ -199,7 +200,7 @@ var app = new Vue({
                 type : "POST", 
                 data : param,
                 success : function(data) {
-                	alert("해당 렌트카의 정보가 삭제되었습니다.");
+                	alert("해당 렌터카의 정보가 삭제되었습니다.");
                 	self.fnGetList();
                 }
             });

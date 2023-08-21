@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>렌트카 제품 추가 및 수정 페이지</title>
+<title>렌터카 제품 추가 및 수정 페이지</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
 	table{
@@ -62,7 +62,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>이름</th>
+					<th>렌터카명</th>
 					<td><input v-model="info.rentName" type="text" maxlength="15" name="rentName" id="rentName"></td>
 				</tr>
 				<tr>
@@ -247,7 +247,7 @@ var app = new Vue({
 				return;
 			}
 			
-			if(!confirm("렌트카를 추가하시겠습니까?")){
+			if(!confirm("렌터카를 추가하시겠습니까?")){
 	        	alert("취소되었습니다.");
 	          	return;
 	        }

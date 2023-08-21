@@ -3,19 +3,109 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.sample1.mapper.LeisureMapper">
-	<select id="selectLeisureList" parameterType="hashmap" resultType="com.example.sample1.model.Product">
+	<select id="selectLeisureList" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">
 		SELECT *
-		FROM T2_LEISURE_TBL R
-		INNER JOIN T2_CODE_TYPE C ON R.LEISURE_KIND = C.C_KIND
+		FROM T2_LEISURE_TBL L
+		INNER JOIN T2_CODE_TYPE C ON C.C_KIND = L.LEISURE_KIND
+		LEFT JOIN (
+			SELECT COUNT(*) L_CNT, PRODUCT_NO, STATE
+			FROM T2_PACKAGE_REQUEST_TBL
+			WHERE PRODUCT_KIND = 'LEISURE'
+			GROUP BY PRODUCT_NO
+		) P ON P.PRODUCT_NO = L.LEISURE_NO
+		WHERE L_DELYN = 'N' AND U_ID = #{uId}
+		ORDER BY L.LEISURE_NO DESC
+		LIMIT #{startNum}, #{lastNum}
 	</select>
+	
+	<select id="selectCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM T2_LEISURE_TBL
+		WHERE L_DELYN = 'N' AND U_ID = #{uId}
+	</select>
+	
+	<select id="selectLeisureInfo" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">
+		SELECT *
+		FROM T2_LEISURE_TBL L
+		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
+		WHERE L.LEISURE_NO = #{leisureNo} AND L_DELYN = 'N'
+	</select>
+	
+	<update id="deleteLeisure" parameterType="hashmap">
+		UPDATE T2_LEISURE_TBL
+		SET
+			L_DELYN = 'Y'
+		WHERE LEISURE_NO = #{leisureNo}
+	</update>
+	
+	<update id="deleteLeisureImg" parameterType="hashmap">
+		UPDATE T2_LEISURE_IMG_TBL
+		SET
+			IMG_DELYN = 'Y'
+		WHERE LEISURE_NO = #{leisureNo}
+	</update>
+	
+	<insert id="insertLeisurePack" parameterType="hashmap">
+		INSERT INTO T2_PACKAGE_REQUEST_TBL VALUES
+		('LEISURE', #{leisureNo}, 'D')
+	</insert>
+	
+	<delete id="deleteLeisurePack" parameterType="hashmap">
+		DELETE
+		FROM T2_PACKAGE_REQUEST_TBL
+		WHERE PRODUCT_NO = #{leisureNo} AND PRODUCT_KIND = 'LEISURE'
+	</delete>
+	
+	<insert id="insertLeisure" parameterType="hashmap" useGeneratedKeys="true" keyProperty="leisureNo" keyColumn="leisureNo">
+		INSERT INTO T2_LEISURE_TBL(
+			U_ID, LEISURE_NAME, LEISURE_KIND, LEISURE_PRICE, LEISURE_SALES
+			, L_ZIPNO, L_ADDR, L_DETAIL_ADDR
+			, L_READ, L_INSERT_TIME, L_UPDATE_TIME, L_RESIDUE, L_DELYN
+		)
+		VALUES (
+			#{uId}, #{leisureName}, #{leisureKind}, #{leisurePrice}, #{leisureSales}
+			, #{lZipno}, #{lAddr}, #{lDetailAddr}
+			, 0, now(), now(), #{lResidue}, 'N'
+		)
+	</insert>
 	
 	<update id="updateLeisure" parameterType="hashmap">
 		UPDATE T2_LEISURE_TBL
-			SET 
-				LEISURENAME = #{leisureName},
-				LEISUREPRICE = #{leisurePrice},
-				L_ADDR = #{lAddr},
-				L_DETAIL_ADDR = #{lDetailAddr}
-			WHERE LEISURE_NO = #{leisureNo}
+		SET
+			LEISURE_NAME = #{leisureName},
+			LEISURE_KIND = #{leisureKind},
+			LEISURE_PRICE = #{leisurePrice},
+			LEISURE_SALES = #{leisureSales},
+			L_ZIPNO = #{lZipno},
+			L_ADDR = #{lAddr},
+			L_DETAIL_ADDR = #{lDetailAddr},
+			L_UPDATE_TIME = now(),
+			L_RESIDUE = #{lResidue}
+		WHERE LEISURE_NO = #{leisureNo}
 	</update>
+	
+	<insert id="insertLeisureImg" parameterType="hashmap">
+		INSERT INTO T2_LEISURE_IMG_TBL(
+			LEISURE_NO, IMG_NAME, IMG_SAVE_NAME, IMG_PATH, IMG_DATE, MAIN_YN, IMG_DELYN
+		)
+		VALUES(
+			#{leisureNo}, #{imgName}, #{imgSaveName}, #{imgPath}, now(), #{mainYN}, 'N'
+		)
+	</insert>
+	
+	<update id="updateLeisureImg" parameterType="hashmap">
+		UPDATE T2_LEISURE_IMG_TBL
+		SET
+			IMG_NAME = #{imgName},
+			IMG_SAVE_NAME = #{imgSaveName},
+			IMG_PATH = #{imgPath},
+			IMG_DATE = now()
+		WHERE IMG_NO = #{imgNo} 
+	</update>
+	
+	<select id="selectLeisureImgList" parameterType="hashmap" resultType="com.example.sample1.model.LeisureImg">
+		SELECT *
+		FROM T2_LEISURE_IMG_TBL
+		WHERE LEISURE_NO = #{leisureNo}
+	</select>
 </mapper>

@@ -93,7 +93,7 @@ public class RentCarContoller {
 	public String rentRemove(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		rentCarService.removeRentCar(map);
-		resultMap.put("success", "렌터카정보삭제완료");
+		resultMap.put("success", "렌트카정보삭제완료");
 		return new Gson().toJson(resultMap);
 	}
 	
@@ -103,7 +103,7 @@ public class RentCarContoller {
 	public String rentPackAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		rentCarService.addRentPack(map);
-		resultMap.put("success", "렌터카패키지신청완료");
+		resultMap.put("success", "렌트카패키지신청완료");
 		return new Gson().toJson(resultMap);
 	}
 	
