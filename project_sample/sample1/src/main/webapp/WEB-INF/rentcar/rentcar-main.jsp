@@ -128,23 +128,28 @@
 	<div id="app">
 			<ul class="rentcar_list">
 				<li>
-					<input type="radio" name="rentcar" id="all_rentcar" @input="checkKind('')" checked="checked">
+					<input v-if='rentKind==""' type="radio" name="rentcar" id="all_rentcar" @input="checkKind('')" checked="checked">
+					<input v-else type="radio" name="rentcar" id="all_rentcar" @input="checkKind('')">
 					<label class="rentcar_btn" for="all_rentcar">전체</label>
 				</li>
 				<li>
-					<input type="radio" name="rentcar" id="s_rentcar" @input="checkKind('SMALL')">
+					<input v-if='rentKind=="SMALL"' type="radio" name="rentcar" id="s_rentcar" @input="checkKind('SMALL')" checked="checked">
+					<input v-else type="radio" name="rentcar" id="s_rentcar" @input="checkKind('SMALL')">
 					<label class="rentcar_btn" for="s_rentcar">소형차</label>
 				</li>
 				<li>
-					<input type="radio" name="rentcar" id="m_rentcar" @input="checkKind('MIDDLE')">
+					<input v-if='rentKind=="MIDDLE"' type="radio" name="rentcar" id="m_rentcar" @input="checkKind('MIDDLE')" checked="checked">
+					<input v-else type="radio" name="rentcar" id="m_rentcar" @input="checkKind('MIDDLE')">
 					<label class="rentcar_btn" for="m_rentcar">중형차</label>
 				</li>
 				<li>
-					<input type="radio" name="rentcar" id="l_rentcar" @input="checkKind('LARGE')">
+					<input v-if='rentKind=="LARGE"' type="radio" name="rentcar" id="l_rentcar" @input="checkKind('LARGE')">
+					<input v-else type="radio" name="rentcar" id="l_rentcar" @input="checkKind('LARGE')">
 					<label class="rentcar_btn" for="l_rentcar">대형차</label>
 				</li>
 				<li>
-					<input type="radio" name="rentcar" id="v_rentcar" @input="checkKind('VAN')">
+					<input v-if='rentKind=="VAN"' type="radio" name="rentcar" id="v_rentcar" @input="checkKind('VAN')">
+					<input v-else type="radio" name="rentcar" id="v_rentcar" @input="checkKind('VAN')">
 					<label class="rentcar_btn" for="v_rentcar">승합차</label>
 				</li>
 			</ul>
@@ -198,7 +203,7 @@ var app = new Vue({
 			var self = this;
 			var startNum = ((self.selectPage-1) * 9);
     		var lastNum = 9;
-			var param = {startNum : startNum, lastNum : lastNum};
+			var param = {startNum : startNum, lastNum : lastNum, kind : self.rentKind};
 			$.ajax({
                 url : "rentCarMain.dox",
                 dataType:"json",	

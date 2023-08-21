@@ -141,7 +141,6 @@ public class LeisureController {
         String url = null;
         String path="c:\\img\\leisure";
         try {
-        	Thread.sleep(1000);//같은 파일명을 넣지 않기 위해
             //String uploadpath = request.getServletContext().getRealPath(path);
             String uploadpath = path;
             String originFilename = multi.getOriginalFilename();
@@ -189,7 +188,6 @@ public class LeisureController {
 		String url = null;
         String path="c:\\img\\leisure";
         try {
-        	Thread.sleep(1000);//같은 파일명을 넣지 않기 위해
             //String uploadpath = request.getServletContext().getRealPath(path);
             String uploadpath = path;
             String originFilename = multi.getOriginalFilename();
@@ -239,8 +237,6 @@ public class LeisureController {
         fileName += calendar.get(Calendar.DATE);
         fileName += calendar.get(Calendar.HOUR);
         fileName += calendar.get(Calendar.MINUTE);
-        fileName += calendar.get(Calendar.SECOND);
-        fileName += calendar.get(Calendar.MILLISECOND);
         
         //초 단위의 시간이 겹치면서 파일명 중복이 일어나기 때문에 고유한 파일 이름을 만들도록 하기 위함
         long currentTimeMillis = System.currentTimeMillis();
