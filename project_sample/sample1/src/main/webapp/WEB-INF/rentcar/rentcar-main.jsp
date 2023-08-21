@@ -39,7 +39,7 @@
 	margin: 0;
 	padding: 0;
    }
-   #rentcar_main_container{
+   .rentcar_main_con{
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -120,12 +120,25 @@
        height : 100%;
        display : block;
    }
-
+   .rentcar_checkbox{
+	width: 200px;
+	height: 600px;
+	background-color: aqua;
+	position: absolute;
+   }
+   .rentcar_ham span{
+	width: 30px;
+	height: 2px;
+	background-color: black;
+	display: block;
+	margin-bottom: 5px;
+   }
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
+		<div id="rentcar_main_container">
 			<ul class="rentcar_list">
 				<li>
 					<input v-if='rentKind==""' type="radio" name="rentcar" id="all_rentcar" @input="checkKind('')" checked="checked">
@@ -143,43 +156,46 @@
 					<label class="rentcar_btn" for="m_rentcar">중형차</label>
 				</li>
 				<li>
-					<input v-if='rentKind=="LARGE"' type="radio" name="rentcar" id="l_rentcar" @input="checkKind('LARGE')">
+					<input v-if='rentKind=="LARGE"' type="radio" name="rentcar" id="l_rentcar" @input="checkKind('LARGE')" checked="checked">
 					<input v-else type="radio" name="rentcar" id="l_rentcar" @input="checkKind('LARGE')">
 					<label class="rentcar_btn" for="l_rentcar">대형차</label>
 				</li>
 				<li>
-					<input v-if='rentKind=="VAN"' type="radio" name="rentcar" id="v_rentcar" @input="checkKind('VAN')">
+					<input v-if='rentKind=="VAN"' type="radio" name="rentcar" id="v_rentcar" @input="checkKind('VAN')" checked="checked">
 					<input v-else type="radio" name="rentcar" id="v_rentcar" @input="checkKind('VAN')">
 					<label class="rentcar_btn" for="v_rentcar">승합차</label>
 				</li>
 			</ul>
-		<div id="rentcar_main_container">
-			<div class="rentcar_main_wrap">
-				<div v-for="item in list" class="rentcar_main_box" @click="fnRentCarView(item.rentNo)">
-					<div class="rentcar_main_img">
-						<img :src="item.imgPath" alt="">
+			<div>차량명 : <input type="text" v-model="rentCarKeyword" @keyup.enter="fnRentCarSearch"><button @click="fnRentCarSearch">검색</button></div>
+			<div>가격 : </div>
+			<div class="rentcar_main_con">
+				<div class="rentcar_main_wrap">
+					<div v-for="item in list" class="rentcar_main_box" @click="fnRentCarView(item.rentNo)">
+						<div class="rentcar_main_img">
+							<img :src="item.imgPath" alt="">
+						</div>
+						<div class="rentcar_txt_box">
+							<p class="rent_name">차량명 : {{item.rentName}}</p>
+							<P class="rent_kind">차종 : {{item.rentKind}}</P>
+							<P class="rent_price">렌트 금액 : {{item.rentPrice}}</P>
+							<P class="rent_sale">할인률 : {{item.rentSales}}%</P>
+							<P class="rent_update_time">차량 등록 날짜 : {{item.rUpdateTime}}</P>
+						</div>
 					</div>
-					<div class="rentcar_txt_box">
-						<p class="rent_name">차량명 : {{item.rentName}}</p>
-						<P class="rent_kind">차종 : {{item.rentKind}}</P>
-						<P class="rent_price">렌트 금액 : {{item.rentPrice}}</P>
-						<P class="rent_sale">할인률 : {{item.rentSales}}%</P>
-						<P class="rent_update_time">차량 등록 날짜 : {{item.rUpdateTime}}</P>
+					<div class="paginate_box">
+						<template>
+							<paginate
+							:page-count="pageCount"
+							:page-range="3"
+							:margin-pages="2"
+							:click-handler="fnSearch"
+							:prev-text="'<'"
+							:next-text="'>'"
+							:container-class="'pagination'"
+							:page-class="'page-item'">
+							</paginate>
+						</template>
 					</div>
-				</div>
-				<div class="paginate_box">
-					<template>
-						<paginate
-						:page-count="pageCount"
-						:page-range="3"
-						:margin-pages="2"
-						:click-handler="fnSearch"
-						:prev-text="'<'"
-						:next-text="'>'"
-						:container-class="'pagination'"
-						:page-class="'page-item'">
-						</paginate>
-					</template>
 				</div>
 			</div>
 		</div>
@@ -195,7 +211,8 @@ var app = new Vue({
         selectPage: 1,
         pageCount: 1,
         cnt : 0,
-        rentKind : "${map.rentKind}"
+        rentKind : "${map.rentKind}",
+        rentCarKeyword : ""
 
 	},// data
 	methods : {
@@ -259,7 +276,20 @@ var app = new Vue({
 			var self = this;
 			console.log(rentNo);
 			$.pageChange("rentcar/view.do", {rentNo : rentNo});
-			
+		},
+		fnRentCarSearch : function(){
+			var self = this;
+            var nparmap = {rentCarKeyword : self.rentCarKeyword};
+            $.ajax({
+                url : "rentCarSearchList.dox",
+                dataType:"json",	
+                type : "POST", 
+                data : nparmap,
+                success : function(data) { 
+                	self.list = data.list;
+                	console.log(data.list);
+                }
+            }); 
 		}
 	}, // methods
 	created : function() {
