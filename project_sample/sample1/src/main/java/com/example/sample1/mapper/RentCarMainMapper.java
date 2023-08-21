@@ -16,4 +16,6 @@ public interface RentCarMainMapper {
 	//렌트카 종류별 리스트
 	List<RentCar> selectCarKind(HashMap<String, Object> map);
 	int selectCarKindCnt(HashMap<String, Object> map);
+	//렌트카 상세페이지
+	RentCar selectRentCarInfo(HashMap<String, Object> map);
 }

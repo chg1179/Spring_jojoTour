@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.sample1.mapper.RentCarMainMapper;
+import com.example.sample1.model.RentCar;
 
 @Service
 public class RentCarMainServiceImpl implements RentCarMainService{
@@ -29,6 +30,12 @@ public class RentCarMainServiceImpl implements RentCarMainService{
 		resultMap.put("list", rentCarMainMapper.selectCarKind(map));
 		resultMap.put("cnt", rentCarMainMapper.selectCarKindCnt(map));
 		return resultMap;
+	}
+	//상세정보 출력
+	@Override
+	public RentCar searchRentCarInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return rentCarMainMapper.selectRentCarInfo(map);
 	}
 
 

@@ -9,4 +9,6 @@ import com.example.sample1.model.RentCarImg;
 public interface RentCarMainService {
 	HashMap<String, Object> searchCarList(HashMap<String, Object> map);
 	HashMap<String, Object> searchCarKind(HashMap<String, Object> map);
+	//렌트카 상세페이지
+	RentCar searchRentCarInfo(HashMap<String, Object> map);
 }
