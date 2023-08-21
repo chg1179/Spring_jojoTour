@@ -86,6 +86,12 @@ public class MyPageServiceImpl implements MyPageService{
 		// TODO Auto-generated method stub
 		return myPageMapper.editInquiry(map);
 	}
+
+	@Override
+	public MyPage searchJjim(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.selectJjim(map);
+	}
 	
 
 

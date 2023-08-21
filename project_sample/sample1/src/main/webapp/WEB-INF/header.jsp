@@ -114,22 +114,26 @@
 	            <div class="header_menu">
 	                <div class="header_inner">
 	                    <ul v-if="status == ''"class="f_header">
+	                        <li><a href="javascript:;" @click="fnJJim">찜</a></li>
 	                        <li><a href="javascript:;" @click="fnLogin">로그인</a></li>
 	                        <li><a href="javascript:;" @click="fnJoin">회원가입</a></li>
 	                        <li><a href="javascript:;">장바구니</a></li>
 	                    </ul>
 	                    <ul v-else-if="status == 'A'" class="f_header">
+	                   	 <li><a href="javascript:;" @click="fnJJim2">찜</a></li>
 	                        <li><a href="javascript:;" @click="fnLogout">로그아웃</a></li>
 	                        <li><a href="javascript:;" @click="fnAdminPage">관리 페이지</a></li>
 	                        <li><a href="javascript:;">장바구니</a></li>
 	                    </ul>
 	                    <ul v-else-if="status == 'H'" class="f_header">
+	                    	<li><a href="javascript:;" @click="fnJJim2">찜</a></li>
 	                        <li><a href="javascript:;" @click="fnLogout">로그아웃</a></li>
 	                        <li><a href="javascript:;" @click="fnMyHome">마이홈</a></li>
 	                        <li><a href="javascript:;" @click="fnProduct">상품관리</a></li>
 	                        <li><a href="javascript:;">장바구니</a></li>
 	                    </ul>
 	                    <ul v-else class="f_header">
+	                    	<li><a href="javascript:;" @click="fnJJim2">찜</a></li>
 	                        <li><a href="javascript:;" @click="fnLogout">로그아웃</a></li>
 	                        <li><a href="javascript:;" @click="fnMyHome">마이홈</a></li>
 	                        <li><a href="javascript:;">장바구니</a></li>
@@ -240,6 +244,13 @@ var app = new Vue({
         },
         fnRentCar : function(){
         	location.href="/rentcar.do";
+        },
+        fnJJim : function(){
+        	alert("로그인후 이용해주세요");
+        	location.href="/login.do";
+        },
+        fnJJim2 : function(){
+        	location.href="/my/jjim.do";
         }
 	}, // methods
 	created : function() {

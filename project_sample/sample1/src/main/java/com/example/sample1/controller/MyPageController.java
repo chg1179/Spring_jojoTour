@@ -68,6 +68,13 @@ public class MyPageController {
 		request.setAttribute("map", map);
         return "/my/my-inquiry-edit";
     }	
+	
+	@RequestMapping("/my/jjim.do") 
+	public String jjim(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+
+		return "/my/my-jjim";
+	}	
+	
 	@RequestMapping(value = "order.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String order(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -77,6 +84,17 @@ public class MyPageController {
 		resultMap.put("order", order);
 		return new Gson().toJson(resultMap);
 	}
+	
+	@RequestMapping(value = "jjim.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String jjim(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
+		MyPage order = myPageService.searchJjim(map);
+		resultMap.put("jjim", order);
+		return new Gson().toJson(resultMap);
+	}
+	
 	@RequestMapping(value = "/my/userPoint.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String point(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -86,6 +104,7 @@ public class MyPageController {
 		resultMap.put("point", point);
 		return new Gson().toJson(resultMap);
 	}
+	
 	@RequestMapping(value = "/my/userReview.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String review(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -97,6 +116,7 @@ public class MyPageController {
 		resultMap.put("reviewCnt", reviewCnt);
 		return new Gson().toJson(resultMap);
 	}
+	
 	@RequestMapping(value = "/my/r_remove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String remove(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -104,6 +124,7 @@ public class MyPageController {
 		myPageService.removeReview(map);
 		return new Gson().toJson(resultMap);
 	}
+	
 	@RequestMapping(value = "/my/review/reviewInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String reviewInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -112,6 +133,7 @@ public class MyPageController {
 		resultMap.put("info", info);
 		return new Gson().toJson(resultMap);
 	}
+	
 	@RequestMapping(value = "/my/review/reviewEdit.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String reviewEdit(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -119,6 +141,7 @@ public class MyPageController {
 		myPageService.updateReview(map);
 		return new Gson().toJson(resultMap);
 	}
+	
 	@RequestMapping(value = "/my/inquiry.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String myInquiry(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -127,6 +150,7 @@ public class MyPageController {
 		resultMap.put("list", list);
 		return new Gson().toJson(resultMap);
 	}
+	
 	@RequestMapping(value = "/my/i_remove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String deleteInquiry(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -134,6 +158,7 @@ public class MyPageController {
 		myPageService.removeInquiry(map);
 		return new Gson().toJson(resultMap);
 	}
+	
 	@RequestMapping(value = "/my/inquiry/inquiryInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String inquiryInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -142,6 +167,7 @@ public class MyPageController {
 		resultMap.put("info", info);
 		return new Gson().toJson(resultMap);
 	}
+	
 	@RequestMapping(value = "/my/inquiry/inquiryEdit.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String inquiryEdit(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

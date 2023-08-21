@@ -23,4 +23,6 @@ public interface MyPageMapper {
 	Inquiry selectInquiryInfo(HashMap<String, Object> map);
 	// 나의 1:1문의 수정
 	int editInquiry(HashMap<String, Object> map);
+	// 찜목록!
+	MyPage selectJjim(HashMap<String, Object> map);
 }

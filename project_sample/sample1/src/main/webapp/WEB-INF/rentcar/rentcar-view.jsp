@@ -30,6 +30,7 @@
 		<p>인수장소 : {{info.rAddr}} {{info.rDetailAddr}}</p> 
 		
 	</div>
+		<span><button @click="fnWish">찜하기</button></span>
 		<span><button>예약하기</button></span>
 		<span><button @click="fnBack">뒤로가기</button></span>
 	</div>
@@ -44,7 +45,8 @@ var app = new Vue({
 		rentNo : "${map.rentNo}",
 		rCnt : "${map.rCnt}",
 		sales : 0,
-		imgList : []
+		imgList : [],
+		wishlist: [] 
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -79,12 +81,18 @@ var app = new Vue({
                 }
             }); 
 		},
-
-
+		fnWish : function(){
+			var self = this;
+			if (!self.wishlist.includes(self.rentNo)) {
+				self.wishlist.push(self.rentNo); // 차량 번호를 찜 목록에 추가
+				
+			    }
+		},
 		fnBack : function(){
 			var self = this;
 			location.href = "rentcar.do";
 		}
+
 	}, // methods
 	created : function() {
 		var self = this;

@@ -54,6 +54,7 @@
             <div class="my_page_title">마이페이지</div>
             <div class="my_page_btn_box">
                 <a href="javascript:;" class="page_btn order" @click="fnOrder">예약내역</a>
+                <a href="javascript:;" class="page_btn jjim" @click="fnJjimList">찜목록</a>
                 <a href="javascript:;" class="page_btn change" @click="fnChange">회원정보 수정</a>
                 <a href="javascript:;" class="page_btn point" @click="fnPoint">포인트</a>
                 <a href="javascript:;" class="page_btn review" @click="fnReview">후기내역</a>
@@ -99,6 +100,9 @@ var app = new Vue({
 		fninquiry : function(){
 			location.href="/my/inquiry.do";
 		},
+		fnJjimList : function(){
+			location.href="/my/jjim.do";
+		}
 	},
 	created : function() {
 		var self = this;

@@ -20,4 +20,6 @@ public interface MyPageService {
 	Inquiry searchInquiryInfo(HashMap<String, Object> map);
 	//1:1문의 수정
 	int updateInquiry(HashMap<String, Object> map);
+	// 찜목록
+	MyPage searchJjim(HashMap<String, Object> map);
 }
