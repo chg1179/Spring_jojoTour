@@ -49,6 +49,12 @@
 		<if test="rentCarKeyword != '' and rentCarKeyword != null"> 
 			AND RENT_NAME LIKE CONCAT('%',#{rentCarKeyword},'%')
 		</if>
+		<if test="rentKind != '' and rentKind != null"> 
+			AND RENT_KIND = #{rentKind}
+		</if>
+		<if test="minPay != '' and minPay != null or maxPay != '' and maxPay != null"> 
+			AND RENT_PRICE BETWEEN #{minPay}*10000 AND #{maxPay}*10000
+		</if>
 	</select>
 	<select id="selectCarSearchListCnt" resultType="int">
 		SELECT COUNT(*)
@@ -57,6 +63,12 @@
 		WHERE 1=1 AND MAIN_YN = 'Y'
 		<if test="rentCarKeyword != '' and rentCarKeyword != null"> 
 			AND RENT_NAME LIKE CONCAT('%',#{rentCarKeyword},'%')
+		</if>
+		<if test="rentKind != '' and rentKind != null"> 
+			AND RENT_KIND = #{rentKind}
+		</if>
+		<if test="minPay != '' and minPay != null or maxPay != '' and maxPay != null"> 
+			AND RENT_PRICE BETWEEN #{minPay} AND #{maxPay}
 		</if>
 	</select>
 	

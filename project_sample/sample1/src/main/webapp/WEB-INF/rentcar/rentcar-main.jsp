@@ -166,8 +166,11 @@
 					<label class="rentcar_btn" for="v_rentcar">승합차</label>
 				</li>
 			</ul>
-			<div>차량명 : <input type="text" v-model="rentCarKeyword" @keyup.enter="fnRentCarSearch"><button @click="fnRentCarSearch">검색</button></div>
-			<div>가격 : </div>
+			<div class="rentcar_search_box">
+				<div class="rentcar_search_name">차량명 : <input type="text" v-model="rentCarKeyword" @keyup.enter="fnRentCarSearch"></div>
+				<div class="rentcar_search_price">가격 : <input type="text" v-model="minPay">만원 ~ <input type="text" v-model="maxPay" @keyup.enter="fnRentCarSearch">만원</div>
+				<div class="rentcar_search_btn"><button @click="fnRentCarSearch">검색</button></div>
+			</div>
 			<div class="rentcar_main_con">
 				<div class="rentcar_main_wrap">
 					<div v-for="item in list" class="rentcar_main_box" @click="fnRentCarView(item.rentNo)">
@@ -212,7 +215,9 @@ var app = new Vue({
         pageCount: 1,
         cnt : 0,
         rentKind : "${map.rentKind}",
-        rentCarKeyword : ""
+        rentCarKeyword : "",
+        minPay : null,
+        maxPay : null
 
 	},// data
 	methods : {
@@ -279,7 +284,7 @@ var app = new Vue({
 		},
 		fnRentCarSearch : function(){
 			var self = this;
-            var nparmap = {rentCarKeyword : self.rentCarKeyword};
+            var nparmap = {rentCarKeyword : self.rentCarKeyword, rentKind : self.rentKind, minPay : self.minPay, maxPay : self.maxPay};
             $.ajax({
                 url : "rentCarSearchList.dox",
                 dataType:"json",	

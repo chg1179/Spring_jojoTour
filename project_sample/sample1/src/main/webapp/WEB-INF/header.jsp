@@ -151,10 +151,10 @@
 	                        <li class="header_rentCar">
 	                            <a href="javascript:;" @click="fnRentCar">렌터카</a>
 	                            <ul>
-	                                <li><a href="javascript:;">소형차</a></li>
-	                                <li><a href="javascript:;">중형차</a></li>
-	                                <li><a href="javascript:;">대형차</a></li>
-	                                <li><a href="javascript:;">승합차</a></li>
+	                                <li><a href="javascript:;" @click="checkKind('SMALL')">소형차</a></li>
+	                                <li><a href="javascript:;" @click="checkKind('MIDDLE')">중형차</a></li>
+	                                <li><a href="javascript:;" @click="checkKind('LARGE')">대형차</a></li>
+	                                <li><a href="javascript:;" @click="checkKind('VAN')">승합차</a></li>
 	                            </ul>
 	                        </li>
 	                        <li class="header_water_leisure">
@@ -206,6 +206,10 @@ var app = new Vue({
 		status : "${sessionStatus}"
 	},// data
 	methods : {
+		checkKind : function(kind){
+			var self = this;
+			$.pageChange("rentcar.do", {rentKind : kind});
+		},
         fnLogin :function(){
         	location.href="/login.do";
         },
