@@ -61,7 +61,7 @@
 				<td>
 					<div v-for="item in serviceList">
 					    <label>
-					        <input type="checkbox" :value="item.serviceNo" :checked="isServiceChecked(item)">
+					        <input type="checkbox" :value="item.serviceNo" :checked="isServiceChecked(item)" @change="updateCheck($event, item)">
 					        {{ item.serviceName }}
 					    </label>
 					</div>			
@@ -89,7 +89,8 @@ var app = new Vue({
 	data : {
 		typeList : [],
 		serviceList : [], // 출력을 위한 서비스 리스트
-		checkList : [], // 체크한 값을 넣기 위한 서비스 리스트
+		checkList : [], // DB에 있는 체크 리스트를 넣기 위한 서비스 리스트
+		selectServiceList : [], // 새롭게 선택한 체크 리스트를 담는 리스트
 		info : {
 			stayName : "",
 			stayKind : "",
@@ -126,6 +127,10 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	self.checkList = data.checkList;
+                	// 선택된 서비스 리스트에 초기화
+                	self.checkList.forEach(item => {
+            	        self.selectServiceList.push(item.serviceNo);
+            	    });
                 	console.log(self.checkList);
                 }
             }); 
@@ -155,7 +160,7 @@ var app = new Vue({
 				return;
 			}
 			
-			var noServiceList = JSON.stringify(self.checkList); //문자열 형태로 형변환
+			var noServiceList = JSON.stringify(self.selectServiceList); //문자열 형태로 형변환
 			var param = self.info;
 			param.stayNo = self.stayNo;
 			param.serviceNo = self.serviceNo;
@@ -183,11 +188,24 @@ var app = new Vue({
     		self.info.sZipno = zipNo;
     		self.info.sAddr = roadAddrPart1;
             self.info.sDetailAddr = addrDetail;
-            
-            console.log(zipNo);
     	},
+    	// DB에 있는 값 선택
     	isServiceChecked(service) {
             return this.checkList.some(item => item.serviceNo === service.serviceNo);
+        },
+        // 새롭게 선택된 체크박스 리스트
+        updateCheck(event, service) {
+        	var self = this;
+            if (event.target.checked) {
+                // 체크박스가 선택되었을 때
+                self.selectServiceList.push(service.serviceNo);
+            } else {
+                // 체크박스가 해제되었을 때
+                var index = self.selectServiceList.indexOf(service.serviceNo);
+                if (index !== -1) {
+                	self.selectServiceList.splice(index, 1);
+                }
+            }
         }
 	}, // methods
 	created : function() {

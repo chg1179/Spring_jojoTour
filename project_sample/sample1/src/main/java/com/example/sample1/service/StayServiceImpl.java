@@ -70,13 +70,13 @@ public class StayServiceImpl implements StayService{
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		stayMapper.updateStayInfo(map);
 		
-		  List<Object> list = (List<Object>) map.get("list");
-		  	for(int i=0;i<list.size();i++) {
+		List<Object> list = (List<Object>) map.get("jsonCheckList");
+			for(int i=0;i<list.size();i++) {
 				map.put("service", list.get(i));
 				stayMapper.insertService2(map);
-			}
+		  	}
 		    
-		    return resultMap;
+		  	return resultMap;
 	}
 	
 	// 숙소 서비스 목록 출력

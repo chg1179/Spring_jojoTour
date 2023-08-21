@@ -426,6 +426,14 @@ var app = new Vue({
 		},
 		fnPercent : function(){ // 할인율 0~100 제한
 			var self = this;
+			var regex = new RegExp(/^[0-9]+$/);
+			if(!regex.test(self.sales)){
+				if(!(self.sales=="")){
+					alert("할인율은 숫자만 입력해주세요.");
+					self.sales = 0;
+					return;
+				}
+			}
 			if(self.sales >= 100){
 				alert("100보다 낮은 숫자를 입력해주세요.");
 				self.sales = 0;

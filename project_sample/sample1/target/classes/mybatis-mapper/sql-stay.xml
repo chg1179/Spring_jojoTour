@@ -60,10 +60,7 @@
 	<!-- 서비스 리스트 삭제 -->
 	<delete id="deleteService" parameterType="hashmap">
 		DELETE FROM T2_STAY_SERVICE_TBL
-		WHERE STAY_NO IN
-		<foreach collection="list" item="item" open="(" close=")" separator=",">
-         #{item}
-      	</foreach>
+		WHERE STAY_NO = #{stayNo}
 	</delete>
 	
 	<insert id="insertService2" parameterType="hashmap">
