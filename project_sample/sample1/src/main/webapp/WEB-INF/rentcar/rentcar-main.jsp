@@ -128,23 +128,23 @@
 	<div id="app">
 			<ul class="rentcar_list">
 				<li>
-					<input type="radio" name="rentcar" id="all_rentcar" @input="fnGetList" checked>
+					<input type="radio" name="rentcar" id="all_rentcar" @input="checkKind('')" checked="checked">
 					<label class="rentcar_btn" for="all_rentcar">전체</label>
 				</li>
 				<li>
-					<input type="radio" name="rentcar" id="s_rentcar" @input="checkRentKind('SMALL')">
+					<input type="radio" name="rentcar" id="s_rentcar" @input="checkKind('SMALL')">
 					<label class="rentcar_btn" for="s_rentcar">소형차</label>
 				</li>
 				<li>
-					<input type="radio" name="rentcar" id="m_rentcar" @input="checkRentKind('MIDDLE')">
+					<input type="radio" name="rentcar" id="m_rentcar" @input="checkKind('MIDDLE')">
 					<label class="rentcar_btn" for="m_rentcar">중형차</label>
 				</li>
 				<li>
-					<input type="radio" name="rentcar" id="l_rentcar" @input="checkRentKind('LARGE')">
+					<input type="radio" name="rentcar" id="l_rentcar" @input="checkKind('LARGE')">
 					<label class="rentcar_btn" for="l_rentcar">대형차</label>
 				</li>
 				<li>
-					<input type="radio" name="rentcar" id="v_rentcar" @input="checkRentKind('VAN')">
+					<input type="radio" name="rentcar" id="v_rentcar" @input="checkKind('VAN')">
 					<label class="rentcar_btn" for="v_rentcar">승합차</label>
 				</li>
 			</ul>
@@ -247,7 +247,7 @@ var app = new Vue({
                 }
             }); 
 		},
-		test : function(kind){
+		checkKind : function(kind){
 			$.pageChange("rentcar.do", {rentKind : kind});
 		},
 		fnRentCarView : function(rentNo){
