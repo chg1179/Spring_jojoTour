@@ -59,4 +59,9 @@
 			AND RENT_NAME LIKE CONCAT('%',#{rentCarKeyword},'%')
 		</if>
 	</select>
+	
+	<insert id="insertJjim" parameterType="hashmap">
+		INSERT INTO T2_JJIM_TBL VALUES
+		(#{uId}, #{rentNo}, 'RENT')
+	</insert>
 </mapper>

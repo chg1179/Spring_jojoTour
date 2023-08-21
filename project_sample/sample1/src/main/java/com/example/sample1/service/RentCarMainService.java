@@ -15,5 +15,7 @@ public interface RentCarMainService {
 	List<RentCarImg> searchCarImgList(HashMap<String, Object> map);
 	//렌트카 검색
 	List<RentCar> searchCarSearchList(HashMap<String, Object> map);
+	//찜목록추가
+	int addJjim(HashMap<String, Object> map);
 	
 }

@@ -98,5 +98,14 @@ public class RentCarMainController {
 		resultMap.put("list", list);
 		return new Gson().toJson(resultMap);
 	}
+	//숙소 찜 인서트
+	@RequestMapping(value = "/rentcar/jjimAdd.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String addjjim(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		rentCarMainService.addJjim(map);
+		return new Gson().toJson(resultMap);
+		
+	}
 
 }

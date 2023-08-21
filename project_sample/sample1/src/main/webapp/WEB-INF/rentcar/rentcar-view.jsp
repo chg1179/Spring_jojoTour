@@ -30,7 +30,7 @@
 		<p>인수장소 : {{info.rAddr}} {{info.rDetailAddr}}</p> 
 		
 	</div>
-		<span><button @click="fnWish">찜하기</button></span>
+		<span><button @click="fnWish(info.rentNo)">찜하기</button></span>
 		<span><button>예약하기</button></span>
 		<span><button @click="fnBack">뒤로가기</button></span>
 	</div>
@@ -46,7 +46,8 @@ var app = new Vue({
 		rCnt : "${map.rCnt}",
 		sales : 0,
 		imgList : [],
-		wishlist: [] 
+		wishlist: [],
+		uId : "${sessionId}"
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -81,26 +82,29 @@ var app = new Vue({
                 }
             }); 
 		},
-		fnWish : function(){
+		fnWish : function(rentNo){
 			var self = this;
-			var param = {rentNo : self.rentNo};
+			if(!confirm("찜목록에 추가하시겠습니까?")){
+				alert("취소되었습니다.");
+				return;
+			}
+			var param = {rentNo : rentNo, uId:self.uId};
 			$.ajax({
-                url : "jjim.dox",
+                url : "jjimAdd.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
                 	if (data.success) {
-                		if (!self.wishlist.includes(self.rentNo)) {
-                			self.wishlist.push(self.rentNo);
+                		if (!self.wishlist.includes(rentNo)) {
+                			self.wishlist.push(rentNo);
+                			alert("찜 목록에 추가되었습니다.");
                 		}
                 	} else {
                 		alert("이미 찜목록에 존재합니다.");
                 	}
-                },
-                error: function() {
-                	alert("서버와의 통신 중 오류가 발생하였습니다.");
-                }	    
+                }
+    
             });
 
 		},

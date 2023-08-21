@@ -24,4 +24,6 @@ public interface RentCarMainMapper {
 	List<RentCar> selectCarSearchList(HashMap<String, Object> map);
 	//렌트카 검색 카운트
 	int selectCarSearchListCnt(HashMap<String, Object> map);
+	// 찜추가
+	int insertJjim(HashMap<String, Object> map);
 }

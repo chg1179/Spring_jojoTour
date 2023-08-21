@@ -85,12 +85,12 @@ public class MyPageController {
 		return new Gson().toJson(resultMap);
 	}
 	
-	@RequestMapping(value = "jjim.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/my/jjim.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String jjim(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		
-		MyPage order = myPageService.searchJjim(map);
+		List<MyPage> order = myPageService.searchJjim(map);
 		resultMap.put("jjim", order);
 		return new Gson().toJson(resultMap);
 	}

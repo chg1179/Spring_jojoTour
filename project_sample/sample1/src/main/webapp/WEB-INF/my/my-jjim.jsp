@@ -101,7 +101,6 @@ var app = new Vue({
 	data : {
 		list : [],
 		userId : "${sessionId}",
-		order : "",
 		jjim:""
 	},// data
 	methods : {
@@ -109,7 +108,7 @@ var app = new Vue({
 			var self = this;
 			var param = {userId : self.userId};
 			$.ajax({
-                url : "/jjim.dox",
+                url : "/my/jjim.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
