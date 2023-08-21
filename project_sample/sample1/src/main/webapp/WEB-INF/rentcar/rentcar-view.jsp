@@ -83,10 +83,26 @@ var app = new Vue({
 		},
 		fnWish : function(){
 			var self = this;
-			if (!self.wishlist.includes(self.rentNo)) {
-				self.wishlist.push(self.rentNo); // 차량 번호를 찜 목록에 추가
-				
-			    }
+			var param = {rentNo : self.rentNo};
+			$.ajax({
+                url : "jjim.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	if (data.success) {
+                		if (!self.wishlist.includes(self.rentNo)) {
+                			self.wishlist.push(self.rentNo);
+                		}
+                	} else {
+                		alert("이미 찜목록에 존재합니다.");
+                	}
+                },
+                error: function() {
+                	alert("서버와의 통신 중 오류가 발생하였습니다.");
+                }	    
+            });
+
 		},
 		fnBack : function(){
 			var self = this;
