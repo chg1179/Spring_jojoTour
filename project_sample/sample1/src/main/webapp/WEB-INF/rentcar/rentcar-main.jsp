@@ -140,7 +140,7 @@
 					<label class="rentcar_btn" for="m_rentcar">중형차</label>
 				</li>
 				<li>
-					<input type="radio" name="rentcar" id="l_rentcar" @input="checkRentKind('LARGE')">
+					<input type="radio" name="rentcar" id="l_rentcar" @input="test('LARGE')">
 					<label class="rentcar_btn" for="l_rentcar">대형차</label>
 				</li>
 				<li>
@@ -189,7 +189,8 @@ var app = new Vue({
 		list : [],
         selectPage: 1,
         pageCount: 1,
-        cnt : 0
+        cnt : 0,
+        rentKind : "${map.rentKind}"
 
 	},// data
 	methods : {
@@ -245,11 +246,18 @@ var app = new Vue({
 					self.pageCount = Math.ceil(self.cnt / 9);
                 }
             }); 
+		},
+		test : function(kind){
+			$.pageChange("rentcar.do", {rentKind : kind});
 		}
 	}, // methods
 	created : function() {
 		var self = this;
-		self.fnGetList();
+		if(self.rentKind != ""){
+			self.checkRentKind(self.rentKind);
+		} else{
+			self.fnGetList();
+		}
 	}// created
 });
 </script>

@@ -29,6 +29,7 @@ public class RentCarMainController {
 	
 	@RequestMapping("/rentcar.do") 
     public String rentcar(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
         return "/rentcar/rentcar-main";
     }
 	
