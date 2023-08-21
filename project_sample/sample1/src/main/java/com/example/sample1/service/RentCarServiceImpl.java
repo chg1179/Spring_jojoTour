@@ -95,4 +95,10 @@ public class RentCarServiceImpl implements RentCarService{
 		return rentCarMapper.selectCarImgList(map);
 	}
 
+	@Override
+	public int searchImgCnt(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return rentCarMapper.selectImgCnt(map);
+	}
+
 }

@@ -142,13 +142,12 @@ public class RentCarContoller {
         String url = null;
         String path="c:\\img\\rentCar";
         try {
-        	Thread.sleep(1000);//같은 파일명을 넣지 않기 위해
             //String uploadpath = request.getServletContext().getRealPath(path);
             String uploadpath = path;
             String originFilename = multi.getOriginalFilename();
             String extName = originFilename.substring(originFilename.lastIndexOf("."),originFilename.length());
             long size = multi.getSize();
-            String saveFileName = genSaveFileName(extName);
+            String saveFileName = getSaveFileName(extName);
             
             System.out.println("uploadpath : " + uploadpath);
             System.out.println("originFilename : " + originFilename);
@@ -161,8 +160,13 @@ public class RentCarContoller {
             {
                 File file = new File(path2 + "\\src\\main\\webapp\\img\\rentCar", saveFileName);
                 multi.transferTo(file);
-                
+
                 HashMap<String, Object> map = new HashMap<String, Object>();
+                map.put("imgSaveName", saveFileName);
+                if(rentCarService.searchImgCnt(map) != 0) {
+                	saveFileName += "1";
+                }
+                Thread.sleep(1000);//같은 파일명을 넣지 않기 위해
                 map.put("imgName", originFilename);
                 map.put("imgSaveName", saveFileName);
                 map.put("imgPath", "../img/rentCar/" + saveFileName);
@@ -190,13 +194,12 @@ public class RentCarContoller {
 		String url = null;
         String path="c:\\img\\rentCar";
         try {
-        	Thread.sleep(1000);//같은 파일명을 넣지 않기 위해
             //String uploadpath = request.getServletContext().getRealPath(path);
             String uploadpath = path;
             String originFilename = multi.getOriginalFilename();
             String extName = originFilename.substring(originFilename.lastIndexOf("."),originFilename.length());
             long size = multi.getSize();
-            String saveFileName = genSaveFileName(extName);
+            String saveFileName = getSaveFileName(extName);
             
             System.out.println("uploadpath : " + uploadpath);
             System.out.println("originFilename : " + originFilename);
@@ -211,12 +214,17 @@ public class RentCarContoller {
                 multi.transferTo(file);
                 
                 HashMap<String, Object> map = new HashMap<String, Object>();
+                if(rentCarService.searchImgCnt(map) != 0) {
+                	saveFileName += "1";
+                }
+                Thread.sleep(1000);//같은 파일명을 넣지 않기 위해
+                map.put("imgSaveName", saveFileName);
                 map.put("imgName", originFilename);
                 map.put("imgSaveName", saveFileName);
                 map.put("imgPath", "../img/rentCar/" + saveFileName);
                 map.put("imgNo", imgNo);
                 
-                // insert 쿼리 실행
+                // update 쿼리 실행
                 rentCarService.editRentCarImg(map);
                 
                 model.addAttribute("imgName", multi.getOriginalFilename());
@@ -231,7 +239,7 @@ public class RentCarContoller {
 	}
 	
     // 현재 시간을 기준으로 파일 이름 생성
-    private String genSaveFileName(String extName) {
+    private String getSaveFileName(String extName) {
         String fileName = "";
         
         Calendar calendar = Calendar.getInstance();

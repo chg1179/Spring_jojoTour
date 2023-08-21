@@ -45,4 +45,7 @@ public interface RentCarMapper {
 	
 	//렌트카 이미지 리스트
 	List<RentCarImg> selectCarImgList(HashMap<String, Object> map);
+	
+	//이미지명이 중복됐는지 검색
+	int selectImgCnt(HashMap<String, Object> map);
 }

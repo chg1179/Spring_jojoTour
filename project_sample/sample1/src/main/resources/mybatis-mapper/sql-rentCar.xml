@@ -108,4 +108,10 @@
 		FROM T2_RENT_IMG_TBL
 		WHERE RENT_NO = #{rentNo}
 	</select>
+	
+	<select id="selectImgCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM T2_RENT_IMG_TBL
+		WHERE IMG_SAVE_NAME = #{imgSaveName}
+	</select>
 </mapper>

@@ -36,4 +36,7 @@ public interface RentCarService {
 	
 	// 렌트카 이미지 출력
 	List<RentCarImg> searchCarImgList(HashMap<String, Object> map);
+	
+	//렌트카 이미지 수정
+	int searchImgCnt(HashMap<String, Object> map);
 }
