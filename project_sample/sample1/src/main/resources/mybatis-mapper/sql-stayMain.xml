@@ -5,11 +5,16 @@
 <mapper namespace="com.example.sample1.mapper.StayMainMapper">
 
 	<!-- 숙소 메인 리스트 출력 -->
-	<select id="viewStayList" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
+	<select id="viewStayList" parameterType="hashmap" resultType="com.example.sample1.model.Product">
 		SELECT *
 		FROM T2_STAY_TBL S
 		INNER JOIN T2_CODE_TYPE C
 		ON S.STAY_KIND = C.C_KIND
+		LEFT JOIN (
+			SELECT MIN(ROOM_PRICE) AS MIN_PRICE, STAY_NO
+			FROM T2_ROOM_TBL
+			GROUP BY STAY_NO
+		) R ON S.STAY_NO = R.STAY_NO
 		WHERE S.STAY_KIND = 'HOTEL'
 	</select>
 	
@@ -25,9 +30,16 @@
 		WHERE STAY_NO = #{stayNo} AND ROOM_DELYN = 'N'
 	</select>
 	
+	<select id="selectStayInfo" parameterType="hashmap" resultType="com.example.sample1.model.Product">
+		SELECT *
+		FROM T2_STAY_TBL S
+		INNER JOIN T2_CODE_TYPE C
+		ON S.STAY_KIND = C.C_KIND
+		WHERE STAY_NO = #{stayNo} AND S_DELYN = 'N'
+	</select>
+	
 	<insert id="insertJjim" parameterType="hashmap">
 		INSERT INTO T2_JJIM_TBL VALUES
-		(#{uId}, #{roomNo}, 'HOTEL')
-		
+		(#{uId}, #{roomNo}, #{cKind})
 	</insert>
 </mapper>

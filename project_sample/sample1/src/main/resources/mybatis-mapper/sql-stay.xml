@@ -57,10 +57,33 @@
 		WHERE STAY_NO = #{stayNo}
 	</update>
 	
+	<!-- 서비스 리스트 삭제 -->
+	<delete id="deleteService" parameterType="hashmap">
+		DELETE FROM T2_STAY_SERVICE_TBL
+		WHERE STAY_NO IN
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+         #{item}
+      	</foreach>
+	</delete>
+	
+	<insert id="insertService2" parameterType="hashmap">
+		INSERT INTO T2_STAY_SERVICE_TBL 
+		VALUES (#{stayNo}, #{service})
+	</insert>
+	
 	<!-- 편의시설 리스트 -->
 	<select id="selectServiceList" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
 		SELECT * 
 		FROM T2_SERVICE_TBL
+	</select>
+	
+	<!-- 체크된 서비스 리스트 -->
+	<select id="checkServiceList" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
+		SELECT *
+		FROM T2_SERVICE_TBL V
+		INNER JOIN T2_STAY_SERVICE_TBL S
+		ON S.SERVICE_NO = V.SERVICE_NO
+		WHERE STAY_NO = #{stayNo}
 	</select>
 	
 	<insert id="insertStayService" parameterType="hashmap">
