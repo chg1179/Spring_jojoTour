@@ -9,11 +9,16 @@
 		VALUES (#{packageName}, #{selectRoom}, #{selectRent}, #{selectLeisure})
 	</insert>
 	
-	<update id="requestApp" parameterType="hashmap">
+	<insert id="insertPackage" parameterType="hashmap">
+		INSERT INTO T2_PACKAGE_TBL (PACKAGE_NAME, P_PRICE)
+		VALUES (#{packageName}, #{pPrice})
+	</insert>
+	 
+	<update id="stateChange" parameterType="hashmap">
 	UPDATE T2_PACKAGE_REQUEST_TBL
 	SET 
 		STATE = 'A'
-	WHERE PRODUCT_NO IN (#{selectRoom}, #{selectRent}, #{selectLeisure});
+	WHERE PRODUCT_NO = #{productNo};
 	</update>
 	
 	<select id="rentRequest" parameterType="hashmap" resultType="com.example.sample1.model.Admin">

@@ -54,14 +54,25 @@
 	#abtn:hover {
 	    background-color: #f89552;
 	  }
+	#bbtn {
+		margin : 5px auto;
+		border-radius : 15px;
+		border : 1px solid #f8852a;
+		width : 50px;
+		height: 20px;
+		background-color: #f8852a;
+		color : white;
+	} 
+	#bbtn:hover {
+	    background-color: #f89552;
+	  }
 </style>
 </head>
 <body>
 <jsp:include page="header.jsp" flush="true"></jsp:include>
 <div id="app">
 	<div style="text-align : center; margin: 20px auto;">
-		<h2>패키지 신청 목록</h2>
-		<hr style="width: 1000px; margin: 2px auto;">
+		<h2 style="color : #f8852a;">패키지 신청 목록</h2>
 	</div>
 	<table>
 		<thead>
@@ -73,13 +84,16 @@
 				<th>호스트</th>	
 				<th>숙소명</th>
 				<th>룸</th>
+				<th>가격</th>
 				<th>현황</th>
 			<tr>
 		</thead>
 		<tbody >
-			<tr v-for="item in roomList">		
-				<td v-if="item.state =='D'" name="room" style="width : 80px"><input type="radio" :value="item.roomNo" v-model="selectRoom"></td>
-				<td v-else> --- </td>
+			<tr v-for="(item,index) in roomList">		
+				<td v-if="item.state =='A'" name="room" style="width : 80px">
+					<input type="radio" name="room" :value="item.roomNo" @input="changeRoomNo(item, index)">
+				</td>
+				<td v-else style="width : 80px"> <input type="button" @click="fnState(item)" value="허 용" id="bbtn"> </td>
 				
 				<td style="width : 120px">{{item.uId}}</td>
 				
@@ -87,17 +101,17 @@
 			    
 			    <td style="width : 300px"><a href="javascript:;" @click="fnRoomView">{{item.roomName}}</a></td>
 			    
+			    <td style="width : 100px">{{item.roomPrice*item.roomSales}}</td>
+			    
 			    <td v-if="item.state == 'D'" style="width : 80px">
 			    	<div> 보 류 중 </div>
 			    </td>
-			    <td v-else>
-			  	  <div style="color : #f8852a"> 신청완료 </div>
+			    <td v-else style="width : 80px">
+			  	  <div style="color : #f8852a"> 허 용 </div>
 			  	</td>
 			</tr>
 		</tbody>
 	</table>
-	
-	<hr style="width: 1300px; margin: 2px auto;">
 	
 	<table>
 		<thead>
@@ -109,13 +123,16 @@
 				<th>호스트</th>
 				<th>레저명</th>
 				<th>레저종류</th>
+				<th>가격</th>
 				<th>현황</th>
 			<tr>
 		</thead>
 		<tbody >
-			<tr v-for="item in leisureList">		
-				<td v-if="item.state =='D'" name="leisure" style="width : 80px"><input type="radio" :value="item.leisureNo" v-model="selectLeisure"></td>
-				<td v-else> --- </td>
+			<tr v-for="(item,index) in leisureList">		
+				<td v-if="item.state =='A'" name="leisure" style="width : 80px">
+					<input type="radio" :value="item.leisureNo" @input="changeLeisureNo(item, index)" name="leisure">
+				</td>
+				<td v-else style="width : 80px"> <input type="button" @click="fnState(item)" value="허 용" id="bbtn"> </td>
 				
 				<td style="width : 120px">{{item.uId}}</td>
 			
@@ -123,17 +140,18 @@
 			    
 			    <td style="width : 300px">{{item.leisureKind}}</td>
 			    
+			    <td style="width : 100px">{{item.leisurePrice*item.leisureSales}}</td>
+			    
 			    <td v-if="item.state == 'D'" style="width : 80px">
 			    	<div> 보 류 중 </div>
 			    </td>
-			    <td v-else>
-			  	  <div style="color : #f8852a"> 신청완료 </div>
+			    <td v-else style="width : 80px">
+			  	  <div style="color : #f8852a"> 허 용 </div>
 			  	</td>
 			</tr>
 		</tbody>
 	</table>
 	
-	<hr style="width: 1300px; margin: 2px auto;">
 	
 	<table>
 		<thead>
@@ -145,13 +163,16 @@
 				<th>호스트</th>	
 				<th>차종</th>
 				<th>차급</th>
+				<th>가격</th>
 				<th>현황</th>
 			<tr>
 		</thead>
 		<tbody >
-			<tr v-for="item in rentList">		
-				<td v-if="item.state =='D'" name="rent" style="width : 80px"><input type="radio" :value="item.rentNo" v-model="selectRent"></td>
-				<td v-else> --- </td>
+			<tr v-for="(item,index) in rentList">		
+				<td v-if="item.state =='A'" name="rent" style="width : 80px">
+					<input type="radio" :value="item.rentNo" @input="changeRentNo(item, index)" name="rent">
+				</td>
+				<td v-else style="width : 80px"> <input type="button" @click="fnState(item)" value="허 용" id="bbtn"> </td>
 				
 				<td style="width : 120px">{{item.uId}}</td>
 				
@@ -159,11 +180,13 @@
 			    
 			    <td style="width : 300px">{{item.rentKind}}</td>
 			    
+			    <td style="width : 100px">{{item.rentPrice*item.rentSales}}</td>
+			    
 			    <td v-if="item.state == 'D'" style="width : 80px">
 			    	<div> 보 류 중 </div>
 			    </td>
-			    <td v-else>
-			  	  <div style="color : #f8852a"> 신청완료 </div>
+			    <td v-else style="width : 80px">
+			  	  <div style="color : #f8852a"> 허 용 </div>
 			  	</td>
 			</tr>
 		</tbody>
@@ -184,7 +207,10 @@ var app = new Vue({
 		selectLeisure : "",
 		selectRent : "",
 		status : "${sessionStatus}",
-		state : "${state}"
+		state : "${state}",
+		rentIndex : "",
+		roomIndex : "",
+		leisureIndex : ""
 	},// data
 	methods : {
 		fnRentList : function(){
@@ -226,21 +252,27 @@ var app = new Vue({
                 }
             }); 
 		},
-		fnYbtn : function(selectRoom, selectRent, selectLeisure){
+		fnYbtn : function(selectRoom, selectRent, selectLeisure, selectItem){
 			var self = this;
+			
+			var sPrice = (self.roomList[self.roomIndex].roomPrice*self.roomList[self.roomIndex].roomSales);
+			var rPrice = (self.rentList[self.rentIndex].rentPrice*self.rentList[self.rentIndex].rentSales);
+			var lPrice = (self.leisureList[self.leisureIndex].leisurePrice*self.leisureList[self.leisureIndex].leisureSales);
+			var pPrice = sPrice + rPrice + lPrice;
 			var packageName = prompt("패키지 이름을 입력해주세요.")
 			if (packageName == null || packageName == "") {
 				alert("이름을 입력해주세요.");
 				return;
 			}
-			var nparmap = {selectRoom : self.selectRoom, selectRent : self.selectRent, selectLeisure : self.selectLeisure, packageName : packageName};
+			
+			var nparmap = {selectRoom : self.selectRoom, selectRent : self.selectRent, selectLeisure : self.selectLeisure, packageName : packageName, pPrice : pPrice};
 			console.log(nparmap);
 			if(selectRoom == ""|| selectRoom == null || selectRent == "" ||  selectRent == null || selectLeisure == "" || selectLeisure == null){
 				alert("숙소, 레저, 렌트카를 선택해주세요.");
 				return;
 			}
 			 $.ajax({
-	                url : "/requestApp.dox",
+	                url : "/requestInsert.dox",
 	                dataType:"json",
 	                type : "POST",
 	                data : nparmap,
@@ -251,6 +283,22 @@ var app = new Vue({
 	            		self.fnLeisureList();
 	                }
 	            }); 
+		},
+		fnState : function(item){
+			var self = this;
+            var nparmap = {productNo : item.productNo};
+            $.ajax({
+                url : "/stateChange.dox",
+                dataType:"json",
+                type : "POST",
+                data : nparmap,
+                success : function(data) { 
+                	alert("허용되었습니다.");
+                	self.fnRentList();
+            		self.fnRoomList();
+            		self.fnLeisureList();
+                }
+            }); 
 		},
 		fnStayView : function(){
         	var self = this;
@@ -267,6 +315,21 @@ var app = new Vue({
         fnleisureView : function(){
         	var self = this;
 			$.pageChange("../host/leisure/view.do", {leisureNo : self.leisureNo}); 
+        },
+        changeRoomNo : function(item, index){
+        	var self = this;
+        	self.selectRoom = item.roomNo;
+        	self.roomIndex = index;
+        },
+        changeRentNo : function(item, index){
+        	var self = this;
+        	self.selectRent = item.rentNo;
+        	self.rentIndex = index;
+        },
+        changeLeisureNo : function(item, index){
+        	var self = this;
+        	self.selectLeisure = item.leisureNo;
+        	self.leisureIndex = index;
         }
 	}, // methods
 	created : function() {

@@ -48,8 +48,7 @@
 <jsp:include page="header.jsp" flush="true"></jsp:include>
 <div id="app">
 	<div style="text-align : center; margin: 20px auto;">
-		<h2 style="color:#F86F03;">패키지 목록</h2>
-		<hr style="width: 1000px; margin: 2px auto;">
+		<h2 style="color : #f8852a">패키지 목록</h2>
 	</div>
 	<table>
 		<thead>
@@ -72,21 +71,22 @@
 				
 				<td style="width : 200px"><a href="javascript:;" @click="fnRoomView">{{item.roomName}}</a></td>
 				
-			   <td style="width: 100px;"> {{item.roomPrice}}원</td>
+			   <td style="width: 100px;"> {{item.roomPrice*item.roomSales}}원</td>
 			   
-			    <td rowspan="3" style="width: 200px; border-left-style:dotted; border-left-color: #f8852a;"><span style="color:#f8852a">TOTAL : </span>{{ item.roomPrice + item.rentPrice + item.leisurePrice }}원</td>
+			    <td rowspan="3" style="width: 200px; border-left-style:dotted; border-left-color: #f8852a;"><span style="color:#f8852a">TOTAL : 
+			    </span>{{ item.roomPrice*item.roomSales + item.leisurePrice*item.leisureSales + item.rentPrice*item.rentSales }}원</td>
 			</tr>
 			<tr>
 				<td style="background-color:#f8852a; color : white;">레저</td>
 				<td><a href="javascript:;" @click="fnLeisureView">{{item.leisureName}}</a></td>
 				<td>{{item.leisureKind}}</td>
-				<td>{{item.leisurePrice}}원</td>
+				<td>{{item.leisurePrice*item.leisureSales}}원</td>
 			</tr>
 			<tr>
 				<td style="background-color:#f8852a; color : white;">렌트카</td>
 				<td><a href="javascript:;" @click="fnRentView">{{item.rentName}}</a></td>
 				<td>{{item.rentKind}}</td>
-				<td>{{item.rentPrice}}원</td>
+				<td>{{item.rentPrice*item.rentSales}}원</td>
 			</tr>
 		</tbody>
 	</table>
@@ -118,7 +118,7 @@ var app = new Vue({
 		},
 		fnPackageView : function(){
         	var self = this;
-			$.pageChange("../admin/packagereq.do", {packageNo : self.packageNo}); 
+			$.pageChange("../admin/package.do", {packageNo : self.packageNo}); 
         },
         fnStayView : function(){
         	var self = this;

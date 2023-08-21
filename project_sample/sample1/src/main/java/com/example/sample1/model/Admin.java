@@ -38,7 +38,7 @@ public class Admin {
 	//leisure
 	private int productNo;
 	private String productName;
-	private String productSales;
+	private double productSales;
 	private int productPrice;
 	private String pAddr;
 	private String pDetailAddr;
@@ -47,6 +47,7 @@ public class Admin {
 	private String leisureName;
 	private int leisureNo;
 	private int leisurePrice;
+	private int leisureSales;
 	
 	//inner
 	private String uId;
@@ -54,5 +55,10 @@ public class Admin {
 	//package
 	private String packageNo;
 	private String packageName;
+	private int pPrice;
+	private int pRead;
+	private String pDelyn;
+	
+	
 	
 }

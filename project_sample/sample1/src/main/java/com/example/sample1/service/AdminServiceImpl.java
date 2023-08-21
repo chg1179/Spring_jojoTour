@@ -35,11 +35,11 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	//리퀘스트 신청 허용
-	@Override
-	public int appRequest(HashMap<String, Object> map) {
+	//@Override
+	//public int appRequest(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return adminMapper.requestApp(map);
-	}
+	//	return adminMapper.requestApp(map);
+	//}
 
 	//렌트카 리퀘스트 리스트
 	@Override
@@ -66,5 +66,17 @@ public class AdminServiceImpl implements AdminService {
 	public List<Admin> searchReqList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return adminMapper.selectReqList(map);
+	}
+
+	@Override
+	public int changeState(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminMapper.stateChange(map);
+	}
+
+	@Override
+	public int packageInsert(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminMapper.insertPackage(map);
 	}
 }

@@ -91,12 +91,20 @@ public class AdminController {
 		return new Gson().toJson(resultMap);
 	}
 	
-	@RequestMapping(value = "/requestApp.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/requestInsert.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String requestApp(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	public String requestInsert(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		adminService.appRequest(map);
+		adminService.packageInsert(map);
 		adminService.requestInsert(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/stateChange.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String stateChange(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		adminService.changeState(map);
 		return new Gson().toJson(resultMap);
 	}
 	
