@@ -231,7 +231,7 @@ var app = new Vue({
         },
         //包府 其捞瘤
         fnAdminPage : function(){
-        	location.href="/admin/main.do";
+        	location.href="/admin/user.do";
         },
         //惑前包府其捞瘤
         fnProduct : function(){

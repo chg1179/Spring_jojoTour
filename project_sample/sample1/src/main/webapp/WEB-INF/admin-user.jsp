@@ -34,6 +34,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp" flush="true"></jsp:include>
+<jsp:include page="adminbar.jsp" flush="true"></jsp:include>
 	<div id="app">
 		
 			<button @click="fnUser"> <div style="font-size : 20px">회원 관리</div>

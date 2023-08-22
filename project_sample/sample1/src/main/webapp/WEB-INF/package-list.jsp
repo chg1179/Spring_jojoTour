@@ -46,6 +46,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp" flush="true"></jsp:include>
+<jsp:include page="adminbar.jsp" flush="true"></jsp:include>
 <div id="app">
 	<div style="text-align : center; margin: 20px auto;">
 		<h2 style="color : #f8852a">패키지 목록</h2>
