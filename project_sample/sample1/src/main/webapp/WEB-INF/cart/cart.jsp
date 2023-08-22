@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,68 +10,151 @@
 <title>Cart</title>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-	body {
-		font-family: 'Jeju Gothic', sans-serif;
-		font-weight: lighter;
-	}
-	table{
-		border : 1px solid black;
+body {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-weight: lighter;
+}
+
+#tbl1 {
+		margin : 30px auto;
+		width : 1400px;
 		border-collapse: collapse;
 		text-align : center;
-	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
-	}
-	#tbl {
-		text-align : center;
-		margin : auto;
-		width : 1200px;
-	}
+		font-size : 14px;
+    	border-radius: 20px;
+    	background-color: #fafafa;
+  	 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+	padding: 5px 10px;
+	height: 30px;
+}
+
+#tbl1 {
+	text-align: center;
+	margin: auto;
+	width: 1400px;
+}
+#tbl1 tr:hover {
+	    background-color: #EEEEEE;
+	    color : black;
+	  }
+#tbl2 {
+	color : white;
+	margin : 30px auto;
+	width : 900px;
+	border-collapse: collapse;
+	text-align : center;
+	font-size : 20px;
+	border-radius: 5px;
+    background-color: #f8852a;
+  	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
 </style>
 </head>
 <body>
-<jsp:include page="../header.jsp" flush="true"></jsp:include>
+	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<h1 style="color : #f8852a; text-align: center; margin-top: 30px;">장바구니</h1>
-	
+		<h1
+			style="color: #f8852a; text-align: center; margin-top: 40px; margin-bottom: 60px;">장바구니</h1>
+
 		<div id="tbl">
-			<table style="margin : auto;">
+			<table style="margin: 30px auto;" id="tbl1">
 				<thead>
 					<tr>
-						<th>품목</th>
-						<th style="width: 400px;" colspan="2">상품정보</th>
+						<td colspan="6"
+							style="text-align: left; padding-left: 30px; font-size: 20px; color: #F86F03; border-bottom: 2px solid #F86F03;">
+							숙소
+						</td>
+					</tr>
+					<tr>
+						<th style="width: 400px;" colspan="3">상품정보</th>
 						<th>가격</th>
 						<th>수량</th>
-						<th>최종금액</th>
+						<th>상품금액</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="(item, index) in roomlist">
-						<td v-if="index ==0" :rowspan="roomlist.length">숙박</td>
-						<td>{{item.stayName}}</td>
-						<td>{{item.roomName}}</td>
-						<td>{{item.roomPrice}}</td>
-						<td><input type="number" v-model="item.roomQuantity" @input="calculateRoom(item)" style="width: 40px;" min="1" max="10"></td>
-						<td>{{item.roomPrice * item.roomQuantity}}</td>
+					<tr v-for="item in roomlist">
+					<td style="width : 30px"><input type="radio" name="selectRoom"></td>
+						<td style="border-right: 1px solid #F86F03; width : 350px;">{{item.stayName}}</td>
+						<td style="width : 350px;">{{item.roomName}}</td>
+						<td style="width : 200px;">{{item.roomPrice}}원</td>
+						<td><input type="number" v-model="item.roomQuantity"
+							@input="calculateRoom(item)" style="width: 40px;" min="1"
+							max="10"></td>
+						<td>{{item.roomPrice * item.roomQuantity}}원</td>
 					</tr>
-					<tr v-for="(item, index) in rentlist">
-						<td v-if="index ==0" :rowspan="rentlist.length">렌트카</td>
-						<td>{{item.rentName}}</td>
-						<td>{{item.rentKind}}</td>
-						<td>{{item.rentPrice}}</td>
-						<td><input type="number" v-model="item.rentQuantity" @input="calculateRent(item)" style="width: 40px;" min="1" max="10"></td>
+				</tbody>
+			</table >
+			<table style="margin: 30px auto;" id="tbl1">
+				<thead>
+					<tr>
+						<td colspan="6"
+							style="text-align: left; padding-left: 30px; font-size: 20px; color: #F86F03; border-bottom: 2px solid #F86F03;">
+							렌트카</td>
+					</tr>
+					<tr>
+						<th style="width: 400px;" colspan="3">상품정보</th>
+						<th>가격</th>
+						<th>수량</th>
+						<th>상품금액</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="item in rentlist">
+					<td style="width : 30px"><input type="radio" name="selectRent"></td>
+						<td style="border-right: 1px solid #F86F03; width : 350px;">{{item.rentName}}</td>
+						<td style="width : 350px;">{{item.rentKind}}</td>
+						<td style="width : 200px;">{{item.rentPrice}}</td>
+						<td><input type="number" v-model="item.rentQuantity"
+							@input="calculateRent(item)" style="width: 40px;" min="1"
+							max="10"></td>
 						<td>{{item.rentPrice * item.rentQuantity}}</td>
 					</tr>
-					<tr v-for="(item, index) in leisurelist">
-						<td v-if="index ==0" :rowspan="leisurelist.length">레저</td>
-						<td>{{item.leisureName}}</td>
-						<td>{{item.leisureKind}}</td>
-						<td>{{item.leisurePrice}}</td>
-						<td><input type="number" v-model="item.leisureQuantity" @input="calculateLeisure(item)" style="width: 40px;" min="1" max="10"></td>
+				</tbody>
+			</table>
+			<table style="margin: 30px auto;" id="tbl1">
+				<thead>
+					<tr>
+						<td colspan="6"
+							style="text-align: left; padding-left: 30px; font-size: 20px; color: #F86F03; border-bottom: 2px solid #F86F03;">
+							레저</td>
+					</tr>
+					<tr>
+						<th style="width: 400px;" colspan="3">상품정보</th>
+						<th>가격</th>
+						<th>수량</th>
+						<th>상품금액</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="item in leisurelist">
+					<td style="width : 30px"><input type="radio" name="selectLeisure"></td>
+						<td style="border-right: 1px solid #F86F03; width : 350px;">{{item.leisureName}}</td>
+						<td style="width : 350px;">{{item.leisureKind}}</td>
+						<td style="width : 200px;">{{item.leisurePrice}}</td>
+						<td><input type="number" v-model="item.leisureQuantity"
+							@input="calculateLeisure(item)" style="width: 40px;" min="1"
+							max="10"></td>
 						<td>{{item.leisurePrice * item.leisureQuantity}}</td>
 					</tr>
 				</tbody>
+			</table>
+			
+			<table id="tbl2">
+				<tr>
+					<td colspan="2" style="text-align: left; padding-left: 30px; font-size: 20px; border-bottom: 2px solid white;;">
+							최 종 가 격
+					</td>	
+				</tr>
+				<tr>
+					<td>
+					
+					</td>
+				</tr>
+			
 			</table>
 		</div>
 	</div>
@@ -81,6 +164,9 @@
 var app = new Vue({
 	el : '#app',
 	data : {
+		selectRoom : [],
+		selectRent : [],
+		selectLeisure : [],
 		roomlist : [],
 		rentlist : [],
 		leisurelist : [],
@@ -142,7 +228,6 @@ var app = new Vue({
 		self.fnRoomList();
 		self.fnRentList();
 		self.fnLeisureList();
-		self.roomlist[0].roomQuantity = 1;
 	}// created
 });
 </script>
