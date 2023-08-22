@@ -8,6 +8,7 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
+<style>
 	table{
 		border : 1px solid black;
 		border-collapse: collapse;
@@ -18,16 +19,17 @@
 		padding : 5px 10px;
 	}
 </style>
+</style>
 </head>
 <body>
-	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div>제목 : {{info.nTitle}}</div>
+		<jsp:include page="../header.jsp" flush="true"></jsp:include>
+		<div>제목 : {{info.fTitle}}</div>
 		<div>작성자 : {{info.uId}}</div>
 		<div>작성날짜 : {{info.fWriteTime}}</div>
-		<div>내용 :<pre v-html="info.nContent"></pre></div>
+		<div>내용 :<pre v-html="info.fContent"></pre></div>
 		<div>
-			<button @click="fnEdit" v-if="status == 'A'" >수정하기</button>
+			<button @click="fnEdit"   v-if="status == 'A'">수정하기</button>
 			<button @click="fnBack">되돌아가기</button>
 		</div> 
 	</div>
@@ -39,13 +41,13 @@ var app = new Vue({
 	data : {
 		list : [],
 		info : {},
-		nNo : "${map.nNo}",
+		fNo : "${map.fNo}",
 		status : "${sessionStatus}"
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var param = {nNo : self.nNo, nKindNo : "UPDATE"};
+			var param = {fNo : self.fNo, fKindNo : "UPDATE"};
 			$.ajax({
                 url : "view.dox",
                 dataType:"json",	
@@ -62,13 +64,13 @@ var app = new Vue({
 	        },
 		fnEdit : function(){
 				var self = this;
-				$.pageChange("edit.do", {nNo : self.nNo});
+				$.pageChange("edit.do", {fNo : self.fNo});
 	                }
 
 	}, // methods
 	created : function() {
 		var self = this;
-		if(self.nNo != ""){
+		if(self.fNo != ""){
 			self.fnGetList();
 		}
 	}// created

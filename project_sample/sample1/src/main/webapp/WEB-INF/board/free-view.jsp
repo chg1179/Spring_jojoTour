@@ -23,12 +23,13 @@
 </style>
 </head>
 <body>
-		<div id="app">
-			<div>게시글 번호 : {{info.freeNo}}</div>
-			<div>제목 : {{info.freeTitle}}</div>
-			<div>작성자 : {{info.uId}}</div>
-			<div>작성날짜 : {{info.fWriteTime}}</div>
-			<div>내용 :<pre v-html="info.freeContent"></pre></div>
+	<jsp:include page="../header.jsp" flush="true"></jsp:include>
+	<div id="app">
+		<div>게시글 번호 : {{info.freeNo}}</div>
+		<div>제목 : {{info.freeTitle}}</div>
+		<div>작성자 : {{info.uId}}</div>
+		<div>작성날짜 : {{info.fWriteTime}}</div>
+		<div>내용 :<pre v-html="info.freeContent"></pre></div>
 		<div>
 			<button>삭제하기</button>
 			<button @click="fnEdit" v-if="uId == info.uId">수정하기</button>

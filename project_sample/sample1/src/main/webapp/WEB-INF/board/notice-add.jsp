@@ -24,15 +24,16 @@
 </style>
 </head>
 <body>
+	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<label>제목 : <input v-model="info.nTitle"></label>
-	<div>
-	<br>
-		<vue-editor v-model="info.nContent"></vue-editor>
-	</div>
-	<br>
-	<button v-if="nNo == ''" @click="fnAdd">등록</button>
-	<button v-else @click="fnEdit">수정</button>
+		<div>
+		<br>
+			<vue-editor v-model="info.nContent"></vue-editor>
+		</div>
+		<br>
+		<button v-if="nNo == ''" @click="fnAdd">등록</button>
+		<button v-else @click="fnEdit">수정</button>
 	</div>
 </body>
 </html>

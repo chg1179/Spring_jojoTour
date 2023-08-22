@@ -192,7 +192,9 @@
 			</tr>
 		</tbody>
 	</table>
-	<div style="text-align : center;"><input type="button" value="허 용" id="abtn" @click="fnYbtn(selectRoom, selectRent, selectLeisure)"></div>
+	<div style="text-align : center;">
+		<input style="width : 150px" type="button" value="패 키 지 등 록" id="abtn" @click="fnYbtn(selectRoom, selectRent, selectLeisure)">
+	</div>
 </div>
 </body>
 </html>
@@ -256,11 +258,17 @@ var app = new Vue({
 		fnYbtn : function(selectRoom, selectRent, selectLeisure, selectItem){
 			var self = this;
 			
+			if(selectRoom == ""|| selectRoom == null || selectRent == "" ||  selectRent == null || selectLeisure == "" || selectLeisure == null){
+				alert("숙소, 레저, 렌트카를 모두 선택해주세요.");
+				return;
+			}
+			
 			var sPrice = (self.roomList[self.roomIndex].roomPrice*self.roomList[self.roomIndex].roomSales);
 			var rPrice = (self.rentList[self.rentIndex].rentPrice*self.rentList[self.rentIndex].rentSales);
 			var lPrice = (self.leisureList[self.leisureIndex].leisurePrice*self.leisureList[self.leisureIndex].leisureSales);
 			var pPrice = sPrice + rPrice + lPrice;
-			var packageName = prompt("패키지 이름을 입력해주세요.")
+			
+			var packageName = prompt("패키지 이름을 입력해주세요.");
 			if (packageName == null || packageName == "") {
 				alert("이름을 입력해주세요.");
 				return;
@@ -268,17 +276,14 @@ var app = new Vue({
 			
 			var nparmap = {selectRoom : self.selectRoom, selectRent : self.selectRent, selectLeisure : self.selectLeisure, packageName : packageName, pPrice : pPrice};
 			console.log(nparmap);
-			if(selectRoom == ""|| selectRoom == null || selectRent == "" ||  selectRent == null || selectLeisure == "" || selectLeisure == null){
-				alert("숙소, 레저, 렌트카를 선택해주세요.");
-				return;
-			}
+			
 			 $.ajax({
 	                url : "/requestInsert.dox",
 	                dataType:"json",
 	                type : "POST",
 	                data : nparmap,
 	                success : function(data) { 
-	                	alert("허용되었습니다.");
+	                	alert("패키지 등록이 완료되었습니다.");
 	                	self.fnRentList();
 	            		self.fnRoomList();
 	            		self.fnLeisureList();

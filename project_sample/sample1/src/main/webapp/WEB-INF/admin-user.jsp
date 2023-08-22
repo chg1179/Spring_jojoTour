@@ -67,6 +67,7 @@
                         data : param,
                         success : function(data) { 
                         	self.list = data.list;
+                        	
                         }
                     }); 
         		},
@@ -86,7 +87,7 @@
         			alert("권한 없음");
         			location.href="../main.do";
         		} 
-        		self.fnGetList();
+        		//self.fnGetList();
         	}// created
         });
     </script>

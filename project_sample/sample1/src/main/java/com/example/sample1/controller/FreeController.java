@@ -27,24 +27,24 @@ public class FreeController {
 	FreeService freeService;
 	@RequestMapping("/free/list.do") 
     public String test(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/free-list";
+        return "/board/free-list";
     }
 	
 	@RequestMapping("/free/add.do") 
     public String add(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/free-add";
+        return "/board/free-add";
     }
 	
 	@RequestMapping("/free/edit.do") 
     public String edit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/free-add";
+		return "/board/free-add";
     }
 	
 	@RequestMapping("/free/view.do") 
     public String view(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
         request.setAttribute("map", map);
-		return "/free-view";
+		return "/board/free-view";
     }
 	
 	@RequestMapping(value = "/free/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

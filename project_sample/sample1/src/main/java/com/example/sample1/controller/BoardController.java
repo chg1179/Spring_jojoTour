@@ -30,24 +30,24 @@ public class BoardController {
 	@RequestMapping("/notice/list.do") 
     public String noticelist(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/notice-list";
+		return "/board/notice-list";
     }
 	
 	@RequestMapping("/notice/add.do") 
     public String noticeadd(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/notice-add";
+        return "/board/notice-add";
     }
 	
 	@RequestMapping("/notice/view.do") 
 	public String noticeview(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/notice-view";
+		return "/board/notice-view";
 	}
 	
 	@RequestMapping("/notice/edit.do") 
     public String noticeEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-        return "/notice-add";
+        return "/board/notice-add";
     }
 	
 	@RequestMapping(value = "/notice/add.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

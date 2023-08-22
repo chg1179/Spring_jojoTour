@@ -11,6 +11,7 @@
 <meta charset="EUC-KR">
 <title>Host List</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/paging-style.css" rel="stylesheet"/>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 	body {
@@ -34,34 +35,6 @@
 	td {
 		padding : 5px 10px;
 	}
-	 .pagination {
-        margin:24px;
-        display: inline-flex;
-    }
-    .pagination li {
-       min-width:32px;
-       padding:2px 6px;
-       text-align:center;
-       margin:0 3px;
-       border-radius: 6px;
-       border:1px solid #eee;
-       color:#666;
-       display : inline;
-   }
-   .pagination li:hover {
-       background: #E4DBD6;
-   }
-   .page-item a {
-       color:#666;
-       text-decoration: none;
-   }
-   .pagination li.active {
-       background-color : #E7AA8D;
-       color:#fff;
-   }
-   .pagination li.active a {
-       color:#fff;
-   }
 	.paginate_box{
 	display: flex;
 	justify-content: center;
@@ -127,10 +100,6 @@
 			</paginate>
 		</template>
 	</div>
-	
-		
-		
-	
 </div>
 </body>
 </html>

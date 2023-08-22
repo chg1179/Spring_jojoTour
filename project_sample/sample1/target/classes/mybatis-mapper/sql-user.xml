@@ -128,7 +128,9 @@
    </select>
    
    <select id="cntUserPage" parameterType="int" resultType="int">
-   	SELECT COUNT(*) FROM T2_USER_TBL
+   	SELECT COUNT(*) 
+   	FROM T2_USER_TBL
+   	WHERE STATUS = 'U'
    </select>
    
    <select id="pageHost" parameterType="hashmap" resultType="com.example.sample1.model.User">
@@ -140,6 +142,8 @@
    </select>
    
    <select id="cntHostPage" parameterType="int" resultType="int">
-   	SELECT COUNT(*) FROM T2_USER_TBL
+   	SELECT COUNT(*) 
+   	FROM T2_USER_TBL
+   	WHERE STATUS = 'H'
    </select>
 </mapper>

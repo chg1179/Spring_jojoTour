@@ -5,6 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>결제페이지</title>
+<script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <style>
 	table{
 		border : 1px solid black;
@@ -52,11 +53,16 @@
 				
 				
 			</div>
+			<div>
+				<button @click="fnRequestPay">결제하기</button>
+			</div>
 		</div>
 	</div>
 </body>
 </html>
 <script>
+var IMP = window.IMP;
+IMP.init('imp64757785');
 var app = new Vue({
 	el : '#app',
 	data : {
@@ -114,7 +120,29 @@ var app = new Vue({
 	    },
 	    calculateLeisure(item) {
 	        item.leisureTotal = item.leisurePrice * item.leisureQuantity;
-	    }
+	    },
+        fnRequestPay : function(){
+            IMP.request_pay({
+                pg: "html5_inicis",
+                pay_method: "card",
+                merchant_uid: 'merchant_'+new Date().getTime(),   // 주문번호
+                name: "결제테스트",
+                amount: 64900,                         // 숫자 타입
+                buyer_email: "gildong@gmail.com",
+                buyer_name: self.uName,
+                buyer_tel: "010-4242-4242",
+                buyer_addr: "서울특별시 강남구 신사동",
+				buyer_postcode: "01181"
+			}, function (rsp) { // callback
+					if (rsp.success) {
+                		alert("결제 성공");
+					} else {
+						console.log(rsp);
+                    	alert("결제 성공");
+                    	location.href="/my/order.do"
+                    }
+			});
+        }
 	}, // methods
 	created : function() {
 		var self = this;

@@ -28,25 +28,25 @@ public class InquiryController {
 	
 	@RequestMapping("/inquiry/list.do") 
     public String inquiry(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/inquiry-list";
+        return "/board/inquiry-list";
     }
 	
 	@RequestMapping("/inquiry/add.do") 
     public String inquiryadd(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-        return "/inquiry-add";
+        return "/board/inquiry-add";
     }
 	
 	@RequestMapping("/inquiry/view.do") 
 	public String inquiryview(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/inquiry-view";
+		return "/board/inquiry-view";
 	}
 	
 	@RequestMapping("/inquiry/edit.do") 
     public String inquiryEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-        return "/inquiry-add";
+        return "/board/inquiry-add";
     }
 	
 	@RequestMapping(value = "/inquiry/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

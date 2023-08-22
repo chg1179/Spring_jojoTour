@@ -102,7 +102,7 @@ var app = new Vue({
 		},
 		fnBack : function(){
 			var self = this;
-			location.href = "rentcar.do";
+			location.href = "../rentcar.do";
 		}
 
 	}, // methods

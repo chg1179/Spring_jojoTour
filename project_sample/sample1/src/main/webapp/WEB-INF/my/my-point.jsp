@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="/js/jquery.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
@@ -108,7 +106,11 @@
 				<h2>포인트</h2>
 				<div class="point_box">
 					<p>내 포인트</p>
-					<h3>{{point.point}} P</h3>
+					<h3>
+						<span v-if="point != null">{{point.point}}</span>
+						<span v-else>0</span>
+						 P
+					</h3>
 					<a class="point_info" href="#javascript:;">i</a>
 				</div>
 			</div>
@@ -130,7 +132,7 @@
 	</div>
 </body>
 </html>
-<script src="../jquery-1.12.4.js"></script>
+<script src="../js/jquery-1.12.4.js"></script>
 <script>
 var app = new Vue({
 	el : '#app',

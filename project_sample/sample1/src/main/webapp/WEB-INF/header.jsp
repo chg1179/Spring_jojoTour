@@ -113,30 +113,27 @@
 	            </div>
 	            <div class="header_menu">
 	                <div class="header_inner">
-	                    <ul v-if="status == ''"class="f_header">
-	                        <li><a href="javascript:;" @click="fnJJim">찜</a></li>
-	                        <li><a href="javascript:;" @click="fnLogin">로그인</a></li>
-	                        <li><a href="javascript:;" @click="fnJoin">회원가입</a></li>
-	                        <li><a href="javascript:;">장바구니</a></li>
-	                    </ul>
-	                    <ul v-else-if="status == 'A'" class="f_header">
-	                   	 <li><a href="javascript:;" @click="fnJJim2">찜</a></li>
-	                        <li><a href="javascript:;" @click="fnLogout">로그아웃</a></li>
-	                        <li><a href="javascript:;" @click="fnAdminPage">관리 페이지</a></li>
-	                        <li><a href="javascript:;">장바구니</a></li>
-	                    </ul>
-	                    <ul v-else-if="status == 'H'" class="f_header">
-	                    	<li><a href="javascript:;" @click="fnJJim2">찜</a></li>
-	                        <li><a href="javascript:;" @click="fnLogout">로그아웃</a></li>
-	                        <li><a href="javascript:;" @click="fnMyHome">마이홈</a></li>
-	                        <li><a href="javascript:;" @click="fnProduct">상품관리</a></li>
-	                        <li><a href="javascript:;">장바구니</a></li>
-	                    </ul>
-	                    <ul v-else class="f_header">
-	                    	<li><a href="javascript:;" @click="fnJJim2">찜</a></li>
-	                        <li><a href="javascript:;" @click="fnLogout">로그아웃</a></li>
-	                        <li><a href="javascript:;" @click="fnMyHome">마이홈</a></li>
+	                    <ul class="f_header">
+	                        <li v-if="status==''">
+	                        	<a href="javascript:;" @click="fnLogin">로그인</a>
+	                        </li>
+	                        <li v-if="status==''">
+	                        	<a href="javascript:;" @click="fnJoin">회원가입</a>
+	                        </li>
+	                        <li v-else>
+	                        	<a href="javascript:;" @click="fnLogout">로그아웃</a>
+	                        </li>
+	                        <li v-if="status == 'H' || status == 'U'">
+	                        	<a href="javascript:;" @click="fnMyHome">마이홈</a>
+	                        </li>
+	                        <li><a href="javascript:;" @click="fnJJim">찜목록</a></li>
 	                        <li><a href="javascript:;" @click="fnCart">장바구니</a></li>
+	                        <li v-if="status == 'H'">
+	                        	<a href="javascript:;" @click="fnProduct">상품관리</a>
+	                        </li>
+	                        <li v-if="status == 'A'">
+	                        	<a href="javascript:;" @click="fnAdminPage">관리 페이지</a>
+	                        </li>
 	                    </ul>
 	                    <ul class="s_header">
 	                        <li class="stay">
@@ -213,6 +210,11 @@ var app = new Vue({
         	location.href="/join/select.do";
         },
         fnCart : function(){
+        	if(this.status=="" || this.status == null){
+        		alert("로그인 후 이용이 가능합니다.");
+        		location.href="/login.do";
+        		return;
+        	} 
         	location.href="/cart.do";
         },
         fnLogo : function(){
@@ -249,28 +251,26 @@ var app = new Vue({
         	location.href="/rentcar.do";
         },
 		checkKind : function(kind){
-			var self = this;
 			$.pageChange("../rentcar.do", {rentKind : kind});
 		},
         fnJJim : function(){
-        	alert("로그인후 이용해주세요");
-        	location.href="/login.do";
-        },
-        fnJJim2 : function(){
+        	if(this.status=="" || this.status == null){
+        		alert("로그인 후 이용이 가능합니다.");
+        		location.href="/login.do";
+        		return;
+        	} 
         	location.href="/my/jjim.do";
         },
         fnWaterLeisure : function(){
         	location.href="/water/leisure.do";
         },
 		checkWaterKind : function(kind){
-			var self = this;
 			$.pageChange("/water/leisure.do", {leisureKind : kind});
 		},
         fnGroundLeisure : function(){
         	location.href="/ground/leisure.do";
         },
 		checkGroundKind : function(kind){
-			var self = this;
 			$.pageChange("/ground/leisure.do", {leisureKind : kind});
 		},
 	}, // methods

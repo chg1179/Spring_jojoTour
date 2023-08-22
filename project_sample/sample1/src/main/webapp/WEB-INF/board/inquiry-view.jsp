@@ -20,7 +20,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="header.jsp" flush="true"></jsp:include>
+	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<div id="container">
 			<div v-if="!showApp">비밀번호 입력 : <input v-model="enteredPwd" @keyup.enter="fnPwd"><button @click="fnPwd">비밀번호 확인</button></div>

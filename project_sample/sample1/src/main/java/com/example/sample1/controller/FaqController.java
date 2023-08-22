@@ -31,24 +31,24 @@ public class FaqController {
 
 	@RequestMapping("/faq/list.do") 
     public String faqlist(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/faq-list";
+        return "/board/faq-list";
     }
 	
 	@RequestMapping("/faq/add.do") 
 	public String faqadd(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		return "/faq-add";
+		return "/board/faq-add";
 	}
 	
 	@RequestMapping("/faq/view.do") 
 	public String faqview(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/faq-view";
+		return "/board/faq-view";
 	}
 	
 	@RequestMapping("/faq/edit.do") 
 	public String faqEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/faq-add";
+		return "/board/faq-add";
 	}
 	
 	@RequestMapping(value = "/faq/add.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

@@ -9,48 +9,48 @@
 <meta charset="EUC-KR">
 <title>Cart</title>
 <style>
-@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-body {
-	font-family: 'Jeju Gothic', sans-serif;
-	font-weight: lighter;
-}
-
-#tbl1 {
+	@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+		font-weight: lighter;
+	}
+	
+	#tbl1 {
+			margin : 30px auto;
+			width : 1400px;
+			border-collapse: collapse;
+			text-align : center;
+			font-size : 14px;
+	    	border-radius: 20px;
+	    	background-color: #fafafa;
+	  	 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+	}
+	
+	th, td {
+		padding: 5px 10px;
+		height: 30px;
+	}
+	
+	#tbl1 {
+		text-align: center;
+		margin: auto;
+		width: 1400px;
+	}
+	#tbl1 tr:hover {
+		    background-color: #EEEEEE;
+		    color : black;
+		  }
+	#tbl2 {
+		color : white;
 		margin : 30px auto;
-		width : 1400px;
+		width : 900px;
 		border-collapse: collapse;
 		text-align : center;
-		font-size : 14px;
-    	border-radius: 20px;
-    	background-color: #fafafa;
-  	 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-}
-
-th, td {
-	padding: 5px 10px;
-	height: 30px;
-}
-
-#tbl1 {
-	text-align: center;
-	margin: auto;
-	width: 1400px;
-}
-#tbl1 tr:hover {
-	    background-color: #EEEEEE;
-	    color : black;
-	  }
-#tbl2 {
-	color : white;
-	margin : 30px auto;
-	width : 900px;
-	border-collapse: collapse;
-	text-align : center;
-	font-size : 20px;
-	border-radius: 5px;
-    background-color: #f8852a;
-  	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-}
+		font-size : 20px;
+		border-radius: 5px;
+	    background-color: #f8852a;
+	  	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+	}
 </style>
 </head>
 <body>
