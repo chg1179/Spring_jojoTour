@@ -126,9 +126,9 @@
 		padding-inline-start:
 	}
 	
-	.list-wrap {
+	.list-wrap, .stay-type {
 		float: left;
-		width: calc(100% - 250px);
+		width: 600px;
 	}
 	
 	.list-wrap::after {
@@ -142,8 +142,8 @@
 	}
 	
 	.sub-wrap {
-		width: 1024px !important;
-		margin: 0 auto 0 auto;
+		width: 1024px;
+		margin: 0 auto;
 		padding-bottom: 50px;
 	}
 	
@@ -154,7 +154,12 @@
 	.stay-info {
 		border: 1px solid #ccc;
 		margin-bottom: 20px;
+		margin-left: 20px;
 	}
+	.stay-type {
+		margin-left: 10px;
+	}
+
 </style>
 </head>
 <body>
@@ -162,28 +167,32 @@
 	<%-- <%@ include file="header.jsp" %> --%>
 	<div id="app">
 		<div class="banner_box">
-			<p class="banner_text">숙박</p>
+			<p v-if="stayKind == ''" class="banner_text">숙박</p>
+			<p 	v-else-if="stayKind == 'HOTEL'" class="banner_text">호텔</p>
+			<p 	v-else-if="stayKind == 'MOTEL'" class="banner_text">모텔</p>
+			<p 	v-else-if="stayKind == 'PENSION'" class="banner_text">펜션</p>
+			<p 	v-else-if="stayKind == 'GUEST'" class="banner_text">게스트하우스</p>
+			<p 	v-else="stayKind == 'CAMPING'" class="banner_text">캠핑</p>
 		</div>
 		<div id="content" class="sub-wrap">
 			<div class="filter-wrap">
 				<div>
 					<h3 class="filter-header">필터</h3>
-				</div>
+				</div> 
 				<section class="date-wrap">
 					<strong>날짜</strong>
 				</section>
 
 				<h3>상세조건</h3>
 				<div class="btn-wrap">
-					<span><button @click="fnReset">초기화</button></span> <span><button
-							@click="fnSearch">적용</button></span>
+					<span><button @click="fnReset">초기화</button></span> 
+					<span><button @click="fnSearch">적용</button></span>
 				</div>
 
 				<section>
 					<strong>숙소명</strong>
 					<div>
-						<input type="text" v-model="stayKeyword"
-							placeholder="검색 키워드를 입력해주세요">
+						<input type="text" v-model="stayKeyword" placeholder="검색 키워드를 입력해주세요">
 					</div>
 				</section>
 
@@ -208,14 +217,13 @@
 				<section>
 
 					<div v-for="item in serviceList">
-						<label><input type="checkbox" v-model="selectServiceList"
-							:value="item.serviceNo">{{item.serviceName}}</label>
+						<label><input type="checkbox" v-model="selectServiceList" :value="item.serviceNo">{{item.serviceName}}</label>
 					</div>
 				</section>
 			</div>
 			<div class="">
 				<div class="stay-type">
-					<select v-model="info.stayKind">
+					<select v-model="stayKind">
 						<option value="HOTEL">호텔</option>
 						<option value="MOTEL">모텔</option>
 						<option value="PENSION">펜션</option>
@@ -253,7 +261,7 @@ var app = new Vue({
 			stayKind : "",
 			peopleMax : 0
 		},
-		
+		stayKind : "${map.stayKind}"
 	},// data
 	methods : {
 		// 호텔 리스트 
@@ -271,6 +279,8 @@ var app = new Vue({
                 	
                 	self.serviceList = data.serviceList;
                 	console.log(self.serviceList);
+                	
+                	console.log(self.stayKind);
                 }
             }); 
 		},
@@ -290,11 +300,11 @@ var app = new Vue({
 		fnDetail : function(stayNo){
 			var self = this;
 			console.log(stayNo);
-			$.pageChange("view.do", {stayNo : stayNo , productKind : "STAY"}); 
+			$.pageChange("/stay/view.do", {stayNo : stayNo , productKind : "STAY"}); 
 		},
 		fnReset : function(){
 			var self = this;
-			location.href = "/stay/hotel.do";
+			location.href = "/stay.do";
 		},
 		fnSearch : function(){
 			var self = this;

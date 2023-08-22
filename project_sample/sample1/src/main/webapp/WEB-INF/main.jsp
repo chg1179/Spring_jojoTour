@@ -361,7 +361,7 @@ var app = new Vue({
 	},// data
 	methods : {
 		fnHotel : function(){
-			$.pageChange("/stay/hotel.do", {});
+			$.pageChange("/stay.do", {});
 		}
 	}, // methods
 	created : function() {

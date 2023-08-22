@@ -137,12 +137,13 @@
 	                    </ul>
 	                    <ul class="s_header">
 	                        <li class="stay">
-	                            <a href="javascript:;">숙박업소</a>
+	                            <a href="javascript:;" @click="fnStay">숙박업소</a>
 	                            <ul>
-	                                <li><a href="javascript:;">호텔</a></li>
-	                                <li><a href="javascript:;">모텔</a></li>
-	                                <li><a href="javascript:;">게스트하우스</a></li>
-	                                <li><a href="javascript:;">펜션</a></li>
+	                                <li><a href="javascript:;" @click="checkStayKind('HOTEL')">호텔</a></li>
+	                                <li><a href="javascript:;" @click="checkStayKind('MOTEL')">모텔</a></li>
+	                                <li><a href="javascript:;" @click="checkStayKind('GUEST')">게스트하우스</a></li>
+	                                <li><a href="javascript:;" @click="checkStayKind('PENSION')">펜션</a></li>
+	                                <li><a href="javascript:;" @click="checkStayKind('CAMPING')">캠핑</a></li>
 	                            </ul>
 	                        </li>
 	                        <li class="header_rentCar">
@@ -272,6 +273,13 @@ var app = new Vue({
         },
 		checkGroundKind : function(kind){
 			$.pageChange("/ground/leisure.do", {leisureKind : kind});
+		},
+		fnStay : function(){
+			location.href="/stay.do";
+		},
+		checkStayKind : function(kind){
+			var self = this;
+			$.pageChange("/stay.do", {stayKind : kind});
 		},
 	}, // methods
 	created : function() {

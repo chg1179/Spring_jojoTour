@@ -23,20 +23,20 @@ public class StayMainController {
 	@Autowired
 	StayMainService stayMainService;
 	
-	@RequestMapping("/stay/hotel.do") 
+	@RequestMapping("/stay.do") 
 	public String mainStay(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/stay/hotel-main";
+		return "/stay/stay-main";
 	}
 	
 	@RequestMapping("/stay/view.do") 
-	public String hotelDetail(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+	public String stayDetail(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
-		return "/stay/hotel-view";
+		return "/stay/stay-view";
 	}
 	
 	//숙소 업체 정보 출력
-	@RequestMapping(value = "/stay/stayList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/stayList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String stayList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
