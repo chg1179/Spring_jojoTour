@@ -18,9 +18,13 @@ public class InquiryServiceImpl implements InquiryService{
 	InquiryMapper inquiryMapper;
 
 	@Override
-	public List<Inquiry> searchInquiryList(HashMap<String, Object> map) {
+	public HashMap<String, Object> searchInquiryList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return inquiryMapper.selectInquiryList(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("inquiryList", inquiryMapper.selectInquiryList(map));
+		resultMap.put("cnt", inquiryMapper.selectCnt(map));
+		System.out.println(inquiryMapper.selectCnt(map));
+		return resultMap;
 	}
 
 	@Override
@@ -29,6 +33,7 @@ public class InquiryServiceImpl implements InquiryService{
 		return inquiryMapper.insertInquiry(map);
 	}
 
+	
 	@Override
 	public HashMap<String, Object> searchInquiryInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub

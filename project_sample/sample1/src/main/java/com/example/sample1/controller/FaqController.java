@@ -59,6 +59,7 @@ public class FaqController {
 		return new Gson().toJson(resultMap);
 	}
 	
+	// 문의 게시판 리스트 출력
 	@RequestMapping(value = "/faq/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String faqoticeList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

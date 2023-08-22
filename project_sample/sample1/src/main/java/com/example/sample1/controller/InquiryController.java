@@ -33,6 +33,7 @@ public class InquiryController {
 	
 	@RequestMapping("/inquiry/add.do") 
     public String inquiryadd(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
         return "/inquiry-add";
     }
 	
@@ -58,8 +59,12 @@ public class InquiryController {
 	@ResponseBody
 	public String inquiryList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Inquiry> list = inquiryService.searchInquiryList(map);
-		resultMap.put("inquiryList", list);
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		System.out.println(map);
+		resultMap = inquiryService.searchInquiryList(map);
 		return new Gson().toJson(resultMap);
 	}
 	

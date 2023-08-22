@@ -11,7 +11,11 @@ import com.example.sample1.model.Test;
 
 @Mapper
 public interface InquiryMapper {
+	// 문의 리스트 출력
 	List<Inquiry> selectInquiryList(HashMap<String, Object> map);
+	
+	// 전체 갯수(페이징)
+	int selectCnt(HashMap<String, Object> map);
 	
 	int insertInquiry(HashMap<String, Object> map);
 	

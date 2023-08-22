@@ -8,14 +8,20 @@
 		SELECT * 
 		FROM T2_INQUIRY_TBL
 		ORDER BY I_NO DESC
-		
+		LIMIT #{startNum}, #{lastNum}
+	</select>
+	
+	<select id="selectCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM T2_INQUIRY_TBL
+		WHERE DELYN = 'N'
 	</select>
 	
 	<insert id="insertInquiry" parameterType="hashmap">
 	    INSERT INTO T2_INQUIRY_TBL 
-	        (I_NO, U_ID, CATEGORY_NO, I_TITLE, I_CONTENT,  I_HITS, I_WRITE_TIME, I_UPDATE_TIME, PRIVATE_YN, ANSWER_YN, DELYN, PARENT_NO)
+	        (I_NO, U_ID, CATEGORY_NO, I_TITLE, I_CONTENT,  I_HITS, I_WRITE_TIME, I_UPDATE_TIME, PRIVATE_YN, ANSWER_YN, DELYN)
 	    SELECT	
-	        (SELECT IFNULL(MAX(I_NO), 0) + 1), #{uId}, '0', #{iTitle}, #{iContent}, '0', now(), now(), 'Y', 'N', 'N', #{parentNo}
+	        (SELECT IFNULL(MAX(I_NO), 0) + 1), #{uId}, '0', #{iTitle}, #{iContent}, '0', now(), now(), 'Y', 'N', 'N'
 	    FROM T2_INQUIRY_TBL
 	</insert>
 	

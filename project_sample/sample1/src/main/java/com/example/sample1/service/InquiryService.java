@@ -7,7 +7,7 @@ import com.example.sample1.model.Inquiry;
 
 public interface InquiryService {
 	
-	List<Inquiry> searchInquiryList(HashMap<String, Object> map);
+	HashMap<String, Object> searchInquiryList(HashMap<String, Object> map);
 	// 문의게시판 글쓰기
 	int addInquiry(HashMap<String, Object> map);
 	// 문의게시판 보기

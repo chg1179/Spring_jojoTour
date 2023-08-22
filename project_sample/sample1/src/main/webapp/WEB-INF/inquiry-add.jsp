@@ -9,7 +9,7 @@
 <script src="https://unpkg.com/vue2-editor@2.3.11/dist/index.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>1:1 문의 작성</title>
 <style>
 <style>
 	table{
@@ -26,9 +26,7 @@
 </head>
 <body>
 	<div id="app">
-		<label>
-		<span v-html="fnSecret ? '<i class=&quot;fa-solid fa-lock&quot;></i>' : '<i class="fa-solid fa-lock-open"></i>'"></span>
-		제목 : <input v-model="info.iTitle" @input="handleTitleInput"></label>
+		<label>제목 : <input v-model="info.iTitle" @input="handleTitleInput"></label>
 		<input type="checkbox" v-model="fnSecret"> 비밀글
 	<div>
 	<br>
@@ -103,8 +101,8 @@ var app = new Vue({
 			},
 			handleTitleInput: function() {
 			    var self = this;
-			    if (self.fnSecret && !self.info.iTitle.includes('<비밀>')) {
-			        self.info.iTitle = '<비밀>';
+			    if (self.fnSecret && !self.info.iTitle.includes('[비밀]')) {
+			        self.info.iTitle = '[비밀]';
 			    }
 			}
 		
