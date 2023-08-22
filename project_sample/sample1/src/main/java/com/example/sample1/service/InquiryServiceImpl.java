@@ -23,7 +23,6 @@ public class InquiryServiceImpl implements InquiryService{
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("inquiryList", inquiryMapper.selectInquiryList(map));
 		resultMap.put("cnt", inquiryMapper.selectCnt(map));
-		System.out.println(inquiryMapper.selectCnt(map));
 		return resultMap;
 	}
 	

@@ -64,7 +64,7 @@ var app = new Vue({
                 	self.info = data.info;
                 	console.log(self.info);
                 	// 공개글이거나, 관리자거나 본인이 작성한 글 일 때 열람 가능
-                	if (self.status === 'A' || (self.uId === self.info.uId) || self.iPassword == null) {
+                	if (self.status === 'A' || (self.uId === self.info.uId) || self.iPassword == "") {
                         self.showApp = true;
                     }
                 }
@@ -85,7 +85,6 @@ var app = new Vue({
 	    //입력한 비밀번호가 같은지 체크
 	    fnPwd: function() {
 	    	var self = this;
-	    	console.log(self.enteredPwd +"/"+self.info.iPassword);
 	        if (self.enteredPwd === self.info.iPassword) {
 	        	self.showApp = true;
 	        	return;

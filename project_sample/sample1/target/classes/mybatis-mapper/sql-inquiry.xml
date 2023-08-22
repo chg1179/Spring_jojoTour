@@ -30,11 +30,9 @@
 	</select>
 	
 	<insert id="insertInquiry" parameterType="hashmap">
-	    INSERT INTO T2_INQUIRY_TBL 
-	        (I_NO, U_ID, CATEGORY_NO, I_TITLE, I_CONTENT,  I_HITS, I_WRITE_TIME, I_UPDATE_TIME, PRIVATE_YN, ANSWER_YN, DELYN)
-	    SELECT	
-	        (SELECT IFNULL(MAX(I_NO), 0) + 1), #{uId}, '0', #{iTitle}, #{iContent}, '0', now(), now(), 'Y', 'N', 'N'
-	    FROM T2_INQUIRY_TBL
+	    INSERT INTO T2_INQUIRY_TBL VALUES
+		(#{iNo}, #{uId}, NULL, NULL, #{iTitle}, #{iContent},
+		 '0', now(), now(), #{privateYN}, #{iPassword}, 'N', 'N')
 	</insert>
 	
 	<insert id="answerInquiry" parameterType="hashmap">
@@ -71,6 +69,7 @@
 		SET
 			I_TITLE = #{iTitle},
 			I_CONTENT = #{iContent},
+			I_PASSWORD = #{iPassword},
 			I_UPDATE_TIME = now()
 		WHERE I_NO = #{iNo}
 	</update>

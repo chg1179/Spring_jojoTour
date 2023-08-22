@@ -141,9 +141,10 @@ var app = new Vue({
 			self.selectPage = pageNum;
 			var startNum = ((pageNum-1) * 10);
 			var lastNum = 10;
-			var param = {uId : self.uId, startNum : startNum, lastNum : lastNum};
+			var param = {startNum : startNum, lastNum : lastNum};
+			console.log(self.selectPage);
 			$.ajax({
-				url : "rentcar.dox",
+				url : "/inquiry/list.dox",
 				dataType : "json",
 				type : "POST",
 				data : param,

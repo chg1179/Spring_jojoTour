@@ -24,18 +24,23 @@
 </style>
 </head>
 <body>
+	<jsp:include page="header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<div id="container">
 			<div>
-				<label>제목 : <input v-model="info.iTitle" @input="handleTitleInput"></label>
+				<label>제목 : <input v-model="info.iTitle" maxlength="25" @input="handleTitleInput"></label>
 				<label><input type="checkbox" v-model="fnSecret"> 비밀글</label>
-			<div>
-			<br>
-				<vue-editor v-model="info.iContent"></vue-editor>
-			</div>
-			<br>
-			<button v-if="iNo == ''" @click="fnAdd">등록</button>
-			<button v-else @click="fnEdit">수정</button>
+				<div>
+					<vue-editor v-model="info.iContent" maxlength="500"></vue-editor>
+				</div>
+				<div v-if="privateYN=='Y'">
+					<label>비밀번호 <input v-model="info.iPassword" type="password"></label>
+				</div>
+				<div class="btns">
+					<button v-if="iNo == ''" @click="fnAdd">등록</button>
+					<button v-else @click="fnEdit">수정</button>
+					<button @click="fnBack">뒤로가기</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -50,11 +55,14 @@ var app = new Vue({
 		uId:"${sessionId}",
 		iNo : "${map.iNo}", // 등록
 		maxINo : "",		// 수정
+		answer : "${map.answer}", //답글 작성
+		privateYN : "Y", // Y면 글 비공개
 		cnt : "${map.cnt}", // 작성된 글이 하나도 없으면(0이면) pk 1부터 시작
 		maxINo : "",
 		info : {
 			iTitle : "[비밀]",
-			iContent : ""
+			iContent : "",
+			iPassword : ""
 		},
 		fnSecret : true
 	},// data
@@ -94,15 +102,47 @@ var app = new Vue({
 		},
 		fnAdd : function(){
 			var self = this;
-			var param = self.info;
-			param.uId = self.uId;
+			console.log(self.info.iTitle.length);
+			if(self.privateYN == "Y"){
+				if(self.info.iTitle.length < 5){
+					alert("제목을 입력해주세요.");
+					return;
+				}
+			} else if(self.privateYN == "N"){
+				if(self.info.iTitle == ""){
+					alert("제목을 입력해주세요.");
+					return;
+				}
+			}
+			if(self.info.iContent == ""){
+				alert("내용을 입력해주세요.");
+				return;
+			}
+			if(self.privateYN=="Y" && self.info.iPassword==""){
+				alert("비밀번호를 입력해주세요.");
+				return;
+			}
+			
+			if(!confirm("문의글을 등록하시겠습니까?")){
+	        	alert("등록이 취소되었습니다.");
+	          	return;
+	        }
+			var param = {
+				iNo : self.maxINo,
+				uId : self.uId,
+				iTitle : self.info.iTitle,
+				iContent : self.info.iContent,
+				privateYN : self.privateYN,
+				iPassword : self.info.iPassword
+			}
+			console.log(param);
 			$.ajax({
                 url : "add.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-					alert("등록 완료");
+					alert("1:1문의가 등록되었습니다.");
 					location.href = "list.do";
                 }
             }); 
@@ -116,10 +156,13 @@ var app = new Vue({
 				type : "POST",
 				data : param,
 				success : function(data) { 
-					alert("수정되었습니다");
+					alert("문의 내용이 수정되었습니다");
 	                location.href = "list.do";
 				}
 			}); 
+		},
+		fnBack : function(){
+			location.href = "list.do";
 		},
 		handleTitleInput: function() {
 		    var self = this;
@@ -133,8 +176,11 @@ var app = new Vue({
 	    	var self = this;
 	        if (!newFnSecret) {
 	        	self.info.iTitle = "";
+	        	self.info.iPassword = "";
+	        	self.privateYN = "N";
 	        } else {
-	        	self.info.iTitle ="[비밀]"; 
+	        	self.info.iTitle ="[비밀]";
+	        	self.privateYN = "Y";
 	        }
 	    }
 	},
