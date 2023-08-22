@@ -47,7 +47,7 @@ public class LeisureMainController {
 		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
 		map.put("startNum", startNum);
 		map.put("lastNum", lastNum);
-		resultMap = leisureMainService.searchLeisureList(map);
+		resultMap = leisureMainService.searchWaterLeisureList(map);
 		return new Gson().toJson(resultMap);
 	}
 	//수상레저 종류별 출력
@@ -60,6 +60,30 @@ public class LeisureMainController {
 		map.put("startNum", startNum);
 		map.put("lastNum", lastNum);
 		resultMap = leisureMainService.searchWaterLeisureKindList(map);
+		return new Gson().toJson(resultMap);
+	}
+	//지상레저 출력
+	@RequestMapping(value = "/ground/leisure.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String GroundLeisure(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = leisureMainService.searchGroundLeisureList(map);
+		return new Gson().toJson(resultMap);
+	}
+	//지상레저 종류별 출력
+	@RequestMapping(value = "/ground/kindCheck.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String GroundLeisureKind(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = leisureMainService.searchGroundLeisureKind(map);
 		return new Gson().toJson(resultMap);
 	}
 

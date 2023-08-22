@@ -3,8 +3,8 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.sample1.mapper.LeisureMainMapper">
-
-	<select id="selectLeisureList" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">
+	<!-- 수상 레저 리스트 -->
+	<select id="selectWaterLeisureList" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">
 		SELECT *
 		FROM T2_LEISURE_TBL L
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
@@ -19,6 +19,7 @@
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
 		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER'
 	</select>
+	<!-- 수상 레저 종류별 리스트 -->
 	<select id="selectWaterLeisureKind" resultType="com.example.sample1.model.Leisure">
 		SELECT *
 		FROM T2_LEISURE_TBL L
@@ -33,5 +34,39 @@
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
 		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER' AND LEISURE_KIND = #{kind}
+	</select>
+	
+	<!-- 지상 레저 리스트 -->
+	<select id="selectGroundLeisureList" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">
+		SELECT *
+		FROM T2_LEISURE_TBL L
+		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
+		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND'
+		LIMIT #{startNum}, #{lastNum}
+	</select>
+	<select id="selectGroundLeisureCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM T2_LEISURE_TBL L
+		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
+		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND'
+	</select>
+	
+	<!-- 지상 레저 종류별 리스트 -->
+	<select id="selectGroundLeisureKind" resultType="com.example.sample1.model.Leisure">
+		SELECT *
+		FROM T2_LEISURE_TBL L
+		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
+		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND' AND LEISURE_KIND = #{kind}
+		LIMIT #{startNum}, #{lastNum}
+	</select>
+	<select id="selectGroundLeisureKindCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM T2_LEISURE_TBL L
+		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
+		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND' AND LEISURE_KIND = #{kind}
 	</select>
 </mapper>

@@ -8,9 +8,13 @@ import com.example.sample1.model.RentCar;
 import com.example.sample1.model.RentCarImg;
 
 public interface LeisureMainService {
-	//워터레저 리스트 출력
-	HashMap<String, Object> searchLeisureList(HashMap<String, Object> map);
-	//워터레저 종류별 리스트 출력
+	//수상레저 리스트 출력
+	HashMap<String, Object> searchWaterLeisureList(HashMap<String, Object> map);
+	//수상레저 종류별 리스트 출력
 	HashMap<String, Object> searchWaterLeisureKindList(HashMap<String, Object> map);
+	//지상레저 리스트 출력
+	HashMap<String, Object> searchGroundLeisureList(HashMap<String, Object> map);
+	//지상레저 종류별 리스트 출력
+	HashMap<String, Object> searchGroundLeisureKind(HashMap<String, Object> map);
 	
 }

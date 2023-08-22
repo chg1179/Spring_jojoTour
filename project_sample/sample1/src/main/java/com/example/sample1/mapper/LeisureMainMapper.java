@@ -9,10 +9,17 @@ import com.example.sample1.model.Leisure;
 
 @Mapper
 public interface LeisureMainMapper {
-	//레저 메인 리스트
-	List<Leisure> selectLeisureList(HashMap<String, Object> map);
+	//수상 레저 메인 리스트
+	List<Leisure> selectWaterLeisureList(HashMap<String, Object> map);
 	int selectWaterLeisureCnt(HashMap<String, Object> map);
-	//레저 종류별 리스트
+	//수상 레저 종류별 리스트
 	List<Leisure> selectWaterLeisureKind(HashMap<String, Object> map);
 	int selectWaterLeisureKindCnt(HashMap<String, Object> map);
+	
+	//지상 레저 메인 리스트
+	List<Leisure> selectGroundLeisureList(HashMap<String, Object> map);
+	int selectGroundLeisureCnt(HashMap<String, Object> map);
+	//지상 레저 종류별 리스트
+	List<Leisure> selectGroundLeisureKind(HashMap<String, Object> map);
+	int selectGroundLeisureKindCnt(HashMap<String, Object> map);
 }

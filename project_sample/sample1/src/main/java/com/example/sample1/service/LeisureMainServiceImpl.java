@@ -16,10 +16,10 @@ public class LeisureMainServiceImpl implements LeisureMainService{
 	LeisureMainMapper leisureMainMapper;
 
 	@Override
-	public HashMap<String, Object> searchLeisureList(HashMap<String, Object> map) {
+	public HashMap<String, Object> searchWaterLeisureList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("list", leisureMainMapper.selectLeisureList(map));
+		resultMap.put("list", leisureMainMapper.selectWaterLeisureList(map));
 		resultMap.put("cnt", leisureMainMapper.selectWaterLeisureCnt(map));
 		return resultMap;
 	}
@@ -30,6 +30,24 @@ public class LeisureMainServiceImpl implements LeisureMainService{
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("list", leisureMainMapper.selectWaterLeisureKind(map));
 		resultMap.put("cnt", leisureMainMapper.selectWaterLeisureKindCnt(map));
+		return resultMap;
+	}
+
+	@Override
+	public HashMap<String, Object> searchGroundLeisureList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", leisureMainMapper.selectGroundLeisureList(map));
+		resultMap.put("cnt", leisureMainMapper.selectGroundLeisureCnt(map));
+		return resultMap;
+	}
+
+	@Override
+	public HashMap<String, Object> searchGroundLeisureKind(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", leisureMainMapper.selectGroundLeisureKind(map));
+		resultMap.put("cnt", leisureMainMapper.selectGroundLeisureKindCnt(map));
 		return resultMap;
 	}
 

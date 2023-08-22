@@ -158,20 +158,20 @@
 	                            </ul>
 	                        </li>
 	                        <li class="header_water_leisure">
-	                            <a href="javascript:;">수상 레저</a>
+	                            <a href="javascript:;" @click="fnWaterLeisure">수상 레저</a>
 	                            <ul>
-	                                <li><a href="javascript:;">스노쿨링</a></li>
-	                                <li><a href="javascript:;">서핑</a></li>
-	                                <li><a href="javascript:;">요트</a></li>
-	                                <li><a href="javascript:;">제트스키</a></li>
+	                                <li><a href="javascript:;" @click="checkWaterKind('SNORKE')">스노쿨링</a></li>
+	                                <li><a href="javascript:;" @click="checkWaterKind('SURFING')">서핑</a></li>
+	                                <li><a href="javascript:;" @click="checkWaterKind('YACHT')">요트</a></li>
+	                                <li><a href="javascript:;" @click="checkWaterKind('JETSKI')">제트스키</a></li>
 	                            </ul>
 	                        </li>
 	                        <li class="header_land_leisure">
-	                            <a href="javascript:;">지상 레저</a>
+	                            <a href="javascript:;" @click="fnGroundLeisure">지상 레저</a>
 	                            <ul>
-	                                <li><a href="javascript:;">ATV</a></li>
-	                                <li><a href="javascript:;">페러글라이딩</a></li>
-	                                <li><a href="javascript:;">말타기</a></li>
+	                                <li><a href="javascript:;" @click="checkGroundKind('ATV')">ATV</a></li>
+	                                <li><a href="javascript:;" @click="checkGroundKind('GLIDER')">페러글라이딩</a></li>
+	                                <li><a href="javascript:;" @click="checkGroundKind('HORSE')">승마</a></li>
 	                            </ul>
 	                        </li>
 	                        <li class="header_board">
@@ -206,10 +206,6 @@ var app = new Vue({
 		status : "${sessionStatus}"
 	},// data
 	methods : {
-		checkKind : function(kind){
-			var self = this;
-			$.pageChange("rentcar.do", {rentKind : kind});
-		},
         fnLogin :function(){
         	location.href="/login.do";
         },
@@ -249,13 +245,31 @@ var app = new Vue({
         fnRentCar : function(){
         	location.href="/rentcar.do";
         },
+		checkKind : function(kind){
+			var self = this;
+			$.pageChange("../rentcar.do", {rentKind : kind});
+		},
         fnJJim : function(){
         	alert("로그인후 이용해주세요");
         	location.href="/login.do";
         },
         fnJJim2 : function(){
         	location.href="/my/jjim.do";
-        }
+        },
+        fnWaterLeisure : function(){
+        	location.href="/water/leisure.do";
+        },
+		checkWaterKind : function(kind){
+			var self = this;
+			$.pageChange("/water/leisure.do", {leisureKind : kind});
+		},
+        fnGroundLeisure : function(){
+        	location.href="/ground/leisure.do";
+        },
+		checkGroundKind : function(kind){
+			var self = this;
+			$.pageChange("/ground/leisure.do", {leisureKind : kind});
+		},
 	}, // methods
 	created : function() {
 		var self = this;
