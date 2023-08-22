@@ -95,14 +95,9 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	if (data.success) {
-                		if (!self.wishlist.includes(rentNo)) {
-                			self.wishlist.push(rentNo);
-                			alert("찜 목록에 추가되었습니다.");
-                		}
-                	} else {
-                		alert("이미 찜목록에 존재합니다.");
-                	}
+                	alert("찜 목록에 추가되었습니다.");
+                	console.log(rentNo);
+                	self.fnGetList();
                 }
     
             });

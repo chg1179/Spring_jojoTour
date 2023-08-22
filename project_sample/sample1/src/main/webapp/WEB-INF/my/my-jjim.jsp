@@ -75,9 +75,17 @@
 	<div id="app">
 		<div id="my_jjim_container">
 			<h2>찜목록</h2>
-			<div class="my_jjim_box" v-for="(item, index) in list" :key="index">
+			<div>
+				<span><input type="checkbox" >전체선택</span>
+				<span><button>삭제하기</button></span>
+			</div>
+		
+			<div class="my_jjim_box" v-for="(item, index) in jjim" :key="index">
 				<div class="jjim_num">
-					<p>주문번호</p> 
+					<p>
+						<span><input type="checkbox"></span>
+						주문번호
+					</p> 
 					<div>{{item.productNo}}번</div>
 				</div>
 				<div class="jjim_product">

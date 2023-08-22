@@ -10,9 +10,12 @@
 	</select>
 	
 	<select id="selectJjim" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
-		SELECT *
-		FROM T2_JJIM_TBL
-		WHERE U_ID = #{userId}
+			SELECT DISTINCT *
+			FROM T2_JJIM_TBL J
+			LEFT JOIN T2_ROOM_TBL on room_no = product_no and product_kind = 'STAY'
+			LEFT JOIN T2_RENT_CAR_TBL on rent_no = product_no and product_kind = 'RENT'
+			LEFT JOIN T2_LEISURE_TBL on leisure_no = product_no and product_kind = 'LEISURE'
+			WHERE J.U_ID = 'qkqh';
 	</select>
 	
 	<select id="selectPoint" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
