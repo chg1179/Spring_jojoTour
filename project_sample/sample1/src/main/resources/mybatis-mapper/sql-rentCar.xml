@@ -15,7 +15,9 @@
 		) P ON P.PRODUCT_NO = R.RENT_NO
 		WHERE R_DELYN = 'N' AND U_ID = #{uId}
 		ORDER BY R.RENT_NO DESC
-		LIMIT #{startNum}, #{lastNum}
+		<if test="lastNum != '' and lastNum != null"> 
+			LIMIT #{startNum}, #{lastNum}
+		</if>
 	</select>
 	
 	<select id="selectCnt" resultType="int">

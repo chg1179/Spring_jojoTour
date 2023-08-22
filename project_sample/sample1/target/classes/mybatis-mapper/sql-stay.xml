@@ -15,7 +15,9 @@
 		ON S.STAY_KIND = C.C_KIND
 		WHERE U_ID = #{uId}
 		ORDER BY S.STAY_NO DESC
-		LIMIT #{startNum}, #{lastNum}
+		<if test="lastNum != '' and lastNum != null"> 
+			LIMIT #{startNum}, #{lastNum}
+		</if>
 	</select>
 	
 	<select id="selectCnt" resultType="int">

@@ -110,12 +110,14 @@ var app = new Vue({
                 	self.info = data.roomInfo;
                 	self.sales = 100 - (self.info.roomSales * 100);
         			self.fnGetImgInfo();
+        			console.log(self.info);
+        			console.log(self.imgInfo);
                 }
             }); 
 		},
 		fnGetImgInfo : function(){
 			var self = this;
-			var param = {room : self.roomNo};
+			var param = {roomNo : self.roomNo};
 			$.ajax({
                 url : "roomImgInfo.dox",
                 dataType:"json",	
@@ -158,7 +160,7 @@ var app = new Vue({
         			self.fileChange(form);
                 	
                 	alert("수정되었습니다.");
-             //   	$.pageChange("roomView.do", {roomNo : self.roomNo, stayNo : self.stayNo});
+                	$.pageChange("roomView.do", {roomNo : self.roomNo, stayNo : self.stayNo});
                 	self.fnGetInfo();
                 }
             }); 

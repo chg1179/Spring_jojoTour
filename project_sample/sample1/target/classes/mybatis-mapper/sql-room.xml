@@ -4,7 +4,7 @@
 
 <mapper namespace="com.example.sample1.mapper.RoomMapper">
 	
-	<select id="selectRoomList" parameterType="hashmap" resultType="com.example.sample1.model.Room">
+<select id="selectRoomList" parameterType="hashmap" resultType="com.example.sample1.model.Room">
 		SELECT *
 		FROM T2_STAY_TBL S
 		INNER JOIN T2_CODE_TYPE C 
@@ -85,6 +85,5 @@
 		FROM T2_ROOM_IMG_TBL
 		WHERE ROOM_NO = #{roomNo}
 	</select>
-	
 	
 </mapper>

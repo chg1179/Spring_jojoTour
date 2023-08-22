@@ -15,7 +15,9 @@
 		) P ON P.PRODUCT_NO = L.LEISURE_NO
 		WHERE L_DELYN = 'N' AND U_ID = #{uId}
 		ORDER BY L.LEISURE_NO DESC
-		LIMIT #{startNum}, #{lastNum}
+		<if test="lastNum != '' and lastNum != null"> 
+			LIMIT #{startNum}, #{lastNum}
+		</if>
 	</select>
 	
 	<select id="selectCnt" resultType="int">

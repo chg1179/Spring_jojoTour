@@ -280,7 +280,6 @@ public class RoomController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		RoomImg info = roomService.searchRoomImgInfo(map);
 		resultMap.put("imgInfo", info);
-		System.out.println(info);
 		return new Gson().toJson(resultMap);
 	}
 
