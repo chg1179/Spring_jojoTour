@@ -142,18 +142,19 @@ ul a:hover {
 }
 
 .sub-wrap {
-    width: 1024px !important;
-    margin: 0 auto 0 auto;
-    padding-bottom: 50px;
+	width: 1024px !important;
+	margin: 0 auto 0 auto;
+	padding-bottom: 50px;
 }
 
 #content {
-    overflow: hidden;
+	overflow: hidden;
 }
-.stay-info{
+
+.stay-info {
+	border: 1px solid #ccc;
 	margin-bottom: 20px;
 }
-.sub_wra
 </style>
 </head>
 <body>
@@ -174,20 +175,20 @@ ul a:hover {
 
 				<h3>상세조건</h3>
 				<div class="btn-wrap">
-					<span><button @click="fnReset">초기화</button></span> 
-					<span><button @click="fnSearch">적용</button></span>
+					<span><button @click="fnReset">초기화</button></span> <span><button
+							@click="fnSearch">적용</button></span>
 				</div>
 
 				<section>
 					<strong>숙소명</strong>
 					<div>
-						<input type="text" v-model="stayKeyword" placeholder="검색 키워드를 입력해주세요">
+						<input type="text" v-model="stayKeyword"
+							placeholder="검색 키워드를 입력해주세요">
 					</div>
 				</section>
 
 				<section>
-					<strong>인원</strong> <span> 
-					<select v-model="info.peopleMax">
+					<strong>인원</strong> <span> <select v-model="info.peopleMax">
 							<option value="">선택하세요</option>
 							<option value="1">1명</option>
 							<option value="2">2명</option>
@@ -205,32 +206,36 @@ ul a:hover {
 				</section>
 
 				<section>
-					
+
 					<div v-for="item in serviceList">
 						<label><input type="checkbox" v-model="selectServiceList"
 							:value="item.serviceNo">{{item.serviceName}}</label>
 					</div>
 				</section>
 			</div>
-			
-			<div class="stay-type">
-				<select v-model="info.stayKind">
-					<option value="HOTEL">호텔</option>
-					<option value="MOTEL">모텔</option>
-					<option value="PENSION">펜션</option>
-					<option value="GUEST">게스트하우스</option>
-					<option value="CAMPING">캠핑</option>
-				</select>
-			</div>
-			<div class="list-wrap">
-				<ul>
-					<li v-for="item in list">
-						<div class="stay-info">
-							<div><a @click="fnDetail(item.stayNo)">{{item.stayName}}</a></div>
-							<div>{{item.minPrice}}원</div>
-						</div>
-					</li>
-				</ul>
+			<div class="">
+				<div class="stay-type">
+					<select v-model="info.stayKind">
+						<option value="HOTEL">호텔</option>
+						<option value="MOTEL">모텔</option>
+						<option value="PENSION">펜션</option>
+						<option value="GUEST">게스트하우스</option>
+						<option value="CAMPING">캠핑</option>
+					</select>
+				</div>
+				<div class="list-wrap">
+					<ul>
+						<li v-for="item in list">
+							<div class="stay-info">
+								<div>
+									<a @click="fnDetail(item.stayNo)">호텔이름 : {{item.stayName}}</a>
+								</div>
+								<div>가격 : {{item.minPrice}}원</div>
+								<div>위치 : {{item.sAddr}}</div>
+							</div>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>

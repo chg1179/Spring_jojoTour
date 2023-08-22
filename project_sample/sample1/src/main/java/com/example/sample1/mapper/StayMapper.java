@@ -47,4 +47,7 @@ public interface StayMapper {
 	
 	// 수정시 서비스 다시 인서트
 	int insertService2(HashMap<String, Object> map);
+	
+	// 숙소 이미지 인서트
+	int insertStayImg(HashMap<String, Object> map);
 } 

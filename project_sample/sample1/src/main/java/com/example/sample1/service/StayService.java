@@ -33,4 +33,7 @@ public interface StayService {
 	
 	// 서비스 삭제
 	int removeService(HashMap<String, Object> map);
+	
+	// 숙소 이미지 인서트
+	int addStayImg(HashMap<String, Object> map);
 }

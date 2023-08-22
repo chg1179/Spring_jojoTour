@@ -69,8 +69,26 @@
 			</tr>
 			<tr>
 			<tr>
-				<th>파일</th>
-				<td><input type="file" accept=".gif, .jpg, .png" id="stayFile" name="file"></td>
+				<th>썸네일이미지</th>
+				<td>
+					<div class="filebox">
+					    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly>
+					    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
+					    <label for="fileY">이미지선택</label> 
+					    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>상세정보이미지</th>
+				<td>
+					<div class="filebox">
+					    <input class="upload-name" id="fileNName" placeholder="첨부파일" readonly>
+					    <a href="javascript:;" v-if="fileNFlg" @click="fnDelFile('N')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
+					    <label for="fileN">이미지선택</label> 
+					    <input type="file" accept=".gif, .jpg, .png" id="fileN" name="fileN" @change="fnFlgChange('N')">
+					</div>
+				</td>
 			</tr>
 		</table>
 		<div>
@@ -206,7 +224,22 @@ var app = new Vue({
                 	self.selectServiceList.splice(index, 1);
                 }
             }
-        }
+        },
+    	 // 파일 업데이트
+	    fileChange : function(form){
+	    	var self = this;
+	         $.ajax({
+	             url : "fileChange.dox"
+	           , type : "POST"
+	           , processData : false
+	           , contentType : false
+	           , data : form
+	           , success:function(response) { 
+	        	   
+	           }
+	       });
+		},
+		
 	}, // methods
 	created : function() {
 		var self = this;

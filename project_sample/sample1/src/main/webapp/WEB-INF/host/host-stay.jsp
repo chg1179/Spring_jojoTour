@@ -146,9 +146,9 @@
 			</template>
 		</div>
 		<div class="container">
-			<span><button @click="fnAdd">숙박 업체 추가</button></span> <span><button
-					@click="fnUpdate">업체 정보 수정</button></span> <span><button
-					@click="fnRemove">업체 정보 삭제</button></span>
+			<span><button @click="fnAdd">숙박 업체 추가</button></span> 
+			<span><button @click="fnUpdate">업체 정보 수정</button></span> 
+			<span><button @click="fnRemove">업체 정보 삭제</button></span>
 		</div>
 		
 	</div>

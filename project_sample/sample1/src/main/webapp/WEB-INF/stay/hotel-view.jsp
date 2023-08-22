@@ -74,6 +74,7 @@
 			<div>방 번호: {{item.roomNo}}</div>
 			<div>방정보 : {{item.roomName}}</div>
 			<div>가격 : {{item.roomPrice}}</div>
+			<div>할인금액 : {{item.sales}}</div>
 			
 			<button @click="fnJjim(item.roomNo)">찜</button>
 			<button @click="fnCart(item)">장바구니</button>					

@@ -7,6 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <title>숙박 관리 페이지</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
 	table{
 		border : 1px solid black;
@@ -78,8 +79,15 @@
 				</td>
 			</tr>
 			<tr>
-				<th>파일</th>
-				<td><input type="file" accept=".gif, .jpg, .png" id="stayFile" name="file"></td>
+				<th>상세정보이미지</th>
+				<td>
+					<div class="filebox">
+					    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly>
+					    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
+					    <label for="fileY">이미지선택</label> 
+					    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
+					</div>
+				</td>
 			</tr>
 		</tbody>
 		</table>
@@ -95,6 +103,8 @@ function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAdd
 var app = new Vue({
 	el : '#app',
 	data : {
+		uId : "${sessionId}",
+		status : "${sessionStatus}",
 		serviceList : [], // 출력을 위한 서비스 리스트
 		selectServiceList : [], // 체크한 값을 넣기 위한 서비스 리스트
 		selectStayType : "",
@@ -105,10 +115,9 @@ var app = new Vue({
 			sAddr : "",               
 			sDetailAddr : ""
 		},
-		uId : "${sessionId}"
+		fileYFlg : false
 	},// data
 	methods : {
-
 		fnGetOption : function(){
 			var self = this;
 			var param = {};
@@ -150,17 +159,23 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
+                	var form = new FormData();
+	       	        form.append( "files",  $("#fileY")[0].files[0]);
+	       	     	form.append( "stayNo",  data.stayNo); // 제품 pk
+	           		self.upload(form);
+	       	     	
                 	alert("숙소가 등록되었습니다.");
                		location.href="/host/stay.do";
+               		
                 }
             }); 
 		},
-	
 		fnSearchAddr : function (){
 			var self = this;
     		var option = "width = 500, height = 500, top = 100, left = 200, location = no"
     		window.open("../addr.do", "test", option);
 		},
+		
 		fnResult : function(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
     		var self = this;
     		self.info.sZipno = zipNo;
@@ -171,12 +186,58 @@ var app = new Vue({
     		console.log(roadAddrPart1);
     		console.log(addrDetail);
     		console.log(engAddr);
-    	}
+    	},
+    	
+		// 파일 업로드
+		upload : function(form){
+		   	var self = this;
+		        $.ajax({
+		            url : "stayFileUpload.dox"
+		          , type : "POST"
+		          , processData : false
+		          , contentType : false
+		          , data : form
+		          , success:function(response) { 
+		       	   
+		          }
+		      });
+		},
+		//파일이 선택됐는지 확인 (선택됐다면 x버튼이 나온다.)
+		fnFlgChange : function(){
+			var self = this;
+			var fileCheck = document.getElementById("fileY").value;
+			
+			if(!fileCheck){
+				document.getElementById("fileYName").value = "";
+				self.fileYFlg = false;
+				return;
+			} else{
+				document.getElementById("fileYName").value = $("#fileY")[0].files[0].name;
+				self.fileYFlg = true;
+				return;
+			}
+			
+		},
+		// 파일 삭제
+		
+		fnDelFile : function(){
+			var self = this;
+			document.getElementById("fileY").value = "";
+			document.getElementById("fileYName").value = "";
+		}, 
 		
 	}, // methods
 	created : function() {
 		var self = this;
-		self.fnGetOption();
+		if(self.status !== "H"){
+			alert("호스트만 접근할 수 있습니다.");
+			location.href="../../main.do";
+		} else {
+			if(self.stayNo != ""){
+				self.fnGetOption();
+			}
+		}
+		
 	//	self.fnGetList();
 	}// created
 });

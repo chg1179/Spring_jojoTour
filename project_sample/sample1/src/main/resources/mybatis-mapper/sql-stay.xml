@@ -88,5 +88,13 @@
 		VALUES (#{stayNo}, #{service})
 	</insert>
 	
-	
+	<!-- 이미지 인서트 -->
+	<insert id="insertStayImg" parameterType="hashmap">
+		INSERT INTO T2_STAY_IMG_TBL(
+			STAY_NO, IMG_NAME, IMG_SAVE_NAME, IMG_PATH, IMG_DATE, IMG_DELYN
+		)
+		VALUES(
+			#{stayNo}, #{imgName}, #{imgSaveName}, #{imgPath}, now(), 'N'
+		)
+	</insert>
 </mapper>

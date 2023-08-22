@@ -99,4 +99,11 @@ public class StayServiceImpl implements StayService{
 		return stayMapper.deleteService(map);
 	}
 
+
+	@Override
+	public int addStayImg(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return stayMapper.insertStayImg(map);
+	}
+
 }
