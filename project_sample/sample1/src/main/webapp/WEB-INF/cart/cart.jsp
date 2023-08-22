@@ -40,7 +40,7 @@
 				<thead>
 					<tr>
 						<th>품목</th>
-						<th style="width: 400px;">상품정보</th>
+						<th style="width: 400px;" colspan="2">상품정보</th>
 						<th>가격</th>
 						<th>수량</th>
 						<th>최종금액</th>
@@ -49,23 +49,26 @@
 				<tbody>
 					<tr v-for="(item, index) in roomlist">
 						<td v-if="index ==0" :rowspan="roomlist.length">숙박</td>
+						<td>{{item.stayName}}</td>
 						<td>{{item.roomName}}</td>
 						<td>{{item.roomPrice}}</td>
-						<td><input type="number" v-model="item.roomQuantity" @input="calculateRoom(item)" style="width: 40px;"></td>
+						<td><input type="number" v-model="item.roomQuantity" @input="calculateRoom(item)" style="width: 40px;" min="1" max="10"></td>
 						<td>{{item.roomPrice * item.roomQuantity}}</td>
 					</tr>
 					<tr v-for="(item, index) in rentlist">
 						<td v-if="index ==0" :rowspan="rentlist.length">렌트카</td>
 						<td>{{item.rentName}}</td>
+						<td>{{item.rentKind}}</td>
 						<td>{{item.rentPrice}}</td>
-						<td><input type="number" v-model="item.rentQuantity" @input="calculateRent(item)" style="width: 40px;"></td>
+						<td><input type="number" v-model="item.rentQuantity" @input="calculateRent(item)" style="width: 40px;" min="1" max="10"></td>
 						<td>{{item.rentPrice * item.rentQuantity}}</td>
 					</tr>
 					<tr v-for="(item, index) in leisurelist">
 						<td v-if="index ==0" :rowspan="leisurelist.length">레저</td>
 						<td>{{item.leisureName}}</td>
+						<td>{{item.leisureKind}}</td>
 						<td>{{item.leisurePrice}}</td>
-						<td><input type="number" v-model="item.leisureQuantity" @input="calculateLeisure(item)" style="width: 40px;"></td>
+						<td><input type="number" v-model="item.leisureQuantity" @input="calculateLeisure(item)" style="width: 40px;" min="1" max="10"></td>
 						<td>{{item.leisurePrice * item.leisureQuantity}}</td>
 					</tr>
 				</tbody>
@@ -139,6 +142,7 @@ var app = new Vue({
 		self.fnRoomList();
 		self.fnRentList();
 		self.fnLeisureList();
+		self.roomlist[0].roomQuantity = 1;
 	}// created
 });
 </script>
