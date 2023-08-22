@@ -26,6 +26,10 @@ public interface UserMapper {
 	//유저 페이지 cnt
 	int cntUserPage(HashMap<String, Object> map);
 	
+	List<User> pageHost(HashMap<String, Object> map);
+	//유저 페이지 cnt
+	int cntHostPage(HashMap<String, Object> map);
+	
 	int cntUser(HashMap<String, Object> map);
 	
 	int statusCnt(HashMap<String, Object> map);

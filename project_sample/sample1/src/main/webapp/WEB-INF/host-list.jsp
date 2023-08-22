@@ -149,11 +149,11 @@ var app = new Vue({
 	methods : {
 		fnGetList : function(){
             var self = this;
-            var startNum = ((self.selectPage-1) * 10);
-            var lastNum = 10;
+            var startNum = ((self.selectPage-1) * 9);
+            var lastNum = 9;
             var nparmap = {startNum : startNum, lastNum : lastNum};
             $.ajax({
-                url : "/userList.dox",
+                url : "/hostList.dox",
                 dataType:"json",	
                 type : "POST",
                 data : nparmap,
@@ -167,18 +167,18 @@ var app = new Vue({
 		fnSearch : function(pageNum){
 	         var self = this;
 	         self.selectPage = pageNum;
-	         var startNum = ((pageNum-1) * 10);
-	         var lastNum = 10;
+	         var startNum = ((pageNum-1) * 9);
+	         var lastNum = 9;
 	         var nparmap = {startNum : startNum, lastNum : lastNum};
 	         $.ajax({
-	            url : "list.dox",
+	            url : "/hostList.dox",
 	            dataType : "json",
 	            type : "POST",
 	            data : nparmap,
 	            success : function(data) {
 	               self.list = data.list;
 	               self.cnt = data.cnt;
-	               self.pageCount = Math.ceil(self.cnt / 10);
+	               self.pageCount = Math.ceil(self.cnt / 9);
 	            }
 	         });
 	      },

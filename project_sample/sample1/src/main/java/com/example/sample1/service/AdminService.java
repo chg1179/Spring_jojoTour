@@ -24,4 +24,6 @@ public interface AdminService {
 	int packageInsert(HashMap<String, Object> map);
 	//유저 페이지
 	HashMap<String, Object> userPage(HashMap<String, Object> map);
+	//호스트 페이지
+	HashMap<String, Object> hostPage(HashMap<String, Object> map);
 }

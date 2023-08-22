@@ -122,12 +122,24 @@
 	<select id="pageUser" parameterType="hashmap" resultType="com.example.sample1.model.User">
       SELECT * 
       FROM T2_USER_TBL
-      WHERE STATUS = 'U' OR STATUS = 'H'
-      ORDER BY U_ID DESC
+      WHERE STATUS = 'U'
+      ORDER BY U_ID ASC
       LIMIT #{startNum}, #{lastNum}
    </select>
    
    <select id="cntUserPage" parameterType="int" resultType="int">
+   	SELECT COUNT(*) FROM T2_USER_TBL
+   </select>
+   
+   <select id="pageHost" parameterType="hashmap" resultType="com.example.sample1.model.User">
+      SELECT * 
+      FROM T2_USER_TBL
+      WHERE STATUS = 'H'
+      ORDER BY U_ID ASC
+      LIMIT #{startNum}, #{lastNum}
+   </select>
+   
+   <select id="cntHostPage" parameterType="int" resultType="int">
    	SELECT COUNT(*) FROM T2_USER_TBL
    </select>
 </mapper>

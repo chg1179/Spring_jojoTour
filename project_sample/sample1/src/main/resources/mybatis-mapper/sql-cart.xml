@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.sample1.mapper.CartMapper">
+	
+	<select id="roomList" parameterType="hashmap" resultType="com.example.sample1.model.Cart">
+		SELECT * 
+		FROM T2_CART_TBL C
+		INNER JOIN T2_ROOM_TBL R ON C.PRODUCT_NO = R.ROOM_NO
+		WHERE C.PRODUCT_KIND = 'STAY' AND C.U_ID = #{uId}
+	</select>
+	
+	<select id="rentList" parameterType="hashmap" resultType="com.example.sample1.model.Cart">
+		SELECT * 
+		FROM T2_CART_TBL C
+		INNER JOIN T2_RENT_CAR_TBL RC ON C.PRODUCT_NO = RC.RENT_NO
+		WHERE C.PRODUCT_KIND = 'RENT' AND C.U_ID = #{uId}
+	</select>
+	
+	<select id="leisureList" parameterType="hashmap" resultType="com.example.sample1.model.Cart">
+		SELECT * 
+		FROM T2_CART_TBL C
+		INNER JOIN T2_LEISURE_TBL L ON C.PRODUCT_NO = L.LEISURE_NO
+		WHERE C.PRODUCT_KIND = 'LEISURE' AND C.U_ID = #{uId}
+	</select>
+	
+</mapper>

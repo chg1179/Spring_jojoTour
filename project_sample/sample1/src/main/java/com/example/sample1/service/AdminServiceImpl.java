@@ -81,4 +81,12 @@ public class AdminServiceImpl implements AdminService {
 		resultMap.put("cnt", userMapper.cntUserPage(map));
 		return resultMap;
 	}
+	@Override
+	public HashMap<String, Object> hostPage(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", userMapper.pageHost(map));
+		resultMap.put("cnt", userMapper.cntHostPage(map));
+		return resultMap;
+	}
 }

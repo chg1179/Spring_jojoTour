@@ -136,7 +136,7 @@
 	                    	<li><a href="javascript:;" @click="fnJJim2">찜</a></li>
 	                        <li><a href="javascript:;" @click="fnLogout">로그아웃</a></li>
 	                        <li><a href="javascript:;" @click="fnMyHome">마이홈</a></li>
-	                        <li><a href="javascript:;">장바구니</a></li>
+	                        <li><a href="javascript:;" @click="fnCart">장바구니</a></li>
 	                    </ul>
 	                    <ul class="s_header">
 	                        <li class="stay">
@@ -211,6 +211,9 @@ var app = new Vue({
         },
         fnJoin : function(){
         	location.href="/join/select.do";
+        },
+        fnCart : function(){
+        	location.href="/cart.do";
         },
         fnLogo : function(){
         	location.href="/main.do";

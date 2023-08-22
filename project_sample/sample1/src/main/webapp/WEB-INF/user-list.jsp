@@ -151,8 +151,8 @@ var app = new Vue({
 	methods : {
 		fnGetList : function(){
             var self = this;
-            var startNum = ((self.selectPage-1) * 9);
-            var lastNum = 9;
+            var startNum = ((self.selectPage-1) * 10);
+            var lastNum = 10;
             var nparmap = {startNum : startNum, lastNum : lastNum};
             $.ajax({
                 url : "/userList.dox",
@@ -162,7 +162,7 @@ var app = new Vue({
                 success : function(data) { 
                 	self.list = data.list;
                 	 self.cnt = data.cnt;
-                     self.pageCount = Math.ceil(self.cnt / 9);
+                     self.pageCount = Math.ceil(self.cnt / 10);
                 }
             }); 
 		},
@@ -180,7 +180,7 @@ var app = new Vue({
 	            success : function(data) {
 	               self.list = data.list;
 	               self.cnt = data.cnt;
-	               self.pageCount = Math.ceil(self.cnt / 9);
+	               self.pageCount = Math.ceil(self.cnt / 10);
 	            }
 	         });
 	      },
