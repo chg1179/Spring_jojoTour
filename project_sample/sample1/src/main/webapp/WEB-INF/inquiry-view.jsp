@@ -30,8 +30,8 @@
 				<div>작성날짜 : {{info.iWriteTime}}</div>
 				<div>내용 :<pre v-html="info.iContent"></pre></div>
 				<div>
-					<button @click="fnEdit('U')" v-if="uId == info.uId" >수정하기</button>
-					<button @click="fnEdit('A')" v-if="status == 'A'" >답변하기</button>
+					<button @click="fnEdit('U')" v-if="uId == info.uId && info.answerYn == 'N'" >수정하기</button>
+					<button @click="fnEdit('A')" v-if="status == 'A' && info.answerYn == 'N'" >답변하기</button>
 					<button @click="fnBack">되돌아가기</button>
 				</div> 
 			</div>

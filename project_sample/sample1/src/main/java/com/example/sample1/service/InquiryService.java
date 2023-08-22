@@ -28,4 +28,7 @@ public interface InquiryService {
 	
 	// 문의게시판 답변
 	int replyInquiry(HashMap<String, Object> map);
+	
+	// 관리자가 해당 게시글에 답변을 남기면, 기존 게시글의 답변 상태를 변경
+	int editAnswer(HashMap<String, Object> map);
 }

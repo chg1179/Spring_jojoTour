@@ -32,6 +32,10 @@ public interface InquiryMapper {
 	int inquiryCnt(HashMap<String, Object> map);
 	
 	int updateInquiry(HashMap<String, Object> map);
+	
+	// 관리자가 답글을 남기면 답변 여부 변경
+	int updateAnswer(HashMap<String, Object> map);
+	
 	//체크한 게시글 삭제
 	int deleteInquiryCheck(HashMap<String, Object> map);
 	// 게시글 답변

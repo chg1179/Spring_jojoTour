@@ -32,7 +32,7 @@
 	<insert id="insertInquiry" parameterType="hashmap">
 	    INSERT INTO T2_INQUIRY_TBL VALUES
 		(#{iNo}, #{uId}, NULL, NULL, #{iTitle}, #{iContent},
-		 '0', now(), now(), #{privateYN}, #{iPassword}, 'N', 'N')
+		 '0', now(), now(), #{privateYN}, #{iPassword}, #{answerYn}, 'N')
 	</insert>
 	
 	<insert id="answerInquiry" parameterType="hashmap">
@@ -71,6 +71,13 @@
 			I_CONTENT = #{iContent},
 			I_PASSWORD = #{iPassword},
 			I_UPDATE_TIME = now()
+		WHERE I_NO = #{iNo}
+	</update>
+
+	<update id="updateAnswer" parameterType="hashmap">
+		UPDATE T2_INQUIRY_TBL
+		SET
+			ANSWER_YN = #{answerYn}
 		WHERE I_NO = #{iNo}
 	</update>
 

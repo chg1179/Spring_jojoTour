@@ -67,6 +67,7 @@
 					<th>작성자</th>
 					<th>조회수</th>
 					<th>등록 날짜</th>
+					<th>답변 상태</th>
 				</tr>
 				<tr v-for="(item, index) in list">
 					<th v-if="status == 'A'"><input type="checkbox" v-model="selectItem" :value="item.iNo"></th>
@@ -78,7 +79,12 @@
 					</th>
 					<th>{{item.uId}}</th>
 					<th>{{item.iHits}}</th>
-					<th>{{item.iWriteTime}}</th>	
+					<th>{{item.iWriteTime}}</th>
+					<th>
+						<span v-if="item.answerYn=='A'">답변</span>
+						<span v-else-if="item.answerYn=='Y'">답변완료</span>
+						<span v-else-if="item.answerYn=='N'">답변대기</span>
+					</th>
 				</tr>
 			</table>
 			<div>

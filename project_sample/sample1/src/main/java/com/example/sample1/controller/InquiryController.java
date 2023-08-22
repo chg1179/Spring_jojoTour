@@ -49,12 +49,6 @@ public class InquiryController {
         return "/inquiry-add";
     }
 	
-	@RequestMapping("/inquiry/answer.do") 
-	public String inquiryAnser(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		request.setAttribute("map", map);
-		return "/inquiry-answer";
-	}
-	
 	@RequestMapping(value = "/inquiry/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String inquiryList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -131,6 +125,14 @@ public class InquiryController {
 	    map.put("iNo", iNo);
 	    inquiryService.replyInquiry(map);
 	    return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/inquiry/editAnswer.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String editAnswer(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		inquiryService.editAnswer(map);
+		return new Gson().toJson(resultMap);
 	}
 
 }

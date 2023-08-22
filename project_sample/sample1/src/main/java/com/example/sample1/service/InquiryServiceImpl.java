@@ -74,5 +74,11 @@ public class InquiryServiceImpl implements InquiryService{
 		return inquiryMapper.answerInquiry(map);
 	}
 
+	@Override
+	public int editAnswer(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return inquiryMapper.updateAnswer(map);
+	}
+
 
 }
