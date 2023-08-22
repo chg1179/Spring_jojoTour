@@ -13,8 +13,6 @@
 	.pagination {
        margin:24px;
        display: inline-flex;
-       justify-content: center;
-       align-items: center;
    }
    .pagination li {
       min-width:32px;
@@ -36,13 +34,7 @@
    .pagination li.active a {
        color:#fff;
    }
-   .paginate_box a {
-       color:#666;
-       text-decoration: none;
-       width : 100%;
-       height : 100%;
-       display : block;
-   }
+
    *{
 	margin: 0;
 	padding: 0;
@@ -232,18 +224,17 @@
 	  display: inline-block;
 	  padding: 8px 16px;;
 	  font-size: 12px;
-	  font-weight: 600;
-	  background-color: #FFB6C1; /* 딸기우유색 */
-	  color: white;
-	  border: none;
+	  font-weight: 400;
+	border:1px solid #eee;
+	  color: black;
 	  border-radius: 5px;
 	  cursor: pointer;
-	  transition: background-color 0.3s, transform 0.2s;
 	}
 
 	.btn1:hover {
-	  background-color: #FFA07A; /* 호박색 (마우스 호버 시 색 변경) */
+	  background-color : #E7AA8D; /* 호박색 (마우스 호버 시 색 변경) */
 	  transform: scale(1.05);
+	  color: white;
 	}
 
 
