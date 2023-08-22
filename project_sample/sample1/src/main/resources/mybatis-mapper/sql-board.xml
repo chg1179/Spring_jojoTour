@@ -19,6 +19,12 @@
 			AND (N_TITLE LIKE CONCAT('%',#{search},'%')
 				OR U_ID LIKE CONCAT('%',#{search},'%'))
 		</if> 
+		ORDER BY N_NO DESC
+		LIMIT #{startNum}, #{lastNum}
+	</select>
+	
+	<select id="selectCnt" resultType="int">
+		SELECT COUNT(*) FROM T2_NOTICE_TBL
 	</select>
 		
 	<select id="selectNoticeInfo" parameterType="hashmap" resultType="com.example.sample1.model.Board">

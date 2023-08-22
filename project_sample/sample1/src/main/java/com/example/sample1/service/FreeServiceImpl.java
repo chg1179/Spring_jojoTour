@@ -18,9 +18,12 @@ public class FreeServiceImpl implements FreeService{
 	FreeMapper freeMapper;
 
 	@Override
-	public List<Free> searchFreeList(HashMap<String, Object> map) {
+	public HashMap<String, Object> searchFreeList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return freeMapper.selectFreeList(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", freeMapper.selectFreeList(map));
+		resultMap.put("cnt", freeMapper.selectCnt(map));
+		return resultMap;
 	}
 
 	@Override

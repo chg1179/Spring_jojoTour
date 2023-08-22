@@ -24,8 +24,14 @@
       AND (FREE_TITLE LIKE CONCAT('%',               #{search},'%')
             OR U_ID LIKE CONCAT('%',#{search},'%'))
       </if>
+      	ORDER BY F.FREE_NO DESC
+		LIMIT #{startNum}, #{lastNum}
 	</select>
-
+	
+	<select id="selectCnt" resultType="int">
+		SELECT COUNT(*) FROM T2_FREE_TBL
+	</select>
+		
 		<select id="selectFreeInfo" parameterType="hashmap" 
 		resultType="com.example.sample1.model.Free">
 			SELECT *

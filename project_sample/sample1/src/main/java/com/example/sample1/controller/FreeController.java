@@ -51,8 +51,11 @@ public class FreeController {
 	@ResponseBody
 	public String boardList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Free> list = freeService.searchFreeList(map);
-		resultMap.put("freeList", list);
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = freeService.searchFreeList(map);
 		return new Gson().toJson(resultMap);
 	}
 	

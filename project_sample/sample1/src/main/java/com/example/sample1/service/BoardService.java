@@ -8,7 +8,7 @@ import com.example.sample1.model.Test;
 
 public interface BoardService {
 	//공지사항 검색
-	List<Board> searchNoticeList(HashMap<String, Object> map);
+	HashMap<String, Object> searchNoticeList(HashMap<String, Object> map);
 	// 공지사항 보기
 	HashMap<String, Object> searchNoticeInfo(HashMap<String, Object> map);
 	//공지사항 삭제

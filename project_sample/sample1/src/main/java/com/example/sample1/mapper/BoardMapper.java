@@ -14,6 +14,7 @@ public interface BoardMapper {
 	int insertNotice(HashMap<String, Object> map);
 	// 공지사항 검색
 	List<Board> selectNoticeList(HashMap<String, Object> map);
+	int selectCnt(HashMap<String, Object> map);
 	// 공지사항 보기
 	Board selectNoticeInfo(HashMap<String, Object> map);
 	// 공지사항 삭제

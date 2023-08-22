@@ -62,8 +62,11 @@ public class BoardController {
 	@ResponseBody
 	public String noticeList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Board> list = boardService.searchNoticeList(map);
-		resultMap.put("noticeList", list);
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = boardService.searchNoticeList(map);
 		return new Gson().toJson(resultMap);
 	}
 	

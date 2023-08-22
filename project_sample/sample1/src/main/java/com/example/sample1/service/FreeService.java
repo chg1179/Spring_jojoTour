@@ -8,7 +8,7 @@ import com.example.sample1.model.Free;
 
 public interface FreeService {
 	// 게시글 목록
-	List<Free> searchFreeList(HashMap<String, Object> map);
+	HashMap<String, Object> searchFreeList(HashMap<String, Object> map);
 	// 게시글 상세보기 + 댓글
 	HashMap<String, Object> searchFreeInfo(HashMap<String, Object> map);
 	// 댓글 등록

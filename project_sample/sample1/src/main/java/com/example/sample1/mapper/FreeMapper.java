@@ -16,6 +16,7 @@ public interface FreeMapper {
 	int insertFree(HashMap<String, Object> map);
 	// 게시판 목록 + 검색
 	List<Free> selectFreeList(HashMap<String, Object> map);
+	int selectCnt(HashMap<String, Object> map);
 	// 게시글 상세보기
 	Free selectFreeInfo(HashMap<String, Object> map);
 	// 댓글 목록
