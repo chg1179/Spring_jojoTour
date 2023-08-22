@@ -91,7 +91,7 @@
 	}
 	
 	.board-table {
-	  font-size: 13px;
+	  font-size: 14px;
 	  width: 100%;
 	  border-top: 1px solid #ccc;
 	  border-bottom: 1px solid #ccc;

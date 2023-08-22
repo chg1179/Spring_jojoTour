@@ -238,6 +238,8 @@
 	  color: white;
 	}
 	.btn2 {
+	
+		margin:10px;
 	  display: inline-block;
 	  padding: 6px 12px;;
 	  font-size: 12px;
@@ -265,6 +267,10 @@
 	font-weight: bold;
 	background: linear-gradient(to right, #ff9900, #ff3333);
 	color:white;
+	}
+	.font1{
+	font-size:18px;
+	font-weight:bolder;
 	}
 	
 </style>
@@ -307,13 +313,13 @@
 			        <td>
 			          <div v-if="item.productKind == 'RENT'">
 			          <del>가격 : {{item.rentPrice}}</del>
-			          {{item.rentPrice*item.rentSales}}</div>
+			          <div class="font1">{{item.rentPrice*item.rentSales}}</div></div>
 			          <div v-if="item.productKind == 'STAY'">
 			          <del>가격 : {{item.roomPrice}}</del>
-			          {{item.roomPrice*item.roomSales}}</div>
+			          <div class="font1">{{item.roomPrice*item.roomSales}}</div></div>
 			          <div v-if="item.productKind == 'LEISURE'">
 			          <del>가격 : {{item.leisurePrice}}</del>
-			          {{item.leisurePrice*item.leisureSales}}</div>
+			          <div class="font1">{{item.leisurePrice*item.leisureSales}}</div></div>
 			          <button class="btn2">주문하기</button>
 			        </td>
 			      </tr>
