@@ -204,7 +204,7 @@ var app = new Vue({
                 success : function(data) { 
                 	var form = new FormData();
         			form.append( "files", $("#fileY")[0].files[0]);
-        			form.append( "imgNo", self.info.imgNo); //사진 pk
+        			form.append( "imgNo", self.imgInfo.imgNo); //사진 pk
         			console.log(self.info.imgNo);
         			self.fileChange(form);
         			

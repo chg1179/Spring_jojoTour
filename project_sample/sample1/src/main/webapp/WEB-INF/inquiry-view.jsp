@@ -30,8 +30,8 @@
 				<div>작성날짜 : {{info.iWriteTime}}</div>
 				<div>내용 :<pre v-html="info.iContent"></pre></div>
 				<div>
-					<button @click="fnEdit" v-if="uId == info.uId" >수정하기</button>
-					<button @click="fnAnswer" v-if="status == 'A'" >답변하기</button>
+					<button @click="fnEdit('U')" v-if="uId == info.uId" >수정하기</button>
+					<button @click="fnEdit('A')" v-if="status == 'A'" >답변하기</button>
 					<button @click="fnBack">되돌아가기</button>
 				</div> 
 			</div>
@@ -46,8 +46,7 @@ var app = new Vue({
 		info : {},
 		iNo : "${map.iNo}",
 		status : "${sessionStatus}",
-		uId : "${sessionId}",
-		iPassword: "${map.iPassword}",      
+		uId : "${sessionId}",  
 		enteredPwd: "",
         showApp: false
 	},// data
@@ -64,19 +63,20 @@ var app = new Vue({
                 	self.info = data.info;
                 	console.log(self.info);
                 	// 공개글이거나, 관리자거나 본인이 작성한 글 일 때 열람 가능
-                	if (self.status === 'A' || (self.uId === self.info.uId) || self.iPassword == "") {
+                	if (self.status === 'A' || (self.uId === self.info.uId) || self.info.iPassword == "") {
                         self.showApp = true;
                     }
                 }
             }); 
 		},
-		 fnBack : function(){
+		fnBack : function(){
 	        	location.href = "list.do";
 	        },
-		fnEdit : function(){
-				var self = this;
-				$.pageChange("edit.do", {iNo : self.iNo});
-	        },
+		fnEdit : function(answer){
+			// A(answer) : 관리자 답변, U(update) : 수정
+			var self = this;
+			$.pageChange("edit.do", {iNo : self.iNo, answer : answer});
+	    },
 	    fnAnswer : function(iNo,iTitle){
 	    	var self = this;
 	    	location.href = "answer.do?iNo=" + self.iNo + "&iTitle=" + self.info.iTitle;

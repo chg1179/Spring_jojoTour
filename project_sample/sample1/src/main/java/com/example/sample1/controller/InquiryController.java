@@ -63,7 +63,6 @@ public class InquiryController {
 		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
 		map.put("startNum", startNum);
 		map.put("lastNum", lastNum);
-		System.out.println(map);
 		resultMap = inquiryService.searchInquiryList(map);
 		return new Gson().toJson(resultMap);
 	}

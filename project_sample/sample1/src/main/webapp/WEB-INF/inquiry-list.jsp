@@ -149,7 +149,7 @@ var app = new Vue({
 				type : "POST",
 				data : param,
 				success : function(data) {
-					self.list = data.carList;
+					self.list = data.inquiryList;
 					self.cnt = data.cnt;
 					self.pageCount = Math.ceil(self.cnt / 10);
 				}

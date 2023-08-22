@@ -37,7 +37,8 @@
 					<label>비밀번호 <input v-model="info.iPassword" type="password"></label>
 				</div>
 				<div class="btns">
-					<button v-if="iNo == ''" @click="fnAdd">등록</button>
+					<button v-if="answer == 'A'" @click="fnAdd">답변등록</button>
+					<button v-else-if="iNo == ''" @click="fnAdd">등록</button>
 					<button v-else @click="fnEdit">수정</button>
 					<button @click="fnBack">뒤로가기</button>
 				</div>
@@ -94,8 +95,7 @@ var app = new Vue({
 	            	if(data.cnt == 0){
 	            		self.maxINo = 1; //작성된 글이 하나도 없으면 pk 번호는 1부터 시작
 	            	} else {
-		            	//문의 답글을 한 테이블에서 작업하는데 정렬하기 위해 MAX PK+2(답글은 pk+1)
-		             	self.maxINo = data.maxINo + 2;
+		             	self.maxINo = data.maxINo;
 	             	}
 				}
 			}); 
@@ -127,6 +127,15 @@ var app = new Vue({
 	        	alert("등록이 취소되었습니다.");
 	          	return;
 	        }
+			
+			if(self.answer=='A'){
+				// 게시판을 글-답변 순으로 정렬하기 위해 답글은 pk+1
+				self.maxINo = self.maxINo + 1;
+			} else {
+				// 문의 답글을 한 테이블에서 작업하는데 정렬하기 위해 MAX PK+2(답글은 pk+1)
+	         	self.maxINo = self.maxINo + 2;
+			}
+			console.log(self.maxINo);
 			var param = {
 				iNo : self.maxINo,
 				uId : self.uId,
