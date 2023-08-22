@@ -97,4 +97,22 @@
 			#{stayNo}, #{imgName}, #{imgSaveName}, #{imgPath}, now(), 'N'
 		)
 	</insert>
+	
+	<!-- 이미지 수정 -->
+	<update id="updateStayImg" parameterType="hashmap">
+		UPDATE T2_STAY_IMG_TBL
+		SET
+			IMG_NAME = #{imgName},
+			IMG_SAVE_NAME = #{imgSaveName},
+			IMG_PATH = #{imgPath},
+			IMG_DATE = now()
+		WHERE IMG_NO = #{imgNo} 
+	</update>
+	
+	<select id="selectStayImgInfo" parameterType="hashmap" resultType="com.example.sample1.model.StayImg">
+		SELECT *
+		FROM T2_STAY_IMG_TBL
+		WHERE STAY_NO = #{stayNo}
+	</select>
+	
 </mapper>

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.example.sample1.model.Stay;
+import com.example.sample1.model.StayImg;
 
 public interface StayService {
 	
@@ -36,4 +37,10 @@ public interface StayService {
 	
 	// 숙소 이미지 인서트
 	int addStayImg(HashMap<String, Object> map);
+	
+	// 숙소 이미지 수정
+	int editStayImg(HashMap<String, Object> map);
+	
+	// 숙소 이미지 출력
+	StayImg searchStayImgInfo(HashMap<String, Object> map);
 }

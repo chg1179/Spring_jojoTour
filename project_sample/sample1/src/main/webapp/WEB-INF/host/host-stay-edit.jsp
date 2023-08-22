@@ -5,6 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>숙소 정보 수정 페이지</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
 	table{
 		border : 1px solid black;
@@ -72,7 +73,7 @@
 				<th>상세정보이미지</th>
 				<td>
 					<div class="filebox">
-					    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly>
+					    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly v-model="imgInfo.imgName">
 					    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
 					    <label for="fileY">이미지선택</label> 
 					    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
@@ -98,6 +99,8 @@ var app = new Vue({
 		serviceList : [], // 출력을 위한 서비스 리스트
 		checkList : [], // DB에 있는 체크 리스트를 넣기 위한 서비스 리스트
 		selectServiceList : [], // 새롭게 선택한 체크 리스트를 담는 리스트
+		imgList : [],
+		stayNo : "${map.stayNo}",
 		info : {
 			stayName : "",
 			stayKind : "",
@@ -105,7 +108,10 @@ var app = new Vue({
 			sAddr : "",
 			sDetailAddr : ""
 		},
-		stayNo : "${map.stayNo}"
+		imgInfo : {
+			imgName : ""
+		},
+		fileYFlg : false
 	},// data
 	methods : {
 		fnGetInfo : function(){
@@ -123,6 +129,23 @@ var app = new Vue({
                 }
             }); 
 		},
+		fnGetImgInfo : function(){
+			var self = this;
+			var param = {stayNo : self.stayNo};
+			$.ajax({
+                url : "stayImgInfo.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	self.imgInfo = data.imgInfo;
+                	self.fileYFlg = true;
+                	console.log(self.imgInfo);
+                	//console.log(self.imgInfo.imgPath);
+                }
+            }); 
+		},
+		
 		//해당 숙박업소의 체크되었던 편의시설 리스트를 가져옴
 		fnGetCheckList : function(){
 			var self = this;
@@ -179,16 +202,56 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	for(var i = 0; self.){
-                		
-                	}
-                	
+                	var form = new FormData();
+        			form.append( "files", $("#fileY")[0].files[0]);
+        			form.append( "imgNo", self.info.imgNo); //사진 pk
+        			console.log(self.info.imgNo);
+        			self.fileChange(form);
+        			
                 	alert("수정되었습니다.");
-                	location.href = "stay.do";
+            //    	location.href = "stay.do";
                 	
                 }
             }); 
 		},
+		 // 파일 업데이트
+	    fileChange : function(form){
+	    	var self = this;
+	         $.ajax({
+	             url : "stayFileChange.dox"
+	           , type : "POST"
+	           , processData : false
+	           , contentType : false
+	           , data : form
+	           , success:function(response) { 
+	        	   
+	           }
+	       });
+		},
+		//파일이 선택됐는지 확인 (선택됐다면 x버튼이 나온다.)
+		fnFlgChange : function(){
+			var self = this;
+			var fileCheck = document.getElementById("fileY").value;
+			
+			if(!fileCheck){
+				document.getElementById("fileYName").value = "";
+				self.fileYFlg = false;
+				return;
+			} else{
+				document.getElementById("fileYName").value = $("#fileY")[0].files[0].name;
+				self.fileYFlg = true;
+				return;
+			}
+			
+		},
+		
+		// 파일 삭제
+		fnDelFile : function(){
+			var self = this;
+			document.getElementById("fileY").value = "";
+			document.getElementById("fileYName").value = "";
+		}, 
+		
 		fnSearchAddr : function (){
 			var self = this;
     		var option = "width = 500, height = 500, top = 100, left = 200, location = no"
@@ -217,53 +280,13 @@ var app = new Vue({
                 }
             }
         },
-        
-        
-        fnGetImgList : function(){
-			var self = this;
-			var param = {rentNo : self.rentNo};
-			$.ajax({
-                url : "carImgList.dox",
-                dataType:"json",	
-                type : "POST",
-                data : param,
-                success : function(data) { 
-                	self.imgList = data.carImgList;
-                	// 필수로 첨부파일을 등록했기 때문에 수정시에는 X(파일삭제) 출력
-        			self.fileYFlg = true;
-        			self.fileNFlg = true;
-                	// 상대 경로 수정 (한 칸 더 이전 경로)
-                	for(var i=0;i< self.imgList.length;i++){
-                		self.imgList[i].imgPath = "../"+self.imgList[i].imgPath;
-                		if(self.imgList[i].mainYN == 'Y'){
-                			document.getElementById("fileYName").value = self.imgList[i].imgName;
-                		} else if(self.imgList[i].mainYN == 'N'){
-                			document.getElementById("fileNName").value = self.imgList[i].imgName;
-                		}
-                	}
-                }
-            }); 
-		},
-    	 // 파일 업데이트
-	    fileChange : function(form){
-	    	var self = this;
-	         $.ajax({
-	             url : "fileChange.dox"
-	           , type : "POST"
-	           , processData : false
-	           , contentType : false
-	           , data : form
-	           , success:function(response) { 
-	        	   
-	           }
-	       });
-		},
 		
 	}, // methods
 	created : function() {
 		var self = this;
 		if(self.stayNo != ""){
 			self.fnGetInfo();
+			self.fnGetImgInfo();
 		}
 		self.fnGetOption();
 	}// created

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.sample1.mapper.StayMapper;
 import com.example.sample1.model.Stay;
+import com.example.sample1.model.StayImg;
 
 @Service
 public class StayServiceImpl implements StayService{
@@ -62,13 +63,14 @@ public class StayServiceImpl implements StayService{
 		return stayMapper.selectStayInfo(map);
 	}
 	
-	// 숙박 수정 (재등록)
+	// 숙소 수정 (재등록)
 	@Override
 	public HashMap<String, Object> editStayInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		stayMapper.updateStayInfo(map);
+		
 		
 		List<Object> list = (List<Object>) map.get("jsonCheckList");
 		for(int i=0;i<list.size();i++) {
@@ -99,11 +101,25 @@ public class StayServiceImpl implements StayService{
 		return stayMapper.deleteService(map);
 	}
 
-
+	// 이미지 추가
 	@Override
 	public int addStayImg(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return stayMapper.insertStayImg(map);
+	}
+	
+	// 이미지 수정
+	@Override
+	public int editStayImg(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return stayMapper.updateStayImg(map);
+	}
+
+
+	@Override
+	public StayImg searchStayImgInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return stayMapper.selectStayImgInfo(map);
 	}
 
 }

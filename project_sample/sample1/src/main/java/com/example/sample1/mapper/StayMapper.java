@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.sample1.model.Stay;
+import com.example.sample1.model.StayImg;
 
 @Mapper
 public interface StayMapper {
@@ -50,4 +51,10 @@ public interface StayMapper {
 	
 	// 숙소 이미지 인서트
 	int insertStayImg(HashMap<String, Object> map);
+	
+	// 이미지 수정
+	int updateStayImg(HashMap<String, Object> map);
+	
+	// 숙소 이미지 정보
+	StayImg selectStayImgInfo(HashMap<String, Object> map);
 } 

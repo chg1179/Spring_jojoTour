@@ -26,7 +26,7 @@
 			<tbody>
 				<tr>
 					<th>
-						객실 정보
+						객실 유형
 					</th>
 					<td>
 						<div>
@@ -106,7 +106,8 @@ var app = new Vue({
 		fileYFlg : false
 	},// data
 	methods : {
-		// 룸서비스 리스트
+		
+		// 룸 추가
 		fnRoomAdd : function(){
 			var self = this;
 			if(!confirm("객실을 등록하시겠습니까?")){
@@ -135,7 +136,7 @@ var app = new Vue({
 	           		self.upload(form);
 	           		
             		alert("객실이 등록되었습니다.");
-            		location.href="/host/stay.do";
+            	//	location.href="/host/stay.do";
             		self.selectServiceList = [];
                 }
             }); 

@@ -27,4 +27,11 @@ public class Stay {
 	private String serviceName;
 	
 	private int sCnt;
+	
+	private int imgNo;
+	private String imgName;
+	private String imgSaveName;
+	private String imgPath;
+	private String imgDate;
+	private String imgDelYn;
 }

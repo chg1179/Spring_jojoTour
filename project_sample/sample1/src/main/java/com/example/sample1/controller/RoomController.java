@@ -145,7 +145,7 @@ public class RoomController {
     public String result(@RequestParam("files") MultipartFile multi, @RequestParam("roomNo") int roomNo, HttpServletRequest request,HttpServletResponse response, Model model)
     {
         String url = null;
-        String path="c:\\img\\stay";
+        String path="c:\\img\\room";
         try {
  
             //String uploadpath = request.getServletContext().getRealPath(path);
@@ -161,16 +161,16 @@ public class RoomController {
             System.out.println("size : " + size);
             System.out.println("saveFileName : " + saveFileName);
             String path2 = System.getProperty("user.dir");
-            System.out.println("Working Directory = " + path2 + "\\src\\webapp\\img\\stay");
+            System.out.println("Working Directory = " + path2 + "\\src\\webapp\\img\\room");
             if(!multi.isEmpty())
             {
-                File file = new File(path2 + "\\src\\main\\webapp\\img\\stay", saveFileName);
+                File file = new File(path2 + "\\src\\main\\webapp\\img\\room", saveFileName);
                 multi.transferTo(file);
                 
                 HashMap<String, Object> map = new HashMap<String, Object>();
                 map.put("imgName", originFilename);
                 map.put("imgSaveName", saveFileName);
-                map.put("imgPath", "../img/stay/" + saveFileName);
+                map.put("imgPath", "../img/room/" + saveFileName);
                 map.put("roomNo", roomNo);
                 
                 // insert 쿼리 실행
