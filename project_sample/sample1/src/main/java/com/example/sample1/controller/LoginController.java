@@ -78,6 +78,7 @@ public class LoginController {
 			session.setAttribute("sessionAddr", user.getAddr());
 			session.setAttribute("sessionAddrDetail", user.getAddrDetail());
 			session.setAttribute("sessionZipNo", user.getZipno());
+			session.setMaxInactiveInterval(3600);
 		}
 		return new Gson().toJson(resultMap);
 	}
