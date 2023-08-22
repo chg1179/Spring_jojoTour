@@ -130,9 +130,9 @@ var app = new Vue({
 			self.selectPage = pageNum;
 			var startNum = ((pageNum-1) * 9);
 			var lastNum = 9;
-			var nparmap = {startNum : startNum, lastNum : lastNum};
+			var nparmap = {startNum : startNum, lastNum : lastNum, waterKeyword : self.waterKeyword, leisureKind : self.leisureKind};
 			$.ajax({
-				url : "../water/leisure.dox",
+				url : "../water/waterSearchList.dox",
 				dataType : "json",
 				type : "POST",
 				data : nparmap,
