@@ -237,7 +237,7 @@ public class RoomController {
                   
                   map.put("imgName", originFilename);
                   map.put("imgSaveName", saveFileName);
-                  map.put("imgPath", "../img/stay/" + saveFileName);
+                  map.put("imgPath", "../img/room/" + saveFileName);
                   map.put("imgNo", imgNo);
                   
                   // update 쿼리 실행

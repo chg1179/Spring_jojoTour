@@ -41,4 +41,6 @@ public interface RoomMapper {
 	// 룸 이미지 정보
 	RoomImg selectRoomImgInfo(HashMap<String, Object> map);
 	
+	// 룸 삭제
+	int deleteRoomImg(HashMap<String, Object> map);
 }

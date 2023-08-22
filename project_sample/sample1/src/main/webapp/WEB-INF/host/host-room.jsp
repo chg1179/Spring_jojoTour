@@ -95,6 +95,7 @@
 			<span><button @click="fnAdd">객실 추가</button></span>
 			<span><button @click="fnView">객실 상세 정보</button></span>
 			<span><button @click="fnRemove">객실 삭제</button></span>
+			<span><button @click="fnBack">되돌아가기</button></span>
 		</div>
 	</div>
 </body>
@@ -207,6 +208,10 @@ var app = new Vue({
                 }
 			});
         },
+        fnBack : function(){
+        	location.href = "../host/stay.do";
+        }
+        
 		
  	}, // methods
 	created : function() {

@@ -57,7 +57,7 @@
 				<th>상세정보이미지</th>
 				<td>
 					<div class="filebox">
-					    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly>
+					    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly :value="imgInfo.imgName">
 					    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
 					    <label for="fileY">이미지선택</label> 
 					    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
@@ -169,7 +169,7 @@ var app = new Vue({
 	    fileChange : function(form){
 	    	var self = this;
 	         $.ajax({
-	             url : "stayFileChange.dox"
+	             url : "roomFileChange.dox"
 	           , type : "POST"
 	           , processData : false
 	           , contentType : false

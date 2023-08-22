@@ -137,7 +137,7 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	alert("삭제되었습니다.");
-                	
+                	$.pageChange("room.do", {stayNo : self.stayNo});
                 }
             }); 
 		},

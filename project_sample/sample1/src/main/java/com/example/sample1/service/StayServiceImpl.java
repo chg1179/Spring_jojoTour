@@ -16,7 +16,8 @@ public class StayServiceImpl implements StayService{
 	
 	@Autowired
 	StayMapper stayMapper;
-
+	
+	// 숙소 리스트 출력
 	@Override
 	public HashMap<String, Object> searchStayList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -26,7 +27,7 @@ public class StayServiceImpl implements StayService{
 		return resultMap;
 	}
 
-
+	// 숙소 등록(+서비스)
 	@Override
 	public HashMap<String, Object> addStay(HashMap<String, Object> map) {
 	    HashMap<String, Object> resultMap = new HashMap<String, Object>();
@@ -45,18 +46,22 @@ public class StayServiceImpl implements StayService{
 	    return resultMap;
 	}
 	
+	// 숙소 타입 리스트 출력
 	@Override
 	public List<Stay> searchStayTypeList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return stayMapper.selectStayTypeList(map);
 	}
-
+	
+	// 숙소 삭제
 	@Override
 	public int removeStay(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
+		stayMapper.deleteStayImg(map);
 		return stayMapper.deleteStay(map);
 	}
 
+	// 숙소 정보 출력
 	@Override
 	public Stay searchStayInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -86,7 +91,7 @@ public class StayServiceImpl implements StayService{
 		return stayMapper.selectServiceList(map);
 	}
 
-
+	// 숙소 서비스 리스트 출력
 	@Override
 	public List<Stay> checkServiceList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -114,7 +119,7 @@ public class StayServiceImpl implements StayService{
 		return stayMapper.updateStayImg(map);
 	}
 
-
+	// 이미지 정보 출력
 	@Override
 	public StayImg searchStayImgInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub

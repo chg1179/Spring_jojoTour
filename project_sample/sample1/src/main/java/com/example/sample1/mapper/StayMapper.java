@@ -57,4 +57,7 @@ public interface StayMapper {
 	
 	// 숙소 이미지 정보
 	StayImg selectStayImgInfo(HashMap<String, Object> map);
+	
+	// 숙소 이미지 삭제
+	int deleteStayImg(HashMap<String, Object> map);
 } 

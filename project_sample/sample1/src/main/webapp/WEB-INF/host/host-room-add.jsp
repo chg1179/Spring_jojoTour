@@ -72,6 +72,7 @@
 			</tbody>
 		</table>
 		<button @click="fnRoomAdd(info.roomNo)">객실 등록</button>
+		<button @click="fnBack">되돌아가기</button>
 	</div>
 </body>
 </html>
@@ -132,7 +133,7 @@ var app = new Vue({
 	           		self.upload(form);
 	           		
             		alert("객실이 등록되었습니다.");
-            	//	location.href="/host/stay.do";
+            		$.pageChange("../host/room.do", {stayNo : self.stayNo});
             		self.selectServiceList = [];
                 }
             }); 
@@ -176,6 +177,11 @@ var app = new Vue({
 			document.getElementById("fileY").value = "";
 			document.getElementById("fileYName").value = "";
 		}, 
+		fnBack : function(){
+        	var self = this;
+			$.pageChange("../host/room.do", {stayNo : self.stayNo}); 
+        },
+		
 		
 	}, // methods
 	created : function() {
