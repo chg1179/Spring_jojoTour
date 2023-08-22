@@ -64,8 +64,11 @@ public class FaqController {
 	@ResponseBody
 	public String faqoticeList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Faq> list = faqService.searchFaqList(map);
-		resultMap.put("faqList", list);
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = faqService.searchFaqList(map);
 		return new Gson().toJson(resultMap);
 	}
 	

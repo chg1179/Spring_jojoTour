@@ -11,7 +11,7 @@ public interface FaqService {
 
 	
 	//faq 리스트 출력
-	List<Faq> searchFaqList(HashMap<String, Object> map);
+	HashMap<String, Object> searchFaqList(HashMap<String, Object> map);
 	// faq 보기
 	HashMap<String, Object> searchFaqInfo(HashMap<String, Object> map);
 	//faq 삭제

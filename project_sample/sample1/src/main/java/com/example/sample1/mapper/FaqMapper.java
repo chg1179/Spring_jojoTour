@@ -16,6 +16,7 @@ public interface FaqMapper {
 	int insertFaq(HashMap<String, Object> map);
 	// faq 검색
 	List<Faq> selectFaqList(HashMap<String, Object> map);
+	int selectCnt(HashMap<String, Object> map);
 	// faq 보기
 	Faq selectFaqInfo(HashMap<String, Object> map);
 	// faq 삭제

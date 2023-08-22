@@ -8,10 +8,46 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
 <script src="https://unpkg.com/vue2-editor@2.3.11/dist/index.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuejs-paginate@latest"></script>
+<script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-<style>
+	.pagination {
+       margin:24px;
+       display: inline-flex;
+   }
+   .pagination li {
+      min-width:32px;
+      padding:2px 6px;
+      text-align:center;
+      margin:0 3px;
+      border-radius: 6px;
+      border:1px solid #eee;
+      color:#666;
+      display : inline;
+   }
+   .pagination li:hover {
+       background: #E4DBD6;
+   }
+   .pagination li.active {
+       background-color : #E7AA8D;
+       color:#fff;
+   }
+   .pagination li.active a {
+       color:#fff;
+   }
+   .paginate_box a {
+       color:#666;
+       text-decoration: none;
+       width : 100%;
+       height : 100%;
+       display : block;
+   }
+   *{
+	margin: 0;
+	padding: 0;
+   }
 	table{
 		border : 1px solid black;
 		border-collapse: collapse;
@@ -21,7 +57,7 @@
 		border : 1px solid black;
 		padding : 5px 10px;
 	}
-</style>
+
 </style>
 </head>
 <body>
@@ -60,6 +96,18 @@
 				<th>{{item.fWriteTime}}</th>	
 			</tr>	
 		</table>
+				<template>
+					<paginate
+					:page-count="pageCount"
+					:page-range="3"
+					:margin-pages="2"
+					:click-handler="fnSearch"
+					:prev-text="'<'"
+					:next-text="'>'"
+					:container-class="'pagination'"
+					:page-class="'page-item'">
+					</paginate>
+				</template>
 	<div  v-if="status == 'A'">
 		<button @click="fnRemove">삭제</button>
 		<button @click="fnACheck">전체선택</button>
@@ -71,6 +119,7 @@
 </body>
 </html>
 <script>
+Vue.component('paginate', VuejsPaginate)
 var app = new Vue({
 	el : '#app',
 	data : {
@@ -79,23 +128,50 @@ var app = new Vue({
 		status : "${sessionStatus}",
 		selectItem:[],
 		category:"",
-		mySelect:""
+		mySelect:"",
+		selectPage: 1,
+		pageCount: 1,
+		cnt : 0,
+		indexNo : 0
 		
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var param = {search : self.search, category : self.mySelect};
+			var startNum = ((self.selectPage-1) * 9);
+    		var lastNum = 9;
+			var param = {search : self.search, category : self.mySelect, startNum : startNum, lastNum : lastNum};
 			$.ajax({
                 url : "list.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	console.log(data);
-                	self.list = data.faqList;
+                   	self.list = data.list;
+                	self.cnt = data.cnt;
+            		self.pageCount = Math.ceil(self.cnt / 10);
+                	console.log(self.list);
                 }
             }); 
+		},
+		fnSearch : function(pageNum){
+			var self = this;
+			self.selectPage = pageNum;
+			var startNum = ((pageNum-1) * 10);
+			var lastNum = 10;
+			var param = {search: self.search,startNum : startNum, lastNum : lastNum};
+			$.ajax({
+				url : "list.dox",
+				dataType : "json",
+				type : "POST",
+				data : param,
+				success : function(data) {
+					self.list = data.list;
+					self.cnt = data.cnt;
+					self.pageCount = Math.ceil(self.cnt / 10);
+					
+				}
+			});
 		},
 
 		fnRemove : function(){

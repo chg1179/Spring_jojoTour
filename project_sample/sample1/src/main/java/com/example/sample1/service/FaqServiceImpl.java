@@ -26,9 +26,12 @@ public class FaqServiceImpl implements FaqService{
 	}
 	
 	@Override
-	public List<Faq> searchFaqList(HashMap<String, Object> map) {
+	public HashMap<String, Object> searchFaqList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return faqMapper.selectFaqList(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", faqMapper.selectFaqList(map));
+		resultMap.put("cnt", faqMapper.selectCnt(map));
+		return resultMap;
 	}
 	
 	@Override
