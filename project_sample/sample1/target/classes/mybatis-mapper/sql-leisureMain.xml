@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.sample1.mapper.LeisureMainMapper">
+
+	<select id="selectLeisureList" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">
+		SELECT *
+		FROM T2_LEISURE_TBL L
+		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
+		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER'
+		LIMIT #{startNum}, #{lastNum}
+	</select>
+	<select id="selectWaterLeisureCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM T2_LEISURE_TBL L
+		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
+		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER'
+	</select>
+	<select id="selectWaterLeisureKind" resultType="com.example.sample1.model.Leisure">
+		SELECT *
+		FROM T2_LEISURE_TBL L
+		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
+		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER' AND LEISURE_KIND = #{kind}
+		LIMIT #{startNum}, #{lastNum}
+	</select>
+	<select id="selectWaterLeisureKindCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM T2_LEISURE_TBL L
+		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
+		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER' AND LEISURE_KIND = #{kind}
+	</select>
+</mapper>
