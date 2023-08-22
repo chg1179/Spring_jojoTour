@@ -70,7 +70,7 @@
 	  margin: 0 auto;
 	  width: 80%;
 	  max-width: 564px;
-	  display:
+	  display: flex
 	}
 	#board-search .search-window .search-wrap input {
 	  height: 40px;

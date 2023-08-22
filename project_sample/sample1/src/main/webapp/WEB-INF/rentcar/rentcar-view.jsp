@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
@@ -30,7 +30,8 @@
 		<p>인수장소 : {{info.rAddr}} {{info.rDetailAddr}}</p> 
 		
 	</div>
-		<span><button @click="fnWish(info.rentNo)">찜하기</button></span>
+		<span><a @click="fnWish(info.rentNo)"><i class="fa-regular fa-heart" style="color: #ff0000;"></i>찜하기</a></span>
+		<i class="fa-solid fa-heart" style="color: #ff0000;"></i>
 		<span><button>예약하기</button></span>
 		<span><button @click="fnBack">뒤로가기</button></span>
 	</div>
@@ -84,10 +85,6 @@ var app = new Vue({
 		},
 		fnWish : function(rentNo){
 			var self = this;
-			if(!confirm("찜목록에 추가하시겠습니까?")){
-				alert("취소되었습니다.");
-				return;
-			}
 			var param = {rentNo : rentNo, uId:self.uId};
 			$.ajax({
                 url : "jjimAdd.dox",
