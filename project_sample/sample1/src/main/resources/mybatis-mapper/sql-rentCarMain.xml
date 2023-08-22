@@ -55,6 +55,7 @@
 		<if test="minPay != '' and minPay != null or maxPay != '' and maxPay != null"> 
 			AND RENT_PRICE BETWEEN #{minPay}*10000 AND #{maxPay}*10000
 		</if>
+		LIMIT #{startNum}, #{lastNum}
 	</select>
 	<select id="selectCarSearchListCnt" resultType="int">
 		SELECT COUNT(*)

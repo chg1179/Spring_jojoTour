@@ -7,6 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
+<script src="../jquery-1.12.4.js"></script>
 
 <meta charset="EUC-KR">
 <title>Insert title here</title>
@@ -49,6 +50,9 @@
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
+	width : 1200px;
+	position: relative;
+	overflow: hidden;
    }
    
 	.rentcar_list{
@@ -120,18 +124,109 @@
        height : 100%;
        display : block;
    }
-   .rentcar_checkbox{
-	width: 200px;
-	height: 600px;
-	background-color: aqua;
-	position: absolute;
+   
+   	/* 검색기능 */
+   .rentcar_search_box_wrap{    
+   	position: absolute;
+    z-index: 99;
+    right: 0;
+    
    }
-   .rentcar_ham span{
+   .rentcar_search_box{
+	display: flex;
+	position: absolute;
+	right: -350px;
+	transition-duration: 0.2s;
+	background-color: #fff;
+   }
+   /* 햄버거 버튼 */
+   .rentcar_search_ham{
 	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 5px;
+	right: 20px;
+	transition-duration: 0.2s;
+	cursor: pointer;
+   }
+   .rentcar_search_ham span{
+	width: 100%;
 	height: 2px;
-	background-color: black;
+	background-color: #000;
 	display: block;
-	margin-bottom: 5px;
+	position: absolute;
+	transition-duration: .2s;
+   }
+   .rentcar_search_ham span:nth-child(2){
+	margin-top: 10px;
+   }
+   .rentcar_search_ham span:nth-child(3){
+	margin-top: 20px;
+   }
+   #rentcar_search_checkbox{
+	display: none;
+   }
+   #rentcar_search_checkbox:checked ~ .rentcar_search_ham{
+	right: 350px;
+   }
+   #rentcar_search_checkbox:checked ~ .rentcar_search_box{
+	right: 0;
+   }
+   #rentcar_search_checkbox:checked + .rentcar_search_ham span:nth-child(1){
+	transform: rotate(45deg);
+	margin-top: 10px;
+   }
+   #rentcar_search_checkbox:checked + .rentcar_search_ham span:nth-child(2){
+	opacity: 0;
+   }
+   #rentcar_search_checkbox:checked + .rentcar_search_ham span:nth-child(3){
+	transform: rotate(-45deg);
+	margin-top: 10px;
+   }
+   .rentcar_search_inbox{
+	width: 300px;
+	padding: 20px;
+	border: 1px solid;
+   }
+   .rentcar_search_name{
+	margin-bottom: 20px;
+   }
+   .rentcar_search_name input{
+	width: 200px;
+	padding: 5px 20px;
+	border-radius: 10px;
+	border: 1px solid;
+	display: block;
+	margin: 0 auto;
+   }
+   .rentcar_search_price{
+	display: flex;
+	justify-content: center;
+   }
+   .rentcar_search_price input{
+	width: 40px;
+	height: 20px;
+	border: 1px solid;
+	padding: 0 0 0 2px;
+   }
+   .rentcar_search_btn{
+	margin-top: 20px;
+   }
+   .rentcar_search_btn button{
+	width: 80%;
+	display: block;
+	margin: 0 auto;
+	padding: 5px 10px;
+	border-radius: 20px;
+	border: none;
+	cursor: pointer;
+	background: rgb(82, 82, 82);
+	transition-duration: 1s;
+	color: #fff;
+	font-weight: bold;
+   }
+   .rentcar_search_btn button:hover{
+    background: linear-gradient(to right, #ff9900, #ff3333);
    }
 </style>
 </head>
@@ -166,13 +261,30 @@
 					<label class="rentcar_btn" for="v_rentcar">승합차</label>
 				</li>
 			</ul>
-			<div class="rentcar_search_box">
-				<div class="rentcar_search_name">차량명 : <input type="text" v-model="rentCarKeyword" @keyup.enter="fnRentCarSearch"></div>
-				<div class="rentcar_search_price">가격 : <input type="text" v-model="minPay">만원 ~ <input type="text" v-model="maxPay" @keyup.enter="fnRentCarSearch">만원</div>
-				<div class="rentcar_search_btn"><button @click="fnRentCarSearch">검색</button></div>
-			</div>
+
 			<div class="rentcar_main_con">
 				<div class="rentcar_main_wrap">
+							<div class="rentcar_search_box_wrap">
+				<input type="checkbox" id="rentcar_search_checkbox">
+				<label class="rentcar_search_ham" for="rentcar_search_checkbox">
+					<span></span>
+					<span></span>
+					<span></span>
+				</label>
+				<div class="rentcar_search_box">
+					<div class="rentcar_search_inbox">
+						<div class="rentcar_search_name"><input type="text" v-model="rentCarKeyword" placeholder="차량명 또는 모델" @keyup.enter="fnRentCarSearch"></div>
+						<div class="rentcar_search_price">
+							<div class="rentcar_search_price_inbox">
+								가격 : 
+								<input type="text" v-model="minPay">만원 ~ 
+								<input type="text" v-model="maxPay" @keyup.enter="fnRentCarSearch">만원
+							</div>
+						</div>
+						<div class="rentcar_search_btn"><button @click="fnRentCarSearch">검색</button></div>
+					</div>
+				</div>
+			</div>
 					<div v-for="item in list" class="rentcar_main_box" @click="fnRentCarView(item.rentNo)">
 						<div class="rentcar_main_img">
 							<img :src="item.imgPath" alt="">
@@ -245,7 +357,7 @@ var app = new Vue({
 			var lastNum = 9;
 			var nparmap = {startNum : startNum, lastNum : lastNum, rentCarKeyword : self.rentCarKeyword, rentKind : self.rentKind, minPay : self.minPay, maxPay : self.maxPay};
 			$.ajax({
-				url : "rentCarSearchList.dox",
+				url : "rentCarMain.dox",
 				dataType : "json",
 				type : "POST",
 				data : nparmap,
@@ -308,5 +420,8 @@ var app = new Vue({
 			self.fnGetList();
 		}
 	}// created
+});
+$(document).ready(function(){
+
 });
 </script>
