@@ -22,4 +22,6 @@ public interface MyPageService {
 	int updateInquiry(HashMap<String, Object> map);
 	// 찜목록
 	List<MyPage> searchJjim(HashMap<String, Object> map);
+	// 선택한찜목록 삭제
+	int removeJjimCheck(HashMap<String, Object> map);
 }

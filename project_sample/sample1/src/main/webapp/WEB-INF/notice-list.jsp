@@ -273,7 +273,7 @@
 					<th scope="col" class="th-date">등록 날짜</th>
 				</tr>
 			<tbody>
-					<tr v-for="(item, index) in list">
+				<tr v-for="(item, index) in list">
 					<th v-if="status == 'A'"><input type="checkbox" v-model="selectItem" :value="item.nNo"></th>
 					<th>{{item.nNo}}</th>
 					<th><a @click="fnView(item.nNo)" href="javascript:;">{{item.nTitle}}</a></th>

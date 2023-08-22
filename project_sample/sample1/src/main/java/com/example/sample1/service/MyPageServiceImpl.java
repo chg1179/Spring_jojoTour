@@ -92,6 +92,12 @@ public class MyPageServiceImpl implements MyPageService{
 		// TODO Auto-generated method stub
 		return myPageMapper.selectJjim(map);
 	}
+
+	@Override
+	public int removeJjimCheck(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.deleteJjimCheck(map);
+	}
 	
 
 

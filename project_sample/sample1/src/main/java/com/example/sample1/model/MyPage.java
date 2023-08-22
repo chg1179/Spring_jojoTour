@@ -23,6 +23,21 @@ public class MyPage {
 	private int rStar;
 	private int recommend;
 	
+	private int roomNo;
+	private String roomName;
+	private int roomPrice;
+	private double roomSales;
+	
+	private int rentNo;
+	private String rentName;
+	private String rentPrice;
+	private String rentSales;
+	
+	private int leisureNo;
+	private String leisureName;
+	private String leisurePrice;
+	private String leisureSales;
+	
 	public int getOrderNo() {
 		return orderNo;
 	}

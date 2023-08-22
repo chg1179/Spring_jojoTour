@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.sample1.model.Inquiry;
 import com.example.sample1.model.MyPage;
 import com.example.sample1.service.MyPageService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -173,6 +175,21 @@ public class MyPageController {
 	public String inquiryEdit(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		myPageService.updateInquiry(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+	//체크박스를 이용해 게시글 삭제
+	@RequestMapping(value = "/my/removeJjimCheck.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String removeJjimCheck(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		System.out.println(map.get("selectItem"));
+		String json = map.get("selectItem").toString(); //Object 형으로 받고 있기 때문에 오류가 난다. 문자열으로 리턴
+		ObjectMapper mapper = new ObjectMapper();
+		List<Object> list = mapper.readValue(json, new TypeReference<List<Object>>(){});
+		map.put("list", list);//쿼리에 list 라는 값으로 보내줬음을 기억하
+		myPageService.removeJjimCheck(map);
+		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
 }

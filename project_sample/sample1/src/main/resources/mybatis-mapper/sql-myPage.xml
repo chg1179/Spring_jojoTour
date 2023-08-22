@@ -84,4 +84,14 @@
 			I_UPDATE_TIME = NOW()
 		WHERE I_NO = #{iNo}
 	</update>
+	
+	<!-- 찜목록 딜리트  -->
+	<delete id="deleteJjimCheck" parameterType="hashmap">
+		DELETE
+		FROM T2_JJIM_TBL
+		WHERE PRODUCT_NO IN
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
 </mapper>
