@@ -35,6 +35,7 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public int editRoom(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
+		
 		return roomMapper.updateRoom(map);
 	}
 
@@ -51,9 +52,18 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public int addRoom(HashMap<String, Object> map) {
+	public HashMap<String, Object> addRoom(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return roomMapper.insertRoom(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		roomMapper.insertRoom(map);
+		resultMap.put("roomNo", map.get("roomNo"));
+		return resultMap;
+	}
+
+	@Override
+	public int addRoomImg(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return roomMapper.insertRoomImg(map);
 	}
 	
 

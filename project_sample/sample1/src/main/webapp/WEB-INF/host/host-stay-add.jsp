@@ -166,7 +166,7 @@ var app = new Vue({
 	           		self.upload(form);
 	       	     	
                 	alert("숙소가 등록되었습니다.");
-               		//location.href="/host/stay.do";
+               		location.href="/host/stay.do";
                		
                 }
             }); 

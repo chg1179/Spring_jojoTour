@@ -69,24 +69,13 @@
 			</tr>
 			<tr>
 			<tr>
-				<th>썸네일이미지</th>
+				<th>상세정보이미지</th>
 				<td>
 					<div class="filebox">
 					    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly>
 					    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
 					    <label for="fileY">이미지선택</label> 
 					    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<th>상세정보이미지</th>
-				<td>
-					<div class="filebox">
-					    <input class="upload-name" id="fileNName" placeholder="첨부파일" readonly>
-					    <a href="javascript:;" v-if="fileNFlg" @click="fnDelFile('N')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
-					    <label for="fileN">이미지선택</label> 
-					    <input type="file" accept=".gif, .jpg, .png" id="fileN" name="fileN" @change="fnFlgChange('N')">
 					</div>
 				</td>
 			</tr>
@@ -190,6 +179,9 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
+                	for(var i = 0; self.){
+                		
+                	}
                 	
                 	alert("수정되었습니다.");
                 	location.href = "stay.do";
@@ -225,6 +217,33 @@ var app = new Vue({
                 }
             }
         },
+        
+        
+        fnGetImgList : function(){
+			var self = this;
+			var param = {rentNo : self.rentNo};
+			$.ajax({
+                url : "carImgList.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	self.imgList = data.carImgList;
+                	// 필수로 첨부파일을 등록했기 때문에 수정시에는 X(파일삭제) 출력
+        			self.fileYFlg = true;
+        			self.fileNFlg = true;
+                	// 상대 경로 수정 (한 칸 더 이전 경로)
+                	for(var i=0;i< self.imgList.length;i++){
+                		self.imgList[i].imgPath = "../"+self.imgList[i].imgPath;
+                		if(self.imgList[i].mainYN == 'Y'){
+                			document.getElementById("fileYName").value = self.imgList[i].imgName;
+                		} else if(self.imgList[i].mainYN == 'N'){
+                			document.getElementById("fileNName").value = self.imgList[i].imgName;
+                		}
+                	}
+                }
+            }); 
+		},
     	 // 파일 업데이트
 	    fileChange : function(form){
 	    	var self = this;

@@ -32,4 +32,7 @@ public interface RoomMapper {
 	// 숙박 패키지 신청 삭제
 	int deleteRoomPack(HashMap<String, Object> map);
 	
+	// 룸 이미지 추가
+	int insertRoomImg(HashMap<String, Object> map);
+	
 }
