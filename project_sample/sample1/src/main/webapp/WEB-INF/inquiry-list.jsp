@@ -193,7 +193,8 @@ var app = new Vue({
 			}
 		},
 		fnMove : function(){
-			location.href = "add.do";
+			var self = this;
+			$.pageChange("add.do", { iNo: "", cnt : self.cnt });
 		}
 	}, // methods
 	created : function() {

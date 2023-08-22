@@ -26,6 +26,15 @@ public class InquiryServiceImpl implements InquiryService{
 		System.out.println(inquiryMapper.selectCnt(map));
 		return resultMap;
 	}
+	
+	@Override
+	public HashMap<String, Object> maxINo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("cnt", inquiryMapper.noCheck(map));
+		resultMap.put("maxINo", inquiryMapper.maxNo(map));
+		return resultMap;
+	}
 
 	@Override
 	public int addInquiry(HashMap<String, Object> map) {
@@ -33,14 +42,12 @@ public class InquiryServiceImpl implements InquiryService{
 		return inquiryMapper.insertInquiry(map);
 	}
 
-	
 	@Override
 	public HashMap<String, Object> searchInquiryInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		inquiryMapper.inquiryCnt(map);
 		resultMap.put("info", inquiryMapper.selectInquiryInfo(map));
-		
 		return resultMap;
 	}
 

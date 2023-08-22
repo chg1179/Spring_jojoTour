@@ -68,6 +68,15 @@ public class InquiryController {
 		return new Gson().toJson(resultMap);
 	}
 	
+	// 유저 및 호스트가 작성한 게시글의 iNo pk 최댓값 찾기
+	@RequestMapping(value = "/inquiry/maxINo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String maxINo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap = inquiryService.maxINo(map);
+		return new Gson().toJson(resultMap);
+	}	
+	
 	@RequestMapping(value = "/inquiry/add.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String inquiryAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

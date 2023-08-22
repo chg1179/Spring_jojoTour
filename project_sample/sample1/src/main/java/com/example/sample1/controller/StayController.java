@@ -156,7 +156,7 @@ public class StayController {
 	}
 	
 	// 숙소 이미지 추가
-	@RequestMapping("/stayFileUpload.dox")
+	@RequestMapping("/host/stayFileUpload.dox")
     public String result(@RequestParam("files") MultipartFile multi, @RequestParam("stayNo") int stayNo, HttpServletRequest request,HttpServletResponse response, Model model)
     {
         String url = null;

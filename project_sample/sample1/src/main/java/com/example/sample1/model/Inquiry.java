@@ -17,5 +17,4 @@ public class Inquiry {
 	private String iPassword;
 	private String answerYn;
 	private String delyn;
-	private int parentNo;
 }

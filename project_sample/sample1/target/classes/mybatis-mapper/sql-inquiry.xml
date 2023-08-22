@@ -17,6 +17,18 @@
 		WHERE DELYN = 'N'
 	</select>
 	
+	<select id="noCheck" resultType="int">
+		SELECT COUNT(*)
+		FROM T2_INQUIRY_TBL
+	</select>
+	
+	<select id="maxNo" resultType="int">
+		SELECT MAX(I_NO)
+		FROM T2_INQUIRY_TBL I
+		INNER JOIN T2_USER_TBL U ON I.U_ID = U.U_ID
+		WHERE U.STATUS IN ('U','H')
+	</select>
+	
 	<insert id="insertInquiry" parameterType="hashmap">
 	    INSERT INTO T2_INQUIRY_TBL 
 	        (I_NO, U_ID, CATEGORY_NO, I_TITLE, I_CONTENT,  I_HITS, I_WRITE_TIME, I_UPDATE_TIME, PRIVATE_YN, ANSWER_YN, DELYN)

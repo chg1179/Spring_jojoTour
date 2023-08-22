@@ -162,10 +162,11 @@ var app = new Vue({
                 	var form = new FormData();
 	       	        form.append( "files",  $("#fileY")[0].files[0]);
 	       	     	form.append( "stayNo",  data.stayNo); // 제품 pk
+	       	     	console.log(data.stayNo);
 	           		self.upload(form);
 	       	     	
                 	alert("숙소가 등록되었습니다.");
-               		location.href="/host/stay.do";
+               		//location.href="/host/stay.do";
                		
                 }
             }); 
