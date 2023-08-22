@@ -25,6 +25,8 @@ public interface MyPageMapper {
 	int editInquiry(HashMap<String, Object> map);
 	// 찜목록!
 	List<MyPage> selectJjim(HashMap<String, Object> map);
+	int selectCnt(HashMap<String, Object> map);
 	//체크한 찜목록 삭제
 	int deleteJjimCheck(HashMap<String, Object> map);
+	
 }

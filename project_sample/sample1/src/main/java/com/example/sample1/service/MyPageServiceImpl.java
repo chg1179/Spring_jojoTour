@@ -88,9 +88,12 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public List<MyPage> searchJjim(HashMap<String, Object> map) {
+	public HashMap<String, Object> searchJjim(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return myPageMapper.selectJjim(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("jjim", myPageMapper.selectJjim(map));
+		resultMap.put("cnt", myPageMapper.selectCnt(map));
+		return resultMap;
 	}
 
 	@Override
