@@ -291,7 +291,7 @@ public class StayController {
           return fileName;
       }
       
-   // 체크된 서비스 리스트
+   // 숙소 리스트
   	@RequestMapping(value = "/host/stayImgInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
   	@ResponseBody
   	public String stayImgList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

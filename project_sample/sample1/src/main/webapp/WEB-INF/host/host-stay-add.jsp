@@ -110,11 +110,7 @@ var app = new Vue({
 		selectStayType : "",
 		serviceNo : 0,
 		typeList : [],
-		info : {
-			stayName : "",
-			sAddr : "",               
-			sDetailAddr : ""
-		},
+		info : {},
 		fileYFlg : false
 	},// data
 	methods : {
@@ -166,7 +162,7 @@ var app = new Vue({
 	           		self.upload(form);
 	       	     	
                 	alert("숙소가 등록되었습니다.");
-              // 		location.href="/host/stay.do";
+                	location.href="/host/stay.do";
                		
                 }
             }); 

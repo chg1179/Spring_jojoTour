@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.sample1.mapper.RoomMapper;
 import com.example.sample1.model.Room;
+import com.example.sample1.model.RoomImg;
 
 @Service
 public class RoomServiceImpl implements RoomService {
@@ -57,6 +58,7 @@ public class RoomServiceImpl implements RoomService {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		roomMapper.insertRoom(map);
 		resultMap.put("roomNo", map.get("roomNo"));
+		//System.out.println(map.get("roomNo"));
 		return resultMap;
 	}
 
@@ -65,6 +67,19 @@ public class RoomServiceImpl implements RoomService {
 		// TODO Auto-generated method stub
 		return roomMapper.insertRoomImg(map);
 	}
+
+	@Override
+	public int editRoomImg(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return roomMapper.updateRoomImg(map);
+	}
+
+	@Override
+	public RoomImg searchRoomImgInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return roomMapper.selectRoomImgInfo(map);
+	}
+
 	
 
 }

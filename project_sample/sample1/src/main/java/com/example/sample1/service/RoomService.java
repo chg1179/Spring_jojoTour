@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.example.sample1.model.Room;
-import com.example.sample1.model.Stay;
+import com.example.sample1.model.RoomImg;
 
 public interface RoomService {
 	// 방 목록 출력
@@ -30,4 +30,10 @@ public interface RoomService {
 	
 	// 룸 이미지 추가
 	int addRoomImg(HashMap<String, Object> map);
+	
+	// 숙소 이미지 수정
+	int editRoomImg(HashMap<String, Object> map);
+	
+	// 숙소 이미지 출력
+	RoomImg searchRoomImgInfo(HashMap<String, Object> map);
 }

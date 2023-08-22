@@ -64,6 +64,13 @@
 				<th>수정일</th>
 				<td>{{info.roomUpdateTime}}</td>
 			</tr>
+			<tr>
+				<th>상세정보 이미지</th>
+				<td>
+					<div>{{imgInfo.imgName}}</div>
+					<img :src="imgInfo.imgPath">
+				</td>
+			</tr>
 		</table>
 		<div>
 			<span><button @click="fnEdit">수정</button></span>
@@ -81,7 +88,8 @@ var app = new Vue({
 		roomNo : "${map.roomNo}",
 		stayNo : "${map.stayNo}",
 		sales : 0,
-		discount : 0
+		discount : 0,
+		imgInfo : {}
 		
 	},// data
 	methods : {
@@ -97,8 +105,23 @@ var app = new Vue({
                 	self.info = data.roomInfo;
                 	console.log(self.info);
               	 	self.sales = 100 - (self.info.roomSales * 100);
+              	 	self.fnGetImgList();
                 }
             }); 
+		},
+		fnGetImgList : function(){
+			var self = this;
+			var param = {roomNo : self.roomNo};
+			$.ajax({
+                url : "roomImgInfo.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	self.imgInfo = data.imgInfo;
+                	console.log(self.imgInfo);
+                }
+            }); 			
 		},
 		fnRemove : function(){
 			var self = this;

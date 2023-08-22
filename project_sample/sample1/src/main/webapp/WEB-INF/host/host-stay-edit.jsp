@@ -73,7 +73,7 @@
 				<th>상세정보이미지</th>
 				<td>
 					<div class="filebox">
-					    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly v-model="imgInfo.imgName">
+					    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly>
 					    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
 					    <label for="fileY">이미지선택</label> 
 					    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
@@ -83,7 +83,7 @@
 		</table>
 		<div>
 			<button @click="fnUpdate">수정</button>
-			<span><button @click="">취소</button></span>
+			<span><button @click="fnBack">되돌아가기</button></span>
 		</div>
 	</div>
 </body>
@@ -209,7 +209,7 @@ var app = new Vue({
         			self.fileChange(form);
         			
                 	alert("수정되었습니다.");
-            //    	location.href = "stay.do";
+                	location.href = "stay.do";
                 	
                 }
             }); 
@@ -280,15 +280,19 @@ var app = new Vue({
                 }
             }
         },
+        fnBack : function(){
+			location.href = "../host/stay.do";        	
+        }
 		
 	}, // methods
 	created : function() {
 		var self = this;
 		if(self.stayNo != ""){
+			self.fnGetOption();
 			self.fnGetInfo();
 			self.fnGetImgInfo();
 		}
-		self.fnGetOption();
+		
 	}// created
 });
 </script>

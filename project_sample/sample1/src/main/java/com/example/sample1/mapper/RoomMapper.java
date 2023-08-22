@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.sample1.model.Room;
-import com.example.sample1.model.Stay;
+import com.example.sample1.model.RoomImg;
 
 @Mapper
 public interface RoomMapper {
@@ -34,5 +34,11 @@ public interface RoomMapper {
 	
 	// 룸 이미지 추가
 	int insertRoomImg(HashMap<String, Object> map);
+	
+	// 룸 이미지 수정
+	int updateRoomImg(HashMap<String, Object> map);
+	
+	// 룸 이미지 정보
+	RoomImg selectRoomImgInfo(HashMap<String, Object> map);
 	
 }

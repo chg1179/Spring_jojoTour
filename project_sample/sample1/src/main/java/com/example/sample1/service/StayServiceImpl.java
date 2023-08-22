@@ -71,7 +71,6 @@ public class StayServiceImpl implements StayService{
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		stayMapper.updateStayInfo(map);
 		
-		
 		List<Object> list = (List<Object>) map.get("jsonCheckList");
 		for(int i=0;i<list.size();i++) {
 			map.put("service", list.get(i));

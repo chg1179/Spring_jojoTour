@@ -71,7 +71,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<button @click="fnRoomAdd">객실 등록</button>
+		<button @click="fnRoomAdd(info.roomNo)">객실 등록</button>
 	</div>
 </body>
 </html>
@@ -81,15 +81,11 @@ var app = new Vue({
 	data : {
 		peopleMaxValue : "",
 		uId : "${sessionId}",
+		status : "${sessionStatus}",
 		stayNo : "${map.stayNo}",
+		status : "${sessionStatus}",
 		serviceNo : 0,
-		info : {
-			roomNo : 0,
-			roomName : "",
-			roomPrice : "",
-			roomSales : "",
-			peopleMax : 0,
-		},
+		info : {},
 		selectList : [
 			{value:"1", text : "1 명"},			
 			{value:"2", text : "2 명"},			
@@ -108,20 +104,20 @@ var app = new Vue({
 	methods : {
 		
 		// 룸 추가
-		fnRoomAdd : function(){
+		fnRoomAdd : function(roomNo){
 			var self = this;
 			if(!confirm("객실을 등록하시겠습니까?")){
 				alert("취소되었습니다.");
 				return;
 			}
+			var param = self.info;
 			var param = {
 				roomName : self.info.roomName,
 				roomPrice : self.info.roomPrice,
 				peopleMax : self.peopleMaxValue,
 				stayNo : self.stayNo,
 				uId : self.uId,
-				roomNo : self.info.roomNo,
-				
+				roomNo : roomNo,
 			};
 			$.ajax({
                 url : "roomAdd.dox",
@@ -156,6 +152,7 @@ var app = new Vue({
 		          }
 		      });
 		},
+		
 		//파일이 선택됐는지 확인 (선택됐다면 x버튼이 나온다.)
 		fnFlgChange : function(){
 			var self = this;
@@ -183,7 +180,11 @@ var app = new Vue({
 	}, // methods
 	created : function() {
 		var self = this;
-	//	self.fnGetOption();
+		if(self.status !== "H"){
+			alert("호스트만 접근할 수 있습니다.");
+			location.href="../../main.do";
+		} 
+		
 	}// created
 });
 </script>
