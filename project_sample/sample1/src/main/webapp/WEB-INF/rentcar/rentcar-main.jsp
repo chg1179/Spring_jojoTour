@@ -243,9 +243,9 @@ var app = new Vue({
 			self.selectPage = pageNum;
 			var startNum = ((pageNum-1) * 9);
 			var lastNum = 9;
-			var nparmap = {startNum : startNum, lastNum : lastNum};
+			var nparmap = {startNum : startNum, lastNum : lastNum, rentCarKeyword : self.rentCarKeyword, rentKind : self.rentKind, minPay : self.minPay, maxPay : self.maxPay};
 			$.ajax({
-				url : "rentCarMain.dox",
+				url : "rentCarSearchList.dox",
 				dataType : "json",
 				type : "POST",
 				data : nparmap,
@@ -284,7 +284,9 @@ var app = new Vue({
 		},
 		fnRentCarSearch : function(){
 			var self = this;
-            var nparmap = {rentCarKeyword : self.rentCarKeyword, rentKind : self.rentKind, minPay : self.minPay, maxPay : self.maxPay};
+			var startNum = ((self.selectPage-1) * 9);
+    		var lastNum = 9;
+            var nparmap = {startNum : startNum, lastNum : lastNum, rentCarKeyword : self.rentCarKeyword, rentKind : self.rentKind, minPay : self.minPay, maxPay : self.maxPay};
             $.ajax({
                 url : "rentCarSearchList.dox",
                 dataType:"json",	
@@ -292,7 +294,8 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	self.list = data.list;
-                	console.log(data.list);
+					self.cnt = data.cnt;
+					self.pageCount = Math.ceil(self.cnt / 9);
                 }
             }); 
 		}

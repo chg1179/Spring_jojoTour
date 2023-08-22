@@ -48,9 +48,12 @@ public class RentCarMainServiceImpl implements RentCarMainService{
 	}
 	//렌트카 검색
 	@Override
-	public List<RentCar> searchCarSearchList(HashMap<String, Object> map) {
+	public HashMap<String, Object> searchCarSearchList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return rentCarMainMapper.selectCarSearchList(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", rentCarMainMapper.selectCarSearchList(map));
+		resultMap.put("cnt", rentCarMainMapper.selectCarSearchListCnt(map));
+		return resultMap;
 	}
 
 	@Override

@@ -94,8 +94,13 @@ public class RentCarMainController {
 	@ResponseBody
 	public String rentCarSearchList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<RentCar> list = rentCarMainService.searchCarSearchList(map);
-		resultMap.put("list", list);
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = rentCarMainService.searchCarSearchList(map);
+	    System.out.println(map);
+	    System.out.println(resultMap);
 		return new Gson().toJson(resultMap);
 	}
 	//숙소 찜 인서트

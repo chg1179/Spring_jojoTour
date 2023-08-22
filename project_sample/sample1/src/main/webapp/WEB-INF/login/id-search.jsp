@@ -17,7 +17,7 @@
         align-items: center;
         justify-content: center;
         height: 100vh;
-        margin-top : -200px;
+        margin-top : -100px;
     }
     .id_search_inner{
         text-align: center;
@@ -51,8 +51,7 @@
         color: white;
     }
     .id_search_btn_box button:hover{
-        background-color: #FFA41B;
-        color: black;
+        background: linear-gradient(to right, #ff9900, #ff3333);
     }
 </style>
 </head>

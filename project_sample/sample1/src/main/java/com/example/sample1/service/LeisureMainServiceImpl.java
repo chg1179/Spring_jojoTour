@@ -60,6 +60,15 @@ public class LeisureMainServiceImpl implements LeisureMainService{
 		return resultMap;
 	}
 
+	@Override
+	public HashMap<String, Object> searchGroundSearchList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", leisureMainMapper.selectGroundSearchList(map));
+		resultMap.put("cnt", leisureMainMapper.selectGroundLeisureSearchCnt(map));
+		return resultMap;
+	}
+
 	
 
 

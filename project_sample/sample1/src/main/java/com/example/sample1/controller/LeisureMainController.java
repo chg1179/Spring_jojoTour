@@ -63,6 +63,18 @@ public class LeisureMainController {
 		resultMap = leisureMainService.searchWaterLeisureKindList(map);
 		return new Gson().toJson(resultMap);
 	}
+	//수상레저 검색 정보 출력
+	@RequestMapping(value = "/water/waterSearchList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String waterSearchList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = leisureMainService.searchWaterSearchList(map);
+		return new Gson().toJson(resultMap);
+	}
 	//지상레저 출력
 	@RequestMapping(value = "/ground/leisure.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -87,16 +99,16 @@ public class LeisureMainController {
 		resultMap = leisureMainService.searchGroundLeisureKind(map);
 		return new Gson().toJson(resultMap);
 	}
-	//수상레저 검색 정보 출력
-	@RequestMapping(value = "/water/waterSearchList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	//지상레저 검색 정보 출력
+	@RequestMapping(value = "/ground/groundSearchList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String waterSearchList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	public String groundSearchList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
 		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
 		map.put("startNum", startNum);
 		map.put("lastNum", lastNum);
-		resultMap = leisureMainService.searchWaterSearchList(map);
+		resultMap = leisureMainService.searchGroundSearchList(map);
 		return new Gson().toJson(resultMap);
 	}
 

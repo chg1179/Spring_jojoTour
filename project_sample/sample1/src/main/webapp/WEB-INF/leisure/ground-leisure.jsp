@@ -62,6 +62,10 @@ pagination {
 				<label class="ground_leisure_btn" for="horse">승마</label>
 			</li>
 		</ul>
+		<div>
+			<div>상품명 : <input type="text" v-model="groundKeyword" @keyup.enter="fnGroundSearch"></div>
+			<div @click="fnGroundSearch"><button>검색</button></div>
+		</div>
 		<div v-for="item in list">
 			<div><img :src="item.imgPath" alt=""></div>
 			<div>{{item.leisureName}}</div>
@@ -90,7 +94,8 @@ var app = new Vue({
         selectPage: 1,
         pageCount: 1,
         cnt : 0,
-        leisureKind : "${map.leisureKind}"
+        leisureKind : "${map.leisureKind}",
+        groundKeyword : ""
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -148,6 +153,24 @@ var app = new Vue({
 					self.pageCount = Math.ceil(self.cnt / 9);
                 }
             }); 
+		},
+		fnGroundSearch : function(){
+			var self = this;
+			var startNum = ((self.selectPage-1) * 9);
+    		var lastNum = 9;
+			var nparmap = {startNum : startNum, lastNum : lastNum, groundKeyword : self.groundKeyword, leisureKind : self.leisureKind};
+			 $.ajax({
+	                url : "../ground/groundSearchList.dox",
+	                dataType:"json",	
+	                type : "POST", 
+	                data : nparmap,
+	                success : function(data) { 
+	                	console.log(data);
+	                	self.list = data.list;
+						self.cnt = data.cnt;
+						self.pageCount = Math.ceil(self.cnt / 9);
+	                }
+	            }); 
 		}
 		
 	}, // methods

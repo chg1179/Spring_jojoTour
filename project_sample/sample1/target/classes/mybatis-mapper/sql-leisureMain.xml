@@ -35,6 +35,35 @@
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
 		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER' AND LEISURE_KIND = #{kind}
 	</select>
+		
+	<!-- 수상 레저 서치 리스트 -->
+	<select id="selectWaterSearchList" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">
+		SELECT *
+		FROM T2_LEISURE_TBL L
+		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
+		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER'
+		<if test="waterKeyword != '' and waterKeyword != null"> 
+			AND LEISURE_NAME LIKE CONCAT('%',#{waterKeyword},'%')
+		</if>
+		<if test="leisureKind != '' and leisureKind != null"> 
+			AND LEISURE_KIND = #{leisureKind}
+		</if>
+		LIMIT #{startNum}, #{lastNum}
+	</select>
+	<select id="selectWaterLeisureSearchCnt" resultType="int">
+		SELECT COUNT(*)
+		FROM T2_LEISURE_TBL L
+		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
+		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER'
+		<if test="waterKeyword != '' and waterKeyword != null"> 
+			AND LEISURE_NAME LIKE CONCAT('%',#{waterKeyword},'%')
+		</if>
+		<if test="leisureKind != '' and leisureKind != null"> 
+			AND LEISURE_KIND = #{leisureKind}
+		</if>
+	</select>
 	
 	<!-- 지상 레저 리스트 -->
 	<select id="selectGroundLeisureList" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">
@@ -69,31 +98,29 @@
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
 		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND' AND LEISURE_KIND = #{kind}
 	</select>
-	
-	<!-- 수상 레저 서치 리스트 -->
-	<select id="selectWaterSearchList" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">
+		<!-- 지상 레저 서치 리스트 -->
+	<select id="selectGroundSearchList" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">
 		SELECT *
 		FROM T2_LEISURE_TBL L
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
-		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER'
-		<if test="waterKeyword != '' and waterKeyword != null"> 
-			AND LEISURE_NAME LIKE CONCAT('%',#{waterKeyword},'%')
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND'
+		<if test="groundKeyword != '' and groundKeyword != null"> 
+			AND LEISURE_NAME LIKE CONCAT('%',#{groundKeyword},'%')
 		</if>
 		<if test="leisureKind != '' and leisureKind != null"> 
 			AND LEISURE_KIND = #{leisureKind}
 		</if>
 		LIMIT #{startNum}, #{lastNum}
 	</select>
-	
-	<select id="selectWaterLeisureSearchCnt" resultType="int">
+	<select id="selectGroundLeisureSearchCnt" resultType="int">
 		SELECT COUNT(*)
 		FROM T2_LEISURE_TBL L
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
-		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER'
-		<if test="waterKeyword != '' and waterKeyword != null"> 
-			AND LEISURE_NAME LIKE CONCAT('%',#{waterKeyword},'%')
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND'
+		<if test="groundKeyword != '' and groundKeyword != null"> 
+			AND LEISURE_NAME LIKE CONCAT('%',#{groundKeyword},'%')
 		</if>
 		<if test="leisureKind != '' and leisureKind != null"> 
 			AND LEISURE_KIND = #{leisureKind}
