@@ -20,13 +20,6 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	AdminMapper adminMapper;
 	
-	//유저리스트
-	@Override
-	public List<User> listUser(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return (List<User>) userMapper.userList(map);
-	}
-
 	//리퀘스트 넣기
 	@Override
 	public Integer requestInsert(HashMap<String, Object> map) {
@@ -78,5 +71,14 @@ public class AdminServiceImpl implements AdminService {
 	public int packageInsert(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return adminMapper.insertPackage(map);
+	}
+
+	@Override
+	public HashMap<String, Object> userPage(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", userMapper.pageUser(map));
+		resultMap.put("cnt", userMapper.cntUserPage(map));
+		return resultMap;
 	}
 }

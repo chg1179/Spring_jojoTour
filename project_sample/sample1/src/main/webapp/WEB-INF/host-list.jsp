@@ -5,10 +5,18 @@
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vuejs-paginate@latest"></script>
+<script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
+
 <meta charset="EUC-KR">
 <title>Host List</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-weight: lighter;
+	}
 	.custom-table {
 		margin : 30px auto;
 		width : 1400px;
@@ -26,11 +34,53 @@
 	td {
 		padding : 5px 10px;
 	}
+	 .pagination {
+        margin:24px;
+        display: inline-flex;
+    }
+    .pagination li {
+       min-width:32px;
+       padding:2px 6px;
+       text-align:center;
+       margin:0 3px;
+       border-radius: 6px;
+       border:1px solid #eee;
+       color:#666;
+       display : inline;
+   }
+   .pagination li:hover {
+       background: #E4DBD6;
+   }
+   .page-item a {
+       color:#666;
+       text-decoration: none;
+   }
+   .pagination li.active {
+       background-color : #E7AA8D;
+       color:#fff;
+   }
+   .pagination li.active a {
+       color:#fff;
+   }
+	.paginate_box{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+   }
+    .paginate_box a {
+       color:#666;
+       text-decoration: none;
+       width : 100%;
+       height : 100%;
+       display : block;
+   }
 </style>
 </head>
 <body>
 <jsp:include page="header.jsp" flush="true"></jsp:include>
+<jsp:include page="adminbar.jsp" flush="true"></jsp:include>
 <div id="app">
+<h2 style="color : #f8852a; text-align: center; margin-top: 30px;">호스트 목록</h2>
 	<table class="table custom-table table-striped table-bordered">
 	<thead class="thead-dark">
 		<tr>	
@@ -40,7 +90,7 @@
 			<th>이름</th>
 			<th>핸드폰</th>
 			<th>이메일</th>
-			<th>샹년월일</th>
+			<th>생년월일</th>
 			<th>주소</th>
 			<th>이벤트 수신</th>
 			<th>해제</th>
@@ -63,6 +113,20 @@
 			<td v-else><button @click="fnBan(item, 'N')" style="border-radius: 4px;">정지해제</button></td>
 		</tr>
 	</table>
+	<div class="paginate_box">
+		<template>
+			<paginate
+			:page-count="pageCount"
+			:page-range="3"
+			:margin-pages="2"
+			:click-handler="fnSearch"
+			:prev-text="'<'"
+			:next-text="'>'"
+			:container-class="'pagination'"
+			:page-class="'page-item'">
+			</paginate>
+		</template>
+	</div>
 	
 		
 		
@@ -71,17 +135,23 @@
 </body>
 </html>
 <script>
+Vue.component('paginate', VuejsPaginate)
 var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
 		status : "${sessionStatus}",
-		userList : []
+		userList : [],
+		selectPage: 1,
+	    pageCount: 1,
+	    cnt : 0
 	},// data
 	methods : {
 		fnGetList : function(){
             var self = this;
-            var nparmap = {};
+            var startNum = ((self.selectPage-1) * 10);
+            var lastNum = 10;
+            var nparmap = {startNum : startNum, lastNum : lastNum};
             $.ajax({
                 url : "/userList.dox",
                 dataType:"json",	
@@ -89,9 +159,30 @@ var app = new Vue({
                 data : nparmap,
                 success : function(data) { 
                 	self.list = data.list;
+                	self.cnt = data.cnt;
+                    self.pageCount = Math.ceil(self.cnt / 10)
                 }
             }); 
 		},
+		fnSearch : function(pageNum){
+	         var self = this;
+	         self.selectPage = pageNum;
+	         var startNum = ((pageNum-1) * 10);
+	         var lastNum = 10;
+	         var nparmap = {startNum : startNum, lastNum : lastNum};
+	         $.ajax({
+	            url : "list.dox",
+	            dataType : "json",
+	            type : "POST",
+	            data : nparmap,
+	            success : function(data) {
+	               self.list = data.list;
+	               self.cnt = data.cnt;
+	               self.pageCount = Math.ceil(self.cnt / 10);
+	            }
+	         });
+	      },
+
 		 pageChange : function(url, param) {
 				var target = "_self";
 				if(param == undefined){

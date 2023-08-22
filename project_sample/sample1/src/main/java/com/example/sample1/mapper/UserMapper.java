@@ -22,7 +22,11 @@ public interface UserMapper {
 	
 	User userCheckId(HashMap<String, Object> map);
 	
-	List<User> userList(HashMap<String, Object> map);
+	List<User> pageUser(HashMap<String, Object> map);
+	//유저 페이지 cnt
+	int cntUserPage(HashMap<String, Object> map);
+	
+	int cntUser(HashMap<String, Object> map);
 	
 	int statusCnt(HashMap<String, Object> map);
 	
@@ -45,4 +49,5 @@ public interface UserMapper {
 	User selectInfo(HashMap<String, Object> map);
 	//아이디 삭제(delyn = y)
 	int deleteId(HashMap<String, Object> map);
+
 }

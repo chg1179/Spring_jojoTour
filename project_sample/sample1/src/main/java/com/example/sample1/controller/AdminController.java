@@ -56,10 +56,16 @@ public class AdminController {
 	
 	@RequestMapping(value = "/userList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String userList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	public String userPage(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<User> list = adminService.listUser(map);
-		resultMap.put("list", list);
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = adminService.userPage(map);
+		 System.out.println(map);
+	     System.out.println(resultMap);
+
 		return new Gson().toJson(resultMap);
 	}
 	

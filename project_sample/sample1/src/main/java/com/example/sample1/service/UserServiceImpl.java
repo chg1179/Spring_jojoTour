@@ -28,12 +28,6 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public List<User> listUser(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return (List<User>) userMapper.userList(map);
-	}
-
-	@Override
 	public HashMap<String, Object> userLogin(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();

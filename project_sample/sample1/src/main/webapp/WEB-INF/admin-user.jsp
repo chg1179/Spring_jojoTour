@@ -3,11 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="../js/jquery.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <title>List Page</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-weight: lighter;
+	}
 	#app {
 		margin : 20px auto;
 		text-align: center;
@@ -36,8 +39,8 @@
 <jsp:include page="header.jsp" flush="true"></jsp:include>
 <jsp:include page="adminbar.jsp" flush="true"></jsp:include>
 	<div id="app">
-		
-			<button @click="fnUser"> <div style="font-size : 20px">회원 관리</div>
+		<h1 style="color : #f8852a; text-align: center; margin-top: 30px; font-weight : 20;">회원 관리</h1>
+			<button @click="fnUser"> <div style="font-size : 20px">유저 관리</div>
 				<img src="../img/userlist/userbw.png" alt="회원 관리" id="thumb">
 			</button>
 			<button @click="fnHost"> <div style="font-size : 20px">호스트 관리</div>

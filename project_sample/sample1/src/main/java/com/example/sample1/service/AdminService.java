@@ -8,8 +8,6 @@ import com.example.sample1.model.User;
 
 public interface AdminService {
 	
-	//유저관리
-	List<User> listUser(HashMap<String, Object> map);
 	//리퀘스트 넣기
 	Integer requestInsert(HashMap<String, Object> map);
 	//렌트카 리퀘스트 리스트
@@ -24,4 +22,6 @@ public interface AdminService {
 	int changeState(HashMap<String, Object> map);
 	//패키지 신청
 	int packageInsert(HashMap<String, Object> map);
+	//유저 페이지
+	HashMap<String, Object> userPage(HashMap<String, Object> map);
 }

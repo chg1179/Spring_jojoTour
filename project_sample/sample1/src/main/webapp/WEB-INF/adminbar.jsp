@@ -6,41 +6,54 @@
 <script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
-<title>hostbar</title>
+<title>adminbar</title>
 <style>
     *{
         margin: 0;
         padding: 0;
+        
     }
     a{
         text-decoration: none;
         color: inherit;
     }
-    #hostbar_container{
-        float: left;
-        margin : 50px;
-        border: 1px solid #ccc;
+    #adminbar {
+    	
+        position: fixed;
+        top: 200px;
+        left: 0;
+        height: 100%;
+        background-color: white;
+        z-index: 1000;
     }
-    .hostbar_btn_box a{
+    #adminbar_container{
+        float: left;
+        margin : 10px;
+        margin-left : 50px;
+        height: 100%;
+       
+    }
+    .adminbar_btn_box a{
         display: block;
-        width: 200px;
+        width: 100%;
         box-sizing: border-box;
         text-align: left;
-        padding: 5px;
+        padding: 20px;
         height: 50px;
-        line-height: 40px;
+        line-height: 10px;
         border-bottom : 1px solid #ccc;
         font-size: 16px;
         font-weight: 500;
         position: relative;
+         font-size : 18px;
     }
 </style>
 </head>
 <body>
-	<div id="hostbar">
-		<div id="my_page_container">
+	<div id="adminbar">
+		<div id="adminbar_container">
            
-            <div class="hostbar_btn_box">
+            <div class="adminbar_btn_box">
                 <a href="javascript:;" class="page_btn user" @click="fnUser">회원관리</a>
                 <a href="javascript:;" class="page_btn pack" @click="fnPackage">패키지 관리</a>
                 <a href="javascript:;" class="page_btn packreq" @click="fnPackageReq">패키지 신청 관리</a>
@@ -51,7 +64,7 @@
 </html>
 <script>
 var app = new Vue({
-	el : '#hostbar',
+	el : '#adminbar',
 	data : {
 		list : []
 	},// data
