@@ -67,9 +67,14 @@ pagination {
 				<label class="water_leisure_btn" for="jetski">제트스키</label>
 			</li>
 		</ul>
+		<div>
+			<div>상품명 : <input type="text" v-model="waterKeyword" @keyup.enter="fnWaterSearch"></div>
+			<div @click="fnWaterSearch"><button>검색</button></div>
+		</div>
 		<div v-for="item in list">
 			<div><img :src="item.imgPath" alt=""></div>
-			<div>상품명 : {{item.cName}}</div>
+			<div>상품명 : {{item.leisureName}}</div>
+			<div>종류 : {{item.leisureKind}}</div>
 			<div>가격 : {{item.leisurePrice}}</div>
 			<div>할인율 : {{item.leisureSales}}</div>
 			<div>상품 등록 날짜 : {{item.lInsertTime}}</div>
@@ -98,7 +103,8 @@ var app = new Vue({
         selectPage: 1,
         pageCount: 1,
         cnt : 0,
-        leisureKind : "${map.leisureKind}"
+        leisureKind : "${map.leisureKind}",
+        waterKeyword : ""
 
 	},// data
 	methods : {
@@ -150,6 +156,24 @@ var app = new Vue({
                 dataType:"json",	
                 type : "POST",
                 data : param,
+                success : function(data) { 
+                	console.log(data);
+                	self.list = data.list;
+					self.cnt = data.cnt;
+					self.pageCount = Math.ceil(self.cnt / 9);
+                }
+            }); 
+		},
+		fnWaterSearch : function(){
+			var self = this;
+			var startNum = ((self.selectPage-1) * 9);
+    		var lastNum = 9;
+			var nparmap = {startNum : startNum, lastNum : lastNum, waterKeyword : self.waterKeyword, leisureKind : self.leisureKind};
+            $.ajax({
+                url : "/water/waterSearchList.dox",
+                dataType:"json",	
+                type : "POST", 
+                data : nparmap,
                 success : function(data) { 
                 	console.log(data);
                 	self.list = data.list;

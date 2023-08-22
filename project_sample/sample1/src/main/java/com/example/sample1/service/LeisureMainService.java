@@ -16,5 +16,7 @@ public interface LeisureMainService {
 	HashMap<String, Object> searchGroundLeisureList(HashMap<String, Object> map);
 	//지상레저 종류별 리스트 출력
 	HashMap<String, Object> searchGroundLeisureKind(HashMap<String, Object> map);
+	// 수상레저 검색
+	HashMap<String, Object> searchWaterSearchList(HashMap<String, Object> map);
 	
 }

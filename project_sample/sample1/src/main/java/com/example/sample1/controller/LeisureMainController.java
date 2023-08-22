@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.sample1.model.Leisure;
+import com.example.sample1.model.RentCar;
 import com.example.sample1.service.LeisureMainService;
 import com.google.gson.Gson;
 
@@ -84,6 +85,18 @@ public class LeisureMainController {
 		map.put("startNum", startNum);
 		map.put("lastNum", lastNum);
 		resultMap = leisureMainService.searchGroundLeisureKind(map);
+		return new Gson().toJson(resultMap);
+	}
+	//수상레저 검색 정보 출력
+	@RequestMapping(value = "/water/waterSearchList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String waterSearchList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = leisureMainService.searchWaterSearchList(map);
 		return new Gson().toJson(resultMap);
 	}
 
