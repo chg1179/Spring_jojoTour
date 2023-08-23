@@ -281,7 +281,17 @@ var app = new Vue({
 		rentlist : [],
 		leisurelist : [],
 		item : [],		
-		uId : "${sessionId}"
+		uId : "${sessionId}",
+		testList: [
+	        {
+	            productNo: "1",
+	            productKind: "RENT"
+	        },
+	        {
+	            productNo: "2",
+	            productKind: "STAY"
+	        }
+	    ]
 	},// data
 	methods : {
 		fnRoomList : function(){
@@ -325,10 +335,20 @@ var app = new Vue({
 		},
 		fnPayment : function (){
 			var self = this;
-			var param = {};
-			var roomlistJSON = JSON.stringify(self.roomlist);
-			$.pageChangeList("payment.do", {list : roomlistJSON});
-			
+	        var testListJSON = JSON.stringify(self.testList);
+	            
+	        var param = {
+				testListJSON: testListJSON
+			};
+/* 
+	        $.ajax({
+	            url: "/cartPay",
+	            dataType: "json",
+	            type: "POST",
+	            data: param,
+	            success: function(response) {
+	            }
+	        }); */
 		},
 		fnRemove : function(item){
 			var self = this;

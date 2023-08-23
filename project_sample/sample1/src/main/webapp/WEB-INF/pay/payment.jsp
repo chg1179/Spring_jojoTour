@@ -7,7 +7,7 @@
 <title>결제 페이지</title>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <link href="../../css/pay/payment-style.css" rel="stylesheet"/>
-<link href="../../css/payment-style.css" rel="stylesheet"/>
+<link href="../../css/btn-style.css" rel="stylesheet"/>
 <style>
 </style>
 </head>
@@ -18,7 +18,24 @@
 			<div class="mainTxt">결제페이지</div>
 			<div class="box">
 				<div class="coreTxt"><span class="bar">ㅣ</span> 상품 상세 정보</div>
-				
+				<table>
+				    <thead>
+				        <tr>
+				            <th>상품 번호</th>
+				            <th>상품 종류</th>
+				            <!-- 필요한 열 추가 -->
+				        </tr>
+				    </thead>
+				    <tbody>
+				        <c:forEach items="${productList}" var="product">
+				            <tr>
+				                <td>${product.productNo}</td>
+				                <td>${product.productKind}</td>
+				                <!-- 필요한 열 데이터 출력 -->
+				            </tr>
+				        </c:forEach>
+				    </tbody>
+				</table>
 				
 			</div>
 			
