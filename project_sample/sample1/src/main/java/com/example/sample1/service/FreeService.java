@@ -21,4 +21,6 @@ public interface FreeService {
 	int editFree(HashMap<String, Object> map);
 	
 	int removeFreeCheck(HashMap<String, Object> map);
+	
+	int removeFree(HashMap<String, Object> map);
 }

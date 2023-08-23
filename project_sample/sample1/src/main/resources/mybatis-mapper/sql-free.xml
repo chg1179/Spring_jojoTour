@@ -85,5 +85,11 @@
 				#{item}
 			</foreach>
 		</delete>
+		
+		<delete id="deleteFree" parameterType="hashmap">
+			DELETE
+			FROM T2_FREE_TBL
+			WHERE FREE_NO = #{freeNo}
+		</delete>
 
 </mapper>

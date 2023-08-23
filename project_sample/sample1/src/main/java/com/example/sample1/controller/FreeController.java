@@ -113,4 +113,12 @@ public class FreeController {
 		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
+	
+	@RequestMapping(value = "/free/removeFree.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String removefree(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		freeService.removeFree(map);
+		return new Gson().toJson(resultMap);
+	}
 }

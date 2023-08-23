@@ -32,4 +32,6 @@ public interface FreeMapper {
 	int updateFree(HashMap<String, Object> map);
 	
 	int deleteFreeCheck(HashMap<String, Object> map);
+	
+	int deleteFree(HashMap<String, Object> map);
 }
