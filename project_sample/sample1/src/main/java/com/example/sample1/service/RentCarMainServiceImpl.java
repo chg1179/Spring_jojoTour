@@ -37,9 +37,9 @@ public class RentCarMainServiceImpl implements RentCarMainService{
 	@Override
 	public RentCar searchRentCarInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
+		rentCarMainMapper.rReadPlus(map);
 		return rentCarMainMapper.selectRentCarInfo(map);
 	}
-	
 	//렌트카 이미지 리스트
 	@Override
 	public List<RentCarImg> searchCarImgList(HashMap<String, Object> map) {
@@ -68,6 +68,14 @@ public class RentCarMainServiceImpl implements RentCarMainService{
 		return rentCarMainMapper.deleteJjim(map);
 	}
 
+	@Override
+	public HashMap<String, Object> searchFavoriteList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
 
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("list", rentCarMainMapper.selectFavoriteList(map));
+		resultMap.put("cnt", rentCarMainMapper.selectFavoriteCnt(map));
+		return resultMap;
+	}
 
 }

@@ -49,6 +49,15 @@
 		<if test="leisureKind != '' and leisureKind != null"> 
 			AND LEISURE_KIND = #{leisureKind}
 		</if>
+		<if test="minPay != '' and minPay != null or maxPay != '' and maxPay != null"> 
+			AND LEISURE_PRICE BETWEEN #{minPay}*10000 AND #{maxPay}*10000
+		</if>
+		<if test="orderKind == 'L_READ'"> 
+			ORDER BY L_READ DESC
+		</if>
+		<if test="orderKind == 'LEISURE_PRICE'"> 
+			ORDER BY LEISURE_PRICE ASC
+		</if>
 		LIMIT #{startNum}, #{lastNum}
 	</select>
 	<select id="selectWaterLeisureSearchCnt" resultType="int">
@@ -62,6 +71,9 @@
 		</if>
 		<if test="leisureKind != '' and leisureKind != null"> 
 			AND LEISURE_KIND = #{leisureKind}
+		</if>
+		<if test="minPay != '' and minPay != null or maxPay != '' and maxPay != null"> 
+			AND LEISURE_PRICE BETWEEN #{minPay}*10000 AND #{maxPay}*10000
 		</if>
 	</select>
 	
@@ -111,6 +123,15 @@
 		<if test="leisureKind != '' and leisureKind != null"> 
 			AND LEISURE_KIND = #{leisureKind}
 		</if>
+		<if test="minPay != '' and minPay != null or maxPay != '' and maxPay != null"> 
+			AND LEISURE_PRICE BETWEEN #{minPay}*10000 AND #{maxPay}*10000
+		</if>
+		<if test="orderKind == 'L_READ'"> 
+			ORDER BY L_READ DESC
+		</if>
+		<if test="orderKind == 'LEISURE_PRICE'"> 
+			ORDER BY LEISURE_PRICE ASC
+		</if>
 		LIMIT #{startNum}, #{lastNum}
 	</select>
 	<select id="selectGroundLeisureSearchCnt" resultType="int">
@@ -124,6 +145,9 @@
 		</if>
 		<if test="leisureKind != '' and leisureKind != null"> 
 			AND LEISURE_KIND = #{leisureKind}
+		</if>
+		<if test="minPay != '' and minPay != null or maxPay != '' and maxPay != null"> 
+			AND LEISURE_PRICE BETWEEN #{minPay}*10000 AND #{maxPay}*10000
 		</if>
 	</select>
 </mapper>

@@ -186,6 +186,16 @@
    .water_leisure_search_name{
 	margin-bottom: 20px;
    }
+   .water_leisure_search_price{
+	display: flex;
+	justify-content: center;
+   }
+   .water_leisure_search_price input{
+	width: 40px;
+	height: 20px;
+	border: 1px solid;
+	padding: 0 0 0 2px;
+   }
    .water_leisure_search_name input{
 	width: 200px;
 	padding: 5px 20px;
@@ -212,4 +222,16 @@
    }
    .water_leisure_search_btn button:hover{
     background: linear-gradient(to right, #ff9900, #ff3333);
+   }
+   .water_leisure_search_button{
+	display: flex;
+	justify-content: space-between;
+	width: 150px;
+	margin: 0px auto 20px;
+   }
+   .water_leisure_search_button button{
+	background-color: #fff;
+	border: none;
+	border-bottom: 1px solid;
+	cursor: pointer;
    }

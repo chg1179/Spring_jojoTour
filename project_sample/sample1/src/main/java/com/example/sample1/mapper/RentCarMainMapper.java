@@ -28,4 +28,9 @@ public interface RentCarMainMapper {
 	int insertJjim(HashMap<String, Object> map);
 	// 찜해제
 	int deleteJjim(HashMap<String, Object> map);
+	// 조회수 증가
+	int rReadPlus(HashMap<String, Object> map);
+	//렌터카 인기순
+	List<RentCar> selectFavoriteList(HashMap<String, Object> map);
+	int selectFavoriteCnt(HashMap<String, Object> map);
 }

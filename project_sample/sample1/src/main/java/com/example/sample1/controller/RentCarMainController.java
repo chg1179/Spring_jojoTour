@@ -120,5 +120,20 @@ public class RentCarMainController {
 		rentCarMainService.delJjim(map);
 		return new Gson().toJson(resultMap);
 	}
+	//렌트카 인기순
+	@RequestMapping(value = "rentCarFavoriteList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String rentCarFavoriteList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = rentCarMainService.searchFavoriteList(map);
+	    System.out.println(map);
+	    System.out.println(resultMap);
+
+		return new Gson().toJson(resultMap);
+	}
 
 }

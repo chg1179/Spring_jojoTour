@@ -7,6 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
+<script src="../js/jquery-1.12.4.js"></script>
 <link href="../css/leisure/ground-leisure.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
@@ -47,18 +48,34 @@
 						</label>
 						<div class="ground_leisure_search_box">
 							<div class="ground_leisure_search_inbox">
+								<div class="ground_leisure_search_button">
+									<button @click="fnGroundSearch('L_READ')">조회수 높은순</button>
+									<button @click="fnGroundSearch('LEISURE_PRICE')">가격순</button>
+								</div>
 								<div class="ground_leisure_search_name"><input type="text" v-model="groundKeyword" @keyup.enter="fnGroundSearch" placeholder="상품명"></div>
+								<div class="ground_leisure_search_price">
+									<div class="ground_leisure_search_price_inbox">
+										가격 : 
+										<input type="text" v-model="minPay">만원 ~ 
+										<input type="text" v-model="maxPay" @keyup.enter="fnRentCarSearch">만원
+									</div>
+								</div>
 								<div @click="fnGroundSearch" class="ground_leisure_search_btn"><button>검색</button></div>
 							</div>
 						</div>
 					</div>
 					<div class="ground_leisure_main_wrap_box">
-						<div v-for="item in list" class="ground_leisure_main_box" @click="fnGroundLeisureView(item.leisureNo)">
+							<div v-if="list.length==0">
+								조건에 충족하는 상품이 없습니다.
+							</div>
+						<div v-for="item in list" class="ground_leisure_main_box" @click="fnGroundLeisureView(item.leisureNo)" v-else>
 							<div class="ground_leisure_main_img">
 								<img :src="item.imgPath" alt="">
 							</div>
 							<div class="ground_leisure_txt_box">
 								<p>{{item.leisureName}}</p>
+								<p>{{item.leisurePrice}}</p>
+								<p>{{item.lResidue}}</p>
 							</div>
 						</div>
 						<div class="paginate_box">
@@ -92,7 +109,9 @@ var app = new Vue({
         pageCount: 1,
         cnt : 0,
         leisureKind : "${map.leisureKind}",
-        groundKeyword : ""
+        groundKeyword : "",
+        minPay : null,
+        maxPay : null
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -117,7 +136,7 @@ var app = new Vue({
 			self.selectPage = pageNum;
 			var startNum = ((pageNum-1) * 9);
 			var lastNum = 9;
-			var nparmap = {startNum : startNum, lastNum : lastNum};
+			var nparmap = {startNum : startNum, lastNum : lastNum, groundKeyword : self.groundKeyword, leisureKind : self.leisureKind, minPay : self.minPay, maxPay : self.maxPay};
 			$.ajax({
 				url : "../ground/leisure.dox",
 				dataType : "json",
@@ -151,11 +170,11 @@ var app = new Vue({
                 }
             }); 
 		},
-		fnGroundSearch : function(){
+		fnGroundSearch : function(orderKind){
 			var self = this;
 			var startNum = ((self.selectPage-1) * 9);
     		var lastNum = 9;
-			var nparmap = {startNum : startNum, lastNum : lastNum, groundKeyword : self.groundKeyword, leisureKind : self.leisureKind};
+			var nparmap = {startNum : startNum, lastNum : lastNum, groundKeyword : self.groundKeyword, leisureKind : self.leisureKind, minPay : self.minPay, maxPay : self.maxPay, orderKind : orderKind};
 			 $.ajax({
 	                url : "../ground/groundSearchList.dox",
 	                dataType:"json",	
@@ -184,5 +203,17 @@ var app = new Vue({
 			self.fnGetList();
 		}
 	}// created
+});
+$(document).ready(function(){
+    $('.ground_leisure_search_button button').click(function(){
+        $(this).css({
+			color : 'orange',
+			fontWeight : 'bold'
+        });
+		$(this).siblings().css({
+			color : 'black',
+			fontWeight : 'normal'
+        });
+    });
 });
 </script>

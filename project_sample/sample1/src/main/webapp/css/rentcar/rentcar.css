@@ -219,3 +219,16 @@
    .rentcar_search_btn button:hover{
     background: linear-gradient(to right, #ff9900, #ff3333);
    }
+   /*조회수 높은순, 가격순 버튼*/
+   .rentcar_search_button{
+	display: flex;
+	justify-content: space-between;
+	width: 150px;
+	margin: 0px auto 20px;
+   }
+   .rentcar_search_button button{
+	background-color: #fff;
+	border: none;
+	border-bottom: 1px solid;
+	cursor: pointer;
+   }
