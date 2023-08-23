@@ -54,4 +54,6 @@ public interface UserMapper {
 	//아이디 삭제(delyn = y)
 	int deleteId(HashMap<String, Object> map);
 
+	//유저 정보 받아오기(결제시 사용)	
+	User selectUserInfo(HashMap<String, Object> map);
 }

@@ -1,7 +1,6 @@
 package com.example.sample1.service;
 
 import java.util.HashMap;
-import java.util.List;
 
 import com.example.sample1.model.User;
 
@@ -19,4 +18,7 @@ public interface UserService {
 	HashMap<String, Object> searchInfo(HashMap<String, Object> map);
 	//아이디 삭제
 	int removeId(HashMap<String, Object> map);
+	
+	//유저 정보 받아오기(결제시 사용)
+	User searchUserInfo(HashMap<String, Object> map);
 }

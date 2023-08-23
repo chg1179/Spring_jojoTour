@@ -66,4 +66,13 @@ public class UserController {
 		session.invalidate();
 		return new Gson().toJson(resultMap);
 	}
+	
+	@RequestMapping(value = "/userInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String userInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		User info = userService.searchUserInfo(map);
+		resultMap.put("userInfo", info);
+		return new Gson().toJson(resultMap);
+	}
 }

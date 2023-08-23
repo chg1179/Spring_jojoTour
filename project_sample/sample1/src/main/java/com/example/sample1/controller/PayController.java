@@ -27,10 +27,10 @@ public class PayController {
 	//@Autowired
 	//HttpSession session;
 	
-	@RequestMapping("/pay.do") 
+	@RequestMapping("/payment.do") 
     public String cart(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		request.setAttribute("map", map);
-        return "/pay/pay";
+		String[] list = request.getParameterValues("list");
+        return "/pay/payment";
     }
 
 }

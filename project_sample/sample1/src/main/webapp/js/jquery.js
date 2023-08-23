@@ -252,7 +252,7 @@ jQuery.extend( {
 	error: function( msg ) {
 		throw new Error( msg );
 	},
-	 pageChange : function(url, param) {
+	pageChange : function(url, param) {
 		var target = "_self";
 		if(param == undefined){
 			return;
@@ -275,6 +275,29 @@ jQuery.extend( {
 			input.name = item;
 			input.value = val;
 			form.insertBefore(input, null);
+		}
+		document.body.appendChild(form);
+		form.submit();
+		document.body.removeChild(form);
+	},
+	pageChangeList : function(url, param) {
+		var target = "_self";
+		if(param == undefined){
+			return;
+		}
+		var form = document.createElement("form"); 
+		form.name = "dataform";
+		form.action = url;
+		form.method = "post";
+		form.target = target;
+			
+		for(var name in param){
+			var val = param[name];
+		    var input = document.createElement("input");
+		    input.type = "hidden";
+		    input.name = name;
+		    input.value = JSON.stringify(val); // 리스트 객체라 JSON 형식으로 저장
+		    form.appendChild(input);
 		}
 		document.body.appendChild(form);
 		form.submit();

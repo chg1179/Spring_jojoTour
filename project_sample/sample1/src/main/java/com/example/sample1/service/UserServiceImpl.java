@@ -157,6 +157,12 @@ public class UserServiceImpl implements UserService{
 		return userMapper.deleteId(map);
 	}
 
+	@Override
+	public User searchUserInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.selectUserInfo(map);
+	}
+
 
 
 

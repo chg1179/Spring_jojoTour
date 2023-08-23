@@ -120,30 +120,38 @@
 	</select>
 	
 	<select id="pageUser" parameterType="hashmap" resultType="com.example.sample1.model.User">
-      SELECT * 
-      FROM T2_USER_TBL
-      WHERE STATUS = 'U'
-      ORDER BY U_ID ASC
-      LIMIT #{startNum}, #{lastNum}
+	      SELECT * 
+	      FROM T2_USER_TBL
+	      WHERE STATUS = 'U'
+	      ORDER BY U_ID ASC
+	      LIMIT #{startNum}, #{lastNum}
    </select>
    
    <select id="cntUserPage" parameterType="int" resultType="int">
-   	SELECT COUNT(*) 
-   	FROM T2_USER_TBL
-   	WHERE STATUS = 'U'
+	   	SELECT COUNT(*) 
+	   	FROM T2_USER_TBL
+	   	WHERE STATUS = 'U'
    </select>
    
    <select id="pageHost" parameterType="hashmap" resultType="com.example.sample1.model.User">
-      SELECT * 
-      FROM T2_USER_TBL
-      WHERE STATUS = 'H'
-      ORDER BY U_ID ASC
-      LIMIT #{startNum}, #{lastNum}
+	      SELECT * 
+	      FROM T2_USER_TBL
+	      WHERE STATUS = 'H'
+	      ORDER BY U_ID ASC
+	      LIMIT #{startNum}, #{lastNum}
    </select>
    
    <select id="cntHostPage" parameterType="int" resultType="int">
-   	SELECT COUNT(*) 
-   	FROM T2_USER_TBL
-   	WHERE STATUS = 'H'
+	   	SELECT COUNT(*) 
+	   	FROM T2_USER_TBL
+	   	WHERE STATUS = 'H'
    </select>
+   
+   	<!-- 유저 info 받아오기 -->
+	<select id="selectUserInfo" parameterType="hashmap" resultType="com.example.sample1.model.User">
+		SELECT * 
+		FROM T2_USER_TBL U
+		INNER JOIN T2_USER_POINT_TBL P ON U.U_ID = P.U_ID
+		WHERE U.U_ID = #{uId}
+	</select>
 </mapper>
