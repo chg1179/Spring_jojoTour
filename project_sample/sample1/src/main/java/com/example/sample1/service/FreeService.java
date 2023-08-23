@@ -23,4 +23,8 @@ public interface FreeService {
 	int removeFreeCheck(HashMap<String, Object> map);
 	
 	int removeFree(HashMap<String, Object> map);
+	
+	int addReport(HashMap<String, Object> map);
+	
+	int addRecommend(HashMap<String, Object> map);
 }

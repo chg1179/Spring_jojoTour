@@ -121,4 +121,20 @@ public class FreeController {
 		freeService.removeFree(map);
 		return new Gson().toJson(resultMap);
 	}
+	
+	@RequestMapping(value = "/free/addReport.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String addreport(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		freeService.addReport(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "/free/addRecommend.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String addrecommend(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		freeService.addRecommend(map);
+		return new Gson().toJson(resultMap);
+	}
 }

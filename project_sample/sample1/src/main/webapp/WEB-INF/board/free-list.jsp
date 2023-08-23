@@ -51,6 +51,7 @@
 						<th scope="col">제목</th>
 						<th scope="col">작성자</th>
 						<th scope="col">조회수</th>
+						<th scope="col">추천수</th>
 						<th scope="col">등록 날짜</th>
 					</tr>
 					<tr v-for="(item, index) in list">
@@ -62,6 +63,7 @@
 						</th>
 						<th>{{item.uId}}</th>
 						<th>{{item.fHits}}</th>
+						<th>{{item.recommend}}</th>
 						<th>{{item.fWriteTime}}</th>	
 					</tr>	
 				</table>

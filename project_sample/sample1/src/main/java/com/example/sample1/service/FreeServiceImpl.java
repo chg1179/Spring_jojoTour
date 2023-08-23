@@ -77,6 +77,18 @@ public class FreeServiceImpl implements FreeService{
 		return freeMapper.deleteFree(map);
 	}
 
+	@Override
+	public int addReport(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return freeMapper.updateReport(map);
+	}
+
+	@Override
+	public int addRecommend(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return freeMapper.updateRecommend(map);
+	}
+
 
 
 }

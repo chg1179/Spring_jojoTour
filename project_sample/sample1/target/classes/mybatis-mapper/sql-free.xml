@@ -91,5 +91,18 @@
 			FROM T2_FREE_TBL
 			WHERE FREE_NO = #{freeNo}
 		</delete>
-
+		
+		<update id="updateReport" parameterType="hashmap">
+			UPDATE T2_FREE_TBL
+			SET
+				NOTIFY_CNT = NOTIFY_CNT + 1
+			WHERE FREE_NO = #{freeNo}
+		</update>
+		
+		<update id="updateRecommend" parameterType="hashmap">
+			UPDATE T2_FREE_TBL
+			SET
+				RECOMMEND = RECOMMEND + 1
+			WHERE FREE_NO = #{freeNo}
+		</update>
 </mapper>

@@ -6,6 +6,7 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 <link href="../../css/board-btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
@@ -360,7 +361,7 @@
 		    min-width: 53px;
 		    font-size: 16px;
 		    color: #fff !important;
-		    ; text-align: center;
+		    text-align: center;
 		    background-color: #747a86;
 		    border-radius: 2px;
 		    padding: 9px 14px 9px 14px;
@@ -381,10 +382,15 @@
 	    width: 95%;
 	    padding-left: 5%;
 	    padding-top: 10px;
-	}
-	.btn1{
-	float: right;
-	}
+		}
+		.btn1{
+		float: right;
+		}
+		.fas fa-light fa-thumbs-up fa-xl{
+		width:80px;
+		margin:50px;
+		}
+
 </style>
 </head>
 <body>
@@ -405,7 +411,9 @@
 					<div class="qs_info">
 						<p>게시글 번호 : {{info.freeNo}}</p>
 						<p class="last">{{info.fWriteTime}}</p>
-						<span class="report">신고하기</span>
+						<span class="report"><a @click="fnReport" href="javascript:;" v-if="status == 'H' || status == 'U' || status == 'A'">
+						<i class="fas fa-light fa-hand-middle-finger fa-shake fa-2x" style="color: #ff0000;"></i></a></span> 
+						
 					</div>
 				</div>
 			
@@ -415,9 +423,10 @@
 			
 			<div class="qs_empathy_wrap">
 			    <div class="empathy_info">
-			        <a href="#a" ><img src="https://ssl.nexon.com/s2/game/maplestory/renewal/common/empathy_btn_off.png" alt="공감하기 버튼"></a>
+			        <a @click="fnRecommend" href="javascript:;" ><i class="fas fa-light fa-thumbs-up fa-bounce fa-3x" style="color: #540bfe; margin-right: 25px;" >
+			        <span class="tooltip-text" style="display: none;">추천하기</span></i></a>
 			        <p>
-			            <a href="#a"><span class="recomref">0</span>&nbsp;명</a>
+			            <a href="javascript:;"><span class="recomref">{{info.recommend}}</span>&nbsp;명</a>
 			        </p>
 			    </div>
 			</div>
@@ -426,7 +435,7 @@
 				<button @click="fnDel" v-if="uId == info.uId || status == 'A'" class="btn1">삭제하기</button>
 				<button @click="fnEdit" v-if="uId == info.uId" class="btn1">수정하기</button>
 			</div> 
-						<hr>
+
 		<div class="reply_wrap">
 				<div class="reply_title">
            			<h2>댓글<span></span></h2>
@@ -449,14 +458,15 @@
 			</li>
 			</ul>
 			</div>
-			<hr>
+
 			<div class="bottom_txar_wrap">
 				<div class="bottom_txar ctracker">
 					<textarea rows="10" cols="50" v-model="comment" @keyup.enter="fnComment" placeholder="로그인 후, 이용해주세요"></textarea>
 					
 				<div class="txar_right_btn">
 	                <span class="glist_number">(<em>0</em>/200)</span>
-	                <button style="vertical-align: middle; margin-bottom: 35px;" @click="fnComment" v-if="status == 'A'||status == 'U'||status == 'H'" class="btn01_g">등록</button>
+	                <button style="vertical-align: middle; margin-bottom: 35px;" @click="fnComment" v-if="status == 'A'||status == 'U'||status == 'H'" class="btn01_g">
+	                등록</button>
 	            </div>
 				
 				</div>
@@ -476,7 +486,7 @@ var app = new Vue({
 		commentList :[],
 		comment :"",
 		uId : "${sessionId}",
-		
+		list:[]
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -510,7 +520,7 @@ var app = new Vue({
 		},
 		fnRemoveComm : function(cNo){
 			var self = this;
-			if(!confirm("정말 삭제할거냐")){
+			if(!confirm("정말 삭제하시겠습니까?")){
 				return;
 			}
 			var param = {cNo : cNo};
@@ -525,6 +535,7 @@ var app = new Vue({
                 }
             }); 	
 		},
+		
 		fnDel : function(){
 			var self = this;
         	if(!confirm("정말 삭제하시겠습니까?")){
@@ -543,10 +554,42 @@ var app = new Vue({
                 }
             }); 
 		},
+		
 		fnEdit : function(){
 				var self = this;
 				$.pageChange("edit.do", {freeNo : self.freeNo});
-	         }
+	         },
+	         
+	         fnReport : function(){
+				var self = this;
+				var param = {freeNo : self.freeNo};
+				$.ajax({
+	                url : "addReport.dox",                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+	                dataType:"json",	
+	                type : "POST",
+	                data : param,
+	                success : function(data) { 
+	                	alert("신고되었습니다..");
+	                	self.fnGetList();
+	                	window.location.href = "list.do";
+	                }
+	            }); 
+			},
+			fnRecommend : function(){
+				var self = this;
+				var param = {freeNo : self.freeNo};
+				$.ajax({
+	                url : "addRecommend.dox",                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+	                dataType:"json",	
+	                type : "POST",
+	                data : param,
+	                success : function(data) { 
+	                	alert("추천 완료 *^~^*");
+	                	self.fnGetList();
+	                	
+	                }
+	            }); 
+			}
 
 	}, // methods
 	created : function() {
