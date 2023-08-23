@@ -9,7 +9,7 @@
 		FROM T2_LEISURE_TBL L
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
-		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER'
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER' AND L_DELYN = 'N'
 		LIMIT #{startNum}, #{lastNum}
 	</select>
 	<select id="selectWaterLeisureCnt" resultType="int">
@@ -17,7 +17,7 @@
 		FROM T2_LEISURE_TBL L
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
-		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER'
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER' AND L_DELYN = 'N'
 	</select>
 	<!-- 수상 레저 종류별 리스트 -->
 	<select id="selectWaterLeisureKind" resultType="com.example.sample1.model.Leisure">
@@ -25,7 +25,7 @@
 		FROM T2_LEISURE_TBL L
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
-		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER' AND LEISURE_KIND = #{kind}
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER' AND LEISURE_KIND = #{kind} AND L_DELYN = 'N'
 		LIMIT #{startNum}, #{lastNum}
 	</select>
 	<select id="selectWaterLeisureKindCnt" resultType="int">
@@ -33,7 +33,7 @@
 		FROM T2_LEISURE_TBL L
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
-		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER' AND LEISURE_KIND = #{kind}
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER' AND LEISURE_KIND = #{kind} AND L_DELYN = 'N'
 	</select>
 		
 	<!-- 수상 레저 서치 리스트 -->
@@ -42,7 +42,7 @@
 		FROM T2_LEISURE_TBL L
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
-		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER'
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER' AND L_DELYN = 'N'
 		<if test="waterKeyword != '' and waterKeyword != null"> 
 			AND LEISURE_NAME LIKE CONCAT('%',#{waterKeyword},'%')
 		</if>
@@ -65,7 +65,7 @@
 		FROM T2_LEISURE_TBL L
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
-		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER'
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'WATER' AND L_DELYN = 'N'
 		<if test="waterKeyword != '' and waterKeyword != null"> 
 			AND LEISURE_NAME LIKE CONCAT('%',#{waterKeyword},'%')
 		</if>
@@ -83,7 +83,7 @@
 		FROM T2_LEISURE_TBL L
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
-		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND'
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND' AND L_DELYN = 'N'
 		LIMIT #{startNum}, #{lastNum}
 	</select>
 	<select id="selectGroundLeisureCnt" resultType="int">
@@ -91,7 +91,7 @@
 		FROM T2_LEISURE_TBL L
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
-		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND'
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND' AND L_DELYN = 'N'
 	</select>
 	
 	<!-- 지상 레저 종류별 리스트 -->
@@ -100,7 +100,7 @@
 		FROM T2_LEISURE_TBL L
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
-		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND' AND LEISURE_KIND = #{kind}
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND' AND LEISURE_KIND = #{kind} AND L_DELYN = 'N'
 		LIMIT #{startNum}, #{lastNum}
 	</select>
 	<select id="selectGroundLeisureKindCnt" resultType="int">
@@ -108,7 +108,7 @@
 		FROM T2_LEISURE_TBL L
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
-		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND' AND LEISURE_KIND = #{kind}
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND' AND LEISURE_KIND = #{kind} AND L_DELYN = 'N'
 	</select>
 		<!-- 지상 레저 서치 리스트 -->
 	<select id="selectGroundSearchList" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">
@@ -116,7 +116,7 @@
 		FROM T2_LEISURE_TBL L
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
-		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND'
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND' AND L_DELYN = 'N'
 		<if test="groundKeyword != '' and groundKeyword != null"> 
 			AND LEISURE_NAME LIKE CONCAT('%',#{groundKeyword},'%')
 		</if>
@@ -139,7 +139,7 @@
 		FROM T2_LEISURE_TBL L
 		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
 		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
-		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND'
+		WHERE MAIN_YN = 'Y' AND C_TYPE = 'GROUND' AND L_DELYN = 'N'
 		<if test="groundKeyword != '' and groundKeyword != null"> 
 			AND LEISURE_NAME LIKE CONCAT('%',#{groundKeyword},'%')
 		</if>

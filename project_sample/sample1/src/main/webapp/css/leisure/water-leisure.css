@@ -226,7 +226,7 @@
    .water_leisure_search_button{
 	display: flex;
 	justify-content: space-between;
-	width: 150px;
+	width: 180px;
 	margin: 0px auto 20px;
    }
    .water_leisure_search_button button{
@@ -235,3 +235,14 @@
 	border-bottom: 1px solid;
 	cursor: pointer;
    }
+	.water_leisure_name span, .water_leisure_last_price span{
+		color : yellow;
+		font-size : 20px;
+		font-weight: bold;
+	}
+	.tung_container{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+	}

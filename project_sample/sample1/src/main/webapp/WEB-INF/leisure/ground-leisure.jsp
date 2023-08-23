@@ -50,32 +50,41 @@
 							<div class="ground_leisure_search_inbox">
 								<div class="ground_leisure_search_button">
 									<button @click="fnGroundSearch('L_READ')">조회수 높은순</button>
-									<button @click="fnGroundSearch('LEISURE_PRICE')">가격순</button>
+									<button @click="fnGroundSearch('LEISURE_PRICE')">가격 낮은순</button>
 								</div>
-								<div class="ground_leisure_search_name"><input type="text" v-model="groundKeyword" @keyup.enter="fnGroundSearch" placeholder="상품명"></div>
+								<div class="ground_leisure_search_name"><input type="text" v-model="groundKeyword" @keyup.enter="fnGroundSearch()" placeholder="상품명"></div>
 								<div class="ground_leisure_search_price">
 									<div class="ground_leisure_search_price_inbox">
 										가격 : 
 										<input type="text" v-model="minPay">만원 ~ 
-										<input type="text" v-model="maxPay" @keyup.enter="fnRentCarSearch">만원
+										<input type="text" v-model="maxPay" @keyup.enter="fnRentCarSearch()">만원
 									</div>
 								</div>
-								<div @click="fnGroundSearch" class="ground_leisure_search_btn"><button>검색</button></div>
+								<div @click="fnGroundSearch()" class="ground_leisure_search_btn"><button>검색</button></div>
 							</div>
 						</div>
 					</div>
 					<div class="ground_leisure_main_wrap_box">
-							<div v-if="list.length==0">
-								조건에 충족하는 상품이 없습니다.
+							<div v-if="list.length==0"class="tung_container">
+								<div class="tung_wrap">
+									<div class="tung_img_box">
+										<img src="../img/main/tung.png">
+									</div>
+									<h2 class="tung_txt">조건에 충족하는 상품이 없습니다.</h2>
+								</div>
 							</div>
 						<div v-for="item in list" class="ground_leisure_main_box" @click="fnGroundLeisureView(item.leisureNo)" v-else>
 							<div class="ground_leisure_main_img">
 								<img :src="item.imgPath" alt="">
 							</div>
 							<div class="ground_leisure_txt_box">
-								<p>{{item.leisureName}}</p>
-								<p>{{item.leisurePrice}}</p>
-								<p>{{item.lResidue}}</p>
+								<p class="ground_leisure_cnt">조회수 : {{item.lRead}}</p>
+								<p class="ground_leisure_name">상품명 : <span>{{item.leisureName}}</span></p>
+								<p class="ground_leisure_kind">종류 : {{item.leisureKind}}</p>
+								<p class="ground_leisure_sale">할인율 : {{100-(item.leisureSales*100)}}%</p>
+								<p class="ground_leisure_price">상품 가격 : <del>{{item.leisurePrice}}원</del></p>
+								<p class="ground_leisure_last_price">최종 가격 : <span>{{item.leisurePrice-item.leisurePrice*(100-(item.leisureSales*100))/100}}원</span></p>
+								<p class="ground_leisure_update_time">상품 등록 날짜 : {{item.lInsertTime}}</p>
 							</div>
 						</div>
 						<div class="paginate_box">

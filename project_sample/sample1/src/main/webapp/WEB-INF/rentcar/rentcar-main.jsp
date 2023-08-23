@@ -12,11 +12,6 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-	.rent_name span, .rent_last_price span{
-		color : yellow;
-		font-size : 20px;
-		font-weight: bold;
-	}
 </style>
 </head>
 <body>
@@ -64,7 +59,7 @@
 							<div class="rentcar_search_inbox">
 								<div class="rentcar_search_button">
 									<button @click="fnFavorite('R_READ')">조회수 높은순</button>
-									<button @click="fnFavorite('RENT_PRICE')">가격순</button>
+									<button @click="fnFavorite('RENT_PRICE')">가격 낮은순</button>
 								</div>
 								<div class="rentcar_search_name"><input type="text" v-model="rentCarKeyword" placeholder="차량명 또는 모델" @keyup.enter="fnRentCarSearch"></div>
 								<div class="rentcar_search_price">
@@ -79,10 +74,15 @@
 						</div>
 					</div>
 					<div class="rentcar_main_wrap_box">
-							<div v-if="list.length==0">
-								조건에 충족하는 차량이 없습니다.
+							<div v-if="list.length==0"class="tung_container">
+								<div class="tung_wrap">
+									<div class="tung_img_box">
+										<img src="../img/main/tung.png">
+									</div>
+									<h2 class="tung_txt">조건에 충족하는 차량이 없습니다.</h2>
+								</div>
 							</div>
-						<div v-for="item in list" class="rentcar_main_box" @click="fnRentCarView(item.rentNo)" v-else>
+						<div v-for="item in list" class="rentcar_main_box" @click="fnRentCarView(item.rentNo)">
 							<div class="rentcar_main_img">
 								<img :src="item.imgPath" alt="">
 							</div>
@@ -90,9 +90,9 @@
 								<p class="rent_cnt">조회수 : {{item.rRead}}</p>
 								<p class="rent_name">차량명 : <span>{{item.rentName}}</span></p>
 								<p class="rent_kind">차종 : {{item.rentKind}}</p>
-								<p class="rent_sale">할인률 : {{(1-item.rentSales)*100}}%</p>
-								<p class="rent_price">렌트 금액 : <del>{{item.rentPrice}}</del></p>
-								<p class="rent_last_price">최종 금액 : <span>{{item.rentPrice-item.rentPrice*(1-item.rentSales)}}</span></p>
+								<p class="rent_sale">할인률 : {{100-(item.rentSales*100)}}%</p>
+								<p class="rent_price">렌트 금액 : <del>{{item.rentPrice}}원</del></p>
+								<p class="rent_last_price">최종 금액 : <span>{{item.rentPrice-item.rentPrice*(100-(item.rentSales*100))/100}}원</span></p>
 								<p class="rent_update_time">차량 등록 날짜 : {{item.rUpdateTime}}</p>
 							</div>
 						</div>
