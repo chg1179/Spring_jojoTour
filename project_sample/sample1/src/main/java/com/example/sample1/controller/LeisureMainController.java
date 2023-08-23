@@ -27,17 +27,29 @@ public class LeisureMainController {
 	
 	@Autowired
 	HttpSession session;
-	
+	//수상레저
 	@RequestMapping("/water/leisure.do") 
     public String WaterLeisure(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
         return "/leisure/water-leisure";
     }
-	
+	//수상레저 상세보기
+	@RequestMapping("water/leisure/view.do") 
+    public String WaterLeisureView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+        return "leisure/water-leisure-view";
+    }
+	//지상레저
 	@RequestMapping("/ground/leisure.do") 
     public String GroundLeisure(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
         return "/leisure/ground-leisure";
+    }
+	//지상레저 상세보기
+	@RequestMapping("ground/leisure/view.do") 
+    public String GroundLeisureView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+        return "leisure/ground-leisure-view";
     }
 	//수상레저 출력
 	@RequestMapping(value = "/water/leisure.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

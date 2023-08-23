@@ -7,227 +7,10 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-<script src="../jquery-1.12.4.js"></script>
-
+<link href="../css/rentcar/rentcar.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-   .pagination {
-       margin:24px;
-       display: inline-flex;
-   }
-   .pagination li {
-      min-width:32px;
-      padding:2px 6px;
-      text-align:center;
-      margin:0 3px;
-      border-radius: 6px;
-      border:1px solid #eee;
-      color:#666;
-      display : inline;
-   }
-   .pagination li:hover {
-       background: #E4DBD6;
-   }
-   .pagination li.active {
-       background-color : #E7AA8D;
-       color:#fff;
-   }
-   .pagination li.active a {
-       color:#fff;
-   }
-   *{
-	margin: 0;
-	padding: 0;
-   }
-   .rentcar_main_con{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin: 30px;
-   }
-   .rentcar_main_wrap{
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	width : 1200px;
-	position: relative;
-	overflow: hidden;
-   }
-   
-	.rentcar_list{
-		display: flex;
-		justify-content: space-between;
-		width: 500px;
-		margin: 50px auto;
-
-	}
-	.rentcar_list li{
-		display: block;
-		width: 100px;
-		height: 50px;
-		line-height: 50px;
-	}
-	.rentcar_list li input{
-		display: none;
-	}
-	.rentcar_list li label{
-		box-sizing: border-box;
-		border: 1px solid #ccc;
-		width: 100%;
-		height: 100%;
-		display: block;
-		text-align: center;
-	}
-	.rentcar_list li input:checked + label{
-		border: 1px solid black;
-		background: linear-gradient(to right, #ff9900, #ff3333);
-		color: #fff;
-		font-weight: bold;
-	}
-   .rentcar_main_box{
-	width: calc(33.333% - 10px);
-	box-sizing: border-box;
-	overflow: hidden;
-	position: relative;
-	margin: 10px 0;
-	cursor : pointer;
-	border-radius: 30px;
-   }
-   .rentcar_main_box img{
-	width: 100%;
-	height: 300px;
-   }
-   .rentcar_txt_box{
-	background-color: rgba(65, 65, 65, 0.5);
-	padding : 10px;
-	width: 100%;
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	color: #fff;
-	opacity : 0;
-	transition-duration: .5s;
-   }
-   .rentcar_main_box:hover .rentcar_txt_box{
-	opacity: 1;
-   }
-    .paginate_box{
-	display: flex;
-	justify-content: center;
-	width: 100%;
-   }
-   .paginate_box a {
-       color:#666;
-       text-decoration: none;
-       width : 100%;
-       height : 100%;
-       display : block;
-   }
-   
-   	/* 검색기능 */
-   .rentcar_search_box_wrap{    
-   	position: absolute;
-    z-index: 99;
-    right: 0;
-    
-   }
-   .rentcar_search_box{
-	display: flex;
-	position: absolute;
-	right: -350px;
-	transition-duration: 0.2s;
-	background-color: #fff;
-   }
-   /* 햄버거 버튼 */
-   .rentcar_search_ham{
-	width: 30px;
-	height: 30px;
-	position: absolute;
-	top: 5px;
-	right: 20px;
-	transition-duration: 0.2s;
-	cursor: pointer;
-   }
-   .rentcar_search_ham span{
-	width: 100%;
-	height: 2px;
-	background-color: #000;
-	display: block;
-	position: absolute;
-	transition-duration: .2s;
-   }
-   .rentcar_search_ham span:nth-child(2){
-	margin-top: 10px;
-   }
-   .rentcar_search_ham span:nth-child(3){
-	margin-top: 20px;
-   }
-   #rentcar_search_checkbox{
-	display: none;
-   }
-   #rentcar_search_checkbox:checked ~ .rentcar_search_ham{
-	right: 350px;
-   }
-   #rentcar_search_checkbox:checked ~ .rentcar_search_box{
-	right: 0;
-   }
-   #rentcar_search_checkbox:checked + .rentcar_search_ham span:nth-child(1){
-	transform: rotate(45deg);
-	margin-top: 10px;
-   }
-   #rentcar_search_checkbox:checked + .rentcar_search_ham span:nth-child(2){
-	opacity: 0;
-   }
-   #rentcar_search_checkbox:checked + .rentcar_search_ham span:nth-child(3){
-	transform: rotate(-45deg);
-	margin-top: 10px;
-   }
-   .rentcar_search_inbox{
-	width: 300px;
-	padding: 20px;
-	border: 1px solid;
-   }
-   .rentcar_search_name{
-	margin-bottom: 20px;
-   }
-   .rentcar_search_name input{
-	width: 200px;
-	padding: 5px 20px;
-	border-radius: 10px;
-	border: 1px solid;
-	display: block;
-	margin: 0 auto;
-   }
-   .rentcar_search_price{
-	display: flex;
-	justify-content: center;
-   }
-   .rentcar_search_price input{
-	width: 40px;
-	height: 20px;
-	border: 1px solid;
-	padding: 0 0 0 2px;
-   }
-   .rentcar_search_btn{
-	margin-top: 20px;
-   }
-   .rentcar_search_btn button{
-	width: 80%;
-	display: block;
-	margin: 0 auto;
-	padding: 5px 10px;
-	border-radius: 20px;
-	border: none;
-	cursor: pointer;
-	background: rgb(82, 82, 82);
-	transition-duration: 1s;
-	color: #fff;
-	font-weight: bold;
-   }
-   .rentcar_search_btn button:hover{
-    background: linear-gradient(to right, #ff9900, #ff3333);
-   }
 </style>
 </head>
 <body>
@@ -264,52 +47,54 @@
 
 			<div class="rentcar_main_con">
 				<div class="rentcar_main_wrap">
-							<div class="rentcar_search_box_wrap">
-				<input type="checkbox" id="rentcar_search_checkbox">
-				<label class="rentcar_search_ham" for="rentcar_search_checkbox">
-					<span></span>
-					<span></span>
-					<span></span>
-				</label>
-				<div class="rentcar_search_box">
-					<div class="rentcar_search_inbox">
-						<div class="rentcar_search_name"><input type="text" v-model="rentCarKeyword" placeholder="차량명 또는 모델" @keyup.enter="fnRentCarSearch"></div>
-						<div class="rentcar_search_price">
-							<div class="rentcar_search_price_inbox">
-								가격 : 
-								<input type="text" v-model="minPay">만원 ~ 
-								<input type="text" v-model="maxPay" @keyup.enter="fnRentCarSearch">만원
+					<div class="rentcar_search_box_wrap">
+						<input type="checkbox" id="rentcar_search_checkbox">
+						<label class="rentcar_search_ham" for="rentcar_search_checkbox">
+							<span></span>
+							<span></span>
+							<span></span>
+						</label>
+						<div class="rentcar_search_box">
+							<div class="rentcar_search_inbox">
+								<div class="rentcar_search_name"><input type="text" v-model="rentCarKeyword" placeholder="차량명 또는 모델" @keyup.enter="fnRentCarSearch"></div>
+								<div class="rentcar_search_price">
+									<div class="rentcar_search_price_inbox">
+										가격 : 
+										<input type="text" v-model="minPay">만원 ~ 
+										<input type="text" v-model="maxPay" @keyup.enter="fnRentCarSearch">만원
+									</div>
+								</div>
+								<div class="rentcar_search_btn"><button @click="fnRentCarSearch">검색</button></div>
 							</div>
 						</div>
-						<div class="rentcar_search_btn"><button @click="fnRentCarSearch">검색</button></div>
 					</div>
-				</div>
-			</div>
-					<div v-for="item in list" class="rentcar_main_box" @click="fnRentCarView(item.rentNo)">
-						<div class="rentcar_main_img">
-							<img :src="item.imgPath" alt="">
+					<div class="rentcar_main_wrap_box">
+						<div v-for="item in list" class="rentcar_main_box" @click="fnRentCarView(item.rentNo)">
+							<div class="rentcar_main_img">
+								<img :src="item.imgPath" alt="">
+							</div>
+							<div class="rentcar_txt_box">
+								<p class="rent_name">차량명 : {{item.rentName}}</p>
+								<P class="rent_kind">차종 : {{item.rentKind}}</P>
+								<P class="rent_price">렌트 금액 : {{item.rentPrice}}</P>
+								<P class="rent_sale">할인률 : {{item.rentSales}}%</P>
+								<P class="rent_update_time">차량 등록 날짜 : {{item.rUpdateTime}}</P>
+							</div>
 						</div>
-						<div class="rentcar_txt_box">
-							<p class="rent_name">차량명 : {{item.rentName}}</p>
-							<P class="rent_kind">차종 : {{item.rentKind}}</P>
-							<P class="rent_price">렌트 금액 : {{item.rentPrice}}</P>
-							<P class="rent_sale">할인률 : {{item.rentSales}}%</P>
-							<P class="rent_update_time">차량 등록 날짜 : {{item.rUpdateTime}}</P>
+						<div class="paginate_box">
+							<template>
+								<paginate
+								:page-count="pageCount"
+								:page-range="3"
+								:margin-pages="2"
+								:click-handler="fnSearch"
+								:prev-text="'<'"
+								:next-text="'>'"
+								:container-class="'pagination'"
+								:page-class="'page-item'">
+								</paginate>
+							</template>
 						</div>
-					</div>
-					<div class="paginate_box">
-						<template>
-							<paginate
-							:page-count="pageCount"
-							:page-range="3"
-							:margin-pages="2"
-							:click-handler="fnSearch"
-							:prev-text="'<'"
-							:next-text="'>'"
-							:container-class="'pagination'"
-							:page-class="'page-item'">
-							</paginate>
-						</template>
 					</div>
 				</div>
 			</div>
@@ -420,8 +205,5 @@ var app = new Vue({
 			self.fnGetList();
 		}
 	}// created
-});
-$(document).ready(function(){
-
 });
 </script>

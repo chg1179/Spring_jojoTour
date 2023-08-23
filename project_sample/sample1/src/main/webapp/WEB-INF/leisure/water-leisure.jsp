@@ -7,90 +7,87 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
+<link href="../css/leisure/water-leisure.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-pagination {
-        margin:24px;
-        display: inline-flex;
-    }
-    .pagination li {
-       min-width:32px;
-       padding:2px 6px;
-       text-align:center;
-       margin:0 3px;
-       border-radius: 6px;
-       border:1px solid #eee;
-       color:#666;
-       display : inline;
-   }
-   .pagination li:hover {
-       background: #E4DBD6;
-   }
-   .page-item a {
-       color:#666;
-       text-decoration: none;
-   }
-   .pagination li.active {
-       background-color : #E7AA8D;
-       color:#fff;
-   }
-   .pagination li.active a {
-       color:#fff;
-   }
-
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<ul>
-			<li>
-				<input v-if='leisureKind == ""' type="radio" name="waterLeisure" id="all_waterLeisure" @input="checkKind('')" checked="checked">
-				<input v-else type="radio" name="waterLeisure" id="all_waterLeisure" @input="checkKind('')">
-				<label class="water_leisure_btn" for="all_waterLeisure">전체</label>
-			</li>
-			<li><input v-if='leisureKind == "SNORKE"' type="radio" name="waterLeisure" id="snorke" @input="checkKind('SNORKE')" checked="checked">
-				<input v-else type="radio" name="waterLeisure" id="snorke" @input="checkKind('SNORKE')">
-				<label class="water_leisure_btn" for="snorke">스노쿨링</label>
-			</li>
-			<li><input  v-if='leisureKind == "SURFING"' type="radio" name="waterLeisure" id="surfing" @input="checkKind('SURFING')" checked="checked">
-				<input  v-else type="radio" name="waterLeisure" id="surfing" @input="checkKind('SURFING')">
-				<label class="water_leisure_btn" for="surfing">서핑</label>
-			</li>
-			<li><input  v-if='leisureKind == "YACHT"' type="radio" name="waterLeisure" id="yacht" @input="checkKind('YACHT')" checked="checked">
-				<input  v-else type="radio" name="waterLeisure" id="yacht" @input="checkKind('YACHT')">
-				<label class="water_leisure_btn" for="yacht">요트</label>
-			</li>
-			<li><input  v-if='leisureKind == "JETSKI"' type="radio" name="waterLeisure" id="jetski" @input="checkKind('JETSKI')" checked="checked">
-				<input  v-else type="radio" name="waterLeisure" id="jetski" @input="checkKind('JETSKI')">
-				<label class="water_leisure_btn" for="jetski">제트스키</label>
-			</li>
-		</ul>
-		<div>
-			<div>상품명 : <input type="text" v-model="waterKeyword" @keyup.enter="fnWaterSearch"></div>
-			<div @click="fnWaterSearch"><button>검색</button></div>
+		<div id="water_leisure_main_container">
+			<ul class="water_leisure_list">
+				<li>
+					<input v-if='leisureKind == ""' type="radio" name="waterLeisure" id="all_waterLeisure" @input="checkKind('')" checked="checked">
+					<input v-else type="radio" name="waterLeisure" id="all_waterLeisure" @input="checkKind('')">
+					<label class="water_leisure_btn" for="all_waterLeisure">전체</label>
+				</li>
+				<li><input v-if='leisureKind == "SNORKE"' type="radio" name="waterLeisure" id="snorke" @input="checkKind('SNORKE')" checked="checked">
+					<input v-else type="radio" name="waterLeisure" id="snorke" @input="checkKind('SNORKE')">
+					<label class="water_leisure_btn" for="snorke">스노쿨링</label>
+				</li>
+				<li><input  v-if='leisureKind == "SURFING"' type="radio" name="waterLeisure" id="surfing" @input="checkKind('SURFING')" checked="checked">
+					<input  v-else type="radio" name="waterLeisure" id="surfing" @input="checkKind('SURFING')">
+					<label class="water_leisure_btn" for="surfing">서핑</label>
+				</li>
+				<li><input  v-if='leisureKind == "YACHT"' type="radio" name="waterLeisure" id="yacht" @input="checkKind('YACHT')" checked="checked">
+					<input  v-else type="radio" name="waterLeisure" id="yacht" @input="checkKind('YACHT')">
+					<label class="water_leisure_btn" for="yacht">요트</label>
+				</li>
+				<li><input  v-if='leisureKind == "JETSKI"' type="radio" name="waterLeisure" id="jetski" @input="checkKind('JETSKI')" checked="checked">
+					<input  v-else type="radio" name="waterLeisure" id="jetski" @input="checkKind('JETSKI')">
+					<label class="water_leisure_btn" for="jetski">제트스키</label>
+				</li>
+			</ul>
+			<div class="water_leisure_main_con">
+				<div class="water_leisure_main_wrap">
+
+					<div class="water_leisure_search_box_wrap">
+						<input type="checkbox" id="water_leisure_search_checkbox">
+						<label class="water_leisure_search_ham" for="water_leisure_search_checkbox">
+							<span></span>
+							<span></span>
+							<span></span>
+						</label>
+						<div class="water_leisure_search_box">
+							<div class="water_leisure_search_inbox">
+								<div class="water_leisure_search_name"><input type="text" v-model="waterKeyword" @keyup.enter="fnWaterSearch" placeholder="상품명"></div>
+								<div @click="fnWaterSearch" class="water_leisure_search_btn"><button>검색</button></div>
+							</div>
+						</div>
+					</div>
+					<div class="water_leisure_main_wrap_box">
+						<div v-for="item in list" class="water_leisure_main_box"  @click="fnWaterLeisureView(item.leisureNo)">
+							<div class="water_leisure_main_img">
+								<img :src="item.imgPath" alt="">
+							</div>
+							<div class="water_leisure_txt_box">
+								<p>상품명 : {{item.leisureName}}</p>
+								<p>종류 : {{item.leisureKind}}</p>
+								<p>가격 : {{item.leisurePrice}}</p>
+								<p>할인율 : {{item.leisureSales}}</p>
+								<p>상품 등록 날짜 : {{item.lInsertTime}}</p>
+							</div>
+						</div>
+						<div class="paginate_box">
+							<template>
+								<paginate
+								:page-count="pageCount"
+								:page-range="3"
+								:margin-pages="2"
+								:click-handler="fnSearch"
+								:prev-text="'<'"
+								:next-text="'>'"
+								:container-class="'pagination'"
+								:page-class="'page-item'">
+								</paginate>
+							</template>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div v-for="item in list">
-			<div><img :src="item.imgPath" alt=""></div>
-			<div>상품명 : {{item.leisureName}}</div>
-			<div>종류 : {{item.leisureKind}}</div>
-			<div>가격 : {{item.leisurePrice}}</div>
-			<div>할인율 : {{item.leisureSales}}</div>
-			<div>상품 등록 날짜 : {{item.lInsertTime}}</div>
-		</div>
-		<template>
-			<paginate
-			:page-count="pageCount"
-			:page-range="3"
-			:margin-pages="2"
-			:click-handler="fnSearch"
-			:prev-text="'<'"
-			:next-text="'>'"
-			:container-class="'pagination'"
-			:page-class="'page-item'">
-			</paginate>
-		</template>
 	</div>
 </body>
 </html>
@@ -181,6 +178,11 @@ var app = new Vue({
 					self.pageCount = Math.ceil(self.cnt / 9);
                 }
             }); 
+		},
+		fnWaterLeisureView : function(leisureNo){
+			var self = this;
+			console.log(leisureNo);
+			$.pageChange("leisure/view.do", {leisureNo : leisureNo});
 		}
 		
 	}, // methods

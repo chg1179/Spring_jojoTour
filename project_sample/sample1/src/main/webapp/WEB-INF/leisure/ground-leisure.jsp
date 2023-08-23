@@ -7,81 +7,78 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
+<link href="../css/leisure/ground-leisure.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-pagination {
-        margin:24px;
-        display: inline-flex;
-    }
-    .pagination li {
-       min-width:32px;
-       padding:2px 6px;
-       text-align:center;
-       margin:0 3px;
-       border-radius: 6px;
-       border:1px solid #eee;
-       color:#666;
-       display : inline;
-   }
-   .pagination li:hover {
-       background: #E4DBD6;
-   }
-   .page-item a {
-       color:#666;
-       text-decoration: none;
-   }
-   .pagination li.active {
-       background-color : #E7AA8D;
-       color:#fff;
-   }
-   .pagination li.active a {
-       color:#fff;
-   }
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<ul>
-			<li>
-				<input v-if='leisureKind == ""' type="radio" name="groundLeisure" id="all_groundLeisure" @input="checkKind('')" checked="checked">
-				<input v-else type="radio" name="groundLeisure" id="all_groundLeisure" @input="checkKind('')">
-				<label class="ground_leisure_btn" for="all_groundLeisure">전체</label>
-			</li>
-			<li><input v-if='leisureKind == "ATV"' type="radio" name="groundLeisure" id="atv" @input="checkKind('ATV')" checked="checked">
-				<input v-else type="radio" name="groundLeisure" id="atv" @input="checkKind('ATV')">
-				<label class="ground_leisure_btn" for="atv">ATV</label>
-			</li>
-			<li><input  v-if='leisureKind == "GLIDER"' type="radio" name="groundLeisure" id="glider" @input="checkKind('GLIDER')" checked="checked">
-				<input  v-else type="radio" name="groundLeisure" id="glider" @input="checkKind('GLIDER')">
-				<label class="ground_leisure_btn" for="glider">패러글라이딩</label>
-			</li>
-			<li><input  v-if='leisureKind == "HORSE"' type="radio" name="groundLeisure" id="horse" @input="checkKind('HORSE')" checked="checked">
-				<input  v-else type="radio" name="groundLeisure" id="horse" @input="checkKind('HORSE')">
-				<label class="ground_leisure_btn" for="horse">승마</label>
-			</li>
-		</ul>
-		<div>
-			<div>상품명 : <input type="text" v-model="groundKeyword" @keyup.enter="fnGroundSearch"></div>
-			<div @click="fnGroundSearch"><button>검색</button></div>
+		<div id="ground_leisure_main_container">
+			<ul class="ground_leisure_list">
+				<li>
+					<input v-if='leisureKind == ""' type="radio" name="groundLeisure" id="all_groundLeisure" @input="checkKind('')" checked="checked">
+					<input v-else type="radio" name="groundLeisure" id="all_groundLeisure" @input="checkKind('')">
+					<label class="ground_leisure_btn" for="all_groundLeisure">전체</label>
+				</li>
+				<li><input v-if='leisureKind == "ATV"' type="radio" name="groundLeisure" id="atv" @input="checkKind('ATV')" checked="checked">
+					<input v-else type="radio" name="groundLeisure" id="atv" @input="checkKind('ATV')">
+					<label class="ground_leisure_btn" for="atv">ATV</label>
+				</li>
+				<li><input  v-if='leisureKind == "GLIDER"' type="radio" name="groundLeisure" id="glider" @input="checkKind('GLIDER')" checked="checked">
+					<input  v-else type="radio" name="groundLeisure" id="glider" @input="checkKind('GLIDER')">
+					<label class="ground_leisure_btn" for="glider">패러글라이딩</label>
+				</li>
+				<li><input  v-if='leisureKind == "HORSE"' type="radio" name="groundLeisure" id="horse" @input="checkKind('HORSE')" checked="checked">
+					<input  v-else type="radio" name="groundLeisure" id="horse" @input="checkKind('HORSE')">
+					<label class="ground_leisure_btn" for="horse">승마</label>
+				</li>
+			</ul>
+			<div class="ground_leisure_main_con">
+				<div class="ground_leisure_main_wrap">
+					<div class="ground_leisure_search_box_wrap">
+						<input type="checkbox" id="ground_leisure_search_checkbox">
+						<label class="ground_leisure_search_ham" for="ground_leisure_search_checkbox">
+							<span></span>
+							<span></span>
+							<span></span>
+						</label>
+						<div class="ground_leisure_search_box">
+							<div class="ground_leisure_search_inbox">
+								<div class="ground_leisure_search_name"><input type="text" v-model="groundKeyword" @keyup.enter="fnGroundSearch" placeholder="상품명"></div>
+								<div @click="fnGroundSearch" class="ground_leisure_search_btn"><button>검색</button></div>
+							</div>
+						</div>
+					</div>
+					<div class="ground_leisure_main_wrap_box">
+						<div v-for="item in list" class="ground_leisure_main_box" @click="fnGroundLeisureView(item.leisureNo)">
+							<div class="ground_leisure_main_img">
+								<img :src="item.imgPath" alt="">
+							</div>
+							<div class="ground_leisure_txt_box">
+								<p>{{item.leisureName}}</p>
+							</div>
+						</div>
+						<div class="paginate_box">
+							<template>
+								<paginate
+								:page-count="pageCount"
+								:page-range="3"
+								:margin-pages="2"
+								:click-handler="fnSearch"
+								:prev-text="'<'"
+								:next-text="'>'"
+								:container-class="'pagination'"
+								:page-class="'page-item'">
+								</paginate>
+							</template>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div v-for="item in list">
-			<div><img :src="item.imgPath" alt=""></div>
-			<div>{{item.leisureName}}</div>
-		</div>
-		<template>
-			<paginate
-			:page-count="pageCount"
-			:page-range="3"
-			:margin-pages="2"
-			:click-handler="fnSearch"
-			:prev-text="'<'"
-			:next-text="'>'"
-			:container-class="'pagination'"
-			:page-class="'page-item'">
-			</paginate>
-		</template>
 	</div>
 </body>
 </html>
@@ -171,6 +168,11 @@ var app = new Vue({
 						self.pageCount = Math.ceil(self.cnt / 9);
 	                }
 	            }); 
+		},
+		fnGroundLeisureView : function(leisureNo){
+			var self = this;
+			$.pageChange("leisure/view.do", {leisureNo : leisureNo});
+			
 		}
 		
 	}, // methods
