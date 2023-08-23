@@ -1,0 +1,21 @@
+	input[type=radio] {
+		accent-color: #ff3333;
+	}
+	.btn {
+		width: 100px;
+		height: 50px;
+		color: white;
+		background-color: #ff3333;
+	   	border: none;
+	   	border-radius: 5%;
+	   	padding: 7px;
+	   	font-size: 12px;
+	   	text-align: center;
+	   	margin: 10px auto;
+	   	cursor: pointer;
+	}
+		
+	.btn:hover{
+		color: rgb(50, 50, 50);
+		background-color: #ff3333;
+	}

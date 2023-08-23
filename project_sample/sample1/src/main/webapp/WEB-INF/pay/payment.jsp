@@ -6,98 +6,9 @@
 <meta charset="EUC-KR">
 <title>결제 페이지</title>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<link href="../../css/pay/payment-style.css" rel="stylesheet"/>
+<link href="../../css/payment-style.css" rel="stylesheet"/>
 <style>
-	#container {
-		width: 1200px;
-		margin: 0px auto;
-		text-align: center;
-	}
-	.box {
-		text-align: left;
-		border-bottom: 1px solid #ddd;
-		padding: 10px;
-		margin: 10px;
-	}
-	.mainTxt {
-		width: 100%;
-		color: rgb(78, 79, 81);
-		font-weight : bold;
-		font-size: 22px;
-		border-bottom: 1px solid #bbb;
-		padding-bottom: 50px;
-		margin: 50px auto 10px; 
-	}
-	.coreTxt {
-		width: 100%;
-		color: rgb(78, 79, 81);
-		font-weight : bold;
-		font-size: 18px;
-		padding-bottom: 10px;
-		text-align: left;
-		margin: 30px 0px;
-	}
-	.bar {
-		color: #ff3333;
-	}
-	table {
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
-	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
-	}
-	.wrap input, textarea {
-	    border: 1px solid rgba(0, 0, 0, 0.08);
-	    background: none;
-	    width: 96%;
-	    margin-top: 10px;
-	    font-size: 16px;
-	    line-height: 1;
-	    color: rgba(0, 0, 0, 0.56);
-	    border: 1px solid rgba(0, 0, 0, 0.08);
-	    height: 40px;
-	    padding: 10px;
-	    border-radius: 4px;
-	}
-	.wrapPhone {
-		width: 100%;
-	}
-	.wrapPhone input {
-	    border: 1px solid rgba(0, 0, 0, 0.08);
-	    background: none;
-	    width: 30%;
-	    margin-top: 10px;
-	    font-size: 16px;
-	    line-height: 1;
-	    color: rgba(0, 0, 0, 0.56);
-	    border: 1px solid rgba(0, 0, 0, 0.08);
-	    height: 40px;
-	    padding: 10px;
-	    border-radius: 4px;
-	}
-	input[type=radio] {
-		accent-color: #ff3333;
-	}
-	.btn {
-		width: 100px;
-		height: 50px;
-		color: white;
-		background-color: #ff3333;
-	   	border: none;
-	   	border-radius: 5%;
-	   	padding: 7px;
-	   	font-size: 12px;
-	   	text-align: center;
-	   	margin: 10px auto;
-	   	cursor: pointer;
-	}
-		
-	.btn:hover{
-		color: rgb(50, 50, 50);
-		background-color: #ff3333;
-	}
 </style>
 </head>
 <body>
@@ -172,9 +83,17 @@
 			</div>
 			
 			<div class="box">
-				<div class="coreTxt"><span class="bar">ㅣ</span> 최종 결제 금액</div>
-				
-				
+				<div class="coreTxt"><span class="bar">ㅣ</span> 최종 결제 금액(VAT포함)</div>
+				<ul>
+					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다.</li>
+					<li>결제완료 후 <span>예약자 이름</span>과 <span>핸드폰 번호</span>로 바로 <span>체크인</span> 하시면 됩니다.</li>
+				</ul>
+			</div>
+			<div class="box"><!-- 수정 중 -->
+				<div><label><input type="checkbox">전체 동의</label></div>
+				<div><label><input type="checkbox">숙소이용규칙 및 취소/환불규정 동의<span>(필수)</span></label></div>
+				<div><label><input type="checkbox">개인정보 수집 및 이용 동의<span>(필수)</span></label></div>
+				<div><label><input type="checkbox">개인정보 제 3자 제공 동의<span>(필수)</span></label></div>
 			</div>
 			<div class="box">
 				<button class="btn" @click="fnRequestPay">결제하기</button>
