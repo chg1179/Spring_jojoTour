@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.sample1.model.Product;
 import com.example.sample1.model.Stay;
+import com.example.sample1.model.StayImg;
 import com.example.sample1.service.StayMainService;
 import com.google.gson.Gson;
 
@@ -50,6 +51,16 @@ public class StayMainController {
 		return new Gson().toJson(resultMap);
 		
 	}
+	// 숙소 이미지 리스트
+	@RequestMapping(value = "/stayImgList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String stayImgList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		List<StayImg> list = stayMainService.searchImgList(map);
+		resultMap.put("imgList", list);
+		return new Gson().toJson(resultMap);
+	}
+		
 	//숙소 룸 리스트 출력
 	@RequestMapping(value = "/stay/roomList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -65,7 +76,7 @@ public class StayMainController {
 	}
 	
 	//숙소 찜 인서트
-	@RequestMapping(value = "/stay/jjimAdd.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/jjimAdd.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String jjimAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
@@ -85,7 +96,7 @@ public class StayMainController {
 		
 	}
 	
-	//메인 숙소 정보
+	// 장바구니에 상품 추가
 	@RequestMapping(value = "/stay/addCart.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String addCart(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -93,5 +104,7 @@ public class StayMainController {
 		stayMainService.addCart(map);
 		return new Gson().toJson(resultMap);
 	}
+	
+	
 	
 }

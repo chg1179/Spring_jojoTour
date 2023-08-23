@@ -29,6 +29,8 @@ public class MyPage {
 	private double roomSales;
 	private String stayNo;
 	private String stayName;
+	private int minPrice;
+	
 	
 	private int rentNo;
 	private String rentName;

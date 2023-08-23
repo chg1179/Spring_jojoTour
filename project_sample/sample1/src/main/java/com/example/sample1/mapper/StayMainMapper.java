@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.example.sample1.model.Product;
 import com.example.sample1.model.Stay;
+import com.example.sample1.model.StayImg;
 
 @Mapper
 public interface StayMainMapper {
@@ -31,4 +32,7 @@ public interface StayMainMapper {
 	
 	// 장바구니 인서트
 	int insertCart(HashMap<String, Object> map);
+	
+	// 숙소 이미지 리스트
+	List<StayImg> selectImgList(HashMap<String, Object> map);
 }

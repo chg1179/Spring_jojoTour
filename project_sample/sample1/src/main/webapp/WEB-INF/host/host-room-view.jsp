@@ -105,6 +105,7 @@ var app = new Vue({
                 	self.info = data.roomInfo;
                 	console.log(self.info);
               	 	self.sales = 100 - (self.info.roomSales * 100);
+              	 	console.log(self.sales);
               	 	self.fnGetImgList();
                 }
             }); 

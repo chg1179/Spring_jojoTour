@@ -301,12 +301,12 @@
 			      	<td><input type="checkbox" v-model="selectItem" :value="item.productNo"></td>
 			        <td>	          			         
 			            <span v-if="item.productKind == 'STAY'">
-			            <a @click="fnStayView(item.stayNo)" href="javascript:;">
-			            {{item.stayName}} {{item.roomName}} {{item.productNo}}번</a>
+			            <a @click="fnStayView(item.productNo)" href="javascript:;">
+			            {{item.stayName}} {{item.productNo}}번</a>
 			            </span>
 			            <span v-if="item.productKind == 'RENT'">
 			            <a @click="fnRentView(item.productNo)" href="javascript:;"> 
-			            {{item.rentName}}{{item.productNo}}번</a>
+			            {{item.rentName}} {{item.productNo}}번</a>
 			            </span>			        
 			            <span v-if="item.productKind == 'LEISURE'">
 			            <a @click="fnLeisureView(item.productNo)" href="javascript:;"> 
@@ -323,12 +323,14 @@
 			          <span class="price">가격 : {{item.rentPrice}}</span>
 			          <div class="font1">{{item.rentPrice*item.rentSales}}</div></div>
 			          <div v-if="item.productKind == 'STAY'">
-			          <span class="price">가격 : {{item.roomPrice}}</span>
-			          <div class="font1">{{item.roomPrice*item.roomSales}}</div></div>
+			          <span class="price">가격 : {{item.minPrice}}</span>
+			          <div class="font1">{{item.minPrice*item.roomSales}}</div></div>
 			          <div v-if="item.productKind == 'LEISURE'">
 			          <span class="price">가격 : {{item.leisurePrice}}</span>
 			          <div class="font1">{{item.leisurePrice*item.leisureSales}}</div></div>
-			          <button class="btn2">주문하기</button>
+			          <button class="btn2" v-if="item.productKind == 'STAY'" @click="fnStayView(item.productNo)">예약하러가기</button>
+			          <button class="btn2" v-if="item.productKind == 'RENT'" @click="fnRentView(item.productNo)">예약하러가기</button>
+			          <button class="btn2" v-if="item.productKind == 'LEISURE'" @click="fnLeisureView(item.productNo)">예약하러가기</button>
 			        </td>
 			      </tr>
 			    </table>

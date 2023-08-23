@@ -76,7 +76,6 @@
 			<div>가격 : {{item.roomPrice}}</div>
 			<div>할인금액 : {{item.sales}}</div>
 			
-			<button @click="fnJjim(item.roomNo)">찜</button>
 			<button @click="fnCart(item)">장바구니</button>					
 			<button @click="">예약하기</button>		
 		</div>
@@ -117,29 +116,7 @@ var app = new Vue({
                 }
             }); 
 		},
-		fnJjim : function(roomNo){
-			var self = this;
-			if(self.uId == ""){
-				alert("로그인 후 이용 가능한 서비스입니다.");
-				return;
-			}
-			if(!confirm("찜목록에 추가하시겠습니까?")){
-				alert("취소되었습니다.");
-				return;
-			}
-			var param = {roomNo : roomNo, uId : self.uId};
-			$.ajax({
-                url : "jjimAdd.dox",
-                dataType:"json",	
-                type : "POST",
-                data : param,
-                success : function(data) { 
-                	alert("찜 목록에 추가되었습니다.");
-                	console.log(roomNo);
-                	self.fnGetList();
-                }
-            }); 
-		},
+		
 		fnCart : function(item){
 			var self = this;
 			if(self.uId == ""){

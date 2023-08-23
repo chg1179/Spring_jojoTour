@@ -28,7 +28,9 @@
 	</select>
 	
 	<delete id="deleteRoom" parameterType="hashmap">
-		DELETE FROM T2_ROOM_TBL 
+		UPDATE T2_ROOM_TBL
+		SET
+			ROOM_DELYN = 'Y'
 		WHERE ROOM_NO = #{roomNo}
 	</delete>
 	

@@ -167,12 +167,12 @@
 	<%-- <%@ include file="header.jsp" %> --%>
 	<div id="app">
 		<div class="banner_box">
-			<p v-if="stayKind == ''" class="banner_text">숙박</p>
-			<p 	v-else-if="stayKind == 'HOTEL'" class="banner_text">호텔</p>
-			<p 	v-else-if="stayKind == 'MOTEL'" class="banner_text">모텔</p>
-			<p 	v-else-if="stayKind == 'PENSION'" class="banner_text">펜션</p>
-			<p 	v-else-if="stayKind == 'GUEST'" class="banner_text">게스트하우스</p>
-			<p 	v-else="stayKind == 'CAMPING'" class="banner_text">캠핑</p>
+			<p v-if="stayKind == ''" class="banner_text">숙소</p>
+			<p v-else-if="stayKind == 'HOTEL'" class="banner_text">호텔</p>
+			<p v-else-if="stayKind == 'MOTEL'" class="banner_text">모텔</p>
+			<p v-else-if="stayKind == 'PENSION'" class="banner_text">펜션</p>
+			<p v-else-if="stayKind == 'GUEST'" class="banner_text">게스트하우스</p>
+			<p v-else="stayKind == 'CAMPING'" class="banner_text">캠핑</p>
 		</div>
 		<div id="content" class="sub-wrap">
 			<div class="filter-wrap">
@@ -197,7 +197,9 @@
 				</section>
 
 				<section>
-					<strong>인원</strong> <span> <select v-model="info.peopleMax">
+					<strong>인원</strong> 
+					<span> 
+						<select v-model="info.peopleMax">
 							<option value="">선택하세요</option>
 							<option value="1">1명</option>
 							<option value="2">2명</option>
@@ -209,13 +211,11 @@
 							<option value="8">8명</option>
 							<option value="9">9명</option>
 							<option value="10">10명</option>
-							<!-- 추후 수정 -->
-					</select>
+						</select>
 					</span>
 				</section>
 
 				<section>
-
 					<div v-for="item in serviceList">
 						<label><input type="checkbox" v-model="selectServiceList" :value="item.serviceNo">{{item.serviceName}}</label>
 					</div>
@@ -224,6 +224,7 @@
 			<div class="">
 				<div class="stay-type">
 					<select v-model="stayKind">
+						<option value="" selected disabled hidden>==선택하세요==</option>
 						<option value="HOTEL">호텔</option>
 						<option value="MOTEL">모텔</option>
 						<option value="PENSION">펜션</option>
@@ -232,14 +233,33 @@
 					</select>
 				</div>
 				<div class="list-wrap">
-					<ul>
-						<li v-for="item in list">
+					<ul>	
+						<li v-if ="stayKind == ''" v-for="item in list" >
 							<div class="stay-info">
+							<!-- 이미지 -->
 								<div>
-									<a @click="fnDetail(item.stayNo)">호텔이름 : {{item.stayName}}</a>
+									<a @click="fnDetail(item.stayNo)">숙소이름 : {{item.stayName}}</a>
 								</div>
+								<div>숙소타입 : {{item.stayKind}}</div>
+								<div>최대인원 : {{item.peopleMax}}명</div>
 								<div>가격 : {{item.minPrice}}원</div>
 								<div>위치 : {{item.sAddr}}</div>
+								<button @click="fnJjim(item.stayNo)">찜</button>
+								
+							</div>
+						</li>
+						<li v-if ="stayKind == item.stayKind" v-for="item in list">
+							<div class="stay-info">
+							<!-- 이미지 -->
+								<div>
+									<a @click="fnDetail(item.stayNo)">숙소이름 : {{item.stayName}}</a>
+								</div>
+								<div>숙소타입 : {{item.stayKind}}</div>
+								<div>최대인원 : {{item.peopleMax}}명</div>
+								<div>가격 : {{item.minPrice}}원</div>
+								<div>위치 : {{item.sAddr}}</div>
+								<button @click="fnJjim(item.stayNo)">찜</button>
+								
 							</div>
 						</li>
 					</ul>
@@ -261,10 +281,12 @@ var app = new Vue({
 			stayKind : "",
 			peopleMax : 0
 		},
-		stayKind : "${map.stayKind}"
+		stayKind : "${map.stayKind}",
+		uId : "${sessionId}",
+		imgList : []
 	},// data
 	methods : {
-		// 호텔 리스트 
+		// 숙소 리스트 
 		fnGetList : function(){
 			var self = this;
 			var param = {stayKeyword : self.stayKeyword};
@@ -280,7 +302,6 @@ var app = new Vue({
                 	self.serviceList = data.serviceList;
                 	console.log(self.serviceList);
                 	
-                	console.log(self.stayKind);
                 }
             }); 
 		},
@@ -297,6 +318,21 @@ var app = new Vue({
                 }
             }); 
 		},
+		
+		fnGetImg : function(){
+			var self = this;
+			var param = {stayNo : self.stayNo};
+			$.ajax({
+                url : "stayImgList.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	self.imgList = data.imgList;
+                	console.log(self.imgList);
+                }
+            }); 
+		},
 		fnDetail : function(stayNo){
 			var self = this;
 			console.log(stayNo);
@@ -308,21 +344,46 @@ var app = new Vue({
 		},
 		fnSearch : function(){
 			var self = this;
-			var param = {};
+			var param = {stayKeyword : self.stayKeyword};
 			$.ajax({
-                url : "stayView.dox",
+                url : "stayList.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.info = data.stayInfo;
+                	self.list = data.stayList;
                 }
             }); 
-		}
+		},
+		fnJjim : function(stayNo){
+			var self = this;
+			if(self.uId == ""){
+				alert("로그인 후 이용 가능한 서비스입니다.");
+				return;
+			}
+			if(!confirm("찜목록에 추가하시겠습니까?")){
+				alert("취소되었습니다.");
+				return;
+			}
+			var param = {stayNo : stayNo, uId : self.uId};
+			console.log(stayNo);
+			$.ajax({
+                url : "jjimAdd.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	alert("찜 목록에 추가되었습니다.");
+                	console.log(stayNo);
+                	self.fnGetList();
+                }
+            }); 
+		},
 	}, // methods
 	created : function() {
 		var self = this;
 		self.fnGetList();
+		self.fnGetImg();
 	}// created
 });
 

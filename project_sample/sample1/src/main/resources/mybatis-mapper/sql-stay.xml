@@ -13,7 +13,7 @@
 		FROM T2_STAY_TBL S
 		INNER JOIN T2_CODE_TYPE C
 		ON S.STAY_KIND = C.C_KIND
-		WHERE U_ID = #{uId}
+		WHERE S_DELYN = 'N' AND U_ID = #{uId}
 		ORDER BY S.STAY_NO DESC
 		<if test="lastNum != '' and lastNum != null"> 
 			LIMIT #{startNum}, #{lastNum}
@@ -43,7 +43,9 @@
 	
 	<!-- 숙소 삭제 -->
 	<delete id="deleteStay" parameterType="hashmap">
-		DELETE FROM T2_STAY_TBL
+		UPDATE T2_STAY_TBL
+		SET
+			S_DELYN = 'Y'
 		WHERE STAY_NO = #{stayNo}
 	</delete>
 	
