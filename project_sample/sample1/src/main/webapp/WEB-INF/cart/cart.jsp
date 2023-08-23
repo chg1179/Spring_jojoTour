@@ -296,7 +296,8 @@ var app = new Vue({
 		fnPayment : function (){
 			var self = this;
 			var param = {};
-			$.pageChangeList("payment.do", {list : self.roomlist});
+			//$.pageChangeList("payment.do", {list : self.roomlist});
+			
 		}
 		
 	}, // methods
