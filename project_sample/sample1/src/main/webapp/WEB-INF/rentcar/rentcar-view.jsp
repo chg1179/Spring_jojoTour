@@ -30,8 +30,18 @@
 		<p>인수장소 : {{info.rAddr}} {{info.rDetailAddr}}</p> 
 		
 	</div>
-		<span><a @click="fnWish(info.rentNo)"><i class="fa-regular fa-heart" style="color: #ff0000;"></i>찜하기</a></span>
-		<i class="fa-solid fa-heart" style="color: #ff0000;"></i>
+
+		<span v-if="!isWished">
+			<a @click="fnWish(info.rentNo)" href="javascript:;">
+				<i class="fa-regular fa-heart" style="color: #ff0000;"></i>찜하기
+			</a>
+		</span>
+		<span v-else>
+			<a @click="fnDelWish(info.rentNo)" href="javascript:;">
+				<i class="fa-solid fa-heart" style="color: #ff0000;"></i>찜해제
+			</a>
+		</span>
+
 		<span><button>예약하기</button></span>
 		<span><button @click="fnBack">뒤로가기</button></span>
 	</div>
@@ -48,7 +58,8 @@ var app = new Vue({
 		sales : 0,
 		imgList : [],
 		wishlist: [],
-		uId : "${sessionId}"
+		uId : "${sessionId}",
+		isWished:false
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -93,7 +104,24 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	alert("찜 목록에 추가되었습니다.");
-                	console.log(rentNo);
+                	self.isWished=true;
+                	self.fnGetList();
+                }
+    
+            });
+
+		},
+		fnDelWish : function(rentNo){
+			var self = this;
+			var param = {rentNo : rentNo, uId:self.uId};
+			$.ajax({
+                url : "jjimDel.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	alert("찜 목록에서 해제되었습니다.");
+                	self.isWished=false;
                 	self.fnGetList();
                 }
     

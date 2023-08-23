@@ -26,4 +26,6 @@ public interface RentCarMainMapper {
 	int selectCarSearchListCnt(HashMap<String, Object> map);
 	// 찜추가
 	int insertJjim(HashMap<String, Object> map);
+	// 찜해제
+	int deleteJjim(HashMap<String, Object> map);
 }

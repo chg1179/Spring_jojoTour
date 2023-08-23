@@ -77,4 +77,10 @@
 		INSERT INTO T2_JJIM_TBL VALUES
 		(#{uId}, #{rentNo}, 'RENT')
 	</insert>
+	
+	<delete id="deleteJjim" parameterType="hashmap">
+		DELETE
+		FROM T2_JJIM_TBL
+		WHERE PRODUCT_NO = #{rentNo} AND PRODUCT_KIND = 'RENT' AND U_ID = #{uId}
+	</delete>
 </mapper>

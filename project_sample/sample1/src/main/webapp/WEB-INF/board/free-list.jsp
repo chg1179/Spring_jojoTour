@@ -14,8 +14,11 @@
 <link href="../../css/board-style.css" rel="stylesheet"/>
 <link href="../../css/board-btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>자유 게시판</title>
 <style>
+	section.free {
+	  padding: 80px 0;
+	}
 </style>
 </head>
 <body>

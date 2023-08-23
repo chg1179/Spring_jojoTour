@@ -14,6 +14,9 @@
 <meta charset="EUC-KR">
 <title>1:1 문의 게시판</title>
 <style>
+	section.inquiry {
+	  padding: 80px 0;
+	}
 </style>
 </head>
 <body>

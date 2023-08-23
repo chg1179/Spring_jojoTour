@@ -272,7 +272,9 @@
 	font-size:18px;
 	font-weight:bolder;
 	}
-	
+	.price{
+	text-decoration:line-through;
+	}
 </style>
 </head>
 <body>
@@ -297,13 +299,19 @@
 			      </tr>
 			      <tr v-for="(item, index) in jjim" :key="index">
 			      	<td><input type="checkbox" v-model="selectItem" :value="item.productNo"></td>
-			        <td>
-			          <a @click="fnView(item.productNo)" href="javascript:;">
-			            {{item.productNo}}번
-			            <span v-if="item.productKind == 'STAY'"> {{item.roomName}}</span>
-			            <span v-if="item.productKind == 'RENT'"> {{item.rentName}}</span>
-			            <span v-if="item.productKind == 'LEISURE'"> {{item.leisureName}}</span>
-			          </a>
+			        <td>	          			         
+			            <span v-if="item.productKind == 'STAY'">
+			            <a @click="fnStayView(item.productNo)" href="javascript:;">
+			            {{item.stayName}} {{item.roomName}} {{item.productNo}}번</a>
+			            </span>
+			            <span v-if="item.productKind == 'RENT'">
+			            <a @click="fnRentView(item.productNo)" href="javascript:;"> 
+			            {{item.rentName}}{{item.productNo}}번</a>
+			            </span>			        
+			            <span v-if="item.productKind == 'LEISURE'">
+			            <a @click="fnLeisureView(item.productNo)" href="javascript:;"> 
+			            {{item.leisureName}} {{item.productNo}}번</a>
+			            </span>			       
 			        </td>
 			        <td>
 			          <div v-if="item.productKind == 'STAY'">숙박</div>
@@ -312,13 +320,13 @@
 			        </td>
 			        <td>
 			          <div v-if="item.productKind == 'RENT'">
-			          <del>가격 : {{item.rentPrice}}</del>
+			          <span class="price">가격 : {{item.rentPrice}}</span>
 			          <div class="font1">{{item.rentPrice*item.rentSales}}</div></div>
 			          <div v-if="item.productKind == 'STAY'">
-			          <del>가격 : {{item.roomPrice}}</del>
+			          <span class="price">가격 : {{item.roomPrice}}</span>
 			          <div class="font1">{{item.roomPrice*item.roomSales}}</div></div>
 			          <div v-if="item.productKind == 'LEISURE'">
-			          <del>가격 : {{item.leisurePrice}}</del>
+			          <span class="price">가격 : {{item.leisurePrice}}</span>
 			          <div class="font1">{{item.leisurePrice*item.leisureSales}}</div></div>
 			          <button class="btn2">주문하기</button>
 			        </td>
@@ -420,8 +428,18 @@ var app = new Vue({
                 }
             }); 
 		},
-		fnView : function(){
+		fnRentView : function(rentNo){
 				var self = this;
+				$.pageChange("/rentcar/view.do", {rentNo : rentNo});
+	    },
+	    fnStayView : function(stayNo){
+		    	var self = this;
+		    	console.log(stayNo);
+				//$.pageChange("/stay/view.do", {stayNo : stayNo});
+	    },
+	    fnLeisureView : function(leisureNo){
+	    	var self = this;
+			$.pageChange("/leisure/view.do", {leisureNo : leisureNo});	
 	    },
 	       selectAllItems: function() {
 	            var self = this;

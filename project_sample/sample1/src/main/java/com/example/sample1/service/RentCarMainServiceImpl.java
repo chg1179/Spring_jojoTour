@@ -62,6 +62,12 @@ public class RentCarMainServiceImpl implements RentCarMainService{
 		return rentCarMainMapper.insertJjim(map);
 	}
 
+	@Override
+	public int delJjim(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return rentCarMainMapper.deleteJjim(map);
+	}
+
 
 
 }

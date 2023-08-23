@@ -13,6 +13,9 @@
 <meta charset="EUC-KR">
 <title>공지사항</title>
 <style>
+	section.notice {
+	  padding: 80px 0;
+	}
 </style>
 </head>
 <body>

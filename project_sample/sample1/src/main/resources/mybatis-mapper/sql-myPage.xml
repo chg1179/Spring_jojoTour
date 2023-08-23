@@ -12,7 +12,8 @@
 	<select id="selectJjim" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
 			SELECT DISTINCT *
 			FROM T2_JJIM_TBL J
-			LEFT JOIN T2_ROOM_TBL on room_no = product_no and product_kind = 'STAY'
+			LEFT JOIN T2_ROOM_TBL R ON R.room_no = product_no and product_kind = 'STAY'
+			LEFT JOIN T2_STAY_TBL S ON S.STAY_NO = R.STAY_NO
 			LEFT JOIN T2_RENT_CAR_TBL on rent_no = product_no and product_kind = 'RENT'
 			LEFT JOIN T2_LEISURE_TBL on leisure_no = product_no and product_kind = 'LEISURE'
 			WHERE J.U_ID = #{userId}

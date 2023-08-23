@@ -110,7 +110,15 @@ public class RentCarMainController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		rentCarMainService.addJjim(map);
 		return new Gson().toJson(resultMap);
-		
+	}
+	
+	//숙소 찜 해제 인서트
+	@RequestMapping(value = "/rentcar/jjimDel.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String deljjim(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		rentCarMainService.delJjim(map);
+		return new Gson().toJson(resultMap);
 	}
 
 }
