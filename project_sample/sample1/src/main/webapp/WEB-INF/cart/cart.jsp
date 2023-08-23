@@ -72,13 +72,48 @@
 	#deline {
 		text-decoration : line-through;
 	}
+	#bottom-bar {
+	    position: fixed;
+	    bottom: 0;
+	    left: 0;
+	    height : 50px;
+	    width: 100%;
+	    background-color: #ff9f52;
+	    padding: 16px;
+	    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+	    display: flex;
+   		justify-content: space-between;
+   		align-items: center;
+	}
+	#bottom-txt {
+		margin-left: 720px;
+		color : white;
+		float : center;
+	}
+
+	#pbtn {
+	    background-color: white;
+	    color: black;
+	    border: none;
+	    border-radius: 10px;
+	    font-size: 18px;
+	    font-weight: bold;
+	    cursor: pointer;
+	    float: right;
+	    margin-right : 300px;
+	    width : 200px;
+	    height: 50px;
+	}
+	#pbtn:hover {
+	    background-color: #f1f1f1;
+	}
 </style>
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<h1
-			style="color: #f8852a; text-align: center; margin-top: 40px; margin-bottom: 60px;">장바구니</h1>
+			style="color: #f8852a; text-align: center; margin-top: 30px; margin-bottom: 4px;">장바구니</h1>
 
 		<div id="tbl">
 			<table style="margin: 30px auto;" id="tbl1">
@@ -108,7 +143,7 @@
 							<div style=" margin: 5px;">입실 : {{item.sReserveDate}}</div> 
 							<div>퇴실 : {{item.lReserveDate}}</div> 
 						</td>
-						<td><input type="button" value="삭 제" id="delBtn"></td>
+						<td><input type="button" value="삭 제" id="delBtn" @click="fnRemove(item)"></td>
 						<td v-if="dateDifference(item.sReserveDate, item.lReserveDate) == 0 && item.roomSales == 1">
 							<div style="font-weight: bold; font-size: 16px;">{{item.roomPrice.toLocaleString()}}원</div>
 						</td>
@@ -155,7 +190,7 @@
 							<div style=" margin: 5px;">인수 : {{item.sReserveDate}}</div> 
 							<div>반납 : {{item.lReserveDate}}</div> 
 						</td>
-						<td><input type="button" value="삭 제" id="delBtn"></td>
+						<td><input type="button" value="삭 제" id="delBtn" @click="fnRemove(item)"></td>
 						<td v-if="dateDifference(item.sReserveDate, item.lReserveDate) == 0 && item.rentSales == 1">
 							<div>{{item.rentPrice.toLocaleString()}}원</div>
 						</td>
@@ -201,7 +236,7 @@
 						<td style="width : 400px; margin: 5px;" v-else>
 							<div style=" margin: 5px;">예약일 : {{item.sReserveDate}} ~ {{item.lReserveDate}}</div>
 						</td>
-						<td><input type="button" value="삭 제" id="delBtn"></td>
+						<td><input type="button" value="삭 제" id="delBtn" @click="fnRemove(item)"></td>
 						<td v-if="dateDifference(item.sReserveDate, item.lReserveDate) == 0 && item.leisureSales == 1">
 							<div>{{item.leisurePrice.toLocaleString()}}원</div>
 						</td>
@@ -221,22 +256,17 @@
 				</tbody>
 			</table >
 			
-			<table id="tbl2">
-				<tr>
-					<td colspan="2" style="text-align: left; padding-left: 30px; font-size: 20px; border-bottom: 2px solid white; text-align: center;">
-							최종결제금액
-					</td>	
-				</tr>
-				<tr>
-					<td>
-						<div style="text-align: center;">{{ calculateTotalPrice() | numberWithCommas }}</div>
-					</td>
-					
-				</tr>
-			
-			</table>
-			<div style="text-align: center;"><input type="button" @click="fnPayment" value="결제하기" id="delBtn"></div>
-		</div>
+			<div id="bottom-bar">
+				<span id="bottom-txt">
+					<span>총 금액 : </span>
+					<span style="font-size: 24px;">{{ originalTotalPrice() | numberWithCommas }} </span>
+					<span> - 할인 금액 : </span>
+					<span style="font-size: 24px;">{{ originalTotalPrice()-calculateTotalPrice() | numberWithCommas }} </span>
+					<span> =  최종 결제 금액 : </span>
+					<span style="font-size: 24px;">{{ calculateTotalPrice() | numberWithCommas }}</span>
+				</span>
+				<input type="button" @click="fnPayment" value="결제하기" id="pbtn"></div>
+			</div>
 	</div>
 </body>
 </html>
@@ -299,6 +329,26 @@ var app = new Vue({
 			var roomlistJSON = JSON.stringify(self.roomlist);
 			$.pageChangeList("payment.do", {list : roomlistJSON});
 			
+		},
+		fnRemove : function(item){
+			var self = this;
+			var param = {uId : item.uId, productNo : item.productNo};
+			if(!confirm("선택하신 상품을 장바구니에서 삭제하시겠습니까?")){
+				return;
+			}
+			$.ajax({
+                url : "/delCart.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	self.list = data.list;
+                	self.fnRoomList();
+            		self.fnRentList();
+            		self.fnLeisureList();
+                }
+            }); 
+			
 		}
 		
 	}, // methods
@@ -344,7 +394,7 @@ var app = new Vue({
                     }
                     totalPrice = totalPrice + rprice;
                 }
-                
+                console.log(rprice);
                 for (const item of this.leisurelist) {
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var lprice =  0;
@@ -359,6 +409,46 @@ var app = new Vue({
                 }
                 
                 return totalPrice;
+            };
+        },
+        originalTotalPrice() {
+            return () => {
+                let originalPrice = 0;
+                
+                for (const item of this.roomlist) {
+                    const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
+                    var qprice =  0;
+                    if(daysDiff == 0){
+                    	qprice = parseInt(item.roomPrice);
+                    }else{
+                    	qprice = parseInt(item.roomPrice) * daysDiff;
+                    }
+                    originalPrice = originalPrice + qprice;
+                }
+                
+                for (const item of this.rentlist) {
+                    const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
+                    var wprice =  0;
+                    if(daysDiff == 0){
+                    	wprice = parseInt(item.rentPrice);
+                    }else{
+                    	wprice = parseInt(item.rentPrice) * daysDiff;
+                    }
+                    originalPrice = originalPrice + wprice;
+                }
+                console.log(wprice);
+                for (const item of this.leisurelist) {
+                    const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
+                    var eprice =  0;
+                    if(daysDiff == 0){
+                    	eprice = parseInt(item.leisurePrice);
+                    }else{
+                    	eprice = parseInt(item.leisurePrice) * daysDiff;
+                    }
+                    originalPrice = originalPrice + eprice;
+                }
+                
+                return originalPrice;
             };
         }
     },

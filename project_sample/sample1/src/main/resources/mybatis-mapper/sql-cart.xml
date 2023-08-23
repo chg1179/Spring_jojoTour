@@ -26,4 +26,9 @@
 		WHERE C.PRODUCT_KIND = 'LEISURE' AND C.U_ID = #{uId}
 	</select>
 	
+	<delete id="delCart" parameterType="hashmap">
+		DELETE FROM T2_CART_TBL
+		WHERE U_ID = #{uId} AND PRODUCT_NO = #{productNo}
+	</delete>
+	
 </mapper>

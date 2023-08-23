@@ -16,4 +16,6 @@ public interface CartMapper {
 	List<Cart> rentList(HashMap<String, Object> map);
 	//레저리스트
 	List<Cart> leisureList(HashMap<String, Object> map);
+	//장바구니 삭제
+	int delCart(HashMap<String, Object> map);
 }

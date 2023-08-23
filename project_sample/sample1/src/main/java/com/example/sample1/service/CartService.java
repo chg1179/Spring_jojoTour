@@ -13,5 +13,7 @@ public interface CartService {
 	List<Cart> listRent(HashMap<String, Object> map);
 	//레저리스트
 	List<Cart> listLeisure(HashMap<String, Object> map);
+	//장바구니 삭제
+	int removeCart(HashMap<String, Object> map);
 	
 }
