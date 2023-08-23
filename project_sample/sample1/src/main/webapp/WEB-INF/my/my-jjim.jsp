@@ -301,7 +301,7 @@
 			      	<td><input type="checkbox" v-model="selectItem" :value="item.productNo"></td>
 			        <td>	          			         
 			            <span v-if="item.productKind == 'STAY'">
-			            <a @click="fnStayView(item.productNo)" href="javascript:;">
+			            <a @click="fnStayView(item.stayNo)" href="javascript:;">
 			            {{item.stayName}} {{item.roomName}} {{item.productNo}}¹ø</a>
 			            </span>
 			            <span v-if="item.productKind == 'RENT'">
@@ -435,7 +435,7 @@ var app = new Vue({
 	    fnStayView : function(stayNo){
 		    	var self = this;
 		    	console.log(stayNo);
-				//$.pageChange("/stay/view.do", {stayNo : stayNo});
+				$.pageChange("/stay/view.do", {stayNo : stayNo});
 	    },
 	    fnLeisureView : function(leisureNo){
 	    	var self = this;
