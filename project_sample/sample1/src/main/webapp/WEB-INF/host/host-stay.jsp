@@ -77,11 +77,10 @@
 					</thead>
 					<tbody>
 						<tr v-for="(item, index) in list">
-							<td><input v-if="index==indexNo" type="radio" :value="item.stayNo"
-								@input="changeStayNo(item.stayNo)" name="stayNo"
-								checked="checked"> <input v-else type="radio"
-								:value="item.stayNo" @input="changeStayNo(item.stayNo)"
-								name="stayNo"></td>
+							<td>
+								<input v-if="index==indexNo" type="radio" :value="item.stayNo" @input="changeStayNo(item.stayNo)" name="stayNo" checked="checked"> 
+								<input v-else type="radio" :value="item.stayNo" @input="changeStayNo(item.stayNo)" name="stayNo">
+							</td>
 							<td>{{item.stayNo}}</td>
 							<td><a @click="fnMove(item.stayNo)" href="javascript:;">{{item.stayName}}</a></td>
 							<td>{{item.sAddr}}</td>
