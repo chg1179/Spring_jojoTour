@@ -4,10 +4,42 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>결제페이지</title>
+<title>결제 페이지</title>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <style>
-	table{
+	#container {
+		width: 1200px;
+		margin: 0px auto;
+		text-align: center;
+	}
+	.box {
+		text-align: left;
+		border-bottom: 1px solid #ddd;
+		padding: 10px;
+		margin: 10px;
+	}
+	.mainTxt {
+		width: 100%;
+		color: rgb(78, 79, 81);
+		font-weight : bold;
+		font-size: 22px;
+		border-bottom: 1px solid #bbb;
+		padding-bottom: 50px;
+		margin: 50px auto 10px; 
+	}
+	.coreTxt {
+		width: 100%;
+		color: rgb(78, 79, 81);
+		font-weight : bold;
+		font-size: 18px;
+		padding-bottom: 10px;
+		text-align: left;
+		margin: 30px 0px;
+	}
+	.bar {
+		color: #ff3333;
+	}
+	table {
 		border : 1px solid black;
 		border-collapse: collapse;
 		text-align : center;
@@ -16,82 +48,136 @@
 		border : 1px solid black;
 		padding : 5px 10px;
 	}
+	.wrap input, textarea {
+	    border: 1px solid rgba(0, 0, 0, 0.08);
+	    background: none;
+	    width: 96%;
+	    margin-top: 10px;
+	    font-size: 16px;
+	    line-height: 1;
+	    color: rgba(0, 0, 0, 0.56);
+	    border: 1px solid rgba(0, 0, 0, 0.08);
+	    height: 40px;
+	    padding: 10px;
+	    border-radius: 4px;
+	}
+	.wrapPhone {
+		width: 100%;
+	}
+	.wrapPhone input {
+	    border: 1px solid rgba(0, 0, 0, 0.08);
+	    background: none;
+	    width: 30%;
+	    margin-top: 10px;
+	    font-size: 16px;
+	    line-height: 1;
+	    color: rgba(0, 0, 0, 0.56);
+	    border: 1px solid rgba(0, 0, 0, 0.08);
+	    height: 40px;
+	    padding: 10px;
+	    border-radius: 4px;
+	}
+	input[type=radio] {
+		accent-color: #ff3333;
+	}
+	.btn {
+		width: 100px;
+		height: 50px;
+		color: white;
+		background-color: #ff3333;
+	   	border: none;
+	   	border-radius: 5%;
+	   	padding: 7px;
+	   	font-size: 12px;
+	   	text-align: center;
+	   	margin: 10px auto;
+	   	cursor: pointer;
+	}
+		
+	.btn:hover{
+		color: rgb(50, 50, 50);
+		background-color: #ff3333;
+	}
 </style>
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<div id="container">
-			<div>
-				<div>결제페이지</div>
-			</div>
-			<div>
-				<div>--상품 상세 정보</div>
+			<div class="mainTxt">결제페이지</div>
+			<div class="box">
+				<div class="coreTxt"><span class="bar">ㅣ</span> 상품 상세 정보</div>
 				
 				
 			</div>
 			
-			<div>
-				<div>--요금 상세 정보</div>
+			<div class="box">
+				<div class="coreTxt"><span class="bar">ㅣ</span> 요금 상세 정보</div>
 				
 			</div>
 			
-			<div>
-				<div>--예약자 정보 입력</div>
+			<div class="box">
+				<div class="coreTxt"><span class="bar">ㅣ</span> 예약자 정보 입력</div>
 				<div>
 					<div>
-						
 						<label>
-							<input type="radio" name="infoCheck" @click="infoView('same')" checked="checked">
+							<input type="radio" class="radioBtn" name="infoCheck" @click="infoView('same')" checked="checked">
 							예약자와 사용자 동일
 						</label>
 						<label>
-							<input name="infoCheck" type="radio" @click="infoView('notSame')">
+							<input type="radio" class="radioBtn" name="infoCheck" @click="infoView('notSame')">
 							새로 입력
 						</label>
 					</div>
 					<div>
-						<label>성　명<input type="text" v-model="userInfo.uName"></label>
+						<div>성명</div>
+						<div class="wrap"><input type="text" v-model="userInfo.uName"></div>
 					</div>
 					<div>
-						<label>연락처
-							<input type="text" v-model="phoneSplit.phone1">-
-							<input type="text" v-model="phoneSplit.phone2">-
-							<input type="text" v-model="phoneSplit.phone3">
-						</label>
+						<div>연락처</div>
+						<div>
+							<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone1"></span>-
+							<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone2"></span>-
+							<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone3"></span>
+						</div>
 					</div>
 					<div>
-						<label>이메일<input type="text" v-model="userInfo.email"></label>
+						<div>이메일</div>
+						<div class="wrap"><input type="text" v-model="userInfo.email"></div>
 					</div>
 					<div>
-						<label>요청사항<input type="text" v-model="request" placeholder="상품 이용과 관련하여 요청사항이 있는 경우 자유롭게 입력해 주세요."></label>
+						<div>요청사항</div>
+						<div class="wrap"><textarea rows="3" cols="50"  v-model="request" maxlength="50" placeholder="요청사항이 있는 경우 자유롭게 입력해 주세요."></textarea></div>
 					</div>
 				</div>
 			</div>
 			
 			
-			<div>
-				<div>--포인트 사용</div>
+			<div class="box">
+				<div class="coreTxt"><span class="bar">ㅣ</span> 포인트 사용</div>
 				<div>
 					<div>
-						<label>보유 포인트<input type="text" v-model="userInfo.point" placeholder="0"></label>
+						<div>보유 {{userInfo.point}}P</div>
 					</div>
 					<div>
-						<label>사용 <input type="text" v-model="usePoint" @input="pointOverCheck" placeholder="0"></label>
-						<input type="button" @click="allPoint" value="전액사용">
+						<div>사용</div>
+						<div class="wrap">
+							<input type="text" v-model="usePoint" @input="pointOverCheck" placeholder="0">
+						</div>
+						<input type="button" class="btn" @click="allPoint" value="전액사용">
 					</div>
-					<div>포인트는 가장 비싼 상품에서 우선적으로 차감됩니다.</div>
+					<div>포인트는 가장 비싼 상품을 우선으로 차감됩니다.</div>
 				</div>
 				
 			</div>
 			
-			<div>
-				<div>최종 결제 금액</div>
+			<div class="box">
+				<div class="coreTxt"><span class="bar">ㅣ</span> 최종 결제 금액</div>
 				
 				
 			</div>
-			<div>
-				<button @click="fnRequestPay">결제하기</button>
+			<div class="box">
+				<button class="btn" @click="fnRequestPay">결제하기</button>
 			</div>
 		</div>
 	</div>
@@ -118,10 +204,10 @@ var app = new Vue({
 		request : "", //요청사항 작성
 		testList : []
 	},// data
-	mounted() { // created 다음으로 호출됨
-        //this.testList = ${map.list}; // JSON 데이터를 할당
-        //console.log(this.testList);
-    },
+/* 	mounted() { // created 다음으로 호출됨
+        this.testList = ${map.list}; // JSON 데이터를 할당
+        console.log(this.testList);
+    }, */
 	methods : {
 		fnGetUserInfo : function(){
 			var self = this;
@@ -135,6 +221,9 @@ var app = new Vue({
                 	self.userInfo = data.userInfo;
                 	console.log(self.userInfo);
                 	self.phoneSubString();
+                	if(self.userInfo.point == null || self.userInfo.point ==''){
+                		self.userInfo.point = 0;
+                	}
                 }
             }); 
 		},

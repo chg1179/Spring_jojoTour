@@ -29,7 +29,7 @@ public class PayController {
 	
 	@RequestMapping("/payment.do") 
     public String cart(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		String[] list = request.getParameterValues("list");
+		request.setAttribute("map", map);
         return "/pay/payment";
     }
 
