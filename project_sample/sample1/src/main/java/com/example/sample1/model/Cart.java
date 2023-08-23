@@ -14,6 +14,8 @@ public class Cart {
 	private String roomInsertTime;
 	private String roomUpdateTime;
 	private int roomResidue;
+	private String sReserveDate;
+	private String lReserveDate;
 	
 	// code_type
 	private String cKind;
