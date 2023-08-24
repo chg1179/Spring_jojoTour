@@ -108,31 +108,6 @@ var app = new Vue({
 		// 룸 추가
 		fnRoomAdd : function(roomNo){
 			var self = this;
-			if(self.info.roomName ==""){
-				alert("객실 유형을 입력해주세요.");
-				return;
-			}
-			
-			var regex = new RegExp(/^[0-9]+$/);
-			if(self.info.roomPrice == ""){
-				alert("객실 금액을 입력해주세요.");
-				return;
-			}
-			
-			if(!regex.test(self.info.roomPrice)){
-				alert("객실 금액은 숫자만 입력해주세요.");
-				return;
-			}
-			if(self.info.roomPrice < 1000){
-				alert("객실 금액은 1000원 이상으로 입력헤주세요.");
-				return;
-			}
-			
-			
-			if(!confirm("객실을 등록하시겠습니까?")){
-				alert("취소되었습니다.");
-				return;
-			}
 			var param = self.info;
 			var param = {
 				roomName : self.info.roomName,

@@ -22,4 +22,12 @@ public class Room {
 	// 찜
 	private String productKind;
 	private int productNo;
+	
+	// img
+	private int imgNo;
+	private String imgName;
+	private String imgSaveName;
+	private String imgPath;
+	private String imgDate;
+	private String imgDelYn;
 }

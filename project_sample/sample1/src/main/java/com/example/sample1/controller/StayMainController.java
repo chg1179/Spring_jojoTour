@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.sample1.model.Product;
+import com.example.sample1.model.Room;
 import com.example.sample1.model.Stay;
 import com.example.sample1.model.StayImg;
 import com.example.sample1.service.StayMainService;
@@ -66,10 +66,10 @@ public class StayMainController {
 	@ResponseBody
 	public String roomList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Product> list = stayMainService.searchRoomList(map);
+		List<Room> list = stayMainService.searchRoomList(map);
 		resultMap.put("roomList", list);
 		
-		Product info = stayMainService.searchStayInfo(map);
+		Stay info = stayMainService.searchStayInfo(map);
 		resultMap.put("stayInfo", info);
 		return new Gson().toJson(resultMap);
 		

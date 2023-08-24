@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.sample1.model.Product;
+import com.example.sample1.model.Room;
 import com.example.sample1.model.Stay;
 import com.example.sample1.model.StayImg;
 
@@ -19,13 +20,13 @@ public interface StayMainMapper {
 	List<Stay> selectServiceList(HashMap<String, Object> map);
 	
 	// 호텔 상세 정보 
-	List<Product> selectRoomList(HashMap<String, Object> map);
+	List<Room> selectRoomList(HashMap<String, Object> map);
 	
 	// 찜 인서트
 	int insertJjim(HashMap<String, Object> map);
 	
 	// 상세페이지 숙소 정보 출력 
-	Product selectStayInfo(HashMap<String, Object> map);
+	Stay selectStayInfo(HashMap<String, Object> map);
 	
 	// 메인페이지 숙소 정보 
 	Stay selectStayView(HashMap<String, Object> map);

@@ -179,10 +179,12 @@ var app = new Vue({
     		self.info.sAddr = roadAddrPart1;
             self.info.sDetailAddr = addrDetail;
             
-    		console.log(roadFullAddr);
-    		console.log(roadAddrPart1);
-    		console.log(addrDetail);
-    		console.log(engAddr);
+            self.$nextTick(function() {
+                console.log(roadFullAddr);
+                console.log(roadAddrPart1);
+                console.log(addrDetail);
+                console.log(engAddr);
+            });
     	},
     	
 		// 파일 업로드

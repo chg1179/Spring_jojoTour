@@ -234,31 +234,38 @@
 				</div>
 				<div class="list-wrap">
 					<ul>	
-						<li v-if ="stayKind == ''" v-for="item in list" >
+						<li v-if ="stayKind == ''" v-for="item in list">
 							<div class="stay-info">
-							<!-- 이미지 -->
 								<div>
-									<a @click="fnDetail(item.stayNo)">숙소이름 : {{item.stayName}}</a>
+									<img :src="item.imgPath" alt="">
 								</div>
-								<div>숙소타입 : {{item.stayKind}}</div>
-								<div>최대인원 : {{item.peopleMax}}명</div>
-								<div>가격 : {{item.minPrice}}원</div>
-								<div>위치 : {{item.sAddr}}</div>
-								<button @click="fnJjim(item.stayNo)">찜</button>
-								
+								<div class="stay_txt_box">
+									<p>
+										<a @click="fnDetail(item.stayNo)">숙소이름 : {{item.stayName}}</a>
+									</p>
+									<p>숙소타입 : {{item.stayKind}}</p>
+									<p>최대인원 : {{item.peopleMax}}명</p>
+									<p>가격 : {{item.minPrice}}원</p>
+									<p>위치 : {{item.sAddr}}</p>
+									<button @click="fnJjim(item.stayNo)">찜</button>
+								</div>
 							</div>
 						</li>
 						<li v-if ="stayKind == item.stayKind" v-for="item in list">
 							<div class="stay-info">
-							<!-- <img> -->
 								<div>
-									<a @click="fnDetail(item.stayNo)">숙소이름 : {{item.stayName}}</a>
+									<img :src="item.imgPath" alt="">
 								</div>
-								<div>숙소타입 : {{item.stayKind}}</div>
-								<div>최대인원 : {{item.peopleMax}}명</div>
-								<div>가격 : {{item.minPrice}}원</div>
-								<div>위치 : {{item.sAddr}}</div>
-								<button @click="fnJjim(item.stayNo)">찜</button>
+								<div class="stay_txt_box">
+									<p>
+										<a @click="fnDetail(item.stayNo)">숙소이름 : {{item.stayName}}</a>
+									</p>
+									<p>숙소타입 : {{item.stayKind}}</p>
+									<p>최대인원 : {{item.peopleMax}}명</p>
+									<p>가격 : {{item.minPrice}}원</p>
+									<p>위치 : {{item.sAddr}}</p>
+									<button @click="fnJjim(item.stayNo)">찜</button>
+								</div>
 							</div>
 						</li>
 					</ul>
@@ -319,20 +326,6 @@ var app = new Vue({
             }); 
 		},
 		
-		/* fnGetImgList : function(){
-			var self = this;
-			var param = {stayNo : self.stayNo};
-			$.ajax({
-                url : "stayImgList.dox",
-                dataType:"json",	
-                type : "POST",
-                data : param,
-                success : function(data) { 
-                	self.imgList = data.imgList;
-                	console.log(self.imgList);
-                }
-            }); 
-		}, */
 		fnDetail : function(stayNo){
 			var self = this;
 			console.log(stayNo);

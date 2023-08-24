@@ -31,17 +31,20 @@
 	<!-- 방정보 출력 -->
 	<select id="selectRoomList" parameterType="hashmap" resultType="com.example.sample1.model.Room">
 		SELECT *
-		FROM T2_ROOM_TBL
+		FROM T2_ROOM_TBL R
+		LEFT JOIN T2_ROOM_IMG_TBL I ON R.ROOM_NO = I.ROOM_NO
 		WHERE STAY_NO = #{stayNo} AND ROOM_DELYN = 'N'
+		
 	</select>
 	
 	<!-- 상세 페이지 숙소 정보 출력 -->
-	<select id="selectStayInfo" parameterType="hashmap" resultType="com.example.sample1.model.Product">
+	<select id="selectStayInfo" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
 		SELECT *
 		FROM T2_STAY_TBL S
 		INNER JOIN T2_CODE_TYPE C
 		ON S.STAY_KIND = C.C_KIND
-		WHERE STAY_NO = #{stayNo} AND S_DELYN = 'N'
+		LEFT JOIN T2_STAY_IMG_TBL I ON S.STAY_NO = I.STAY_NO
+		WHERE S.STAY_NO = #{stayNo} AND S_DELYN = 'N'
 	</select>
 	
 	<!-- 메인 페이지 -->
@@ -68,4 +71,6 @@
 		FROM T2_STAY_IMG_TBL
 		WHERE STAY_NO = #{stayNo}
 	</select>
+	
+	
 </mapper>

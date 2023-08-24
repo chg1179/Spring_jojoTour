@@ -24,13 +24,10 @@
 	}
 	.room-box .room{
 	    overflow: hidden;
-	    position: relative;
 	    margin: 30px 0 24px 0;
-	    padding: 24px 24px 24px 424px;
 	    border: 1px solid #ccc;
 	    border-radius: 4px;
 	    background: #fff;
-	    box-sizing: border-box;
 	    
 	}
 	.stay-box .stay {
@@ -44,15 +41,26 @@
 		overflow : hidden;
 	}
 	
-	.stay-box .stay .left {
+	.stay-box .stay .left  {
 		float: left;
 		width: 490px;
 	}
+	
+	.room-box .room .left {
+		float: left;
+		width: 490px;
+	}
+	
 	
 	.stay-box .stay .right {
 		float: right;
 		width: 450px;
 	}
+	
+	 .room-box .room .right {
+	 	float: right;
+		width: 450px;
+	 }
 	
 </style>
  
@@ -62,22 +70,31 @@
 <div id="app">
 	<div class="stay-box">
 		<div class="stay">
-			<div class="left">이미지</div>
+			<div class="left">
+				<img :src="info.imgPath" alt="">
+			</div>
 			<div class="right">
-				<div>{{info.stayName}}</div>
-				<div>{{info.sAddr}}</div>
+				<p>{{info.stayName}}</p>
+				<p>{{info.sAddr}}</p>
 			</div>
 		</div>
 	</div>
 	<div class="room-box">
-		<div class="room" v-for="item in list">
-			<div>방 번호: {{item.roomNo}}</div>
-			<div>방정보 : {{item.roomName}}</div>
-			<div>가격 : {{item.roomPrice}}</div>
-			<div>할인금액 : {{item.sales}}</div>
-			
-			<button @click="fnCart(item)">장바구니</button>					
-			<button @click="">예약하기</button>		
+		<div class="room" v-for="(item, index) in list">
+			<div class="left">
+				<img :src="item.imgPath" alt="">
+			</div>
+			<div class="right">
+				<div>방번호: {{item.roomNo}}</div>
+				<div>방정보 : {{item.roomName}}</div>
+				<div>가격 : {{item.roomPrice}}</div>
+				<div>할인율 : {{salesList[index]}}%</div>
+				<div>할인된 가격 : {{item.roomPrice * item.roomSales}}원</div>
+				
+				<button @click="fnCart(item)">장바구니</button>					
+				<button @click="">예약하기</button>
+			</div>
+					
 		</div>
 	</div>
 </div>
@@ -95,7 +112,8 @@ var app = new Vue({
 			sAddr : "",
 			cKind : ""
 		},
-		roomNo : ""
+		roomNo : "",
+		salesList : [],
 		
 	},// data
 	methods : {
@@ -111,12 +129,30 @@ var app = new Vue({
                 	self.list = data.roomList;
                 	console.log(self.list);
                 	
+               		self.salesList = self.list.map(item => 100 - (item.roomSales * 100));
+               		console.log(self.salesList);
+                	
                 	self.info = data.stayInfo;
-                	console.log(data.stayInfo);
+                	console.log(self.info);
+                	
+                	
                 }
             }); 
 		},
-		
+		fnGetImgList : function(){
+		var self = this;
+		var param = {stayNo : self.stayNo};
+		$.ajax({
+	          url : "stayImgList.dox",
+	          dataType:"json",	
+	          type : "POST",
+	          data : param,
+	          success : function(data) { 
+	          	self.imgList = data.imgList;
+	          	console.log(self.imgList);
+	          }
+	      }); 
+		},
 		fnCart : function(item){
 			var self = this;
 			if(self.uId == ""){

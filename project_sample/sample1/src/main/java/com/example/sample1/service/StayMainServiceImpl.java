@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.sample1.mapper.StayMainMapper;
 import com.example.sample1.model.Product;
+import com.example.sample1.model.Room;
 import com.example.sample1.model.Stay;
 import com.example.sample1.model.StayImg;
 
@@ -33,7 +34,7 @@ public class StayMainServiceImpl implements StayMainService{
 	
 	// 룸 정보
 	@Override
-	public List<Product> searchRoomList(HashMap<String, Object> map) {
+	public List<Room> searchRoomList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return stayMainMapper.selectRoomList(map);
 	}
@@ -47,7 +48,7 @@ public class StayMainServiceImpl implements StayMainService{
 	
 	// 상세 페이지 숙소 정보
 	@Override
-	public Product searchStayInfo(HashMap<String, Object> map) {
+	public Stay searchStayInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return stayMainMapper.selectStayInfo(map);
 	}
