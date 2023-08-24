@@ -22,9 +22,9 @@ public class MyPageServiceImpl implements MyPageService{
 	HttpSession session;
 
 	@Override
-	public MyPage searchOrder(HashMap<String, Object> map) {
+	public List<MyPage> searchOrderList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return myPageMapper.selectOrder(map);
+		return myPageMapper.selectOrderList(map);
 	}
 
 	@Override
@@ -101,6 +101,31 @@ public class MyPageServiceImpl implements MyPageService{
 		// TODO Auto-generated method stub
 		return myPageMapper.deleteJjimCheck(map);
 	}
+
+	@Override
+	public List<MyPage> searchOrderAcceptList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.selectOrderAcceptList(map);
+	}
+
+	@Override
+	public List<MyPage> searchOrderCompletionList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.selectOrderCompletionList(map);
+	}
+
+	@Override
+	public List<MyPage> searchOrderCancelList(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.selectOrderCancelList(map);
+	}
+
+	@Override
+	public int searchBookingCancel(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.selectBookingCancel(map);
+	}
+	
 	
 
 

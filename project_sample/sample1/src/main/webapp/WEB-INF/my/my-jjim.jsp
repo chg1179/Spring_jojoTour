@@ -10,6 +10,17 @@
 <meta charset="EUC-KR">
 <title>찜목록</title>
 <style>
+	.jjim{
+		background-color : buttonface;
+	}
+    .jjim::after{
+        content: ">";
+        position: absolute;
+        color: rgb(28, 111, 235);
+        font-size: 30px;
+        top: 0;
+        right: 0;
+    }
 	.pagination {
        margin:24px;
        display: inline-flex;

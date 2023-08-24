@@ -19,53 +19,47 @@
         top: 0;
         right: 0;
     }
-	*{
-		margin: 0;
-		padding: 0;
-	}
-	#my_order_container{
-		margin: 50px 50px;
-	}
-	.my_order_box{
+	#page_order_container{
 		display: flex;
+		align-items: center;
 		justify-content: center;
-		width: 1000px;
-		margin-top : 50px;
+		height: 100vh;
+		margin-top: -200px;
 	}
-	.my_order_box > div{
-		width: 25%;
-		border-top : 1px solid #686868;
-		border-bottom : 1px solid #686868;
-		border-right : 1px solid #ccc;
-		height : 150px;
-	}
-	.my_order_box > div:last-child{
-		border-right: none;
-	}
-	.my_order_box > div > p{
+	.page_order_booking_box{
+		display: flex;
+		justify-content: space-around;
 		text-align: center;
-		margin-top: 20px;
-		font-weight: bold;
-		font-size: 20px;
-		color: #414141;
 	}
-	.my_order_box > div > div{
+	.page_order_booking_box{
+		border-top: 1px solid;
+		border-bottom: 1px solid #ccc;
+	}
+	.page_order_booking_box>div{
+		padding: 0 70px;
+	}
+	.page_order_booking_box>div:nth-child(2){
+		border-right: 1px solid #ccc;
+		border-left: 1px solid #ccc;
+
+	}
+	.page_order_booking_box div div{
+		margin: 20px 0;
+	}
+	.page_order_booking_box span{
+		font-size: 30px;
+		font-weight: bold;
+	}
+	table, tr, th, td{
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	.page_order_wrap table{
+		margin-top: 30px;
 		text-align: center;
-		margin-top: 10px;
-		font-weight: bold;
-		margin-top: 60px;
-		color : #5c5c5c;
 	}
-	@media (max-width : 1400px){
-		.my_order_box{
-			width: 600px;
-		}
-	}
-	
-	@media (max-width : 1000px){
-		.my_order_box{
-			width: 500px;
-		}
+	.page_order_wrap table th, .page_order_wrap table td{
+		padding : 5px 20px;
 	}
 </style>
 </head>
@@ -73,33 +67,47 @@
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <jsp:include page="my-page.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div id="my_order_container">
-			<h2>예약 내역</h2>
-			<div class="my_order_box">
-				<div class="order_date">
-					<p>결제날짜</p>
-					<div>{{order.paymentDate}}</div>
+		<div id="page_order_container">
+			<div class="page_order_wrap">
+				<h2>예약 내역</h2>
+				<div class="page_order_booking_box">
+					<div class="page_order_accept">
+						<div>예약 접수중</div>
+						<div><span>{{listAccept.length}}건</span></div>
+					</div>
+					<div class="page_order_completion">
+						<div>여행완료</div>
+						<div><span>{{listCompletion.length}}건</span></div>
+					</div>
+					<div class="page_order_cancel">
+						<div>예약취소</div>
+						<div><span>{{listCancel.length}}건</span></div>
+					</div>
 				</div>
-				<div class="order_booking">
-					<p>예약내역</p>
-					<div v-if="order.useYnc == 'N'">사용전</div>
-					<div v-if="order.useYnc == 'Y'">사용완료</div>
-					<div v-if="order.useYnc == 'C'">예약취소</div>
-				</div>
-				<div class="order_num">
-					<p>주문번호</p> 
-					<div>{{order.productNo}}번</div>
-				</div>
-				<div class="order_product">
-					<p>주문제품</p>
-					<div v-if="order.productKind == 'STAY'">숙박</div>
-					<div v-if="order.productKind == 'RENT'">렌트카</div>
-					<div v-if="order.productKind == 'LEISURE'">레저</div>
-				</div>
-				<div class="order_pay">
-					<p>결제금액</p>
-					<div>100{{order.payment}}</div>
-				</div>
+				<table>
+					<tr>
+						<th>주문번호</th>
+						<th>제품번호</th>
+						<th>예약일</th>
+						<th>상품정보</th>
+						<th>인원</th>
+						<th>금액</th>
+						<th>예약상태</th>
+						<th v-if="flg">취소여부</th>
+					</tr>
+					<tr v-for="item in list">
+						<td>{{item.orderNo}}</td>
+						<td>{{item.productNo}}</td>
+						<td>{{item.sReserveDate}}</td>
+						<td>{{item.productKind}}</td>
+						<td>{{item.people}}명</td>
+						<td>{{item.payment}}원</td>
+						<td v-if="item.useYnc == 'Y'">사용완료</td>
+						<td v-else-if="item.useYnc == 'N'">예약완료</td>
+						<td v-else>취소완료</td>
+						<td v-if="item.useYnc == 'N'"><button @click="bookingCancel(item.productNo)">취소하기</button></td>
+					</tr>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -110,8 +118,11 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
+		listAccept : [],
+		listCompletion : [],
+		listCancel : [],
 		userId : "${sessionId}",
-		order : ""
+		flg : false
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -123,12 +134,42 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.order = data.order;
-                	console.log(self.order);
+                	self.list = data.list;
+                	self.listAccept = data.listAccept;
+                	self.listCompletion = data.listCompletion;
+                	self.listCancel = data.listCancel;
+                	var i = 0;
+                	for(i=0;i<self.list.length;i++){
+                		if(self.list[i].useYnc == 'N'){
+                			self.flg = true;
+                			return;
+                		}
+                	}
+                	if(i == self.list.length){
+             			self.flg = false;
+             		}
+                	console.log(self.list);
+                	console.log(self.flg);
+                }
+            }); 
+		},
+		bookingCancel : function(productNo){
+			var self = this;
+			if(!confirm("정말 취소하시겠습니까?")){
+				return;
+			}
+			var param = {userId : self.userId, productNo : productNo};
+			$.ajax({
+                url : "/bookingCancel.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	alert("취소되었습니다.");
+            		self.fnGetList();
                 }
             }); 
 		}
-		
 	}, // methods
 	created : function() {
 		var self = this;

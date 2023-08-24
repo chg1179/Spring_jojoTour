@@ -38,7 +38,7 @@ public class MyPageController {
 	@RequestMapping("/my/order.do") 
     public String order(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 
-        return "my/my-order";
+        return "/my/my-order";
     }
 
 	@RequestMapping("/my/point.do") 
@@ -82,8 +82,14 @@ public class MyPageController {
 	public String order(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 
-		MyPage order = myPageService.searchOrder(map);
-		resultMap.put("order", order);
+		List<MyPage> list = myPageService.searchOrderList(map);
+		resultMap.put("list", list);
+		List<MyPage> listAccept = myPageService.searchOrderAcceptList(map);
+		resultMap.put("listAccept", listAccept);
+		List<MyPage> listCompletion = myPageService.searchOrderCompletionList(map);
+		resultMap.put("listCompletion", listCompletion);
+		List<MyPage> listCancel = myPageService.searchOrderCancelList(map);
+		resultMap.put("listCancel", listCancel);
 		return new Gson().toJson(resultMap);
 	}
 	
@@ -192,6 +198,14 @@ public class MyPageController {
 		map.put("list", list);//쿼리에 list 라는 값으로 보내줬음을 기억하
 		myPageService.removeJjimCheck(map);
 		resultMap.put("message", "success");
+		return new Gson().toJson(resultMap);
+	}
+	//예약취소
+	@RequestMapping(value = "bookingCancel.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String bookingCancel(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		myPageService.searchBookingCancel(map);
 		return new Gson().toJson(resultMap);
 	}
 }

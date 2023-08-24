@@ -8,7 +8,7 @@ import com.example.sample1.model.MyPage;
 import com.example.sample1.model.User;
 
 public interface MyPageService {
-	MyPage searchOrder(HashMap<String, Object> map);
+	List<MyPage> searchOrderList(HashMap<String, Object> map);
 	MyPage searchPoint(HashMap<String, Object> map);
 	List<MyPage> searchReview(HashMap<String, Object> map);
 	int searchReviewCnt(HashMap<String, Object> map);
@@ -24,4 +24,16 @@ public interface MyPageService {
 	HashMap<String, Object> searchJjim(HashMap<String, Object> map);
 	// 선택한찜목록 삭제
 	int removeJjimCheck(HashMap<String, Object> map);
+
+	//예약접수중 리스트 출력
+	List<MyPage> searchOrderAcceptList(HashMap<String, Object> map);
+
+	//예약완료 리스트 출력
+	List<MyPage> searchOrderCompletionList(HashMap<String, Object> map);
+
+	//예약취소 리스트 출력
+	List<MyPage> searchOrderCancelList(HashMap<String, Object> map);
+	
+	//예약취소
+	int searchBookingCancel(HashMap<String, Object> map);
 }

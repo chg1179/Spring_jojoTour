@@ -11,7 +11,7 @@ import com.example.sample1.model.MyPage;
 
 @Mapper
 public interface MyPageMapper {
-	MyPage selectOrder(HashMap<String, Object> map);
+	List<MyPage> selectOrderList(HashMap<String, Object> map);
 	MyPage selectPoint(HashMap<String, Object> map);
 	List<MyPage> selectReview(HashMap<String, Object> map);
 	int selectReviewCnt(HashMap<String, Object> map);
@@ -28,5 +28,13 @@ public interface MyPageMapper {
 	int selectCnt(HashMap<String, Object> map);
 	//체크한 찜목록 삭제
 	int deleteJjimCheck(HashMap<String, Object> map);
+	//예약접수중 리스트 출력
+	List<MyPage> selectOrderAcceptList(HashMap<String, Object> map);
+	//예약완료 리스트 출력
+	List<MyPage> selectOrderCompletionList(HashMap<String, Object> map);
+	//예약취소 리스트 출력
+	List<MyPage> selectOrderCancelList(HashMap<String, Object> map);
+	// 예약 취소
+	int selectBookingCancel(HashMap<String, Object> map);
 	
 }
