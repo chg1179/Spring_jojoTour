@@ -84,7 +84,7 @@
 	                        <div><label><input type="password" v-model="user.pw2" placeholder="비밀번호 확인"></label></div>
 	                        <div><label><input type="text" v-model="user.name" placeholder="이름"></label></div>
 	                        <div><label><input type="text" v-model="user.nickName" placeholder="닉네임"></label></div>
-	                        <div><label><input type="text" v-model="user.birth" placeholder="생년월일 ex)0000-00-00"></label></div>
+	                        <div><label><input type="date" v-model="user.birth" id="birth"></label></div>
 	                        <div><label><input type="text" v-model="user.phone" placeholder="핸드폰 번호"></label></div>
 	                        <div><label><input type="text" v-model="user.email" placeholder="이메일"></label></div>
 	
@@ -130,6 +130,13 @@ var app = new Vue({
 	methods : {
 		fnJoin : function(){
 			var self = this;
+			var birth = document.querySelector('#birth').value;
+			var age = birth.split("-");
+			var now = new Date();
+			var year =  now.getFullYear() - parseInt(age[0],10);
+	        var month = (now.getMonth()+1) - parseInt(age[1],10);
+	        var day = parseInt(age[2],10);
+
 			if(self.user.userId == ""){
 				alert("아이디를 입력하세요.");
 				return;
@@ -150,6 +157,13 @@ var app = new Vue({
 				alert("생년월일을 입력하세요.");
 				return;
 			}
+	        if(month < 0 || (month == 0 && now.getDate() <= day)){
+	              year--;
+	          }
+	        if(year < 14){
+	            alert("만 14세 이상만 가입이 가능합니다.");
+	            return;
+	         }
 			if(self.user.addr == ""){
 				alert("주소를 입력하세요.");
 				return;
