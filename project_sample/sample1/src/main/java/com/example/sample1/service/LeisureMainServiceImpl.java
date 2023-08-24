@@ -69,6 +69,15 @@ public class LeisureMainServiceImpl implements LeisureMainService{
 		return resultMap;
 	}
 
+	//레저 상세정보
+	@Override
+	public Leisure searchLeisureInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		//레저 조회수 증가
+		leisureMainMapper.lReadPlus(map);
+		return leisureMainMapper.selectLeisureInfo(map);
+	}
+
 	
 
 

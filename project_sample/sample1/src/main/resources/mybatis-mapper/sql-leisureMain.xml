@@ -56,7 +56,7 @@
 			ORDER BY L_READ DESC
 		</if>
 		<if test="orderKind == 'LEISURE_PRICE'"> 
-			ORDER BY LEISURE_PRICE ASC
+			ORDER BY LEISURE_PRICE-LEISURE_PRICE*(100-(LEISURE_SALES*100))/100 ASC
 		</if>
 		LIMIT #{startNum}, #{lastNum}
 	</select>
@@ -76,7 +76,6 @@
 			AND LEISURE_PRICE BETWEEN #{minPay}*10000 AND #{maxPay}*10000
 		</if>
 	</select>
-	
 	<!-- 지상 레저 리스트 -->
 	<select id="selectGroundLeisureList" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">
 		SELECT *
@@ -130,7 +129,7 @@
 			ORDER BY L_READ DESC
 		</if>
 		<if test="orderKind == 'LEISURE_PRICE'"> 
-			ORDER BY LEISURE_PRICE ASC
+			ORDER BY LEISURE_PRICE-LEISURE_PRICE*(100-(LEISURE_SALES*100))/100 ASC
 		</if>
 		LIMIT #{startNum}, #{lastNum}
 	</select>
@@ -150,4 +149,21 @@
 			AND LEISURE_PRICE BETWEEN #{minPay}*10000 AND #{maxPay}*10000
 		</if>
 	</select>
+	
+	<!-- 수상 지상 레저 상세정보 -->
+	<select id="selectLeisureInfo" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">
+		SELECT *
+		FROM T2_LEISURE_TBL L
+		INNER JOIN T2_LEISURE_IMG_TBL I ON L.LEISURE_NO = I.LEISURE_NO
+		INNER JOIN T2_CODE_TYPE C ON L.LEISURE_KIND = C.C_KIND
+		WHERE MAIN_YN = 'N' AND L.LEISURE_NO = #{leisureNo}
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="lReadPlus" parameterType="hashmap">
+		UPDATE T2_LEISURE_TBL
+		SET
+			L_READ = L_READ+1
+		WHERE LEISURE_NO = #{leisureNo}
+	</update>
 </mapper>

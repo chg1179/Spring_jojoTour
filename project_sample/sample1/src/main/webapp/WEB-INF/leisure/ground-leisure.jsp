@@ -120,7 +120,8 @@ var app = new Vue({
         leisureKind : "${map.leisureKind}",
         groundKeyword : "",
         minPay : null,
-        maxPay : null
+        maxPay : null,
+        lesurePrice : ""
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -145,9 +146,16 @@ var app = new Vue({
 			self.selectPage = pageNum;
 			var startNum = ((pageNum-1) * 9);
 			var lastNum = 9;
-			var nparmap = {startNum : startNum, lastNum : lastNum, groundKeyword : self.groundKeyword, leisureKind : self.leisureKind, minPay : self.minPay, maxPay : self.maxPay};
+			var nparmap = {
+					startNum : startNum, 
+					lastNum : lastNum, 
+					groundKeyword : self.groundKeyword, 
+					leisureKind : self.leisureKind, 
+					minPay : self.minPay, 
+					maxPay : self.maxPay
+					};
 			$.ajax({
-				url : "../ground/leisure.dox",
+				url : "../ground/groundSearchList.dox",
 				dataType : "json",
 				type : "POST",
 				data : nparmap,
@@ -183,7 +191,15 @@ var app = new Vue({
 			var self = this;
 			var startNum = ((self.selectPage-1) * 9);
     		var lastNum = 9;
-			var nparmap = {startNum : startNum, lastNum : lastNum, groundKeyword : self.groundKeyword, leisureKind : self.leisureKind, minPay : self.minPay, maxPay : self.maxPay, orderKind : orderKind};
+			var nparmap = {
+					startNum : startNum, 
+					lastNum : lastNum, 
+					groundKeyword : self.groundKeyword, 
+					leisureKind : self.leisureKind, 
+					minPay : self.minPay, 
+					maxPay : self.maxPay, 
+					orderKind : orderKind
+					};
 			 $.ajax({
 	                url : "../ground/groundSearchList.dox",
 	                dataType:"json",	
@@ -199,6 +215,7 @@ var app = new Vue({
 		},
 		fnGroundLeisureView : function(leisureNo){
 			var self = this;
+			console.log(leisureNo);
 			$.pageChange("leisure/view.do", {leisureNo : leisureNo});
 			
 		}

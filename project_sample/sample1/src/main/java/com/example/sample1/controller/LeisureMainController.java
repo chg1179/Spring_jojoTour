@@ -52,15 +52,12 @@ public class LeisureMainController {
         return "leisure/ground-leisure-view";
     }
 	//수상레저 출력
-	@RequestMapping(value = "/water/leisure.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "water/leisure/leisureInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String WaterLeisure(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	public String WaterLeisureInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
-		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
-		map.put("startNum", startNum);
-		map.put("lastNum", lastNum);
-		resultMap = leisureMainService.searchWaterLeisureList(map);
+		Leisure info = leisureMainService.searchLeisureInfo(map);
+		resultMap.put("info", info);
 		return new Gson().toJson(resultMap);
 	}
 	//수상레저 종류별 출력
@@ -87,6 +84,22 @@ public class LeisureMainController {
 		resultMap = leisureMainService.searchWaterSearchList(map);
 		return new Gson().toJson(resultMap);
 	}
+	//수상레저 상세정보 출력
+	@RequestMapping(value = "/water/leisure.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String WaterLeisure(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+		int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+		map.put("startNum", startNum);
+		map.put("lastNum", lastNum);
+		resultMap = leisureMainService.searchWaterLeisureList(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+	
+	
+	
 	//지상레저 출력
 	@RequestMapping(value = "/ground/leisure.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -121,6 +134,15 @@ public class LeisureMainController {
 		map.put("startNum", startNum);
 		map.put("lastNum", lastNum);
 		resultMap = leisureMainService.searchGroundSearchList(map);
+		return new Gson().toJson(resultMap);
+	}
+	//지상레저 출력
+	@RequestMapping(value = "ground/leisure/leisureInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String GroundLeisureInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		Leisure info = leisureMainService.searchLeisureInfo(map);
+		resultMap.put("info", info);
 		return new Gson().toJson(resultMap);
 	}
 

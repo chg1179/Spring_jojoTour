@@ -17,33 +17,33 @@
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		차량 상세보기
-	<div>
-		<p>No : {{info.rentNo}}</p> 
-		<p>차량 이름 : {{info.rentName}}</p> 
-		<p>차량 종류 : {{info.rentKind}}</p> 
-		<p v-for="item in imgList">상세 이미지 : {{item.imgName}}
-			<img :src="item.imgPath" alt="">
-		</p>
-		
-		<p>렌트금액 : {{info.rentPrice}} / 할인율 : {{sales}}%</p>
-		<p>할인된 가격 : {{info.rentPrice * info.rentSales}}</p> 
-		<p>인수장소 : {{info.rAddr}} {{info.rDetailAddr}}</p> 
-		
-	</div>
-
-		<span v-if="!isWished">
-			<a @click="fnWish(info.rentNo)" href="javascript:;">
-				<i class="fa-regular fa-heart" style="color: #ff0000;"></i>찜하기
-			</a>
-		</span>
-		<span v-else>
-			<a @click="fnDelWish(info.rentNo)" href="javascript:;">
-				<i class="fa-solid fa-heart" style="color: #ff0000;"></i>찜해제
-			</a>
-		</span>
-
-		<span><button>예약하기</button></span>
-		<span><button @click="fnBack">뒤로가기</button></span>
+		<div>
+			<p>No : {{info.rentNo}}</p> 
+			<p>차량 이름 : {{info.rentName}}</p> 
+			<p>차량 종류 : {{info.rentKind}}</p> 
+			<p v-for="item in imgList">상세 이미지 : {{item.imgName}}
+				<img :src="item.imgPath" alt="">
+			</p>
+			
+			<p>렌트금액 : {{info.rentPrice}} / 할인율 : {{sales}}%</p>
+			<p>할인된 가격 : {{info.rentPrice * info.rentSales}}</p> 
+			<p>인수장소 : {{info.rAddr}} {{info.rDetailAddr}}</p> 
+			
+		</div>
+	
+			<span v-if="!isWished">
+				<a @click="fnWish(info.rentNo)" href="javascript:;">
+					<i class="fa-regular fa-heart" style="color: #ff0000;"></i>찜하기
+				</a>
+			</span>
+			<span v-else>
+				<a @click="fnDelWish(info.rentNo)" href="javascript:;">
+					<i class="fa-solid fa-heart" style="color: #ff0000;"></i>찜해제
+				</a>
+			</span>
+	
+			<span><button>예약하기</button></span>
+			<span><button @click="fnBack">뒤로가기</button></span>
 	</div>
 </body>
 </html>

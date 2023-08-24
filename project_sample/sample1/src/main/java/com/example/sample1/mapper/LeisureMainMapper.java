@@ -30,6 +30,12 @@ public interface LeisureMainMapper {
 	List<Leisure> selectGroundSearchList(HashMap<String, Object> map);
 	int selectGroundLeisureSearchCnt(HashMap<String, Object> map);
 	
+	int lReadPlus(HashMap<String, Object> map);
+	
+
+	//수상 지상 레저 상세정보
+	Leisure selectLeisureInfo(HashMap<String, Object> map);
+	
 
 	
 }

@@ -22,4 +22,8 @@ public interface LeisureMainService {
 	// 지상레저 검색
 	HashMap<String, Object> searchGroundSearchList(HashMap<String, Object> map);
 	
+
+	//수상 지상 레저 상세정보
+	Leisure searchLeisureInfo(HashMap<String, Object> map);
+	
 }
