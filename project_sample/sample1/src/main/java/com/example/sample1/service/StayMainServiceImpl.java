@@ -19,7 +19,7 @@ public class StayMainServiceImpl implements StayMainService{
 	
 	// 숙소 리스트
 	@Override
-	public List<Product> showStayList(HashMap<String, Object> map) {
+	public List<Stay> showStayList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return stayMainMapper.viewStayList(map);
 	}

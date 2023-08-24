@@ -34,4 +34,6 @@ public class Stay {
 	private String imgPath;
 	private String imgDate;
 	private String imgDelYn;
+	
+	private int minPrice;
 }

@@ -13,7 +13,7 @@ import com.example.sample1.model.StayImg;
 public interface StayMainMapper {
 	
 	// 숙소 리스트
-	List<Product> viewStayList(HashMap<String, Object> map);
+	List<Stay> viewStayList(HashMap<String, Object> map);
 	
 	// 슉소 편의시설 리스트
 	List<Stay> selectServiceList(HashMap<String, Object> map);

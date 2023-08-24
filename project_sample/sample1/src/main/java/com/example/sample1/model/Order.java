@@ -4,17 +4,22 @@ import lombok.Data;
 
 @Data
 public class Order {
-	private int orderNo;
+	
+	// order tbl
 	private String uId;
-	private String paymentDate;
+	private int people;
+	
+	// order list
+	private int orderNo;
 	private String productKind;
 	private int productNo;
-	private int people;
+	private String paymentDate;
 	private String sReserveDate;
 	private String lReserveDate;
 	private String useYnc;
 	private int deduPoint;
 	private int payment;
+	private String request;
 	
 	// stay
 	private int stayNo;

@@ -4,26 +4,28 @@
 
 <mapper namespace="com.example.sample1.mapper.OrderMapper">
 	<select id="selectOrderList" parameterType="hashmap" resultType="com.example.sample1.model.Order">
-		SELECT DISTINCT *
-		FROM T2_ORDER_TBL J
+		SELECT *
+		FROM T2_ORDER_LIST_TBL L
+		LEFT JOIN T2_ORDER_TBL O ON L.ORDER_NO = O.ORDER_NO
 		LEFT JOIN (
-		   SELECT S.*, R.MIN_PRICE, R.ROOM_NAME, R.ROOM_NO
+		   SELECT S.*, R.ROOM_NAME, R.ROOM_NO
 		   FROM  T2_STAY_TBL S
 		   INNER JOIN (
-		      SELECT MIN(ROOM_PRICE) AS MIN_PRICE, ROOM_NO, STAY_NO, ROOM_NAME
+		      SELECT ROOM_NO, STAY_NO, ROOM_NAME
 		      FROM T2_ROOM_TBL 
 		      GROUP BY STAY_NO
 		   ) R ON R.STAY_NO = S.STAY_NO
-		) S ON S.STAY_NO = J.PRODUCT_NO AND J.product_kind = 'STAY'
-		LEFT JOIN T2_RENT_CAR_TBL on rent_no = product_no and product_kind = 'RENT'
-		LEFT JOIN T2_LEISURE_TBL on leisure_no = product_no and product_kind = 'LEISURE';
+		) S ON S.STAY_NO = L.PRODUCT_NO AND L.PRODUCT_KIND = 'STAY'
+		LEFT JOIN T2_RENT_CAR_TBL ON RENT_NO = PRODUCT_NO AND PRODUCT_KIND = 'RENT'
+		LEFT JOIN T2_LEISURE_TBL ON LEISURE_NO = PRODUCT_NO AND PRODUCT_KIND = 'LEISURE'
+		
 	</select>
 	
 	<update id="updateOrderSign" parameterType="hashmap">
-		UPDATE T2_ORDER_TBL
+		UPDATE T2_ORDER_LIST_TBL
 		SET
 			USE_YNC = #{useYnc}
-		WHERE U_ID = #{uId} 
+		WHERE ORDER_NO = #{orderNo} 
 	</update>
 	
 </mapper>

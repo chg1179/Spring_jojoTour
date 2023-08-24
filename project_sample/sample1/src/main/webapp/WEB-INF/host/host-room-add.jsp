@@ -38,13 +38,13 @@
 						<div>
 							<span>가격</span>
 							<span>
-								<input type="text" v-model="info.roomPrice" name="roomPrice" id="roomPrice">
+								<input type="text" v-model="info.roomPrice" maxlength="10" name="roomPrice" id="roomPrice">
 							</span>
 						</div>
 						<div>
-							<span>할인율</span>
+							<span>할인율(%)</span>
 							<span>
-								<input type="text" v-model="info.roomSales" name="roomSales" id="roomSales">
+								<input type="text" v-model="sales" maxlength="2" placeholder="0" name="roomSales" id="roomSales"  @keyup="fnPercent">
 							</span>
 						</div>
 						<div>
@@ -86,6 +86,7 @@ var app = new Vue({
 		stayNo : "${map.stayNo}",
 		status : "${sessionStatus}",
 		serviceNo : 0,
+		sales : "",
 		info : {},
 		selectList : [
 			{value:"1", text : "1 명"},			
@@ -107,6 +108,27 @@ var app = new Vue({
 		// 룸 추가
 		fnRoomAdd : function(roomNo){
 			var self = this;
+			if(self.info.roomName ==""){
+				alert("객실 유형을 입력해주세요.");
+				return;
+			}
+			
+			var regex = new RegExp(/^[0-9]+$/);
+			if(self.info.roomPrice == ""){
+				alert("객실 금액을 입력해주세요.");
+				return;
+			}
+			
+			if(!regex.test(self.info.roomPrice)){
+				alert("객실 금액은 숫자만 입력해주세요.");
+				return;
+			}
+			if(self.info.roomPrice < 1000){
+				alert("객실 금액은 1000원 이상으로 입력헤주세요.");
+				return;
+			}
+			
+			
 			if(!confirm("객실을 등록하시겠습니까?")){
 				alert("취소되었습니다.");
 				return;
@@ -181,6 +203,24 @@ var app = new Vue({
         	var self = this;
 			$.pageChange("../host/room.do", {stayNo : self.stayNo}); 
         },
+        fnPercent : function(){ // 할인율 0~100 제한
+			var self = this;
+			var regex = new RegExp(/^[0-9]+$/);
+			if(!regex.test(self.sales)){
+				if(!(self.sales=="")){
+					alert("할인율은 숫자만 입력해주세요.");
+					self.sales = 0;
+					return;
+				}
+			}
+			if(self.sales >= 100){
+				alert("100보다 낮은 숫자를 입력해주세요.");
+				self.sales = 0;
+			} else if(self.sales < 0){
+				alert("0보다 큰 숫자를 입력해주세요.");
+				self.sales = 0;
+			}
+		},
 		
 		
 	}, // methods

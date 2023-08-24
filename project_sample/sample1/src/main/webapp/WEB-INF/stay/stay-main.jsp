@@ -250,7 +250,7 @@
 						</li>
 						<li v-if ="stayKind == item.stayKind" v-for="item in list">
 							<div class="stay-info">
-							<!-- 이미지 -->
+							<!-- <img> -->
 								<div>
 									<a @click="fnDetail(item.stayNo)">숙소이름 : {{item.stayName}}</a>
 								</div>
@@ -259,7 +259,6 @@
 								<div>가격 : {{item.minPrice}}원</div>
 								<div>위치 : {{item.sAddr}}</div>
 								<button @click="fnJjim(item.stayNo)">찜</button>
-								
 							</div>
 						</li>
 					</ul>
@@ -302,6 +301,7 @@ var app = new Vue({
                 	self.serviceList = data.serviceList;
                 	console.log(self.serviceList);
                 	
+                	
                 }
             }); 
 		},
@@ -319,7 +319,7 @@ var app = new Vue({
             }); 
 		},
 		
-		fnGetImg : function(){
+		/* fnGetImgList : function(){
 			var self = this;
 			var param = {stayNo : self.stayNo};
 			$.ajax({
@@ -332,7 +332,7 @@ var app = new Vue({
                 	console.log(self.imgList);
                 }
             }); 
-		},
+		}, */
 		fnDetail : function(stayNo){
 			var self = this;
 			console.log(stayNo);
@@ -383,7 +383,7 @@ var app = new Vue({
 	created : function() {
 		var self = this;
 		self.fnGetList();
-		self.fnGetImg();
+	//	self.fnGetImgList();
 	}// created
 });
 

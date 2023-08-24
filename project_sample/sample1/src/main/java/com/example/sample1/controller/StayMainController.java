@@ -41,7 +41,7 @@ public class StayMainController {
 	@ResponseBody
 	public String stayList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Product> list = stayMainService.showStayList(map);
+		List<Stay> list = stayMainService.showStayList(map);
 		resultMap.put("stayList", list);
 		
 		List<Stay> list2 = stayMainService.searchServiceList(map);

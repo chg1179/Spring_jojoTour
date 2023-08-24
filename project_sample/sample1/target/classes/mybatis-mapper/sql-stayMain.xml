@@ -5,7 +5,7 @@
 <mapper namespace="com.example.sample1.mapper.StayMainMapper">
 
 	<!-- 숙소 메인 리스트 출력 -->
-	<select id="viewStayList" parameterType="hashmap" resultType="com.example.sample1.model.Product">
+	<select id="viewStayList" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
 		SELECT *
 		FROM T2_STAY_TBL S
 		INNER JOIN T2_CODE_TYPE C
@@ -15,11 +15,11 @@
 			FROM T2_ROOM_TBL
 			GROUP BY STAY_NO
 		) R ON S.STAY_NO = R.STAY_NO
+		LEFT JOIN T2_STAY_IMG_TBL I ON S.STAY_NO = I.STAY_NO
 		WHERE 1=1
 		<if test="stayKeyword != '' and stayKeyword != null"> 
 			AND STAY_NAME LIKE CONCAT('%',#{stayKeyword},'%')
 		</if>
-		<!-- WHERE S.STAY_KIND = 'HOTEL' -->
 	</select>
 	
 	<!-- 편의시설 리스트 -->
