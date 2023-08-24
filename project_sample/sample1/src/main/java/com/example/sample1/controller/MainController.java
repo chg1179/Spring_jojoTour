@@ -26,5 +26,10 @@ public class MainController {
 		return "/main";
 	}
 	
+	@RequestMapping("/footer.do") 
+	public String footer(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		return "/footer";
+	}
+	
 	
 }

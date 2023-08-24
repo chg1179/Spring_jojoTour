@@ -63,7 +63,7 @@
 								<button @click="fnACheck" class="btn1">전체선택</button>
 								<button @click="fnNCheck" class="btn1">전체해제</button>
 							</div>
-							<div v-if="status == 'U'|| status == 'H'"><button @click="fnMove" class="btn1">문의하기</button></div>
+							<div><button @click="fnMove" class="btn1">문의하기</button></div>
 						
 							<template>
 							  <paginate
@@ -175,7 +175,13 @@ var app = new Vue({
 		},
 		fnMove : function(){
 			var self = this;
-			$.pageChange("add.do", { iNo: "", cnt : self.cnt });
+ 			if (self.status !== 'A' && self.status !== 'U' && self.status !== 'H'){
+	            if (confirm("로그인 후 이용해주세요. 로그인 페이지로 이동하시겠습니까?")) {
+	                window.location.href = "/login.do";
+	            }	    
+ 			}else{
+ 				$.pageChange("add.do", { iNo: "", cnt : self.cnt });
+ 			}
 		}
 	}, // methods
 	created : function() {

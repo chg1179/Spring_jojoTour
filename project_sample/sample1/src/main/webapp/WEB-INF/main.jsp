@@ -176,8 +176,8 @@
 	        <div class="banner_box">
 	            <p class="banner_text">
 	                여행 가기 전이나 여행중이라도 언제든지!<br>
-	                관광지, 숙박, 음식점, 쇼핑, 축제, 교통, 문화 등 제주 여행에 관해서라면 어떤 것이라도 제주관광 지식iN에 물어보세요<br>
-	                비짓제주 상주 전문가를 비롯해 제주를 잘 아는 사람이라면 누구에게라도 답변 받을 수 있습니다
+	                관광지, 숙박, 음식점, 쇼핑, 축제, 교통, 문화 등 전국 여행에 관해서라면 어떤 것이라도 조조투어 지식iN에 물어보세요<br>
+	                조조투어 상주 전문가를 비롯해 여행 잘 아는 사람이라면 누구에게라도 답변 받을 수 있습니다
 	            </p>
 	            <div class="banner_img">
 	                <img src="./img/main/banner_text.png" alt="">
@@ -185,7 +185,7 @@
 	            <h3 class="banner_start">
 	                지금 시작하세요!
 	            </h3>
-	            <button class="banner_question">
+	            <button class="banner_question" @click="fnFAQ">
 	                질문하기 >
 	                <!-- 1:1문의게시판으로 연결 -->
 	            </button>
@@ -362,7 +362,11 @@ var app = new Vue({
 	methods : {
 		fnHotel : function(){
 			$.pageChange("/stay.do", {});
-		}
+		},
+        fnFAQ : function(){
+        	location.href="/faq/list.do";
+        }
+
 	}, // methods
 	created : function() {
 		var self = this;

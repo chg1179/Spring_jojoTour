@@ -5,35 +5,113 @@
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link href="../css/board/board-view.css" rel="stylesheet"/>
+<link href="../../css/board-btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>게시글 상세 페이지</title>
 <style>
-	table{
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
+	* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
+	
+	.pwd {
+	  position: relative;
+	  width: 300px;
+	  margin-left: 50px;
+	  margin-top: 100px;
+	}
+	
+	.pwd1 {
+	  font-size: 15px;
+	  color: #222222;
+	  width: 300px;
+	  border: none;
+	  border-bottom: solid #aaaaaa 1px;
+	  padding-bottom: 10px;
+	  padding-left: 10px;
+	  position: relative;
+	  background: none;
+	  z-index: 5;
+	}
+	
+	.pwd1::placeholder { color: #aaaaaa; }
+	.pwd1:focus { outline: none; }
+	
+	span {
+	  display: block;
+	  position: absolute;
+	  bottom: 0;
+	  left: 0%;  /* right로만 바꿔주면 오 - 왼 */
+	  background-color: #666;
+	  width: 0;
+	  height: 2px;
+	  border-radius: 2px;
+	  transition: 0.5s;
+	}
+	
+	.pwd2 {
+	  position: absolute;
+	  color: #aaa;
+	  left: 10px;
+	  font-size: 20px;
+	  bottom: 8px;
+	  transition: all .2s;
+	}
+	
+	.pwd1:focus ~ .pwd2, .pwd1:valid ~ .pwd2 {
+	  font-size: 16px;
+	  bottom: 40px;
+	  color: #666;
+	  font-weight: bold;
+	}
+	
+	.pwd1:focus ~ span, .pwd1:valid ~ span {
+	  width: 100%;
+	}
+	.btn1{
+	display:none
+	}
+		.free_board_wrap{
+		margin-top: -500px;
 	}
 </style>
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div id="container">
-			<div v-if="!showApp">비밀번호 입력 : <input v-model="enteredPwd" @keyup.enter="fnPwd"><button @click="fnPwd">비밀번호 확인</button></div>
+		<div id="free_board_container">
+			<div class="free_board_wrap">
+			
+			<div v-if="!showApp" class="pwd"><input class="pwd1" v-model="enteredPwd" @keyup.enter="fnPwd" type="text" required>
+			<label class="pwd2">PASSWORD</label>
+			<span></span></div>
+			<button @click="fnPwd" class="btn1">확인</button>
 			<div v-if="showApp">
-				<div>제목 : {{info.iTitle}}</div>
-				<div>작성자 : {{info.uId}}</div>
-				<div>작성날짜 : {{info.iWriteTime}}</div>
-				<div>내용 :<pre v-html="info.iContent"></pre></div>
+			
+				<div class="free_board_h2_wrap">
+					<h2 class="con_title">1:1문의 게시판</h2>
+					<a href="list.do" class="back_btn">목록</a>
+				</div>
+				
+				<div class="free_board_title">제목 : {{info.iTitle}}</div>
+				<div class="free_board_user">
+					<div>작성자 : {{info.uId}}</div>
+					<div class="free_board_user_num">
+						<div>게시글 번호 : {{info.iNo}}</div>
+						<div>작성날짜 : {{info.iWriteTime}}</div>
+					</div>
+				</div>
+				
+				<div class="free_board_contents"><pre v-html="info.iContent"></pre></div>
 				<div>
-					<button @click="fnEdit('U')" v-if="uId == info.uId && info.answerYn == 'N'" >수정하기</button>
-					<button @click="fnEdit('A')" v-if="status == 'A' && info.answerYn == 'N'" >답변하기</button>
-					<button @click="fnBack">되돌아가기</button>
+					<button @click="fnEdit('U')" v-if="uId == info.uId && info.answerYn == 'N'" class="btn1">수정하기</button>
+					<button @click="fnEdit('A')" v-if="status == 'A' && info.answerYn == 'N'" class="btn1">답변하기</button>
 				</div> 
+			</div>
+			
+			
 			</div>
 		</div>
 	</div>

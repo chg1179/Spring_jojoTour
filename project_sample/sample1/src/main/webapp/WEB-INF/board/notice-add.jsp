@@ -7,33 +7,113 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
 <script src="https://unpkg.com/vue2-editor@2.3.11/dist/index.js"></script>
+<link href="../../css/board-style.css" rel="stylesheet"/>
+<link href="../../css/board-btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>공지사항 글쓰기</title>
 <style>
-<style>
-	table{
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
+   body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    #app {
+      margin: 20px auto;
+      max-width: 1000px;
+      background-color: #fff;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    .WritingHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .WritingHeader h2 {
+      font-size: 24px;
+      color: #333;
+    }
+
+    .tool_area button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .tool_area button:hover {
+      background-color: #0056b3;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .vue-editor {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 16px;
+      height:800px;
+    }
+
+    button[disabled] {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    .ql-container.ql-snow {
+    border: 1px solid #ccc;
+    height: 750px;
 	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
+	 .search-wrap {
+      display: flex;
+      align-items: center;
+
+    }
+
+    #mySelect {
+      margin-right: 10px;
+            height: 40px;
+    }
+    select:hover {
+    border-color: #555;
 	}
-</style>
 </style>
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<label>제목 : <input v-model="info.nTitle"></label>
-		<div>
+		<div class="WritingWrap">
+			<div class="WritingHeader">
+			    <h2>공지사항 글쓰기</h2>
+			        <div class="tool_area">
+			          <button v-if="nNo === ''" @click="fnAdd">등록</button>
+			          <button v-else @click="fnEdit">수정</button>
+			          <button @click="fnBack">뒤로가기</button>
+			        </div>
+		    </div>
+		<input type="text" id="myInput" v-model="info.nTitle" placeholder="제목">
 		<br>
+		<br>
+		<div class="vue-editor">
 			<vue-editor v-model="info.nContent"></vue-editor>
 		</div>
 		<br>
-		<button v-if="nNo == ''" @click="fnAdd">등록</button>
-		<button v-else @click="fnEdit">수정</button>
+		
+		</div>
 	</div>
 </body>
 </html>
@@ -95,7 +175,10 @@ var app = new Vue({
 	                	location.href = "list.do";
 	                }
 	            }); 
-			} 
+			},
+			fnBack : function(){
+				location.href = "list.do";
+			}
 		
 	}, // methods
 	created : function() {

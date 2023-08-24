@@ -14,7 +14,7 @@
 <link href="../../css/board-style.css" rel="stylesheet"/>
 <link href="../../css/board-btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>FAQ 게시판</title>
 <style>
 </style>
 </head>

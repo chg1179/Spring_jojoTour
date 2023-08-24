@@ -5,9 +5,11 @@
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link href="../css/board/board-view.css" rel="stylesheet"/>
+<link href="../../css/board-btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<style>
+
 <style>
 	table{
 		border : 1px solid black;
@@ -18,20 +20,39 @@
 		border : 1px solid black;
 		padding : 5px 10px;
 	}
-</style>
+	.free_board_wrap{
+		margin-top: -500px;
+	}
 </style>
 </head>
 <body>
+	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<jsp:include page="../header.jsp" flush="true"></jsp:include>
-		<div>제목 : {{info.fTitle}}</div>
-		<div>작성자 : {{info.uId}}</div>
-		<div>작성날짜 : {{info.fWriteTime}}</div>
-		<div>내용 :<pre v-html="info.fContent"></pre></div>
-		<div>
-			<button @click="fnEdit"   v-if="status == 'A'">수정하기</button>
-			<button @click="fnBack">되돌아가기</button>
-		</div> 
+	<div id="free_board_container">
+		<div class="free_board_wrap">
+			<div class="free_board_h2_wrap">
+				<h2 class="con_title">FAQ게시판</h2>
+				<a href="list.do" class="back_btn">목록</a>
+			</div>
+		
+			<div class="free_board_title">제목 : {{info.fTitle}}</div>
+			<div class="free_board_user">
+				<div>작성자 : {{info.uId}}</div>
+					<div class="free_board_user_num">
+						<div>게시글 번호 : {{info.fNo}}</div>
+						<div>작성시간 : {{info.fWriteTime}}</div>
+					</div>	
+			</div>
+
+					<div class="free_board_contents">
+						<pre v-html="info.fContent"></pre>
+					</div>
+					
+					<div>
+						<button @click="fnEdit" v-if="status == 'A'" class="btn1">수정하기</button>
+					</div> 
+		</div>
+	</div>
 	</div>
 </body>
 </html>
@@ -59,9 +80,6 @@ var app = new Vue({
                 }
             }); 
 		},
-		 fnBack : function(){
-	        	location.href = "list.do";
-	        },
 		fnEdit : function(){
 				var self = this;
 				$.pageChange("edit.do", {fNo : self.fNo});

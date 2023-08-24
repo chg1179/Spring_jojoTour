@@ -24,10 +24,10 @@
             height: 100%;
         }
         header{
-            background: linear-gradient(to right, #ff9900, #ff3333);
+            background: linear-gradient(to right, #FA163F 20%, #12CAD6 );
             position : fixed;
             width : 100%;
-            z-index : 1;
+            z-index : 999;
         }
         .header_empty_box{
         	height : 100px;
@@ -109,7 +109,7 @@
 	    <header>
 	        <div id="header_box">
 	            <div class="logo_box">
-	                <a href="javascript:;" @click="fnLogo"><img src="/img/header/logo.jpg" alt="logo"></a>
+	                <a href="javascript:;" @click="fnLogo"><img src="/img/header/logo2.png" alt="logo"></a>
 	            </div>
 	            <div class="header_menu">
 	                <div class="header_inner">
@@ -173,7 +173,7 @@
 	                            </ul>
 	                        </li>
 	                        <li class="header_board">
-	                            <a href="javascript:;">게시판</a>
+	                            <a href="javascript:;" @click="fnNotice">게시판</a>
 	                            <ul>
 	                                <li><a href="javascript:;" @click="fnNotice">공지사항</a></li>
 	                                <li><a href="javascript:;" @click="fnFAQ">FAQ 게시판</a></li>

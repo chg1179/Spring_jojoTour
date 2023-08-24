@@ -69,11 +69,11 @@
 				</table>
 				
 					<div class="page-wrap">
-						<div  v-if="status == 'A'">
-							<button @click="fnRemove" class="btn1">삭제</button>
-							<button @click="fnACheck" class="btn1">전체선택</button>
-							<button @click="fnNCheck" class="btn1">전체해제</button>
-							<button @click="fnMove" v-if="status == 'A'||status == 'U'||status == 'H'" class="btn1">글쓰기</button>
+						<div>
+							<button @click="fnRemove" class="btn1" v-if="status == 'A'">삭제</button>
+							<button @click="fnACheck" class="btn1" v-if="status == 'A'">전체선택</button>
+							<button @click="fnNCheck" class="btn1" v-if="status == 'A'">전체해제</button>
+							<button @click="fnMove"  class="btn1">글쓰기</button>
 						</div>
 					<template>
 						<paginate
@@ -172,7 +172,15 @@ var app = new Vue({
 		},
 		
  		 fnMove : function(){
-	        	location.href = "add.do";
+ 			var self = this;
+ 			if (self.status !== 'A' && self.status !== 'U' && self.status !== 'H'){
+	            if (confirm("로그인 후 이용해주세요. 로그인 페이지로 이동하시겠습니까?")) {
+	                window.location.href = "/login.do";
+	            }	    
+ 			}else{
+				location.href = "add.do";
+			
+ 			}	
 	        }, 
 	        
  	     fnView : function(freeNo){

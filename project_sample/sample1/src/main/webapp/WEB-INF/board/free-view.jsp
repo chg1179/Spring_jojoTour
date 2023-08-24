@@ -6,113 +6,11 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+<link href="../css/board/board-view.css" rel="stylesheet"/>
 <link href="../../css/board-btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-	*{
-		margin: 0;
-		padding: 0;
-	}
-	#free_board_container{
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		height: 100vh;
-		margin-top: 100px;
-	}
-	.free_board_h2_wrap{
-		display: flex;
-		justify-content: space-between;
-		margin-top: 60px;
-		margin-bottom: 30px;
-    	width: 100%;
-	}
-	.free_board_wrap h2{
-		font-size: 34px;
-		color: #333;
-		height: 40px;
-	}
-	.free_board_title{
-		width: 876px;
-		line-height: 1.3;
-		border-top: 1px solid #7e7e7e;
-		color: #333;
-		font-size: 24px;
-		background-color: #f9f9f9;
-		font-weight: bold;
-		padding: 37px 27px 30px;
-	}
-	.free_board_user{
-		display: flex;
-		justify-content: space-between;
-		margin: 20px;
-	}
-	.free_board_contents{
-		margin : 20px; 
-		font-size: 18px;
-	}
-	.free_board_user_num{
-		display: flex;
-		justify-content: space-between;
-		
-	}
-	.free_board_user_num div:first-child{
-		margin-right: 20px;
-	}
-	.free_board_good{
-		display: flex;
-		justify-content: center;
-	}
-	.free_board_reply_title{
-		width: 100%;
-		border-top: 1px solid #e3e3e3;
-		background-color: #f9f9f9;
-		box-sizing: border-box;
-	}
-	.free_board_reply_title h3{
-		margin: 10px;
-		height: 44px;
-		line-height: 45px;
-	}
-	.free_board_reply_contents{
-		height: 230px;
-		background-color: #e8eaee;
-		border: 1px solid #dcdde1;
-	}
-	.free_board_reply_contents textarea{
-		width: 90%;
-		display: block;
-		margin: 10px auto;
-		padding: 20px;
-		box-sizing: border-box;
-		height: 160px;
-	}
-	.free_board_reply_contents_btn{
-		display: flex;
-		align-items: center;
-		justify-content: right;
-		margin-right: 50px;
-	}
-	.free_board_reply_contents_btn button{
-	    font-size: 16px;
-	    color: #fff;
-	    text-align: center;
-	    background-color: #747a86;
-	    border-radius: 2px;
-	    padding: 9px 14px 9px 14px;
-	    border: 1px solid #747a86;
-	    display: inline-block;
-	    line-height: 1;
-	}
-	.free_board_good_a{
-		display: block;
-	}
-	.free_board_good_a i{
-		color: #540bfe;
-		margin-right: 25px;
-	}
 </style>
 </head>
 <body>
@@ -122,7 +20,7 @@
 			<div class="free_board_wrap">
 				<div class="free_board_h2_wrap">
 					<h2 class="con_title">자유게시판</h2>
-					<a href="list.do" style="width:56px; text-align:center;">목록</a>
+					<a href="list.do" class="back_btn">목록</a>
 				</div>
 				<div class="free_board_title">제목 : {{info.freeTitle}}</div>
 				<div class="free_board_user">
@@ -143,17 +41,17 @@
 						<i class="fas fa-light fa-thumbs-up fa-bounce fa-3x">
 						</i>
 					</a>
-					<div>{{info.recommend}}명</div>
+					<div class="free_board_good_b">{{info.recommend}}명</div>
 				</div>
 				<div>
-					<button @click="fnDel" v-if="uId == info.uId || status == 'A'">삭제하기</button>
-					<button @click="fnEdit" v-if="uId == info.uId">수정하기</button>
+					<button @click="fnDel" v-if="uId == info.uId || status == 'A'" class="btn1">삭제하기</button>
+					<button @click="fnEdit" v-if="uId == info.uId" class="btn1">수정하기</button>
 				</div> 
 				<div class="free_board_reply_title">
 					<h3>댓글</h3>
 				</div>	
-				<ul>
-					<li>
+				<ul >
+					<li >
 						<div v-for="(item, index) in commentList">
 							<div> {{item.uId}} {{item.cWriteTime}} </div>
 							<div>
@@ -162,13 +60,15 @@
 									<i class="fa-solid fa-circle-xmark fa-xs"></i>
 								</a> 
 							</div>
+							<hr v-if="index < commentList.length - 1">
 						</div>
 					</li>
 				</ul>
+				<br>
 				<div class="free_board_reply_contents">
 					<textarea rows="10" cols="50" v-model="comment" @keyup.enter="fnComment" placeholder="로그인 후, 이용해주세요"></textarea>
 					<div class="free_board_reply_contents_btn">
-						<button style="vertical-align: middle; margin-bottom: 35px;" @click="fnComment" v-if="status == 'A'||status == 'U'||status == 'H'">등록</button>
+						<button style="vertical-align: middle; margin-bottom: 35px;" @click="fnComment" >등록</button>
 					</div>
 				</div>
 			</div>
@@ -205,6 +105,13 @@ var app = new Vue({
 		},
 		fnComment : function(){
 			var self = this;
+			if (self.status !== 'A' && self.status !== 'U' && self.status !== 'H'){
+	            if (confirm("로그인 후 이용해주세요. 로그인 페이지로 이동하시겠습니까?")) {
+	               
+	                window.location.href = "/login.do";
+	            }
+	            return;
+			}
 			var param = {freeNo : self.freeNo, comment : self.comment, uId : self.uId};
 			$.ajax({
                 url : "comment.dox",
