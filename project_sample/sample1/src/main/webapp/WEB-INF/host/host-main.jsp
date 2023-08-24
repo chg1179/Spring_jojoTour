@@ -15,6 +15,7 @@
 		<input type="button" value="槛家包府" @click="fnStayPage"/>
 		<input type="button" value="饭历包府" @click="fnLeisurePage"/>
 		<input type="button" value="坊飘墨包府" @click="fnRentcarPage"/>
+		<input type="button" value="抗距惑前包府" @click="fnOrderPage"/>
 	</div>
 </body>
 </html>
@@ -33,6 +34,9 @@ var app = new Vue({
 		},
 		fnRentcarPage : function(){
 			location.href = "rentcar.do";
+		},
+		fnOrderPage : function(){
+			location.href = "order.do";
 		}
 	}, // methods
 	created : function() {

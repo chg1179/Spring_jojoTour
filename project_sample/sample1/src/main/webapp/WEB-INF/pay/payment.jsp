@@ -4,94 +4,116 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>결제페이지</title>
+<title>결제 페이지</title>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<link href="../../css/pay/payment-style.css" rel="stylesheet"/>
+<link href="../../css/btn-style.css" rel="stylesheet"/>
 <style>
-	table{
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
-	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
-	}
 </style>
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<div id="container">
-			<div>
-				<div>결제페이지</div>
-			</div>
-			<div>
-				<div>--상품 상세 정보</div>
-				
+			<div class="mainTxt">결제페이지</div>
+			<div class="box">
+				<div class="coreTxt"><span class="bar">ㅣ</span> 상품 상세 정보</div>
+				<table>
+				    <thead>
+				        <tr>
+				            <th>상품 번호</th>
+				            <th>상품 종류</th>
+				            <!-- 필요한 열 추가 -->
+				        </tr>
+				    </thead>
+				    <tbody>
+				        <c:forEach items="${productList}" var="product">
+				            <tr>
+				                <td>${product.productNo}</td>
+				                <td>${product.productKind}</td>
+				                <!-- 필요한 열 데이터 출력 -->
+				            </tr>
+				        </c:forEach>
+				    </tbody>
+				</table>
 				
 			</div>
 			
-			<div>
-				<div>--요금 상세 정보</div>
+			<div class="box">
+				<div class="coreTxt"><span class="bar">ㅣ</span> 요금 상세 정보</div>
 				
 			</div>
 			
-			<div>
-				<div>--예약자 정보 입력</div>
+			<div class="box">
+				<div class="coreTxt"><span class="bar">ㅣ</span> 예약자 정보 입력</div>
 				<div>
 					<div>
-						
 						<label>
-							<input type="radio" name="infoCheck" @click="infoView('same')" checked="checked">
+							<input type="radio" class="radioBtn" name="infoCheck" @click="infoView('same')" checked="checked">
 							예약자와 사용자 동일
 						</label>
 						<label>
-							<input name="infoCheck" type="radio" @click="infoView('notSame')">
+							<input type="radio" class="radioBtn" name="infoCheck" @click="infoView('notSame')">
 							새로 입력
 						</label>
 					</div>
 					<div>
-						<label>성　명<input type="text" v-model="userInfo.uName"></label>
+						<div>성명</div>
+						<div class="wrap"><input type="text" v-model="userInfo.uName"></div>
 					</div>
 					<div>
-						<label>연락처
-							<input type="text" v-model="phoneSplit.phone1">-
-							<input type="text" v-model="phoneSplit.phone2">-
-							<input type="text" v-model="phoneSplit.phone3">
-						</label>
+						<div>연락처</div>
+						<div>
+							<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone1"></span>-
+							<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone2"></span>-
+							<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone3"></span>
+						</div>
 					</div>
 					<div>
-						<label>이메일<input type="text" v-model="userInfo.email"></label>
+						<div>이메일</div>
+						<div class="wrap"><input type="text" v-model="userInfo.email"></div>
 					</div>
 					<div>
-						<label>요청사항<input type="text" v-model="request" placeholder="상품 이용과 관련하여 요청사항이 있는 경우 자유롭게 입력해 주세요."></label>
+						<div>요청사항</div>
+						<div class="wrap"><textarea rows="3" cols="50"  v-model="request" maxlength="50" placeholder="요청사항이 있는 경우 자유롭게 입력해 주세요."></textarea></div>
 					</div>
 				</div>
 			</div>
 			
 			
-			<div>
-				<div>--포인트 사용</div>
+			<div class="box">
+				<div class="coreTxt"><span class="bar">ㅣ</span> 포인트 사용</div>
 				<div>
 					<div>
-						<label>보유 포인트<input type="text" v-model="userInfo.point" placeholder="0"></label>
+						<div>보유 {{userInfo.point}}P</div>
 					</div>
 					<div>
-						<label>사용 <input type="text" v-model="usePoint" @input="pointOverCheck" placeholder="0"></label>
-						<input type="button" @click="allPoint" value="전액사용">
+						<div>사용</div>
+						<div class="wrap">
+							<input type="text" v-model="usePoint" @input="pointOverCheck" placeholder="0">
+						</div>
+						<input type="button" class="btn" @click="allPoint" value="전액사용">
 					</div>
-					<div>포인트는 가장 비싼 상품에서 우선적으로 차감됩니다.</div>
+					<div>포인트는 가장 비싼 상품을 우선으로 차감됩니다.</div>
 				</div>
 				
 			</div>
 			
-			<div>
-				<div>최종 결제 금액</div>
-				
-				
+			<div class="box">
+				<div class="coreTxt"><span class="bar">ㅣ</span> 최종 결제 금액(VAT포함)</div>
+				<ul>
+					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다.</li>
+					<li>결제완료 후 <span>예약자 이름</span>과 <span>핸드폰 번호</span>로 바로 <span>체크인</span> 하시면 됩니다.</li>
+				</ul>
 			</div>
-			<div>
-				<button @click="fnRequestPay">결제하기</button>
+			<div class="box"><!-- 수정 중 -->
+				<div><label><input type="checkbox">전체 동의</label></div>
+				<div><label><input type="checkbox">숙소이용규칙 및 취소/환불규정 동의<span>(필수)</span></label></div>
+				<div><label><input type="checkbox">개인정보 수집 및 이용 동의<span>(필수)</span></label></div>
+				<div><label><input type="checkbox">개인정보 제 3자 제공 동의<span>(필수)</span></label></div>
+			</div>
+			<div class="box">
+				<button class="btn" @click="fnRequestPay">결제하기</button>
 			</div>
 		</div>
 	</div>
@@ -118,10 +140,10 @@ var app = new Vue({
 		request : "", //요청사항 작성
 		testList : []
 	},// data
-	mounted() { // created 다음으로 호출됨
-        //this.testList = ${map.list}; // JSON 데이터를 할당
-        //console.log(this.testList);
-    },
+/* 	mounted() { // created 다음으로 호출됨
+        this.testList = ${map.list}; // JSON 데이터를 할당
+        console.log(this.testList);
+    }, */
 	methods : {
 		fnGetUserInfo : function(){
 			var self = this;
@@ -135,6 +157,9 @@ var app = new Vue({
                 	self.userInfo = data.userInfo;
                 	console.log(self.userInfo);
                 	self.phoneSubString();
+                	if(self.userInfo.point == null || self.userInfo.point ==''){
+                		self.userInfo.point = 0;
+                	}
                 }
             }); 
 		},
