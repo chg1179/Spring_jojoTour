@@ -15,4 +15,24 @@ public class Order {
 	private String useYnc;
 	private int deduPoint;
 	private int payment;
+	
+	// stay
+	private int stayNo;
+	private String stayName;
+	private String stayKind;
+	
+	// room
+	private int roomNo;
+	private String roomName;
+	
+	// rent
+	private int rentNo;
+	private String rentName;
+	
+	// leisure
+	private int leisureNo;
+	private String leisureName;
+	private String leisureKind;
+	
+	
 }

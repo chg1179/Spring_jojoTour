@@ -42,4 +42,13 @@ public class OrderController {
 		resultMap.put("orderList", list);
 		return new Gson().toJson(resultMap);
 	}
+			
+	// 예약 내역 리스트
+	@RequestMapping(value = "/host/signUpdate.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String signUpdate(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		orderService.editOrderSign(map);
+		return new Gson().toJson(resultMap);
+	}
 }

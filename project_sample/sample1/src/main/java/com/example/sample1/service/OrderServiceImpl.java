@@ -20,5 +20,11 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		return orderMapper.selectOrderList(map);
 	}
+
+	@Override
+	public int editOrderSign(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return orderMapper.updateOrderSign(map);
+	}
 	
 }

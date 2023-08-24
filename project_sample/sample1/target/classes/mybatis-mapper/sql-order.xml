@@ -4,7 +4,26 @@
 
 <mapper namespace="com.example.sample1.mapper.OrderMapper">
 	<select id="selectOrderList" parameterType="hashmap" resultType="com.example.sample1.model.Order">
-		SELECT * 
-		FROM T2_ORDER_TBL 
+		SELECT DISTINCT *
+		FROM T2_ORDER_TBL J
+		LEFT JOIN (
+		   SELECT S.*, R.MIN_PRICE, R.ROOM_NAME, R.ROOM_NO
+		   FROM  T2_STAY_TBL S
+		   INNER JOIN (
+		      SELECT MIN(ROOM_PRICE) AS MIN_PRICE, ROOM_NO, STAY_NO, ROOM_NAME
+		      FROM T2_ROOM_TBL 
+		      GROUP BY STAY_NO
+		   ) R ON R.STAY_NO = S.STAY_NO
+		) S ON S.STAY_NO = J.PRODUCT_NO AND J.product_kind = 'STAY'
+		LEFT JOIN T2_RENT_CAR_TBL on rent_no = product_no and product_kind = 'RENT'
+		LEFT JOIN T2_LEISURE_TBL on leisure_no = product_no and product_kind = 'LEISURE';
 	</select>
+	
+	<update id="updateOrderSign" parameterType="hashmap">
+		UPDATE T2_ORDER_TBL
+		SET
+			USE_YNC = #{useYnc}
+		WHERE U_ID = #{uId} 
+	</update>
+	
 </mapper>
