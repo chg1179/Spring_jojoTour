@@ -18,36 +18,84 @@
         font-size: 30px;
         top: 0;
         right : 0;
+      }
+	  *{
+		margin: 0;
+		padding: 0;
+	  }
+	  #inquiry_container{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 100vh;
+		margin-top: -200px;
+	  }
+	  .inquiry_wrap h2{
+		margin-bottom: 20px;
+	  }
+	  .inquiry_wrap table, .inquiry_wrap tr, .inquiry_wrap th, .inquiry_wrap td{
+		border-collapse: collapse;
+	  }
+	  .inquiry_wrap th, .inquiry_wrap td{
+		border-bottom: 1px solid #ccc;
+		border-top: 1px solid #ccc;
+		padding: 10px 20px;
+		text-align: center;
+	  }
+	  .inquiry_btn{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 20px;
+	  }
+	  .inquiry_btn button{
+		padding: 10px 40px;
+		background-color: #505050;
+		cursor: pointer;
+		color: #fff;
+		font-weight: bold;
+		border: none;
+		transition-duration: 0.5s;
+	  }
+	  .inquiry_btn button:hover{
+		background: linear-gradient(to right, #ff9900, #ff3333);
+	  }
+	  .inquiry_th_title{
+		width: 300px;
+	  }
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <jsp:include page="my-page.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<h2>1:1 문의 내역</h2>
-		<table>
-			<tr>
-				<th></th>
-				<th>게시글 번호</th>
-				<th>제목</th>
-				<th>내용</th>
-				<th>조회수</th>
-				<th>등록날짜</th>
-			</tr>
-			<tr v-for="(item, index) in list" v-if="item.delyn =='N'">
-				<td>
-					<input v-if="index == 0" type="radio" :value="item.iNo" @input="changeINo(item)" name="iNo" checked="checked">
-					<input v-else type="radio" :value="item.iNo" @input="changeINo(item)" name="iNo">
-				</td>
-				<td>{{item.iNo}}</td>
-				<td>{{item.iTitle}}</td>
-				<td><div v-html="item.iContent"></div></td>
-				<td>{{item.iHits}}</td>
-				<td>{{item.iWriteTime}}</td>
-			</tr>
-		</table>
-		<button @click="fnEdit">수정하기</button>
-		<button @click="fnRemove">삭제하기</button>
+		<div id="inquiry_container">
+			<div class="inquiry_wrap">
+				<h2>1:1 문의 내역</h2>
+				<table>
+					<tr>
+						<th>선택</th>
+						<th>게시글 번호</th>
+						<th class="inquiry_th_title">제목</th>
+						<th>조회수</th>
+						<th>등록날짜</th>
+					</tr>
+					<tr v-for="(item, index) in list" v-if="item.delyn =='N'">
+						<td>
+							<input v-if="index == 0" type="radio" :value="item.iNo" @input="changeINo(item)" name="iNo" checked="checked">
+							<input v-else type="radio" :value="item.iNo" @input="changeINo(item)" name="iNo">
+						</td>
+						<td>{{item.iNo}}</td>
+						<td><a href="javascript:;" @click="fnIContent">{{item.iTitle}}</a></td>
+						<td>{{item.iHits}}</td>
+						<td>{{item.iWriteTime}}</td>
+					</tr>
+				</table>
+				<div class="inquiry_btn">
+					<button @click="fnRemove">삭제하기</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
@@ -97,10 +145,11 @@ var app = new Vue({
             });
 		},
 
-		fnEdit : function(){
+		fnIContent : function(){
 			var self = this;
-			$.pageChange("inquiry/edit.do", {iNo : self.iNo});
-		}
+			$.pageChange("../inquiry/view.do", {iNo : self.iNo, uId : self.userId});
+		},
+		
 		
 	}, // methods
 	created : function() {

@@ -33,17 +33,6 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.selectPoint(map);
 	}
 
-	@Override
-	public List<MyPage> searchReview(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return myPageMapper.selectReview(map);
-	}
-
-	@Override
-	public int searchReviewCnt(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return myPageMapper.selectReviewCnt(map);
-	}
 
 	@Override
 	public int removeReview(HashMap<String, Object> map) {

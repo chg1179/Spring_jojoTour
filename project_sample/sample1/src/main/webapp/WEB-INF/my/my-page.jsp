@@ -57,7 +57,6 @@
                 <a href="javascript:;" class="page_btn jjim" @click="fnJjimList">찜목록</a>
                 <a href="javascript:;" class="page_btn change" @click="fnChange">회원정보 수정</a>
                 <a href="javascript:;" class="page_btn point" @click="fnPoint">포인트</a>
-                <a href="javascript:;" class="page_btn review" @click="fnReview">후기내역</a>
                 <a href="javascript:;" class="page_btn inquiry" @click="fninquiry">1:1 문의내역</a> 
             </div>
         </div>
@@ -93,9 +92,6 @@ var app = new Vue({
 		},
 		fnPoint : function(){
 			location.href="/my/point.do";
-		},
-		fnReview : function(){
-			location.href="/my/review.do";
 		},
 		fninquiry : function(){
 			location.href="/my/inquiry.do";

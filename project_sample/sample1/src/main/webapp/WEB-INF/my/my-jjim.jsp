@@ -54,13 +54,15 @@
 	  border-collapse: collapse;
 	  border-spacing: 0;
 	}
-	section.notice {
-	  padding: 80px 0;
-	  float:left;
+	#jjim_container {
+		float: left;
+	}
+	.jjim_wrap{
+		margin-top: 50px;
 	}
 	
 	.page-title {
-	  margin-bottom: 60px;
+	  margin-bottom: 30px;
 	}
 	.page-title h3 {
 	  font-size: 28px;
@@ -216,10 +218,6 @@
 	  display: block;
 	  clear: both;
 	}
-	.container {
-	  width: 1100px;
-	  margin: 0 auto;
-	}
 	.blind {
 	  position: absolute;
 	  overflow: hidden;
@@ -279,6 +277,9 @@
 	background: linear-gradient(to right, #ff9900, #ff3333);
 	color:white;
 	}
+	.board-tr td{
+		padding: 10px 80px;
+	}
 	.font1{
 	font-size:18px;
 	font-weight:bolder;
@@ -286,13 +287,29 @@
 	.price{
 	text-decoration:line-through;
 	}
+	@media(max-width:1150px){
+		.board-tr td{
+			padding: 10px 50px;
+		}
+	}
+	@media(max-width:900px){
+		.board-tr td{
+			padding: 10px 30px;
+		}
+	}
+	@media(max-width:750px){
+		.board-tr td{
+			padding: 10px 10px;
+		}
+	}
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <jsp:include page="my-page.jsp" flush="true"></jsp:include>
 	<div id="app">
-      	<section class="notice">
+      	<div id="jjim_container">
+			<div class="jjim_wrap">
 	      	<div class="page-title">
 	      		<div class="container">
 	    			<h2>찜목록</h2>
@@ -345,26 +362,27 @@
 			        </td>
 			      </tr>
 			    </table>
-   		 <div class="page-wrap">
-			      <div> 
-			        <button @click="fnRemove" class="btn1">삭제하기</button>
-			      </div>
-    		<template>
-				<paginate
-					:page-count="pageCount"
-					:page-range="3"
-					:margin-pages="2"
-					:click-handler="fnSearch"
-					:prev-text="'<'"
-					:next-text="'>'"
-					:container-class="'pagination'"
-					:page-class="'page-item'">
-					</paginate>
-				</template>
+				<div class="page-wrap">
+					<div> 
+						<button @click="fnRemove" class="btn1">삭제하기</button>
+					</div>
+				<template>
+					<paginate
+						:page-count="pageCount"
+						:page-range="3"
+						:margin-pages="2"
+						:click-handler="fnSearch"
+						:prev-text="'<'"
+						:next-text="'>'"
+						:container-class="'pagination'"
+						:page-class="'page-item'">
+						</paginate>
+					</template>
+				</div>
 			</div>
-			</div>
-			</div>
-  </section>
+		</div>
+		</div>
+  		</div>
 	</div>
 </body>
 </html>
