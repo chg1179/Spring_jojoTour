@@ -58,7 +58,7 @@
 						<div class="rentcar_search_box">
 							<div class="rentcar_search_inbox">
 								<div class="rentcar_search_button">
-									<button @click="fnFavorite('R_READ')">조회수 높은순</button>
+									<button @click="fnChange('R_READ')">조회수 높은순</button>
 									<button @click="fnChange('RENT_PRICE')">가격 낮은순</button>
 								</div>
 								<div class="rentcar_search_name"><input type="text" v-model="rentCarKeyword" placeholder="차량명 또는 모델" @keyup.enter="fnRentCarSearch"></div>
@@ -131,7 +131,6 @@ var app = new Vue({
         minPay : null,
         maxPay : null,
         kindChange : ""
-
 	},// data
 	methods : {
 		fnGetList : function(){

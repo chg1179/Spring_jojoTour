@@ -10,7 +10,7 @@
 <script src="../js/jquery-1.12.4.js"></script>
 <link href="../css/leisure/water-leisure.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>수상 레저</title>
 <style>
 </style>
 </head>
@@ -53,8 +53,8 @@
 						<div class="water_leisure_search_box">
 							<div class="water_leisure_search_inbox">
 								<div class="water_leisure_search_button">
-									<button @click="fnWaterSearch('L_READ')">조회수 높은순</button>
-									<button @click="fnWaterSearch('LEISURE_PRICE')">가격 낮은순</button>
+									<button @click="fnChange('L_READ')">조회수 높은순</button>
+									<button @click="fnChange('LEISURE_PRICE')">가격 낮은순</button>
 								</div>
 								<div class="water_leisure_search_name"><input type="text" v-model="waterKeyword" @keyup.enter="fnWaterSearch()" placeholder="상품명"></div>
 								<div class="water_leisure_search_price">
@@ -124,8 +124,8 @@ var app = new Vue({
         leisureKind : "${map.leisureKind}",
         waterKeyword : "",
         minPay : null,
-        maxPay : null
-
+        maxPay : null,
+        kindChange : ""
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -150,7 +150,15 @@ var app = new Vue({
 			self.selectPage = pageNum;
 			var startNum = ((pageNum-1) * 9);
 			var lastNum = 9;
-			var nparmap = {startNum : startNum, lastNum : lastNum, waterKeyword : self.waterKeyword, leisureKind : self.leisureKind, minPay : self.minPay, maxPay : self.maxPay};
+			var nparmap = {
+					startNum : startNum, 
+					lastNum : lastNum, 
+					waterKeyword : self.waterKeyword, 
+					leisureKind : self.leisureKind, 
+					minPay : self.minPay, 
+					maxPay : self.maxPay, 
+					orderKind: self.kindChange
+				};
 			$.ajax({
 				url : "../water/waterSearchList.dox",
 				dataType : "json",
@@ -188,7 +196,15 @@ var app = new Vue({
 			var self = this;
 			var startNum = ((self.selectPage-1) * 9);
     		var lastNum = 9;
-			var nparmap = {startNum : startNum, lastNum : lastNum, waterKeyword : self.waterKeyword, leisureKind : self.leisureKind, minPay : self.minPay, maxPay : self.maxPay, orderKind : orderKind};
+			var nparmap = {
+					startNum : startNum, 
+					lastNum : lastNum, 
+					waterKeyword : self.waterKeyword, 
+					leisureKind : self.leisureKind, 
+					minPay : self.minPay, 
+					maxPay : self.maxPay, 
+					orderKind : orderKind
+				};
             $.ajax({
                 url : "/water/waterSearchList.dox",
                 dataType:"json",	
@@ -206,8 +222,11 @@ var app = new Vue({
 			var self = this;
 			console.log(leisureNo);
 			$.pageChange("leisure/view.do", {leisureNo : leisureNo});
+		},
+		fnChange : function(kind){
+			this.kindChange=kind;
+			this.fnWaterSearch(kind);
 		}
-		
 	}, // methods
 	created : function() {
 		var self = this;

@@ -49,8 +49,8 @@
 						<div class="ground_leisure_search_box">
 							<div class="ground_leisure_search_inbox">
 								<div class="ground_leisure_search_button">
-									<button @click="fnGroundSearch('L_READ')">조회수 높은순</button>
-									<button @click="fnGroundSearch('LEISURE_PRICE')">가격 낮은순</button>
+									<button @click="fnChange('L_READ')">조회수 높은순</button>
+									<button @click="fnChange('LEISURE_PRICE')">가격 낮은순</button>
 								</div>
 								<div class="ground_leisure_search_name"><input type="text" v-model="groundKeyword" @keyup.enter="fnGroundSearch()" placeholder="상품명"></div>
 								<div class="ground_leisure_search_price">
@@ -121,7 +121,8 @@ var app = new Vue({
         groundKeyword : "",
         minPay : null,
         maxPay : null,
-        lesurePrice : ""
+        lesurePrice : "",
+        kindChange : ""
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -152,8 +153,9 @@ var app = new Vue({
 					groundKeyword : self.groundKeyword, 
 					leisureKind : self.leisureKind, 
 					minPay : self.minPay, 
-					maxPay : self.maxPay
-					};
+					maxPay : self.maxPay,
+					orderKind: self.kindChange
+				};
 			$.ajax({
 				url : "../ground/groundSearchList.dox",
 				dataType : "json",
@@ -199,7 +201,7 @@ var app = new Vue({
 					minPay : self.minPay, 
 					maxPay : self.maxPay, 
 					orderKind : orderKind
-					};
+				};
 			 $.ajax({
 	                url : "../ground/groundSearchList.dox",
 	                dataType:"json",	
@@ -218,8 +220,11 @@ var app = new Vue({
 			console.log(leisureNo);
 			$.pageChange("leisure/view.do", {leisureNo : leisureNo});
 			
+		},
+		fnChange : function(kind){
+			this.kindChange=kind;
+			this.fnGroundSearch(kind);
 		}
-		
 	}, // methods
 	created : function() {
 		var self = this;

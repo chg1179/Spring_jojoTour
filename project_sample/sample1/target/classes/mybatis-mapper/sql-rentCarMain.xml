@@ -130,5 +130,11 @@
 		<if test="minPay != '' and minPay != null or maxPay != '' and maxPay != null"> 
 			AND RENT_PRICE BETWEEN #{minPay}*10000 AND #{maxPay}*10000
 		</if>
+		<if test="orderKind == 'R_READ'"> 
+			ORDER BY R_READ DESC
+		</if>
+		<if test="orderKind == 'RENT_PRICE'"> 
+			ORDER BY RENT_PRICE-RENT_PRICE*(100-(RENT_SALES*100))/100 ASC
+		</if>
 	</select>
 </mapper>
