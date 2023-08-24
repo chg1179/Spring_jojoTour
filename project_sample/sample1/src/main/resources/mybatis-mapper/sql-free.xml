@@ -24,8 +24,10 @@
       AND (FREE_TITLE LIKE CONCAT('%',               #{search},'%')
             OR U_ID LIKE CONCAT('%',#{search},'%'))
       </if>
-      	ORDER BY F.FREE_NO DESC
+      ORDER BY F.FREE_NO DESC
+      <if test="lastNum != '' and lastNum != null"> 
 		LIMIT #{startNum}, #{lastNum}
+		</if>
 	</select>
 	
 	<select id="selectCnt" resultType="int">

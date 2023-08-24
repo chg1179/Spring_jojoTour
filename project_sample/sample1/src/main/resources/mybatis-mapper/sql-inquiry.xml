@@ -8,7 +8,9 @@
 		SELECT * 
 		FROM T2_INQUIRY_TBL
 		ORDER BY I_NO DESC
-		LIMIT #{startNum}, #{lastNum}
+		<if test="lastNum != '' and lastNum != null"> 
+			LIMIT #{startNum}, #{lastNum}
+		</if>
 	</select>
 	
 	<select id="selectCnt" resultType="int">

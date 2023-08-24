@@ -23,7 +23,9 @@
 			AND (F_TITLE LIKE CONCAT('%',#{category},'%'))
 		</if>
 		ORDER BY F_NO DESC
-		LIMIT #{startNum}, #{lastNum}
+		<if test="lastNum != '' and lastNum != null"> 
+			LIMIT #{startNum}, #{lastNum}
+		</if>
 	</select>
 	
 	<select id="selectCnt" resultType="int">
