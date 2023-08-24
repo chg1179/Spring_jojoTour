@@ -4,8 +4,8 @@
 	.btn {
 		width: 100px;
 		height: 50px;
-		color: white;
-		background-color: #ff3333;
+		color: rgb(50, 50, 50);
+		background-color: #ccc;
 	   	border: none;
 	   	border-radius: 5%;
 	   	padding: 7px;
@@ -16,6 +16,6 @@
 	}
 		
 	.btn:hover{
-		color: rgb(50, 50, 50);
+		color: white;
 		background-color: #ff3333;
 	}

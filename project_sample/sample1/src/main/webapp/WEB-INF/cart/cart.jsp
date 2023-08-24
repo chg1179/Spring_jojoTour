@@ -355,6 +355,7 @@ var app = new Vue({
 		    // 테스트 데이터
 		    var productData = [
 		    ];
+
 		    productData = productData.concat(self.selectRoom, self.selectRent, self.selectLeisure);
 
 		    // AJAX 통신
@@ -388,7 +389,8 @@ var app = new Vue({
             return () => {
                 let totalPrice = 0;
                 
-                for (const item of this.selectRoom) {
+                for (const index in this.selectRoom) {
+                    const item = this.selectRoom[index];
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var sprice =  0;
                     if(daysDiff == 0 && item.roomSales == 1){
@@ -398,10 +400,14 @@ var app = new Vue({
                     }else{
                     	sprice = item.roomPrice * daysDiff * item.roomSales;
                     }
+                    this.selectRoom[index].roomDaysDiff = daysDiff;
+                    this.selectRoom[index].sprice = sprice;
                     totalPrice = totalPrice + sprice;
+                    
                 }
                 
-                for (const item of this.selectRent) {
+                for (const index in this.selectRent) {
+                    const item = this.selectRent[index];
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var rprice =  0;
                     if(daysDiff == 0 && item.rentSales == 1){
@@ -411,10 +417,13 @@ var app = new Vue({
                     }else{
                     	rprice = item.rentPrice * daysDiff * item.rentSales;
                     }
+                    this.selectRent[index].rentDaysDiff = daysDiff;
+                    this.selectRent[index].rprice = rprice;
                     totalPrice = totalPrice + rprice;
                 }
-                console.log(rprice);
-                for (const item of this.selectLeisure) {
+                
+                for (const index in this.selectLeisure) {
+                    const item = this.selectLeisure[index];
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var lprice =  0;
                     if(daysDiff == 0 && item.leisureSales == 1){
@@ -424,6 +433,7 @@ var app = new Vue({
                     }else{
                     	lprice = item.leisurePrice * item.leisureSales * this.quantity;
                     }
+                    this.selectLeisure[index].quantity = this.quantity;
                     totalPrice = totalPrice + lprice;
                 }
                 

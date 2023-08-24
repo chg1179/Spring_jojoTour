@@ -9,16 +9,28 @@
 		padding: 10px;
 		margin: 10px;
 	}
+	.productBox {
+		margin-left: 30px;
+	}
 	.mainTxt {
 		width: 100%;
 		color: rgb(78, 79, 81);
 		font-weight : bold;
-		font-size: 22px;
+		font-size: 25px;
 		border-bottom: 1px solid #bbb;
 		padding-bottom: 50px;
 		margin: 50px auto 10px; 
 	}
 	.coreTxt {
+		width: 100%;
+		color: rgb(78, 79, 81);
+		font-weight : bold;
+		font-size: 20px;
+		padding-bottom: 10px;
+		text-align: left;
+		margin: 30px 0px;
+	}
+	.productTxt {
 		width: 100%;
 		color: rgb(78, 79, 81);
 		font-weight : bold;
@@ -70,22 +82,4 @@
 	}
 	input[type=radio] {
 		accent-color: #ff3333;
-	}
-	.btn {
-		width: 100px;
-		height: 50px;
-		color: white;
-		background-color: #ff3333;
-	   	border: none;
-	   	border-radius: 5%;
-	   	padding: 7px;
-	   	font-size: 12px;
-	   	text-align: center;
-	   	margin: 10px auto;
-	   	cursor: pointer;
-	}
-		
-	.btn:hover{
-		color: rgb(50, 50, 50);
-		background-color: #ff3333;
 	}

@@ -16,6 +16,7 @@ public class Cart {
 	private int roomResidue;
 	private String sReserveDate;
 	private String lReserveDate;
+	private int roomDaysDiff;
 	
 	// code_type
 	private String cKind;
@@ -39,6 +40,7 @@ public class Cart {
 	private String sUpdateTime;
 	private String sDelyn;
 	private int cnt;
+	private int sprice;
 	
 	// service
 	private int serviceNo;
@@ -59,8 +61,9 @@ public class Cart {
 	private String rUpdateTime;
 	private int rResidue;
 	private String rDelYN;
-
+	private int rentDaysDiff;
 	private int rCnt;
+	private int rprice;
 	
 	private int imgNo;
 	private String imgName;
@@ -100,5 +103,6 @@ public class Cart {
 	private int lResidue;
 	private String lDelYN;
 	private int lCnt;
+	private int quantity;
 	
 }

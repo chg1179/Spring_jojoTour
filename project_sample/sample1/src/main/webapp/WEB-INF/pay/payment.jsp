@@ -7,6 +7,7 @@
 <title>결제 페이지</title>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <link href="../../css/pay/payment-style.css" rel="stylesheet"/>
 <link href="../../css/btn-style.css" rel="stylesheet"/>
 <style>
@@ -19,23 +20,128 @@
 			<div class="mainTxt">결제페이지</div>
 			<div class="box">
 				<div class="coreTxt"><span class="bar">ㅣ</span> 상품 상세 정보</div>
-		        <div>
-		            uId: ${sessionId}
-		            <br>
-		            Product List:
-		            <ul>
-		                <li v-for="product in productList">
-		                    {{ product.productKind }} - {{ product.productNo }}
-		                </li>
-		            </ul>
-		            
+		        <div v-if="roomList.length != 0" class="productBox">
+		            <div class="productTxt">숙소 상품</div>
+		            <table>
+		                <thead>
+		                    <tr>
+		                    	<th>숙박업소명</th>
+		                        <th>숙소명</th>
+		                        <th>입실</th>
+		                        <th>퇴실</th>
+		                        <th>가격</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                    <tr v-for="product in roomList" :key="product.productNo">
+		                    	<td>{{ product.stayName }}</td>
+		                        <td>{{ product.roomName }}</td>
+		                        <td>{{ product.sReserveDate }} 14:00</td>
+		                        <td>{{ product.lReserveDate }} 10:00</td>
+		                        <td>{{ product.sprice }}원</td>
+		                    </tr>
+		                </tbody>
+		            </table>
 		        </div>
-				
-			</div>
+		        
+		        <!-- 렌트카 상품 -->
+		        <div v-if="rentList.length != 0" class="productBox">
+		            <div class="productTxt">렌트카 상품</div>
+		            <table>
+		                <thead>
+		                    <tr>
+		                        <th>렌트명</th>
+		                        <th>인수일</th>
+		                        <th>반납일</th>
+		                        <th>금액</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                    <tr v-for="product in rentList" :key="product.productNo">
+		                        <td>{{ product.rentName }}</td>
+		                        <td>{{ product.sReserveDate }} 12:00</td>
+		                        <td>{{ product.lReserveDate }} 12:00</td>
+		                        <td>{{ product.rprice }}원</td>
+		                    </tr>
+		                </tbody>
+		            </table>
+		        </div>
+		        
+		        <!-- 레저 상품 -->
+		        <div v-if="leisureList.length != 0" class="productBox">
+		            <div class="productTxt">레저 상품</div>
+		            <table>
+		                <thead>
+		                    <tr>
+		                        <th>레저명</th>
+		                        <th>이용권수</th>
+		                        <th>금액</th>
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                    <tr v-for="product in leisureList" :key="product.productNo">
+		                        <td>{{ product.leisureName }}</td>
+		                        <td>{{ product.quantity }}매</td>
+		                        <td>{{ product.leisurePrice * product.leisureSales * product.quantity }}원</td>
+		                    </tr>
+		                </tbody>
+		            </table>
+		        </div>
 			
 			<div class="box">
-				<div class="coreTxt"><span class="bar">ㅣ</span> 요금 상세 정보</div>
-				
+			    <div class="coreTxt"><span class="bar">ㅣ</span> 요금 상세 정보</div>
+			    <div>
+			        <table>
+			            <thead>
+			                <tr>
+			                    <th>상품명</th>
+			                    <th>가격</th>
+			                </tr>
+			            </thead>
+			            <tbody>
+			                <!-- 숙소 상품 -->
+			                <tr v-if="roomList.length != 0">
+			                    <td>숙소 상품</td>
+			                    <td>
+			                        <ul>
+			                            <li v-for="product in roomList" :key="product.productNo">
+			                                {{ product.roomName }} - {{ parseInt(product.sprice) }}원
+			                            </li>
+			                        </ul>
+			                    </td>
+			                </tr>
+			                <!-- 렌트카 상품 -->
+			                <tr v-if="rentList.length != 0">
+			                    <td>렌트카 상품</td>
+			                    <td>
+			                        <ul>
+			                            <li v-for="product in rentList" :key="product.productNo">
+			                                {{ product.rentName }} - {{ parseInt(product.rprice) }}원
+			                            </li>
+			                        </ul>
+			                    </td>
+			                </tr>
+			                <!-- 레저 상품 -->
+			                <tr  v-if="leisureList.length != 0">
+			                    <td>레저 상품</td>
+			                    <td>
+			                        <ul>
+			                            <li v-for="product in leisureList" :key="product.productNo">
+			                                {{ product.leisureName }} - {{ product.leisurePrice * product.leisureSales * product.quantity }}원
+			                            </li>
+			                        </ul>
+			                    </td>
+			                </tr>
+			            </tbody>
+			            <!-- 총 합계 -->
+		                <tfoot>
+		                    <tr>
+		                        <th>총 합계</th>
+		                        <td>{{ totalAmount.toLocaleString() }}원</td>
+		                    </tr>
+		                </tfoot>
+			        </table>
+			    </div>
 			</div>
 			
 			<div class="box">
@@ -88,23 +194,24 @@
 						</div>
 						<input type="button" class="btn" @click="allPoint" value="전액사용">
 					</div>
-					<div>포인트는 가장 비싼 상품을 우선으로 차감됩니다.</div>
 				</div>
-				
 			</div>
 			
 			<div class="box">
 				<div class="coreTxt"><span class="bar">ㅣ</span> 최종 결제 금액(VAT포함)</div>
+	            <div>
+	                <p>총 결제 금액: {{ (totalAmount - usePoint).toLocaleString() }}원</p>
+	            </div>
 				<ul>
 					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다.</li>
 					<li>결제완료 후 <span>예약자 이름</span>과 <span>핸드폰 번호</span>로 바로 <span>체크인</span> 하시면 됩니다.</li>
 				</ul>
 			</div>
 			<div class="box"><!-- 수정 중 -->
-				<div><label><input type="checkbox">전체 동의</label></div>
-				<div><label><input type="checkbox">숙소이용규칙 및 취소/환불규정 동의<span>(필수)</span></label></div>
-				<div><label><input type="checkbox">개인정보 수집 및 이용 동의<span>(필수)</span></label></div>
-				<div><label><input type="checkbox">개인정보 제 3자 제공 동의<span>(필수)</span></label></div>
+				<div><label><input type="checkbox" v-model="allCheck" @click="toggleAllCheck">전체 동의</label></div>
+				<div><label><input type="checkbox" v-model="clauseCheck" :value="1">숙소이용규칙 및 취소/환불규정 동의<span>(필수)</span></label></div>
+				<div><label><input type="checkbox" v-model="clauseCheck" :value="2">개인정보 수집 및 이용 동의<span>(필수)</span></label></div>
+				<div><label><input type="checkbox" v-model="clauseCheck" :value="3">개인정보 제 3자 제공 동의<span>(필수)</span></label></div>
 			</div>
 			<div class="box">
 				<button class="btn" @click="fnRequestPay">결제하기</button>
@@ -128,7 +235,9 @@ var app = new Vue({
 			phone3 : ""
 		},
 		usePoint : "", //사용자가 결제 시 사용할 포인트
-		request : "" //요청사항 작성
+		request : "", //요청사항 작성
+		clauseCheck : [], //약관을 모두 동의했는지 확인
+		allCheck : false
 	},// data
 	methods : {
 		//장바구니에서 결제할 제품을 넣는 코드
@@ -136,24 +245,10 @@ var app = new Vue({
 			axios.get('/api/getProductList')
             .then(response => {
                 this.productList = response.data; // productList에 결제할 제품을 할당
-                this.fnGetProductInfoList(); // 결제할 제품의 정보를 담는 함수
             })
             .catch(error => {
                 console.error('Error fetching product list:', error);
             });
-		},
-		fnGetProductInfoList : function(){
-			var self = this;
-			console.log(self.productList);
-			for(var i=0; i<self.productList.length;i++){
-				if(self.productList[i].productKind == "STAY"){
-					console.log(self.productList[i].productNo);
-				} else if(self.productList[i].productKind == "RENT"){
-					console.log(self.productList[i].productNo);
-				} else if(self.productList[i].productKind == "LEISURE"){
-					console.log(self.productList[i].productNo);
-				}
-			}
 		},
 		fnGetUserInfo : function(){
 			var self = this;
@@ -193,7 +288,7 @@ var app = new Vue({
 				self.usePoint = "";
 				return;
 			}
-			if(self.usePoint > 0){
+			if(self.usePoint < 0){
 				alert("0보다 큰 금액을 입력해주세요.");
 				self.usePoint = "";
 				return;
@@ -223,18 +318,76 @@ var app = new Vue({
 		},
         fnRequestPay : function(){
         	var self = this;
+        	var orderNo = 'jojo_'+new Date().getFullYear()+new Date().getMonth()+new Date().getDate()+new Date().getTime();
+        	console.log(orderNo);
+        	if(self.userInfo.uName == ""){
+				alert("예약자 이름을 입력해주세요.");
+				return;
+			}
+        	
+        	//입력한 핸드폰 번호 합치기
+        	self.userInfo.phone = self.phoneSplit.phone1;
+        	self.userInfo.phone += self.phoneSplit.phone2;
+        	self.userInfo.phone += self.phoneSplit.phone3;
+        	console.log(self.userInfo.phone);
+        	
+        	if(self.userInfo.phone.length < 10){
+				alert("핸드폰 번호를 확인해주세요.");
+				return;
+			}
+        	
+        	var regex = new RegExp(/^[0-9]+$/);
+			if(!regex.test(self.userInfo.phone)){
+				alert("핸드폰 번호는 숫자만 입력해주세요.");
+				return;
+			}
+			
+			if(self.userInfo.email == ""){
+				alert("핸드폰 번호를 확인해주세요.");
+				return;
+			}
+			
+			regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+			if(!regex.test(self.userInfo.email)){
+				alert("이메일 양식을 확인해주세요.");
+				return;
+			}
+			
+			if(self.clauseCheck.length < 3){
+				alert("모든 약관을 동의해야만 결제가 가능합니다.");
+				return;
+			}
+        	
+			// 포인트를 입력하지 않으면 0으로 생각한다.
+			if(self.usePoint == ""){
+				self.usePoint = 0;
+			}
+			
+			// 상품명 찾기
+			var orderName = "";
+			if(self.roomList.length != 0){
+				orderName = self.roomList[0].stayName +" "+self.roomList[0].roomName; 
+			} else if(self.rentList.length != 0){
+				orderName = self.rentList[0].rentName; 
+			} else if(self.leisureList.length != 0){
+				orderName = self.leisureList[0].leisureName; 
+			}
+			if((self.productList.length-1) != 0){
+				orderName += " 외 " + (self.productList.length-1)+"건"; 
+			}
             IMP.request_pay({
                 pg: "html5_inicis",
                 pay_method: "card",
-                merchant_uid: 'jojo_'+new Date().getTime(),   // 주문번호
-                name: "상품명", // 상품명 + 외 @건 
-                amount: 64900, // 테스트
+                merchant_uid: orderNo,   // 주문번호
+                name: orderName, // 상품명 + 외 @건 
+                amount: self.totalAmount - self.usePoint, // 테스트
                 buyer_email: self.userInfo.email,
                 buyer_name: self.userInfo.uName,
                 buyer_tel: self.userInfo.phone
 			}, function (rsp) { // callback
 					if (rsp.success) {
                 		alert("결제 성공");
+                		fnOrder();
                 		location.href="/my/order.do"
 					} else {
 						//테스트용
@@ -242,12 +395,39 @@ var app = new Vue({
                     	location.href="/my/order.do"
                     }
 			});
-        }
+        },
+        // 약관 동의 전체 선택
+        toggleAllCheck: function() {
+		    if (this.allCheck) {
+		        this.clauseCheck = []; // 모든 약관 체크박스를 해제
+		    } else {
+		        this.clauseCheck = [1, 2, 3]; // 모든 약관 체크박스를 선택
+		    }
+		}
 	}, // methods
 	created : function() {
 		var self = this;
 		self.fnGetProductList(); //컴포넌트 생성 시 세션 데이터 가져오기
 		self.fnGetUserInfo();
-	}// created
+	}, // created
+	// productList 변경 감지 후 리스트 분류
+	computed: {
+	    roomList: function() {
+	        return this.productList.filter(product => product.productKind === "STAY");
+	    },
+	    rentList: function() {
+	        return this.productList.filter(product => product.productKind === "RENT");
+	    },
+	    leisureList: function() {
+	        return this.productList.filter(product => product.productKind === "LEISURE");
+	    },
+	    totalAmount() {
+            const roomTotal = this.roomList.reduce((total, product) => total + (parseInt(product.sprice)), 0);
+            const rentTotal = this.rentList.reduce((total, product) => total + (parseInt(product.rprice)), 0);
+            const leisureTotal = this.leisureList.reduce((total, product) => total + (product.leisurePrice * product.leisureSales * product.quantity), 0);
+
+            return roomTotal + rentTotal + leisureTotal;
+        }
+	} // computed
 });
 </script>
