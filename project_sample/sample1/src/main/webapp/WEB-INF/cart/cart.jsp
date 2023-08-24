@@ -54,20 +54,21 @@
 		text-align : center;
 		font-size : 20px;
 		border-radius: 5px;
-	    background-color: #f8852a;
+	    background-color: #FA163F;
 	  	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 	}
 	#delBtn {
 		margin : 5px auto;
 		border-radius : 20px;
-		border : 1px solid #f8852a;
+		border : 1px solid #0FABBC;
 		width : 60px;
 		height: 30px;
-		background-color: #f8852a;
+		background-color: #0FABBC;
 		color : white;
 	} 
 	#delBtn:hover {
-	    background-color: #f89552;
+		border : 1px solid #FA163F;
+	    background-color: #FA163F;
 	  }
 	#deline {
 		text-decoration : line-through;
@@ -78,7 +79,7 @@
 	    left: 0;
 	    height : 50px;
 	    width: 100%;
-	    background-color: #ff9f52;
+	    background-color: #FA163F;
 	    padding: 16px;
 	    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 	    display: flex;
@@ -113,14 +114,14 @@
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<h1
-			style="color: #f8852a; text-align: center; margin-top: 30px; margin-bottom: 4px;">장바구니</h1>
+			style="color: rgb(78, 79, 81); text-align: center; margin-top: 30px; margin-bottom: 4px;">장바구니</h1>
 
 		<div id="tbl">
 			<table style="margin: 30px auto;" id="tbl1">
 				<thead>
 					<tr>
 						<td colspan="6"
-							style="text-align: left; padding-left: 30px; font-size: 20px; color: #F86F03; border-bottom: 2px solid #F86F03;">
+							style="text-align: left; padding-left: 30px; font-size: 20px; color: rgb(78, 79, 81); border-bottom: 2px solid #ccc;">
 							숙소
 						</td>
 					</tr>
@@ -135,7 +136,7 @@
 						<td>
 							<input type="checkbox" name="room" v-model="selectRoom" :value="item">
 						</td>
-						<td style="border-right: 1px solid #F86F03; width : 350px;">
+						<td style="border-right: 1px solid #ccc; width : 350px;">
 							<div style="font-weight: bold; margin: 5px;">{{item.stayName}}</div>
 							<div>{{item.roomName}}</div>
 						</td>
@@ -170,7 +171,7 @@
 				<thead>
 					<tr>
 						<td colspan="6"
-							style="text-align: left; padding-left: 30px; font-size: 20px; color: #F86F03; border-bottom: 2px solid #F86F03;">
+							style="text-align: left; padding-left: 30px; font-size: 20px; color: rgb(78, 79, 81); border-bottom: 2px solid #ccc;">
 							렌트카
 						</td>
 					</tr>
@@ -185,7 +186,7 @@
 						<td>
 							<input type="checkbox" name="rent" v-model="selectRent" :value="item">
 						</td>
-						<td style="border-right: 1px solid #F86F03; width : 350px;">
+						<td style="border-right: 1px solid #ccc; width : 350px;">
 							<div style="font-weight: bold; margin: 5px;">{{item.rentName}}</div>
 							<div>{{item.rentKind}}</div>
 						</td>
@@ -220,7 +221,7 @@
 				<thead>
 					<tr>
 						<td colspan="6"
-							style="text-align: left; padding-left: 30px; font-size: 20px; color: #F86F03; border-bottom: 2px solid #F86F03;">
+							style="text-align: left; padding-left: 30px; font-size: 20px; color: rgb(78, 79, 81); border-bottom: 2px solid #ccc;">
 							레저
 						</td>
 					</tr>
@@ -235,7 +236,7 @@
 						<td>
 							<input type="checkbox" name="leisure" v-model="selectLeisure" :value="item">
 						</td>
-						<td style="border-right: 1px solid #F86F03; width : 350px;">
+						<td style="border-right: 1px solid #ccc; width : 350px;">
 							<div style="font-weight: bold; margin: 5px;">{{item.leisureName}}</div>
 							<div>{{item.leisureKind}}</div>
 						</td>

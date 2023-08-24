@@ -61,7 +61,7 @@
 </style>
 </head>
 <body>
-	<div id="app">
+	<div id="foot">
 		<div id="wrapper">
 		<div id="footer">
 		<div class="area_comp">
@@ -108,30 +108,14 @@
 </html>
 <script>
 var app = new Vue({
-	el : '#app',
+	el : '#foot',
 	data : {
-		list : []
 	},// data
 	methods : {
-		fnGetList : function(){
-			var self = this;
-			var param = {};
-			$.ajax({
-                url : "list.dox",
-                dataType:"json",	
-                type : "POST",
-                data : param,
-                success : function(data) { 
-                	self.list = data.list;
-                	console.log(self.list);
-                }
-            }); 
-		}
 		
 	}, // methods
 	created : function() {
 		var self = this;
-		self.fnGetList();
 	}// created
 });
 </script>

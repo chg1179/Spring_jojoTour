@@ -20,7 +20,9 @@
 				OR U_ID LIKE CONCAT('%',#{search},'%'))
 		</if> 
 		ORDER BY N_NO DESC
-		LIMIT #{startNum}, #{lastNum}
+		<if test="lastNum != '' and lastNum != null"> 
+			LIMIT #{startNum}, #{lastNum}
+		</if>
 	</select>
 	
 	<select id="selectCnt" resultType="int">

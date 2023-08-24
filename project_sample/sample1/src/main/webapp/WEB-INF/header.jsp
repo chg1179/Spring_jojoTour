@@ -24,7 +24,7 @@
             height: 100%;
         }
         header{
-            background: linear-gradient(to right, #FA163F 20%, #12CAD6 );
+            background: linear-gradient(30deg, #FA163F, #0FABBC 55%);
             position : fixed;
             width : 100%;
             z-index : 999;

@@ -9,7 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <link href="../../css/pay/payment-style.css" rel="stylesheet"/>
-<link href="../../css/btn-style.css" rel="stylesheet"/>
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <style>
 </style>
 </head>
@@ -87,6 +87,7 @@
 		                </tbody>
 		            </table>
 		        </div>
+			</div>
 			
 			<div class="box">
 			    <div class="coreTxt"><span class="bar">ㅣ</span> 요금 상세 정보</div>
@@ -204,14 +205,14 @@
 	            </div>
 				<ul>
 					<li>해당 객실가는 세금, 봉사료가 포함된 금액입니다.</li>
-					<li>결제완료 후 <span>예약자 이름</span>과 <span>핸드폰 번호</span>로 바로 <span>체크인</span> 하시면 됩니다.</li>
+					<li>결제 완료 후 <span class="redTxt">예약자 이름</span>과 <span class="redTxt">핸드폰 번호</span>로 바로 <span class="redTxt">체크인</span> 하시면 됩니다.</li>
 				</ul>
 			</div>
 			<div class="box"><!-- 수정 중 -->
 				<div><label><input type="checkbox" v-model="allCheck" @click="toggleAllCheck">전체 동의</label></div>
-				<div><label><input type="checkbox" v-model="clauseCheck" :value="1">숙소이용규칙 및 취소/환불규정 동의<span>(필수)</span></label></div>
-				<div><label><input type="checkbox" v-model="clauseCheck" :value="2">개인정보 수집 및 이용 동의<span>(필수)</span></label></div>
-				<div><label><input type="checkbox" v-model="clauseCheck" :value="3">개인정보 제 3자 제공 동의<span>(필수)</span></label></div>
+				<div><label><input type="checkbox" v-model="clauseCheck" :value="1">숙소이용규칙 및 취소/환불규정 동의 <span class="redTxt">(필수)</span></label></div>
+				<div><label><input type="checkbox" v-model="clauseCheck" :value="2">개인정보 수집 및 이용 동의 <span class="redTxt">(필수)</span></label></div>
+				<div><label><input type="checkbox" v-model="clauseCheck" :value="3">개인정보 제 3자 제공 동의 <span class="redTxt">(필수)</span></label></div>
 			</div>
 			<div class="box">
 				<button class="btn" @click="fnRequestPay">결제하기</button>
