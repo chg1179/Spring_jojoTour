@@ -112,7 +112,7 @@
 			ORDER BY R_READ DESC
 		</if>
 		<if test="orderKind == 'RENT_PRICE'"> 
-			ORDER BY RENT_PRICE ASC
+			ORDER BY RENT_PRICE-RENT_PRICE*(100-(RENT_SALES*100))/100 ASC
 		</if>
 		LIMIT #{startNum}, #{lastNum}
 	</select>

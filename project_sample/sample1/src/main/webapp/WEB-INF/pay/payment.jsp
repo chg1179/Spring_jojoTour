@@ -120,31 +120,40 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		uId : "${sessionId}",
-		productList: [],
-		userInfo : {},
-		productlist : [],
-		rentlist : [],
-		leisurelist : [],
-		item : [],		
-		phoneSplit : { // OOO-XXXX-XXXX 로 출력하기 위함
+		productList: [], // 장바구니에서 결제할 제품을 가져오는 리스트
+		userInfo : {}, // 결제하는 유저의 정보를 담음
+		phoneSplit : { // OOO-XXXX-XXXX 로 출력하기 위한 변수
 			phone1 : "",
 			phone2 : "",
 			phone3 : ""
 		},
-		usePoint : "",
-		request : "", //요청사항 작성
-		testList : []
+		usePoint : "", //사용자가 결제 시 사용할 포인트
+		request : "" //요청사항 작성
 	},// data
 	methods : {
 		//장바구니에서 결제할 제품을 넣는 코드
 		fnGetProductList : function(){
 			axios.get('/api/getProductList')
             .then(response => {
-                this.productList = response.data; // productList에 할당
+                this.productList = response.data; // productList에 결제할 제품을 할당
+                this.fnGetProductInfoList(); // 결제할 제품의 정보를 담는 함수
             })
             .catch(error => {
                 console.error('Error fetching product list:', error);
             });
+		},
+		fnGetProductInfoList : function(){
+			var self = this;
+			console.log(self.productList);
+			for(var i=0; i<self.productList.length;i++){
+				if(self.productList[i].productKind == "STAY"){
+					console.log(self.productList[i].productNo);
+				} else if(self.productList[i].productKind == "RENT"){
+					console.log(self.productList[i].productNo);
+				} else if(self.productList[i].productKind == "LEISURE"){
+					console.log(self.productList[i].productNo);
+				}
+			}
 		},
 		fnGetUserInfo : function(){
 			var self = this;
@@ -228,6 +237,7 @@ var app = new Vue({
                 		alert("결제 성공");
                 		location.href="/my/order.do"
 					} else {
+						//테스트용
                     	alert("결제 성공");
                     	location.href="/my/order.do"
                     }

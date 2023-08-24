@@ -59,7 +59,7 @@
 							<div class="rentcar_search_inbox">
 								<div class="rentcar_search_button">
 									<button @click="fnFavorite('R_READ')">조회수 높은순</button>
-									<button @click="fnFavorite('RENT_PRICE')">가격 낮은순</button>
+									<button @click="fnChange('RENT_PRICE')">가격 낮은순</button>
 								</div>
 								<div class="rentcar_search_name"><input type="text" v-model="rentCarKeyword" placeholder="차량명 또는 모델" @keyup.enter="fnRentCarSearch"></div>
 								<div class="rentcar_search_price">
@@ -129,7 +129,8 @@ var app = new Vue({
         rentKind : "${map.rentKind}",
         rentCarKeyword : "",
         minPay : null,
-        maxPay : null
+        maxPay : null,
+        kindChange : ""
 
 	},// data
 	methods : {
@@ -155,9 +156,9 @@ var app = new Vue({
 			self.selectPage = pageNum;
 			var startNum = ((pageNum-1) * 9);
 			var lastNum = 9;
-			var nparmap = {startNum : startNum, lastNum : lastNum, rentCarKeyword : self.rentCarKeyword, rentKind : self.rentKind, minPay : self.minPay, maxPay : self.maxPay};
+			var nparmap = {startNum : startNum, lastNum : lastNum, rentCarKeyword : self.rentCarKeyword, rentKind : self.rentKind, minPay : self.minPay, maxPay : self.maxPay, orderKind: self.kindChange};
 			$.ajax({
-				url : "rentCarSearchList.dox",
+				url : "rentCarFavoriteList.dox",
 				dataType : "json",
 				type : "POST",
 				data : nparmap,
@@ -194,13 +195,13 @@ var app = new Vue({
 			console.log(rentNo);
 			$.pageChange("rentcar/view.do", {rentNo : rentNo});
 		},
-		fnRentCarSearch : function(){
+		fnRentCarSearch : function(orderKind){
 			var self = this;
 			var startNum = ((self.selectPage-1) * 9);
     		var lastNum = 9;
-            var nparmap = {startNum : startNum, lastNum : lastNum, rentCarKeyword : self.rentCarKeyword, rentKind : self.rentKind, minPay : self.minPay, maxPay : self.maxPay};
+            var nparmap = {startNum : startNum, lastNum : lastNum, rentCarKeyword : self.rentCarKeyword, rentKind : self.rentKind, minPay : self.minPay, maxPay : self.maxPay, orderKind: self.kindChange};
             $.ajax({
-                url : "rentCarSearchList.dox",
+                url : "rentCarFavoriteList.dox",
                 dataType:"json",	
                 type : "POST", 
                 data : nparmap,
@@ -227,6 +228,10 @@ var app = new Vue({
 					self.pageCount = Math.ceil(self.cnt / 9);
                 }
             }); 
+		},
+		fnChange : function(kind){
+			this.kindChange=kind;
+			this.fnFavorite(kind);
 		}
 	}, // methods
 	created : function() {
