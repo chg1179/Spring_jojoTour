@@ -90,7 +90,7 @@ public class Cart {
 	private String leisureName;
 	private String leisureKind;
 	private double leisureSales;
-	private String leisurePrice;
+	private int leisurePrice;
 	private String lZipno;
 	private String lAddr;
 	private String lDetailAddr;

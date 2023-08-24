@@ -239,27 +239,24 @@
 							<div style="font-weight: bold; margin: 5px;">{{item.leisureName}}</div>
 							<div>{{item.leisureKind}}</div>
 						</td>
-						<td style="width : 400px;" v-if="item.sReserveDate == item.lReserveDate">
-							예약일 : {{item.sReserveDate}}
-						</td>
-						<td style="width : 400px; margin: 5px;" v-else>
-							<div style=" margin: 5px;">예약일 : {{item.sReserveDate}} ~ {{item.lReserveDate}}</div>
+						<td style="width : 400px;">
+							<input type="number" min="1" max="10" style="width: 80px;" v-model="quantity">
 						</td>
 						<td><input type="button" value="삭 제" id="delBtn" @click="fnRemove(item)"></td>
-						<td v-if="dateDifference(item.sReserveDate, item.lReserveDate) == 0 && item.leisureSales == 1">
-							<div>{{item.leisurePrice.toLocaleString()}}원</div>
+						
+						<td v-if="leisureOriginalPrice() == 0 && item.leisureSales == 1">
+							<div>{{item.leisurePrice.toLocaleString() }}원</div>
 						</td>
-						<td v-else-if="dateDifference(item.sReserveDate, item.lReserveDate) == 0 && item.leisureSales != 1">
-							<div id="deline">{{item.leisurePrice.toLocaleString()}}원</div>
-							<div style="font-weight: bold; font-size: 16px;">{{(item.leisurePrice*item.leisureSales).toLocaleString()}}원</div>
+						<td v-else-if="leisureOriginalPrice() == 0 && item.leisureSales != 1">
+							<div id="deline">{{item.leisurePrice.toLocaleString() }}원</div>
+							<div style="font-weight: bold; font-size: 16px;">{{( item.leisurePrice*item.leisureSales).toLocaleString() }}원</div>
 						</td>
-							
-						<td v-else-if="dateDifference(item.sReserveDate, item.lReserveDate) != 0 && item.leisureSales == 1">
-							<div style="font-weight: bold; font-size: 16px;">{{ (item.leisurePrice*dateDifference(item.sReserveDate, item.lReserveDate)).toLocaleString() }}원</div>
+						<td v-else-if="leisureOriginalPrice() != 0 && item.leisureSales == 1">
+							<div>{{leisureOriginalPrice() | numberWithCommas }}원</div>
 						</td>
 						<td v-else>
-							<div id="deline">{{ (item.leisurePrice*dateDifference(item.sReserveDate, item.lReserveDate)).toLocaleString() }}원</div>
-							<div style="font-weight: bold; font-size: 16px;">{{ (item.leisurePrice*item.leisureSales*dateDifference(item.sReserveDate, item.lReserveDate)).toLocaleString() }}원</div>
+							<div id="deline">{{leisureOriginalPrice() }}원</div>
+							<div style="font-weight: bold; font-size: 16px;">{{ leisureTotalPrice() | numberWithCommas }}원</div>
 						</td>
 					</tr>
 				</tbody>
@@ -290,7 +287,8 @@ var app = new Vue({
 		rentlist : [],
 		leisurelist : [],
 		item : [],		
-		uId : "${sessionId}"
+		uId : "${sessionId}",
+		quantity : 1
 	},// data
 	methods : {
 		fnRoomList : function(){
@@ -420,11 +418,11 @@ var app = new Vue({
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var lprice =  0;
                     if(daysDiff == 0 && item.leisureSales == 1){
-                    	lprice = item.leisurePrice;
+                    	lprice = item.leisurePrice * this.quantity;
                     }else if(daysDiff == 0 && item.leisureSales != 1){
-                    	lprice = item.leisurePrice * item.leisureSales;
+                    	lprice = item.leisurePrice * item.leisureSales * this.quantity;
                     }else{
-                    	lprice = item.leisurePrice * daysDiff * item.leisureSales;
+                    	lprice = item.leisurePrice * item.leisureSales * this.quantity;
                     }
                     totalPrice = totalPrice + lprice;
                 }
@@ -462,14 +460,52 @@ var app = new Vue({
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var eprice =  0;
                     if(daysDiff == 0){
-                    	eprice = parseInt(item.leisurePrice);
+                    	eprice = parseInt(item.leisurePrice) * this.quantity;
                     }else{
-                    	eprice = parseInt(item.leisurePrice) * daysDiff;
+                    	eprice = parseInt(item.leisurePrice) * this.quantity;
                     }
                     originalPrice = originalPrice + eprice;
                 }
                 
                 return originalPrice;
+            };
+        },
+        leisureOriginalPrice() {
+            return () => {
+                let leisureOriginalPrice = 0;
+                
+                for (const item of this.selectLeisure) {
+                    const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
+                    var leisureprice =  0;
+                    if(daysDiff == 0){
+                    	leisureprice = parseInt(item.leisurePrice) * this.quantity;
+                    }else{
+                    	leisureprice = parseInt(item.leisurePrice) * this.quantity;
+                    }
+                    leisureOriginalPrice = leisureprice;
+                }
+                
+                return leisureOriginalPrice;
+            };
+        },
+        leisureTotalPrice() {
+            return () => {
+                let leisureTotalPrice = 0;
+                
+                for (const item of this.selectLeisure) {
+                    const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
+                    var leisureprice =  0;
+                    if(daysDiff == 0 && item.leisureSales == 1){
+                    	leisureprice = item.leisurePrice * this.quantity;
+                    }else if(daysDiff == 0 && item.leisureSales != 1){
+                    	leisureprice = item.leisurePrice * item.leisureSales * this.quantity;
+                    }else{
+                    	leisureprice = item.leisurePrice * item.leisureSales * this.quantity;
+                    }
+                    leisureTotalPrice = leisureTotalPrice + leisureprice;
+                }
+                
+                return leisureTotalPrice;
             };
         }
     },

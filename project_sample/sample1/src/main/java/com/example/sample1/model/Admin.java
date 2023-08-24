@@ -47,7 +47,7 @@ public class Admin {
 	private String leisureName;
 	private int leisureNo;
 	private int leisurePrice;
-	private int leisureSales;
+	private double leisureSales;
 	
 	//inner
 	private String uId;
