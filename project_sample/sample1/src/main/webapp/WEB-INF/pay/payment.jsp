@@ -6,6 +6,7 @@
 <meta charset="EUC-KR">
 <title>결제 페이지</title>
 <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <link href="../../css/pay/payment-style.css" rel="stylesheet"/>
 <link href="../../css/btn-style.css" rel="stylesheet"/>
 <style>
@@ -18,24 +19,17 @@
 			<div class="mainTxt">결제페이지</div>
 			<div class="box">
 				<div class="coreTxt"><span class="bar">ㅣ</span> 상품 상세 정보</div>
-				<table>
-				    <thead>
-				        <tr>
-				            <th>상품 번호</th>
-				            <th>상품 종류</th>
-				            <!-- 필요한 열 추가 -->
-				        </tr>
-				    </thead>
-				    <tbody>
-				        <c:forEach items="${productList}" var="product">
-				            <tr>
-				                <td>${product.productNo}</td>
-				                <td>${product.productKind}</td>
-				                <!-- 필요한 열 데이터 출력 -->
-				            </tr>
-				        </c:forEach>
-				    </tbody>
-				</table>
+		        <div>
+		            uId: ${sessionId}
+		            <br>
+		            Product List:
+		            <ul>
+		                <li v-for="product in productList">
+		                    {{ product.productKind }} - {{ product.productNo }}
+		                </li>
+		            </ul>
+		            
+		        </div>
 				
 			</div>
 			
@@ -126,6 +120,7 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		uId : "${sessionId}",
+		productList: [],
 		userInfo : {},
 		productlist : [],
 		rentlist : [],
@@ -140,11 +135,17 @@ var app = new Vue({
 		request : "", //요청사항 작성
 		testList : []
 	},// data
-/* 	mounted() { // created 다음으로 호출됨
-        this.testList = ${map.list}; // JSON 데이터를 할당
-        console.log(this.testList);
-    }, */
 	methods : {
+		//장바구니에서 결제할 제품을 넣는 코드
+		fnGetProductList : function(){
+			axios.get('/api/getProductList')
+            .then(response => {
+                this.productList = response.data; // productList에 할당
+            })
+            .catch(error => {
+                console.error('Error fetching product list:', error);
+            });
+		},
 		fnGetUserInfo : function(){
 			var self = this;
 			var param = {uId : self.uId};
@@ -235,6 +236,7 @@ var app = new Vue({
 	}, // methods
 	created : function() {
 		var self = this;
+		self.fnGetProductList(); //컴포넌트 생성 시 세션 데이터 가져오기
 		self.fnGetUserInfo();
 	}// created
 });

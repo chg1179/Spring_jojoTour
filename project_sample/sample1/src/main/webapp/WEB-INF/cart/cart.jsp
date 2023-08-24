@@ -281,17 +281,7 @@ var app = new Vue({
 		rentlist : [],
 		leisurelist : [],
 		item : [],		
-		uId : "${sessionId}",
-		testList: [
-	        {
-	            productNo: "1",
-	            productKind: "RENT"
-	        },
-	        {
-	            productNo: "2",
-	            productKind: "STAY"
-	        }
-	    ]
+		uId : "${sessionId}"
 	},// data
 	methods : {
 		fnRoomList : function(){
@@ -333,23 +323,6 @@ var app = new Vue({
                 }
             }); 
 		},
-		fnPayment : function (){
-			var self = this;
-	        var testListJSON = JSON.stringify(self.testList);
-	            
-	        var param = {
-				testListJSON: testListJSON
-			};
-/* 
-	        $.ajax({
-	            url: "/cartPay",
-	            dataType: "json",
-	            type: "POST",
-	            data: param,
-	            success: function(response) {
-	            }
-	        }); */
-		},
 		fnRemove : function(item){
 			var self = this;
 			var param = {uId : item.uId, productNo : item.productNo};
@@ -368,9 +341,31 @@ var app = new Vue({
             		self.fnLeisureList();
                 }
             }); 
-			
+		},		
+		// 장바구니에서 결제 선택한 상품을 결제 페이지로 보내주는 함수
+		fnPayment: function () {
+		    var self = this;
+
+		    // 테스트 데이터
+		    var productData = [
+		        { productKind: "RENT", productNo: "1011" },
+		        { productKind: "STAY", productNo: "1021" },
+		        { productKind: "LEISURE", productNo: "10" }
+		    ];
+
+		    // AJAX 통신
+		    $.ajax({
+		        url: "/goPayment.dox",
+		        type: "POST",
+		        data: JSON.stringify(productData),
+		        contentType: "application/json",
+		        success: function (response) {
+		        	//payment.do로 이동
+		            var redirectUrl = response.redirectUrl;
+		            window.location.href = redirectUrl;
+		        }
+		    });
 		}
-		
 	}, // methods
 	computed: {
         // 계산된 속성 추가
