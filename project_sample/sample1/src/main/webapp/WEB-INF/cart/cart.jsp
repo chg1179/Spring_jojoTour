@@ -125,13 +125,16 @@
 						</td>
 					</tr>
 					<tr>
-						<th style="width: 400px;" colspan="2">상품정보</th>
+						<th style="width: 400px;" colspan="3" style="width: 40px;">상품정보</th>
 						<th>선택</th>
 						<th>결제금액</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr v-for="item in roomlist">
+						<td>
+							<input type="checkbox" name="room" v-model="selectRoom" :value="item">
+						</td>
 						<td style="border-right: 1px solid #F86F03; width : 350px;">
 							<div style="font-weight: bold; margin: 5px;">{{item.stayName}}</div>
 							<div>{{item.roomName}}</div>
@@ -179,6 +182,9 @@
 				</thead>
 				<tbody>
 					<tr v-for="item in rentlist">
+						<td>
+							<input type="checkbox" name="rent" v-model="selectRent" :value="item">
+						</td>
 						<td style="border-right: 1px solid #F86F03; width : 350px;">
 							<div style="font-weight: bold; margin: 5px;">{{item.rentName}}</div>
 							<div>{{item.rentKind}}</div>
@@ -226,6 +232,9 @@
 				</thead>
 				<tbody>
 					<tr v-for="item in leisurelist">
+						<td>
+							<input type="checkbox" name="leisure" v-model="selectLeisure" :value="item">
+						</td>
 						<td style="border-right: 1px solid #F86F03; width : 350px;">
 							<div style="font-weight: bold; margin: 5px;">{{item.leisureName}}</div>
 							<div>{{item.leisureKind}}</div>
@@ -265,7 +274,7 @@
 					<span> =  최종 결제 금액 : </span>
 					<span style="font-size: 24px;">{{ calculateTotalPrice() | numberWithCommas }}</span>
 				</span>
-				<input type="button" @click="fnPayment" value="결제하기" id="pbtn"></div>
+				<input type="button" @click="fnPayment()" value="결제하기" id="pbtn"></div>
 			</div>
 	</div>
 </body>
@@ -345,13 +354,10 @@ var app = new Vue({
 		// 장바구니에서 결제 선택한 상품을 결제 페이지로 보내주는 함수
 		fnPayment: function () {
 		    var self = this;
-
 		    // 테스트 데이터
 		    var productData = [
-		        { productKind: "RENT", productNo: "1011" },
-		        { productKind: "STAY", productNo: "1021" },
-		        { productKind: "LEISURE", productNo: "10" }
 		    ];
+		    productData = productData.concat(self.selectRoom, self.selectRent, self.selectLeisure);
 
 		    // AJAX 통신
 		    $.ajax({
@@ -384,7 +390,7 @@ var app = new Vue({
             return () => {
                 let totalPrice = 0;
                 
-                for (const item of this.roomlist) {
+                for (const item of this.selectRoom) {
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var sprice =  0;
                     if(daysDiff == 0 && item.roomSales == 1){
@@ -397,7 +403,7 @@ var app = new Vue({
                     totalPrice = totalPrice + sprice;
                 }
                 
-                for (const item of this.rentlist) {
+                for (const item of this.selectRent) {
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var rprice =  0;
                     if(daysDiff == 0 && item.rentSales == 1){
@@ -410,7 +416,7 @@ var app = new Vue({
                     totalPrice = totalPrice + rprice;
                 }
                 console.log(rprice);
-                for (const item of this.leisurelist) {
+                for (const item of this.selectLeisure) {
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var lprice =  0;
                     if(daysDiff == 0 && item.leisureSales == 1){
@@ -430,7 +436,7 @@ var app = new Vue({
             return () => {
                 let originalPrice = 0;
                 
-                for (const item of this.roomlist) {
+                for (const item of this.selectRoom) {
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var qprice =  0;
                     if(daysDiff == 0){
@@ -441,7 +447,7 @@ var app = new Vue({
                     originalPrice = originalPrice + qprice;
                 }
                 
-                for (const item of this.rentlist) {
+                for (const item of this.selectRent) {
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var wprice =  0;
                     if(daysDiff == 0){
@@ -452,7 +458,7 @@ var app = new Vue({
                     originalPrice = originalPrice + wprice;
                 }
                 console.log(wprice);
-                for (const item of this.leisurelist) {
+                for (const item of this.selectLeisure) {
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var eprice =  0;
                     if(daysDiff == 0){
