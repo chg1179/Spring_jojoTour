@@ -32,10 +32,11 @@ public interface LeisureMainMapper {
 	
 	int lReadPlus(HashMap<String, Object> map);
 	
-
 	//수상 지상 레저 상세정보
 	Leisure selectLeisureInfo(HashMap<String, Object> map);
 	
-
+	int insertJjim(HashMap<String, Object> map);
+	// 찜해제
+	int deleteJjim(HashMap<String, Object> map);
 	
 }

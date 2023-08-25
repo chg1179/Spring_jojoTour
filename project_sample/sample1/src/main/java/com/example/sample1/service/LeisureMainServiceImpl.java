@@ -78,6 +78,18 @@ public class LeisureMainServiceImpl implements LeisureMainService{
 		return leisureMainMapper.selectLeisureInfo(map);
 	}
 
+	@Override
+	public int addJjim(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return leisureMainMapper.insertJjim(map);
+	}
+
+	@Override
+	public int delJjim(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return leisureMainMapper.deleteJjim(map);
+	}
+
 	
 
 

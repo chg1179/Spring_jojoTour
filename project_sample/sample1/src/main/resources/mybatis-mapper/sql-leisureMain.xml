@@ -178,4 +178,15 @@
 			L_READ = L_READ+1
 		WHERE LEISURE_NO = #{leisureNo}
 	</update>
+	
+	<insert id="insertJjim" parameterType="hashmap">
+		INSERT INTO T2_JJIM_TBL VALUES
+		(#{uId}, #{leisureNo}, 'LEISURE')
+	</insert>
+	
+	<delete id="deleteJjim" parameterType="hashmap">
+		DELETE
+		FROM T2_JJIM_TBL
+		WHERE PRODUCT_NO = #{leisureNo} AND PRODUCT_KIND = 'LEISURE' AND U_ID = #{uId}
+	</delete>
 </mapper>

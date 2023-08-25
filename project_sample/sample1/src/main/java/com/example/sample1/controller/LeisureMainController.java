@@ -96,6 +96,23 @@ public class LeisureMainController {
 		resultMap = leisureMainService.searchWaterLeisureList(map);
 		return new Gson().toJson(resultMap);
 	}
+	//레저 찜 인서트
+	@RequestMapping(value = "/leisure/jjimAdd.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String addleisurejjim(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		leisureMainService.addJjim(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+	//레저 찜 해제 인서트
+	@RequestMapping(value = "/leisure/jjimDel.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String delleisurejjim(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		leisureMainService.delJjim(map);
+		return new Gson().toJson(resultMap);
+	}
 	
 	
 	
