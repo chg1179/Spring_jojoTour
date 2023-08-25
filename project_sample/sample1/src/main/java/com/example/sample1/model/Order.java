@@ -38,6 +38,4 @@ public class Order {
 	private int leisureNo;
 	private String leisureName;
 	private String leisureKind;
-	
-	
 }

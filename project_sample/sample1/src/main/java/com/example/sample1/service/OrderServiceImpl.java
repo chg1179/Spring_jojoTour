@@ -57,7 +57,7 @@ public class OrderServiceImpl implements OrderService {
             	double leisureSales = Double.parseDouble(productData.get("leisureSales"));
             	int quantity = Integer.parseInt(productData.get("quantity"));
             	int lprice = (int) (leisurePrice * leisureSales * quantity); // 티켓 수에 따른 레저 결제 금액
-            	map.put("payment", productData.get("sprice"));
+            	map.put("payment", lprice);
     			map.put("people", quantity); // 티켓 수
     			
     			// 레저는 구매일 기준으로 한달 뒤까지 사용이 가능하다고 설정하기 때문에 현재 날짜를 받아옴
@@ -76,7 +76,7 @@ public class OrderServiceImpl implements OrderService {
     		orderMapper.insertOrderProduct(map); // 주문내역 별 주문제품 매치
             orderMapper.deleteCartList(map); // 주문한 제품은 장바구니에서 제거
         }
-		//orderMapper.usePoint(map); // 주문에 포인트 사용시 포인트 차감
+		orderMapper.usePoint(map); // 주문에 포인트 사용시 포인트 차감
 		return 1; //주문 번호 하나 
 	}
 

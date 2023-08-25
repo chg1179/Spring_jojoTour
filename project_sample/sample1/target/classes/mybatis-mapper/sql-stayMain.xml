@@ -20,18 +20,14 @@
 		<if test="stayKeyword != '' and stayKeyword != null"> 
 			AND STAY_NAME LIKE CONCAT('%',#{stayKeyword},'%')
 		</if>
-		<if test= "peopleMax != null and peopleMax != null">
-			AND R.PEOPLE_MAX = #{peopleMax}
-		</if>
 		<if test="selectService != null and selectService.size() > 0">
+			<foreach item="serviceNo" index="index" collection="selectService">
 	        AND S.STAY_NO IN (
 		         SELECT STAY_NO
 		         FROM T2_STAY_SERVICE_TBL
-		         WHERE SERVICE_NO IN
-	         <foreach item="serviceNo" index="index" collection="selectService" open="(" separator="," close=")">
-	             #{serviceNo}
-	         </foreach>
+		         WHERE SERVICE_NO = #{serviceNo}
 	       	 )
+	       	 </foreach>
    		 </if>
 
 	</select>

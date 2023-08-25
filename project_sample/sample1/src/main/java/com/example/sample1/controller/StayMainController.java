@@ -43,11 +43,19 @@ public class StayMainController {
 	@ResponseBody
 	public String stayList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		// 숙소 검색
+		if (map.get("selectServiceList") != null) {
+			String json = map.get("selectServiceList").toString();
+			ObjectMapper mapper = new ObjectMapper();
+			List<Object> selectService = mapper.readValue(json, new TypeReference<List<Object>>(){});
+			map.put("selectService", selectService);
+		}
 		List<Stay> list = stayMainService.showStayList(map);
 		resultMap.put("stayList", list);
 		
-		List<Stay> list2 = stayMainService.searchServiceList(map);
-		resultMap.put("serviceList", list2);
+		// 숙소 서비스 리스트 출력
+		List<Stay> serviceList = stayMainService.searchServiceList(map);
+		resultMap.put("serviceList", serviceList);
 		
 		return new Gson().toJson(resultMap);
 		

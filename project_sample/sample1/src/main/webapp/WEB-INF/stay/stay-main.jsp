@@ -183,44 +183,24 @@
 				<h3>상세조건</h3>
 				<div class="btn-wrap">
 					<span><button @click="fnReset">초기화</button></span> 
-					<span><button @click="fnSearch">적용</button></span>
 				</div>
 
 				<section>
 					<strong>숙소명</strong>
 					<div>
-						<input type="text" v-model="stayKeyword" placeholder="검색 키워드를 입력해주세요">
+						<input type="text" v-model="stayKeyword" placeholder="검색 키워드를 입력해주세요" @input="fnSearch">
 					</div>
 				</section>
 
 				<section>
-					<strong>인원</strong> 
-					<span> 
-						<select v-model="peopleMax">
-							<option value="" selected disabled>::전체::</option>
-							<option value="1">1명</option>
-							<option value="2">2명</option>
-							<option value="3">3명</option>
-							<option value="4">4명</option>
-							<option value="5">5명</option>
-							<option value="6">6명</option>
-							<option value="7">7명</option>
-							<option value="8">8명</option>
-							<option value="9">9명</option>
-							<option value="10">10명</option>
-						</select>
-					</span>
-				</section>
-
-				<section>
 					<div v-for="item in serviceList">
-						<label><input type="checkbox" v-model="selectServiceList" :value="item.serviceNo">{{item.serviceName}}</label>
+						<label><input type="checkbox" v-model="selectServiceList" :value="item.serviceNo" @change="fnSearch">{{item.serviceName}}</label>
 					</div>
 				</section>
 			</div>
 			<div class="">
 				<div class="stay-type">
-					<select v-model="stayKind">
+					<select v-model="stayKind" @change="fnSearch">
 						<option value="" selected disabled hidden>::전체::</option>
 						<option value="">::전체::</option>
 						<option value="HOTEL">호텔</option>
@@ -248,7 +228,7 @@
 								</div>
 							</div>
 						</li>
-						<li v-if ="stayKind == item.stayKind" v-for="item in list">
+						<li v-else-if ="stayKind == item.stayKind" v-for="item in list">
 							<div class="stay-info">
 								<div class="stay-img">
 									<img :src="item.imgPath" alt="">
@@ -280,7 +260,6 @@ var app = new Vue({
 		selectServiceList : [],
 		stayKeyword : "",
 		info : {},
-		peopleMax : 0,
 		stayKind : "${map.stayKind}",
 		uId : "${sessionId}",
 		imgList : []
@@ -301,8 +280,6 @@ var app = new Vue({
                 	
                 	self.serviceList = data.serviceList;
                 	console.log(self.serviceList);
-                	
-                	
                 }
             }); 
 		},
@@ -327,14 +304,15 @@ var app = new Vue({
 		},
 		fnReset : function(){
 			var self = this;
-			location.href = "/stay.do";
+			self.stayKeyword = "";
+			self.selectServiceList = [];
+			self.fnSearch();
 		},
 		fnSearch : function(){
 			var self = this;
 			var noServiceList = JSON.stringify(self.selectServiceList);
 			var param = {
 				stayKeyword : self.stayKeyword,
-				peopleMax : self.peopleMax,
 				selectServiceList : noServiceList
 			};
 			console.log(self.selectServiceList);

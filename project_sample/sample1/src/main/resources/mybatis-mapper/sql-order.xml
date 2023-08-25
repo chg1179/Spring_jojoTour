@@ -44,7 +44,7 @@
 	<update id="usePoint" parameterType="hashmap">
 		UPDATE T2_USER_POINT_TBL
 		SET
-			POINT = POINT - #{userPoint}
+			POINT = POINT - #{usePoint}
 		WHERE U_ID = #{uId}
 	</update>
 
