@@ -57,7 +57,7 @@
 			<div class="pwd_change_wrap">
 				<div class="pwd_change_id">아이디 : {{userId}}</div>
 				<div class="pwd_change_input"><input type="password" v-model="pwd1" placeholder="비밀번호"></div>
-				<div class="pwd_change_input"><input type="password" v-model="pwd2" placeholder="비밀번호 확인"></div>
+				<div class="pwd_change_input"><input type="password" v-model="pwd2" placeholder="비밀번호 확인" @keyup.enter="fnPwdChange"></div>
 				<div class="pwd_change_btn"><button @click="fnPwdChange">변경하기</button></div>
 			</div>
 		</div>
@@ -77,6 +77,23 @@ var app = new Vue({
 	methods : {
 		fnPwdChange : function(){
 			var self = this;
+			if(self.pwd1 == ""){
+				alert("패스워드를 입력하세요.");
+				return;
+			}
+			if(self.pwd1.length < 8){
+				alert("패스워드는 8자리 이상 입력하세요.");
+				return;
+			}
+			if (self.pwd1.match(/\s/)) {
+			    alert("비밀번호에 공백을 포함할 수 없습니다.");
+			    return;
+			}
+			if(self.pwd1 != self.pwd2){
+				alert("패스워드가 일치하지 않습니다.");
+				return;
+			}
+			
 			var param = {userId : self.userId, pwd1 : self.pwd1};
 			$.ajax({
                 url : "/pwd/change.dox",
@@ -84,7 +101,7 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
-					alert(self.userId+"의 비번이 변경되었습니다.");
+					alert(self.userId+"님의 비밀번호가 변경되었습니다.");
 					location.href="../login.do";
                 }
             }); 

@@ -121,11 +121,11 @@
 					</tr>
 					<tr>
 						<td>생년월일</td>
-						<td><input type="text" value="user.birth" v-model="user.birth" placeholder="8자리 입력"></td>
+						<td><input type="date" value="user.birth" v-model="user.birth"></td>
 					</tr>
 					<tr>
 						<td>연락처</td>
-						<td><input type="text" value="user.phone" v-model="user.phone" placeholder="-없이 입력하세요."></td>
+						<td><input type="text" value="user.phone" v-model="user.phone"></td>
 					</tr>
 					<tr>
 						<td>이메일</td>
@@ -176,14 +176,41 @@ var app = new Vue({
 	methods : {
 		fnMyChange : function(){
 			var self = this;
-			if(self.user.birth.length < 8|| self.user.birth.length > 10){
-				alert("생년월일을 정확하게 작성해주세요.");
+			self.user.phone = self.user.phone.replaceAll("-", "");
+			if(self.user.name == ""){
+				alert("이름을 입력하세요.");
 				return;
 			}
-			if(self.user.phone.length > 11){
-				alert("핸드폰번호에서 - 없이 입력하세요.");
+			if (self.user.name.match(/\s/)) {
+			    alert("이름에 공백을 포함할 수 없습니다.");
+			    return;
+			}
+			if (self.user.nickName.match(/\s/)) {
+			    alert("닉네임에 공백을 포함할 수 없습니다.");
+			    return;
+			}
+			if(self.user.birth == ""){
+				alert("생년월일을 입력하세요.");
 				return;
 			}
+			if(self.user.addr == ""){
+				alert("주소를 입력하세요.");
+				return;
+			}
+			if(self.user.phone == ""){
+				alert("핸드폰 번호를 입력하세요.");
+				return;
+			}
+			if(self.user.email == ""){
+				alert("이메일 주소를 입력하세요.");
+				return;
+			}
+			var regex = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
+			if (!regex.test(self.user.email)) {
+			    alert("이메일 주소를 정확하게 입력하세요.");
+			    return;
+			}
+			
 			var param = self.user;
 			$.ajax({
                 url : "/my/change.dox",
