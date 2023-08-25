@@ -179,9 +179,6 @@
 				<div>
 					<h3 class="filter-header">필터</h3>
 				</div> 
-				<section class="date-wrap">
-					<strong>날짜</strong>
-				</section>
 
 				<h3>상세조건</h3>
 				<div class="btn-wrap">
@@ -199,8 +196,8 @@
 				<section>
 					<strong>인원</strong> 
 					<span> 
-						<select v-model="info.peopleMax">
-							<option value="">선택하세요</option>
+						<select v-model="peopleMax">
+							<option value="" selected disabled>::전체::</option>
 							<option value="1">1명</option>
 							<option value="2">2명</option>
 							<option value="3">3명</option>
@@ -224,7 +221,8 @@
 			<div class="">
 				<div class="stay-type">
 					<select v-model="stayKind">
-						<option value="" selected disabled hidden>==선택하세요==</option>
+						<option value="" selected disabled hidden>::전체::</option>
+						<option value="">::전체::</option>
 						<option value="HOTEL">호텔</option>
 						<option value="MOTEL">모텔</option>
 						<option value="PENSION">펜션</option>
@@ -236,34 +234,32 @@
 					<ul>	
 						<li v-if ="stayKind == ''" v-for="item in list">
 							<div class="stay-info">
-								<div>
+								<div class="stay-img">
 									<img :src="item.imgPath" alt="">
 								</div>
 								<div class="stay_txt_box">
 									<p>
-										<a @click="fnDetail(item.stayNo)">숙소이름 : {{item.stayName}}</a>
+										<a @click="fnDetail(item.stayNo)">{{item.stayName}}</a>
 									</p>
-									<p>숙소타입 : {{item.stayKind}}</p>
-									<p>최대인원 : {{item.peopleMax}}명</p>
-									<p>가격 : {{item.minPrice}}원</p>
-									<p>위치 : {{item.sAddr}}</p>
+									<p>{{item.stayKind}}</p>
+									<p>{{item.minPrice}}원</p>
+									<p>{{item.sAddr}}</p>
 									<button @click="fnJjim(item.stayNo)">찜</button>
 								</div>
 							</div>
 						</li>
 						<li v-if ="stayKind == item.stayKind" v-for="item in list">
 							<div class="stay-info">
-								<div>
+								<div class="stay-img">
 									<img :src="item.imgPath" alt="">
 								</div>
 								<div class="stay_txt_box">
 									<p>
-										<a @click="fnDetail(item.stayNo)">숙소이름 : {{item.stayName}}</a>
+										<a @click="fnDetail(item.stayNo)">{{item.stayName}}</a>
 									</p>
-									<p>숙소타입 : {{item.stayKind}}</p>
-									<p>최대인원 : {{item.peopleMax}}명</p>
-									<p>가격 : {{item.minPrice}}원</p>
-									<p>위치 : {{item.sAddr}}</p>
+									<p>{{item.stayKind}}</p>
+									<p>{{item.minPrice}}원</p>
+									<p>{{item.sAddr}}</p>
 									<button @click="fnJjim(item.stayNo)">찜</button>
 								</div>
 							</div>
@@ -283,10 +279,8 @@ var app = new Vue({
 		list : [],
 		selectServiceList : [],
 		stayKeyword : "",
-		info : {
-			stayKind : "",
-			peopleMax : 0
-		},
+		info : {},
+		peopleMax : 0,
 		stayKind : "${map.stayKind}",
 		uId : "${sessionId}",
 		imgList : []
@@ -337,7 +331,13 @@ var app = new Vue({
 		},
 		fnSearch : function(){
 			var self = this;
-			var param = {stayKeyword : self.stayKeyword};
+			var noServiceList = JSON.stringify(self.selectServiceList);
+			var param = {
+				stayKeyword : self.stayKeyword,
+				peopleMax : self.peopleMax,
+				selectServiceList : noServiceList
+			};
+			console.log(self.selectServiceList);
 			$.ajax({
                 url : "stayList.dox",
                 dataType:"json",	

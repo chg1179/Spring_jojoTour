@@ -20,6 +20,20 @@
 		<if test="stayKeyword != '' and stayKeyword != null"> 
 			AND STAY_NAME LIKE CONCAT('%',#{stayKeyword},'%')
 		</if>
+		<if test= "peopleMax != null and peopleMax != null">
+			AND R.PEOPLE_MAX = #{peopleMax}
+		</if>
+		<if test="selectService != null and selectService.size() > 0">
+	        AND S.STAY_NO IN (
+		         SELECT STAY_NO
+		         FROM T2_STAY_SERVICE_TBL
+		         WHERE SERVICE_NO IN
+	         <foreach item="serviceNo" index="index" collection="selectService" open="(" separator="," close=")">
+	             #{serviceNo}
+	         </foreach>
+	       	 )
+   		 </if>
+
 	</select>
 	
 	<!-- 편의시설 리스트 -->
@@ -62,8 +76,8 @@
 	</insert>
 	
 	<insert id="insertCart" parameterType="hashmap">
-		INSERT INTO T2_CART_TBL(U_ID, PRODUCT_KIND, PRODUCT_NO, PEOPLE) VALUES
-		(#{uId}, 'STAY', #{roomNo}, #{peopleMax})
+		INSERT INTO T2_CART_TBL VALUES
+		(#{uId}, 'STAY', #{roomNo}, #{peopleMax}, #{checkInDate}, #{checkOutDate})
 	</insert>
 	
 	<select id="selectImgList" parameterType="hashmap" resultType="com.example.sample1.model.StayImg">

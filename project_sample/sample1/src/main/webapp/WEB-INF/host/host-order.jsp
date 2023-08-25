@@ -8,94 +8,195 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-<style>
-   table{
-      border : 1px solid black;
-      border-collapse: collapse;
-      text-align : center;
-   }
-   th, td {
-      border : 1px solid black;
-      padding : 5px 10px;
-   }
+	.stay-box, .rent-box, .leisure-box, .btn {
+		display: flex;
+		justify-content: center;
+		margin-top: 30px;
+	}
+	table {
+	    width: 1000px;
+	    border-collapse: collapse;
+	}
+	th, td{
+		text-align: center;
+		padding: 14px 0;
+		border-bottom: 1px solid black;
+		border-left: 1px solid #ccc;
+	}
+	
+	th:first-child, td:first-child {
+		border-left: none;
+	}
+	.table-heading {
+	    text-align: center;
+	}
+
+	.heading-box {
+	    text-align: center;
+	}
+
+	.heading-box h3 {
+	    margin: 0;
+	}
 </style>
 </head>
 <body>
-   <jsp:include page="../header.jsp" flush="true"></jsp:include>
-   <div id="app">
-      상품 예약 내역 관리
-      <div id="container">
-		<select v-model="productKind">
-			<option value="" selected disabled hidden>==상품 유형을 선택하세요==</option>
-			<option value="STAY">숙소</option>
-			<option value="LEISURE">레저</option>
-			<option value="RENT">렌트</option>
-		</select>
-		
-      <!-- 숙소 -->
-         <table class="tbl">
-            <tr  v-if="productKind != ''">
-               <th>예약번호</th>
-               <th v-if="productKind == 'STAY'">객실 이름</th>
-               <th v-else-if="productKind == 'LEISURE'">레저 이름</th>
-               <th v-else>렌트카 이름</th>
-               <th>예약자</th>
-               <th v-if="productKind == 'STAY'|| productKind == 'LEISURE'">예약인원</th>
-               <th>결제금액</th>
-               <th v-if="productKind == 'STAY'">체크인</th>
-               <th v-else-if="productKind == 'RENT'">인수날짜</th>
-               <th v-if="productKind == 'STAY'">체크아웃</th>
-               <th v-else-if="productKind == 'RENT'">반납날짜</th>
-               <th>예약상태</th>
-               <th>예약취소</th>
-            </tr>
-            
-            <tr v-for="item in list" v-if="item.productKind == productKind">
-               <!-- <td v-if="item.productKind == ''"> 예약 내역이 없습니다.</td> --> <!-- cnt가 길이가 0보다 작을때 -->
-               <td>{{item.orderNo}}</td>
-               <td v-if="item.productKind == 'STAY'">
-               		<div>{{item.stayName}}</div>
-               		<div>{{item.roomName}}</div>
-               </td>
-               <td v-else-if="item.productKind == 'LEISURE'">
-	               	<div>{{item.leisureKind}}</div>
-	               	<div>{{item.leisureName}}</div>
-               	</td>
-               <td v-else>{{item.rentName}}</td>
-               <td>{{item.uId}}</td>
-               <td v-if="productKind == 'STAY'|| productKind == 'LEISURE'">{{item.people}}명</td>
-               <td>{{item.payment}}</td>
-               <td v-if="productKind == 'STAY'|| productKind == 'RENT'">{{item.sReserveDate}}</td>
-               <td v-if="productKind == 'STAY'|| productKind == 'RENT'">{{item.lReserveDate}}</td>
-               
-               <td v-if="item.useYnc=='N'">
-	               	<div>승인 대기중</div>
-	               	<span><button @click="fnChangeY(item, 'Y')">예약 승인</button></span>
-               </td>
-               <td v-else-if="item.useYnc=='Y'">
-	               	<div v-if="productKind == 'STAY'">체크인</div>
-	               	<div v-else>예약승인</div>
-	               	<span><button @click="fnChangeN(item, 'N')">승인 취소</button></span>
-               	</td>
-               <td v-else>예약 취소</td>
-               
-               <td v-if="item.useYnc=='C'">
-               		<div>예약이 취소된 상품입니다.</div>
-               </td>
-               <td v-else-if="item.useYnc == 'Y'"> 
-               		<div>승인상태에서는 취소가 불가능합니다.</div>
-               </td>
-               <td v-else-if="item.useYnc == 'N'">
-               		<div><button @click="fnCancel(item, 'C')">예약취소</button></div>
-               </td>
-            </tr>
-         </table>
-        
-         <div>
-            <span><button @click="fnBack">뒤로가기</button></span>
-         </div>
-      </div>
-   </div>
+<jsp:include page="../header.jsp" flush="true"></jsp:include>
+<div id="app">
+	<div class="heading-box">
+   		<h3>상품 예약 내역 관리</h3>
+   	</div>
+	<div class="stay-box">
+		<table>
+			<thead>
+				<th colspan="9">
+					<h3 class="table-heading">숙소 예약 내역</h3>
+				</th>
+				<tr>
+					<th>주문번호</th>
+					<th>객실 이름</th>
+					<th>예약자</th>
+					<th>예약인원</th>
+					<th>결제금액</th>
+					<th>체크인</th>
+					<th>체크아웃</th>
+					<th>예약상태</th>
+					<th>예약취소</th>
+				</tr>
+			</thead>	
+			<tbody>
+				<tr v-for="item in list" v-if="item.productKind == 'STAY'">
+					<td>{{ item.orderNo }}</td>
+					<td>
+						<div>{{ item.stayName }}</div>
+						<div>{{ item.roomName }}</div>
+					</td>
+					<td>{{ item.uId }}</td>
+					<td>{{ item.people }}명</td>
+					<td>{{ item.payment }}</td>
+					<td>{{ item.sReserveDate }}</td>
+					<td>{{ item.lReserveDate }}</td>
+					
+					<td v-if="item.useYnc=='N'">
+						<div>승인 대기중</div>
+						<span><button @click="fnChangeY(item, 'Y')">예약 승인</button></span>
+					</td>
+					<td v-else-if="item.useYnc=='Y'">
+						<div v-if="productKind == 'STAY'">체크인</div>
+						<div v-else>예약승인</div>
+						<span><button @click="fnChangeN(item, 'N')">승인 취소</button></span>
+					</td>
+					<td v-else>예약 취소</td>
+					<td v-if="item.useYnc=='C'">
+						<div>예약이 취소된 상품입니다.</div>
+					</td>
+					<td v-else-if="item.useYnc == 'Y'"> 
+						<div>승인상태에서는 취소가 불가능합니다.</div>
+					</td>
+					<td v-else-if="item.useYnc == 'N'">
+						<div><button @click="fnCancel(item, 'C')">예약취소</button></div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<div class="rent-box">
+		<table>
+			<th colspan="9">
+				<h3 class="table-heading">렌트 예약 내역</h3>
+			</th>
+			<tr>
+				<th>주문번호</th>
+				<th>차종</th>
+				<th>예약자</th>
+				<th>결제금액</th>
+				<th>인수일</th>
+				<th>반납일</th>
+				<th>예약상태</th>
+				<th>예약취소</th>
+			</tr>
+				  
+			<tr v-for="item in list" v-if="item.productKind == 'RENT'">
+				<td>{{ item.orderNo }}</td>
+				<td>
+					<div>{{ item.rentName }}</div>
+				</td>
+				<td>{{ item.uId }}</td>
+				<td>{{ item.payment }}</td>
+				<td>{{ item.sReserveDate }}</td>
+				<td>{{ item.lReserveDate }}</td>
+				
+				<td v-if="item.useYnc=='N'">
+					<div>승인 대기중</div>
+					<span><button @click="fnChangeY(item, 'Y')">예약 승인</button></span>
+				</td>
+				<td v-else-if="item.useYnc=='Y'">
+					<div v-if="productKind == 'STAY'">체크인</div>
+					<div v-else>예약승인</div>
+					<span><button @click="fnChangeN(item, 'N')">승인 취소</button></span>
+				</td>
+				<td v-else>예약 취소</td>
+				<td v-if="item.useYnc=='C'">
+					<div>예약이 취소된 상품입니다.</div>
+				</td>
+				<td v-else-if="item.useYnc == 'Y'"> 
+					<div>승인상태에서는 취소가 불가능합니다.</div>
+				</td>
+				<td v-else-if="item.useYnc == 'N'">
+					<div><button @click="fnCancel(item, 'C')">예약취소</button></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="leisure-box">
+		<table>
+			<th colspan="9">
+				<h3 class="table-heading">렌트 예약 내역</h3>
+			</th>
+			<tr>
+				<th>주문번호</th>
+				<th>레저이름</th>
+				<th>예약자</th>
+				<th>결제금액</th>
+				<th>예약상태</th>
+				<th>예약취소</th>
+			</tr>
+				  
+			<tr v-for="item in list" v-if="item.productKind == 'LEISURE'">
+				<td>{{ item.orderNo }}</td>
+				<td>
+					<div>{{ item.leisureName }}</div>
+				</td>
+				<td>{{ item.uId }}</td>
+				<td>{{ item.payment }}</td>
+				<td v-if="item.useYnc=='N'">
+					<div>승인 대기중</div>
+					<span><button @click="fnChangeY(item, 'Y')">예약 승인</button></span>
+				</td>
+				<td v-else-if="item.useYnc=='Y'">
+					<div v-if="productKind == 'STAY'">체크인</div>
+					<div v-else>예약승인</div>
+					<span><button @click="fnChangeN(item, 'N')">승인 취소</button></span>
+				</td>
+				<td v-else>예약 취소</td>
+				<td v-if="item.useYnc=='C'">
+					<div>예약이 취소된 상품입니다.</div>
+				</td>
+				<td v-else-if="item.useYnc == 'Y'"> 
+					<div>승인상태에서는 취소가 불가능합니다.</div>
+				</td>
+				<td v-else-if="item.useYnc == 'N'">
+					<div><button @click="fnCancel(item, 'C')">예약취소</button></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="btn">
+		<span><button @click="fnBack">뒤로가기</button></span>
+	</div>
+</div>
 </body>
 </html>
 <script>
@@ -131,7 +232,7 @@ var app = new Vue({
     		  return;
     	  }
     	 
-          var param = {orderNo : item.orderNo, useYnc : useYnc};
+          var param = {productNo : item.productNo, useYnc : useYnc};
           $.ajax({
                  url : "signUpdate.dox",
                  dataType:"json",   
@@ -152,7 +253,7 @@ var app = new Vue({
     		  alert("취소되었습니다.");
     		  return;
     	  }
-          var param = {orderNo : item.orderNo, useYnc : useYnc};
+          var param = {productNo : item.productNo, useYnc : useYnc};
           $.ajax({
                  url : "signUpdate.dox",
                  dataType:"json",   
@@ -170,7 +271,7 @@ var app = new Vue({
     		 alert("취소를 철회합니다.");
     		 return;
     	  }
-          var param = {orderNo : item.orderNo, useYnc : useYnc};
+          var param = {productNo : item.productNo, useYnc : useYnc};
           $.ajax({
                  url : "signUpdate.dox",
                  dataType:"json",   

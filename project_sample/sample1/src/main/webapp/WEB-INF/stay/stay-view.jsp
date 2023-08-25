@@ -18,7 +18,7 @@
 		border : 1px solid black;
 		padding : 5px 10px;
 	}
-	.room-box, .stay-box{
+	.room-box, .stay-box, .check-date{
    		width: 956px;
     	margin: 0px auto
 	}
@@ -79,6 +79,14 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="check-date">
+		<div>
+			<input type="date" name="checkInDate" v-model="checkInDate"> ~
+			<input type="date" name="checkOutDate" v-model="checkOutDate">
+		</div>
+		<div><button @click="">검색</button></div>
+	</div>
 	<div class="room-box">
 		<div class="room" v-for="(item, index) in list">
 			<div class="left">
@@ -114,6 +122,8 @@ var app = new Vue({
 		},
 		roomNo : "",
 		salesList : [],
+		checkInDate : "",
+		checkOutDate : ""
 		
 	},// data
 	methods : {
@@ -140,18 +150,18 @@ var app = new Vue({
             }); 
 		},
 		fnGetImgList : function(){
-		var self = this;
-		var param = {stayNo : self.stayNo};
-		$.ajax({
-	          url : "stayImgList.dox",
-	          dataType:"json",	
-	          type : "POST",
-	          data : param,
-	          success : function(data) { 
-	          	self.imgList = data.imgList;
-	          	console.log(self.imgList);
-	          }
-	      }); 
+			var self = this;
+			var param = {stayNo : self.stayNo};
+			$.ajax({
+		          url : "stayImgList.dox",
+		          dataType:"json",	
+		          type : "POST",
+		          data : param,
+		          success : function(data) { 
+		          	self.imgList = data.imgList;
+		          	console.log(self.imgList);
+		          }
+		      }); 
 		},
 		fnCart : function(item){
 			var self = this;
@@ -159,14 +169,34 @@ var app = new Vue({
 				alert("로그인 후 이용 가능한 서비스입니다.");
 				return;
 			}
+			if(self.checkInDate == ""){
+				alert("체크인 날짜를 선택해주세요");
+				return;
+			}
+			if(self.checkOutDate == ""){
+				alert("체크아웃 날짜를 선택해주세요");
+				return;
+			}
+			if(!self.checkInDate || new Date(self.checkInDate) < new Date()){
+				alert("유효하지 않은 체크인 날짜입니다. 오늘 이후 날짜를 선택해주세요.");
+				location.reload();
+				return;
+			}
+			if (new Date(self.checkInDate) > new Date(self.checkOutDate)) {
+			    alert("체크아웃 날짜는 체크인 날짜보다 먼저 올 수 없습니다. 다시 선택해주세요");
+			    location.reload();
+			    return;
+			}
 			
 			if(!confirm("장바구니에 담으시겠습니까?")){
 				alert("취소되었습니다.");
+				location.reload();
 				return;
 			}
 			console.log(item.roomNo);
 			console.log(item.peopleMax);
-			var param = {uId : self.uId, roomNo : item.roomNo, peopleMax : item.peopleMax};
+		
+			var param = {uId : self.uId, roomNo : item.roomNo, peopleMax : item.peopleMax, checkInDate : self.checkInDate , checkOutDate : self.checkOutDate};
 			$.ajax({
                 url : "addCart.dox",
                 dataType:"json",	
@@ -174,10 +204,12 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	alert("상품이 장바구니에 담겼습니다.");
+                	location.reload();
                 	self.fnGetList();
+                	console.log(self.checkInDate);
                 }
             }); 
-		}
+		},
 		
 	}, // methods
 	created : function() {

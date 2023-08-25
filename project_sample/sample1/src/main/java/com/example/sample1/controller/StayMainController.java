@@ -15,6 +15,8 @@ import com.example.sample1.model.Room;
 import com.example.sample1.model.Stay;
 import com.example.sample1.model.StayImg;
 import com.example.sample1.service.StayMainService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -46,7 +48,6 @@ public class StayMainController {
 		
 		List<Stay> list2 = stayMainService.searchServiceList(map);
 		resultMap.put("serviceList", list2);
-		
 		
 		return new Gson().toJson(resultMap);
 		
