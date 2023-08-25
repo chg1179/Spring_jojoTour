@@ -11,7 +11,7 @@
 	#wrapper {position:relative;min-height:100%;min-width: 1150px;}
 	#footer { left:0; bottom:0; width:100%;height:250px;background:#2b2d2e;}
 	#footer .area_comp {overflow:hidden;width:1100px;margin:0 auto;padding-top:48px;}
-	#footer .area_comp .cs_comp {float:left;width:275px;}
+	#footer .area_comp .cs_comp {float:left;width:300px;}
 	#footer .area_comp .cs_comp .tit_cs {display:block;font-weight:normal;font-size:14px;line-height:16px;color:#f5f5f5;}
 	#footer .area_comp .cs_comp .txt_tel {display:block;margin-top:15px;font-weight:normal;font-size:22px;line-height:22px;color:#f5f5f5;}
 	#footer .area_comp .cs_comp .txt_tel .ico_tel {width:20px;height:22px;margin-right:12px;background-position:-55px 0;vertical-align:top;}
@@ -24,7 +24,7 @@
 	#footer .area_comp .cs_comp .list_cs dt.name_time {color:#c0c0c1;}
 	#footer .area_comp .cs_comp .list_cs dd.info_time {color:#c0c0c1;}
 	
-	#footer .policy_comp {float:left; width:825px; position: relative;}
+	#footer .policy_comp {float:left; width:800px; position: relative;}
 	#footer .policy_comp .list_policy {overflow:hidden;}
 	#footer .policy_comp .list_policy li {float:left;}
 	#footer .policy_comp .list_policy .link_policy {float:left;font-size:14px;line-height:15px;*line-height:17px;color:#fff;opacity:0.7;vertical-align:top;}
@@ -94,7 +94,7 @@
 					<li> <a href="" class="link_policy">수집거부</a> </li>
 				</ul>
 				<p class="txt_policy"> 사업자번호: 540-81-01170 [<a href="" onclick="" class="link_license">사업자정보확인</a>] | 통신판매업신고증 제 2023-인천경기-04699호 | 관광사업등록 제 2018-77호 | 대표자: 조예림  | 개인정보관리책임자: 이승현 <br>
-					주소: (본점)인천광역시 부평구 경원대로 1336, (부평동, 스테이션타워 7F) | 상호명 : 주식회사 조조투어 <br> 대표전화: 1544-3100 | 팩스: 064-749-4488  | 이메일: web@jeju.com</p>
+					주소: (본점)인천광역시 부평구 경원대로 1336, (부평동, 스테이션타워 7F) | 상호명 : 주식회사 조조투어 <br> 대표전화: 1544-3100 | 팩스: 064-749-4488  | 이메일: lim97@naver.com</p>
 				<address>
 				Copyright (c) JOJOTOUR.COM. All rights reserved.
 				</address>

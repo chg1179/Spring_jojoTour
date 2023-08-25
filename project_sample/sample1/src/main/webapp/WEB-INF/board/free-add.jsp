@@ -125,6 +125,15 @@ var app = new Vue({
 	methods : {
 		fnAdd : function(){
 			var self = this;
+			if(self.info.freeTitle.trim() == ""){
+				alert("제목을 입력해주세요.");
+				return;
+				}
+			
+			if(self.info.freeContent.trim() == ""){
+				alert("내용을 입력해주세요.");
+				return;
+			}
 			 var param = self.info;
 			 param.uId = self.uId;
 			$.ajax({
@@ -166,7 +175,9 @@ var app = new Vue({
 	            }); 
 			},
 			fnBack : function(){
-				location.href = "list.do";
+				if(confirm("취소하시겠습니까?")){
+					location.href = "list.do";
+				}
 			}
 		
 	}, // methods

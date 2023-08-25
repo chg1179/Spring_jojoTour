@@ -34,6 +34,9 @@ public class FreeServiceImpl implements FreeService{
 		if(!map.containsKey("kind")) {
 			freeMapper.freeCnt(map);
 		}
+		//다른게시글 상세보기
+		resultMap.put("next", freeMapper.selectNextTitle(map));
+		resultMap.put("back", freeMapper.selectBackTitle(map));
 		// 게시글 상세보기
 		resultMap.put("info", freeMapper.selectFreeInfo(map));
 		// 댓글 목록

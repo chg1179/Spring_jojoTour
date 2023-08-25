@@ -179,20 +179,20 @@ var app = new Vue({
 		fnAdd : function(){
 			var self = this;
 			if(self.privateYN == "Y"){
-				if(self.info.iTitle.length < 5){
+				if(self.info.iTitle.trim().length < 5){
 					alert("제목을 입력해주세요.");
 					return;
 				}
 			} else if(self.privateYN == "N"){
-				if(self.info.iTitle == ""){
+				if(self.info.iTitle.trim() == ""){
 					alert("제목을 입력해주세요.");
 					return;
 				}
 			}
-			if(self.info.iContent == ""){
-				alert("내용을 입력해주세요.");
-				return;
-			}
+		    if (self.info.iContent.trim().length <1) {
+		        alert("내용을 입력해주세요.");
+		        return;
+		    }
 			if(self.privateYN=="Y" && self.info.iPassword==""){
 				alert("비밀번호를 입력해주세요.");
 				return;

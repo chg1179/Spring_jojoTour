@@ -59,11 +59,13 @@
 							</tr>
 						</table>
 						<div class="page-wrap">
-							<div v-if="status == 'A'"><button @click="fnRemove" class="btn1">삭제</button>
-								<button @click="fnACheck" class="btn1">전체선택</button>
-								<button @click="fnNCheck" class="btn1">전체해제</button>
+							<div>
+								<button  v-if="status == 'A'" @click="fnRemove" class="btn1">삭제</button>
+								<button  v-if="status == 'A'" @click="fnACheck" class="btn1">전체선택</button>
+								<button  v-if="status == 'A'" @click="fnNCheck" class="btn1">전체해제</button>
+								<button v-if="status == 'U' || status == 'H'" @click="fnMove" class="btn1">문의하기</button>
 							</div>
-							<div><button @click="fnMove" class="btn1">문의하기</button></div>
+							
 						
 							<template>
 							  <paginate

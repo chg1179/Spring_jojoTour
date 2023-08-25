@@ -67,7 +67,7 @@
 							<div> {{item.uId}} {{item.cWriteTime}} </div>
 							<div>
 								{{item.comm}} 
-								<a @click="fnRemoveComm(item.cNo)" href="javascript:;" v-if="item.uId == uId || status == 'A'">
+								<a @click="fnRemoveComm(item.cNo)" href="javascript:;">
 									<i class="fa-solid fa-circle-xmark fa-xs"></i>
 								</a> 
 							</div>
@@ -99,12 +99,12 @@
 				                </a>
 				            </span>
 				            <a href="">
-				                {{info.backFreeContnet}}
+				                {{back.backFreeContnet}}
 				            </a>
 				        </p>
 				        </span>
 				        <ul class="page_move_info">
-				            <li><i class="fas fa-light fa-clock"></i><span>{{info.fWriteTime}}</span></li>
+				            <li><i class="fas fa-light fa-clock"></i><span>{{back.fWriteTime}}</span></li>
 				        </ul>
 				    </li>
 				    <li>
@@ -120,13 +120,13 @@
 				                    [ÀÚÀ¯]
 				                </a>
 				            </span>
-				            <span>{{info.nextFreeContnet}}</span>
+				            <span>{{next.nextFreeContnet}}</span>
 				            <em class="reply_numb"><a href=""></a></em>
 				        </p>
 				      </span>
 				        
 				        <ul class="page_move_info">
-				            <li><i class="fas fa-light fa-clock"></i><span>{{info.fWriteTime}}</span></li>
+				            <li><i class="fas fa-light fa-clock"></i><span>{{next.fWriteTime}}</span></li>
 				        </ul>
 				    </li>
 				</ul>
@@ -147,7 +147,9 @@ var app = new Vue({
 		commentList :[],
 		comment :"",
 		uId : "${sessionId}",
-		list:[]
+		list:[],
+		back:{},
+		next:{}
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -257,11 +259,11 @@ var app = new Vue({
 	                }
 	            }); 
 			},
-			fnBackTitle:function(){
+			fnBackTitle:function(freeNo){
 				var self = this;
 				$.pageChange("view.do", {freeNo : self.freeNo});
 			},
-			fnBackTitle:function(){
+			fnNextTitle:function(freeNo){
 				var self = this;
 				$.pageChange("view.do", {freeNo : self.freeNo});
 			}

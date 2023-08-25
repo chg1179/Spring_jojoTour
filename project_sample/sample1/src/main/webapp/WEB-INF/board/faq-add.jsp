@@ -107,21 +107,20 @@
 		        </div>
 		    </div>
 	
-		<div class="search-wrap">
-        
-	      	<select id="mySelect">
-				<option value="<숙박>">숙박</option>
-				<option value="<렌트>">렌트</option>
-				<option value="<레저>">레저</option>
-				<option value="<패키지>">패키지</option>
-				<option value="<포인트>">포인트</option>
-				<option value="<기타문의>">기타문의</option>
-			</select>
-			<input type="text" id="myInput" v-on:change="handleSelectChange"  v-model="info.fTitle" placeholder="제목">	
-      	</div>
+			<div class="search-wrap">
+			  <select id="mySelect" v-model="selectedCategory">
+			    <option value="[숙박]  ">숙박</option>
+			    <option value="[렌트]  ">렌트</option>
+			    <option value="[레저]  ">레저</option>
+			    <option value="[패키지]  ">패키지</option>
+			    <option value="[포인트]  ">포인트</option>
+			    <option value="[기타문의]  ">기타문의</option>
+			  </select>
+			  <input type="text" id="myInput" v-model="info.fTitle" placeholder="제목">
+			</div>
 			<br>
 	      <div class="vue-editor">
-	        <vue-editor v-model="info.freeContent"></vue-editor>
+	        <vue-editor v-model="info.fContent"></vue-editor>
 	      </div>
 	<br>
 	
@@ -140,6 +139,7 @@ var app = new Vue({
 		list : [],
 		uId:"${sessionId}",
 		fNo : "${map.fNo}",
+		selectedCategory:"",
 		info : {
 			fTitle : "",
 			fContent : ""
@@ -149,6 +149,19 @@ var app = new Vue({
 	methods : {
 		fnAdd : function(){
 			var self = this;
+			if(self.info.fTitle.trim() === ""){
+				alert("제목을 입력해주세요.");
+				return;
+				}
+			if(self.selectedCategory === ""){
+				alert("카테고리를 선택해주세요.");
+				return;
+			}
+			if(self.info.fContent.trim()===""){
+				alert("내용을 입력해주세요.");
+				return;
+			}
+			
 			 var param = self.info;
 			 param.uId = self.uId;
 			$.ajax({
@@ -190,7 +203,9 @@ var app = new Vue({
 	            }); 
 			},
 			fnBack : function(){
-				location.href = "list.do";
+				if(confirm("취소하시겠습니까?")){
+					location.href = "list.do";
+				}
 			}
 		
 	}, // methods
