@@ -38,4 +38,8 @@ public interface FreeMapper {
 	int updateReport(HashMap<String, Object> map);
 	
 	int updateRecommend(HashMap<String, Object> map);
+	
+	int selectBackTitle(HashMap<String, Object> paramMap);
+	
+	int selectNextTitle(HashMap<String, Object> paramMap);
 }

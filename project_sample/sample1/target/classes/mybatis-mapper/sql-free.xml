@@ -114,5 +114,17 @@
 				RECOMMEND = RECOMMEND + 1
 			WHERE FREE_NO = #{freeNo}
 		</update>
+		
+		<select id="selectBackTitle" parameterType="hashmap">
+			SELECT MIN(FREE_NO)
+			   FROM T2_FREE_TBL
+			   WHERE FREE_NO &lt; #{freeNo}
+		</select>
+		
+		<select id="selectNextTitle" parameterType="hashmap">
+			SELECT MAX(FREE_NO)
+			   FROM T2_FREE_TBL
+			   WHERE FREE_NO &lt; #{freeNo}
+		</select>
 
 </mapper>

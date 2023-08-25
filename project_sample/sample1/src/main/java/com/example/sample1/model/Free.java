@@ -16,6 +16,21 @@ public class Free {
 	private int commCnt; // 댓글갯수
 	private int recommend; // 추천수
 	
+	private String backFreeContnet;
+	private String nextFreeContnet;
+	
+	public String getBackFreeContnet() {
+		return backFreeContnet;
+	}
+	public void setBackFreeContnet(String backFreeContnet) {
+		this.backFreeContnet = backFreeContnet;
+	}
+	public String getNextFreeContnet() {
+		return nextFreeContnet;
+	}
+	public void setNextFreeContnet(String nextFreeContnet) {
+		this.nextFreeContnet = nextFreeContnet;
+	}
 	public int getFreeNo() {
 		return freeNo;
 	}

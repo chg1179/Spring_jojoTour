@@ -76,6 +76,11 @@
 		.free_board_wrap{
 		margin-top: -500px;
 	}
+	.free_board_contents {
+    margin: 20px;
+    font-size: 18px;
+    margin-bottom: 200px;
+}
 </style>
 </head>
 <body>
@@ -111,9 +116,12 @@
 				</div> 
 			</div>
 			
-			
+			<hr>
 			</div>
+			<hr>
 		</div>
+	
+	
 	</div>
 </body>
 </html>

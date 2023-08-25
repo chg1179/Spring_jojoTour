@@ -7,6 +7,8 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link href="../css/board/board-view.css" rel="stylesheet"/>
 <link href="../../css/board-btn-style.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="../css/board/board-page.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 
@@ -23,6 +25,7 @@
 	.free_board_wrap{
 		margin-top: -500px;
 	}
+	
 </style>
 </head>
 <body>
@@ -51,6 +54,51 @@
 					<div>
 						<button @click="fnEdit" v-if="status == 'A'" class="btn1">수정하기</button>
 					</div> 
+		
+				<div class="page_move">
+				<ul class="page_move">
+				    <li>
+				        <span class="page_move_btn">
+				            <a href="">
+				                <i class="fas fa-solid fa-sort-up"></i>이전글
+				            </a>    
+				        </span>
+				        <p class="notice_title">
+				            <span>
+				                <a href="">
+				                    [FAQ]
+				                </a>
+				            </span>
+				            <a href="">
+				                {{info.fTitle}}
+				            </a>
+				        </p>
+				        <ul class="page_move_info">
+				            <li><i class="fas fa-light fa-clock"></i><span>{{info.fWriteTime}}</span></li>
+				        </ul>
+				    </li>
+				    <li>
+				        <span class="page_move_btn">
+				            <a href="">
+				                <i class="fas fa-solid fa-sort-down"></i>다음글
+				            </a>
+				        </span>
+				        <p class="notice_title">
+				            <span>
+				                <a href="">
+				                    [FAQ]
+				                </a>
+				            </span>
+				            <span>{{info.fTitle}}</span>
+				            <em class="reply_numb"><a href=""></a></em>
+				        </p>
+				        <ul class="page_move_info">
+				            <li><i class="fas fa-light fa-clock"></i><span>{{info.fWriteTime}}</span></li>
+				        </ul>
+				    </li>
+				</ul>
+				</div>
+		
 		</div>
 	</div>
 	</div>
