@@ -96,7 +96,7 @@
 						<th v-if="flg">취소여부</th>
 					</tr>
 					<tr v-for="item in list">
-						<td><a @click="fnView(item.orderNo)" href="javascript:;">{{item.orderNo}}</a></td>
+						<td>{{item.orderNo}}</td>
 						<td>{{item.productNo}}</td>
 						<td>{{item.sReserveDate}}</td>
 						<td>{{item.productKind}}</td>
@@ -153,10 +153,6 @@ var app = new Vue({
                 }
             }); 
 		},
-		fnView : function(orderNo){
-        	var self = this;
-        	self.pageChange("order/view.do", {orderNo : orderNo});
-        },
 		bookingCancel : function(productNo){
 			var self = this;
 			if(!confirm("정말 취소하시겠습니까?")){

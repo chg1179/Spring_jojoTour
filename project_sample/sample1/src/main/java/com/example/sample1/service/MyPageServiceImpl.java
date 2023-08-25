@@ -28,6 +28,12 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
+	public MyPage searchOrderInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.selectOrderInfo(map);
+	}
+	
+	@Override
 	public MyPage searchPoint(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return myPageMapper.selectPoint(map);
@@ -115,6 +121,7 @@ public class MyPageServiceImpl implements MyPageService{
 		// TODO Auto-generated method stub
 		return myPageMapper.selectReviewCnt(map);
 	}
+
 	
 	
 

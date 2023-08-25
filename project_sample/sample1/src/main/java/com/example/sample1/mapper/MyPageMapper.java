@@ -12,6 +12,7 @@ import com.example.sample1.model.MyPage;
 @Mapper
 public interface MyPageMapper {
 	List<MyPage> selectOrderList(HashMap<String, Object> map);
+	MyPage selectOrderInfo(HashMap<String, Object> map);
 	MyPage selectPoint(HashMap<String, Object> map);
 	int deleteReview(HashMap<String, Object> map);
 	List<Inquiry> selectInquiry(HashMap<String, Object> map);

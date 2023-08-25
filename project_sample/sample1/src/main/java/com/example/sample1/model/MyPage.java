@@ -2,18 +2,24 @@ package com.example.sample1.model;
 
 
 public class MyPage {
+	// ORDER_TBL
 	private String orderNo;
 	private String uId;
+	private String phone;
+	private String email;
 	private String paymentDate;
+	private int point;
+	
+	// ORDER_LIST
 	private String productKind;
 	private int productNo;
 	private int people;
 	private String sReserveDate;
 	private String lReserveDate;
 	private String useYnc;
-	private int deduPoint;
 	private int payment;
-	private int point;
+	private String request;
+	
 	private int rNo;
 	private String rContent;
 	private int rHits;
@@ -41,7 +47,6 @@ public class MyPage {
 	private String leisureName;
 	private String leisurePrice;
 	private String leisureSales;
-	
 	public String getOrderNo() {
 		return orderNo;
 	}
@@ -54,11 +59,29 @@ public class MyPage {
 	public void setuId(String uId) {
 		this.uId = uId;
 	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getPaymentDate() {
 		return paymentDate;
 	}
 	public void setPaymentDate(String paymentDate) {
 		this.paymentDate = paymentDate;
+	}
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
 	}
 	public String getProductKind() {
 		return productKind;
@@ -96,23 +119,23 @@ public class MyPage {
 	public void setUseYnc(String useYnc) {
 		this.useYnc = useYnc;
 	}
-	public int getDeduPoint() {
-		return deduPoint;
-	}
-	public void setDeduPoint(int deduPoint) {
-		this.deduPoint = deduPoint;
-	}
 	public int getPayment() {
 		return payment;
 	}
 	public void setPayment(int payment) {
 		this.payment = payment;
 	}
-	public int getPoint() {
-		return point;
+	public String getRequest() {
+		return request;
 	}
-	public void setPoint(int point) {
-		this.point = point;
+	public void setRequest(String request) {
+		this.request = request;
+	}
+	public int getrNo() {
+		return rNo;
+	}
+	public void setrNo(int rNo) {
+		this.rNo = rNo;
 	}
 	public String getrContent() {
 		return rContent;
@@ -138,6 +161,12 @@ public class MyPage {
 	public void setrUpdateTime(String rUpdateTime) {
 		this.rUpdateTime = rUpdateTime;
 	}
+	public String getDelyn() {
+		return delyn;
+	}
+	public void setDelyn(String delyn) {
+		this.delyn = delyn;
+	}
 	public int getrStar() {
 		return rStar;
 	}
@@ -150,5 +179,94 @@ public class MyPage {
 	public void setRecommend(int recommend) {
 		this.recommend = recommend;
 	}
-	
+	public int getRoomNo() {
+		return roomNo;
+	}
+	public void setRoomNo(int roomNo) {
+		this.roomNo = roomNo;
+	}
+	public String getRoomName() {
+		return roomName;
+	}
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
+	}
+	public int getRoomPrice() {
+		return roomPrice;
+	}
+	public void setRoomPrice(int roomPrice) {
+		this.roomPrice = roomPrice;
+	}
+	public double getRoomSales() {
+		return roomSales;
+	}
+	public void setRoomSales(double roomSales) {
+		this.roomSales = roomSales;
+	}
+	public String getStayNo() {
+		return stayNo;
+	}
+	public void setStayNo(String stayNo) {
+		this.stayNo = stayNo;
+	}
+	public String getStayName() {
+		return stayName;
+	}
+	public void setStayName(String stayName) {
+		this.stayName = stayName;
+	}
+	public int getMinPrice() {
+		return minPrice;
+	}
+	public void setMinPrice(int minPrice) {
+		this.minPrice = minPrice;
+	}
+	public int getRentNo() {
+		return rentNo;
+	}
+	public void setRentNo(int rentNo) {
+		this.rentNo = rentNo;
+	}
+	public String getRentName() {
+		return rentName;
+	}
+	public void setRentName(String rentName) {
+		this.rentName = rentName;
+	}
+	public String getRentPrice() {
+		return rentPrice;
+	}
+	public void setRentPrice(String rentPrice) {
+		this.rentPrice = rentPrice;
+	}
+	public String getRentSales() {
+		return rentSales;
+	}
+	public void setRentSales(String rentSales) {
+		this.rentSales = rentSales;
+	}
+	public int getLeisureNo() {
+		return leisureNo;
+	}
+	public void setLeisureNo(int leisureNo) {
+		this.leisureNo = leisureNo;
+	}
+	public String getLeisureName() {
+		return leisureName;
+	}
+	public void setLeisureName(String leisureName) {
+		this.leisureName = leisureName;
+	}
+	public String getLeisurePrice() {
+		return leisurePrice;
+	}
+	public void setLeisurePrice(String leisurePrice) {
+		this.leisurePrice = leisurePrice;
+	}
+	public String getLeisureSales() {
+		return leisureSales;
+	}
+	public void setLeisureSales(String leisureSales) {
+		this.leisureSales = leisureSales;
+	}
 }

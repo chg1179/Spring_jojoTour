@@ -29,6 +29,7 @@ public class MyPageController {
 	
 	@Autowired
 	HttpSession session;
+	
 	@RequestMapping("/my/page.do") 
     public String page(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 
@@ -39,6 +40,12 @@ public class MyPageController {
     public String order(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 
         return "/my/my-order";
+    }
+	
+	@RequestMapping("/my/order/view.do") 
+    public String orderView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+
+        return "/my/my-order-view";
     }
 
 	@RequestMapping("/my/point.do") 
@@ -85,6 +92,16 @@ public class MyPageController {
 		resultMap.put("listCompletion", listCompletion);
 		List<MyPage> listCancel = myPageService.searchOrderCancelList(map);
 		resultMap.put("listCancel", listCancel);
+		return new Gson().toJson(resultMap);
+	}
+	
+	@RequestMapping(value = "orderInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String orderInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+
+		MyPage orderInfo = myPageService.searchOrderInfo(map);
+		resultMap.put("orderInfo", orderInfo);
 		return new Gson().toJson(resultMap);
 	}
 	

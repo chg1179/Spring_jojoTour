@@ -208,7 +208,7 @@
 					<li>결제 완료 후 <span class="redTxt">예약자 이름</span>과 <span class="redTxt">핸드폰 번호</span>로 바로 <span class="redTxt">체크인</span> 하시면 됩니다.</li>
 				</ul>
 			</div>
-			<div class="box"><!-- 수정 중 -->
+			<div class="box">
 				<div><label><input type="checkbox" v-model="allCheck" @click="toggleAllCheck">전체 동의</label></div>
 				<div><label><input type="checkbox" v-model="clauseCheck" :value="1">숙소이용규칙 및 취소/환불규정 동의 <span class="redTxt">(필수)</span></label></div>
 				<div><label><input type="checkbox" v-model="clauseCheck" :value="2">개인정보 수집 및 이용 동의 <span class="redTxt">(필수)</span></label></div>
@@ -395,11 +395,11 @@ var app = new Vue({
                 buyer_tel: self.userInfo.phone
 			}, function (rsp) { // callback
 					if (rsp.success) {
-                		alert("결제 성공");
+                		alert("주문이 완료되었습니다.");
                 		self.fnOrder(orderNo);
 					} else {
 						//테스트용
-                    	alert("결제 성공");
+                    	alert("주문이 완료되었습니다.");
                     	self.fnOrder(orderNo);
                     }
 			});

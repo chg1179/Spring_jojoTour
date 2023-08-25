@@ -163,7 +163,7 @@
 	<select id="selectUserInfo" parameterType="hashmap" resultType="com.example.sample1.model.User">
 		SELECT * 
 		FROM T2_USER_TBL U
-		INNER JOIN T2_USER_POINT_TBL P ON U.U_ID = P.U_ID
+		LEFT JOIN T2_USER_POINT_TBL P ON U.U_ID = P.U_ID
 		WHERE U.U_ID = #{uId}
 	</select>
 </mapper>

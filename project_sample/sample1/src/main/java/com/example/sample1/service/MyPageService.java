@@ -9,6 +9,7 @@ import com.example.sample1.model.User;
 
 public interface MyPageService {
 	List<MyPage> searchOrderList(HashMap<String, Object> map);
+	MyPage searchOrderInfo(HashMap<String, Object> map);
 	MyPage searchPoint(HashMap<String, Object> map);
 	int removeReview(HashMap<String, Object> map);
 	List<Inquiry> searchInquiry(HashMap<String, Object> map);

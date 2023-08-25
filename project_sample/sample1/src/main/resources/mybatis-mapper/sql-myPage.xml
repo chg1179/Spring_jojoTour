@@ -10,6 +10,14 @@
 		INNER JOIN T2_ORDER_LIST_TBL L ON O.ORDER_NO = L.ORDER_NO
 		WHERE U_ID = #{userId}
 	</select>
+		
+	<!-- 주문 번호 조회 -->
+	<select id="selectOrderInfo" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
+		SELECT *
+		FROM T2_ORDER_TBL
+		WHERE ORDER_NO = #{orderNo}
+	</select>
+	
 	<!-- 예약접수중 리스트 출력 -->
 	<select id="selectOrderAcceptList" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
 		SELECT *
