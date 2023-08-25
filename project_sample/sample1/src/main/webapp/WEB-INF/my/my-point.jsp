@@ -130,6 +130,7 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script src="../js/jquery-1.12.4.js"></script>

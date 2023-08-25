@@ -74,6 +74,7 @@
 		<button @click="fnRoomAdd(info.roomNo)">객실 등록</button>
 		<button @click="fnBack">되돌아가기</button>
 	</div>
+	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

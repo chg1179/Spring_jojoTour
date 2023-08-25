@@ -18,11 +18,12 @@
         a{
             text-decoration: none;
             color: inherit;
+            margin:10px;
         }
-        img{
-            width: 100%;
-            height: 100%;
-        }
+		img {
+		    width: 150%;
+		    height: 110%;
+		}
         header{
         	background-color : #213555;
             /* background: linear-gradient(30deg, #FA163F, #0FABBC 55%); */
@@ -83,11 +84,11 @@
             display: block;
             position: absolute;
             color: black;
-            width: 130px;
+            width: 161px;
             border: 1px solid;
             border-radius: 10px;
             background-color: #fff;
-            padding: 10px;
+            padding: 5px;
             display: none;
 
         }
@@ -138,7 +139,7 @@
 	                    </ul>
 	                    <ul class="s_header">
 	                        <li class="stay">
-	                            <a href="javascript:;" @click="fnStay">¼÷¹Ú¾÷¼Ò</a>
+	                            <a href="javascript:;" @click="fnStay">¼÷¹Ú</a>
 	                            <ul>
 	                                <li><a href="javascript:;" @click="checkStayKind('HOTEL')">È£ÅÚ</a></li>
 	                                <li><a href="javascript:;" @click="checkStayKind('MOTEL')">¸ðÅÚ</a></li>

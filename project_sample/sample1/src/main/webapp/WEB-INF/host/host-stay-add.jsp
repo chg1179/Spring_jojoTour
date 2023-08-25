@@ -93,6 +93,7 @@
 		</table>
 		<button @click="fnStayAdd">¼÷¼Ò µî·Ï</button>
 	</div>
+	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

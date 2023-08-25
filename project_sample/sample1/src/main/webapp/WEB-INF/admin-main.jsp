@@ -32,6 +32,7 @@
 		<input type="button" value="패키지 신청 목록" @click="fnPackageReq" style="font-size : 20px">
 		<input type="button" value="패키지 목록" @click="fnPackage" style="font-size : 20px">
 	</div>
+	<jsp:include page="footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

@@ -28,6 +28,7 @@
 			<button @click="fnCancle">취소하기</button>
 		</div>
 	</div>
+	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

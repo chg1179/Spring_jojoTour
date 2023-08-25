@@ -19,6 +19,7 @@
 		<div><label><button @click="fnWrite">작성하기</button></label></div>
 		{{userId}}
 	</div>
+	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

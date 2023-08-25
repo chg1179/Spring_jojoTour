@@ -21,6 +21,7 @@
 		<div v-html="info.rContent"></div>
 		<div v-if="userId == info.uId"><button @click="fnUpdate">수정하기</button><button @click="fnRemove">삭제하기</button></div>
 	</div>
+	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

@@ -196,6 +196,7 @@
 		<input style="width : 150px" type="button" value="패 키 지 등 록" id="abtn" @click="fnYbtn(selectRoom, selectRent, selectLeisure)">
 	</div>
 </div>
+<jsp:include page="footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

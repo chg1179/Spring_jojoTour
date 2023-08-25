@@ -31,6 +31,7 @@
 		</table>
 		<div v-if="userId != '' && userId != null"><button @click="fnWrite">후기작성</button></div>
 	</div>
+	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

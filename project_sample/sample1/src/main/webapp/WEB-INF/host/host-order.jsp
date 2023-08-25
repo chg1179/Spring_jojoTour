@@ -194,6 +194,7 @@
 		<span><button @click="fnBack">뒤로가기</button></span>
 	</div>
 </div>
+<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

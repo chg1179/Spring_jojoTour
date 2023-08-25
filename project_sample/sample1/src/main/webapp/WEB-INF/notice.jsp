@@ -23,6 +23,7 @@
 	<div id="app">
 	공지사항
 	</div>
+	<jsp:include page="footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

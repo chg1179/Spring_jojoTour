@@ -254,6 +254,7 @@
 		</div>
 	</div>
 </body>
+<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </html>
 <script>
 var app = new Vue({

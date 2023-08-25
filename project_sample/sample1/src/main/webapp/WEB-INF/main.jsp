@@ -72,12 +72,12 @@
         }
         /* 배너 끝 */
         .accommodation_title{
-            margin: 30px;
+            margin-left: 30px;
         }
         .accommodation>ul{
             display: flex;
             justify-content: space-around;
-            margin: 30px 0;
+            margin-bottom: 140px;
         }
         .accommodation>ul>li{
             width: 120px;
@@ -202,7 +202,7 @@
 		    </div>
 	        <div class="inner_con">
 	            <div class="accommodation">
-	                <h2 class="accommodation_title">숙소 예약</h2>
+	                <h2 class="accommodation_title" style="margin-top: 50px;">숙소 예약</h2>
 	                <ul>
 	                    <li>
 	                        <a href="javascript:;" @click="fnHotel">
@@ -250,7 +250,7 @@
 	                <h2 class="retal_car_title">렌터카 예약</h2>
 	                <ul>
 	                    <li>
-	                        <a href="javascript:;">
+	                        <a href="javascript:;" @click="fnRent">
 	                            <div class="r_img_box">
 	                                <img src="./img/main/small.png" alt="">
 	                            </div>
@@ -258,7 +258,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;">
+	                        <a href="javascript:;" @click="fnRent">
 	                            <div class="r_img_box">
 	                                <img src="./img/main/midium.png" alt="">
 	                            </div>
@@ -266,7 +266,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;">
+	                        <a href="javascript:;" @click="fnRent">
 	                            <div class="r_img_box">
 	                                <img src="./img/main/large.png" alt="">
 	                            </div>
@@ -274,7 +274,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;">
+	                        <a href="javascript:;" @click="fnRent">
 	                            <div class="r_img_box">
 	                                <img src="./img/main/very_large.png" alt="">
 	                            </div>
@@ -287,7 +287,7 @@
 	                <h2 class="water_leisure_title">수상 레저 예약</h2>
 	                <ul>
 	                    <li>
-	                        <a href="javascript:;">
+	                        <a href="javascript:;" @click="fnWLeisure">
 	                            <div class="w_img_box">
 	                                <img src="./img/main/snorkeling.jpg" alt="">
 	                            </div>
@@ -295,7 +295,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;">
+	                        <a href="javascript:;" @click="fnWLeisure">
 	                            <div class="w_img_box">
 	                                <img src="./img/main/surfing.jpg" alt="">
 	                            </div>
@@ -303,7 +303,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;">
+	                        <a href="javascript:;" @click="fnWLeisure">
 	                            <div class="w_img_box">
 	                                <img src="./img/main/yarcht.jpg" alt="">
 	                            </div>
@@ -311,7 +311,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;">
+	                        <a href="javascript:;" @click="fnWLeisure">
 	                            <div class="w_img_box">
 	                                <img src="./img/main/jetSki.jpg" alt="">
 	                            </div>
@@ -324,7 +324,7 @@
 	                <h2 class="water_leisure_title">지상 레저 예약</h2>
 	                <ul>
 	                    <li>
-	                        <a href="javascript:;">
+	                        <a href="javascript:;" @click="fnGLeisure">
 	                            <div class="l_img_box">
 	                                <img src="./img/main/atv.jpg" alt="">
 	                            </div>
@@ -332,7 +332,7 @@
 	                        </a>
 	                    </li>  
 	                    <li>
-	                        <a href="javascript:;">
+	                        <a href="javascript:;" @click="fnGLeisure">
 	                            <div class="l_img_box">
 	                                <img src="./img/main/paragliding.jpg" alt="">
 	                            </div>
@@ -340,7 +340,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;">
+	                        <a href="javascript:;" @click="fnGLeisure">
 	                            <div class="l_img_box">
 	                                <img src="./img/main/horse.png" alt="">
 	                            </div>
@@ -366,6 +366,15 @@ var app = new Vue({
 		},
         fnFAQ : function(){
         	location.href="/faq/list.do";
+        },
+        fnRent : function(){
+        	$.pageChange("/rentcar.do",{});
+        },
+        fnWLeisure : function(){
+        	$.pageChange("/water/leisure.do",{});
+        },
+        fnGLeisure : function(){
+        	$.pageChange("/ground/leisure.do",{});
         }
 
 	}, // methods
