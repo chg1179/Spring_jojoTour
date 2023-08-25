@@ -29,7 +29,7 @@
 		                        <th>숙소명</th>
 		                        <th>입실</th>
 		                        <th>퇴실</th>
-		                        <th>가격</th>
+		                        <th>금액</th>
 		                    </tr>
 		                </thead>
 		                <tbody>
@@ -96,7 +96,7 @@
 			            <thead>
 			                <tr>
 			                    <th>상품명</th>
-			                    <th>가격</th>
+			                    <th>금액</th>
 			                </tr>
 			            </thead>
 			            <tbody>

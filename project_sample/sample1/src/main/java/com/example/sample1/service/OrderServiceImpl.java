@@ -48,18 +48,17 @@ public class OrderServiceImpl implements OrderService {
             // 분류별 인원 수 컬럼을 구분하여 동일한 이름으로 통일
             if(productKind.equals("STAY")){
             	map.put("payment", productData.get("sprice")); // 총 금액
-            	map.put("people", productData.get("roomDaysDiff"));
+            	map.put("people", productData.get("roomDaysDiff")); // 며칠인지
             } else if(productKind.equals("RENT")){
             	map.put("payment", productData.get("rprice"));
-            	map.put("people", productData.get("rentDaysDiff"));
+            	map.put("people", productData.get("rentDaysDiff")); // 며칠인지
             } else if(productKind.equals("LEISURE")) {
             	int leisurePrice = Integer.parseInt(productData.get("leisurePrice"));
             	double leisureSales = Double.parseDouble(productData.get("leisureSales"));
-            	int quantity = Integer.parseInt(productData.get("quantity"));
-            	int lprice = (int) (leisurePrice * leisureSales * quantity); // 티켓 수에 따른 레저 결제 금액
+            	map.put("people", productData.get("people"));
+            	int people = Integer.parseInt(productData.get("people"));
+            	int lprice = (int) (leisurePrice * leisureSales * people); // 티켓 수에 따른 레저 결제 금액
             	map.put("payment", lprice);
-    			map.put("people", quantity); // 티켓 수
-    			
     			// 레저는 구매일 기준으로 한달 뒤까지 사용이 가능하다고 설정하기 때문에 현재 날짜를 받아옴
     	        LocalDate currentDate = LocalDate.now(); // 현재 날짜 가져오기
 

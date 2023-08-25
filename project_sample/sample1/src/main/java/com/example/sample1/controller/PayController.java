@@ -64,6 +64,7 @@ public class PayController {
 	    List<Map<String, String>> productList = (List<Map<String, String>>) session.getAttribute("productList");
 
 		orderService.addOrder(map, productList);
+		session.invalidate();
 		return new Gson().toJson(resultMap);
 	}
 }
