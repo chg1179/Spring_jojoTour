@@ -39,6 +39,11 @@ public class FaqServiceImpl implements FaqService{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		faqMapper.faqCnt(map);
+		map.put("search", "UP"); //다음글
+		resultMap.put("upBoard", faqMapper.selectNextTitle(map));
+		
+		map.put("search", "DOWN"); //이전글
+		resultMap.put("downBoard", faqMapper.selectNextTitle(map));
 		resultMap.put("info", faqMapper.selectFaqInfo(map));
 		
 		return resultMap;

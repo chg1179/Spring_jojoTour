@@ -27,4 +27,6 @@ public interface FaqMapper {
 	int updateFaq(HashMap<String, Object> map);
 	
 	int deleteFaqCheck(HashMap<String, Object> map);
+	
+	Faq selectNextTitle(HashMap<String, Object> paramMap);
 }

@@ -93,11 +93,13 @@
 			                    </a>
 			                </span>
 			                <p class="notice_title">
+			                   <a href="javascript:;"><span>[자유]</span></a>
 			                    <a href="javascript:;">
 			                        {{upInfo.freeTitle}}
 			                    </a>
 			                </p>
 			            </span>
+			           
 			            <ul class="page_move_info">
 			                <li><i class="fas fa-light fa-clock"></i><span>{{upInfo.fWriteTime}}</span></li>
 			            </ul>
@@ -110,6 +112,7 @@
 			                    </a>
 			                </span>
 			                <p class="notice_title">
+			                <a href="javascript:;"><span>[자유]</span></a>
 			                    <a href="javascript:;">
 			                        {{downInfo.freeTitle}}
 			                    </a>

@@ -69,4 +69,18 @@
 			</foreach>
 		</delete>
 		
+		<select id="selectNextTitle" parameterType="hashmap" resultType="com.example.sample1.model.Faq">
+			SELECT F_NO, F_TITLE, F_WRITE_TIME
+			FROM T2_FAQ_TBL
+			WHERE
+			<if test='search == "UP"'> 
+				F_NO > #{fNo}
+				ORDER BY F_NO ASC
+			</if>
+			<if test='search == "DOWN"'>
+				<![CDATA[ F_NO < #{fNo} ]]>
+				ORDER BY F_NO DESC
+			</if>
+			LIMIT 1
+		</select>
 </mapper>

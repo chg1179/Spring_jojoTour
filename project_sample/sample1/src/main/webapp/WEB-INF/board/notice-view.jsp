@@ -50,49 +50,48 @@
 					<button @click="fnEdit" v-if="status == 'A'" class="btn1" >수정하기</button>
 				</div> 
 				
-				<div class="page_move">
-				<ul class="page_move">
-				    <li>
-				        <span class="page_move_btn">
-				            <a href="">
-				                <i class="fa-solid fa-sort-up"></i>이전글
-				            </a>    
-				        </span>
-				        <p class="notice_title">
-				            <span>
-				                <a href="">
-				                    [공지]
-				                </a>
-				            </span>
-				            <a href="">
-				                {{info.nTitle}}
-				            </a>
-				        </p>
-				        <ul class="page_move_info">
-				            <li><i class="fas fa-light fa-clock"></i><span>{{info.fWriteTime}}</span></li>
-				        </ul>
-				    </li>
-				    <li>
-				        <span class="page_move_btn">
-				            <a href="">
-				                <i class="fa-solid fa-sort-down"></i>다음글
-				            </a>
-				        </span>
-				        <p class="notice_title">
-				            <span>
-				                <a href="">
-				                    [공지]
-				                </a>
-				            </span>
-				            <span>{{info.nTitle}}</span>
-				            <em class="reply_numb"><a href=""></a></em>
-				        </p>
-				        <ul class="page_move_info">
-				            <li><i class="fas fa-light fa-clock"></i><span>{{info.fWriteTime}}</span></li>
-				        </ul>
-				    </li>
-				</ul>
-				</div>
+			<div class="page_move">
+			    <ul class="page_move">
+			        <li v-if="upInfo != null">
+			            <span @click="fnNextTitle">
+			                <span class="page_move_btn">
+			                    <a href="javascript:;">
+			                        <i class="fa-solid fa-sort-up"></i>다음글
+			                    </a>
+			                </span>
+			                <p class="notice_title">
+			                   <a href="javascript:;"><span>[공지]</span></a>
+			                    <a href="javascript:;">
+			                        {{upInfo.nTitle}}
+			                    </a>
+			                </p>
+			            </span>
+			           
+			            <ul class="page_move_info">
+			                <li><i class="fas fa-light fa-clock"></i><span>{{upInfo.fWriteTime}}</span></li>
+			            </ul>
+			        </li>
+			        <li v-if="downInfo != null">
+			            <span @click="fnBackTitle">
+			                <span class="page_move_btn">
+			                    <a href="javascript:;">
+			                        <i class="fa-solid fa-sort-down"></i>이전글
+			                    </a>
+			                </span>
+			                <p class="notice_title">
+			                <a href="javascript:;"><span>[공지]</span></a>
+			                    <a href="javascript:;">
+			                        {{downInfo.nTitle}}
+			                    </a>
+			                    <em class="reply_numb"><a href=""></a></em>
+			                </p>
+			            </span>
+			            <ul class="page_move_info">
+			                <li><i class="fas fa-light fa-clock"></i><span>{{downInfo.fWriteTime}}</span></li>
+			            </ul>
+			        </li>
+			    </ul>
+			</div>
 			
 			</div>
 		</div>
@@ -104,9 +103,14 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-		info : {},
+		info : {},	//현재글
+		upInfo : {}, // 다음글
+		downInfo : {}, // 이전글
 		nNo : "${map.nNo}",
-		status : "${sessionStatus}"
+		status : "${sessionStatus}",
+		uId : "${sessionId}",
+		back:{},
+		next:{}
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -119,17 +123,29 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	self.info = data.info;
+                	self.upInfo = data.upBoard;
+                	self.downInfo = data.downBoard;
                 	console.log(data);
                 }
             }); 
 		},
-		 fnBack : function(){
-	        	location.href = "list.do";
-	        },
-		fnEdit : function(){
-				var self = this;
-				$.pageChange("edit.do", {nNo : self.nNo});
-	                }
+			 fnBack : function(){
+		        	location.href = "list.do";
+		        },
+			fnEdit : function(){
+					var self = this;
+					$.pageChange("edit.do", {nNo : self.nNo});
+		        },
+	                
+	    		fnBackTitle: function() {
+	    			var self = this;
+	    			$.pageChange("view.do", {nNo : self.downInfo.nNo});
+	    		},
+	    		//다음글 로드
+	    		fnNextTitle: function() {
+	    			 var self = this;
+	    			 $.pageChange("view.do", {nNo : self.upInfo.nNo});
+	    		}
 
 	}, // methods
 	created : function() {

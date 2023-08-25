@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.sample1.model.Board;
+import com.example.sample1.model.Free;
 import com.example.sample1.model.Test;
 
 @Mapper
@@ -26,5 +27,7 @@ public interface BoardMapper {
 	
 	//체크한 게시글 삭제
 	int deleteNoticeCheck(HashMap<String, Object> map);
+	
+	Board selectNextTitle(HashMap<String, Object> paramMap);
 
 }

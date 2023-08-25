@@ -29,7 +29,8 @@
 		SELECT COUNT(*) FROM T2_NOTICE_TBL
 	</select>
 		
-	<select id="selectNoticeInfo" parameterType="hashmap" resultType="com.example.sample1.model.Board">
+	<select id="selectNoticeInfo" parameterType="hashmap" 
+	resultType="com.example.sample1.model.Board">
 		SELECT *
 		FROM T2_NOTICE_TBL
 		WHERE N_NO = #{nNo}
@@ -64,4 +65,19 @@
 			#{item}
 		</foreach>
 	</delete>
+	
+		<select id="selectNextTitle" parameterType="hashmap" resultType="com.example.sample1.model.Board">
+			SELECT N_NO, N_TITLE, F_WRITE_TIME
+			FROM T2_NOTICE_TBL
+			WHERE
+			<if test='search == "UP"'> 
+				N_NO > #{nNo}
+				ORDER BY N_NO ASC
+			</if>
+			<if test='search == "DOWN"'>
+				<![CDATA[ N_NO < #{nNo} ]]>
+				ORDER BY N_NO DESC
+			</if>
+			LIMIT 1
+		</select>
 </mapper>

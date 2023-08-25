@@ -37,6 +37,12 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		boardMapper.noticeCnt(map);
+		map.put("search", "UP"); //다음글
+		resultMap.put("upBoard", boardMapper.selectNextTitle(map));
+		
+		map.put("search", "DOWN"); //이전글
+		resultMap.put("downBoard", boardMapper.selectNextTitle(map));
+		
 		resultMap.put("info", boardMapper.selectNoticeInfo(map));
 		
 		return resultMap;
