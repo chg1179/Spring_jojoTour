@@ -28,7 +28,7 @@
 	
 	<delete id="delCart" parameterType="hashmap">
 		DELETE FROM T2_CART_TBL
-		WHERE U_ID = #{uId} AND PRODUCT_NO = #{productNo}
+		WHERE U_ID = #{uId} AND PRODUCT_NO = #{productNo} AND PRODUCT_KIND = #{productKind}
 	</delete>
 	
 </mapper>

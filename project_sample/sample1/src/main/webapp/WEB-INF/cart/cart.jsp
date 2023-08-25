@@ -286,23 +286,16 @@
 							<div>{{item.leisureKind}}</div>
 						</td>
 						<td style="width : 400px;">
-							<input type="number" min="1" max="10" style="width: 80px;" v-model="item.quantity">
+							<input type="number" min="1" max="10" style="width: 80px;" v-model="item.people">
 						</td>
 						<td><input type="button" value="삭 제" id="delBtn" @click="fnRemove(item)"></td>
 						
-						<td v-if="leisureOriginalPrice(item) == 0 && item.leisureSales == 1">
-							<div>{{item.leisurePrice.toLocaleString() }}원</div>
+						<td v-if="item.leisureSales == 1">
+							<div>{{ (item.leisurePrice*item.people).toLocaleString() }}원</div>
 						</td>
-						<td v-else-if="leisureOriginalPrice(item) == 0 && item.leisureSales != 1">
-							<div id="deline">{{item.leisurePrice.toLocaleString() }}원</div>
-							<div style="font-weight: bold; font-size: 16px;">{{( item.leisurePrice*item.leisureSales).toLocaleString() }}원</div>
-						</td>
-						<td v-else-if="leisureOriginalPrice(item) != 0 && item.leisureSales == 1">
-							<div>{{leisureOriginalPrice(item) | numberWithCommas }}원</div>
-						</td>
-						<td v-else>
-							<div id="deline">{{leisureOriginalPrice(item) | numberWithCommas }}원</div>
-							<div style="font-weight: bold; font-size: 16px;">{{ leisureTotalPrice() | numberWithCommas }}원</div>
+						<td v-else-if="item.leisureSales != 1">
+							<div id="deline">{{ (item.leisurePrice * item.people).toLocaleString() }}원</div>
+							<div style="font-weight: bold; font-size: 16px;">{{( item.leisurePrice*item.leisureSales * item.people).toLocaleString() }}원</div>
 						</td>
 					</tr>
 				</tbody>
@@ -377,7 +370,7 @@ var app = new Vue({
 		},
 		fnRemove : function(item){
 			var self = this;
-			var param = {uId : item.uId, productNo : item.productNo};
+			var param = {uId : item.uId, productNo : item.productNo, productKind : item.productKind};
 			if(!confirm("선택하신 상품을 장바구니에서 삭제하시겠습니까?")){
 				return;
 			}
@@ -472,11 +465,11 @@ var app = new Vue({
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var lprice =  0;
                     if(daysDiff == 0 && item.leisureSales == 1){
-                    	lprice = item.leisurePrice * this.quantity;
+                    	lprice = item.leisurePrice * item.people;
                     }else if(daysDiff == 0 && item.leisureSales != 1){
-                    	lprice = item.leisurePrice * item.leisureSales * item.quantity;
+                    	lprice = item.leisurePrice * item.leisureSales * item.people;
                     }else{
-                    	lprice = item.leisurePrice * item.leisureSales * item.quantity;
+                    	lprice = item.leisurePrice * item.leisureSales * item.people;
                     }
                     this.selectLeisure[index].quantity = this.quantity;
                     totalPrice = totalPrice + lprice;
@@ -515,52 +508,14 @@ var app = new Vue({
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var eprice =  0;
                     if(daysDiff == 0){
-                    	eprice = parseInt(item.leisurePrice) * item.quantity;
+                    	eprice = parseInt(item.leisurePrice) * item.people;
                     }else{
-                    	eprice = parseInt(item.leisurePrice) * item.quantity;
+                    	eprice = parseInt(item.leisurePrice) * item.people;
                     }
                     originalPrice = originalPrice + eprice;
                 }
                 
                 return originalPrice;
-            };
-        },
-        leisureOriginalPrice() {
-            return () => {
-                let leisureOriginalPrice = 0;
-                
-                for (const item of this.selectLeisure) {
-                    const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
-                    var leisureprice =  0;
-                    if(daysDiff == 0){
-                    	leisureprice = parseInt(item.leisurePrice) * item.quantity;
-                    }else{
-                    	leisureprice = parseInt(item.leisurePrice) * item.quantity;
-                    }
-                    leisureOriginalPrice = leisureprice;
-                }
-                
-                return leisureOriginalPrice;
-            };
-        },
-        leisureTotalPrice() {
-            return () => {
-                let leisureTotalPrice = 0;
-                
-                for (const item of this.selectLeisure) {
-                    const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
-                    var leisureprice =  0;
-                    if(daysDiff == 0 && item.leisureSales == 1){
-                    	leisureprice = item.leisurePrice * this.quantity;
-                    }else if(daysDiff == 0 && item.leisureSales != 1){
-                    	leisureprice = item.leisurePrice * item.leisureSales * item.quantity;
-                    }else{
-                    	leisureprice = item.leisurePrice * item.leisureSales * item.quantity;
-                    }
-                    leisureTotalPrice = leisureTotalPrice + leisureprice;
-                }
-                
-                return leisureTotalPrice;
             };
         }
     },

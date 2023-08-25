@@ -81,8 +81,8 @@
 		                <tbody>
 		                    <tr v-for="product in leisureList" :key="product.productNo">
 		                        <td>{{ product.leisureName }}</td>
-		                        <td>{{ product.quantity }}매</td>
-		                        <td>{{ product.leisurePrice * product.leisureSales * product.quantity }}원</td>
+		                        <td>{{ product.people }}매</td>
+		                        <td>{{ product.leisurePrice * product.leisureSales * product.people }}원</td>
 		                    </tr>
 		                </tbody>
 		            </table>
@@ -128,7 +128,7 @@
 			                    <td>
 			                        <ul>
 			                            <li v-for="product in leisureList" :key="product.productNo">
-			                                {{ product.leisureName }} - {{ product.leisurePrice * product.leisureSales * product.quantity }}원
+			                                {{ product.leisureName }} - {{ product.leisurePrice * product.leisureSales * product.people }}원
 			                            </li>
 			                        </ul>
 			                    </td>
@@ -446,7 +446,7 @@ var app = new Vue({
 	    totalAmount() {
             const roomTotal = this.roomList.reduce((total, product) => total + (parseInt(product.sprice)), 0);
             const rentTotal = this.rentList.reduce((total, product) => total + (parseInt(product.rprice)), 0);
-            const leisureTotal = this.leisureList.reduce((total, product) => total + (product.leisurePrice * product.leisureSales * product.quantity), 0);
+            const leisureTotal = this.leisureList.reduce((total, product) => total + (product.leisurePrice * product.leisureSales * product.people), 0);
 
             return roomTotal + rentTotal + leisureTotal;
         }
