@@ -134,12 +134,20 @@ var app = new Vue({
 		
 		fnStayAdd : function(){
 			var self = this;
-		
+			if(self.info.stayName == ""){
+				alert("숙소 이름을 입력해주세요.");
+				return;
+			}
+			if(self.info.sAddr == ""){
+				alert("숙소 주소를 입력해주세요.");
+				return;
+			}
+			
 			if(!confirm("숙소를 등록하시겠습니까?")){
 				alert("취소되었습니다.");
 				return;
 			}
-			
+			var regex = 
 			var noServiceList = JSON.stringify(self.selectServiceList); //문자열 형태로 형변환
 			var param = self.info;
 			param.uId = self.uId;

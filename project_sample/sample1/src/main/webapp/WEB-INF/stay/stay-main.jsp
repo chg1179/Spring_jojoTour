@@ -204,7 +204,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="">
+			<div id="stay-container">
 				<div class="stay-type">
 					<select v-model="stayKind" @change="fnSearch">
 						<option value="" selected disabled hidden>::ÀüÃ¼::</option>
@@ -238,7 +238,7 @@
 								<div class="stay-img">
 									<img :src="item.imgPath" alt="">
 								</div>
-								<div class="stay_txt_box">
+								<div class="txt_box">
 									<p>
 										<a @click="fnDetail(item.stayNo)">{{item.stayName}}</a>
 									</p>
