@@ -71,13 +71,13 @@
 	<select id="selectReview" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
 		SELECT *
 		FROM T2_REVIEW_TBL
-		WHERE U_ID = #{userId}
+		WHERE U_ID = #{userId} AND DELYN = 'N'
 	</select>
     <!-- 나의 리뷰 카운트 -->
 	<select id="selectReviewCnt" parameterType="hashmap" resultType="int">
 		SELECT COUNT(*) AS CNT
 		FROM T2_REVIEW_TBL
-		WHERE U_ID = #{userId}
+		WHERE U_ID = #{userId} AND DELYN = 'N'
 	</select>
 	<!--나의 리뷰 삭제 -->
 	<update id="deleteReview" parameterType="hashmap">

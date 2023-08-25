@@ -22,8 +22,21 @@
 	<update id="editReview" parameterType="hashmap">
 		UPDATE T2_REVIEW_TBL
 		SET
+			R_TITLE = #{rTitle},
 			R_CONTENT = #{rContent},
 			R_UPDATE_TIME = NOW()
 		WHERE R_NO = #{rNo}
 	</update>
+	<!--리뷰 삭제 -->
+	<update id="deleteReview" parameterType="hashmap">
+		UPDATE T2_REVIEW_TBL
+		SET
+			DELYN = 'Y'
+		WHERE R_NO = #{rNo}
+	</update>
+	<!-- 글 등록 -->
+	<insert id="insertUser" parameterType="hashmap">
+		INSERT INTO T2_REVIEW_TBL (R_NO, U_ID, R_TITLE, R_CONTENT, R_WRITE_TIME, R_UPDATE_TIME, R_STAR)
+		(SELECT MAX(R_NO) + 1, #{userId}, #{rTitle}, #{rContent}, now(), now(), #{rStar})
+	</insert>
 </mapper>

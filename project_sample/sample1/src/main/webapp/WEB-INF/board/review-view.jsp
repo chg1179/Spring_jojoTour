@@ -18,7 +18,7 @@
 		<div>게시글 번호 : {{info.rNo}}</div>
 		<div>작성 날짜 : {{info.rWriteTime}}</div>
 		<div v-html="info.rContent"></div>
-		<div v-if="userId == info.uId"><button @click="fnUpdate">수정하기</button><button>삭제하기</button></div>
+		<div v-if="userId == info.uId"><button @click="fnUpdate">수정하기</button><button @click="fnRemove">삭제하기</button></div>
 	</div>
 </body>
 </html>
@@ -49,7 +49,24 @@ var app = new Vue({
 		fnUpdate : function(){
 			var self = this;
 			$.pageChange("/review/edit.do", {rNo : self.rNo});
-		}
+		},
+		fnRemove : function(){
+			var self = this;
+			if(!confirm("정말 삭제하시겠습니까?")){
+				return;
+			}
+			var param = {rNo : self.rNo};
+			$.ajax({
+                url : "delete.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	alert("삭제 되었습니다.");
+                	self.fnGetList();
+                }
+            });
+		},
 		
 	}, // methods
 	created : function() {

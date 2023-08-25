@@ -40,15 +40,17 @@ public class ReviewServiceImpl implements ReviewService{
 		return reviewMapper.selectReview(map);
 	}
 
-	@Override
-	public Review searchReviewInfo(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return reviewMapper.selectReviewInfo(map);
-	}
+
 
 	@Override
 	public int updateReview(HashMap<String, Object> map) {
 		// Review Auto-generated method stub
 		return reviewMapper.editReview(map);
+	}
+
+	@Override
+	public int removeReview(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return reviewMapper.deleteReview(map);
 	}
 }

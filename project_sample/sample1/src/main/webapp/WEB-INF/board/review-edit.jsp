@@ -20,6 +20,7 @@
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
   	 		<div id="review_container">
+  	 		<div>Á¦¸ñ : <input type="text" v-model="info.rTitle"></div>
 			<div>
 				<vue-editor class="v_editor" v-model="info.rContent"></vue-editor>
 			</div>

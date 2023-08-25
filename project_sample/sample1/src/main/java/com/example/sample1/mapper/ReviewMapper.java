@@ -14,7 +14,6 @@ public interface ReviewMapper {
 	List<Review> selectReviewList(HashMap<String, Object> map);
 	Review selectReview(HashMap<String, Object> map);
 	// 리뷰수정창
-	Review selectReviewInfo(HashMap<String, Object> map);
 	int editReview(HashMap<String, Object> map);
-
+	int deleteReview(HashMap<String, Object> map);
 }

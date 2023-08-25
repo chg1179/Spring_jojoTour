@@ -40,6 +40,11 @@ public class ReviewController {
 		request.setAttribute("map", map);
 		return "/board/review-edit";
     }
+	@RequestMapping("/review/add.do") 
+    public String reviewAdd(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+		return "/board/review-add";
+    }
 	//후기게시판 출력
 	@RequestMapping(value = "/review/list.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -64,6 +69,13 @@ public class ReviewController {
 	public String reviewEdit(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		reviewService.updateReview(map);
+		return new Gson().toJson(resultMap);
+	}
+	@RequestMapping(value = "/review/delete.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String reviewdelete(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		reviewService.removeReview(map);
 		return new Gson().toJson(resultMap);
 	}
 	

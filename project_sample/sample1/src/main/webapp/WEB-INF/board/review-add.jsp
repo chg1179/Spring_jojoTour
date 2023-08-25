@@ -13,23 +13,9 @@
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<table>
-			<tr>
-				<th>No.</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>조회수</th>
-				<th>등록날짜</th>
-			</tr>
-			<tr v-for="item in list">
-				<th>{{item.rNo}}</th>
-				<th><a href="javascript:;" @click="fnRContent(item.rNo)">{{item.rTitle}}</a></th>
-				<th>{{item.uId}}</th>
-				<th>{{item.rHits}}</th>
-				<th>{{item.rWriteTime}}</th>
-			</tr>
-		</table>
-		<div if="userId != '' && userId != null"><button @click="fnWrite">후기작성</button></div>
+		<div><label>제목 : <input type="text"></label></div>
+		<div><label>내용 : <textarea></textarea></label></div>
+		<div><label><button @click="fnWrite">작성하기</button></label></div>
 	</div>
 </body>
 </html>
@@ -38,13 +24,12 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-		userId : "${sessionId}",
-		rNo : ""
+		userId : "${map.userId}"
 	},// data
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var param = {userId : self.userId};
+			var param = {};
 			$.ajax({
                 url : "list.dox",
                 dataType:"json",	
@@ -52,19 +37,24 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	self.list = data.list;
-                	console.log(data);
-                	if(data.list.length > 0){
-                		self.rNo = self.list[0].rNo;
-                	}
+                	console.log(self.list);
                 }
             }); 
 		},
-		fnRContent : function(rNo){
-			$.pageChange("../review/view.do", {rNo : rNo});
-		},
 		fnWrite : function(){
-			var self = this;
-			$.pageChange("../review/add.do", {userId : self.userId});
+			var self = this;			
+			var param = {userId : self.userId};
+			$.ajax({
+                url : "add.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+					alert("글이 등록되었습니다.");
+					location.href="../review/list.do";
+                }
+            }); 
+		},
 		}
 		
 	}, // methods
