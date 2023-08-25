@@ -21,11 +21,12 @@
 		
 	</select>
 	
+	<!-- 예약 승인 여부 -->
 	<update id="updateOrderSign" parameterType="hashmap">
 		UPDATE T2_ORDER_LIST_TBL
 		SET
 			USE_YNC = #{useYnc}
-		WHERE ORDER_NO = #{orderNo} 
+		WHERE PRODUCT_NO = #{productNo} 
 	</update>
 	
 	

@@ -93,14 +93,11 @@
 				<img :src="item.imgPath" alt="">
 			</div>
 			<div class="right">
-				<div>방번호: {{item.roomNo}}</div>
-				<div>방정보 : {{item.roomName}}</div>
-				<div>가격 : {{item.roomPrice}}</div>
-				<div>할인율 : {{salesList[index]}}%</div>
-				<div>할인된 가격 : {{item.roomPrice * item.roomSales}}원</div>
-				
+				<div>{{item.roomName}}</div>
+				<div>{{item.roomPrice}}원</div>
+				<div>{{salesList[index]}}%</div>
+				<div>{{item.roomPrice * item.roomSales}}원</div>
 				<button @click="fnCart(item)">장바구니</button>					
-				<button @click="">예약하기</button>
 			</div>
 					
 		</div>

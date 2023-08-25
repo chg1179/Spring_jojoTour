@@ -82,8 +82,7 @@
 						<span><button @click="fnChangeY(item, 'Y')">예약 승인</button></span>
 					</td>
 					<td v-else-if="item.useYnc=='Y'">
-						<div v-if="productKind == 'STAY'">체크인</div>
-						<div v-else>예약승인</div>
+						<div>체크인 완료</div>
 						<span><button @click="fnChangeN(item, 'N')">승인 취소</button></span>
 					</td>
 					<td v-else>예약 취소</td>
@@ -91,7 +90,7 @@
 						<div>예약이 취소된 상품입니다.</div>
 					</td>
 					<td v-else-if="item.useYnc == 'Y'"> 
-						<div>승인상태에서는 취소가 불가능합니다.</div>
+						<div>승인상태에서는 예약 취소가 불가능합니다.</div>
 					</td>
 					<td v-else-if="item.useYnc == 'N'">
 						<div><button @click="fnCancel(item, 'C')">예약취소</button></div>
@@ -129,11 +128,10 @@
 				
 				<td v-if="item.useYnc=='N'">
 					<div>승인 대기중</div>
-					<span><button @click="fnChangeY(item, 'Y')">예약 승인</button></span>
+					<span><button @click="fnChangeY(item, 'Y')">사용 승인</button></span>
 				</td>
 				<td v-else-if="item.useYnc=='Y'">
-					<div v-if="productKind == 'STAY'">체크인</div>
-					<div v-else>예약승인</div>
+					<div>사용 승인 완료</div>
 					<span><button @click="fnChangeN(item, 'N')">승인 취소</button></span>
 				</td>
 				<td v-else>예약 취소</td>
@@ -141,7 +139,7 @@
 					<div>예약이 취소된 상품입니다.</div>
 				</td>
 				<td v-else-if="item.useYnc == 'Y'"> 
-					<div>승인상태에서는 취소가 불가능합니다.</div>
+					<div>승인상태에서는 예약 취소가 불가능합니다.</div>
 				</td>
 				<td v-else-if="item.useYnc == 'N'">
 					<div><button @click="fnCancel(item, 'C')">예약취소</button></div>
@@ -173,11 +171,10 @@
 				<td>{{ item.payment }}</td>
 				<td v-if="item.useYnc=='N'">
 					<div>승인 대기중</div>
-					<span><button @click="fnChangeY(item, 'Y')">예약 승인</button></span>
+					<span><button @click="fnChangeY(item, 'Y')">사용 승인</button></span>
 				</td>
 				<td v-else-if="item.useYnc=='Y'">
-					<div v-if="productKind == 'STAY'">체크인</div>
-					<div v-else>예약승인</div>
+					<div>사용 승인 완료</div>
 					<span><button @click="fnChangeN(item, 'N')">승인 취소</button></span>
 				</td>
 				<td v-else>예약 취소</td>
@@ -185,7 +182,7 @@
 					<div>예약이 취소된 상품입니다.</div>
 				</td>
 				<td v-else-if="item.useYnc == 'Y'"> 
-					<div>승인상태에서는 취소가 불가능합니다.</div>
+					<div>승인상태에서는 예약 취소가 불가능합니다.</div>
 				</td>
 				<td v-else-if="item.useYnc == 'N'">
 					<div><button @click="fnCancel(item, 'C')">예약취소</button></div>

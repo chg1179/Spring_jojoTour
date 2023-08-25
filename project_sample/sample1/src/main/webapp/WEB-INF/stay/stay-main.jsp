@@ -34,6 +34,7 @@
 		margin: 0 auto;
 	}
 	
+	/* 베너 스타일 */
 	.banner_box {
 		background-image: url(../img/main/main.jpg);
 		background-repeat: no-repeat;
@@ -83,6 +84,7 @@
 		cursor: pointer;
 	}
 	
+	/* 필터 스타일 */ 
 	.filter-wrap {
 		float: left;
 		display: inline-block;
@@ -92,25 +94,18 @@
 		margin: 0px 30px 0px 30x;
 		padding-bottom: 10px;
 		border: 1px solid #ccc;
+		border-radius: 5px;
 	}
 	
-	.filter-wrap section, .filter-wrap h3 {
+	.filter-wrap , .filter-wrap h3 {
 		margin: 0 0 0 24px;
-		padding: 27px 0 0 0;
+		padding: 20px 0 0 0;
 		border-bottom: none;
+		
 	}
 	
 	.filter-wrap, .list-wrap {
 		box-sizing: border-box;
-	}
-	
-	.filter-wrap .btn-wrap {
-		overflow: hidden;
-		position: relative;
-		top: auto;
-		height: 27px;
-		padding: 0 20px;
-		border-bottom: none;
 	}
 	
 	.filter-wrap strong {
@@ -159,7 +154,22 @@
 	.stay-type {
 		margin-left: 10px;
 	}
+	
+	.btn-wrap button {
+		margin: 20px;
+		padding: 6px;
+	}
+	
+	.service-list {
+		margin-top: 30px;
+		margin-left: 20px;
 
+	}
+	.name-input input {
+		margin: 20px;
+		padding: 6px;
+	}
+	
 </style>
 </head>
 <body>
@@ -176,27 +186,23 @@
 		</div>
 		<div id="content" class="sub-wrap">
 			<div class="filter-wrap">
-				<div>
-					<h3 class="filter-header">필터</h3>
-				</div> 
-
 				<h3>상세조건</h3>
 				<div class="btn-wrap">
 					<span><button @click="fnReset">초기화</button></span> 
 				</div>
 
-				<section>
-					<strong>숙소명</strong>
-					<div>
+				<div class="stay-name">
+					<h3>숙소명</h3>
+					<div class="name-input">
 						<input type="text" v-model="stayKeyword" placeholder="검색 키워드를 입력해주세요" @input="fnSearch">
 					</div>
-				</section>
+				</div>
 
-				<section>
+				<div class="service-list">
 					<div v-for="item in serviceList">
 						<label><input type="checkbox" v-model="selectServiceList" :value="item.serviceNo" @change="fnSearch">{{item.serviceName}}</label>
 					</div>
-				</section>
+				</div>
 			</div>
 			<div class="">
 				<div class="stay-type">
@@ -217,18 +223,17 @@
 								<div class="stay-img">
 									<img :src="item.imgPath" alt="">
 								</div>
-								<div class="stay_txt_box">
+								<div class="txt_box">
 									<p>
 										<a @click="fnDetail(item.stayNo)">{{item.stayName}}</a>
 									</p>
-									<p>{{item.stayKind}}</p>
 									<p>{{item.minPrice}}원</p>
 									<p>{{item.sAddr}}</p>
 									<button @click="fnJjim(item.stayNo)">찜</button>
 								</div>
 							</div>
 						</li>
-						<li v-else-if ="stayKind == item.stayKind" v-for="item in list">
+						<li v-if ="stayKind == item.stayKind" v-for="item in list">
 							<div class="stay-info">
 								<div class="stay-img">
 									<img :src="item.imgPath" alt="">
@@ -237,7 +242,6 @@
 									<p>
 										<a @click="fnDetail(item.stayNo)">{{item.stayName}}</a>
 									</p>
-									<p>{{item.stayKind}}</p>
 									<p>{{item.minPrice}}원</p>
 									<p>{{item.sAddr}}</p>
 									<button @click="fnJjim(item.stayNo)">찜</button>
