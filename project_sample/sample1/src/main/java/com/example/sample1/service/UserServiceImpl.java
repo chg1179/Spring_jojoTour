@@ -163,7 +163,17 @@ public class UserServiceImpl implements UserService{
 		return userMapper.selectUserInfo(map);
 	}
 
+	@Override
+	public int nickNameCnt(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.nickNameCnt(map);
+	}
 
+	@Override
+	public int emailCnt(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.emailCnt(map);
+	}
 
 
 }

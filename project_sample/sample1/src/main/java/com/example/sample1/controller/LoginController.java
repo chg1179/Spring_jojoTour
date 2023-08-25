@@ -120,6 +120,10 @@ public class LoginController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		int cnt = userService.searchUserCnt(map);
 		resultMap.put("cnt", cnt);
+		int nickCnt = userService.nickNameCnt(map);
+		resultMap.put("nickCnt", nickCnt);
+		int emailCnt = userService.emailCnt(map);
+		resultMap.put("emailCnt", emailCnt);
 		return new Gson().toJson(resultMap);
 	}
 	@RequestMapping(value = "/ban.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

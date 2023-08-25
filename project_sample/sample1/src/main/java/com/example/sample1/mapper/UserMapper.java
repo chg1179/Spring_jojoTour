@@ -13,6 +13,10 @@ public interface UserMapper {
 	int insertUser(HashMap<String, Object> map);
 	// 중복 체크
 	int userCnt(HashMap<String, Object> map);
+	// 닉네임 중복 체크
+	int nickNameCnt(HashMap<String, Object> map);
+	// 이메일 중복 체크
+	int emailCnt(HashMap<String, Object> map);
 	
 	User selectUser(HashMap<String, Object> map);
 	

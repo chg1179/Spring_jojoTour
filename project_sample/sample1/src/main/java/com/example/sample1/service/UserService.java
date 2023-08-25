@@ -7,7 +7,13 @@ import com.example.sample1.model.User;
 public interface UserService {
 	int addUser(HashMap<String, Object> map);
 	HashMap<String, Object> userLogin(HashMap<String, Object> map);
+	//아이디 중복 체크
 	int searchUserCnt(HashMap<String, Object> map);
+	// 닉네임 중복 체크
+	int nickNameCnt(HashMap<String, Object> map);
+	// 이메일 중복 체크
+	int emailCnt(HashMap<String, Object> map);
+	
 	int banUser(HashMap<String, Object> map);
 	int resetUser(HashMap<String, Object> map);
 	int joinPoint(HashMap<String, Object> map);

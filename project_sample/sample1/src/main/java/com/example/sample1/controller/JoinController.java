@@ -54,6 +54,8 @@ public class JoinController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		userService.addUser(map);
 		userService.joinPoint(map);
+
+		
 		return new Gson().toJson(resultMap);
 	}
 }

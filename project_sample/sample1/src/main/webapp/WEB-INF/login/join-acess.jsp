@@ -347,18 +347,18 @@
 						<div class="join_acess_img_box">
 							<img src="../img/join/join_up.png" alt="">
 						</div>
-						<button @click="fnAcess">14세 이상 회원가입</button>
+						<button @click="fnAcess('up')">14세 이상 회원가입</button>
 					</div>
 					<div class="join_acess_btn_box">
 						<div class="join_acess_img_box">
 							<img src="../img/join/join_down.png" alt="">
 						</div>
-						<button @click="fnAcess">14세 미만 회원가입</button>
+						<button @click="fnAcess('down')">14세 미만 회원가입</button>
 					</div>
 				</div>
 
 				<div class="join_acess_btn_host" v-else>
-					<button @click="fnAcess">호스트 회원가입</button>
+					<button @click="fnAcess('up')">호스트 회원가입</button>
 				</div>
 
 			</div>
@@ -376,7 +376,7 @@ var app = new Vue({
 		status : "${map.status}"
 	},// data
 	methods : {
-		fnAcess : function(){
+		fnAcess : function(upAndDown){
 			var self = this;
 			console.log(self.acessRadio[0]);
 			if(self.acess[0] == null){
@@ -389,7 +389,7 @@ var app = new Vue({
 				alert("이메일·문자 수신 동의를 선택해주세요.");
 				return;
 			}else{
-				$.pageChange("../join.do", {status : self.status});
+				$.pageChange("../join.do", {status : self.status, upAndDown : upAndDown});
 			}
 
 		}
