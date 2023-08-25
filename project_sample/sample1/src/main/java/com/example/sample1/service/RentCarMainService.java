@@ -21,4 +21,6 @@ public interface RentCarMainService {
 	int delJjim(HashMap<String, Object> map);
 	//렌터카 인기순
 	HashMap<String, Object> searchFavoriteList(HashMap<String, Object> map);
+	//렌터카 장바구니
+	int addRentCart(HashMap<String, Object> map);
 }

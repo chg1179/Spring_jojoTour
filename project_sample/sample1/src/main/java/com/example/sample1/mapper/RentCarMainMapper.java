@@ -33,4 +33,6 @@ public interface RentCarMainMapper {
 	//렌터카 인기순
 	List<RentCar> selectFavoriteList(HashMap<String, Object> map);
 	int selectFavoriteCnt(HashMap<String, Object> map);
+	//렌터카 장바구니
+	int insertRentCart(HashMap<String, Object> map);
 }

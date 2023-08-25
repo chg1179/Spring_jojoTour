@@ -78,4 +78,10 @@ public class RentCarMainServiceImpl implements RentCarMainService{
 		return resultMap;
 	}
 
+	@Override
+	public int addRentCart(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return rentCarMainMapper.insertRentCart(map);
+	}
+
 }

@@ -42,7 +42,7 @@
 	<select id="selectCarImgList" parameterType="hashmap" resultType="com.example.sample1.model.RentCarImg">
 		SELECT *
 		FROM T2_RENT_IMG_TBL
-		WHERE RENT_NO = #{rentNo} AND MAIN_YN = 'Y' AND R_DELYN = 'N'
+		WHERE RENT_NO = #{rentNo} AND MAIN_YN = 'Y' AND IMG_DELYN = 'N'
 	</select>
 	<select id="selectCarSearchList" parameterType="hashmap" resultType="com.example.sample1.model.RentCar">
 		SELECT *
@@ -137,4 +137,20 @@
 			ORDER BY RENT_PRICE-RENT_PRICE*(100-(RENT_SALES*100))/100 ASC
 		</if>
 	</select>
+	
+	<insert id="insertRentCart" parameterType="hashmap">
+	    INSERT INTO T2_CART_TBL(
+	        U_ID, PRODUCT_KIND, PRODUCT_NO, PEOPLE, S_RESERVE_DATE, L_RESERVE_DATE
+	    )
+	    SELECT
+	        #{uId}, 'RENT', #{rentNo}, '1', #{checkInDate}, #{checkOutDate}
+	    FROM T2_CART_TBL
+	    WHERE NOT EXISTS (
+	        SELECT 1
+	        FROM T2_CART_TBL
+	        WHERE PRODUCT_KIND = 'RENT'
+	          AND PRODUCT_NO = #{rentNo}
+	    )
+	    LIMIT 1
+	</insert>
 </mapper>

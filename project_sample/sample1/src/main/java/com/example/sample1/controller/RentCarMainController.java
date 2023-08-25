@@ -135,5 +135,14 @@ public class RentCarMainController {
 
 		return new Gson().toJson(resultMap);
 	}
+	
+	//렌트카 카트 추가
+	@RequestMapping(value = "/rentcar/addRentCar.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String addRentCar(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		rentCarMainService.addRentCart(map);
+		return new Gson().toJson(resultMap);
+	}
 
 }
