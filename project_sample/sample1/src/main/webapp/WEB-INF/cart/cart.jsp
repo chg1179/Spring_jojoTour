@@ -113,20 +113,34 @@
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<h1
-			style="color: rgb(78, 79, 81); text-align: center; margin-top: 30px; margin-bottom: 4px;">장바구니</h1>
+		<h1 style="color: #999; text-align: center; margin-top: 30px; margin-bottom: 20px;">장바구니</h1>
 
 		<div id="tbl">
-			<table style="margin: 30px auto;" id="tbl1">
+		
+			<table id="tbl1" v-if=" roomlist.length === 0" style="margin-bottom : 30px;">
+				<thead>
+					<tr>
+						<td style="text-align: left; padding-left: 30px; font-size: 20px; color: #999; border-bottom: 2px solid #999;">
+							숙박
+						</td>
+					</tr>
+					<tr>
+						<th style="width: 400px;">장바구니에 담긴 숙박 상품이 없습니다.</th>
+					</tr>
+				</thead>
+			</table>
+			
+			<table v-else style="margin: 30px auto;" id="tbl1">
 				<thead>
 					<tr>
 						<td colspan="6"
-							style="text-align: left; padding-left: 30px; font-size: 20px; color: rgb(78, 79, 81); border-bottom: 2px solid #ccc;">
+							style="text-align: left; padding-left: 30px; font-size: 20px; color: #999; border-bottom: 2px solid #999;">
 							숙소
 						</td>
 					</tr>
 					<tr>
 						<th style="width: 400px;" colspan="3" style="width: 40px;">상품정보</th>
+						<th>인원</th>
 						<th>선택</th>
 						<th>결제금액</th>
 					</tr>
@@ -136,7 +150,7 @@
 						<td>
 							<input type="checkbox" name="room" v-model="selectRoom" :value="item">
 						</td>
-						<td style="border-right: 1px solid #ccc; width : 350px;">
+						<td style="border-right: 1px solid #999; width : 350px;">
 							<div style="font-weight: bold; margin: 5px;">{{item.stayName}}</div>
 							<div>{{item.roomName}}</div>
 						</td>
@@ -146,6 +160,9 @@
 						<td style="width : 400px; margin: 5px;" v-else>
 							<div style=" margin: 5px;">입실 : {{item.sReserveDate}}</div> 
 							<div>퇴실 : {{item.lReserveDate}}</div> 
+						</td>
+						<td>
+							{{item.peopleMax}}명
 						</td>
 						<td><input type="button" value="삭 제" id="delBtn" @click="fnRemove(item)"></td>
 						<td v-if="dateDifference(item.sReserveDate, item.lReserveDate) == 0 && item.roomSales == 1">
@@ -167,11 +184,25 @@
 				</tbody>
 			</table >
 			
-			<table style="margin: 30px auto;" id="tbl1">
+			
+			<table id="tbl1" v-if=" rentlist.length === 0" style="margin-bottom : 30px;">
+				<thead>
+					<tr>
+						<td style="text-align: left; padding-left: 30px; font-size: 20px; color: #999; border-bottom: 2px solid #999;">
+							렌트카
+						</td>
+					</tr>
+					<tr>
+						<th style="width: 400px;">장바구니에 담긴 렌트카 상품이 없습니다.</th>
+					</tr>
+				</thead>
+			</table>
+			
+			<table v-else style="margin: 30px auto;" id="tbl1">
 				<thead>
 					<tr>
 						<td colspan="6"
-							style="text-align: left; padding-left: 30px; font-size: 20px; color: rgb(78, 79, 81); border-bottom: 2px solid #ccc;">
+							style="text-align: left; padding-left: 30px; font-size: 20px; color: #999; border-bottom: 2px solid #999;">
 							렌트카
 						</td>
 					</tr>
@@ -186,7 +217,7 @@
 						<td>
 							<input type="checkbox" name="rent" v-model="selectRent" :value="item">
 						</td>
-						<td style="border-right: 1px solid #ccc; width : 350px;">
+						<td style="border-right: 1px solid #999; width : 350px;">
 							<div style="font-weight: bold; margin: 5px;">{{item.rentName}}</div>
 							<div>{{item.rentKind}}</div>
 						</td>
@@ -217,16 +248,30 @@
 				</tbody>
 			</table >
 			
-			<table style="margin: 30px auto;" id="tbl1">
+			<table id="tbl1" v-if=" leisurelist.length === 0">
+				<thead>
+					<tr>
+						<td style="text-align: left; padding-left: 30px; font-size: 20px; color: #999; border-bottom: 2px solid #999;">
+							레저
+						</td>
+					</tr>
+					<tr>
+						<th style="width: 400px;">장바구니에 담긴 레저 상품이 없습니다.</th>
+					</tr>
+				</thead>
+			</table>
+			
+			<table v-else style="margin: 30px auto;" id="tbl1">
 				<thead>
 					<tr>
 						<td colspan="6"
-							style="text-align: left; padding-left: 30px; font-size: 20px; color: rgb(78, 79, 81); border-bottom: 2px solid #ccc;">
+							style="text-align: left; padding-left: 30px; font-size: 20px; color: #999; border-bottom: 2px solid #999;">
 							레저
 						</td>
 					</tr>
 					<tr>
 						<th style="width: 400px;" colspan="2">상품정보</th>
+						<th>인원</th>
 						<th>선택</th>
 						<th>결제금액</th>
 					</tr>
@@ -236,27 +281,27 @@
 						<td>
 							<input type="checkbox" name="leisure" v-model="selectLeisure" :value="item">
 						</td>
-						<td style="border-right: 1px solid #ccc; width : 350px;">
+						<td style="border-right: 1px solid #999; width : 350px;">
 							<div style="font-weight: bold; margin: 5px;">{{item.leisureName}}</div>
 							<div>{{item.leisureKind}}</div>
 						</td>
 						<td style="width : 400px;">
-							<input type="number" min="1" max="10" style="width: 80px;" v-model="quantity">
+							<input type="number" min="1" max="10" style="width: 80px;" v-model="item.quantity">
 						</td>
 						<td><input type="button" value="삭 제" id="delBtn" @click="fnRemove(item)"></td>
 						
-						<td v-if="leisureOriginalPrice() == 0 && item.leisureSales == 1">
+						<td v-if="leisureOriginalPrice(item) == 0 && item.leisureSales == 1">
 							<div>{{item.leisurePrice.toLocaleString() }}원</div>
 						</td>
-						<td v-else-if="leisureOriginalPrice() == 0 && item.leisureSales != 1">
+						<td v-else-if="leisureOriginalPrice(item) == 0 && item.leisureSales != 1">
 							<div id="deline">{{item.leisurePrice.toLocaleString() }}원</div>
 							<div style="font-weight: bold; font-size: 16px;">{{( item.leisurePrice*item.leisureSales).toLocaleString() }}원</div>
 						</td>
-						<td v-else-if="leisureOriginalPrice() != 0 && item.leisureSales == 1">
-							<div>{{leisureOriginalPrice() | numberWithCommas }}원</div>
+						<td v-else-if="leisureOriginalPrice(item) != 0 && item.leisureSales == 1">
+							<div>{{leisureOriginalPrice(item) | numberWithCommas }}원</div>
 						</td>
 						<td v-else>
-							<div id="deline">{{leisureOriginalPrice() }}원</div>
+							<div id="deline">{{leisureOriginalPrice(item) | numberWithCommas }}원</div>
 							<div style="font-weight: bold; font-size: 16px;">{{ leisureTotalPrice() | numberWithCommas }}원</div>
 						</td>
 					</tr>
@@ -288,8 +333,7 @@ var app = new Vue({
 		rentlist : [],
 		leisurelist : [],
 		item : [],		
-		uId : "${sessionId}",
-		quantity : 1
+		uId : "${sessionId}"
 	},// data
 	methods : {
 		fnRoomList : function(){
@@ -430,9 +474,9 @@ var app = new Vue({
                     if(daysDiff == 0 && item.leisureSales == 1){
                     	lprice = item.leisurePrice * this.quantity;
                     }else if(daysDiff == 0 && item.leisureSales != 1){
-                    	lprice = item.leisurePrice * item.leisureSales * this.quantity;
+                    	lprice = item.leisurePrice * item.leisureSales * item.quantity;
                     }else{
-                    	lprice = item.leisurePrice * item.leisureSales * this.quantity;
+                    	lprice = item.leisurePrice * item.leisureSales * item.quantity;
                     }
                     this.selectLeisure[index].quantity = this.quantity;
                     totalPrice = totalPrice + lprice;
@@ -471,9 +515,9 @@ var app = new Vue({
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var eprice =  0;
                     if(daysDiff == 0){
-                    	eprice = parseInt(item.leisurePrice) * this.quantity;
+                    	eprice = parseInt(item.leisurePrice) * item.quantity;
                     }else{
-                    	eprice = parseInt(item.leisurePrice) * this.quantity;
+                    	eprice = parseInt(item.leisurePrice) * item.quantity;
                     }
                     originalPrice = originalPrice + eprice;
                 }
@@ -489,9 +533,9 @@ var app = new Vue({
                     const daysDiff = this.dateDifference(item.sReserveDate, item.lReserveDate);
                     var leisureprice =  0;
                     if(daysDiff == 0){
-                    	leisureprice = parseInt(item.leisurePrice) * this.quantity;
+                    	leisureprice = parseInt(item.leisurePrice) * item.quantity;
                     }else{
-                    	leisureprice = parseInt(item.leisurePrice) * this.quantity;
+                    	leisureprice = parseInt(item.leisurePrice) * item.quantity;
                     }
                     leisureOriginalPrice = leisureprice;
                 }
@@ -509,9 +553,9 @@ var app = new Vue({
                     if(daysDiff == 0 && item.leisureSales == 1){
                     	leisureprice = item.leisurePrice * this.quantity;
                     }else if(daysDiff == 0 && item.leisureSales != 1){
-                    	leisureprice = item.leisurePrice * item.leisureSales * this.quantity;
+                    	leisureprice = item.leisurePrice * item.leisureSales * item.quantity;
                     }else{
-                    	leisureprice = item.leisurePrice * item.leisureSales * this.quantity;
+                    	leisureprice = item.leisurePrice * item.leisureSales * item.quantity;
                     }
                     leisureTotalPrice = leisureTotalPrice + leisureprice;
                 }
