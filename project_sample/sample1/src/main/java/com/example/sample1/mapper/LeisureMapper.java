@@ -46,4 +46,7 @@ public interface LeisureMapper {
 	
 	//레저 이미지 리스트
 	List<LeisureImg> selectLeisureImgList(HashMap<String, Object> map);
+	
+	//레저 카트 추가
+	int leisureAddCart(HashMap<String, Object> map);
 }

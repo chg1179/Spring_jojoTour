@@ -37,4 +37,7 @@ public interface LeisureService {
 	
 	// 레저 이미지 출력
 	List<LeisureImg> searchLeisureImgList(HashMap<String, Object> map);
+	
+	//레저 카트 추가
+	int leisureCartAdd(HashMap<String, Object> map);
 }

@@ -259,4 +259,14 @@ public class LeisureController {
 		resultMap.put("leisureImgList", list);
 		return new Gson().toJson(resultMap);
 	}
+	
+	//레저 카트 추가
+	@RequestMapping(value = "/leisureAddCart.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String leisureCart(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		leisureService.leisureCartAdd(map);
+		return new Gson().toJson(resultMap);
+	}
+	
 }

@@ -95,4 +95,11 @@ public class LeisureServiceImpl implements LeisureService{
 		// TODO Auto-generated method stub
 		return leisureMapper.selectLeisureImgList(map);
 	}
+
+	//레저 카트 추가
+	@Override
+	public int leisureCartAdd(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return leisureMapper.leisureAddCart(map);
+	}
 }

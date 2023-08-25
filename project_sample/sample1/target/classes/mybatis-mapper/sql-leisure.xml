@@ -111,4 +111,13 @@
 		FROM T2_LEISURE_IMG_TBL
 		WHERE LEISURE_NO = #{leisureNo}
 	</select>
+	
+	<insert id="leisureAddCart" parameterType="hashmap">
+		INSERT INTO T2_CART_TBL(
+			U_ID, PRODUCT_KIND, PRODUCT_NO, PEOPLE, S_RESERVE_DATE, L_RESERVE_DATE
+		)
+		VALUES (
+			#{uId}, 'LESIURE' , #{leisureNo}, '1' , now(), now()
+		)
+	</insert>
 </mapper>
