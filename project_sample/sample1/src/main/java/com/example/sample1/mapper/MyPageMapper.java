@@ -35,4 +35,8 @@ public interface MyPageMapper {
 	// 예약 취소
 	int selectBookingCancel(HashMap<String, Object> map);
 	
+	//리뷰
+	List<MyPage> selectReview(HashMap<String, Object> map);
+	int selectReviewCnt(HashMap<String, Object> map);
+	
 }

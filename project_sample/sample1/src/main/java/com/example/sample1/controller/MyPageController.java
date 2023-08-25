@@ -172,4 +172,40 @@ public class MyPageController {
 		myPageService.searchBookingCancel(map);
 		return new Gson().toJson(resultMap);
 	}
+	@RequestMapping(value = "/my/userReview.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String review(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+
+		List<MyPage> list = myPageService.searchReview(map);
+		resultMap.put("list", list);
+		int reviewCnt = myPageService.searchReviewCnt(map);
+		resultMap.put("reviewCnt", reviewCnt);
+		return new Gson().toJson(resultMap);
+	}
+
+	@RequestMapping(value = "/my/r_remove.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String remove(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		myPageService.removeReview(map);
+		return new Gson().toJson(resultMap);
+	}
+
+	@RequestMapping(value = "/my/review/reviewInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String reviewInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		MyPage info = myPageService.searchReviewInfo(map);
+		resultMap.put("info", info);
+		return new Gson().toJson(resultMap);
+	}
+
+	@RequestMapping(value = "/my/review/reviewEdit.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String reviewEdit(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		myPageService.updateReview(map);
+		return new Gson().toJson(resultMap);
+	}
 }

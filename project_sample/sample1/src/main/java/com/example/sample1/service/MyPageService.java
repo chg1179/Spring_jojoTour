@@ -34,4 +34,7 @@ public interface MyPageService {
 	
 	//예약취소
 	int searchBookingCancel(HashMap<String, Object> map);
+	//리뷰
+	List<MyPage> searchReview(HashMap<String, Object> map);
+	int searchReviewCnt(HashMap<String, Object> map);
 }

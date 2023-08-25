@@ -114,6 +114,17 @@ public class MyPageServiceImpl implements MyPageService{
 		// TODO Auto-generated method stub
 		return myPageMapper.selectBookingCancel(map);
 	}
+	@Override
+	public List<MyPage> searchReview(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.selectReview(map);
+	}
+
+	@Override
+	public int searchReviewCnt(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.selectReviewCnt(map);
+	}
 	
 	
 
