@@ -93,7 +93,7 @@
 						<i class="fa-solid fa-heart fa-bounce fa-2x " style="color: #ff0000;"></i>찜해제
 					</a>
 				</span>
-				<span><input type="button" value="장바구니" class="btn" @click="fnCart"></span>
+				<span><input type="button" value="장바구니" class="btn" @click="fnCart(info)"></span>
 			</span>	
 		</div>
 	</div>
@@ -159,17 +159,33 @@ var app = new Vue({
             });
 
 		},
-		fnCart : function(){
+		fnCart : function(info){
 			var self = this;
 			if(self.uId == ""){
 				alert("로그인 후 이용 가능한 서비스입니다.");
 				return;
 			}
+			
+			var found = self.list.some(function (item) {
+		        return item.leisureNo = self.leisureNo;
+		    });
+		
+			if(found){
+				if(!confirm("이미 장바구니에 담긴 상품입니다. 장바구니에서 확인하시겠습니까?")){
+					alert("취소됨")
+					return;
+				}else{
+					window.location.href = "/cart.do";
+		            return;
+				}
+			}
+		  
 			if(!confirm("장바구니에 담으시겠습니까?")){
 				alert("취소되었습니다.");
 				location.reload();
 				return;
 			}
+			
 			var param = {leisureNo : self.leisureNo, uId: self.uId}
 			$.ajax({
                 url : "/leisureAddCart.dox",

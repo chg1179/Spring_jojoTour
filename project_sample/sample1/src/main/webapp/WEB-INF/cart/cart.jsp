@@ -365,6 +365,9 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	self.leisurelist = data.list;
+                	for (const item of self.leisurelist) {
+                        item.people = 1;
+                    }
                 }
             }); 
 		},
@@ -471,7 +474,7 @@ var app = new Vue({
                     }else{
                     	lprice = item.leisurePrice * item.leisureSales * item.people;
                     }
-                    this.selectLeisure[index].quantity = this.quantity;
+                    this.selectLeisure[index].people = this.people;
                     totalPrice = totalPrice + lprice;
                 }
                 
@@ -530,6 +533,7 @@ var app = new Vue({
 		self.fnRoomList();
 		self.fnRentList();
 		self.fnLeisureList();
+		
 	}// created
 });
 </script>
