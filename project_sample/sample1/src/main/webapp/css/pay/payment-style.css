@@ -40,10 +40,10 @@
 		margin: 30px 0px;
 	}
 	.redTxt {
-		color: #FA163F;
+		color: #213555;
 	}
 	.bar {
-		color: #FA163F;
+		color: #213555;
 	}
 	table {
 		border : 1px solid black;
@@ -84,5 +84,5 @@
 	    border-radius: 4px;
 	}
 	input[type=radio] {
-		accent-color: #FA163F;
+		accent-color: #213555;
 	}

@@ -165,9 +165,9 @@
 					<div>
 						<div>연락처</div>
 						<div>
-							<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone1"></span>-
-							<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone2"></span>-
-							<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone3"></span>
+							<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone1" maxlength="3"></span>-
+							<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone2" maxlength="4"></span>-
+							<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone3" maxlength="4"></span>
 						</div>
 					</div>
 					<div>
@@ -190,10 +190,10 @@
 					</div>
 					<div>
 						<div>사용</div>
-						<div class="wrap">
-							<input type="text" v-model="usePoint" @input="pointOverCheck" placeholder="0">
+						<div>
+							<span class="wrapPhone"><input type="text" v-model="usePoint" @input="pointOverCheck" placeholder="0"></span>
+							<input type="button" class="btn" @click="allPoint" value="전액사용">
 						</div>
-						<input type="button" class="btn" @click="allPoint" value="전액사용">
 					</div>
 				</div>
 			</div>
@@ -235,10 +235,10 @@ var app = new Vue({
 			phone2 : "",
 			phone3 : ""
 		},
-		usePoint : "", //사용자가 결제 시 사용할 포인트
-		request : "", //요청사항 작성
-		clauseCheck : [], //약관을 모두 동의했는지 확인
-		allCheck : false
+		usePoint : "", // 사용자가 결제 시 사용할 포인트
+		request : "", // 요청사항 작성
+		clauseCheck : [], // 약관을 모두 동의했는지 확인
+		allCheck : false // 약관 전체 선택
 	},// data
 	methods : {
 		//장바구니에서 결제할 제품을 넣는 코드
@@ -317,9 +317,17 @@ var app = new Vue({
 		allPoint : function(){
 			this.usePoint = this.userInfo.point;
 		},
+        // 약관 동의 전체 선택
+        toggleAllCheck: function() {
+		    if (this.allCheck) {
+		        this.clauseCheck = []; // 모든 약관 체크박스를 해제
+		    } else {
+		        this.clauseCheck = [1, 2, 3]; // 모든 약관 체크박스를 선택
+		    }
+		},
         fnRequestPay : function(){
         	var self = this;
-        	var orderNo = 'jojo_'+new Date().getFullYear()+new Date().getMonth()+new Date().getDate()+new Date().getTime();
+        	var orderNo = 'jojo_'+new Date().getFullYear()+(new Date().getMonth()+1)+new Date().getDate()+"_"+new Date().getTime();
         	console.log(orderNo);
         	if(self.userInfo.uName == ""){
 				alert("예약자 이름을 입력해주세요.");
@@ -333,22 +341,22 @@ var app = new Vue({
         	console.log(self.userInfo.phone);
         	
         	if(self.userInfo.phone.length < 10){
-				alert("핸드폰 번호를 확인해주세요.");
+				alert("연락처 양식을 확인해주세요.");
 				return;
 			}
         	
         	var regex = new RegExp(/^[0-9]+$/);
 			if(!regex.test(self.userInfo.phone)){
-				alert("핸드폰 번호는 숫자만 입력해주세요.");
+				alert("연락처는 숫자만 입력해주세요.");
 				return;
 			}
 			
 			if(self.userInfo.email == ""){
-				alert("핸드폰 번호를 확인해주세요.");
+				alert("이메일을 입력해주세요.");
 				return;
 			}
 			
-			regex = new RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}');
+			regex = new RegExp(/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/);
 			if(!regex.test(self.userInfo.email)){
 				alert("이메일 양식을 확인해주세요.");
 				return;
@@ -388,22 +396,35 @@ var app = new Vue({
 			}, function (rsp) { // callback
 					if (rsp.success) {
                 		alert("결제 성공");
-                		fnOrder();
-                		location.href="/my/order.do"
+                		self.fnOrder(orderNo);
 					} else {
 						//테스트용
                     	alert("결제 성공");
-                    	location.href="/my/order.do"
+                    	self.fnOrder(orderNo);
                     }
 			});
         },
-        // 약관 동의 전체 선택
-        toggleAllCheck: function() {
-		    if (this.allCheck) {
-		        this.clauseCheck = []; // 모든 약관 체크박스를 해제
-		    } else {
-		        this.clauseCheck = [1, 2, 3]; // 모든 약관 체크박스를 선택
-		    }
+        // 주문 내역 추가(insert), 포인트 사용, 장바구니 제거
+        fnOrder : function(orderNo){
+			var self = this;
+			var param = {
+					orderNo : orderNo,
+					uId : self.uId, 
+					usePoint : self.usePoint,
+					phone :self.userInfo.phone,
+					email :self.userInfo.email,
+					request : self.request
+				};
+			
+			$.ajax({
+                url : "addOrder.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) {
+                	location.href="/my/order.do";
+                }
+            });
 		}
 	}, // methods
 	created : function() {
@@ -411,7 +432,7 @@ var app = new Vue({
 		self.fnGetProductList(); //컴포넌트 생성 시 세션 데이터 가져오기
 		self.fnGetUserInfo();
 	}, // created
-	// productList 변경 감지 후 리스트 분류
+	// productList 변경 감지 후 리스트 분류. 값 재할당 X
 	computed: {
 	    roomList: function() {
 	        return this.productList.filter(product => product.productKind === "STAY");

@@ -4,24 +4,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.sample1.model.ProductData;
+import com.example.sample1.service.OrderService;
+import com.google.gson.Gson;
 
 import ch.qos.logback.core.model.Model;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class PayController {
 	
-	//@Autowired
-	//PayService payService;
+	@Autowired
+	OrderService orderService;
 	
 	//@Autowired
 	//HttpSession session;
@@ -45,9 +50,20 @@ public class PayController {
 
 	    HttpSession session = request.getSession();
 	    session.setAttribute("productList", productDataList);
-
 	    responseMap.put("redirectUrl", "/payment.do");
 
 	    return ResponseEntity.ok(responseMap);
+	}
+	
+	@RequestMapping(value = "/addOrder.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String addOrder(Model model, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception {
+	    HashMap<String, Object> resultMap = new HashMap<String, Object>();
+
+	    HttpSession session = request.getSession();
+	    List<Map<String, String>> productList = (List<Map<String, String>>) session.getAttribute("productList");
+
+		orderService.addOrder(map, productList);
+		return new Gson().toJson(resultMap);
 	}
 }

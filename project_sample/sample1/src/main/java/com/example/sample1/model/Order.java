@@ -10,7 +10,7 @@ public class Order {
 	private int people;
 	
 	// order list
-	private int orderNo;
+	private String orderNo;
 	private String productKind;
 	private int productNo;
 	private String paymentDate;

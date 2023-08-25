@@ -2,7 +2,7 @@ package com.example.sample1.model;
 
 
 public class MyPage {
-	private int orderNo;
+	private String orderNo;
 	private String uId;
 	private String paymentDate;
 	private String productKind;
@@ -42,10 +42,10 @@ public class MyPage {
 	private String leisurePrice;
 	private String leisureSales;
 	
-	public int getOrderNo() {
+	public String getOrderNo() {
 		return orderNo;
 	}
-	public void setOrderNo(int orderNo) {
+	public void setOrderNo(String orderNo) {
 		this.orderNo = orderNo;
 	}
 	public String getuId() {

@@ -1,5 +1,5 @@
 	input[type=radio] {
-		accent-color: #FA163F;
+		accent-color: #213555;
 	}
 	.btn {
 		width: 100px;
@@ -17,5 +17,5 @@
 		
 	.btn:hover{
 		color: white;
-		background-color: #FA163F;
+		background-color: #213555;
 	}

@@ -28,4 +28,28 @@
 		WHERE ORDER_NO = #{orderNo} 
 	</update>
 	
+	
+	<!-- 제품 주문 쿼리 -->
+	<insert id="insertOrder" parameterType="hashmap">
+		INSERT INTO T2_ORDER_TBL VALUES
+		(#{orderNo}, #{uId}, #{phone}, #{email}, now(), #{usePoint})
+	</insert>
+	
+	<insert id="insertOrderProduct" parameterType="hashmap">
+		INSERT INTO T2_ORDER_LIST_TBL VALUES
+		(#{orderNo}, #{productKind}, #{productNo}, #{people}
+			, #{sReserveDate} ,#{lReserveDate}, 'N', #{payment}, #{request})
+	</insert>
+	
+	<update id="usePoint" parameterType="hashmap">
+		UPDATE T2_USER_POINT_TBL
+		SET
+			POINT = POINT - #{userPoint}
+		WHERE U_ID = #{uId}
+	</update>
+
+	<delete id="deleteCartList" parameterType="hashmap">
+		DELETE FROM T2_CART_TBL
+		WHERE U_ID = #{uId} AND PRODUCT_KIND = #{productKind}  AND PRODUCT_NO = #{productNo}
+	</delete>
 </mapper>
