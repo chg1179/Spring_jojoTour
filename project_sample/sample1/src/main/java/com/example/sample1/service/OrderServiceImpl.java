@@ -48,10 +48,10 @@ public class OrderServiceImpl implements OrderService {
             // 분류별 인원 수 컬럼을 구분하여 동일한 이름으로 통일
             if(productKind.equals("STAY")){
             	map.put("payment", productData.get("sprice")); // 총 금액
-            	map.put("people", productData.get("peopleMax"));
+            	map.put("people", productData.get("roomDaysDiff"));
             } else if(productKind.equals("RENT")){
             	map.put("payment", productData.get("rprice"));
-            	map.put("people", productData.get("peopleMax"));
+            	map.put("people", productData.get("rentDaysDiff"));
             } else if(productKind.equals("LEISURE")) {
             	int leisurePrice = Integer.parseInt(productData.get("leisurePrice"));
             	double leisureSales = Double.parseDouble(productData.get("leisureSales"));

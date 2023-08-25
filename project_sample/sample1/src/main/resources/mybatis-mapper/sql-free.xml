@@ -21,7 +21,7 @@
       ) C ON  F.FREE_NO = C.FREE_NO
       WHERE 1=1
       <if test="search != '' and search != null"> 
-      AND (FREE_TITLE LIKE CONCAT('%',               #{search},'%')
+      AND (FREE_TITLE LIKE CONCAT('%',#{search},'%')
             OR U_ID LIKE CONCAT('%',#{search},'%'))
       </if>
       ORDER BY F.FREE_NO DESC
@@ -115,16 +115,19 @@
 			WHERE FREE_NO = #{freeNo}
 		</update>
 		
-		<select id="selectBackTitle" parameterType="hashmap">
-			SELECT MIN(FREE_NO)
-			   FROM T2_FREE_TBL
-			   WHERE FREE_NO &lt; #{freeNo}
-		</select>
-		
-		<select id="selectNextTitle" parameterType="hashmap">
-			SELECT MAX(FREE_NO)
-			   FROM T2_FREE_TBL
-			   WHERE FREE_NO &lt; #{freeNo}
+		<select id="selectNextTitle" parameterType="hashmap" resultType="com.example.sample1.model.Free">
+			SELECT FREE_NO, FREE_TITLE, F_WRITE_TIME
+			FROM T2_FREE_TBL
+			WHERE
+			<if test='search == "UP"'> 
+				FREE_NO > #{freeNo}
+				ORDER BY FREE_NO ASC
+			</if>
+			<if test='search == "DOWN"'>
+				<![CDATA[ FREE_NO < #{freeNo} ]]>
+				ORDER BY FREE_NO DESC
+			</if>
+			LIMIT 1
 		</select>
 
 </mapper>

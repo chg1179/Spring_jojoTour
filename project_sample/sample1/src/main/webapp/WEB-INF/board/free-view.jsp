@@ -84,53 +84,44 @@
 				</div>
 
 			<div class="page_move">
-				<ul class="page_move">
-				    <li>
-				    <span @click="fnBackTitle">
-				        <span class="page_move_btn">
-				            <a href="">
-				                <i class="fa-solid fa-sort-up"></i>이전글
-				            </a>    
-				        </span>
-				        <p class="notice_title">
-				            <span>
-				                <a href="">
-				                    [자유]
-				                </a>
-				            </span>
-				            <a href="">
-				                {{back.backFreeContnet}}
-				            </a>
-				        </p>
-				        </span>
-				        <ul class="page_move_info">
-				            <li><i class="fas fa-light fa-clock"></i><span>{{back.fWriteTime}}</span></li>
-				        </ul>
-				    </li>
-				    <li>
-				    <span @click="fnNextTitle">
-				        <span class="page_move_btn">
-				            <a href="">
-				                <i class="fa-solid fa-sort-down"></i>다음글
-				            </a>
-				        </span>
-				        <p class="notice_title">
-				            <span>
-				                <a href="">
-				                    [자유]
-				                </a>
-				            </span>
-				            <span>{{next.nextFreeContnet}}</span>
-				            <em class="reply_numb"><a href=""></a></em>
-				        </p>
-				      </span>
-				        
-				        <ul class="page_move_info">
-				            <li><i class="fas fa-light fa-clock"></i><span>{{next.fWriteTime}}</span></li>
-				        </ul>
-				    </li>
-				</ul>
-				</div>	 
+			    <ul class="page_move">
+			        <li v-if="upInfo != null">
+			            <span @click="fnNextTitle">
+			                <span class="page_move_btn">
+			                    <a href="javascript:;">
+			                        <i class="fa-solid fa-sort-up"></i>다음글
+			                    </a>
+			                </span>
+			                <p class="notice_title">
+			                    <a href="javascript:;">
+			                        {{upInfo.freeTitle}}
+			                    </a>
+			                </p>
+			            </span>
+			            <ul class="page_move_info">
+			                <li><i class="fas fa-light fa-clock"></i><span>{{upInfo.fWriteTime}}</span></li>
+			            </ul>
+			        </li>
+			        <li v-if="downInfo != null">
+			            <span @click="fnBackTitle">
+			                <span class="page_move_btn">
+			                    <a href="javascript:;">
+			                        <i class="fa-solid fa-sort-down"></i>이전글
+			                    </a>
+			                </span>
+			                <p class="notice_title">
+			                    <a href="javascript:;">
+			                        {{downInfo.freeTitle}}
+			                    </a>
+			                    <em class="reply_numb"><a href=""></a></em>
+			                </p>
+			            </span>
+			            <ul class="page_move_info">
+			                <li><i class="fas fa-light fa-clock"></i><span>{{downInfo.fWriteTime}}</span></li>
+			            </ul>
+			        </li>
+			    </ul>
+			</div>
 
 			</div>
 		</div>
@@ -141,7 +132,9 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		info : {},
+		info : {},	//현재글
+		upInfo : {}, // 다음글
+		downInfo : {}, //이전글
 		freeNo : "${map.freeNo}",
 		status : "${sessionStatus}",
 		commentList :[],
@@ -162,6 +155,8 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	self.info = data.info;
+                	self.upInfo = data.upBoard;
+                	self.downInfo = data.downBoard;
                 	self.commentList = data.commentList;
                 }
             }); 
@@ -232,6 +227,10 @@ var app = new Vue({
 	         
 	         fnReport : function(){
 				var self = this;
+				var self = this;
+	        	if(!confirm("해당 게시글을 신고하시겠습니까?")){
+	        		return;
+	        	}
 				var param = {freeNo : self.freeNo};
 				$.ajax({
 	                url : "addReport.dox",    
@@ -259,15 +258,16 @@ var app = new Vue({
 	                }
 	            }); 
 			},
-			fnBackTitle:function(freeNo){
-				var self = this;
-				$.pageChange("view.do", {freeNo : self.freeNo});
+			//이전글 로드
+			fnBackTitle: function() {
+			    var self = this;
+			    $.pageChange("view.do", {freeNo : self.downInfo.freeNo});
 			},
-			fnNextTitle:function(freeNo){
-				var self = this;
-				$.pageChange("view.do", {freeNo : self.freeNo});
+			//다음글 로드
+			fnNextTitle: function() {
+			    var self = this;
+			    $.pageChange("view.do", {freeNo : self.upInfo.freeNo});
 			}
-
 	}, // methods
 	created : function() {
 		var self = this;

@@ -39,7 +39,5 @@ public interface FreeMapper {
 	
 	int updateRecommend(HashMap<String, Object> map);
 	
-	int selectBackTitle(HashMap<String, Object> paramMap);
-	
-	int selectNextTitle(HashMap<String, Object> paramMap);
+	Free selectNextTitle(HashMap<String, Object> paramMap);
 }

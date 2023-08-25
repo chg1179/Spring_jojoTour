@@ -30,13 +30,19 @@ public class FreeServiceImpl implements FreeService{
 	public HashMap<String, Object> searchFreeInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		
 		// 조회수 증가
 		if(!map.containsKey("kind")) {
 			freeMapper.freeCnt(map);
 		}
-		//다른게시글 상세보기
-		resultMap.put("next", freeMapper.selectNextTitle(map));
-		resultMap.put("back", freeMapper.selectBackTitle(map));
+		
+		// 이전글, 다음글 상세보기
+		map.put("search", "UP"); //다음글
+		resultMap.put("upBoard", freeMapper.selectNextTitle(map));
+		
+		map.put("search", "DOWN"); //이전글
+		resultMap.put("downBoard", freeMapper.selectNextTitle(map));
+		
 		// 게시글 상세보기
 		resultMap.put("info", freeMapper.selectFreeInfo(map));
 		// 댓글 목록
