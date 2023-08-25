@@ -13,4 +13,6 @@ public interface ReviewService {
 	Review searchReview(HashMap<String, Object> map);
 	int updateReview(HashMap<String, Object> map);
 	int removeReview(HashMap<String, Object> map);
+	//리뷰작성
+	int addReview(HashMap<String, Object> map);
 }

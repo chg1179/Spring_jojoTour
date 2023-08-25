@@ -13,9 +13,11 @@
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div><label>제목 : <input type="text"></label></div>
-		<div><label>내용 : <textarea></textarea></label></div>
+		<div><label>제목 : <input type="text" v-model="info.rTitle"></label></div>
+		<div><label>별점 : <input type="text" v-model="info.rStar"></label></div>
+		<div><label>내용 : <input type="text" v-model="info.rContent"></label></div>
 		<div><label><button @click="fnWrite">작성하기</button></label></div>
+		{{userId}}
 	</div>
 </body>
 </html>
@@ -24,26 +26,31 @@ var app = new Vue({
 	el : '#app',
 	data : {
 		list : [],
-		userId : "${map.userId}"
+			userId : "${map.userId}",
+		info : {
+			rTitle : "",
+			rContent : "",
+			rStar : ""
+		}
 	},// data
 	methods : {
-		fnGetList : function(){
-			var self = this;
-			var param = {};
-			$.ajax({
-                url : "list.dox",
-                dataType:"json",	
-                type : "POST",
-                data : param,
-                success : function(data) { 
-                	self.list = data.list;
-                	console.log(self.list);
-                }
-            }); 
-		},
 		fnWrite : function(){
 			var self = this;			
-			var param = {userId : self.userId};
+			var param = self.info;
+			param.userId = self.userId;
+			console.log(self.info);
+			if(self.info.rTitle == ""){
+				alert("제목을 작성하세요");
+				return;
+			}
+			if(self.info.rStar == ""){
+				alert("별점을 체크하세요.");
+				return;
+			}
+			if(self.info.rContent == ""){
+				alert("내용을 작성하세요.");
+				return;
+			}
 			$.ajax({
                 url : "add.dox",
                 dataType:"json",	
@@ -55,12 +62,10 @@ var app = new Vue({
                 }
             }); 
 		},
-		}
 		
 	}, // methods
 	created : function() {
 		var self = this;
-		self.fnGetList();
 	}// created
 });
 </script>

@@ -53,4 +53,10 @@ public class ReviewServiceImpl implements ReviewService{
 		// TODO Auto-generated method stub
 		return reviewMapper.deleteReview(map);
 	}
+
+	@Override
+	public int addReview(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return reviewMapper.insertReview(map);
+	}
 }

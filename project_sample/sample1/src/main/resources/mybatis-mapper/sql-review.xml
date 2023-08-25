@@ -6,17 +6,15 @@
 	<!-- 리뷰리스트 -->
 	<select id="selectReviewList" parameterType="hashmap" resultType="com.example.sample1.model.Review">
 		SELECT *
-		FROM T2_REVIEW_TBL R
-		INNER JOIN T2_REVIEW_IMG_TBL I ON R.R_NO = I.R_NO
+		FROM T2_REVIEW_TBL
 		WHERE DELYN = 'N'
 	</select>
 	<!-- 리뷰 상세보기 -->
 	<select id="selectReview" parameterType="hashmap" resultType="com.example.sample1.model.Review">
 		SELECT *
-		FROM T2_REVIEW_TBL R
-		INNER JOIN T2_REVIEW_IMG_TBL I ON R.R_NO = I.R_NO
+		FROM T2_REVIEW_TBL
 		WHERE DELYN = 'N'
-		AND R.R_NO = #{rNo}
+		AND R_NO = #{rNo}
 	</select>
 	<!-- 리뷰 수정하기 -->
 	<update id="editReview" parameterType="hashmap">
@@ -35,8 +33,8 @@
 		WHERE R_NO = #{rNo}
 	</update>
 	<!-- 글 등록 -->
-	<insert id="insertUser" parameterType="hashmap">
-		INSERT INTO T2_REVIEW_TBL (R_NO, U_ID, R_TITLE, R_CONTENT, R_WRITE_TIME, R_UPDATE_TIME, R_STAR)
-		(SELECT MAX(R_NO) + 1, #{userId}, #{rTitle}, #{rContent}, now(), now(), #{rStar})
+	<insert id="insertReview" parameterType="hashmap">
+		INSERT INTO T2_REVIEW_TBL (U_ID, ORDER_NO, R_TITLE, R_CONTENT, R_HITS, R_WRITE_TIME, R_UPDATE_TIME, R_STAR, RECOMMEND, DELYN, NOTIFY_CNT) VALUES
+		(#{userId}, '1', #{rTitle}, #{rContent}, 0, now(), now(), #{rStar}, 0, 'N', 0)
 	</insert>
 </mapper>

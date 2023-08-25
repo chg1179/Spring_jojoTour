@@ -29,7 +29,7 @@
 				<th>{{item.rWriteTime}}</th>
 			</tr>
 		</table>
-		<div if="userId != '' && userId != null"><button @click="fnWrite">후기작성</button></div>
+		<div v-if="userId != '' && userId != null"><button @click="fnWrite">후기작성</button></div>
 	</div>
 </body>
 </html>
@@ -44,7 +44,7 @@ var app = new Vue({
 	methods : {
 		fnGetList : function(){
 			var self = this;
-			var param = {userId : self.userId};
+			var param = {};
 			$.ajax({
                 url : "list.dox",
                 dataType:"json",	

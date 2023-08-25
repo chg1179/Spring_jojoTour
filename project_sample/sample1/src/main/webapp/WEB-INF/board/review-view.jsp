@@ -13,6 +13,7 @@
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
+		<div>조회수 : {{info.rHits}}</div>
 		<div>제목 : {{info.rTitle}}</div>
 		<div>작성자 : {{info.uId}}</div>
 		<div>게시글 번호 : {{info.rNo}}</div>

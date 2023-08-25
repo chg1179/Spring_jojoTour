@@ -78,6 +78,13 @@ public class ReviewController {
 		reviewService.removeReview(map);
 		return new Gson().toJson(resultMap);
 	}
+	@RequestMapping(value = "/review/add.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String reviewAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		reviewService.addReview(map);
+		return new Gson().toJson(resultMap);
+	}
 	
 	
 }
