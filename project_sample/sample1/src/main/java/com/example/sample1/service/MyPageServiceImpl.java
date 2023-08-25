@@ -40,17 +40,7 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.deleteReview(map);
 	}
 
-	@Override
-	public MyPage searchReviewInfo(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return myPageMapper.selectReviewInfo(map);
-	}
 
-	@Override
-	public int updateReview(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return myPageMapper.editReview(map);
-	}
 
 	@Override
 	public List<Inquiry> searchInquiry(HashMap<String, Object> map) {

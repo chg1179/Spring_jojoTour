@@ -178,6 +178,7 @@
 	                            <ul>
 	                                <li><a href="javascript:;" @click="fnNotice">공지사항</a></li>
 	                                <li><a href="javascript:;" @click="fnFAQ">FAQ 게시판</a></li>
+	                                <li><a href="javascript:;" @click="fnReview">후기 게시판</a></li>
 	                                <li><a href="javascript:;" @click="fnInquiry">1:1문의</a></li>
 	                                <li><a href="javascript:;" @click="fnFree">자유게시판</a></li>
 	                            </ul>
@@ -248,6 +249,9 @@ var app = new Vue({
         },
         fnFree : function(){
         	location.href="/free/list.do";
+        },
+        fnReview : function(){
+        	location.href="/review/list.do";
         },
         fnRentCar : function(){
         	location.href="/rentcar.do";

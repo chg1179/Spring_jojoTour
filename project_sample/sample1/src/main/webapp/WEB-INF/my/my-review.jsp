@@ -119,7 +119,7 @@ var app = new Vue({
 		},
 		fnEdit : function(){
 			var self = this;
-			$.pageChange("review/edit.do", {rNo : self.rNo});
+			$.pageChange("/review/edit.do", {rNo : self.rNo});
 		}
 		
 	}, // methods

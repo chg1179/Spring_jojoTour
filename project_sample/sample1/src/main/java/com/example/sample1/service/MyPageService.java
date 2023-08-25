@@ -11,8 +11,6 @@ public interface MyPageService {
 	List<MyPage> searchOrderList(HashMap<String, Object> map);
 	MyPage searchPoint(HashMap<String, Object> map);
 	int removeReview(HashMap<String, Object> map);
-	MyPage searchReviewInfo(HashMap<String, Object> map);
-	int updateReview(HashMap<String, Object> map);
 	List<Inquiry> searchInquiry(HashMap<String, Object> map);
 	int removeInquiry(HashMap<String, Object> map);
 	Inquiry searchInquiryInfo(HashMap<String, Object> map);

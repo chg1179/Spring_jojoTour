@@ -53,11 +53,6 @@ public class MyPageController {
         return "/my/my-review";
     }	
 
-	@RequestMapping("my/review/edit.do") 
-    public String reviewEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		request.setAttribute("map", map);
-        return "/my/my-review-edit";
-    }	
 	
 	@RequestMapping("/my/inquiry.do") 
     public String inquiry(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
@@ -192,20 +187,5 @@ public class MyPageController {
 		return new Gson().toJson(resultMap);
 	}
 
-	@RequestMapping(value = "/my/review/reviewInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	@ResponseBody
-	public String reviewInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		MyPage info = myPageService.searchReviewInfo(map);
-		resultMap.put("info", info);
-		return new Gson().toJson(resultMap);
-	}
 
-	@RequestMapping(value = "/my/review/reviewEdit.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	@ResponseBody
-	public String reviewEdit(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		myPageService.updateReview(map);
-		return new Gson().toJson(resultMap);
-	}
 }
