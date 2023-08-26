@@ -44,7 +44,7 @@ public class MyPageController {
 	
 	@RequestMapping("/my/order/view.do") 
     public String orderView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-
+		request.setAttribute("map", map);
         return "/my/my-order-view";
     }
 
@@ -77,31 +77,24 @@ public class MyPageController {
 	public String jjim(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 
 		return "/my/my-jjim";
-	}	
+	}
 	
+	// 아이디별 예약내역 전체 리스트 출력. 총금액, 사용완료, 사용전, 취소 COUNT
 	@RequestMapping(value = "order.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String order(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 
-		List<MyPage> list = myPageService.searchOrderList(map);
-		resultMap.put("list", list);
-		List<MyPage> listAccept = myPageService.searchOrderAcceptList(map);
-		resultMap.put("listAccept", listAccept);
-		List<MyPage> listCompletion = myPageService.searchOrderCompletionList(map);
-		resultMap.put("listCompletion", listCompletion);
-		List<MyPage> listCancel = myPageService.searchOrderCancelList(map);
-		resultMap.put("listCancel", listCancel);
+		List<MyPage> orderList = myPageService.searchOrder(map);
+		resultMap.put("orderList", orderList);
 		return new Gson().toJson(resultMap);
 	}
-	
+
 	@RequestMapping(value = "orderInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String orderInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-
-		MyPage orderInfo = myPageService.searchOrderInfo(map);
-		resultMap.put("orderInfo", orderInfo);
+		resultMap = myPageService.searchOrderInfo(map);
 		return new Gson().toJson(resultMap);
 	}
 	

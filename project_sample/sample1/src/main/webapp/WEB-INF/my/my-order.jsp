@@ -6,7 +6,7 @@
 <script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>예약내역</title>
 <style>
 	.order{
 		background-color : buttonface;
@@ -72,40 +72,30 @@
 				<h2>예약 내역</h2>
 				<div class="page_order_booking_box">
 					<div class="page_order_accept">
-						<div>예약 접수중</div>
-						<div><span>{{listAccept.length}}건</span></div>
+						<div>예약완료</div>
+						<div><span>{{orderAccept}}건</span></div>
 					</div>
 					<div class="page_order_completion">
-						<div>여행완료</div>
-						<div><span>{{listCompletion.length}}건</span></div>
+						<div>사용완료</div>
+						<div><span>{{orderCompletion}}건</span></div>
 					</div>
 					<div class="page_order_cancel">
 						<div>예약취소</div>
-						<div><span>{{listCancel.length}}건</span></div>
+						<div><span>{{orderCancel}}건</span></div>
 					</div>
 				</div>
 				<table>
 					<tr>
 						<th>주문번호</th>
-						<th>제품번호</th>
-						<th>예약일</th>
-						<th>상품정보</th>
-						<th>인원</th>
-						<th>금액</th>
-						<th>예약상태</th>
-						<th v-if="flg">취소여부</th>
+						<th>주문일</th>
+						<th>총결제금액</th>
+						<th>상세내역</th>
 					</tr>
-					<tr v-for="item in list">
+					<tr v-for="item in orderList">
 						<td><a @click="fnView(item.orderNo)" href="javascript:;">{{item.orderNo}}</a></td>
-						<td>{{item.productNo}}</td>
-						<td>{{item.sReserveDate}}</td>
-						<td>{{item.productKind}}</td>
-						<td>{{item.people}}명</td>
-						<td>{{item.payment}}원</td>
-						<td v-if="item.useYnc == 'Y'">사용완료</td>
-						<td v-else-if="item.useYnc == 'N'">예약완료</td>
-						<td v-else>취소완료</td>
-						<td v-if="item.useYnc == 'N'"><button @click="bookingCancel(item.productNo)">취소하기</button></td>
+						<td>{{item.paymentDate}}</td>
+						<td>{{item.totalPay - item.usePoint}}원</td>
+						<td><input type="button" value="상세보기" @click="fnView(item.orderNo)"></td>
 					</tr>
 				</table>
 			</div>
@@ -118,12 +108,11 @@
 var app = new Vue({
 	el : '#app',
 	data : {
-		list : [],
-		listAccept : [],
-		listCompletion : [],
-		listCancel : [],
 		userId : "${sessionId}",
-		flg : false
+		orderList : [],
+		orderAccept : 0, //예약완료.N(사용전)
+		orderCompletion : 0, //사용완료.Y
+		orderCancel : 0 //취소.C
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -135,28 +124,25 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	self.list = data.list;
-                	self.listAccept = data.listAccept;
-                	self.listCompletion = data.listCompletion;
-                	self.listCancel = data.listCancel;
-                	var i = 0;
-                	for(i=0;i<self.list.length;i++){
-                		if(self.list[i].useYnc == 'N'){
-                			self.flg = true;
-                			return;
+                	self.orderList = data.orderList;
+                	for(var i=0;i<self.orderList.length;i++){
+						if(self.orderList[i].useN != null){
+							self.orderAccept += self.orderList[i].useN;
+						}
+						if(self.orderList[i].useY != null){
+							self.orderCompletion += self.orderList[i].useY;
+						}
+                		if(self.orderList[i].useC != null){
+                			self.orderCancel += self.orderList[i].useC;
                 		}
                 	}
-                	if(i == self.list.length){
-             			self.flg = false;
-             		}
-                	console.log(self.list);
-                	console.log(self.flg);
+                	console.log(self.orderList);
                 }
             }); 
 		},
 		fnView : function(orderNo){
         	var self = this;
-        	self.pageChange("order/view.do", {orderNo : orderNo});
+        	$.pageChange("order/view.do", {orderNo : orderNo});
         },
 		bookingCancel : function(productNo){
 			var self = this;

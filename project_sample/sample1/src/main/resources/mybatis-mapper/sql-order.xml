@@ -33,13 +33,13 @@
 	<!-- 제품 주문 쿼리 -->
 	<insert id="insertOrder" parameterType="hashmap">
 		INSERT INTO T2_ORDER_TBL VALUES
-		(#{orderNo}, #{uId}, #{phone}, #{email}, now(), #{usePoint})
+		(#{orderNo}, #{uId}, #{uName}, #{phone}, #{email}, now(), #{usePoint})
 	</insert>
 	
 	<insert id="insertOrderProduct" parameterType="hashmap">
 		INSERT INTO T2_ORDER_LIST_TBL VALUES
 		(#{orderNo}, #{productKind}, #{productNo}, #{people}
-			, #{sReserveDate} ,#{lReserveDate}, 'N', #{payment}, #{request})
+			, #{sReserveDate} ,#{lReserveDate}, 'N', #{payment}, #{request}, 'N')
 	</insert>
 	
 	<update id="usePoint" parameterType="hashmap">

@@ -3,42 +3,56 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.sample1.mapper.MyPageMapper">
-	<!-- 예약내역 리스트 출력 -->
-	<select id="selectOrderList" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
-		SELECT *
+	<!-- 예약내역 전체 리스트 출력. 총금액, 사용완료, 사용전, 취소 COUNT -->
+	<select id="selectOrder" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
+		SELECT 
+			O.*,
+			L.TOTAL_PAY,
+			L2.USE_Y,
+			L3.USE_N,
+			L4.USE_C
 		FROM T2_ORDER_TBL O
-		INNER JOIN T2_ORDER_LIST_TBL L ON O.ORDER_NO = L.ORDER_NO
-		WHERE U_ID = #{userId}
-	</select>
-		
-	<!-- 주문 번호 조회 -->
-	<select id="selectOrderInfo" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
-		SELECT *
-		FROM T2_ORDER_TBL
-		WHERE ORDER_NO = #{orderNo}
+		INNER JOIN (
+			SELECT SUM(PAYMENT) AS TOTAL_PAY, ORDER_NO
+			FROM T2_ORDER_LIST_TBL
+			GROUP BY ORDER_NO
+		) L ON L.ORDER_NO = O.ORDER_NO
+		LEFT JOIN (
+			SELECT COUNT(*) AS USE_Y, ORDER_NO
+			FROM T2_ORDER_LIST_TBL
+			WHERE USE_YNC = 'Y'
+			GROUP BY ORDER_NO
+		) L2 ON L2.ORDER_NO = O.ORDER_NO
+		LEFT JOIN (
+			SELECT COUNT(*) AS USE_N, ORDER_NO
+			FROM T2_ORDER_LIST_TBL
+			WHERE USE_YNC = 'N'
+			GROUP BY ORDER_NO
+		) L3 ON L3.ORDER_NO = O.ORDER_NO
+		LEFT JOIN (
+			SELECT COUNT(*) AS USE_C, ORDER_NO
+			FROM T2_ORDER_LIST_TBL
+			WHERE USE_YNC = 'C'
+			GROUP BY ORDER_NO
+		) L4 ON L4.ORDER_NO = O.ORDER_NO
+		WHERE O.U_ID = #{userId}
 	</select>
 	
-	<!-- 예약접수중 리스트 출력 -->
-	<select id="selectOrderAcceptList" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
+	<!-- 예약한 제품의 리스트 출력 -->
+	<select id="selectOrderList" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
 		SELECT *
-		FROM T2_ORDER_TBL O
-		INNER JOIN T2_ORDER_LIST_TBL L ON O.ORDER_NO = L.ORDER_NO
-		WHERE U_ID = #{userId} AND USE_YNC = 'N'
+		FROM T2_ORDER_LIST_TBL
+		WHERE ORDER_NO = #{orderNo};
 	</select>
-	<!-- 여행완료 리스트 출력 -->
-	<select id="selectOrderCompletionList" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
+
+	<!-- 예약한 제품의 핸드폰, 이메일 등의 정보 출력 -->
+	<select id="selectOrderUserInfo" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
 		SELECT *
-		FROM T2_ORDER_TBL O
-		INNER JOIN T2_ORDER_LIST_TBL L ON O.ORDER_NO = L.ORDER_NO
-		WHERE U_ID = #{userId} AND USE_YNC = 'Y'
+		FROM T2_ORDER_TBL
+		WHERE ORDER_NO = #{orderNo};
 	</select>
-	<!-- 여행취소 리스트 출력 -->
-	<select id="selectOrderCancelList" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
-		SELECT *
-		FROM T2_ORDER_TBL O
-		INNER JOIN T2_ORDER_LIST_TBL L ON O.ORDER_NO = L.ORDER_NO
-		WHERE U_ID = #{userId} AND USE_YNC = 'C'
-	</select>
+	
+	
 	<!-- 예약 취소 -->
 	<update id="selectBookingCancel" parameterType="hashmap">
 		UPDATE T2_ORDER_TBL O

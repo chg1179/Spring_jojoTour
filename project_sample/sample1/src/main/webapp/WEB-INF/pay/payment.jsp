@@ -412,6 +412,7 @@ var app = new Vue({
 					orderNo : orderNo,
 					uId : self.uId, 
 					usePoint : self.usePoint,
+					uName : self.userInfo.uName,
 					phone :self.userInfo.phone,
 					email :self.userInfo.email,
 					request : self.request

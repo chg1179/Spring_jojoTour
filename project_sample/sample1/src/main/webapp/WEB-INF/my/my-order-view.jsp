@@ -6,7 +6,7 @@
 <script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>주문번호 별 상세 내역</title>
 <style>
 	.order{
 		background-color : buttonface;
@@ -70,20 +70,6 @@
 		<div id="page_order_container">
 			<div class="page_order_wrap">
 				<h2>예약 내역</h2>
-				<div class="page_order_booking_box">
-					<div class="page_order_accept">
-						<div>예약 접수중</div>
-						<div><span>{{listAccept.length}}건</span></div>
-					</div>
-					<div class="page_order_completion">
-						<div>여행완료</div>
-						<div><span>{{listCompletion.length}}건</span></div>
-					</div>
-					<div class="page_order_cancel">
-						<div>예약취소</div>
-						<div><span>{{listCancel.length}}건</span></div>
-					</div>
-				</div>
 				<table>
 					<tr>
 						<th>주문번호</th>
@@ -118,6 +104,7 @@
 var app = new Vue({
 	el : '#app',
 	data : {
+		orderNo : "${map.orderNo}",
 		list : [],
 		listAccept : [],
 		listCompletion : [],

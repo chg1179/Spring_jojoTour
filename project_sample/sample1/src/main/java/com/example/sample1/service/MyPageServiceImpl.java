@@ -21,16 +21,21 @@ public class MyPageServiceImpl implements MyPageService{
 	@Autowired
 	HttpSession session;
 
+	// 예약내역 전체 리스트 출력. 총금액, 사용완료, 사용전, 취소 COUNT
 	@Override
-	public List<MyPage> searchOrderList(HashMap<String, Object> map) {
+	public List<MyPage> searchOrder(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return myPageMapper.selectOrderList(map);
+		return myPageMapper.selectOrder(map);
 	}
 
+	
 	@Override
-	public MyPage searchOrderInfo(HashMap<String, Object> map) {
+	public HashMap<String, Object> searchOrderInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return myPageMapper.selectOrderInfo(map);
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("orderList", myPageMapper.selectOrderList(map));
+		resultMap.put("orderUserInfo", myPageMapper.selectOrderUserInfo(map));
+		return resultMap;
 	}
 	
 	@Override
@@ -85,24 +90,6 @@ public class MyPageServiceImpl implements MyPageService{
 	public int removeJjimCheck(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return myPageMapper.deleteJjimCheck(map);
-	}
-
-	@Override
-	public List<MyPage> searchOrderAcceptList(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return myPageMapper.selectOrderAcceptList(map);
-	}
-
-	@Override
-	public List<MyPage> searchOrderCompletionList(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return myPageMapper.selectOrderCompletionList(map);
-	}
-
-	@Override
-	public List<MyPage> searchOrderCancelList(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return myPageMapper.selectOrderCancelList(map);
 	}
 
 	@Override

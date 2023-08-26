@@ -8,7 +8,11 @@ public class MyPage {
 	private String phone;
 	private String email;
 	private String paymentDate;
-	private int point;
+	private int usePoint;
+	private int totalPay;
+	private int useY;
+	private int useN;
+	private int useC;
 	
 	// ORDER_LIST
 	private String productKind;
@@ -78,10 +82,16 @@ public class MyPage {
 		this.paymentDate = paymentDate;
 	}
 	public int getPoint() {
-		return point;
+		return usePoint;
 	}
-	public void setPoint(int point) {
-		this.point = point;
+	public void setPoint(int usePoint) {
+		this.usePoint = usePoint;
+	}
+	public int getTotalPay() {
+		return totalPay;
+	}
+	public void setTotalPay(int totalPay) {
+		this.totalPay = totalPay;
 	}
 	public String getProductKind() {
 		return productKind;
