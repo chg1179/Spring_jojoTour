@@ -12,7 +12,7 @@
 <style>
 	#review_container{
 		width : 60%;
-		float : left;
+		margin-top: 100px;
 	}
 </style>
 </head>
@@ -21,6 +21,13 @@
 	<div id="app">
   	 		<div id="review_container">
   	 		<div>제목 : <input type="text" v-model="info.rTitle"></div>
+	  	 	<div>별점 : 
+				<label> 1점 : <input type="radio" name="rStar" v-model="info.rStar" value="1"></label>
+				<label> 2점 : <input type="radio" name="rStar" v-model="info.rStar" value="2"></label>
+				<label> 3점 : <input type="radio" name="rStar" v-model="info.rStar" value="3"></label>
+				<label> 4점 : <input type="radio" name="rStar" v-model="info.rStar" value="4"></label>
+				<label> 5점 : <input type="radio" name="rStar" v-model="info.rStar" value="5"></label>
+			</div>
 			<div>
 				<vue-editor class="v_editor" v-model="info.rContent"></vue-editor>
 			</div>

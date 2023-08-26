@@ -9,10 +9,14 @@ import com.example.sample1.model.Review;
 import com.example.sample1.model.User;
 
 public interface ReviewService {
-	List<Review> searchReviewList(HashMap<String, Object> map);
+	//리뷰리스트
+	HashMap<String, Object> searchReviewList(HashMap<String, Object> map);
+	
+	//리뷰 상세보기
 	Review searchReview(HashMap<String, Object> map);
 	int updateReview(HashMap<String, Object> map);
 	int removeReview(HashMap<String, Object> map);
 	//리뷰작성
 	int addReview(HashMap<String, Object> map);
+
 }

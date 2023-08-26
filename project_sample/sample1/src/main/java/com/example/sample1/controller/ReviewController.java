@@ -50,9 +50,15 @@ public class ReviewController {
 	@ResponseBody
 	public String review(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		List<Review> list = reviewService.searchReviewList(map);
-		resultMap.put("list", list);
-		return new Gson().toJson(resultMap);
+		int startNum = Integer.parseInt(String.valueOf(map.get("startNum")));
+        int lastNum = Integer.parseInt(String.valueOf(map.get("lastNum")));
+        map.put("startNum", startNum);
+        map.put("lastNum", lastNum);
+        resultMap = reviewService.searchReviewList(map);
+        System.out.println(map);
+        System.out.println(resultMap);
+        return new Gson().toJson(resultMap);
+
 	}
 	//후기 상세페이지 게시판 출력
 	@RequestMapping(value = "/review/info.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

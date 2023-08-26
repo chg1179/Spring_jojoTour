@@ -14,7 +14,13 @@
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<div><label>제목 : <input type="text" v-model="info.rTitle"></label></div>
-		<div><label>별점 : <input type="text" v-model="info.rStar"></label></div>
+		<div>별점 : 
+			<label> 1점 : <input type="radio" name="rStar" v-model="info.rStar" value="1"></label>
+			<label> 2점 : <input type="radio" name="rStar" v-model="info.rStar" value="2"></label>
+			<label> 3점 : <input type="radio" name="rStar" v-model="info.rStar" value="3"></label>
+			<label> 4점 : <input type="radio" name="rStar" v-model="info.rStar" value="4"></label>
+			<label> 5점 : <input type="radio" name="rStar" v-model="info.rStar" value="5"></label>
+		</div>
 		<div><label>내용 : <input type="text" v-model="info.rContent"></label></div>
 		<div><label><button @click="fnWrite">작성하기</button></label></div>
 		{{userId}}

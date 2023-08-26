@@ -29,14 +29,18 @@ public class ReviewServiceImpl implements ReviewService{
 	HttpSession session;
 
 	@Override
-	public List<Review> searchReviewList(HashMap<String, Object> map) {
+	public HashMap<String, Object> searchReviewList(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return reviewMapper.selectReviewList(map);
+	      HashMap<String, Object> resultMap = new HashMap<String, Object>();
+	      resultMap.put("list", reviewMapper.selectReviewList(map));
+	      resultMap.put("cnt", reviewMapper.selectReviewCnt(map));
+	      return resultMap;
 	}
 
 	@Override
 	public Review searchReview(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
+		reviewMapper.rHitsPlus(map);
 		return reviewMapper.selectReview(map);
 	}
 
@@ -59,4 +63,5 @@ public class ReviewServiceImpl implements ReviewService{
 		// TODO Auto-generated method stub
 		return reviewMapper.insertReview(map);
 	}
+
 }

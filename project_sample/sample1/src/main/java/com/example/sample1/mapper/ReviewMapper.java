@@ -12,7 +12,12 @@ import com.example.sample1.model.Review;
 public interface ReviewMapper {
 	// 리뷰리스트
 	List<Review> selectReviewList(HashMap<String, Object> map);
+	int selectReviewCnt(HashMap<String, Object> map);
+	//리뷰 상세보기
 	Review selectReview(HashMap<String, Object> map);
+	
+	// 리뷰 조회수 증가
+	int rHitsPlus(HashMap<String, Object> map);
 	// 리뷰수정창
 	int editReview(HashMap<String, Object> map);
 	int deleteReview(HashMap<String, Object> map);
