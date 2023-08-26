@@ -12,10 +12,10 @@
 	</select>
 		
 	<!-- 주문 번호 조회 -->
-	<select id="selectBoardInfo" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
+	<select id="selectOrderInfo" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
 		SELECT *
-		FROM BOARD
-		WHERE NO = #{bNo}
+		FROM T2_ORDER_TBL
+		WHERE ORDER_NO = #{orderNo}
 	</select>
 	
 	<!-- 예약접수중 리스트 출력 -->

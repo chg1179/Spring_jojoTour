@@ -37,7 +37,7 @@
         #header_box{
             display: flex;
             justify-content: space-between;
-            padding: 10px;
+            padding: 20px 5px;
             box-sizing: border-box;
             margin: 0 auto;
         }
@@ -258,7 +258,7 @@ var app = new Vue({
         	location.href="/rentcar.do";
         },
 		checkKind : function(kind){
-			$.pageChange("../rentcar.do", {rentKind : kind});
+			$.pageChange("/rentcar.do", {rentKind : kind});
 		},
         fnJJim : function(){
         	if(this.status=="" || this.status == null){
