@@ -11,8 +11,11 @@ public interface MyPageService {
 	// 예약내역 전체 리스트 출력. 총금액, 사용완료, 사용전, 취소 COUNT
 	List<MyPage> searchOrder(HashMap<String, Object> map);
 	
-	// 주문번호에 따른 정보 출력
+	// 주문 번호에 따른 정보 출력
 	HashMap<String, Object> searchOrderInfo(HashMap<String, Object> map);
+	
+	// 주문 제품에 대한 요청 사항 수정
+	int editRequest(HashMap<String, Object> map);
 	
 	MyPage searchPoint(HashMap<String, Object> map);
 	int removeReview(HashMap<String, Object> map);

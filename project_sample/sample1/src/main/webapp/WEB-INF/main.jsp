@@ -5,7 +5,7 @@
 <head>
 <script src="../js/jquery.js"></script>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>JOJO TOUR</title>
 <style>
 	*{
             margin: 0;

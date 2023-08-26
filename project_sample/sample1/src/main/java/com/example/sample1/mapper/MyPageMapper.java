@@ -17,6 +17,9 @@ public interface MyPageMapper {
 	// 주문 번호에 따른 주문 정보 (주문할 때 입력한 핸드폰, 이메일 등)
 	MyPage selectOrderUserInfo(HashMap<String, Object> map);
 	
+	// 주문 제품에 대한 요청 사항 수정
+	int updateRequest(HashMap<String, Object> map);
+	
 	MyPage selectPoint(HashMap<String, Object> map);
 	int deleteReview(HashMap<String, Object> map);
 	List<Inquiry> selectInquiry(HashMap<String, Object> map);

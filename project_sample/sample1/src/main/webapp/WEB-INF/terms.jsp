@@ -6,7 +6,7 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>약관 및 정책</title>
 <style>
 .panel.border .fs15 dt {
   color: #333; /* 원하는 글자색 */

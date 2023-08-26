@@ -32,7 +32,7 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.selectOrder(map);
 	}
 
-	
+	// 주문 번호에 따른 주문 제품 가져오기
 	@Override
 	public HashMap<String, Object> searchOrderInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -41,6 +41,14 @@ public class MyPageServiceImpl implements MyPageService{
 		resultMap.put("orderUserInfo", myPageMapper.selectOrderUserInfo(map));
 		return resultMap;
 	}
+	
+	// 주문 제품에 대한 요청 사항 수정
+	@Override
+	public int editRequest(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.updateRequest(map);
+	}
+
 	
 	@Override
 	public MyPage searchPoint(HashMap<String, Object> map) {

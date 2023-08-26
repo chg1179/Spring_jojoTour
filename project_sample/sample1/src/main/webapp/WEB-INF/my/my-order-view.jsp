@@ -63,6 +63,25 @@
 	.page_order_wrap table th, .page_order_wrap table td{
 		padding : 5px 20px;
 	}
+    .edit-link {
+        position: relative;
+    }
+    .edit-text {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 5px 10px;
+        color: white;
+        font-size: 12px;
+        border-radius: 4px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .edit-link:hover .edit-text {
+        opacity: 1;
+    }
 </style>
 </head>
 <body>
@@ -114,7 +133,7 @@
 		                        <th>요청사항</th>
 		                        <th>총결제금액</th>
 		                        <th>예약상태</th>
-		                        <th>취소하기</th>
+		                        <th v-if="!roomFlg">취소하기</th>
 		                    </tr>
 		                </thead>
 		                <tbody>
@@ -125,12 +144,35 @@
 		                        <td>{{ product.lReserveDate }} 10:00</td>
 		                        <td>{{ product.people }}박 {{ product.people+1 }}일</td>
 		                        <td>
-		                        	<span v-if="product.request != null && product.request != ''">{{ product.request }}</span>
-		                        	<span v-else><input type="button" value="요청사항작성하기" @click=""></span>
+		                        	<span v-if="product.useYnc=='N'">
+		                        		<span v-if="product.request != null && product.request != ''">
+		                        			<a class="edit-link" @click="fnChangeRequest(product.productKind, product.productNo, product.request)" href="javascript:;">
+		                        				{{ product.request }}
+		                        				<span class="edit-text">수정하기</span>
+		                        			</a>
+		                        		</span>
+		                        		<span v-else>
+		                        			<input type="button" value="요청사항작성하기" @click="fnChangeRequest(product.productKind, product.productNo, product.request)">
+		                       			</span>
+		                       		</span>
+		                        	<span v-else>
+		                        		<span v-if="product.request != null && product.request != ''">
+		                        			{{ product.request }}
+		                        		</span>
+		                        		<span v-else>없음</span>
+		                        	</span>
 		                        </td>
 		                        <td>{{ product.payment }}원</td>
-		                        <td>{{ product.useYnc }}</td>
-		                        <td v-if="product.useYnc == 'N'"><input type="button" value="예약취소" @click=""></td>
+		                        <td>
+		                        	<span v-if="product.useYnc=='Y'">사용완료</span>
+		                        	<span v-else-if="product.useYnc=='N'">예약완료</span>
+		                        	<span v-else-if="product.useYnc=='C'">취소완료</span>
+		                        </td>
+		                        <td v-if="!roomFlg">
+		                        	<span v-if="product.useYnc == 'N'">
+		                        		<input type="button" value="예약취소" @click="">
+		                        	</span>
+		                        </td>
 		                    </tr>
 		                </tbody>
 		            </table>
@@ -149,7 +191,7 @@
 		                        <th>요청사항</th>
 		                        <th>총결제금액</th>
 		                        <th>예약상태</th>
-		                        <th>취소하기</th>
+		                        <th v-if="!rentFlg">취소하기</th>
 		                    </tr>
 		                </thead>
 		                <tbody>
@@ -159,12 +201,35 @@
 		                        <td>{{ product.lReserveDate }} 12:00</td>
 		                        <td>{{ product.people }}일</td>
 		                        <td>
-		                        	<span v-if="product.request != null && product.request != ''">{{ product.request }}</span>
-		                        	<span v-else><input type="button" value="요청사항작성하기" @click=""></span>
+		                        	<span v-if="product.useYnc=='N'">
+		                        		<span v-if="product.request != null && product.request != ''">
+		                        			<a class="edit-link" @click="fnChangeRequest(product.productKind, product.productNo, product.request)" href="javascript:;">
+		                        				{{ product.request }}
+		                        				<span class="edit-text">수정하기</span>
+		                        			</a>
+		                        		</span>
+		                        		<span v-else>
+		                        			<input type="button" value="요청사항작성하기" @click="fnChangeRequest(product.productKind, product.productNo, product.request)">
+		                       			</span>
+		                       		</span>
+		                        	<span v-else>
+		                        		<span v-if="product.request != null && product.request != ''">
+		                        			{{ product.request }}
+		                        		</span>
+		                        		<span v-else>없음</span>
+		                        	</span>
 		                        </td>
 		                        <td>{{ product.payment }}원</td>
-		                        <td>{{ product.useYnc }}</td>
-		                        <td v-if="product.useYnc == 'N'"><input type="button" value="예약취소" @click=""></td>
+		                        <td>
+		                        	<span v-if="product.useYnc=='Y'">사용완료</span>
+		                        	<span v-else-if="product.useYnc=='N'">예약완료</span>
+		                        	<span v-else-if="product.useYnc=='C'">취소완료</span>
+		                        </td>
+		                        <td v-if="!rentFlg">
+		                        	<span v-if="product.useYnc == 'N'">
+		                        		<input type="button" value="예약취소" @click="">
+		                        	</span>
+		                        </td>
 		                    </tr>
 		                </tbody>
 		            </table>
@@ -182,7 +247,7 @@
 		                        <th>요청사항</th>
 		                        <th>총결제금액</th>
 		                        <th>예약상태</th>
-		                        <th>취소하기</th>
+		                        <th v-if="!leisureFlg">취소하기</th>
 		                    </tr>
 		                </thead>
 		                <tbody>
@@ -191,16 +256,44 @@
 		                        <td>{{ product.sReserveDate }} ~ {{ product.lReserveDate }}</td>
 		                        <td>{{ product.people }}매</td>
 		                        <td>
-		                        	<span v-if="product.request != null && product.request != ''">{{ product.request }}</span>
-		                        	<span v-else><input type="button" value="요청사항작성하기" @click=""></span>
+		                        	<span v-if="product.useYnc=='N'">
+		                        		<span v-if="product.request != null && product.request != ''">
+		                        			<a class="edit-link" @click="fnChangeRequest(product.productKind, product.productNo, product.request)" href="javascript:;">
+		                        				{{ product.request }}
+		                        				<span class="edit-text">수정하기</span>
+		                        			</a>
+		                        		</span>
+		                        		<span v-else>
+		                        			<input type="button" value="요청사항작성하기" @click="fnChangeRequest(product.productKind, product.productNo, product.request)">
+		                       			</span>
+		                       		</span>
+		                        	<span v-else>
+		                        		<span v-if="product.request != null && product.request != ''">
+		                        			{{ product.request }}
+		                        		</span>
+		                        		<span v-else>없음</span>
+		                        	</span>
 		                        </td>
 		                        <td>{{ product.payment }}원</td>
-		                        <td>{{ product.useYnc }}</td>
-		                        <td v-if="product.useYnc == 'N'"><input type="button" value="예약취소" @click=""></td>
+		                        <td>
+		                        	<span v-if="product.useYnc=='Y'">사용완료</span>
+		                        	<span v-else-if="product.useYnc=='N'">예약완료</span>
+		                        	<span v-else-if="product.useYnc=='C'">취소완료</span>
+		                        </td>
+		                        <td v-if="!leisureFlg">
+		                        	<span v-if="product.useYnc == 'N'">
+		                        		<input type="button" value="예약취소" @click="">
+		                        	</span>
+		                        </td>
 		                    </tr>
 		                </tbody>
 		            </table>
-		        	</div>
+		        </div>
+		        <div class="box">
+					<div>
+						<div class="productTxt">취소 금액을 제외한 총 결제 금액</div>
+						<div class="wrap"><input type="text" disabled>{{ totalAmount }}</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -221,7 +314,9 @@ var app = new Vue({
 			phone2 : "",
 			phone3 : ""
 		},
-		roomFlg : false
+		roomFlg : false,
+		rentFlg : false,
+		leisureFlg : false
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -239,15 +334,11 @@ var app = new Vue({
                 	console.log(self.orderInfoList);
                 	self.phoneSubString();
                 	var i = 0;
-                	for(i=0;i<self.list.length;i++){
-                		if(self.list[i].useYnc == 'N'){
-                			self.flg = true;
-                			return;
-                		}
-                	}
-                	if(i == self.list.length){
-             			self.flg = false;
-             		}
+                	
+                	// 해당 리스트에 한 항목이라도 useYnx의 값이 N이 없다면 취소할 제품이 없기 때문에 취소 컬럼을 없앤다.
+                	self.roomFlg = !self.roomList.some(product => product.useYnc === 'N');
+                    self.rentFlg = !self.rentList.some(product => product.useYnc === 'N');
+                    self.leisureFlg = !self.leisureList.some(product => product.useYnc === 'N');
                 }
             }); 
 		},
@@ -263,6 +354,25 @@ var app = new Vue({
 			self.phoneSplit.phone1 = (self.orderUserInfo.phone).substring(0,3);
 			self.phoneSplit.phone2 = (self.orderUserInfo.phone).substring(3,middleNum);
 			self.phoneSplit.phone3 = (self.orderUserInfo.phone).substring(middleNum);
+		},
+		// 요구사한 변경
+		fnChangeRequest : function(productKind, productNo, request){
+			var popWidth = 800;
+		    var popHeight = 500;
+		    
+		    // 화면 정 중앙에 띄우기 위한 변수
+		    var screenWidth = window.screen.width;
+		    var screenHeight = window.screen.height;
+		    
+		    var left = (screenWidth - popWidth) / 2;
+		    var top = ((screenHeight - popHeight) / 2) - 100; // 세로 높이는 정 중앙보다 조금 높은 위치에 띄우기 위해 -100 하였다.
+		    
+		    var popSize = "width=" + popWidth + ", height=" + popHeight + ", top=" + top + ", left=" + left;
+		    
+		    // 한국어 인코딩
+		    var encodedRequest = encodeURIComponent(request);
+		    
+		    window.open("changeRequest.do?productKind=" + productKind + "&productNo=" + productNo + "&request=" + encodedRequest, "request", popSize);
 		},
 		bookingCancel : function(productNo){
 			var self = this;
@@ -298,12 +408,12 @@ var app = new Vue({
 	        return this.orderInfoList.filter(product => product.productKind === "LEISURE");
 	    },
 	    totalAmount() {
-            const roomTotal = this.roomList.reduce((total, product) => total + (parseInt(product.sprice)), 0);
-            const rentTotal = this.rentList.reduce((total, product) => total + (parseInt(product.rprice)), 0);
-            const leisureTotal = this.leisureList.reduce((total, product) => total + (product.leisurePrice * product.leisureSales * product.people), 0);
+	        const roomTotal = this.roomList.reduce((total, product) => total + (product.roomPrice * product.roomSales * product.people), 0);
+	        const rentTotal = this.rentList.reduce((total, product) => total + (product.rentPrice * product.rentSales * product.people), 0);
+	        const leisureTotal = this.leisureList.reduce((total, product) => total + (product.leisurePrice * product.leisureSales * product.people), 0);
 
-            return roomTotal + rentTotal + leisureTotal;
-        }
+	        return roomTotal + rentTotal + leisureTotal;
+	    }
 	}
 });
 </script>

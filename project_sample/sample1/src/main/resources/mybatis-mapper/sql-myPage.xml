@@ -45,6 +45,14 @@
 		WHERE ORDER_NO = #{orderNo}
 	</select>
 	
+	<!-- 제품 별 요청 사항 수정 -->
+	<update id="updateRequest" parameterType="hashmap">
+		UPDATE T2_ORDER_LIST_TBL
+		SET
+			REQUEST = #{request}
+		WHERE PRODUCT_KIND = #{productKind} AND PRODUCT_NO = #{productNo}
+	</update>
+	
 	
 	<!-- 예약 취소 -->
 	<update id="selectBookingCancel" parameterType="hashmap">

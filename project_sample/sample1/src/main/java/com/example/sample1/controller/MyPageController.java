@@ -36,18 +36,26 @@ public class MyPageController {
         return "/my/my-page";
     }
 
+	// 주문 내역 페이지
 	@RequestMapping("/my/order.do") 
     public String order(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 
         return "/my/my-order";
     }
 	
+	// 주문 내역 상세 조회 페이지
 	@RequestMapping("/my/order/view.do") 
     public String orderView(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		request.setAttribute("map", map);
         return "/my/my-order-view";
     }
 
+	@RequestMapping("/my/order/changeRequest.do") 
+    public String changeRequest(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+        return "/my/changeRequest-popup";
+    }
+	
 	@RequestMapping("/my/point.do") 
     public String point(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 
@@ -90,6 +98,7 @@ public class MyPageController {
 		return new Gson().toJson(resultMap);
 	}
 
+	// 주문 번호 별 내역 조회
 	@RequestMapping(value = "orderList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String orderList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
@@ -97,6 +106,17 @@ public class MyPageController {
 		resultMap = myPageService.searchOrderInfo(map);
 		return new Gson().toJson(resultMap);
 	}
+	
+	// 주문 제품 별 요구사항 수정
+	@RequestMapping(value = "/editRequest.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String editRequest(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		myPageService.editRequest(map);
+		resultMap.put("success", "요청사항수정완료");
+		return new Gson().toJson(resultMap);
+	}
+	
 	
 	@RequestMapping(value = "/my/jjim.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
