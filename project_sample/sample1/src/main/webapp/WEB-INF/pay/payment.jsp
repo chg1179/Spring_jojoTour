@@ -20,6 +20,8 @@
 			<div class="mainTxt">결제페이지</div>
 			<div class="box">
 				<div class="coreTxt"><span class="bar">ㅣ</span> 상품 상세 정보</div>
+				
+				<!-- 숙박 업소 상품 -->
 		        <div v-if="roomList.length != 0" class="productBox">
 		            <div class="productTxt">숙소 상품</div>
 		            <table>

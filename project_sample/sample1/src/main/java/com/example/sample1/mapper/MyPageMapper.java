@@ -14,8 +14,6 @@ public interface MyPageMapper {
 	// 예약내역 전체 리스트 출력. 총금액, 사용완료, 사용전, 취소 COUNT
 	List<MyPage> selectOrder(HashMap<String, Object> map);
 	
-	// 주문 번호에 따른 예약 리스트
-	List<MyPage> selectOrderList(HashMap<String, Object> map);
 	// 주문 번호에 따른 주문 정보 (주문할 때 입력한 핸드폰, 이메일 등)
 	MyPage selectOrderUserInfo(HashMap<String, Object> map);
 	

@@ -15,10 +15,12 @@
 		      FROM T2_ROOM_TBL 
 		      GROUP BY STAY_NO
 		   ) R ON R.STAY_NO = S.STAY_NO
-		) S ON S.STAY_NO = L.PRODUCT_NO AND L.PRODUCT_KIND = 'STAY'
+		) S ON S.ROOM_NO = L.PRODUCT_NO AND L.PRODUCT_KIND = 'STAY'
 		LEFT JOIN T2_RENT_CAR_TBL ON RENT_NO = PRODUCT_NO AND PRODUCT_KIND = 'RENT'
 		LEFT JOIN T2_LEISURE_TBL ON LEISURE_NO = PRODUCT_NO AND PRODUCT_KIND = 'LEISURE'
-		
+		<if test="orderNo != '' and orderNo != null">
+		 	WHERE L.ORDER_NO = #{orderNo}
+		</if>
 	</select>
 	
 	<!-- 예약 승인 여부 -->

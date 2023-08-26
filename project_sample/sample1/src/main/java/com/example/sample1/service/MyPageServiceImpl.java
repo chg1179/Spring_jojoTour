@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.sample1.mapper.MyPageMapper;
+import com.example.sample1.mapper.OrderMapper;
 import com.example.sample1.model.Inquiry;
 import com.example.sample1.model.MyPage;
 
@@ -17,6 +18,9 @@ public class MyPageServiceImpl implements MyPageService{
 
 	@Autowired
 	MyPageMapper myPageMapper;
+	
+	@Autowired
+	OrderMapper orderMapper;
 	
 	@Autowired
 	HttpSession session;
@@ -33,7 +37,7 @@ public class MyPageServiceImpl implements MyPageService{
 	public HashMap<String, Object> searchOrderInfo(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("orderList", myPageMapper.selectOrderList(map));
+		resultMap.put("orderInfoList", orderMapper.selectOrderList(map));
 		resultMap.put("orderUserInfo", myPageMapper.selectOrderUserInfo(map));
 		return resultMap;
 	}

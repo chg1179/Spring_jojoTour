@@ -90,9 +90,9 @@ public class MyPageController {
 		return new Gson().toJson(resultMap);
 	}
 
-	@RequestMapping(value = "orderInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "orderList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String orderInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	public String orderList(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap = myPageService.searchOrderInfo(map);
 		return new Gson().toJson(resultMap);

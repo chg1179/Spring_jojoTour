@@ -37,19 +37,12 @@
 		) L4 ON L4.ORDER_NO = O.ORDER_NO
 		WHERE O.U_ID = #{userId}
 	</select>
-	
-	<!-- 예약한 제품의 리스트 출력 -->
-	<select id="selectOrderList" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
-		SELECT *
-		FROM T2_ORDER_LIST_TBL
-		WHERE ORDER_NO = #{orderNo};
-	</select>
 
 	<!-- 예약한 제품의 핸드폰, 이메일 등의 정보 출력 -->
-	<select id="selectOrderInfo" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
+	<select id="selectOrderUserInfo" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
 		SELECT *
 		FROM T2_ORDER_TBL
-		WHERE ORDER_NO = #{orderNo};
+		WHERE ORDER_NO = #{orderNo}
 	</select>
 	
 	

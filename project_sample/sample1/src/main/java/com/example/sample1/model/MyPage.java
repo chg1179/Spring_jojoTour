@@ -5,6 +5,7 @@ public class MyPage {
 	// ORDER_TBL
 	private String orderNo;
 	private String uId;
+	private String uName;
 	private String phone;
 	private String email;
 	private String paymentDate;
@@ -62,6 +63,37 @@ public class MyPage {
 	}
 	public void setuId(String uId) {
 		this.uId = uId;
+	}
+	
+	public String getuName() {
+		return uName;
+	}
+	public void setuName(String uName) {
+		this.uName = uName;
+	}
+	public int getUsePoint() {
+		return usePoint;
+	}
+	public void setUsePoint(int usePoint) {
+		this.usePoint = usePoint;
+	}
+	public int getUseY() {
+		return useY;
+	}
+	public void setUseY(int useY) {
+		this.useY = useY;
+	}
+	public int getUseN() {
+		return useN;
+	}
+	public void setUseN(int useN) {
+		this.useN = useN;
+	}
+	public int getUseC() {
+		return useC;
+	}
+	public void setUseC(int useC) {
+		this.useC = useC;
 	}
 	public String getPhone() {
 		return phone;
