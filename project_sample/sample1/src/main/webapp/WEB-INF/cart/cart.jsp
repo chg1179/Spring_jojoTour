@@ -295,7 +295,7 @@
 						</td>
 						<td v-else-if="item.leisureSales != 1">
 							<div id="deline">{{ (item.leisurePrice * item.people).toLocaleString() }}원</div>
-							<div style="font-weight: bold; font-size: 16px;">{{( item.leisurePrice*item.leisureSales * item.people).toLocaleString() }}원</div>
+							<div style="font-weight: bold; font-size: 16px;">{{( item.leisurePrice * item.leisureSales * item.people).toLocaleString() }}원</div>
 						</td>
 					</tr>
 				</tbody>
@@ -313,7 +313,7 @@
 				<input type="button" @click="fnPayment()" value="결제하기" id="pbtn"></div>
 			</div>
 	</div>
-	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
+	<%-- <jsp:include page="../footer.jsp" flush="true"></jsp:include> --%>
 </body>
 </html>
 <script>
