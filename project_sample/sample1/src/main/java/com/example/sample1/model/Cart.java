@@ -104,5 +104,6 @@ public class Cart {
 	private String lDelYN;
 	private int lCnt;
 	private int quantity;
+	private int people;
 	
 }

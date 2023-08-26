@@ -475,7 +475,7 @@ var app = new Vue({
                     }else{
                     	lprice = item.leisurePrice * item.leisureSales * item.people;
                     }
-                    this.selectLeisure[index].people = this.people;
+                    this.selectLeisure[index].people = item.people;
                     totalPrice = totalPrice + lprice;
                 }
                 
