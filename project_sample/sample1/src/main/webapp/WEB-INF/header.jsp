@@ -179,7 +179,6 @@
 	                            <ul>
 	                                <li><a href="javascript:;" @click="fnNotice">공지사항</a></li>
 	                                <li><a href="javascript:;" @click="fnFAQ">FAQ 게시판</a></li>
-	                                <li><a href="javascript:;" @click="fnReview">후기 게시판</a></li>
 	                                <li><a href="javascript:;" @click="fnInquiry">1:1문의</a></li>
 	                                <li><a href="javascript:;" @click="fnFree">자유게시판</a></li>
 	                            </ul>
@@ -187,7 +186,6 @@
 	                        <li class="header_more">
 	                            <a href="javascript:;">더보기</a>
 	                            <ul>
-	                                <li><a href="javascript:;">이벤트</a></li>
 	                                <li><a href="/terms.do">약관 및 정책</a></li>
 	                            </ul>
 	                        </li>
