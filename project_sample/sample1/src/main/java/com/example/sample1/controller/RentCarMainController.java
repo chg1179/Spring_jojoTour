@@ -78,6 +78,8 @@ public class RentCarMainController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		RentCar info = rentCarMainService.searchRentCarInfo(map);
 		resultMap.put("rentcarinfo", info);
+		RentCarImg detailImg = rentCarMainService.searchCarDetailImg(map);
+		resultMap.put("detailImg", detailImg);
 		return new Gson().toJson(resultMap);
 	}
 	//렌트카 정보 리스트 출력

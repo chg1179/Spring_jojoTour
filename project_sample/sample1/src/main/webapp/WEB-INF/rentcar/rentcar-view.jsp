@@ -7,53 +7,55 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
+<script src="../js/jquery-1.12.4.js"></script>
+<link href="../css/detail-img.css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-		#app{
-		margin: 20px auto;
-	    max-width: 1200px;
-	    background-color: #fff;
-	    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-	    padding: 20px;
-	    border-radius: 5px;
-		}
-		body {
-			font-family: 'Jeju Gothic', sans-serif;
-			font-weight: lighter;
-		}
-        .condiv {
-        	display: flex; 
-    		justify-content: center;
-            
-        }
-        .linediv {
-        	display: flex;
-        	padding: 20px;
-            box-sizing: border-box;
-            flex-direction : column;
-        }
-        
-        
-		.mainimg {
-			width : auto;
-			height : 500px;
-		}
-		.dediv {
-			
-			 text-align: left;
-		}
-		.btn {
-			color : white;
-			width: 400px;
-			height : 60px;
-			border : 1px solid #213555;
-			background: #213555;
-			border-radius : 8px;
-			font-size: 30px;
-		}
-		.datebtn{
+	#app{
+	margin: 20px auto;
+    max-width: 1200px;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+	}
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+		font-weight: lighter;
+	}
+       .condiv {
+       	display: flex; 
+   		justify-content: center;
+           
+       }
+       .linediv {
+       	display: flex;
+       	padding: 20px;
+           box-sizing: border-box;
+           flex-direction : column;
+       }
+       
+       
+	.mainimg {
+		width : auto;
+		height : 500px;
+	}
+	.dediv {
+		
+		 text-align: left;
+	}
+	.btn {
+		color : white;
+		width: 400px;
+		height : 60px;
+		border : 1px solid #213555;
+		background: #213555;
+		border-radius : 8px;
+		font-size: 30px;
+	}
+	.datebtn{
     color: white;
     width: 40px;
     height: 23px;
@@ -61,9 +63,8 @@
     background: #213555;
     border-radius: 8px;
     font-size: 12px;
-		
-		}
-		    body {
+	}
+	body {
       font-family: Arial, sans-serif;
       background-color: #f0f0f0;
       margin: 0;
@@ -74,6 +75,8 @@
 	  border: 0;
 	  box-shadow: 0 10px 10px -10px #bbb inset;
 	}
+	
+
 </style>
 </head>
 <body>
@@ -124,6 +127,18 @@
 		
 			</span>
 		</div>
+		<div class="detail_container">
+			<div class="detail_wrap">
+				<h2>상세 이미지</h2>
+				<div class="detail_img_box">
+					<img alt="" :src="detailImg.imgPath">
+				</div>
+				<button class="detail_btn">펼쳐보기</button>
+			</div>
+		</div>
+	
+		
+		
 	</div>
 	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
@@ -142,7 +157,8 @@ var app = new Vue({
 		uId : "${sessionId}",
 		isWished:false,
 		checkInDate : "",
-		checkOutDate : ""
+		checkOutDate : "",
+		detailImg : ""
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -155,6 +171,9 @@ var app = new Vue({
                 data : param,
                 success : function(data) { 
                 	self.info = data.rentcarinfo;
+                	self.detailImg = data.detailImg;
+            		self.detailImg.imgPath = "../"+self.detailImg.imgPath;
+            		console.log(data.detailImg);
                 	self.sales = 100 - (self.info.rentSales * 100);
                 	self.fnGetImgList();
                 }
@@ -172,7 +191,7 @@ var app = new Vue({
                 	self.imgList = data.carImgList;
                 	// 앞 경로로 상대 경로 수정
                 	for(var i=0;i< self.imgList.length;i++){
-                		self.imgList[i].imgPath = "../"+self.imgList[i].imgPath; 
+                		self.imgList[i].imgPath = "../"+self.imgList[i].imgPath;
                 	}
                 }
             }); 
@@ -262,5 +281,21 @@ var app = new Vue({
 		var self = this;
 		self.fnGetList();
 	}// created
+});
+$(document).ready(function(){
+    $('.detail_btn').click(function(){
+        var detailWrap = $('.detail_wrap');
+        if (detailWrap.css('height') === '400px') {
+            detailWrap.css({
+                height : 'auto'
+            });
+            $(this).html('닫기');
+        } else {
+            detailWrap.css({
+                height : '400px'
+            });
+            $(this).html('펼쳐보기');
+        }
+    });
 });
 </script>
