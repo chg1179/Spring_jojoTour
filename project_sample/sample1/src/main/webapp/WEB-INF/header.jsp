@@ -188,7 +188,7 @@
 	                            <a href="javascript:;">더보기</a>
 	                            <ul>
 	                                <li><a href="javascript:;">이벤트</a></li>
-	                                <li><a href="javascript:;">약관 및 정책</a></li>
+	                                <li><a href="/terms.do">약관 및 정책</a></li>
 	                            </ul>
 	                        </li>
 	                    </ul>

@@ -45,19 +45,6 @@
 	#footer .policy_comp .ctf_wrap li a:active, #footer .policy_comp .ctf_wrap li a:hover {text-decoration:underline;}
 	#footer .policy_comp .ctf_wrap .r_line{border-right:solid 1px #414243 }
 
-	table{
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
-	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
-	}
-	ul{
-	   list-style:none;
-	   }
-	
 </style>
 </head>
 <body>
@@ -88,10 +75,10 @@
 				</ul>
 				<ul class="list_policy">
 					<li> <a href="" class="link_policy">회사소개</a> <span class="txt_bar"></span> </li>
-					<li> <a href="" class="link_policy">사업제휴</a> <span class="txt_bar"></span> </li>
+					<li> <a href="/notice/list.do" class="link_policy">공지사항</a> <span class="txt_bar"></span> </li>
 					<li> <a href="" class="link_policy">개인정보취급방침</a> <span class="txt_bar"></span> </li>
-					<li> <a href="" class="link_policy">이용약관</a> <span class="txt_bar"></span> </li>
-					<li> <a href="" class="link_policy">수집거부</a> </li>
+					<li> <a href="/terms.do" class="link_policy">이용약관</a> <span class="txt_bar"></span> </li>
+					<li> <a href="" class="link_policy">이메일무단수집거부</a> </li>
 				</ul>
 				<p class="txt_policy"> 사업자번호: 540-81-01170 [<a href="" onclick="" class="link_license">사업자정보확인</a>] | 통신판매업신고증 제 2023-인천경기-04699호 | 관광사업등록 제 2018-77호 | 대표자: 조예림  | 개인정보관리책임자: 이승현 <br>
 					주소: (본점)인천광역시 부평구 경원대로 1336, (부평동, 스테이션타워 7F) | 상호명 : 주식회사 조조투어 <br> 대표전화: 1544-3100 | 팩스: 064-749-4488  | 이메일: lim97@naver.com</p>

@@ -106,7 +106,12 @@ public class BoardController {
 		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
-	
+		
+	@RequestMapping("/terms.do") 
+    public String terms(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+		request.setAttribute("map", map);
+		return "/terms";
+    }
 	
 	
 	
