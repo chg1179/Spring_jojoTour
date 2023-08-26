@@ -4,8 +4,6 @@
 <html>
 <head>
 <script src="/js/jquery.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="../js/jquery-1.12.4.js"></script>
 <link href="../../css/detail-img.css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <meta charset="EUC-KR">
@@ -179,39 +177,44 @@ var app = new Vue({
 				alert("로그인 후 이용 가능한 서비스입니다.");
 				return;
 			}
-			
-			var found = self.list.some(function (item) {
-		        return item.leisureNo = self.leisureNo;
-		    });
-		
-			if(found){
-				if(!confirm("이미 장바구니에 담긴 상품입니다. 장바구니에서 확인하시겠습니까?")){
-					alert("취소됨")
-					return;
-				}else{
-					window.location.href = "/cart.do";
-		            return;
-				}
-			}
-		  
-			if(!confirm("장바구니에 담으시겠습니까?")){
-				alert("취소되었습니다.");
-				location.reload();
-				return;
-			}
-			
-			var param = {leisureNo : self.leisureNo, uId: self.uId}
+			var param = {leisureNo : info.leisureNo, uId: self.uId}
 			$.ajax({
-                url : "/leisureAddCart.dox",
+                url : "/leisureCartSearch.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	alert("추가되었습니다");
-					location.reload();
-                }
-            }); 
-		}
+                	console.log(data.cnt);
+                	if(data.cnt > 0){
+        				if(!confirm("이미 장바구니에 담긴 상품입니다. 장바구니에서 확인하시겠습니까?")){
+        					return;
+        				}else{
+        					window.location.href = "/cart.do";
+        		            return;
+        				}
+        			}else{
+        			if(!confirm("장바구니에 담으시겠습니까?")){
+        				alert("취소되었습니다.");
+        				location.reload();
+        				return;
+        			}
+        			var param = {leisureNo : self.leisureNo, uId: self.uId}
+        			$.ajax({
+                        url : "/leisureAddCart.dox",
+                        dataType:"json",	
+                        type : "POST",
+                        data : param,
+                        success : function(data) { 
+                        	alert("추가되었습니다");
+        					location.reload();
+                        }
+                    }); 
+        		}
+               }
+           }); 
+		
+			
+	}
 		
 	}, // methods
 	created : function() {

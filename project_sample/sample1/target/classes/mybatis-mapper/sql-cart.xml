@@ -31,4 +31,10 @@
 		WHERE U_ID = #{uId} AND PRODUCT_NO = #{productNo} AND PRODUCT_KIND = #{productKind}
 	</delete>
 	
+	<select id="cartCnt" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) AS CNT
+		FROM T2_CART_TBL
+		WHERE U_ID = #{uId} AND PRODUCT_NO = #{leisureNo}
+	</select>
+	
 </mapper>

@@ -38,6 +38,12 @@ public class CartServiceImpl implements CartService {
 		// TODO Auto-generated method stub
 		return cartMapper.delCart(map);
 	}
+
+	@Override
+	public int searchCartCnt(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return cartMapper.cartCnt(map);
+	}
 	
 	
 }

@@ -18,4 +18,6 @@ public interface CartMapper {
 	List<Cart> leisureList(HashMap<String, Object> map);
 	//장바구니 삭제
 	int delCart(HashMap<String, Object> map);
+	//장바구니 중복
+	int cartCnt(HashMap<String, Object> map);
 }

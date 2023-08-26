@@ -65,4 +65,13 @@ public class CartController {
 		cartService.removeCart(map);
 		return new Gson().toJson(resultMap);
 	}
+	
+	@RequestMapping(value = "/leisureCartSearch.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String leisureSearch(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int cnt = cartService.searchCartCnt(map);
+		resultMap.put("cnt", cnt);
+		return new Gson().toJson(resultMap);
+	}
 }

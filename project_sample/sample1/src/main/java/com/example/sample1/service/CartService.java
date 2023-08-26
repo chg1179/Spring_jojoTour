@@ -15,5 +15,6 @@ public interface CartService {
 	List<Cart> listLeisure(HashMap<String, Object> map);
 	//장바구니 삭제
 	int removeCart(HashMap<String, Object> map);
-	
+	//장바구니 중복
+	int searchCartCnt(HashMap<String, Object> map);
 }
