@@ -205,7 +205,7 @@
 	                <h2 class="accommodation_title" style="margin-top: 50px;">숙소 예약</h2>
 	                <ul>
 	                    <li>
-	                        <a href="javascript:;" @click="fnHotel">
+	                        <a href="javascript:;" @click="checkStayKind('HOTEL')">
 	                            <div class="a_img_box">
 	                                <img src="./img/main/hotel.png" alt="">
 	                            </div>
@@ -213,7 +213,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;">
+	                        <a href="javascript:;" @click="checkStayKind('MOTEL')">
 	                            <div class="a_img_box">
 	                                <img src="./img/main/motel.png" alt="">
 	                            </div>
@@ -221,7 +221,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;">
+	                        <a href="javascript:;" @click="checkStayKind('GUEST')">
 	                            <div class="a_img_box">
 	                                <img src="./img/main/guest_house.png" alt="">
 	                            </div>
@@ -229,7 +229,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;">
+	                        <a href="javascript:;" @click="checkStayKind('PENSION')">
 	                            <div class="a_img_box">
 	                                <img src="./img/main/pension.png" alt="">
 	                            </div>
@@ -237,7 +237,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;">
+	                        <a href="javascript:;" @click="checkStayKind('CAMPING')">
 	                            <div class="a_img_box">
 	                                <img src="./img/main/camping.png" alt="">
 	                            </div>
@@ -250,7 +250,7 @@
 	                <h2 class="retal_car_title">렌터카 예약</h2>
 	                <ul>
 	                    <li>
-	                        <a href="javascript:;" @click="fnRent">
+	                        <a href="javascript:;" @click="checkKind('SMALL')">
 	                            <div class="r_img_box">
 	                                <img src="./img/main/small.png" alt="">
 	                            </div>
@@ -258,7 +258,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="fnRent">
+	                        <a href="javascript:;" @click="checkKind('MIDDLE')">
 	                            <div class="r_img_box">
 	                                <img src="./img/main/midium.png" alt="">
 	                            </div>
@@ -266,7 +266,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="fnRent">
+	                        <a href="javascript:;" @click="checkKind('LARGE')">
 	                            <div class="r_img_box">
 	                                <img src="./img/main/large.png" alt="">
 	                            </div>
@@ -274,7 +274,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="fnRent">
+	                        <a href="javascript:;" @click="checkKind('VAN')">
 	                            <div class="r_img_box">
 	                                <img src="./img/main/very_large.png" alt="">
 	                            </div>
@@ -287,7 +287,7 @@
 	                <h2 class="water_leisure_title">수상 레저 예약</h2>
 	                <ul>
 	                    <li>
-	                        <a href="javascript:;" @click="fnWLeisure">
+	                        <a href="javascript:;" @click="checkWaterKind('SNORKE')">
 	                            <div class="w_img_box">
 	                                <img src="./img/main/snorkeling.jpg" alt="">
 	                            </div>
@@ -295,7 +295,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="fnWLeisure">
+	                        <a href="javascript:;" @click="checkWaterKind('SURFING')">
 	                            <div class="w_img_box">
 	                                <img src="./img/main/surfing.jpg" alt="">
 	                            </div>
@@ -303,7 +303,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="fnWLeisure">
+	                        <a href="javascript:;" @click="checkWaterKind('YACHT')">
 	                            <div class="w_img_box">
 	                                <img src="./img/main/yarcht.jpg" alt="">
 	                            </div>
@@ -311,7 +311,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="fnWLeisure">
+	                        <a href="javascript:;" @click="checkWaterKind('JETSKI')">
 	                            <div class="w_img_box">
 	                                <img src="./img/main/jetSki.jpg" alt="">
 	                            </div>
@@ -324,7 +324,7 @@
 	                <h2 class="water_leisure_title">지상 레저 예약</h2>
 	                <ul>
 	                    <li>
-	                        <a href="javascript:;" @click="fnGLeisure">
+	                        <a href="javascript:;" @click="checkGroundKind('ATV')">
 	                            <div class="l_img_box">
 	                                <img src="./img/main/atv.jpg" alt="">
 	                            </div>
@@ -332,7 +332,7 @@
 	                        </a>
 	                    </li>  
 	                    <li>
-	                        <a href="javascript:;" @click="fnGLeisure">
+	                        <a href="javascript:;" @click="checkGroundKind('GLIDER')">
 	                            <div class="l_img_box">
 	                                <img src="./img/main/paragliding.jpg" alt="">
 	                            </div>
@@ -340,7 +340,7 @@
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="fnGLeisure">
+	                        <a href="javascript:;" @click="checkGroundKind('HORSE')">
 	                            <div class="l_img_box">
 	                                <img src="./img/main/horse.png" alt="">
 	                            </div>
@@ -361,22 +361,19 @@ var app = new Vue({
 	data : {
 	},// data
 	methods : {
-		fnHotel : function(){
-			$.pageChange("/stay.do", {});
+		checkKind : function(kind){
+			$.pageChange("/rentcar.do", {rentKind : kind});
 		},
-        fnFAQ : function(){
-        	location.href="/faq/list.do";
-        },
-        fnRent : function(){
-        	$.pageChange("/rentcar.do",{});
-        },
-        fnWLeisure : function(){
-        	$.pageChange("/water/leisure.do",{});
-        },
-        fnGLeisure : function(){
-        	$.pageChange("/ground/leisure.do",{});
-        }
-
+		checkWaterKind : function(kind){
+			$.pageChange("/water/leisure.do", {leisureKind : kind});
+		},
+		checkGroundKind : function(kind){
+			$.pageChange("/ground/leisure.do", {leisureKind : kind});
+		},
+		checkStayKind : function(kind){
+			var self = this;
+			$.pageChange("/stay.do", {stayKind : kind});
+		}
 	}, // methods
 	created : function() {
 		var self = this;
