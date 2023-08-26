@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.sample1.mapper.LeisureMainMapper;
 import com.example.sample1.model.Leisure;
+import com.example.sample1.model.LeisureImg;
 
 @Service
 public class LeisureMainServiceImpl implements LeisureMainService{
@@ -88,6 +89,18 @@ public class LeisureMainServiceImpl implements LeisureMainService{
 	public int delJjim(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return leisureMainMapper.deleteJjim(map);
+	}
+
+	@Override
+	public LeisureImg searchWaterDetailImg(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return leisureMainMapper.selectWaterDetailImg(map);
+	}
+
+	@Override
+	public LeisureImg searchGroundDetailImg(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return leisureMainMapper.selectGroundDetailImg(map);
 	}
 
 	

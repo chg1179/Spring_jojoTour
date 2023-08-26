@@ -136,9 +136,6 @@
 				<button class="detail_btn">ÆîÃÄº¸±â</button>
 			</div>
 		</div>
-	
-		
-		
 	</div>
 	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>

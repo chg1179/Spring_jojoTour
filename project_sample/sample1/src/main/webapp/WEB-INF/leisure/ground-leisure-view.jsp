@@ -5,6 +5,8 @@
 <head>
 <script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="../js/jquery-1.12.4.js"></script>
+<link href="../../css/detail-img.css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <meta charset="EUC-KR">
 <title>Insert title here</title>
@@ -95,6 +97,15 @@
 				<span><input type="button" value="장바구니" class="btn" @click="fnCart"></span>
 			</span>	
 		</div>
+		<div class="detail_container">
+			<div class="detail_wrap">
+				<h2>상세 이미지</h2>
+				<div class="detail_img_box">
+					<img alt="" :src="detailImg.imgPath">
+				</div>
+				<button class="detail_btn">펼쳐보기</button>
+			</div>
+		</div>
 	</div>
 	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
@@ -108,6 +119,7 @@ var app = new Vue({
 		info : {},
 		uId : "${sessionId}",
 		isWished:false,
+		detailImg : ""
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -121,7 +133,8 @@ var app = new Vue({
                 success : function(data) { 
                 	self.info = data.info;
                 	self.info.imgPath = "../"+self.info.imgPath; 
-                	console.log(self.info);
+                	self.detailImg = data.detailImg;
+                	self.detailImg.imgPath = "../"+self.detailImg.imgPath; 
                 }
             }); 
 		},
@@ -189,5 +202,21 @@ var app = new Vue({
 		var self = this;
 		self.fnGetList();
 	}// created
+});
+$(document).ready(function(){
+    $('.detail_btn').click(function(){
+        var detailWrap = $('.detail_wrap');
+        if (detailWrap.css('height') === '400px') {
+            detailWrap.css({
+                height : 'auto'
+            });
+            $(this).html('닫기');
+        } else {
+            detailWrap.css({
+                height : '400px'
+            });
+            $(this).html('펼쳐보기');
+        }
+    });
 });
 </script>

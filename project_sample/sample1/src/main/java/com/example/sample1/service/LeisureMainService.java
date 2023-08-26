@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.example.sample1.model.Leisure;
+import com.example.sample1.model.LeisureImg;
 import com.example.sample1.model.RentCar;
 import com.example.sample1.model.RentCarImg;
 
@@ -14,7 +15,11 @@ public interface LeisureMainService {
 	HashMap<String, Object> searchWaterLeisureKindList(HashMap<String, Object> map);
 	// 수상레저 검색
 	HashMap<String, Object> searchWaterSearchList(HashMap<String, Object> map);
+	// 수상레저 상세 이미지
+	LeisureImg searchWaterDetailImg(HashMap<String, Object> map);
 	
+	//지상 레저 상세 이미지
+	LeisureImg searchGroundDetailImg(HashMap<String, Object> map);
 	//지상레저 리스트 출력
 	HashMap<String, Object> searchGroundLeisureList(HashMap<String, Object> map);
 	//지상레저 종류별 리스트 출력

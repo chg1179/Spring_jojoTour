@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.sample1.model.Leisure;
-import com.example.sample1.model.RentCar;
+import com.example.sample1.model.LeisureImg;
 
 @Mapper
 public interface LeisureMainMapper {
@@ -19,6 +19,11 @@ public interface LeisureMainMapper {
 	//수상 레저 검색
 	List<Leisure> selectWaterSearchList(HashMap<String, Object> map);
 	int selectWaterLeisureSearchCnt(HashMap<String, Object> map);
+	//수상 레저 상세 이미지
+	LeisureImg selectWaterDetailImg(HashMap<String, Object> map);
+	
+	//지상 레저 상세 이미지
+	LeisureImg selectGroundDetailImg(HashMap<String, Object> map);
 	
 	//지상 레저 메인 리스트
 	List<Leisure> selectGroundLeisureList(HashMap<String, Object> map);

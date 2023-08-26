@@ -82,6 +82,23 @@
 			ORDER BY LEISURE_PRICE-LEISURE_PRICE*(100-(LEISURE_SALES*100))/100 ASC
 		</if>
 	</select>
+	<!-- 수상 레저 상세이미지 불러오기 -->
+	<select id="selectWaterDetailImg" parameterType="hashmap" resultType="com.example.sample1.model.LeisureImg">
+		SELECT *
+		FROM T2_LEISURE_IMG_TBL
+		WHERE LEISURE_NO = #{leisureNo} AND MAIN_YN = 'N' AND IMG_DELYN = 'N'
+	</select>
+	
+	<!-- 지상 레저 상세이미지 불러오기 -->
+	<select id="selectGroundDetailImg" parameterType="hashmap" resultType="com.example.sample1.model.LeisureImg">
+		SELECT *
+		FROM T2_LEISURE_IMG_TBL
+		WHERE LEISURE_NO = #{leisureNo} AND MAIN_YN = 'N' AND IMG_DELYN = 'N'
+	</select>
+	
+	
+	
+	
 	<!-- 지상 레저 리스트 -->
 	<select id="selectGroundLeisureList" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">
 		SELECT *
@@ -161,6 +178,7 @@
 			ORDER BY LEISURE_PRICE-LEISURE_PRICE*(100-(LEISURE_SALES*100))/100 ASC
 		</if>
 	</select>
+
 	
 	<!-- 수상 지상 레저 상세정보 -->
 	<select id="selectLeisureInfo" parameterType="hashmap" resultType="com.example.sample1.model.Leisure">

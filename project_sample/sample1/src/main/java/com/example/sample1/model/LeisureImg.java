@@ -6,6 +6,7 @@ import lombok.Data;
 public class LeisureImg {
 	private int imgNo;
 	private int rentNo;
+	private int leisureNo;
 	private String imgName;
 	private String imgSaveName;
 	private String imgPath;

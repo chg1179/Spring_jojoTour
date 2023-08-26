@@ -1,7 +1,6 @@
 package com.example.sample1.controller;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.sample1.model.Leisure;
-import com.example.sample1.model.RentCar;
+import com.example.sample1.model.LeisureImg;
 import com.example.sample1.service.LeisureMainService;
 import com.google.gson.Gson;
 
@@ -58,6 +57,9 @@ public class LeisureMainController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		Leisure info = leisureMainService.searchLeisureInfo(map);
 		resultMap.put("info", info);
+		//수상레저 디테일
+		LeisureImg detailImg = leisureMainService.searchWaterDetailImg(map);
+		resultMap.put("detailImg", detailImg);
 		return new Gson().toJson(resultMap);
 	}
 	//수상레저 종류별 출력
@@ -160,7 +162,11 @@ public class LeisureMainController {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		Leisure info = leisureMainService.searchLeisureInfo(map);
 		resultMap.put("info", info);
+		//지상레저 디테일
+		LeisureImg detailImg = leisureMainService.searchGroundDetailImg(map);
+		resultMap.put("detailImg", detailImg);
 		return new Gson().toJson(resultMap);
+		
 	}
 
 }
