@@ -9,6 +9,7 @@
 	#app {
 		margin : 20px auto;
 		text-align: center;
+		height:80vh;
 	}
 	#app input {
 		margin : 50px;
