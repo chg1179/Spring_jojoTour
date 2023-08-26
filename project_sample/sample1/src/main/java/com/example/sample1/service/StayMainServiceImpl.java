@@ -72,6 +72,12 @@ public class StayMainServiceImpl implements StayMainService{
 		return stayMainMapper.selectImgList(map);
 	}
 
+	@Override
+	public int removeJjim(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return stayMainMapper.deleteJjim(map);
+	}
+
 	
 	
 }

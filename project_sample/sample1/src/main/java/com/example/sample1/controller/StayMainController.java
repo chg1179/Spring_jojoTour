@@ -50,6 +50,7 @@ public class StayMainController {
 			List<Object> selectService = mapper.readValue(json, new TypeReference<List<Object>>(){});
 			map.put("selectService", selectService);
 		}
+		// 숙소 리스트 출력
 		List<Stay> list = stayMainService.showStayList(map);
 		resultMap.put("stayList", list);
 		
@@ -90,6 +91,15 @@ public class StayMainController {
 	public String jjimAdd(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		stayMainService.addJjim(map);
+		return new Gson().toJson(resultMap);
+	}
+	
+	//숙소 찜 해제
+	@RequestMapping(value = "/jjimDel.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String jjimDel(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		stayMainService.removeJjim(map);
 		return new Gson().toJson(resultMap);
 		
 	}

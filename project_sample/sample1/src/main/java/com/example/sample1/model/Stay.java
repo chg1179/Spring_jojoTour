@@ -36,4 +36,6 @@ public class Stay {
 	private String imgDelYn;
 	
 	private int minPrice;
+	
+	private int jjimcheck;
 }

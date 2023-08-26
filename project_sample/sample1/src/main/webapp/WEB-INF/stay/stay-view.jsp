@@ -61,7 +61,10 @@
 	 	float: right;
 		width: 450px;
 	 }
-	
+	.left img {
+		width: 100%;
+		height: auto;
+	}
 </style>
  
 </head>
@@ -85,7 +88,6 @@
 			<input type="date" name="checkInDate" v-model="checkInDate"> ~
 			<input type="date" name="checkOutDate" v-model="checkOutDate">
 		</div>
-		<div><button @click="">°Ë»ö</button></div>
 	</div>
 	<div class="room-box">
 		<div class="room" v-for="(item, index) in list">
@@ -103,7 +105,7 @@
 		</div>
 	</div>
 </div>
-<jsp:include page="../footer.jsp" flush="true"></jsp:include>
+<%-- <jsp:include page="../footer.jsp" flush="true"></jsp:include> --%>
 </body>
 </html>
 <script>
@@ -208,6 +210,7 @@ var app = new Vue({
                 }
             }); 
 		},
+		
 		
 	}, // methods
 	created : function() {

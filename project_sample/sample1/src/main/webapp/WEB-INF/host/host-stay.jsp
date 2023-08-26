@@ -15,7 +15,7 @@
 		margin-top: 30px;
 	}
 	
-	.container h3 {
+	h3 {
 		text-align: center;
 		padding: 14px;
 	}
@@ -25,6 +25,9 @@
 		border-top: 1px solid black;
 		border-botton: 1px solid black;
 		border-collapse: collapse;
+	}
+	th, td {
+		border: 1px solid black;
 	}
 	
 	.host-table a {
@@ -37,27 +40,12 @@
 		text-decoration: underline;
 	}
 	
-	.host-table th, .host-table td {
-		text-align: center;
-		padding: 14px 0;
-		border-bottom: 1px solid black;
-		border-left: 1px solid #ccc;
-		border-right: 1px solid #ccc;
-	}
-	
-	.host-table th:first-child, .host-table td:first-child {
-		border-left: none;
-	}
-	
-	.host-table th:last-child, .host-table td:last-child {
-		border-right: none;
-	}
 </style>
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div class="container">
+		<div>
 			<h3>숙박 업체 등록</h3>
 		</div>
 		<!-- stay list area -->
@@ -68,10 +56,10 @@
 						<tr>
 							<th>선택</th>
 							<th>No.</th>
+							<th>숙소타입</th>
 							<th>업체명</th>
 							<th>주소</th>
 							<th>상세 주소</th>
-							<th>숙소타입</th>
 							<th>등록일</th>
 						</tr>
 					</thead>
@@ -82,10 +70,10 @@
 								<input v-else type="radio" :value="item.stayNo" @input="changeStayNo(item.stayNo)" name="stayNo">
 							</td>
 							<td>{{item.stayNo}}</td>
+							<td>{{item.cName}}</td>
 							<td><a @click="fnMove(item.stayNo)" href="javascript:;">{{item.stayName}}</a></td>
 							<td>{{item.sAddr}}</td>
 							<td>{{item.sDetailAddr}}</td>
-							<td>{{item.cName}}</td>
 							<td>{{item.sInsertTime}}</td>
 						</tr>
 					</tbody>

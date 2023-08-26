@@ -24,20 +24,6 @@
 		border-left: 1px solid #ccc;
 	}
 	
-	th:first-child, td:first-child {
-		border-left: none;
-	}
-	.table-heading {
-	    text-align: center;
-	}
-
-	.heading-box {
-	    text-align: center;
-	}
-
-	.heading-box h3 {
-	    margin: 0;
-	}
 </style>
 </head>
 <body>

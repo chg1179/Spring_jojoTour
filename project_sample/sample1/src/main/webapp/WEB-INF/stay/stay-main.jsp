@@ -112,7 +112,8 @@
 		display: block;
 	}
 	
-	.list-wrap ul {
+	/*  */
+	.stay-list ul {
 		display: block;
 		margin-block-start: 1em;
 		margin-block-end: 1em;
@@ -121,17 +122,28 @@
 		padding-inline-start:
 	}
 	
-	.list-wrap, .stay-type {
+	.stay-list, .stay-type {
 		float: left;
 		width: 600px;
 	}
 	
-	.list-wrap::after {
+	.stay-list::after {
 		content: "";
 		display: table;
 		clear: both;
 	}
-	
+	.stay-list {
+		border: 1px solid #ccc;
+		margin-bottom: 20px;
+		margin-left: 20px;
+	}
+	.stay-type {
+		margin-left: 10px;
+	}
+	.stay-img img{
+		width: 100%;
+		height: auto;
+	}
 	ul a:hover {
 		text-decoration: underline;
 	}
@@ -146,14 +158,6 @@
 		overflow: hidden;
 	}
 	
-	.stay-info {
-		border: 1px solid #ccc;
-		margin-bottom: 20px;
-		margin-left: 20px;
-	}
-	.stay-type {
-		margin-left: 10px;
-	}
 	
 	.btn-wrap button {
 		margin: 20px;
@@ -190,7 +194,7 @@
 				<div class="btn-wrap">
 					<span><button @click="fnReset">초기화</button></span> 
 				</div>
-
+		
 				<div class="stay-name">
 					<h3>숙소명</h3>
 					<div class="name-input">
@@ -204,7 +208,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="stay-container">
+			<div id="stay-main-con">
 				<div class="stay-type">
 					<select v-model="stayKind" @change="fnSearch">
 						<option value="" selected disabled hidden>::전체::</option>
@@ -216,7 +220,7 @@
 						<option value="CAMPING">캠핑</option>
 					</select>
 				</div>
-				<div class="list-wrap">
+				<div class="stay-list">
 					<ul>	
 						<li v-if ="stayKind == ''" v-for="item in list">
 							<div class="stay-info">
@@ -229,7 +233,8 @@
 									</p>
 									<p>{{item.minPrice}}원</p>
 									<p>{{item.sAddr}}</p>
-									<button @click="fnJjim(item.stayNo)">찜</button>
+									<p v-if="item.jjimCheck == 1"><button @click="fnJjim(item.stayNo)">찜하기</button></p>
+									<p v-else><button @click="fnJjimDel(item.stayNo)">찜해제</button></p>
 								</div>
 							</div>
 						</li>
@@ -244,7 +249,8 @@
 									</p>
 									<p>{{item.minPrice}}원</p>
 									<p>{{item.sAddr}}</p>
-									<button @click="fnJjim(item.stayNo)">찜</button>
+									<p v-if="item.jjimCheck == 1"><button @click="fnJjim(item.stayNo)">찜하기</button></p>
+									<p v-else><button @click="fnJjimDel(item.stayNo)">찜해제</button></p>
 								</div>
 							</div>
 						</li>
@@ -267,13 +273,14 @@ var app = new Vue({
 		info : {},
 		stayKind : "${map.stayKind}",
 		uId : "${sessionId}",
-		imgList : []
+		imgList : [],
+		
 	},// data
 	methods : {
 		// 숙소 리스트 
 		fnGetList : function(){
 			var self = this;
-			var param = {stayKeyword : self.stayKeyword};
+			var param = {stayKeyword : self.stayKeyword, uId : self.uId, stayNo : self.stayNo};
 			$.ajax({
                 url : "stayList.dox",
                 dataType:"json",	
@@ -337,10 +344,6 @@ var app = new Vue({
 				alert("로그인 후 이용 가능한 서비스입니다.");
 				return;
 			}
-			if(!confirm("찜목록에 추가하시겠습니까?")){
-				alert("취소되었습니다.");
-				return;
-			}
 			var param = {stayNo : stayNo, uId : self.uId};
 			console.log(stayNo);
 			$.ajax({
@@ -355,6 +358,23 @@ var app = new Vue({
                 }
             }); 
 		},
+		fnJjimDel : function(stayNo){
+			var self = this;
+			var param = {stayNo : stayNo, uId : self.uId};
+			console.log(stayNo);
+			$.ajax({
+                url : "jjimDel.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	alert("찜 해제 되었습니다.");
+                	console.log(stayNo);
+                	self.fnGetList();
+                }
+            }); 
+		},
+		
 	}, // methods
 	created : function() {
 		var self = this;

@@ -30,11 +30,7 @@
 		<table>
 		<tbody>
 			<tr>
-				<th>
-					업체 
-					<br>
-					기본 정보
-				</th>
+				<th>기본 정보</th>
 				<td>
 					<div>
 						<span>업체명</span>
@@ -43,13 +39,12 @@
 						</span>
 					</div>
 					<div>
-						<span>업체 주소</span>
-						<div>
-							<div>우편번호<input disabled type="text" v-model="info.sZipno"></div>
-						 	<input disabled type="text" v-model="info.sAddr" placeholder="업체 주소를 입력하세요.">
-	                        <button @click="fnSearchAddr">주소 검색</button>
-	                        <div><input type="text" v-model="info.sDetailAddr" placeholder="나머지 주소를 입력해주세요."></div>
-						</div>
+						<div>우편번호<input disabled type="text" v-model="info.sZipno"></div>
+						
+					 	<input disabled type="text" v-model="info.sAddr" placeholder="업체 주소를 입력하세요.">
+                        <button @click="fnSearchAddr">주소 검색</button>
+                        
+                        <div><input type="text" v-model="info.sDetailAddr" placeholder="나머지 주소를 입력해주세요."></div>
 					</div>
 				</td>
 			</tr>
@@ -67,11 +62,7 @@
 				</td>
 			</tr>
 			<tr>
-				<th>
-					편의시설
-					<br>
-					서비스 안내
-				</th>
+				<th>편의시설</th>
 				<td>
 					<div v-for="item in serviceList">
 						<label><input type="checkbox" :value="item.serviceNo" v-model="selectServiceList">{{item.serviceName}}</label>
@@ -148,7 +139,7 @@ var app = new Vue({
 				alert("취소되었습니다.");
 				return;
 			}
-			var regex = 
+			
 			var noServiceList = JSON.stringify(self.selectServiceList); //문자열 형태로 형변환
 			var param = self.info;
 			param.uId = self.uId;
@@ -156,8 +147,6 @@ var app = new Vue({
 			param.serviceNo = self.serviceNo;
 			param.selectServiceList = noServiceList;
 			
-			console.log(self.selectServiceList);
-			console.log(self.selectServiceList[2]); 
 			$.ajax({
                 url : "stayAdd.dox",
                 dataType:"json",	
@@ -172,6 +161,7 @@ var app = new Vue({
 	       	     	
                 	alert("숙소가 등록되었습니다.");
                 	location.href="/host/stay.do";
+                	
                		
                 }
             }); 

@@ -9,6 +9,7 @@
 <title>객실 상세 정보</title>
 <style>
 	table{
+		width : 
 		border : 1px solid black;
 		border-collapse: collapse;
 		text-align : center;

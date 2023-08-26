@@ -6,30 +6,34 @@
 
 	<!-- 숙소 메인 리스트 출력 -->
 	<select id="viewStayList" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
-		SELECT *
-		FROM T2_STAY_TBL S
-		INNER JOIN T2_CODE_TYPE C
-		ON S.STAY_KIND = C.C_KIND
-		LEFT JOIN (
-			SELECT MIN(ROOM_PRICE) AS MIN_PRICE, STAY_NO, PEOPLE_MAX
-			FROM T2_ROOM_TBL
-			GROUP BY STAY_NO
-		) R ON S.STAY_NO = R.STAY_NO
-		LEFT JOIN T2_STAY_IMG_TBL I ON S.STAY_NO = I.STAY_NO
-		WHERE 1=1
-		<if test="stayKeyword != '' and stayKeyword != null"> 
-			AND STAY_NAME LIKE CONCAT('%',#{stayKeyword},'%')
-		</if>
-		<if test="selectService != null and selectService.size() > 0">
-			<foreach item="serviceNo" index="index" collection="selectService">
-	        AND S.STAY_NO IN (
-		         SELECT STAY_NO
-		         FROM T2_STAY_SERVICE_TBL
-		         WHERE SERVICE_NO = #{serviceNo}
-	       	 )
-	       	 </foreach>
-   		 </if>
-
+	      SELECT *
+	      FROM T2_STAY_TBL S
+	      INNER JOIN T2_CODE_TYPE C
+	      ON S.STAY_KIND = C.C_KIND
+	      LEFT JOIN (
+	         SELECT MIN(ROOM_PRICE) AS MIN_PRICE, STAY_NO, PEOPLE_MAX
+	         FROM T2_ROOM_TBL
+	         GROUP BY STAY_NO
+	      ) R ON S.STAY_NO = R.STAY_NO
+	      LEFT JOIN T2_STAY_IMG_TBL I ON S.STAY_NO = I.STAY_NO
+	      LEFT JOIN (
+	         SELECT COUNT(*) AS JJIMCHECK, J.*
+	         FROM T2_JJIM_TBL J
+	         WHERE PRODUCT_KIND = 'STAY' AND PRODUCT_NO = #{stayNo} AND U_ID = #{uId}
+	      ) J ON J.PRODUCT_NO = S.STAY_NO
+	      WHERE 1=1
+	      <if test="stayKeyword != '' and stayKeyword != null"> 
+	         AND STAY_NAME LIKE CONCAT('%',#{stayKeyword},'%')
+	      </if>
+	      <if test="selectService != null and selectService.size() > 0">
+	         <foreach item="serviceNo" index="index" collection="selectService">
+	           AND S.STAY_NO IN (
+	               SELECT STAY_NO
+	               FROM T2_STAY_SERVICE_TBL
+	               WHERE SERVICE_NO = #{serviceNo}
+	              )
+	         </foreach>
+	      </if>
 	</select>
 	
 	<!-- 편의시설 리스트 -->
@@ -65,11 +69,18 @@
 		ON S.STAY_KIND = C.C_KIND
 	</select>
 	
-	<!-- 찜 인서트 -->
+	<!-- 찜하기 -->
 	<insert id="insertJjim" parameterType="hashmap">
 		INSERT INTO T2_JJIM_TBL VALUES
 		(#{uId}, #{stayNo}, 'STAY')
 	</insert>
+	
+	<!-- 찜 해제 -->
+	<delete id="deleteJjim" parameterType="hashmap">
+		DELETE
+		FROM T2_JJIM_TBL
+		WHERE PRODUCT_NO = #{stayNo} AND PRODUCT_KIND = 'STAY' AND U_ID = #{uId}
+	</delete>
 	
 	<insert id="insertCart" parameterType="hashmap">
 		INSERT INTO T2_CART_TBL VALUES

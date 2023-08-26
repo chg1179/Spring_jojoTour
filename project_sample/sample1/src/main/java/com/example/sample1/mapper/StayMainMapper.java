@@ -25,6 +25,9 @@ public interface StayMainMapper {
 	// 찜 인서트
 	int insertJjim(HashMap<String, Object> map);
 	
+	// 찜 해제
+	int deleteJjim(HashMap<String, Object> map);
+	
 	// 상세페이지 숙소 정보 출력 
 	Stay selectStayInfo(HashMap<String, Object> map);
 	

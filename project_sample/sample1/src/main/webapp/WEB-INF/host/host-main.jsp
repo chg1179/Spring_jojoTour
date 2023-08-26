@@ -17,7 +17,7 @@
 		<input type="button" value="렌트카관리" @click="fnRentcarPage"/>
 		<input type="button" value="예약상품관리" @click="fnOrderPage"/>
 	</div>
-	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
+	<%-- <jsp:include page="../footer.jsp" flush="true"></jsp:include> --%>
 </body>
 </html>
 <script>
