@@ -9,6 +9,7 @@
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <script src="../js/jquery-1.12.4.js"></script>
 <link href="../css/rentcar/rentcar.css" rel="stylesheet"/>
+<link href="../../css/basic/paging-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>

@@ -177,8 +177,8 @@
 			</tr>
 		</table>
 	</div>
-	<div class="btn">
-		<span><button @click="fnBack" class="btn-dark">뒤로가기</button></span>
+	<div>
+		<span><button @click="fnBack" class="btn">뒤로가기</button></span>
 	</div>
 </div>
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>

@@ -7,6 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
+<link href="../../css/basic/paging-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>찜목록</title>
 <style>
@@ -21,31 +22,6 @@
         top: 0;
         right: 0;
     }
-	.pagination {
-       margin:24px;
-       display: inline-flex;
-   }
-   .pagination li {
-      min-width:32px;
-      padding:2px 6px;
-      text-align:center;
-      margin:0 3px;
-      border-radius: 6px;
-      border:1px solid #eee;
-      color:#666;
-      display : inline;
-   }
-   .pagination li:hover {
-       background: #E4DBD6;
-   }
-   .pagination li.active {
-       background-color : #E7AA8D;
-       color:#fff;
-   }
-   .pagination li.active a {
-       color:#fff;
-   }
-
    *{
 	margin: 0;
 	padding: 0;
