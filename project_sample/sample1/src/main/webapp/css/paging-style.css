@@ -15,14 +15,15 @@ ul {
     display : inline;
 }
 .pagination li:hover {
-    background: #E4DBD6;
+    background: #A0BFE0;
+    color:#fff;
 }
 .page-item a {
     color:#666;
     text-decoration: none;
 }
 .pagination li.active {
-    background-color : #E7AA8D;
+    background-color : #213555;
     color:#fff;
 }
 .pagination li.active a {

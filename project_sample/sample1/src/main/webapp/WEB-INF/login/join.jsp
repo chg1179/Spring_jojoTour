@@ -3,36 +3,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="../js/jquery.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>회원 가입</title>
 <style>
     #join_container{
-        height: 100vh;
+        height: 90vh;
+        background-color: #eee;
     }
     .join_inner_con{
-        background-color: #FFA41B;
+        background-color: #213555;
+        margin-top: 70px;
+        margin-bottom: 20px;
+        border : 1px solid #213555;
     }
     .join_inner_con input{
-        width: 300px;
-        height: 30px;
-        margin: 5px 30px;
-        outline: none;
-        border: 1px solid;
-        padding: 0 10px;
-        border-radius: 10PX;
+	    width: 350px;
+	    height: 35px;
+	    margin: 5px 10px;
+	    outline: none;
+	    border: 1px solid;
+	    padding: 0 10px;
+	    border-radius: 6PX;
+	    margin-bottom: 5px;
+	    border : 1px solid #213555;
     }
     .join_inner_box{
-        background-color: #F86F03;
+        background-color: #f5f6f7;
         padding-top : 20px;
     }
     .join_title{
         text-align: center;
-        margin: 10px;
+        margin: 15px;
     }
     .join_check_wrap{
         position: relative;
+        display: flex;
+        align-items: center;
+        margin: 0px 25px;
     }
     .join_check{
         position: absolute;
@@ -51,7 +59,7 @@
         display: none;
     }
     .join_btn{
-    	padding-bottom: 20px;
+       padding-bottom: 5px;
     }
     .join_btn button{
         width: 200px;
@@ -60,7 +68,7 @@
         border: none;
         background-color: rgb(82, 82, 82);
         height: 30px;
-        border-radius: 10px;
+        border-radius: 6px;
         color: #fff;
         font-weight: 700;
         cursor: pointer;
@@ -71,40 +79,40 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../header.jsp" flush="true"></jsp:include>
-	<div id="app">
-	    <div id="join_container">
-	        <div class="join_inner_con">
-	            <h2 class="join_title" v-if="user.status == 'U'"><span style="color : blue;">일반</span> 회원가입</h2>
-	            <h2 class="join_title" v-else><span style="color : red;">호스트</span> 회원가입</h2>
-	            <div class="join_inner_box">
-	                <div class="join_input_wrap">
-	                    <div class="join_check_wrap">
-	                        <label><input type="text" v-model="user.userId" @keyup="fnCheck" placeholder="아이디"></label> 
-	                        <span class="join_check" v-if="user.userId != ''">{{message}}</span>
-	                    </div>
-	                        <div><label><input type="password" v-model="user.pw1" placeholder="비밀번호"></label></div>
-	                        <div><label><input type="password" v-model="user.pw2" placeholder="비밀번호 확인"></label></div>
-	                        <div><label><input type="text" v-model="user.name" placeholder="이름"></label></div>
-	                        <div><label><input type="text" v-model="user.nickName" placeholder="닉네임"></label></div>
-	                        <div><label><input type="date" v-model="user.birth" id="birth"></label></div>
-	                        <div><label><input type="text" v-model="user.phone" id ="phone" placeholder="핸드폰 번호"></label></div>
-	                        <div><label><input type="text" v-model="user.email" placeholder="이메일"></label></div>
-	
-	                        
-	                            
-	                        <div><label class="join_btn"><button @click="fnSearchAddr">주소 검색</button></label></div>
-	                        <div v-if="user.addr != ''" ><label><input disabled type="text" v-model="user.addr"></label></div>
-	                        <div v-if="user.zipNo != ''" ><label><input disabled type="text" v-model="user.zipNo"></label></div>
-	                        <div v-if="user.addrDetail != ''"><label><input type="text" v-model="user.addrDetail"></label></div>
-	                        
-	                </div>
-	                <div class="join_btn"><button @click="fnJoin">가입하기</button></div>
-	            </div>
-	        </div>
-	    </div>
-	</div>
-	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
+   <jsp:include page="../header.jsp" flush="true"></jsp:include>
+   <div id="app">
+       <div id="join_container">
+           <div class="join_inner_con">
+               <h1 class="join_title"><span style="color : white;"><i class="fa-regular fa-paper-plane"></i> JOJO TOUR</span></h1>
+               <div class="join_inner_box">
+                   <div class="join_input_wrap">
+                       <div class="join_check_wrap">
+                           <span><i class="fa-solid fa-user"></i> </span>
+                           <label><input type="text" v-model="user.userId" @keyup="fnCheck" placeholder="아이디"></label>
+                           <span class="join_check" v-if="user.userId != ''">{{message}}</span>
+                       </div>
+                           <div style="margin-left:25px"><i class="fa-solid fa-lock"></i><label><input type="password" v-model="user.pw1" placeholder="비밀번호"></label></div>
+                           <div style="margin-left:25px"><i class="fa-solid fa-lock"></i><label><input type="password" v-model="user.pw2" placeholder="비밀번호 확인"></label></div>
+                           <div style="margin-left:25px"><i class="fa-regular fa-user"></i><label><input type="text" v-model="user.name" placeholder="이름"></label></div>
+                           <div style="margin-left:25px"><i class="fa-regular fa-user"></i><label><input type="text" v-model="user.nickName" placeholder="닉네임"></label></div>
+                           <div style="margin-left:25px"><i class="fa-regular fa-calendar-check"></i><label><input type="date" v-model="user.birth" id="birth"></label></div>
+                           <div style="margin-left:25px"><i class="fa-solid fa-mobile-screen"></i><label><input type="text" v-model="user.phone" id ="phone" placeholder="핸드폰 번호"></label></div>
+                           <div style="margin-left:25px"><i class="fa-regular fa-envelope"></i><label><input type="text" v-model="user.email" placeholder="이메일"></label></div>
+   
+                           
+                               
+                           <div><label class="join_btn"><button @click="fnSearchAddr">주소 검색</button></label></div>
+                           <div v-if="user.addr != ''" style="margin-left:25px"><i class="fa-solid fa-location-dot"></i><label><input disabled type="text" v-model="user.addr"></label></div>
+                           <div v-if="user.zipNo != ''" style="margin-left:25px"><i class="fa-solid fa-location-dot"></i><label><input disabled type="text" v-model="user.zipNo"></label></div>
+                           <div v-if="user.addrDetail != ''" style="margin-left:25px"><i class="fa-solid fa-location-dot"></i><label><input type="text" v-model="user.addrDetail"></label></div>
+                           
+                   </div>
+                   <div class="join_btn"><button @click="fnJoin" style="margin-bottom:25px">가입하기</button></div>
+               </div>
+           </div>
+       </div>
+   </div>
+   <jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

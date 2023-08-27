@@ -358,7 +358,7 @@
 			          <div class="font1">{{item.leisurePrice*item.leisureSales}}</div></div>
 			          <button class="btn2" v-if="item.productKind == 'STAY'" @click="fnStayView(item.productNo)">예약하러가기</button>
 			          <button class="btn2" v-if="item.productKind == 'RENT'" @click="fnRentView(item.productNo)">예약하러가기</button>
-			          <button class="btn2" v-if="item.productKind == 'LEISURE'" @click="fnLeisureView(item.productNo)">예약하러가기</button>
+			          <button class="btn2" v-if="item.productKind == 'LEISURE'" @click="fnLeisureView(item.productNo, item.productKind)">예약하러가기</button>
 			        </td>
 			      </tr>
 			    </table>
@@ -384,7 +384,7 @@
 		</div>
   		</div>
 	</div>
-<jsp:include page="../footer.jsp" flush="true"></jsp:include>
+<%-- <jsp:include page="../footer.jsp" flush="true"></jsp:include> --%>
 </body>
 </html>
 <script>
@@ -469,9 +469,14 @@ var app = new Vue({
 		    	console.log(stayNo);
 				$.pageChange("/stay/view.do", {stayNo : stayNo});
 	    },
-	    fnLeisureView : function(leisureNo){
+	    fnLeisureView : function(leisureNo, productKind){
 	    	var self = this;
-			$.pageChange("/leisure/view.do", {leisureNo : leisureNo});	
+	    	// 추후 수정 예정
+	    	if(productKind == "ATV" || productKind == "CLIDER" || productKind == "HORSE"){
+	    		$.pageChange("/ground/leisure/view.do", {leisureNo : leisureNo});
+	    	} else{
+	    		$.pageChange("/water/leisure/view.do", {leisureNo : leisureNo});	    		
+	    	}	
 	    },
 	       selectAllItems: function() {
 	            var self = this;

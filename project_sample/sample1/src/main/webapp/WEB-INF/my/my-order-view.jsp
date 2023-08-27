@@ -115,7 +115,7 @@
 		                </thead>
 		                <tbody>
 		                    <tr v-for="product in roomList" :key="product.productNo">
-		                    	<td>{{ product.stayName }}</td>
+		                    	<td><a @click="fnStayView(product.productNo)">{{ product.stayName }}</a></td>
 		                        <td>{{ product.roomName }}</td>
 		                        <td>{{ product.sReserveDate }} 14:00</td>
 		                        <td>{{ product.lReserveDate }} 10:00</td>
@@ -173,7 +173,7 @@
 		                </thead>
 		                <tbody>
 		                    <tr v-for="product in rentList" :key="product.productNo">
-		                        <td>{{ product.rentName }}</td>
+		                        <td><a @click="fnRentView(product.productNo)">{{ product.rentName }}</a></td>
 		                        <td>{{ product.sReserveDate }} 12:00</td>
 		                        <td>{{ product.lReserveDate }} 12:00</td>
 		                        <td>{{ product.people }}일</td>
@@ -229,7 +229,7 @@
 		                </thead>
 		                <tbody>
 		                    <tr v-for="product in leisureList" :key="product.productNo">
-		                        <td>{{ product.leisureName }}</td>
+		                        <td><a @click="fnLeisureView(product.productNo, product.leisureKind)">{{ product.leisureName }}</a></td>
 		                        <td>{{ product.sReserveDate }} ~ {{ product.lReserveDate }}</td>
 		                        <td>{{ product.people }}매</td>
 		                        <td>
@@ -465,7 +465,25 @@ var app = new Vue({
             		self.fnGetList();
                 }
             });
-		}
+		},
+		// 제품 페이지로 이동
+		fnRentView : function(rentNo){
+			var self = this;
+			$.pageChange("/rentcar/view.do", {rentNo : rentNo});
+	    },
+	    fnStayView : function(stayNo){
+		    var self = this;
+			$.pageChange("/stay/view.do", {stayNo : stayNo});
+	    },
+	    fnLeisureView : function(leisureNo, leisureKind){
+	    	var self = this;
+	    	// 추후 수정 예정
+	    	if(leisureKind == "ATV" || leisureKind == "CLIDER" || leisureKind == "HORSE"){
+	    		$.pageChange("/ground/leisure/view.do", {leisureNo : leisureNo});
+	    	} else{
+	    		$.pageChange("/water/leisure/view.do", {leisureNo : leisureNo});	    		
+	    	}
+	    },
 	}, // methods
 	created : function() {
 		var self = this;

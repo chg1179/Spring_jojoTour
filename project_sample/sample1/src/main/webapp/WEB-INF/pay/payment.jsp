@@ -330,8 +330,7 @@ var app = new Vue({
 		},
         fnRequestPay : function(){
         	var self = this;
-        	var orderNo = 'jojo_'+new Date().getFullYear()+(new Date().getMonth()+1)+new Date().getDate()+"_"+new Date().getTime();
-        	console.log(orderNo);
+        	var orderNo = 'JOJO_'+new Date().getFullYear()+(new Date().getMonth()+1)+new Date().getDate()+"_"+new Date().getTime();
         	if(self.userInfo.uName == ""){
 				alert("예약자 이름을 입력해주세요.");
 				return;

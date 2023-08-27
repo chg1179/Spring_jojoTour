@@ -88,13 +88,13 @@
 					<tr>
 						<th>주문번호</th>
 						<th>주문일</th>
-						<th>결제금액</th>
+						<th>총금액</th>
 						<th>상세내역</th>
 					</tr>
 					<tr v-for="item in orderList">
 						<td><a @click="fnView(item.orderNo)" href="javascript:;">{{item.orderNo}}</a></td>
-						<td>{{item.paymentDate}}</td>
-						<td>{{item.totalPay - item.usePoint}}원</td>
+						<td>{{ item.paymentDate }}</td>
+						<td>{{ item.totalPay }}원</td>
 						<td><input type="button" value="상세보기" @click="fnView(item.orderNo)"></td>
 					</tr>
 				</table>
