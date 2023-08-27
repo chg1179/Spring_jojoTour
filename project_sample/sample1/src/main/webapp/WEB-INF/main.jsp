@@ -73,15 +73,18 @@
         /* 배너 끝 */
         .accommodation_title{
             margin-left: 30px;
+			margin-bottom: 30px;
         }
         .accommodation>ul{
             display: flex;
             justify-content: space-around;
-            margin-bottom: 140px;
+            margin-bottom: 50px;
         }
         .accommodation>ul>li{
-            width: 120px;
-            height: 120px;
+            width: 230px;
+			height: 230px;
+			border-radius: 20px;
+			overflow: hidden;
             text-align: center;
             font-weight: 700;
         }
@@ -98,11 +101,24 @@
             margin: 30px 0;
         }
         .retal_car>ul>li{
-            width: 120px;
-            height: 120px;
+            width: 290px;
+            height: 290px;
+            text-align: center;
+            font-weight: 700;
+			border-radius: 20px;
+			overflow: hidden;
             text-align: center;
             font-weight: 700;
         }
+        .retal_car>ul>li:last-child>a{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+        }
+		.retal_car>ul>li:last-child>a>.rotate_box{
+			width: 200px;
+			height: 200px;
+		}
         /* 렌터카 예약 끝 */
         .water_leisure{
             margin-top: 70px;
@@ -117,32 +133,53 @@
             margin: 30px 0;
             font-weight: 700;
         }
-        .w_img_box{
-            width: 120px;
-            height: 120px;
-            margin-bottom: 30px;
+        .water_leisure>ul>li{
+            width: 290px;
+            height: 290px;
+            text-align: center;
+            font-weight: 700;
+			border-radius: 20px;
+			overflow: hidden;
+            text-align: center;
+            font-weight: 700;
         }
-        .w_img_box, .l_img_box{
-            border-radius: 100%;
-            overflow: hidden;
+        .w_img_box{
+            width: 290px;
+            height: 290px;
+            margin-bottom: 30px;
         }
         /* 수상레저 예약 끝 */
         .land_leisure{
             margin-top: 70px;
         }
         .land_leisure_title{
-            margin: 30px;
+			margin-left: 200px;
         }
-        .land_leisure>ul{
+		.land_leisure_inbox{
+			display: flex;
+			justify-content: center;
+		}
+        .land_leisure>.land_leisure_inbox>ul{
             display: flex;
             justify-content: space-around;
             text-align: center;
             margin: 30px 0;
             font-weight: 700;
+			width: 900px;
+        }
+        .land_leisure>.land_leisure_inbox>ul>li{
+            width: 290px;
+            height: 290px;
+            text-align: center;
+            font-weight: 700;
+			border-radius: 20px;
+			overflow: hidden;
+            text-align: center;
+            font-weight: 700;
         }
         .l_img_box{
-            width: 120px;
-            height: 120px;
+            width: 290px;
+            height: 290px;
             margin-bottom: 30px;
         }
         /* 지상레져 끝 */
@@ -166,6 +203,54 @@
         #slide_wrap img{
         	width : 600px;
         }
+
+		/* 이미지 돌아가면서 글씨 올리기 */
+		.out_box{
+			position: relative;
+			display: block;
+			transform: rotateY(0);
+			transition-duration: 0.6s;
+			height : 100%;
+			width : 100%;
+			
+		}
+		.rotate_box{
+		    transform: rotateY(0);
+		    transition-duration: 0.6s;
+			height : 100%;
+			width : 100%;
+		
+		}
+		.out_box:hover .rotate_box{
+			transform: rotateY(360deg);
+		}
+		.out_box .out_box_txt{
+			position: absolute;
+			bottom: -40px;
+			left: 50%;
+			transform: translateX(-50%);
+			background-color: rgba(0, 0, 0, 0.5);
+			width: 100%;
+			color: #fff;
+			font-size: 20px;
+			transition-duration: 0.6s;
+		}
+		.out_box:hover .out_box_txt{
+			bottom: 0;
+		}
+		.out_box .out_box_txt div:first-child{
+			margin-top: 10px;
+		}
+		.out_box .out_box_txt div:last-child{
+			color : yellow;
+		}
+		.out_box .out_box_txt div{
+			margin-bottom: 10px;
+		}
+		.a_img_box, .r_img_box, .w_img_box, .l_img_box{
+			height : 100%;
+			width : 100%;
+		}
 </style>
 </head>
 <body>
@@ -205,43 +290,68 @@
 	                <h2 class="accommodation_title" style="margin-top: 50px;">숙소 예약</h2>
 	                <ul>
 	                    <li>
-	                        <a href="javascript:;" @click="checkStayKind('HOTEL')">
-	                            <div class="a_img_box">
-	                                <img src="./img/main/hotel.png" alt="">
-	                            </div>
-	                            <span>호텔</span>
+	                        <a href="javascript:;" @click="checkStayKind('HOTEL')" class="out_box">
+								<div class="rotate_box">
+									<div class="a_img_box">
+										<img class="hotel_img" src="./img/main/hotel.jpg" alt="">
+									</div>
+								</div>
+								<div class="out_box_txt">
+									<div>호텔</div>
+									<div>예약하러 가기</div>
+								</div>
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="checkStayKind('MOTEL')">
-	                            <div class="a_img_box">
-	                                <img src="./img/main/motel.png" alt="">
-	                            </div>
-	                            <span>모텔</span>
+	                        <a href="javascript:;" @click="checkStayKind('MOTEL')" class="out_box">
+								<div class="rotate_box">
+									<div class="a_img_box">
+										<img src="./img/main/motel.jpg" alt="">
+									</div>
+								</div>
+	                            <div class="out_box_txt">
+									<div>모텔</div>
+									<div>예약하러 가기</div>
+								</div>
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="checkStayKind('GUEST')">
-	                            <div class="a_img_box">
-	                                <img src="./img/main/guest_house.png" alt="">
-	                            </div>
-	                            <span>게스트하우스</span>
+	                        <a href="javascript:;" @click="checkStayKind('GUEST')" class="out_box">
+								<div class="rotate_box">
+									<div class="a_img_box">
+										<img src="./img/main/guest.jpg" alt="">
+									</div>
+								</div>
+	                            <div class="out_box_txt">
+									<div>게스트하우스</div>
+									<div>예약하러 가기</div>
+								</div>
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="checkStayKind('PENSION')">
-	                            <div class="a_img_box">
-	                                <img src="./img/main/pension.png" alt="">
-	                            </div>
-	                            <span>펜션</span>
+	                        <a href="javascript:;" @click="checkStayKind('PENSION')" class="out_box">
+								<div class="rotate_box">
+									<div class="a_img_box">
+										<img src="./img/main/pension.jpg" alt="">
+									</div>
+								</div>
+	                            <div class="out_box_txt">
+									<div>펜션</div>
+									<div>예약하러 가기</div>
+								</div>
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="checkStayKind('CAMPING')">
-	                            <div class="a_img_box">
-	                                <img src="./img/main/camping.png" alt="">
-	                            </div>
-	                            <span>캠핑/글램핑</span>
+	                        <a href="javascript:;" @click="checkStayKind('CAMPING')" class="out_box">
+								<div class="rotate_box">
+									<div class="a_img_box">
+										<img src="./img/main/camping.jpg" alt="">
+									</div>
+								</div>
+	                            <div class="out_box_txt">
+									<div>캠핑/글램핑</div>
+									<div>예약하러 가기</div>
+								</div>
 	                        </a>
 	                    </li>
 	                </ul>
@@ -250,35 +360,55 @@
 	                <h2 class="retal_car_title">렌터카 예약</h2>
 	                <ul>
 	                    <li>
-	                        <a href="javascript:;" @click="checkKind('SMALL')">
-	                            <div class="r_img_box">
-	                                <img src="./img/main/small.png" alt="">
-	                            </div>
-	                            <span>소형차</span>
+	                        <a href="javascript:;" @click="checkKind('SMALL')" class="out_box">
+								<div class="rotate_box">
+									<div class="r_img_box">
+										<img src="./img/main/small.png" alt="">
+									</div>
+								</div>
+	                            <div class="out_box_txt">
+									<div>소형차</div>
+									<div>예약하러 가기</div>
+								</div>
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="checkKind('MIDDLE')">
-	                            <div class="r_img_box">
-	                                <img src="./img/main/midium.png" alt="">
-	                            </div>
-	                            <span>중형차</span>
+	                        <a href="javascript:;" @click="checkKind('MIDDLE')" class="out_box">
+								<div class="rotate_box">
+									<div class="r_img_box">
+										<img src="./img/main/midium.png" alt="">
+									</div>
+								</div>
+	                            <div class="out_box_txt">
+									<div>중형차</div>
+									<div>예약하러 가기</div>
+								</div>
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="checkKind('LARGE')">
-	                            <div class="r_img_box">
-	                                <img src="./img/main/large.png" alt="">
-	                            </div>
-	                            <span>대형차</span>
+	                        <a href="javascript:;" @click="checkKind('LARGE')" class="out_box">
+								<div class="rotate_box">
+									<div class="r_img_box">
+										<img src="./img/main/large.png" alt="">
+									</div>
+								</div>
+	                            <div class="out_box_txt">
+									<div>대형차</div>
+									<div>예약하러 가기</div>
+								</div>
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="checkKind('VAN')">
-	                            <div class="r_img_box">
-	                                <img src="./img/main/very_large.png" alt="">
-	                            </div>
-	                            <span>승합차</span>
+	                        <a href="javascript:;" @click="checkKind('VAN')" class="out_box">
+								<div class="rotate_box">
+									<div class="r_img_box">
+										<img src="./img/main/very_large.png" alt="">
+									</div>
+								</div>
+	                            <div class="out_box_txt">
+									<div>승합차</div>
+									<div>예약하러 가기</div>
+								</div>
 	                        </a>
 	                    </li>
 	                </ul>
@@ -287,67 +417,104 @@
 	                <h2 class="water_leisure_title">수상 레저 예약</h2>
 	                <ul>
 	                    <li>
-	                        <a href="javascript:;" @click="checkWaterKind('SNORKE')">
-	                            <div class="w_img_box">
-	                                <img src="./img/main/snorkeling.jpg" alt="">
-	                            </div>
-	                            <span>스노쿨링</span>
+	                        <a href="javascript:;" @click="checkWaterKind('SNORKE')" class="out_box">
+								<div class="rotate_box">
+									<div class="w_img_box">
+										<img src="./img/main/snorkeling.jpg" alt="">
+									</div>
+								</div>
+	                            <div class="out_box_txt">
+									<div>스노쿨링</div>
+									<div>예약하러 가기</div>
+								</div>
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="checkWaterKind('SURFING')">
-	                            <div class="w_img_box">
-	                                <img src="./img/main/surfing.jpg" alt="">
-	                            </div>
-	                            <span>서핑</span>
+	                        <a href="javascript:;" @click="checkWaterKind('SURFING')" class="out_box">
+								<div class="rotate_box">
+									<div class="w_img_box">
+										<img src="./img/main/surfing.jpg" alt="">
+									</div>
+								</div>
+	                            <div class="out_box_txt">
+									<div>서핑</div>
+									<div>예약하러 가기</div>
+								</div>
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="checkWaterKind('YACHT')">
-	                            <div class="w_img_box">
-	                                <img src="./img/main/yarcht.jpg" alt="">
-	                            </div>
-	                            <span>요트</span>
+	                        <a href="javascript:;" @click="checkWaterKind('YACHT')" class="out_box">
+								<div class="rotate_box">
+									<div class="w_img_box">
+										<img src="./img/main/yarcht.jpg" alt="">
+									</div>
+								</div>
+	                            <div class="out_box_txt">
+									<div>요트</div>
+									<div>예약하러 가기</div>
+								</div>
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="javascript:;" @click="checkWaterKind('JETSKI')">
-	                            <div class="w_img_box">
-	                                <img src="./img/main/jetSki.jpg" alt="">
-	                            </div>
-	                            <span>제트스키</span>
+	                        <a href="javascript:;" @click="checkWaterKind('JETSKI')" class="out_box">
+								<div class="rotate_box">
+									<div class="w_img_box">
+										<img src="./img/main/jetSki.jpg" alt="">
+									</div>
+								</div>
+	                            <div class="out_box_txt">
+									<div>제트스키</div>
+									<div>예약하러 가기</div>
+								</div>
 	                        </a>
 	                    </li>
 	                </ul>
 	            </div>
 	            <div class="land_leisure">
-	                <h2 class="water_leisure_title">지상 레저 예약</h2>
-	                <ul>
-	                    <li>
-	                        <a href="javascript:;" @click="checkGroundKind('ATV')">
-	                            <div class="l_img_box">
-	                                <img src="./img/main/atv.jpg" alt="">
-	                            </div>
-	                            <span>ATV</span>
-	                        </a>
-	                    </li>  
-	                    <li>
-	                        <a href="javascript:;" @click="checkGroundKind('GLIDER')">
-	                            <div class="l_img_box">
-	                                <img src="./img/main/paragliding.jpg" alt="">
-	                            </div>
-	                            <span>페러글라이딩</span>
-	                        </a>
-	                    </li>
-	                    <li>
-	                        <a href="javascript:;" @click="checkGroundKind('HORSE')">
-	                            <div class="l_img_box">
-	                                <img src="./img/main/horse.png" alt="">
-	                            </div>
-	                            <span>말타기</span>
-	                        </a>
-	                    </li>
-	                </ul>
+	                <h2 class="land_leisure_title">지상 레저 예약</h2>
+					<div class="land_leisure_inbox">
+						<ul>
+							<li>
+								<a href="javascript:;" @click="checkGroundKind('ATV')" class="out_box">
+									<div class="rotate_box">
+										<div class="l_img_box">
+											<img src="./img/main/atv.jpg" alt="">
+										</div>
+									</div>
+									<div class="out_box_txt">
+										<div>ATV</div>
+										<div>예약하러 가기</div>
+									</div>
+								</a>
+							</li>  
+							<li>
+								<a href="javascript:;" @click="checkGroundKind('GLIDER')" class="out_box">
+									<div class="rotate_box">
+										<div class="l_img_box">
+											<img src="./img/main/paragliding.jpg" alt="">
+										</div>
+									</div>
+									<div class="out_box_txt">
+										<div>페러글라이딩</div>
+										<div>예약하러 가기</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;" @click="checkGroundKind('HORSE')" class="out_box">
+									<div class="rotate_box">
+										<div class="l_img_box">
+											<img src="./img/main/horse.png" alt="">
+										</div>
+									</div>
+									<div class="out_box_txt">
+										<div>승마</div>
+										<div>예약하러 가기</div>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
 	            </div>
 	        </div>
 	    </div>

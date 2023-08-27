@@ -15,12 +15,12 @@
         ul,li{
             list-style: none;
         }
-        a{
+        #header_box a{
             text-decoration: none;
             color: inherit;
-            margin:10px;
+            margin: 10px;
         }
-		img {
+		.logo_box img {
 		    width: 150%;
 		    height: 110%;
 		}
