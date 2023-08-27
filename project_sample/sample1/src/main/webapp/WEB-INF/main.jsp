@@ -4,6 +4,8 @@
 <html>
 <head>
 <script src="../js/jquery.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+   
 <meta charset="EUC-KR">
 <title>JOJO TOUR</title>
 <style>
@@ -27,19 +29,28 @@
             margin: 0 auto;
         }
         .banner_box{
-            background-image: url(./img/main/main.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
             height: 700px;
-            padding-top: 50px;
+			position: relative;
         }
+		.banner_inbox{
+			position: absolute;
+			z-index: 99;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 100%;
+			padding: 30px;
+			margin-top: 50px;
+		}
         .banner_text{
             text-align: center;
             font-size: 20px;
             font-weight: 400;
-            line-height: 32px;
             color: #fff;
             margin-bottom: 30px;
+			background-color: rgba(0, 0, 0, 0.5);
+			width: 100%;
+			padding: 30px 0px;
         }
 
         .banner_img{
@@ -56,6 +67,10 @@
             color: #fff;
             margin-bottom: 30px;
         }
+		.banner_start span{
+			background-color: rgba(0, 0, 0, 0.5);
+			padding: 5px 20px;
+		}
         .banner_question{
             width: 200px;
             height: 50px;
@@ -183,40 +198,20 @@
             margin-bottom: 30px;
         }
         /* 지상레져 끝 */
-        #mask_container{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top : 50px;
-            margin-bottom : 50px;
-        }
-        #mask{
-            box-sizing: border-box;
-            width: 600px;
-            position: relative;
-            overflow: hidden;
-        }
-        #slide_wrap{
-            width: 1900px;
-            height: inherit;
-        }
-        #slide_wrap img{
-        	width : 600px;
-        }
 
 		/* 이미지 돌아가면서 글씨 올리기 */
 		.out_box{
 			position: relative;
 			display: block;
 			transform: rotateY(0);
-			transition-duration: 0.6s;
+			transition-duration: 1s;
 			height : 100%;
 			width : 100%;
 			
 		}
 		.rotate_box{
 		    transform: rotateY(0);
-		    transition-duration: 0.6s;
+		    transition-duration: 1s;
 			height : 100%;
 			width : 100%;
 		
@@ -233,7 +228,7 @@
 			width: 100%;
 			color: #fff;
 			font-size: 20px;
-			transition-duration: 0.6s;
+			transition-duration: 1s;
 		}
 		.out_box:hover .out_box_txt{
 			bottom: 0;
@@ -251,6 +246,86 @@
 			height : 100%;
 			width : 100%;
 		}
+
+		/* 스와이퍼 시작 */
+		.swiper {
+          width: 100%;
+          height: 100vh;
+          margin-top: -100px;
+        }
+    
+        .swiper-slide {
+          text-align: center;
+          font-size: 18px;
+          background: #fff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .slide-1{
+          background: url(./img/main/main.jpg) no-repeat center;
+          background-size: cover;
+        }
+        .slide-2{
+          background: url(./img/main/main2.jpg) no-repeat center;
+          background-size: cover;
+        }
+        .slide-3{
+          background: url(./img/main/main3.jpg) no-repeat center;
+          background-size: cover;
+        }
+        .swiper-pagination-bullet-active{
+          background-color: #000;
+        }
+
+		
+		.link_list{
+			width: 1000px;
+			margin: 0 auto;
+			margin-top: 50px;
+		}
+		.link_list ul{
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+			width: 100%;
+			display: flex;
+			justify-content: space-around;
+			margin: 20px 0;
+			font-weight: bold;
+			font-size: 20px;
+		}
+		.link_list ul li{
+			width: 250px;
+			height: 100%;
+			text-align: center;
+		}
+		
+		.link_list ul li a{
+			width: 100%;
+			height: 100%;
+			display: block;
+			position: relative;
+			z-index: 9;
+			padding: 20px 0;
+		}
+		
+		.link_list ul li a:hover{
+			color: #F86F03;
+		}
+		.link_list ul li a::after{
+			content: "";
+			position: absolute;
+			left: 50%;
+			bottom: -1px;
+			width: 0;
+			height: 2px;
+			background-color: #F86F03;
+		}
+		.link_list ul li a:hover::after{
+			width: 100%;
+			left: 0;
+			transition-duration: 0.8s;
+		}
 </style>
 </head>
 <body>
@@ -258,33 +333,56 @@
 	<%-- <%@ include file="header.jsp" %> --%>
 	<div id="app">
 		<div id="container">
-	        <div class="banner_box">
-	            <p class="banner_text">
-	                여행 가기 전이나 여행중이라도 언제든지!<br>
-	                관광지, 숙박, 음식점, 쇼핑, 축제, 교통, 문화 등 전국 여행에 관해서라면 어떤 것이라도 조조투어 지식iN에 물어보세요<br>
-	                조조투어 상주 전문가를 비롯해 여행 잘 아는 사람이라면 누구에게라도 답변 받을 수 있습니다
-	            </p>
-	            <div class="banner_img">
-	                <img src="./img/main/banner_text.png" alt="">
-	            </div>
-	            <h3 class="banner_start">
-	                지금 시작하세요!
-	            </h3>
-	            <button class="banner_question" @click="fnFAQ">
-	                질문하기 >
-	                <!-- 1:1문의게시판으로 연결 -->
-	            </button>
-	        </div>
-	        <div id="mask_container">
-		        <div id="mask">
-		            <div id="slide_wrap">
-		                <a href="javascript:;"><img src="./img/main/slide_leisure.jpg" alt=""></a>
-		                <a href="javascript:;"><img src="./img/main/slide_rent_car.jpg" alt=""></a>
-		                <a href="javascript:;"><img src="./img/main/slide_stay.jpg" alt=""></a>
-		            </div>
-		            <div class="slide_btn"></div>
-		        </div>
-		    </div>
+			<div class="swiper mySwiper banner_box">
+				<div class="banner_inbox">
+					<p class="banner_text">
+						여행 가기 전이나 여행중이라도 언제든지!<br>
+						관광지, 숙박, 음식점, 쇼핑, 축제, 교통, 문화 등 전국 여행에 관해서라면 어떤 것이라도 조조투어 지식iN에 물어보세요<br>
+						조조투어 상주 전문가를 비롯해 여행 잘 아는 사람이라면 누구에게라도 답변 받을 수 있습니다
+					</p>
+					<div class="banner_img">
+						<img src="./img/main/banner_text.png" alt="">
+					</div>
+					<h3 class="banner_start">
+						<span>지금 시작하세요!</span>
+					</h3>
+					<button class="banner_question" @click="fnFAQ">
+						질문하기 >
+						<!-- 1:1문의게시판으로 연결 -->
+					</button>
+				</div>
+				<div class="swiper-wrapper">
+					<div class="swiper-slide slide-1">
+					</div>
+					<div class="swiper-slide slide-2">
+					</div>
+					<div class="swiper-slide slide-3">
+					</div>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+			<div class="link_list">
+				<ul>
+					<li>
+						<a href="javascript:;" @click="fnStay">숙박</a>
+						
+					</li>
+					<li>
+						<a href="javascript:;" @click="fnRentCar">렌터카</a>
+						<span></span>
+					</li>
+					<li>
+						<a href="javascript:;" @click="fnWaterLeisure">수상 레저</a>
+						<span></span>
+					</li>
+					<li>
+						<a href="javascript:;" @click="fnGroundLeisure">지상 레저</a>
+						<span></span>
+					</li>
+				</ul>
+			</div>
+
+
 	        <div class="inner_con">
 	            <div class="accommodation">
 	                <h2 class="accommodation_title" style="margin-top: 50px;">숙소 예약</h2>
@@ -522,6 +620,9 @@
 	<jsp:include page="footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
 <script>
 var app = new Vue({
 	el : '#app',
@@ -540,25 +641,45 @@ var app = new Vue({
 		checkStayKind : function(kind){
 			var self = this;
 			$.pageChange("/stay.do", {stayKind : kind});
-		}
+		},
+		fnStay : function(){
+        	location.href="/stay.do";
+        },
+        fnRentCar : function(){
+        	location.href="/rentcar.do";
+        },
+        fnWaterLeisure : function(){
+        	location.href="/water/leisure.do";
+        },
+        fnGroundLeisure : function(){
+        	location.href="/ground/leisure.do";
+        }
 	}, // methods
 	created : function() {
 		var self = this;
 	}// created
 });
-$(document).ready(function(){
-    $('.slide_btn').click(function(){
-        $('#slide_wrap').animate({
-            left: -600
-        }, function(){
-            $('#slide_wrap').css({left: 0}).find('img').first().appendTo('#slide_wrap');
-        });
+
+var swiper = new Swiper(".mySwiper", {
+      // slidesPerView: 3,
+      // //슬라이더 보여줄 갯수를 지정해줌
+      // spaceBetween: 30,
+      // //슬라이더 하나 사이에 여백값을 설정해줌
+      // slidesPerGroup: 1,
+      // // 넘어갈 슬라이드 갯수를 그룹으로 묶어 지정
+      loop : true, // 슬라이드 반복여부
+      speed : 2000, //넘어갈때 슬라이드의 duration값
+      autoplay:{
+        //자동으로 넘어가는 슬라이드
+        delay : 2500,
+        disableOnInteraction:false
+        // 다른 인터렉션 진행시 자동 멈춤 해제
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        //페이지네이션 사용시 버튼을 담을 태그선택(동그란 버튼을 의미)
+        clickable: true,
+        // 버튼의 클릭여부를 결정함
+      }
     });
-    function time(){
-        auto = setInterval(function(){
-            $('.slide_btn').trigger('click');
-        },3000);
-    }    
-    time();
-});
 </script>
