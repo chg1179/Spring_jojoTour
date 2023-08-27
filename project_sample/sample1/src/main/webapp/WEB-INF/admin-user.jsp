@@ -40,7 +40,7 @@
 <jsp:include page="header.jsp" flush="true"></jsp:include>
 <jsp:include page="adminbar.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<h1 style="color : #f8852a; text-align: center; margin-top: 50px; font-weight : 20;">雀盔 包府</h1>
+		<h1 style="color : #213555; text-align: center; margin-top: 50px; font-weight : 20;">雀盔 包府</h1>
 			<button @click="fnUser"> <div style="font-size : 20px">蜡历 包府</div>
 				<img src="../img/userlist/userbw.png" alt="雀盔 包府" id="thumb">
 			</button>

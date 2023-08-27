@@ -77,7 +77,8 @@
 	.water_leisure_list li input:checked + label{
 		border: 1px solid black;
 		/*background: linear-gradient(to right, #eee,#FA163F 20% 80%,#eee);*/
-		background: linear-gradient(to right, #ff9900, #ff3333);
+		/*background: linear-gradient(to right, #ff9900, #ff3333);*/
+		 background: #324666;
 		color: #fff;
 		font-weight: bold;
 	}

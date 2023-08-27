@@ -27,7 +27,7 @@
 		 padding : 5px 10px;
 		 border: 1px solid #ddd;
 		 color : white;
-		 background-color: #f8852a;
+		 background-color: #213555;
 	}
 	tr {
 		border-bottom: 1px solid white;
@@ -45,26 +45,26 @@
 	#abtn {
 		margin : 5px auto;
 		border-radius : 20px;
-		border : 1px solid #f8852a;
+		border : 1px solid #213555;
 		width : 80px;
 		height: 40px;
-		background-color: #f8852a;
+		background-color: #213555;
 		color : white;
 	} 
 	#abtn:hover {
-	    background-color: #f89552;
+	    background-color: grey;
 	  }
 	#bbtn {
 		margin : 5px auto;
 		border-radius : 15px;
-		border : 1px solid #f8852a;
+		border : 1px solid #213555;
 		width : 50px;
 		height: 20px;
-		background-color: #f8852a;
+		background-color: #213555;
 		color : white;
 	} 
 	#bbtn:hover {
-	    background-color: #f89552;
+	    background-color: grey;
 	  }
 </style>
 </head>
@@ -73,12 +73,12 @@
 <jsp:include page="adminbar.jsp" flush="true"></jsp:include>
 <div id="app">
 	<div style="text-align : center; margin: 20px auto;">
-		<h2 style="color : #f8852a;">패키지 신청 목록</h2>
+		<h2 style="color : #213555;">패키지 신청 목록</h2>
 	</div>
 	<table>
 		<thead>
 			<tr > 
-				<td colspan="4" style="text-align:left; padding-left: 30px; font-size: 20px; color:#F86F03;">숙소</td>
+				<td colspan="4" style="text-align:left; padding-left: 30px; font-size: 20px; color:#213555;">숙소</td>
 			</tr>
 			<tr>	
 				<th>선택</th>
@@ -117,7 +117,7 @@
 	<table>
 		<thead>
 			<tr > 
-				<td colspan="4" style="text-align:left; padding-left: 30px; font-size: 20px; color:#F86F03;">레저</td>
+				<td colspan="4" style="text-align:left; padding-left: 30px; font-size: 20px; color:#213555;">레저</td>
 			</tr>
 			<tr>	
 				<th>선택</th>
@@ -157,7 +157,7 @@
 	<table>
 		<thead>
 			<tr> 
-				<td colspan="4" style="text-align:left; padding-left: 30px; font-size: 20px; color:#F86F03;">렌트카</td>
+				<td colspan="4" style="text-align:left; padding-left: 30px; font-size: 20px; color:#213555;">렌트카</td>
 			</tr>
 			<tr>	
 				<th>선택</th>

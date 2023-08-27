@@ -23,7 +23,7 @@
     }
     .my_page_title{
         width: 200px;
-        background-color: #FA163F;
+        background-color: #213555;
         text-align: center;
         padding: 5px;
         box-sizing: border-box;

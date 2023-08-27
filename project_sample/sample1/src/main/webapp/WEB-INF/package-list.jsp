@@ -27,7 +27,7 @@
 		 padding : 5px 10px;
 		 border: 1px solid #ddd;
 		 color : white;
-		 background-color: #f8852a;
+		 background-color: #213555;
 	}
 	tr {
 		border-bottom: 1px solid white;
@@ -49,7 +49,7 @@
 <jsp:include page="adminbar.jsp" flush="true"></jsp:include>
 <div id="app">
 	<div style="text-align : center; margin: 20px auto;">
-		<h2 style="color : #f8852a">패키지 목록</h2>
+		<h2 style="color : #213555">패키지 목록</h2>
 	</div>
 	<table>
 		<thead>
@@ -66,7 +66,7 @@
 					
 				<td rowspan="3" style="font-size: 20px;"><a href="javascript:;" @click="fnPackageView">{{item.packageName}}</a></td>
 				
-				<td style="background-color:#f8852a; color : white; width: 60px;">숙소</td>
+				<td style="background-color:#213555; color : white; width: 60px;">숙소</td>
 				
 				<td style="width : 300px"><a href="javascript:;" @click="fnStayView">{{item.stayName}}</a></td>
 				
