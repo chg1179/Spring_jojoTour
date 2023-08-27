@@ -27,7 +27,22 @@
 			</div>
 			<div class="stay-info">
 				<p class="stay-name">{{info.stayName}}</p>
-				<p class="stay-addr">{{info.sAddr}}</p>
+				<p class="stay-addr">
+					<span style="color: black; font-weight: bold;">주소 </span> 
+					<span style="margin-left:4px;">{{info.sAddr}}</span>
+				</p>
+				<p class="stay-type">
+					<span style="color: black; font-weight: bold;">숙소유형</span> 
+					<span style="margin-left:4px;">{{info.cName}}</span>
+				</p>
+				<p class="stay-checkIn">
+					<span style="color: black; font-weight: bold;">체크인</span> 
+					<span style="margin-left:4px;">14:00부터</span>
+				</p>
+				<p class="stay-checkOut">
+					<span style="color: black; font-weight: bold;">체크아웃</span>
+					<span style="margin-left:4px;">10:00까지</span> 
+				</p>
 			</div>
 		</div>
 		<hr>

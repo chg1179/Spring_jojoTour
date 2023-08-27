@@ -42,10 +42,11 @@
 		margin-top: 10px;
 		margin-bottom: 10px;
 	}
-	.stay-addr{
+	.stay-addr, .stay-type, .stay-checkIn, .stay-checkOut{
 		font-size: 15px;
-		color: #979797;
-	}
+		color: black;
+		margin-bottom: 5px;
+	}
 	.room-container {
 		justify-content: center;
 		max-width: 100%;
