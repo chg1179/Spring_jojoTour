@@ -71,7 +71,7 @@
 				<ul class="list-sns">
 					<li><a href="https://bu.tjoeun.co.kr/" target="_blank"><img src="https://www.jeju.com/images/com/facebook_logo.svg" alt="조조투어 페이스북 바로가기"></a></li>
 					<li><a href="https://bu.tjoeun.co.kr/" target="_blank"><img src="https://www.jeju.com/images/com/naver_logo.svg" alt="조조투어 네이버 블로그 바로가기"></a></li>
-					<li><a href="https://www.instagram.com/jejucom_no.1" target="_blank"><img src="https://www.jeju.com/images/com/instagram_logo.svg" alt="조조투어 인스타그램 바로가기"></a></li>
+					<li><a href="https://bu.tjoeun.co.kr/" target="_blank"><img src="https://www.jeju.com/images/com/instagram_logo.svg" alt="조조투어 인스타그램 바로가기"></a></li>
 				</ul>
 				<ul class="list_policy">
 					<li> <a href="" class="link_policy">회사소개</a> <span class="txt_bar"></span> </li>

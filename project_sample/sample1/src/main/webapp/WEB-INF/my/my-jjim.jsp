@@ -294,6 +294,11 @@
 			
     	<div id="board-list">
     		<div class="container">
+				<div class="tab-buttons">
+				  	<button @click="setActiveTab('STAY')">숙박</button>
+					<button @click="setActiveTab('RENT')">렌트카</button>
+					<button @click="setActiveTab('LEISURE')">레저</button>
+				</div>
 			    <table class="board-table">
 			      <tr class="board-tr">
 			      	<td scope="col"><input type="checkbox" v-model="selectAll" @change="selectAllItems"></th>
@@ -301,20 +306,23 @@
 			        <td scope="col">찜한제품</th>
 			        <td scope="col">할인된 금액</th>
 			      </tr>
-			      <tr v-for="(item, index) in jjim" :key="index">
+			      <tr v-for="(item, index) in filteredJjim" :key="index">
 			      	<td><input type="checkbox" v-model="selectItem" :value="item.productNo"></td>
 			        <td>	          			         
 			            <span v-if="item.productKind == 'STAY'">
 			            <a @click="fnStayView(item.productNo)" href="javascript:;">
-			            {{item.stayName}} {{item.productNo}}번</a>
+			            	{{item.stayName}}
+			            </a>
 			            </span>
 			            <span v-if="item.productKind == 'RENT'">
 			            <a @click="fnRentView(item.productNo)" href="javascript:;"> 
-			            {{item.rentName}} {{item.productNo}}번</a>
+			            	{{item.rentName}}
+			            </a>
 			            </span>			        
 			            <span v-if="item.productKind == 'LEISURE'">
 			            <a @click="fnLeisureView(item.productNo)" href="javascript:;"> 
-			            {{item.leisureName}} {{item.productNo}}번</a>
+			            	{{item.leisureName}}
+			            </a>
 			            </span>			       
 			        </td>
 			        <td>
@@ -374,6 +382,7 @@ var app = new Vue({
 		selectItem : [],
 		selectAll: false,
 		imgList:[],
+		activeTab: 'STAY', // 페이지 로딩시 숙박 탭이 띄워지도록 초기화
 		selectPage: 1,
 		pageCount: 1,
 		cnt : 0
@@ -393,7 +402,7 @@ var app = new Vue({
                    	self.jjim = data.jjim;
                 	self.cnt = data.cnt;
             		self.pageCount = Math.ceil(self.cnt / 10);
-                	console.log(self.list);
+                	console.log(self.jjim);
                 }
             }); 
 		},
@@ -454,20 +463,32 @@ var app = new Vue({
 	    		$.pageChange("/water/leisure/view.do", {leisureNo : leisureNo});	    		
 	    	}	
 	    },
-	       selectAllItems: function() {
-	            var self = this;
-	            if (self.selectAll) {
-	                self.selectItem = self.jjim.map(item => item.productNo);
-	            } else {
-	                self.selectItem = [];
-	            }
-	        }
-		
+	    selectAllItems: function() {
+			var self = this;
+			if (self.selectAll) {
+	       		self.selectItem = self.filteredJjim.map(item => item.productNo);
+	      	} else {
+	        	self.selectItem = [];
+	      	}
+	    },
+	    // 분야 별로 TAB 이동
+	    setActiveTab(tab) {
+	        var self = this;
+	        self.selectAll = false;
+	        self.selectItem = [];
+	        self.activeTab = tab;
+	    }
 	}, // methods
 	created : function() {
 		var self = this;
 		self.userId = "${sessionId}";
 		self.fnGetList();
-	}// created
+	}, // created
+	computed: {
+		// 제품 목록에 따라 분류
+		filteredJjim() {
+	    	return this.jjim.filter(item => item.productKind === this.activeTab);
+	  	}
+	}
 });
 </script>

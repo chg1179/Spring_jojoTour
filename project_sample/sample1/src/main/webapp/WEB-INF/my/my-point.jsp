@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>포인트 조회</title>
 <style>
 	*{
 		margin: 0;
@@ -130,7 +130,7 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
+	<%-- <jsp:include page="../footer.jsp" flush="true"></jsp:include> --%>
 </body>
 </html>
 <script src="../js/jquery-1.12.4.js"></script>

@@ -346,7 +346,7 @@
 					<h3 class="banner_start">
 						<span>지금 시작하세요!</span>
 					</h3>
-					<button class="banner_question" @click="fnFAQ">
+					<button class="banner_question">
 						질문하기 >
 						<!-- 1:1문의게시판으로 연결 -->
 					</button>

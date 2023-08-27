@@ -36,6 +36,7 @@
 			GROUP BY ORDER_NO
 		) L4 ON L4.ORDER_NO = O.ORDER_NO
 		WHERE O.U_ID = #{userId}
+		ORDER BY PAYMENT_DATE DESC
 	</select>
 
 	<!-- 예약한 제품의 핸드폰, 이메일 등의 정보 출력 -->
@@ -108,11 +109,13 @@
 	</select>
 	
 	<select id="selectCnt" resultType="int">
-		SELECT COUNT(*) FROM T2_JJIM_TBL
+		SELECT COUNT(*) 
+		FROM T2_JJIM_TBL
+		WHERE U_ID = #{userId}
 	</select>
 	
-	<select id="selectPoint" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
-		SELECT *
+	<select id="selectPoint" parameterType="hashmap" resultType="com.example.sample1.model.User">
+		SELECT POINT
 		FROM T2_USER_POINT_TBL
 		WHERE U_ID = #{userId}
 	</select>
@@ -181,4 +184,11 @@
 			USE_YNC = 'C'
 		WHERE U_ID = #{userId}
 	</update>
+	
+	<!-- 찜 목록 중복 체크 -->
+	<select id="checkJjim" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*)
+		FROM T2_JJIM_TBL
+		WHERE U_ID = #{uId} AND PRODUCT_KIND = #{productKind} AND PRODUCT_NO = #{productNo}
+	</select>
 </mapper>

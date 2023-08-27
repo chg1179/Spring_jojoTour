@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.example.sample1.model.Inquiry;
 import com.example.sample1.model.MyPage;
+import com.example.sample1.model.User;
 
 
 @Mapper
@@ -28,15 +29,22 @@ public interface MyPageMapper {
 	int returnUserPoint(HashMap<String, Object> map); // 사용자에게 포인트 반환
 	int deductionPoint(HashMap<String, Object> map); // 주문내역에서 사용한 포인트 차감
 	
-	MyPage selectPoint(HashMap<String, Object> map);
+	// 포인트 조회
+	User selectPoint(HashMap<String, Object> map);
+	
 	int deleteReview(HashMap<String, Object> map);
 	List<Inquiry> selectInquiry(HashMap<String, Object> map);
 	int deleteInquiry(HashMap<String, Object> map);
 	Inquiry selectInquiryInfo(HashMap<String, Object> map);
 	// 나의 1:1문의 수정
 	int editInquiry(HashMap<String, Object> map);
+	
 	// 찜목록!
 	List<MyPage> selectJjim(HashMap<String, Object> map);
+	
+	// 찜 목록 중복 체크
+	int checkJjim(HashMap<String, Object> map);
+	
 	int selectCnt(HashMap<String, Object> map);
 	//체크한 찜목록 삭제
 	int deleteJjimCheck(HashMap<String, Object> map);

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.sample1.model.Inquiry;
 import com.example.sample1.model.MyPage;
+import com.example.sample1.model.User;
 import com.example.sample1.service.MyPageService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -154,7 +155,7 @@ public class MyPageController {
 	public String point(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 
-		MyPage point = myPageService.searchPoint(map);
+		User point = myPageService.searchPoint(map);
 		resultMap.put("point", point);
 		return new Gson().toJson(resultMap);
 	}
@@ -229,5 +230,13 @@ public class MyPageController {
 		return new Gson().toJson(resultMap);
 	}
 
-
+	// 찜 목록 중복 체크
+	@RequestMapping(value = "/checkHeart.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String checkHeart(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int jjimCnt = myPageService.checkHeart(map);
+		resultMap.put("jjimCnt", jjimCnt);
+		return new Gson().toJson(resultMap);
+	}
 }

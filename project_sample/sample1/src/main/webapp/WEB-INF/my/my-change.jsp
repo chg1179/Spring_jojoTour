@@ -113,11 +113,11 @@
 					</tr>
 					<tr>
 						<td>이름</td>
-						<td><input type="text" value="user.name" v-model="user.name"></td>
+						<td><input type="text" value="user.name" v-model="user.name" maxlength="8"></td>
 					</tr>
 					<tr>
 						<td>닉네임</td>
-						<td><input type="text" value="user.nickName" v-model="user.nickName"></td>
+						<td><input type="text" value="user.nickName" v-model="user.nickName" maxlength="10"></td>
 					</tr>
 					<tr>
 						<td>생년월일</td>
@@ -125,11 +125,11 @@
 					</tr>
 					<tr>
 						<td>연락처</td>
-						<td><input type="text" value="user.phone" v-model="user.phone"></td>
+						<td><input type="text" value="user.phone" v-model="user.phone" maxlength="11"></td>
 					</tr>
 					<tr>
 						<td>이메일</td>
-						<td class="change_email"><input type="text" value="user.email" v-model="user.email"></td>
+						<td class="change_email"><input type="text" value="user.email" v-model="user.email" maxlength="30"></td>
 					</tr>
 					<tr>
 						<td class="change_addr_title">주소 <button @click="fnSearchAddr">검색</button></td>
@@ -198,15 +198,22 @@ var app = new Vue({
 				alert("주소를 입력하세요.");
 				return;
 			}
+			
 			if(self.user.phone == ""){
 				alert("핸드폰 번호를 입력하세요.");
 				return;
 			}
+			var regex = new RegExp(/^[0-9]+$/);
+			if(!regex.test(self.orderUserInfo.phone)){
+				alert("연락처는 숫자만 입력해주세요.");
+				return;
+			}
+			
 			if(self.user.email == ""){
 				alert("이메일 주소를 입력하세요.");
 				return;
 			}
-			var regex = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
+			regex = new ReqExp(/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/);
 			if (!regex.test(self.user.email)) {
 			    alert("이메일 주소를 정확하게 입력하세요.");
 			    return;

@@ -15,6 +15,8 @@ public class MyPage {
 	private int useN;
 	private int useC;
 	
+	private int point;
+	
 	// ORDER_LIST
 	private String productKind;
 	private int productNo;
@@ -311,4 +313,5 @@ public class MyPage {
 	public void setLeisureSales(String leisureSales) {
 		this.leisureSales = leisureSales;
 	}
+	
 }

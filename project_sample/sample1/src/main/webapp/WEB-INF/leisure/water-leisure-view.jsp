@@ -7,7 +7,7 @@
 <link href="../../css/detail-img.css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>수상 레저 상세 페이지</title>
 <style>
 
 		body {
@@ -54,11 +54,11 @@
 			border-radius : 8px;
 			font-size: 30px;
 		}
-			hr {
-	  height: 10px;
-	  border: 0;
-	  box-shadow: 0 10px 10px -10px #bbb inset;
-	}
+		hr {
+	  		height: 10px;
+	  		border: 0;
+	  		box-shadow: 0 10px 10px -10px #bbb inset;
+		}
 	
 </style>
 </head>
@@ -117,7 +117,7 @@ var app = new Vue({
 		leisureNo : "${map.leisureNo}",
 		info : {},
 		uId : "${sessionId}",
-		isWished:false,
+		isWished : false,
 		detailImg : ""
 	},// data
 	methods : {
@@ -133,12 +133,38 @@ var app = new Vue({
                 	self.info = data.info;
                 	self.info.imgPath = "../"+self.info.imgPath; 
                 	self.detailImg = data.detailImg;
-                	self.detailImg.imgPath = "../"+self.detailImg.imgPath; 
+                	self.detailImg.imgPath = "../"+self.detailImg.imgPath;
+                	self.fnCheckHeart();
+                }
+            }); 
+		},
+		fnCheckHeart : function(){
+			var self = this;
+			var param = {
+				uId : self.uId,
+				productKind : "LEISURE",
+				productNo : self.leisureNo
+			};
+			$.ajax({
+                url : "../../checkHeart.dox",
+                dataType:"json",
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	// 중복이 있으면 true
+                	if(data.jjimCnt > 0){
+                		self.isWished = true;
+                	}
                 }
             }); 
 		},
 		fnWish : function(leisureNo){
 			var self = this;
+			if(this.uId=="" || this.uId == null){
+        		alert("로그인 후 이용이 가능합니다.");
+        		location.href="/login.do";
+        		return;
+        	} 
 			var param = {leisureNo : leisureNo, uId:self.uId};
 			$.ajax({
                 url : "/leisure/jjimAdd.dox",
@@ -146,8 +172,8 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
+                	self.isWished = true;
                 	alert("찜 목록에 추가되었습니다.");
-                	self.isWished=true;
                 	self.fnGetList();
                 }
     
@@ -163,8 +189,8 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
+                	self.isWished = false;
                 	alert("찜 목록에서 해제되었습니다.");
-                	self.isWished=false;
                 	self.fnGetList();
                 }
     
@@ -173,10 +199,12 @@ var app = new Vue({
 		},
 		fnCart : function(info){
 			var self = this;
-			if(self.uId == ""){
-				alert("로그인 후 이용 가능한 서비스입니다.");
-				return;
-			}
+			if(this.uId=="" || this.uId == null){
+        		alert("로그인 후 이용이 가능합니다.");
+        		location.href="/login.do";
+        		return;
+        	} 
+			
 			var param = {leisureNo : info.leisureNo, uId: self.uId}
 			$.ajax({
                 url : "/leisureCartSearch.dox",

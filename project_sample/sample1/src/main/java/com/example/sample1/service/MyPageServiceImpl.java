@@ -10,6 +10,7 @@ import com.example.sample1.mapper.MyPageMapper;
 import com.example.sample1.mapper.OrderMapper;
 import com.example.sample1.model.Inquiry;
 import com.example.sample1.model.MyPage;
+import com.example.sample1.model.User;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -68,7 +69,7 @@ public class MyPageServiceImpl implements MyPageService{
 	
 	
 	@Override
-	public MyPage searchPoint(HashMap<String, Object> map) {
+	public User searchPoint(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return myPageMapper.selectPoint(map);
 	}
@@ -131,6 +132,14 @@ public class MyPageServiceImpl implements MyPageService{
 	public int searchReviewCnt(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return myPageMapper.selectReviewCnt(map);
+	}
+
+	
+	// 찜 목록 중복 체크
+	@Override
+	public int checkHeart(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.checkJjim(map);
 	}
 	
 

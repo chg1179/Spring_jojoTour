@@ -7,11 +7,10 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-<script src="../js/jquery-1.12.4.js"></script>
 <link href="../css/detail-img.css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>렌터카 상세 페이지</title>
 <style>
 	#app{
 	margin: 20px auto;
@@ -144,6 +143,7 @@
 var app = new Vue({
 	el : '#app',
 	data : {
+		uId : "${sessionId}",
 		status : "${sessionStatus}",
 		info : {},
 		rentNo : "${map.rentNo}",
@@ -151,8 +151,7 @@ var app = new Vue({
 		sales : 0,
 		imgList : [],
 		wishlist: [],
-		uId : "${sessionId}",
-		isWished:false,
+		isWished : false,
 		checkInDate : "",
 		checkOutDate : "",
 		detailImg : ""
@@ -173,6 +172,7 @@ var app = new Vue({
             		console.log(data.detailImg);
                 	self.sales = 100 - (self.info.rentSales * 100);
                 	self.fnGetImgList();
+                	self.fnCheckHeart(); // 해당 아이디의 찜 목록 체크 후 정보 불러옴
                 }
             }); 
 		},
@@ -193,8 +193,33 @@ var app = new Vue({
                 }
             }); 
 		},
+		fnCheckHeart : function(){
+			var self = this;
+			var param = {
+				uId : self.uId,
+				productKind : "RENT",
+				productNo : self.rentNo
+			};
+			$.ajax({
+                url : "../checkHeart.dox",
+                dataType:"json",
+                type : "POST",
+                data : param,
+                success : function(data) { 
+                	// 중복이 있으면 true
+                	if(data.jjimCnt > 0){
+                		self.isWished = true;
+                	}
+                }
+            }); 
+		},
 		fnWish : function(rentNo){
 			var self = this;
+			if(this.uId=="" || this.uId == null){
+        		alert("로그인 후 이용이 가능합니다.");
+        		location.href="/login.do";
+        		return;
+        	} 
 			var param = {rentNo : rentNo, uId:self.uId};
 			$.ajax({
                 url : "jjimAdd.dox",
@@ -202,13 +227,12 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
+                	self.isWished = true;
                 	alert("찜 목록에 추가되었습니다.");
-                	self.isWished=true;
                 	self.fnGetList();
                 }
     
             });
-
 		},
 		fnDelWish : function(rentNo){
 			var self = this;
@@ -219,20 +243,21 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
+                	self.isWished = false;
                 	alert("찜 목록에서 해제되었습니다.");
-                	self.isWished=false;
                 	self.fnGetList();
                 }
-    
             });
 
 		},
 		fnCart : function(){
 			var self = this;
-			if(self.uId == ""){
-				alert("로그인 후 이용 가능한 서비스입니다.");
-				return;
-			}
+			if(this.uId=="" || this.uId == null){
+        		alert("로그인 후 이용이 가능합니다.");
+        		location.href="/login.do";
+        		return;
+        	} 
+			
 			if(self.checkInDate == ""){
 				alert("예약 날짜를 선택해주세요");
 				return;

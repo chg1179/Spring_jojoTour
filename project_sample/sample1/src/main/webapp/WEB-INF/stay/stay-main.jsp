@@ -375,8 +375,7 @@ var app = new Vue({
 		info : {},
 		stayKind : "${map.stayKind}",
 		uId : "${sessionId}",
-		imgList : [],
-		
+		imgList : []
 	},// data
 	methods : {
 		// ¼÷¼Ò ¸®½ºÆ® 

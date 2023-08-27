@@ -88,16 +88,16 @@
                    <div class="join_input_wrap">
                        <div class="join_check_wrap">
                            <span><i class="fa-solid fa-user"></i> </span>
-                           <label><input type="text" v-model="user.userId" @keyup="fnCheck" placeholder="아이디"></label>
+                           <label><input type="text" v-model="user.userId" @keyup="fnCheck" maxlength="15" placeholder="아이디"></label>
                            <span class="join_check" v-if="user.userId != ''">{{message}}</span>
                        </div>
-                           <div style="margin-left:25px"><i class="fa-solid fa-lock"></i><label><input type="password" v-model="user.pw1" placeholder="비밀번호"></label></div>
-                           <div style="margin-left:25px"><i class="fa-solid fa-lock"></i><label><input type="password" v-model="user.pw2" placeholder="비밀번호 확인"></label></div>
-                           <div style="margin-left:25px"><i class="fa-regular fa-user"></i><label><input type="text" v-model="user.name" placeholder="이름"></label></div>
-                           <div style="margin-left:25px"><i class="fa-regular fa-user"></i><label><input type="text" v-model="user.nickName" placeholder="닉네임"></label></div>
+                           <div style="margin-left:25px"><i class="fa-solid fa-lock"></i><label><input type="password" v-model="user.pw1" maxlength="15" placeholder="비밀번호"></label></div>
+                           <div style="margin-left:25px"><i class="fa-solid fa-lock"></i><label><input type="password" v-model="user.pw2" maxlength="15" placeholder="비밀번호 확인"></label></div>
+                           <div style="margin-left:25px"><i class="fa-regular fa-user"></i><label><input type="text" v-model="user.name" maxlength="8" placeholder="이름"></label></div>
+                           <div style="margin-left:25px"><i class="fa-regular fa-user"></i><label><input type="text" v-model="user.nickName" maxlength="20" placeholder="닉네임"></label></div>
                            <div style="margin-left:25px"><i class="fa-regular fa-calendar-check"></i><label><input type="date" v-model="user.birth" id="birth"></label></div>
-                           <div style="margin-left:25px"><i class="fa-solid fa-mobile-screen"></i><label><input type="text" v-model="user.phone" id ="phone" placeholder="핸드폰 번호"></label></div>
-                           <div style="margin-left:25px"><i class="fa-regular fa-envelope"></i><label><input type="text" v-model="user.email" placeholder="이메일"></label></div>
+                           <div style="margin-left:25px"><i class="fa-solid fa-mobile-screen"></i><label><input type="text" v-model="user.phone" maxlength="11" id ="phone" placeholder="핸드폰 번호"></label></div>
+                           <div style="margin-left:25px"><i class="fa-regular fa-envelope"></i><label><input type="text" v-model="user.email" maxlength="30" placeholder="이메일"></label></div>
    
                            
                                
@@ -214,15 +214,22 @@ var app = new Vue({
 				alert("주소를 입력하세요.");
 				return;
 			}
+			
 			if(self.user.phone == ""){
 				alert("핸드폰 번호를 입력하세요.");
 				return;
 			}
+			var regex = new RegExp(/^[0-9]+$/);
+			if(!regex.test(self.orderUserInfo.phone)){
+				alert("연락처는 숫자만 입력해주세요.");
+				return;
+			}
+			
 			if(self.user.email == ""){
 				alert("이메일 주소를 입력하세요.");
 				return;
 			}
-			var regex = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
+			regex = new RegExp(/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/);
 			if (!regex.test(self.user.email)) {
 			    alert("이메일 주소를 정확하게 입력하세요.");
 			    return;

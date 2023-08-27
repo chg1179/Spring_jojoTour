@@ -23,7 +23,10 @@ public interface MyPageService {
 	// 주문 제품 취소 및 포인트 반환
 	int revokeOrder(HashMap<String, Object> map);
 	
-	MyPage searchPoint(HashMap<String, Object> map);
+	// 포인트 조회
+	User searchPoint(HashMap<String, Object> map);
+	
+	
 	int removeReview(HashMap<String, Object> map);
 	List<Inquiry> searchInquiry(HashMap<String, Object> map);
 	int removeInquiry(HashMap<String, Object> map);
@@ -33,6 +36,10 @@ public interface MyPageService {
 	
 	// 찜목록
 	HashMap<String, Object> searchJjim(HashMap<String, Object> map);
+	
+	// 찜 목록 중복 체크
+	int checkHeart(HashMap<String, Object> map);
+	
 	// 선택한찜목록 삭제
 	int removeJjimCheck(HashMap<String, Object> map);
 

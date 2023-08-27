@@ -343,7 +343,7 @@ var app = new Vue({
         	console.log(self.userInfo.phone);
         	
         	if(self.userInfo.phone.length < 10){
-				alert("연락처 양식을 확인해주세요.");
+				alert("연락처를 정확하게 입력하세요.");
 				return;
 			}
         	
@@ -360,7 +360,7 @@ var app = new Vue({
 			
 			regex = new RegExp(/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/);
 			if(!regex.test(self.userInfo.email)){
-				alert("이메일 양식을 확인해주세요.");
+				alert("이메일 주소를 정확하게 입력하세요.");
 				return;
 			}
 			

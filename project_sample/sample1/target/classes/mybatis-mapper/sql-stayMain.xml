@@ -8,8 +8,7 @@
 	<select id="viewStayList" parameterType="hashmap" resultType="com.example.sample1.model.Stay">
 	      SELECT *
 	      FROM T2_STAY_TBL S
-	      INNER JOIN T2_CODE_TYPE C
-	      ON S.STAY_KIND = C.C_KIND
+	      INNER JOIN T2_CODE_TYPE C ON S.STAY_KIND = C.C_KIND
 	      LEFT JOIN (
 	         SELECT MIN(ROOM_PRICE) AS MIN_PRICE, STAY_NO, PEOPLE_MAX
 	         FROM T2_ROOM_TBL
@@ -17,10 +16,12 @@
 	      ) R ON S.STAY_NO = R.STAY_NO
 	      LEFT JOIN T2_STAY_IMG_TBL I ON S.STAY_NO = I.STAY_NO
 	      LEFT JOIN (
-	         SELECT COUNT(*) AS JJIMCHECK, J.*
+	         SELECT COUNT(*) AS JJIMCHECK, STAY_NO
 	         FROM T2_JJIM_TBL J
-	         WHERE PRODUCT_KIND = 'STAY' AND PRODUCT_NO = #{stayNo} AND U_ID = #{uId}
-	      ) J ON J.PRODUCT_NO = S.STAY_NO
+	         INNER JOIN T2_STAY_TBL S ON S.STAY_NO = J.PRODUCT_NO
+	         WHERE J.U_ID = #{uId}
+			GROUP BY STAY_NO
+	      ) J ON J.STAY_NO = S.STAY_NO
 	      WHERE 1=1
 	      <if test="stayKeyword != '' and stayKeyword != null"> 
 	         AND STAY_NAME LIKE CONCAT('%',#{stayKeyword},'%')
