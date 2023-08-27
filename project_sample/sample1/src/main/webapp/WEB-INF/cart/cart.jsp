@@ -37,26 +37,11 @@
 		height: 30px;
 	}
 	
-	#tbl1 {
-		text-align: center;
-		margin: auto;
-		width: 1400px;
-	}
 	#tbl1 tr:hover {
 		    background-color: #EEEEEE;
 		    color : black;
 		  }
-	#tbl2 {
-		color : white;
-		margin : 30px auto;
-		width : 900px;
-		border-collapse: collapse;
-		text-align : center;
-		font-size : 20px;
-		border-radius: 5px;
-	    background-color: #FA163F;
-	  	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-	}
+
 	#delBtn {
 		margin : 5px auto;
 		border-radius : 20px;
@@ -79,7 +64,7 @@
 	    left: 0;
 	    height : 50px;
 	    width: 100%;
-	    background-color: #FA163F;
+	    background-color: #324666;
 	    padding: 16px;
 	    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 	    display: flex;
@@ -87,7 +72,7 @@
    		align-items: center;
 	}
 	#bottom-txt {
-		margin-left: 720px;
+		margin-left: 300px;
 		color : white;
 		float : center;
 	}

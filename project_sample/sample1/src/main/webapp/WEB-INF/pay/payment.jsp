@@ -11,6 +11,36 @@
 <link href="../../css/pay/payment-style.css" rel="stylesheet"/>
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <style>
+	@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+		font-weight: lighter;
+	}
+	#tbl {
+			margin : 30px;
+			border-collapse: collapse;
+			text-align : center;
+			font-size : 14px;
+	    	border-radius: 20px;
+	    	background-color: #fafafa;
+	  	 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+	}
+	
+	th {
+		font-size : 16px;
+		font-weight : bold;
+		padding: 5px 10px;
+		height: 30px;
+	}
+	td {
+		padding: 5px 10px;
+		height: 30px;
+	}
+	
+	#tbl tr:hover {
+		    background-color: #EEEEEE;
+		    color : black;
+		  }
 </style>
 </head>
 <body>
@@ -24,8 +54,15 @@
 				<!-- 숙박 업소 상품 -->
 		        <div v-if="roomList.length != 0" class="productBox">
 		            <div class="productTxt">숙소 상품</div>
-		            <table>
+		            
+		            <table id="tbl">
 		                <thead>
+		                <tr>
+						<td colspan="5"
+							style="text-align: left; padding-left: 30px; font-size: 20px; color: #213555; border-bottom: 2px solid #999;">
+							숙소상품
+						</td>
+					</tr>
 		                    <tr>
 		                    	<th>숙박업소명</th>
 		                        <th>숙소명</th>
@@ -49,8 +86,15 @@
 		        <!-- 렌트카 상품 -->
 		        <div v-if="rentList.length != 0" class="productBox">
 		            <div class="productTxt">렌트카 상품</div>
-		            <table>
+		            
+		            <table id="tbl">
 		                <thead>
+		                <tr>
+						<td colspan="4"
+							style="text-align: left; padding-left: 30px; font-size: 20px; color: #213555; border-bottom: 2px solid #999;">
+							렌트카 상품
+						</td>
+					</tr>
 		                    <tr>
 		                        <th>렌트명</th>
 		                        <th>인수일</th>
@@ -72,8 +116,15 @@
 		        <!-- 레저 상품 -->
 		        <div v-if="leisureList.length != 0" class="productBox">
 		            <div class="productTxt">레저 상품</div>
-		            <table>
+		            
+		            <table id="tbl">
 		                <thead>
+		                <tr>
+						<td colspan="3"
+							style="text-align: left; padding-left: 30px; font-size: 20px; color: #213555; border-bottom: 2px solid #999;">
+							숙소상품
+						</td>
+					</tr>
 		                    <tr>
 		                        <th>레저명</th>
 		                        <th>이용권수</th>
@@ -96,6 +147,12 @@
 			    <div>
 			        <table>
 			            <thead>
+			            <tr>
+						<td colspan="2"
+							style="text-align: left; padding-left: 30px; font-size: 20px; color: #213555; border-bottom: 2px solid #999;">
+							요금 상세 정보
+						</td>
+					</tr>
 			                <tr>
 			                    <th>상품명</th>
 			                    <th>금액</th>
