@@ -107,6 +107,16 @@ public class MyPageController {
 		return new Gson().toJson(resultMap);
 	}
 	
+	// 주문자 정보 수정
+	@RequestMapping(value = "/editUserInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String editUserInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		myPageService.editUserInfo(map);
+		resultMap.put("success", "주문자정보수정완료");
+		return new Gson().toJson(resultMap);
+	}
+	
 	// 주문 제품 별 요구사항 수정
 	@RequestMapping(value = "/editRequest.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -117,6 +127,15 @@ public class MyPageController {
 		return new Gson().toJson(resultMap);
 	}
 	
+	// 주문 제품 취소 및 포인트 반환
+	@RequestMapping(value = "/revokeOrder.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String revokeOrder(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		myPageService.revokeOrder(map);
+		resultMap.put("success", "제품취소완료");
+		return new Gson().toJson(resultMap);
+	}
 	
 	@RequestMapping(value = "/my/jjim.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -189,14 +208,7 @@ public class MyPageController {
 		resultMap.put("message", "success");
 		return new Gson().toJson(resultMap);
 	}
-	//예약취소
-	@RequestMapping(value = "bookingCancel.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	@ResponseBody
-	public String bookingCancel(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		myPageService.searchBookingCancel(map);
-		return new Gson().toJson(resultMap);
-	}
+	
 	@RequestMapping(value = "/my/userReview.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String review(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

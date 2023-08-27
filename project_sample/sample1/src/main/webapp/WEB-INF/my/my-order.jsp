@@ -88,7 +88,7 @@
 					<tr>
 						<th>주문번호</th>
 						<th>주문일</th>
-						<th>총결제금액</th>
+						<th>결제금액</th>
 						<th>상세내역</th>
 					</tr>
 					<tr v-for="item in orderList">
@@ -143,24 +143,7 @@ var app = new Vue({
 		fnView : function(orderNo){
         	var self = this;
         	$.pageChange("order/view.do", {orderNo : orderNo});
-        },
-		bookingCancel : function(productNo){
-			var self = this;
-			if(!confirm("정말 취소하시겠습니까?")){
-				return;
-			}
-			var param = {userId : self.userId, productNo : productNo};
-			$.ajax({
-                url : "/bookingCancel.dox",
-                dataType:"json",	
-                type : "POST",
-                data : param,
-                success : function(data) { 
-                	alert("취소되었습니다.");
-            		self.fnGetList();
-                }
-            }); 
-		}
+        }
 	}, // methods
 	created : function() {
 		var self = this;

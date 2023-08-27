@@ -46,6 +46,12 @@ var app = new Vue({
 	methods : {
 		fnSubmit : function(){
 			var self = this;
+			
+			if(!confirm("요청사항을 수정하시겠습니까?")){
+	        	alert("취소되었습니다.");
+	          	return;
+	        }
+			
 			var param = {
 					productKind : self.productKind,
 					productNo : self.productNo,
@@ -58,6 +64,7 @@ var app = new Vue({
                 data : param,
                 success : function(data) {
                 	// 요청사항 업데이트 후 팝업 창 종료
+                	alert("수정이 완료되었습니다.");
                 	window.close();
                 	window.opener.location.reload();
                 }

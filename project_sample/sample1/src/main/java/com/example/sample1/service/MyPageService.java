@@ -14,8 +14,14 @@ public interface MyPageService {
 	// 주문 번호에 따른 정보 출력
 	HashMap<String, Object> searchOrderInfo(HashMap<String, Object> map);
 	
+	// 주문자 정보 수정
+	int editUserInfo(HashMap<String, Object> map);
+	
 	// 주문 제품에 대한 요청 사항 수정
 	int editRequest(HashMap<String, Object> map);
+	
+	// 주문 제품 취소 및 포인트 반환
+	int revokeOrder(HashMap<String, Object> map);
 	
 	MyPage searchPoint(HashMap<String, Object> map);
 	int removeReview(HashMap<String, Object> map);
@@ -30,8 +36,6 @@ public interface MyPageService {
 	// 선택한찜목록 삭제
 	int removeJjimCheck(HashMap<String, Object> map);
 
-	//예약취소
-	int searchBookingCancel(HashMap<String, Object> map);
 	//리뷰
 	List<MyPage> searchReview(HashMap<String, Object> map);
 	int searchReviewCnt(HashMap<String, Object> map);

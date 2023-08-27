@@ -15,6 +15,7 @@
 		INNER JOIN (
 			SELECT SUM(PAYMENT) AS TOTAL_PAY, ORDER_NO
 			FROM T2_ORDER_LIST_TBL
+			WHERE USE_YNC = 'Y' OR USE_YNC = 'C'
 			GROUP BY ORDER_NO
 		) L ON L.ORDER_NO = O.ORDER_NO
 		LEFT JOIN (
@@ -45,6 +46,16 @@
 		WHERE ORDER_NO = #{orderNo}
 	</select>
 	
+	<!-- 주문자 정보 변경 -->
+	<update id="updateUserInfo" parameterType="hashmap">
+		UPDATE T2_ORDER_TBL
+		SET
+			U_NAME = #{uName},
+			PHONE = #{phone},
+			EMAIL = #{email}
+		WHERE ORDER_NO = #{orderNo}
+	</update>
+	
 	<!-- 제품 별 요청 사항 수정 -->
 	<update id="updateRequest" parameterType="hashmap">
 		UPDATE T2_ORDER_LIST_TBL
@@ -55,13 +66,29 @@
 	
 	
 	<!-- 예약 취소 -->
-	<update id="selectBookingCancel" parameterType="hashmap">
-		UPDATE T2_ORDER_TBL O
-		INNER JOIN T2_ORDER_LIST_TBL L ON O.ORDER_NO = L.ORDER_NO
+	<update id="cancelOrder" parameterType="hashmap">
+		UPDATE T2_ORDER_LIST_TBL
 		SET
 			USE_YNC = 'C'
-		WHERE U_ID = #{userId} AND PRODUCT_NO = #{productNo}
+		WHERE ORDER_NO = #{orderNo} AND PRODUCT_KIND = #{productKind} AND PRODUCT_NO = #{productNo}
 	</update>
+	
+	<!-- 사용한 포인트 반환 -->
+	<update id="returnUserPoint" parameterType="hashmap">
+		UPDATE T2_USER_POINT_TBL
+		SET
+			POINT = POINT + #{usePoint}
+		WHERE U_ID = #{uId}
+	</update>
+	
+	<!-- 취소한 제품에 대해 주문에 사용한 포인트 금액 차감 -->
+	<update id="deductionPoint" parameterType="hashmap">
+		UPDATE T2_ORDER_TBL
+		SET
+			USE_POINT = USE_POINT - #{usePoint}
+		WHERE ORDER_NO = #{orderNo}
+	</update>
+	
 	
 	<select id="selectJjim" parameterType="hashmap" resultType="com.example.sample1.model.MyPage">
 		SELECT DISTINCT *

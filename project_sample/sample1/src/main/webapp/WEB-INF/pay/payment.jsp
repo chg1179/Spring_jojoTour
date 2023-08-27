@@ -369,6 +369,11 @@ var app = new Vue({
 				alert("모든 약관을 동의해야만 결제가 가능합니다.");
 				return;
 			}
+			
+			if(!confirm("결제하시겠습니까?")){
+	        	alert("취소되었습니다.");
+	          	return;
+	        }
         	
 			// 포인트를 입력하지 않으면 0으로 생각한다.
 			if(self.usePoint == ""){
@@ -398,11 +403,9 @@ var app = new Vue({
                 buyer_tel: self.userInfo.phone
 			}, function (rsp) { // callback
 					if (rsp.success) {
-                		alert("주문이 완료되었습니다.");
                 		self.fnOrder(orderNo);
 					} else {
 						//테스트용
-                    	alert("주문이 완료되었습니다.");
                     	self.fnOrder(orderNo);
                     }
 			});
@@ -418,7 +421,7 @@ var app = new Vue({
 					phone :self.userInfo.phone,
 					email :self.userInfo.email,
 					request : self.request
-				};
+			};
 			
 			$.ajax({
                 url : "addOrder.dox",
@@ -426,6 +429,7 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) {
+            		alert("주문이 완료되었습니다.");
                 	location.href="/my/order.do";
                 }
             });

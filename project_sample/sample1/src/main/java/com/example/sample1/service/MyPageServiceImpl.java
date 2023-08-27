@@ -41,6 +41,13 @@ public class MyPageServiceImpl implements MyPageService{
 		resultMap.put("orderUserInfo", myPageMapper.selectOrderUserInfo(map));
 		return resultMap;
 	}
+
+	// 주문자 정보 수정
+	@Override
+	public int editUserInfo(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return myPageMapper.updateUserInfo(map);
+	}
 	
 	// 주문 제품에 대한 요청 사항 수정
 	@Override
@@ -49,6 +56,16 @@ public class MyPageServiceImpl implements MyPageService{
 		return myPageMapper.updateRequest(map);
 	}
 
+	// 주문 제품 취소 및 포인트 반환
+	@Override
+	public int revokeOrder(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		myPageMapper.cancelOrder(map);
+		myPageMapper.returnUserPoint(map);
+		myPageMapper.deductionPoint(map);
+		return 1;
+	}
+	
 	
 	@Override
 	public MyPage searchPoint(HashMap<String, Object> map) {
@@ -105,11 +122,6 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public int searchBookingCancel(HashMap<String, Object> map) {
-		// TODO Auto-generated method stub
-		return myPageMapper.selectBookingCancel(map);
-	}
-	@Override
 	public List<MyPage> searchReview(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
 		return myPageMapper.selectReview(map);
@@ -120,9 +132,9 @@ public class MyPageServiceImpl implements MyPageService{
 		// TODO Auto-generated method stub
 		return myPageMapper.selectReviewCnt(map);
 	}
+	
 
-	
-	
+
 
 
 

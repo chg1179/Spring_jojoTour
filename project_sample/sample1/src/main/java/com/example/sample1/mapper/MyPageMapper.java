@@ -17,8 +17,16 @@ public interface MyPageMapper {
 	// 주문 번호에 따른 주문 정보 (주문할 때 입력한 핸드폰, 이메일 등)
 	MyPage selectOrderUserInfo(HashMap<String, Object> map);
 	
+	// 주문자 정보 변경
+	int updateUserInfo(HashMap<String, Object> map);
+	
 	// 주문 제품에 대한 요청 사항 수정
 	int updateRequest(HashMap<String, Object> map);
+	
+	// 예약 취소 및 포인트 반환
+	int cancelOrder(HashMap<String, Object> map);
+	int returnUserPoint(HashMap<String, Object> map); // 사용자에게 포인트 반환
+	int deductionPoint(HashMap<String, Object> map); // 주문내역에서 사용한 포인트 차감
 	
 	MyPage selectPoint(HashMap<String, Object> map);
 	int deleteReview(HashMap<String, Object> map);
@@ -32,8 +40,6 @@ public interface MyPageMapper {
 	int selectCnt(HashMap<String, Object> map);
 	//체크한 찜목록 삭제
 	int deleteJjimCheck(HashMap<String, Object> map);
-	// 예약 취소
-	int selectBookingCancel(HashMap<String, Object> map);
 	
 	//리뷰
 	List<MyPage> selectReview(HashMap<String, Object> map);

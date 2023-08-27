@@ -28,30 +28,6 @@
 		height: 100vh;
 		margin-top: -200px;
 	}
-	.page_order_booking_box{
-		display: flex;
-		justify-content: space-around;
-		text-align: center;
-	}
-	.page_order_booking_box{
-		border-top: 1px solid;
-		border-bottom: 1px solid #ccc;
-	}
-	.page_order_booking_box>div{
-		padding: 0 70px;
-	}
-	.page_order_booking_box>div:nth-child(2){
-		border-right: 1px solid #ccc;
-		border-left: 1px solid #ccc;
-
-	}
-	.page_order_booking_box div div{
-		margin: 20px 0;
-	}
-	.page_order_booking_box span{
-		font-size: 30px;
-		font-weight: bold;
-	}
 	table, tr, th, td{
 		border: 1px solid;
 		border-collapse: collapse;
@@ -102,21 +78,22 @@
 					<div>
 						<div>
 							<div>성명</div>
-							<div class="wrap"><input type="text" v-model="orderUserInfo.uName" disabled></div>
+							<div class="wrap"><input type="text" v-model="orderUserInfo.uName"></div>
 						</div>
 						<div>
 							<div>연락처</div>
 							<div>
-								<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone1" maxlength="3" disabled></span>-
-								<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone2" maxlength="4" disabled></span>-
-								<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone3" maxlength="4" disabled></span>
+								<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone1" maxlength="3"></span>-
+								<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone2" maxlength="4"></span>-
+								<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone3" maxlength="4"></span>
 							</div>
 						</div>
 						<div>
 							<div>이메일</div>
-							<div class="wrap"><input type="text" v-model="orderUserInfo.email" disabled></div>
+							<div class="wrap"><input type="text" v-model="orderUserInfo.email"></div>
 						</div>
 					</div>
+					<div><input type="button" @click="fnEditUserInfo" value="수정하기"></div>
 				</div>
 				
 				<!-- 숙박 업소 상품 -->
@@ -170,7 +147,7 @@
 		                        </td>
 		                        <td v-if="!roomFlg">
 		                        	<span v-if="product.useYnc == 'N'">
-		                        		<input type="button" value="예약취소" @click="">
+		                        		<input type="button" value="예약취소" @click="fnOrderCancle(product.productKind, product.productNo, product.payment)">
 		                        	</span>
 		                        </td>
 		                    </tr>
@@ -227,7 +204,7 @@
 		                        </td>
 		                        <td v-if="!rentFlg">
 		                        	<span v-if="product.useYnc == 'N'">
-		                        		<input type="button" value="예약취소" @click="">
+		                        		<input type="button" value="예약취소" @click="fnOrderCancle(product.productKind, product.productNo, product.payment)">
 		                        	</span>
 		                        </td>
 		                    </tr>
@@ -282,7 +259,7 @@
 		                        </td>
 		                        <td v-if="!leisureFlg">
 		                        	<span v-if="product.useYnc == 'N'">
-		                        		<input type="button" value="예약취소" @click="">
+		                        		<input type="button" value="예약취소" @click="fnOrderCancle(product.productKind, product.productNo, product.payment)">
 		                        	</span>
 		                        </td>
 		                    </tr>
@@ -291,8 +268,12 @@
 		        </div>
 		        <div class="box">
 					<div>
-						<div class="productTxt">취소 금액을 제외한 총 결제 금액</div>
-						<div class="wrap"><input type="text" disabled>{{ totalAmount }}</div>
+						<div>
+							<div>총 제품 금액 : {{ totalPrice }} 원</div>
+							<div>제품 취소 금액 : - {{ cancelPrice }} 원</div>
+							<div>포인트 사용 금액 : - {{ orderUserInfo.usePoint}} 원</div>
+							<div class="productTxt">총 결제 금액 : {{ realPrice }} 원</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -308,12 +289,16 @@ var app = new Vue({
 		orderNo : "${map.orderNo}",
 		userId : "${sessionId}",
 		orderUserInfo : {}, // 이름, 연락처, 이메일 등
-		orderInfoList : [],
+		orderInfoList : [], // 주문 제품 정보 출력
 		phoneSplit : { // OOO-XXXX-XXXX 로 출력하기 위한 변수
 			phone1 : "",
 			phone2 : "",
 			phone3 : ""
 		},
+		totalPrice : 0, // 총 결제 금액
+		cancelPrice : 0, // 취소한 금액 (useYnc == C)
+		realPrice : 0, // 포인트, 취소 금액을 제외한 실제 결제 금액
+		// 예약 취소 버튼을 출력하기 위한 flg 변수. 3가지의 종류에 따라 출력하기 위해 3개 따로 선언
 		roomFlg : false,
 		rentFlg : false,
 		leisureFlg : false
@@ -332,15 +317,33 @@ var app = new Vue({
                 	self.orderInfoList = data.orderInfoList;
                 	console.log(self.orderUserInfo);
                 	console.log(self.orderInfoList);
-                	self.phoneSubString();
-                	var i = 0;
                 	
-                	// 해당 리스트에 한 항목이라도 useYnx의 값이 N이 없다면 취소할 제품이 없기 때문에 취소 컬럼을 없앤다.
+                	self.priceCalculator(); // 총 결제 금액 변수에 저장
+                	self.phoneSubString(); // 핸드폰 번호를 XXX-XXXX-XXXX 처럼 나눠서 출력
+                	
+                	// 해당 리스트에 한 항목이라도 useYnx의 값이 N이 없다면 취소할 제품이 없기 때문에 취소 컬럼을 없앰
                 	self.roomFlg = !self.roomList.some(product => product.useYnc === 'N');
                     self.rentFlg = !self.rentList.some(product => product.useYnc === 'N');
                     self.leisureFlg = !self.leisureList.some(product => product.useYnc === 'N');
                 }
             }); 
+		},
+		priceCalculator : function(){
+			var self = this;
+			
+			// 취소 시 fnGetList 를 할 경우에 값이 += 되기 때문에 0으로 초기화
+			self.totalPrice = 0;
+			self.cancelPrice = 0;
+			self.realPrice = 0;
+			
+			for(var i = 0 ; i < self.orderInfoList.length ; i++){
+        		self.totalPrice += self.orderInfoList[i].payment;
+        		if(self.orderInfoList[i].useYnc == "C"){
+        			self.cancelPrice += self.orderInfoList[i].payment;
+        		}
+        	}
+        	// 총 결제 금액 = 총 제품 금액 - 취소 금액 - 포인트 사용 금액 
+        	self.realPrice = self.totalPrice - self.cancelPrice - self.orderUserInfo.usePoint;
 		},
 		phoneSubString : function(){
 			var self = this;
@@ -355,7 +358,65 @@ var app = new Vue({
 			self.phoneSplit.phone2 = (self.orderUserInfo.phone).substring(3,middleNum);
 			self.phoneSplit.phone3 = (self.orderUserInfo.phone).substring(middleNum);
 		},
-		// 요구사한 변경
+		// 주문자 정보 수정
+		fnEditUserInfo : function(){
+			
+			var self = this;
+			if(self.orderUserInfo.uName == ""){
+				alert("예약자 이름을 입력해주세요.");
+				return;
+			}
+        	
+        	//입력한 핸드폰 번호 합치기
+        	self.orderUserInfo.phone = self.phoneSplit.phone1;
+        	self.orderUserInfo.phone += self.phoneSplit.phone2;
+        	self.orderUserInfo.phone += self.phoneSplit.phone3;
+        	console.log(self.orderUserInfo.phone);
+        	
+        	if(self.orderUserInfo.phone.length < 10){
+				alert("연락처 양식을 확인해주세요.");
+				return;
+			}
+        	
+        	var regex = new RegExp(/^[0-9]+$/);
+			if(!regex.test(self.orderUserInfo.phone)){
+				alert("연락처는 숫자만 입력해주세요.");
+				return;
+			}
+			
+			if(self.orderUserInfo.email == ""){
+				alert("이메일을 입력해주세요.");
+				return;
+			}
+			
+			regex = new RegExp(/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/);
+			if(!regex.test(self.orderUserInfo.email)){
+				alert("이메일 양식을 확인해주세요.");
+				return;
+			}
+			
+			if(!confirm("예약자 정보를 수정하시겠습니까?")){
+	        	alert("취소되었습니다.");
+	          	return;
+	        }
+			var param = {
+					orderNo : self.orderNo,
+					uName : self.orderUserInfo.uName,
+					phone :self.orderUserInfo.phone,
+					email :self.orderUserInfo.email
+			};
+			$.ajax({
+                url : "/editUserInfo.dox",
+                dataType:"json",	
+                type : "POST",
+                data : param,
+                success : function(data) {
+                	alert("수정이 완료되었습니다.");
+                	self.fnGetList();
+                }
+            }); 
+		},
+		// 요구사항 변경
 		fnChangeRequest : function(productKind, productNo, request){
 			var popWidth = 800;
 		    var popHeight = 500;
@@ -374,22 +435,36 @@ var app = new Vue({
 		    
 		    window.open("changeRequest.do?productKind=" + productKind + "&productNo=" + productNo + "&request=" + encodedRequest, "request", popSize);
 		},
-		bookingCancel : function(productNo){
+		// 예약 취소
+		fnOrderCancle : function(productKind, productNo, payment){
 			var self = this;
-			if(!confirm("정말 취소하시겠습니까?")){
+			if(!confirm("해당 예약을 취소하시겠습니까?")){
 				return;
 			}
-			var param = {userId : self.userId, productNo : productNo};
+			
+			var returnPoint = self.orderUserInfo.usePoint;
+			// 사용한 포인트가 결제 금액이 많으면 취소하는 제품의 금액만큼만 포인트 차감
+			if(returnPoint > payment){
+				returnPoint = payment;
+			}
+			
+			var param = {
+					uId : self.userId,
+					orderNo : self.orderNo,
+					productKind : productKind,
+					productNo : productNo,
+					usePoint : returnPoint
+			};
 			$.ajax({
-                url : "/bookingCancel.dox",
+                url : "/revokeOrder.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
                 success : function(data) { 
-                	alert("취소되었습니다.");
+                	alert("취소가 완료되었습니다.");
             		self.fnGetList();
                 }
-            }); 
+            });
 		}
 	}, // methods
 	created : function() {
@@ -406,13 +481,6 @@ var app = new Vue({
 	    },
 	    leisureList: function() {
 	        return this.orderInfoList.filter(product => product.productKind === "LEISURE");
-	    },
-	    totalAmount() {
-	        const roomTotal = this.roomList.reduce((total, product) => total + (product.roomPrice * product.roomSales * product.people), 0);
-	        const rentTotal = this.rentList.reduce((total, product) => total + (product.rentPrice * product.rentSales * product.people), 0);
-	        const leisureTotal = this.leisureList.reduce((total, product) => total + (product.leisurePrice * product.leisureSales * product.people), 0);
-
-	        return roomTotal + rentTotal + leisureTotal;
 	    }
 	}
 });
