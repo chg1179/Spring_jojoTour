@@ -7,9 +7,10 @@
 <script src="../js/jquery-1.12.4.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="../css/stay/stay-main.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>숙소 페이지</title>
- <link href="https://fonts.googleapis.com/css?family=Nanum+Barun+Gothic" rel="stylesheet">
+
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 	body {
@@ -70,173 +71,6 @@
 		color: #fff;
 		font-size: 20px;
 		cursor: pointer;
-	}
-	.stay-container {
-		display: flex;
-		justify-content: center;
-		max-width: 1200px;
-		margin: 0px auto;
-		padding: 20px;
-	}
-	
-	/* 호텔 검색 필터 */
-	.filter {
-		background-color: #fff;
-		padding: 30px;
-		border-radius: 5px;
-		margin-right: 20px;
-		max-width: 300px;
-		min-width: 300px;
-		height: 1070px;
-		width: 100%;
-		box-sizing: border-box;
-		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-	}
-	.filter h2{
-		font-size: 20px;
-		margin-bottom: 10px;
-		color: #333;
-	}
-	.filter .btn-wrap {
-		margin: 0 auto;
-	}
-	.filter button{
-		font-family: 'Jeju Gothic', sans-serif;
-		background-color: #213555;
-		color : #fff;
-		border: none;
-		padding: 8px 15px;
-		border-radius: 3px;
-		cursor : pointer;
-		margin-bottom: 20px;
-	}
-	.filter .service-list label {
-		display: flex;	
-		align-items: center;
-		margin-bottom: 10px;
-	}
-	.filter .service-list input{
-		margin-right: 10px;
-		width: 18px;
-		height: 18px;
-	}
-	.filter .service-list{
-		margin-top: 15px;
-		margin-bottom: 10px;
-	}
-	.filter .stay-search h4, .filter .service-list h4{
-		margin-bottom: 10px;
-	}
-	.filter .stay-search input{
-		width: 90%;
-		padding: 8px;
-		border: 1px solid #ccc;
-		border-radius: 3px;
-		margin: 0 auto;
-		box-sizing: border-box;
-		
-	}
-	.filter .service-list input[type="checkbox"] {
-	    -webkit-appearance: none;
-	    -moz-appearance: none;
-	    appearance: none;
-	    border: 2px solid #ccc;
-	    border-radius: 4px;
-	    width: 18px;
-	    height: 18px;
-	    cursor: pointer;
-	    transition: background-color 0.3s, border-color 0.3s;
-	}
-	.filter .service-list input[type="checkbox"]:checked {
-	    background-color: #36578c;
-	    border-color: #36578c;
-	}
-	.stay-info {
-		display: flex;
-		width: 400px;
-		flex-direction: column;
-		margin-left: 10px;
-	}
-	 .caption{
-		display: inline-block; 
-		padding: 2px; 
-		border: 1px solid #e31756;
-		width: 70px;
-		margin-top: 10px;
-		margin-bottom: 10px;
-		color: #e31756;
-		font-size: 14px;
-		
-	}
-	.stay-type select{
-		padding: 3px;
-		margin-bottom: 20px;
-	}
-	.stay-list-con{
-		width: 700px;
-	}
-	.stay-list {
-		background-color: #fff;
-		display: flex;
-		align-items: center;
-		border-radius: 5px;
-		margin-bottom: 20px;
-		width: 100%;
-		padding: 15px;
-		box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-	}
-	
-	.stay-img-box {
-		box-sizing: border-box;
-		position: relative;
-		margin: 10px 0;
-		cursor : pointer;
-		width: 200px;
-		height : 150px;
-		
-	}
-	
-	.image-wrapper {
-	    width: 100%;
-	    height: 100%;
-	    overflow: hidden;
-	    border-radius: 5px;
-	}
-	.image-wrapper img {
-		width: 100%;
-		height : 100%;
-		object-fit: cover;
-		border-radius: 5px;
-		overflow: hidden;
-		transform-origin: center center;
-   		transition: transform 0.4s ease;
-	}
-	
-	.image-wrapper:hover img {
-	    transform: scale(1.1); 
-	}
-	
-	.stay-name {
-		font-weight: bold;
-		font-size : 22px;
-		margin-bottom: 10px;
-	}
-	
-	.stay-price {
-		display: flex;
-		flex-direction: column;
-		text-align: right;
-		font-size: 24px;
-		margin-top: auto;
-		margin-left: auto;
-		margin-right: -75px;
-		font-weight: bold;
-	}
-	
-	.stay-address {
-		font-size: 13px;
-		margin-bottom: 10px;
-		color: #979797;
 	}
 	
 </style>
@@ -314,7 +148,7 @@
 		               </a>
 		            </span>
                     <div class="stay-price">
-	                    <p>{{item.minPrice}}<span style="font-size:18px; font-weight: normal;">원~</span></p>
+	                    <p>{{item.minPrice | comma }}<span style="font-size:18px; font-weight: normal;">원~</span></p>
 	                    <p style="font-weight: normal; font-size:15px; color: #b3b3b3;">(세금/봉사료 포함)</p>
                     </div>
                 </div>
@@ -349,7 +183,7 @@
 		               </a>
 		            </span>
                     <div class="stay-price">
-	                    <p>{{item.minPrice}}<span style="font-size:18px; font-weight: normal;">원~</span></p>
+	                    <p>{{item.minPrice | comma }}<span style="font-size:18px; font-weight: normal;">원~</span></p>
 	                    <p style="font-weight: normal; font-size:15px; color: #b3b3b3;">(세금/봉사료 포함)</p>
                     </div>
                 </div>
@@ -365,6 +199,10 @@
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </html>
 <script>
+Vue.filter('comma', function(value) {
+	  if (!value) return '';
+	  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	});
 var app = new Vue({
 	el : '#app',
 	data : {
