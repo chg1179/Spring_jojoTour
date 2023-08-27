@@ -6,106 +6,140 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
-<title>호텔 상세 페이지</title>
+<title>숙소 상세 페이지</title>
 <style>
-<style>
-	table{
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
+	body {
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+     hr {
+        width: 700px;
+        margin: 20px auto;
+        border: none;
+        height: 1px; 
+        background-color: #ccc; 
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    }
+	.stay-view-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		max-width: 700px;
+		margin: 0px auto;
+		padding: 20px;
 	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
+	.stay-box {
+	    display: flex;
+	    align-items: center;
+	    margin-bottom: 20px;
 	}
-	.room-box, .stay-box, .check-date{
-   		width: 956px;
-    	margin: 0px auto
+
+	.stay-img {
+	    width: 400px;
+	    height: 100%;
+	    margin-top: 30px;
 	}
-	.room-box .room{
-	    overflow: hidden;
-	    margin: 30px 0 24px 0;
+	
+	.stay-img img {
+	    max-width: 100%;
+	    height: auto;
+	    border-radius: 5px;
+	}
+	
+	.stay-info {
+	    flex: 1;
+	}
+	.room-container {
+		justify-content: center;
+		max-width: 700px;
+		margin: 0px auto;
+		padding: 20px;
+	}
+	.room-date {
+	    margin-top: 20px;
+	    margin-bottom: 20px;
+	}
+	
+	.room-list {
+	    display: flex;
+	    flex-direction: column;
+	}
+	
+	.room-info {
+	    display: flex;
+	    margin-bottom: 20px;
 	    border: 1px solid #ccc;
-	    border-radius: 4px;
-	    background: #fff;
-	    
-	}
-	.stay-box .stay {
-		overflow: hidden;
-	    margin: 30px 0 24px 0;
-	    border: 1px solid #ccc;
-	    border-radius: 4px;
-	    background: #fff;
-	}
-	.stay-box .stay{
-		overflow : hidden;
+	    border-radius: 5px;
+	    padding: 15px;
+	    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	}
 	
-	.stay-box .stay .left  {
-		float: left;
-		width: 490px;
+	.room-img {
+	    width: 300px;
+	    margin-right: 20px;
 	}
 	
-	.room-box .room .left {
-		float: left;
-		width: 490px;
+	.room-img img {
+	    max-width: 100%;
+	    height: auto;
+	    border-radius: 5px;
 	}
 	
-	
-	.stay-box .stay .right {
-		float: right;
-		width: 450px;
+	.room-detail {
+	    flex: 1;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: space-between;
 	}
 	
-	 .room-box .room .right {
-	 	float: right;
-		width: 450px;
-	 }
-	.left img {
-		width: 100%;
-		height: auto;
+	.cart-button {
+	    background-color: #213555;
+	    color: #fff;
+	    border: none;
+	    padding: 5px 10px;
+	    border-radius: 3px;
+	    cursor: pointer;
 	}
 </style>
- 
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="app">
-	<div class="stay-box">
-		<div class="stay">
-			<div class="left">
+	<div class="stay-view-container">
+		<div class="stay-box">
+			<div class="stay-img">
 				<img :src="info.imgPath" alt="">
 			</div>
-			<div class="right">
+			<div class="stay-info">
 				<p>{{info.stayName}}</p>
 				<p>{{info.sAddr}}</p>
 			</div>
 		</div>
 	</div>
-	
-	<div class="check-date">
-		<div>
+	<hr>
+	<div class="room-container">
+		<div class="room-date">
 			<input type="date" name="checkInDate" v-model="checkInDate"> ~
 			<input type="date" name="checkOutDate" v-model="checkOutDate">
 		</div>
-	</div>
-	<div class="room-box">
-		<div class="room" v-for="(item, index) in list">
-			<div class="left">
-				<img :src="item.imgPath" alt="">
+		<div class="room-list">
+			<div class="room-info" v-for="(item, index) in list">
+				<div class="room-img">
+					<img :src="item.imgPath" alt="객실 사진">
+				</div>
+				<div class="room-detail">
+					<div>{{item.roomName}}</div>
+					<div>{{item.roomPrice}}원</div>
+					<div>{{salesList[index]}}%</div>
+					<div>{{item.roomPrice * item.roomSales}}원</div>
+					<button class="cart-button" @click="fnCart(item)">장바구니</button>					
+				</div>
 			</div>
-			<div class="right">
-				<div>{{item.roomName}}</div>
-				<div>{{item.roomPrice}}원</div>
-				<div>{{salesList[index]}}%</div>
-				<div>{{item.roomPrice * item.roomSales}}원</div>
-				<button @click="fnCart(item)">장바구니</button>					
-			</div>
-					
 		</div>
 	</div>
 </div>
-<%-- <jsp:include page="../footer.jsp" flush="true"></jsp:include> --%>
+<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

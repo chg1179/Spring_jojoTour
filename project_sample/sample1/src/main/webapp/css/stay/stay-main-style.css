@@ -1,0 +1,139 @@
+@charset "EUC-KR";
+@charset "EUC-KR";
+
+	.container {
+		display: flex;
+		justify-content: center;
+		max-width: 1200px;
+		margin: 0px auto;
+		padding: 20px;
+	}
+	
+	/* 호텔 검색 필터 */
+	
+	.filter {
+		background-color: #fff;
+		padding: 20px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		margin-right: 20px;
+		max-width: 300px;
+		min-width: 300px;
+		width: 100%;
+		box-sizing: border-box;
+		box-shadow: opx 2px 5px rgba(0, 0, 0, 0.1);
+	}
+	.filter h2{
+		font-size: 20px;
+		margin-bottom: 15px;
+		color: #333;
+	}
+	
+	.filter button{
+		background-color: #213555;
+		color : #fff;
+		border: none;
+		padding: 8px 15px;
+		border-radius: 3px;
+		cursor : pointer;
+		margin-top: 10px;
+	}
+	.filter .service-list label {
+		display: flex;	
+		align-items: center;
+		margin-bottom: 10px;
+	}
+	.filter .service-list input{
+		margin-right: 10px;
+		width: 18px;
+		height: 18px;
+	}
+	.filter .stay-search h3, .filter .service-list{
+		margin-top: 15px;
+	}
+	
+	.filter .stay-search input{
+		width: 90%;
+		padding: 8px;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		margin: 0 auto;
+		box-sizing: border-box;
+		
+	}
+	.filter .service-list input[type="checkbox"] {
+	    -webkit-appearance: none;
+	    -moz-appearance: none;
+	    appearance: none;
+	    border: 2px solid #ccc;
+	    border-radius: 4px;
+	    width: 18px;
+	    height: 18px;
+	    cursor: pointer;
+	    transition: background-color 0.3s, border-color 0.3s;
+	}
+	.filter .service-list input[type="checkbox"]:checked {
+	    background-color: #36578c;
+	    border-color: #36578c;
+}
+	.stay-info {
+		display: flex;
+		width: 400px;
+		flex-direction: column;
+	}
+	.stay-info .caption{
+		display: inline-block; 
+		padding: 2px 5px; 
+		border: 1px solid red;
+		width: 75px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		color: red;
+		font-size: 14px;
+	}
+	.stay-list {
+		display: flex;
+		align-items: center;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		margin-bottom: 20px;
+		padding: 10px;
+		width: 700px
+	}
+	
+	.stay-img-box {
+		box-sizing: border-box;
+		position: relative;
+		margin: 10px 0;
+		cursor : pointer;
+	}
+	
+	.stay-img-box img {
+		width: 200px;
+		height : 150px;
+		object-fit: cover;
+		border-radius: 5px;
+		overflow: hidden;
+	}
+	.stay-name {
+		font-weight: bold;
+		font-size : 22px;
+		margin-bottom: 10px;
+	}
+	
+	.stay-price {
+		display: flex;
+		flex-direction: column;
+		text-align: right;
+		font-size: 24px;
+		margin-top: auto;
+		margin-left: auto;
+		margin-right: -50px;
+		font-weight: bold;
+	}
+	
+	.stay-address {
+		font-size: 13px;
+		margin-bottom: 10px;
+		color: #979797;
+	}

@@ -6,34 +6,22 @@
 <script src="../js/jquery.js"></script>
 <script src="../js/jquery-1.12.4.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <meta charset="EUC-KR">
 <title>숙소 페이지</title>
+ <link href="https://fonts.googleapis.com/css?family=Nanum+Barun+Gothic" rel="stylesheet">
 <style>
-	* {
-		margin: 0;
-		padding: 0;
-	}
-	
-	a {
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+	a{
 		text-decoration: none;
-		color: inherit;
+		color: red;
 	}
-	
-	ul, li {
-		list-style: none;
-	}
-	
-	img {
-		width: 100%;
-		height: 100%;
-	}
-	
-	.inner_con {
-		width: 1200px;
-		margin: 0 auto;
-	}
-	
 	/* 베너 스타일 */
 	.banner_box {
 		background-image: url(../img/main/main.jpg);
@@ -83,182 +71,296 @@
 		font-size: 20px;
 		cursor: pointer;
 	}
-	
-	/* 필터 스타일 */ 
-	.filter-wrap {
-		float: left;
-		display: inline-block;
-		position: relative;
-		top: 20px;
-		width: 250px;
-		margin: 0px 30px 0px 30x;
-		padding-bottom: 10px;
-		border: 1px solid #ccc;
-		border-radius: 5px;
+	.stay-container {
+		display: flex;
+		justify-content: center;
+		max-width: 1200px;
+		margin: 0px auto;
+		padding: 20px;
 	}
 	
-	.filter-wrap , .filter-wrap h3 {
-		margin: 0 0 0 24px;
-		padding: 20px 0 0 0;
-		border-bottom: none;
+	/* 호텔 검색 필터 */
+	.filter {
+		background-color: #fff;
+		padding: 30px;
+		border-radius: 5px;
+		margin-right: 20px;
+		max-width: 300px;
+		min-width: 300px;
+		height: 1070px;
+		width: 100%;
+		box-sizing: border-box;
+		box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+	}
+	.filter h2{
+		font-size: 20px;
+		margin-bottom: 10px;
+		color: #333;
+	}
+	.filter .btn-wrap {
+		margin: 0 auto;
+	}
+	.filter button{
+		font-family: 'Jeju Gothic', sans-serif;
+		background-color: #213555;
+		color : #fff;
+		border: none;
+		padding: 8px 15px;
+		border-radius: 3px;
+		cursor : pointer;
+		margin-bottom: 20px;
+	}
+	.filter .service-list label {
+		display: flex;	
+		align-items: center;
+		margin-bottom: 10px;
+	}
+	.filter .service-list input{
+		margin-right: 10px;
+		width: 18px;
+		height: 18px;
+	}
+	.filter .service-list{
+		margin-top: 15px;
+		margin-bottom: 10px;
+	}
+	.filter .stay-search h4, .filter .service-list h4{
+		margin-bottom: 10px;
+	}
+	.filter .stay-search input{
+		width: 90%;
+		padding: 8px;
+		border: 1px solid #ccc;
+		border-radius: 3px;
+		margin: 0 auto;
+		box-sizing: border-box;
+		
+	}
+	.filter .service-list input[type="checkbox"] {
+	    -webkit-appearance: none;
+	    -moz-appearance: none;
+	    appearance: none;
+	    border: 2px solid #ccc;
+	    border-radius: 4px;
+	    width: 18px;
+	    height: 18px;
+	    cursor: pointer;
+	    transition: background-color 0.3s, border-color 0.3s;
+	}
+	.filter .service-list input[type="checkbox"]:checked {
+	    background-color: #36578c;
+	    border-color: #36578c;
+	}
+	.stay-info {
+		display: flex;
+		width: 400px;
+		flex-direction: column;
+		margin-left: 10px;
+	}
+	 .caption{
+		display: inline-block; 
+		padding: 2px; 
+		border: 1px solid #e31756;
+		width: 70px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		color: #e31756;
+		font-size: 14px;
+		
+	}
+	.stay-type select{
+		padding: 3px;
+		margin-bottom: 20px;
+	}
+	.stay-list-con{
+		width: 700px;
+	}
+	.stay-list {
+		background-color: #fff;
+		display: flex;
+		align-items: center;
+		border-radius: 5px;
+		margin-bottom: 20px;
+		width: 100%;
+		padding: 15px;
+		box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+	}
+	
+	.stay-img-box {
+		box-sizing: border-box;
+		position: relative;
+		margin: 10px 0;
+		cursor : pointer;
+		width: 200px;
+		height : 150px;
 		
 	}
 	
-	.filter-wrap, .list-wrap {
-		box-sizing: border-box;
+	.image-wrapper {
+	    width: 100%;
+	    height: 100%;
+	    overflow: hidden;
+	    border-radius: 5px;
 	}
-	
-	.filter-wrap strong {
-		display: block;
-	}
-	
-	/*  */
-	.stay-list ul {
-		display: block;
-		margin-block-start: 1em;
-		margin-block-end: 1em;
-		margin-inline-start: 0px;
-		margin-inline-end: 0px;
-		padding-inline-start:
-	}
-	
-	.stay-list, .stay-type {
-		float: left;
-		width: 600px;
-	}
-	
-	.stay-list::after {
-		content: "";
-		display: table;
-		clear: both;
-	}
-	.stay-list {
-		border: 1px solid #ccc;
-		margin-bottom: 20px;
-		margin-left: 20px;
-	}
-	.stay-type {
-		margin-left: 10px;
-	}
-	.stay-img img{
+	.image-wrapper img {
 		width: 100%;
-		height: auto;
-	}
-	ul a:hover {
-		text-decoration: underline;
-	}
-	
-	.sub-wrap {
-		width: 1024px;
-		margin: 0 auto;
-		padding-bottom: 50px;
-	}
-	
-	#content {
+		height : 100%;
+		object-fit: cover;
+		border-radius: 5px;
 		overflow: hidden;
+		transform-origin: center center;
+   		transition: transform 0.4s ease;
 	}
 	
-	
-	.btn-wrap button {
-		margin: 20px;
-		padding: 6px;
+	.image-wrapper:hover img {
+	    transform: scale(1.1); 
 	}
 	
-	.service-list {
-		margin-top: 30px;
-		margin-left: 20px;
-
+	.stay-name {
+		font-weight: bold;
+		font-size : 22px;
+		margin-bottom: 10px;
 	}
-	.name-input input {
-		margin: 20px;
-		padding: 6px;
+	
+	.stay-price {
+		display: flex;
+		flex-direction: column;
+		text-align: right;
+		font-size: 24px;
+		margin-top: auto;
+		margin-left: auto;
+		margin-right: -75px;
+		font-weight: bold;
+	}
+	
+	.stay-address {
+		font-size: 13px;
+		margin-bottom: 10px;
+		color: #979797;
 	}
 	
 </style>
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
-	<%-- <%@ include file="header.jsp" %> --%>
-	<div id="app">
-		<div class="banner_box">
-			<p v-if="stayKind == ''" class="banner_text">숙소</p>
-			<p v-else-if="stayKind == 'HOTEL'" class="banner_text">호텔</p>
-			<p v-else-if="stayKind == 'MOTEL'" class="banner_text">모텔</p>
-			<p v-else-if="stayKind == 'PENSION'" class="banner_text">펜션</p>
-			<p v-else-if="stayKind == 'GUEST'" class="banner_text">게스트하우스</p>
-			<p v-else="stayKind == 'CAMPING'" class="banner_text">캠핑</p>
-		</div>
-		<div id="content" class="sub-wrap">
-			<div class="filter-wrap">
-				<h3>상세조건</h3>
-				<div class="btn-wrap">
-					<span><button @click="fnReset">초기화</button></span> 
-				</div>
-		
-				<div class="stay-name">
-					<h3>숙소명</h3>
-					<div class="name-input">
-						<input type="text" v-model="stayKeyword" placeholder="검색 키워드를 입력해주세요" @input="fnSearch">
-					</div>
-				</div>
-
-				<div class="service-list">
-					<div v-for="item in serviceList">
-						<label><input type="checkbox" v-model="selectServiceList" :value="item.serviceNo" @change="fnSearch">{{item.serviceName}}</label>
-					</div>
-				</div>
-			</div>
-			<div id="stay-main-con">
-				<div class="stay-type">
-					<select v-model="stayKind" @change="fnSearch">
-						<option value="" selected disabled hidden>::전체::</option>
-						<option value="">::전체::</option>
-						<option value="HOTEL">호텔</option>
-						<option value="MOTEL">모텔</option>
-						<option value="PENSION">펜션</option>
-						<option value="GUEST">게스트하우스</option>
-						<option value="CAMPING">캠핑</option>
-					</select>
-				</div>
-				<div class="stay-list">
-					<ul>	
-						<li v-if ="stayKind == ''" v-for="item in list">
-							<div class="stay-info">
-								<div class="stay-img">
-									<img :src="item.imgPath" alt="">
-								</div>
-								<div class="txt_box">
-									<p>
-										<a @click="fnDetail(item.stayNo)">{{item.stayName}}</a>
-									</p>
-									<p>{{item.minPrice}}원</p>
-									<p>{{item.sAddr}}</p>
-									<p v-if="item.jjimCheck == 1"><button @click="fnJjim(item.stayNo)">찜하기</button></p>
-									<p v-else><button @click="fnJjimDel(item.stayNo)">찜해제</button></p>
-								</div>
-							</div>
-						</li>
-						<li v-if ="stayKind == item.stayKind" v-for="item in list">
-							<div class="stay-info">
-								<div class="stay-img">
-									<img :src="item.imgPath" alt="">
-								</div>
-								<div class="txt_box">
-									<p>
-										<a @click="fnDetail(item.stayNo)">{{item.stayName}}</a>
-									</p>
-									<p>{{item.minPrice}}원</p>
-									<p>{{item.sAddr}}</p>
-									<p v-if="item.jjimCheck == 1"><button @click="fnJjim(item.stayNo)">찜하기</button></p>
-									<p v-else><button @click="fnJjimDel(item.stayNo)">찜해제</button></p>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+<div id="app">
+	<div class="banner_box">
+		<p v-if="stayKind == ''" class="banner_text">숙소</p>
+		<p v-else-if="stayKind == 'HOTEL'" class="banner_text">호텔</p>
+		<p v-else-if="stayKind == 'MOTEL'" class="banner_text">모텔</p>
+		<p v-else-if="stayKind == 'PENSION'" class="banner_text">펜션</p>
+		<p v-else-if="stayKind == 'GUEST'" class="banner_text">게스트하우스</p>
+		<p v-else class="banner_text">캠핑</p>
 	</div>
+	<div class="stay-container">
+		<div class="filter">
+			<h2>상세조건</h2>
+            <div class="btn-wrap">
+                <span><button @click="fnReset">초기화</button></span> 
+            </div>
+    
+            <div class="stay-search">
+                <h4>검색</h4>
+                <div class="name-input">
+                    <input style="font-family: 'Jeju Gothic', sans-serif;" type="text" v-model="stayKeyword" placeholder="검색 키워드를 입력해주세요" @input="fnSearch">
+                </div>
+            </div>
+
+            <div class="service-list">
+            	<h4>편의시설</h4>
+                <div v-for="item in serviceList">
+                    <label><input type="checkbox" v-model="selectServiceList" :value="item.serviceNo" @change="fnSearch">{{item.serviceName}}</label>
+                </div>
+            </div>
+		</div>
+		<div class="stay-list-con">
+			<div class="stay-type">
+	            <select style="font-family: 'Jeju Gothic', sans-serif;" v-model="stayKind" @change="fnSearch">
+	                <option value="" selected disabled hidden>::전체::</option>
+	                <option value="">::전체::</option>
+	                <option value="HOTEL">호텔</option>
+	                <option value="MOTEL">모텔</option>
+	                <option value="PENSION">펜션</option>
+	                <option value="GUEST">게스트하우스</option>
+	                <option value="CAMPING">캠핑</option>
+	            </select>
+       		</div>
+            <div class="stay-list"  v-if ="stayKind == ''" v-for="item in list">
+                <div class="stay-img-box">
+				    <a @click="fnDetail(item.stayNo)">
+				        <div class="image-wrapper">
+				            <img :src="item.imgPath" alt="숙소이미지">
+				        </div>
+				    </a>
+				</div>
+                
+                <div class="stay-info">
+                	<span class="caption">실시간 예약</span>
+                   	<p class="stay-name">{{item.stayName}}</p>
+                    <p class="stay-address">
+	                    {{item.cName}} | {{item.sAddr}}
+                    </p>
+                     <!-- 찜하기 -->
+                    <span v-if="item.jjimcheck > 0">
+		               <a @click="fnJjimDel(item.stayNo)" href="javascript:;">
+		               	  <!-- 꽉찬하트 -->
+		                  <i class="fa-solid fa-heart"></i>	
+		               </a>
+		            </span>
+		            <span v-else-if="item.jjimcheck != 1">
+		               <a @click="fnJjim(item.stayNo)" href="javascript:;">
+		               	  <!-- 빈하트 -->
+		                  <i class="fa-regular fa-heart"></i>
+		               </a>
+		            </span>
+                    <div class="stay-price">
+	                    <p>{{item.minPrice}}<span style="font-size:18px; font-weight: normal;">원~</span></p>
+	                    <p style="font-weight: normal; font-size:15px; color: #b3b3b3;">(세금/봉사료 포함)</p>
+                    </div>
+                </div>
+               	
+            </div>
+            <div class="stay-list"  v-if ="stayKind == item.stayKind" v-for="item in list">
+                <div class="stay-img-box">
+				    <a @click="fnDetail(item.stayNo)">
+				        <div class="image-wrapper">
+				            <img :src="item.imgPath" alt="숙소이미지">
+				        </div>
+				    </a>
+				</div>
+               <div class="stay-info">
+                	<span class="caption">실시간 예약</span>
+                   	<p class="stay-name">{{item.stayName}}</p>
+                    <p class="stay-address">
+	                    {{item.cName}} | {{item.sAddr}}
+                    </p>
+                    <!-- 찜하기 -->
+                    <span v-if="item.jjimcheck == 1">
+		               <a @click="fnJjim(item.stayNo)" href="javascript:;">
+		               	  <!-- 꽉찬하트 -->
+		                  <i class="fa-solid fa-heart"></i>	
+		                  
+		               </a>
+		            </span>
+		            <span v-else>
+		               <a @click="fnJjimDel(item.stayNo)" href="javascript:;">
+		               	  <!-- 빈하트 -->
+		                  <i class="fa-regular fa-heart"></i>
+		               </a>
+		            </span>
+                    <div class="stay-price">
+	                    <p>{{item.minPrice}}<span style="font-size:18px; font-weight: normal;">원~</span></p>
+	                    <p style="font-weight: normal; font-size:15px; color: #b3b3b3;">(세금/봉사료 포함)</p>
+                    </div>
+                </div>
+            </div>
+             <div v-if="list.length == 0" class="empty-list-placeholder">
+		        <!-- 빈 목록용 플레이스홀더 내용 -->
+		        결과가 없습니다.
+		    </div>
+        </div>
+    </div>
+</div>
 </body>
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </html>
@@ -292,6 +394,7 @@ var app = new Vue({
                 	
                 	self.serviceList = data.serviceList;
                 	console.log(self.serviceList);
+                	
                 }
             }); 
 		},
@@ -328,6 +431,7 @@ var app = new Vue({
 				selectServiceList : noServiceList
 			};
 			console.log(self.selectServiceList);
+			console.log(self.list);
 			$.ajax({
                 url : "stayList.dox",
                 dataType:"json",	
