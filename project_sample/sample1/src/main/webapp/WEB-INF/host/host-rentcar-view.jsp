@@ -5,6 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>렌터카 상세정보 페이지</title>
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <style>
 	table{
 		border : 1px solid black;
@@ -93,10 +94,10 @@
 			</table>
 			<div>
 				<span v-if="rCnt == 0">
-					<span><button @click="fnUpdate">수정</button></span>
-					<span><button @click="fnRemove">삭제</button></span>
+					<span><button @click="fnUpdate" class="btn-dark">수정</button></span>
+					<span><button @click="fnRemove" class="btn-red">삭제</button></span>
 				</span>
-				<span><button @click="fnBack">뒤로가기</button></span>
+				<span><button @click="fnBack" class="btn-dark">뒤로가기</button></span>
 			</div>
 		</div>
 	</div>

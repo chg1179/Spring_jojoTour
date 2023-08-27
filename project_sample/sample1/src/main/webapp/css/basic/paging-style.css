@@ -2,21 +2,23 @@
 	margin:24px;
 	display: inline-flex;
 }
-ul {
-}
 .pagination li {
     min-width:32px;
     padding:2px 6px;
     text-align:center;
     margin:0 3px;
     border-radius: 6px;
-    border:1px solid #eee;
+    border:1px solid #ddd;
     color:#666;
     display : inline;
+    transition: 0.3s, color 0.3s;
 }
 .pagination li:hover {
-    background: #A0BFE0;
+    background: #445069;
     color:#fff;
+}
+.pagination li:hover a {
+    color: white;
 }
 .page-item a {
     color:#666;

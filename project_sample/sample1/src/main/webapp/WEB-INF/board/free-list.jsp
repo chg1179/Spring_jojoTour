@@ -10,9 +10,9 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-<link href="../../css/paging-style.css" rel="stylesheet"/>
-<link href="../../css/board-style.css" rel="stylesheet"/>
-<link href="../../css/board-btn-style.css" rel="stylesheet"/>
+<link href="../../css/basic/paging-style.css" rel="stylesheet"/>
+<link href="../../css/board/board-style.css" rel="stylesheet"/>
+<link href="../../css/board/board-btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>자유 게시판</title>
 <style>
@@ -37,7 +37,7 @@
 				<div class="search-wrap">
 					<label for="search" class="blind">자유게시판 내용 검색</label>
 					<input v-model="search" placeholder="검색어를 입력해주세요."  @keyup.enter="fnGetList">
-						<button @click="fnGetList" class="btn btn-dark"	>검색</button>
+						<button @click="fnGetList" class="btn btn-dark">검색</button>
 				</div>	
             </div>
         </div>
@@ -70,9 +70,9 @@
 				
 					<div class="page-wrap">
 						<div>
-							<button @click="fnRemove" class="btn1" v-if="status == 'A'">삭제</button>
 							<button @click="fnACheck" class="btn1" v-if="status == 'A'">전체선택</button>
 							<button @click="fnNCheck" class="btn1" v-if="status == 'A'">전체해제</button>
+							<button @click="fnRemove" class="btn2" v-if="status == 'A'">삭제</button>
 							<button @click="fnMove"  class="btn1">글쓰기</button>
 						</div>
 					<template>

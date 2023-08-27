@@ -7,7 +7,8 @@
 <title>숙박 관리 페이지</title>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-<link href="../../css/paging-style.css" rel="stylesheet"/>
+<link href="../../css/basic/paging-style.css" rel="stylesheet"/>
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <style>
 	.container {
 		display: flex;
@@ -95,9 +96,9 @@
 			</template>
 		</div>
 		<div class="container">
-			<span><button @click="fnAdd">숙박 업체 추가</button></span> 
-			<span><button @click="fnUpdate">업체 정보 수정</button></span> 
-			<span><button @click="fnRemove">업체 정보 삭제</button></span>
+			<span><button @click="fnAdd" class="btn-dark">숙박 업체 추가</button></span> 
+			<span><button @click="fnUpdate" class="btn-dark">업체 정보 수정</button></span> 
+			<span><button @click="fnRemove" class="btn-red">업체 정보 삭제</button></span>
 		</div>
 		
 	</div>

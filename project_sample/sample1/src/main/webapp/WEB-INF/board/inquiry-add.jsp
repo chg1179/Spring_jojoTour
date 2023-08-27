@@ -7,6 +7,8 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
 <script src="https://unpkg.com/vue2-editor@2.3.11/dist/index.js"></script>
+<link href="../../css/board/board-style.css" rel="stylesheet"/>
+<link href="../../css/board/board-btn-style.css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <meta charset="EUC-KR">
 <title>1:1 문의 작성</title>
@@ -37,20 +39,6 @@
     .WritingHeader h2 {
       font-size: 24px;
       color: #333;
-    }
-
-    .tool_area button {
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .tool_area button:hover {
-      background-color: #0056b3;
     }
 
     input[type="text"] {
@@ -98,10 +86,10 @@
 						<label v-if="privateYN=='Y'" ><i class="fas fa-regular fa-lock fa-bounce fa-xl" style="color: #7926df;  margin-right: 10px;"></i> 
 							<input v-model="info.iPassword" type="password" class="password-input">
 						</label>
-						<button v-if="answer == 'A'" @click="fnAdd">답변등록</button>					
-				        <button v-if="iNo === ''" @click="fnAdd">등록</button>
-				        <button v-else-if="iNo !='' && info.answerYn=='N'" @click="fnEdit">수정</button>
-			        	<button @click="fnBack">뒤로가기</button>
+						<button v-if="answer == 'A'" @click="fnAdd" class="btn2">답변등록</button>					
+				        <button v-if="iNo === ''" @click="fnAdd" class="btn1">등록</button>
+				        <button v-else-if="iNo !='' && info.answerYn=='N'" @click="fnEdit" class="btn1">수정</button>
+			        	<button @click="fnBack" class="btn2">뒤로가기</button>
 			        </div>
 			 </div>	
 			 	<label><input type="checkbox" v-model="fnSecret"> 비밀글</label>

@@ -7,9 +7,9 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-<link href="../../css/paging-style.css" rel="stylesheet"/>
-<link href="../../css/board-style.css" rel="stylesheet"/>
-<link href="../../css/board-btn-style.css" rel="stylesheet"/>
+<link href="../../css/basic/paging-style.css" rel="stylesheet"/>
+<link href="../../css/board/board-style.css" rel="stylesheet"/>
+<link href="../../css/board/board-btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>공지사항</title>
 <style>
@@ -62,9 +62,10 @@
 			</tbody>
 		</table>
 		<div class="page-wrap">
-				<div v-if="status == 'A'"><button @click="fnRemove" class="btn1">삭제</button>
+				<div v-if="status == 'A'">
 					<button @click="fnACheck" class="btn1">전체선택</button>
 					<button @click="fnNCheck" class="btn1">전체해제</button>
+					<button @click="fnRemove" class="btn2">삭제</button>
 					<button @click="fnMove" class="btn1">글쓰기</button>
 				</div>
 			<template>

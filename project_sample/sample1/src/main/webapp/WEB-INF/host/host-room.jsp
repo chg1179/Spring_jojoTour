@@ -5,6 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <style>
 	.container {
 		display: flex;
@@ -84,18 +85,18 @@
 								<div>신청이 완료되었습니다.</div>
 								<div>취소는 1:1 문의를 남겨주세요.</div>
 							</span>
-							<button v-else-if="item.state=='D'" @click="fnPackDel(item.roomNo)">취소</button>
-							<button v-else @click="fnPackAdd(item.roomNo)">신청</button>
+							<button v-else-if="item.state=='D'" @click="fnPackDel(item.roomNo)" class="btn-red">취소</button>
+							<button v-else @click="fnPackAdd(item.roomNo)" class="btn-dark">신청</button>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 		<div class="container">
-			<span><button @click="fnAdd">객실 추가</button></span>
-			<span><button @click="fnView">객실 상세 정보</button></span>
-			<span><button @click="fnRemove">객실 삭제</button></span>
-			<span><button @click="fnBack">되돌아가기</button></span>
+			<span><button @click="fnAdd" class="btn-dark">객실 추가</button></span>
+			<span><button @click="fnView" class="btn-dark">객실 상세 정보</button></span>
+			<span><button @click="fnRemove" class="btn-red">객실 삭제</button></span>
+			<span><button @click="fnBack" class="btn-dark">되돌아가기</button></span>
 		</div>
 	</div>
 	<jsp:include page="../footer.jsp" flush="true"></jsp:include>

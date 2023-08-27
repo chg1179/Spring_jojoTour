@@ -26,8 +26,22 @@
 	  transition: all 0.3s;
 	}
 	
+	.tool_area button {
+      background-color: #374259;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .tool_area button:hover {
+      background-color: #213555;
+    }
+    
 	.btn-dark {
-	  background: #374259;
+	  background: #445069;
 	  color: #fff;
 	}
 	
@@ -44,14 +58,33 @@
 	  padding: 8px 16px;;
 	  font-size: 12px;
 	  font-weight: 400;
-	border:1px solid #eee;
-	  color: black;
+	  background: #445069;
+	  border:1px solid #445069;
+	  color: white;
 	  border-radius: 5px;
 	  cursor: pointer;
 	}
 
 	.btn1:hover {
-	  background-color : #E7AA8D; /* 호박색 (마우스 호버 시 색 변경) */
+	  background-color : #213555;
+	  transform: scale(1.05);
+	  color: white;
+	}
+	.btn2 {
+	  display: inline-block;
+	  padding: 8px 16px;;
+	  font-size: 12px;
+	  font-weight: 400;
+	  background: #F38181;
+	  border:1px solid #F38181;
+	  color: white;
+	  border-radius: 5px;
+	  cursor: pointer;
+	}
+
+	.btn2:hover {
+	  background-color : #FA163F;
+	  border:1px solid #FA163F;
 	  transform: scale(1.05);
 	  color: white;
 	}

@@ -88,7 +88,7 @@
 					<tr>
 						<th>주문번호</th>
 						<th>주문일</th>
-						<th>총금액</th>
+						<th>제품금액</th>
 						<th>상세내역</th>
 					</tr>
 					<tr v-for="item in orderList">

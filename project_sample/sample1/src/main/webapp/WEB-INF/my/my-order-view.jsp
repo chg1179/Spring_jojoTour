@@ -115,7 +115,7 @@
 		                </thead>
 		                <tbody>
 		                    <tr v-for="product in roomList" :key="product.productNo">
-		                    	<td><a @click="fnStayView(product.productNo)">{{ product.stayName }}</a></td>
+		                    	<td><a @click="fnStayView(product.stayNo)">{{ product.stayName }}</a></td>
 		                        <td>{{ product.roomName }}</td>
 		                        <td>{{ product.sReserveDate }} 14:00</td>
 		                        <td>{{ product.lReserveDate }} 10:00</td>

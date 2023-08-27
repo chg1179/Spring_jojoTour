@@ -5,6 +5,7 @@
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>숙박 관리 페이지</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -42,7 +43,7 @@
 						<div>우편번호<input disabled type="text" v-model="info.sZipno"></div>
 						
 					 	<input disabled type="text" v-model="info.sAddr" placeholder="업체 주소를 입력하세요.">
-                        <button @click="fnSearchAddr">주소 검색</button>
+                        <button @click="fnSearchAddr" class="btn-dark">주소 검색</button>
                         
                         <div><input type="text" v-model="info.sDetailAddr" placeholder="나머지 주소를 입력해주세요."></div>
 					</div>
@@ -82,7 +83,8 @@
 			</tr>
 		</tbody>
 		</table>
-		<button @click="fnStayAdd">숙소 등록</button>
+		<button @click="fnStayAdd" class="btn-dark">숙소 등록</button>
+		<span><button @click="fnBack" class="btn-red">되돌아가기</button></span>
 	</div>
 	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
@@ -223,7 +225,9 @@ var app = new Vue({
 			document.getElementById("fileY").value = "";
 			document.getElementById("fileYName").value = "";
 		}, 
-		
+		fnBack : function(){
+			location.href = "../host/stay.do";        	
+        }
 	}, // methods
 	created : function() {
 		var self = this;

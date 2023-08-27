@@ -8,9 +8,10 @@
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link href="../../css/paging-style.css" rel="stylesheet"/>
-<link href="../../css/board-style.css" rel="stylesheet"/>
-<link href="../../css/board-btn-style.css" rel="stylesheet"/>
+<link href="../../css/basic/paging-style.css" rel="stylesheet"/>
+<link href="../../css/board/board-style.css" rel="stylesheet"/>
+<link href="../../css/board/board-btn-style.css" rel="stylesheet"/>
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>1:1 문의 게시판</title>
 <style>
@@ -60,9 +61,9 @@
 						</table>
 						<div class="page-wrap">
 							<div>
-								<button  v-if="status == 'A'" @click="fnRemove" class="btn1">삭제</button>
 								<button  v-if="status == 'A'" @click="fnACheck" class="btn1">전체선택</button>
 								<button  v-if="status == 'A'" @click="fnNCheck" class="btn1">전체해제</button>
+								<button  v-if="status == 'A'" @click="fnRemove" class="btn2">삭제</button>
 								<button v-if="status == 'U' || status == 'H'" @click="fnMove" class="btn1">문의하기</button>
 							</div>
 							

@@ -7,10 +7,10 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
 <script src="https://unpkg.com/vue2-editor@2.3.11/dist/index.js"></script>
-<link href="../../css/board-style.css" rel="stylesheet"/>
-<link href="../../css/board-btn-style.css" rel="stylesheet"/>
+<link href="../../css/board/board-style.css" rel="stylesheet"/>
+<link href="../../css/board/board-btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
-<title>공지사항 글쓰기</title>
+<title>공지사항 글 추가</title>
 <style>
    body {
       font-family: Arial, sans-serif;
@@ -38,20 +38,6 @@
     .WritingHeader h2 {
       font-size: 24px;
       color: #333;
-    }
-
-    .tool_area button {
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .tool_area button:hover {
-      background-color: #0056b3;
     }
 
     input[type="text"] {
@@ -100,9 +86,9 @@
 			<div class="WritingHeader">
 			    <h2>공지사항 글쓰기</h2>
 			        <div class="tool_area">
-			          <button v-if="nNo === ''" @click="fnAdd">등록</button>
-			          <button v-else @click="fnEdit">수정</button>
-			          <button @click="fnBack">뒤로가기</button>
+			          <button v-if="nNo === ''" @click="fnAdd" class="btn1">등록</button>
+			          <button v-else @click="fnEdit" class="btn1">수정</button>
+			          <button @click="fnBack" class="btn2">뒤로가기</button>
 			        </div>
 		    </div>
 		<input type="text" id="myInput" v-model="info.nTitle" placeholder="제목">

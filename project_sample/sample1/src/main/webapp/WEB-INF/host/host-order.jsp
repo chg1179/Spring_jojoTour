@@ -5,6 +5,7 @@
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
@@ -65,11 +66,11 @@
 					
 					<td v-if="item.useYnc=='N'">
 						<div>승인 대기중</div>
-						<span><button @click="fnChangeY(item, 'Y')">예약 승인</button></span>
+						<span><button @click="fnChangeY(item, 'Y')" class="btn-dark">예약 승인</button></span>
 					</td>
 					<td v-else-if="item.useYnc=='Y'">
 						<div>체크인 완료</div>
-						<span><button @click="fnChangeN(item, 'N')">승인 취소</button></span>
+						<span><button @click="fnChangeN(item, 'N')" class="btn-red">승인 취소</button></span>
 					</td>
 					<td v-else>예약 취소</td>
 					<td v-if="item.useYnc=='C'">
@@ -79,7 +80,7 @@
 						<div>승인상태에서는 예약 취소가 불가능합니다.</div>
 					</td>
 					<td v-else-if="item.useYnc == 'N'">
-						<div><button @click="fnCancel(item, 'C')">예약취소</button></div>
+						<div><button @click="fnCancel(item, 'C')" class="btn-red">예약취소</button></div>
 					</td>
 				</tr>
 			</tbody>
@@ -114,11 +115,11 @@
 				
 				<td v-if="item.useYnc=='N'">
 					<div>승인 대기중</div>
-					<span><button @click="fnChangeY(item, 'Y')">사용 승인</button></span>
+					<span><button @click="fnChangeY(item, 'Y')" class="btn-dark">사용 승인</button></span>
 				</td>
 				<td v-else-if="item.useYnc=='Y'">
 					<div>사용 승인 완료</div>
-					<span><button @click="fnChangeN(item, 'N')">승인 취소</button></span>
+					<span><button @click="fnChangeN(item, 'N')" class="btn-red">승인 취소</button></span>
 				</td>
 				<td v-else>예약 취소</td>
 				<td v-if="item.useYnc=='C'">
@@ -128,7 +129,7 @@
 					<div>승인상태에서는 예약 취소가 불가능합니다.</div>
 				</td>
 				<td v-else-if="item.useYnc == 'N'">
-					<div><button @click="fnCancel(item, 'C')">예약취소</button></div>
+					<div><button @click="fnCancel(item, 'C')" class="btn-red">예약취소</button></div>
 				</td>
 			</tr>
 		</table>
@@ -157,11 +158,11 @@
 				<td>{{ item.payment }}</td>
 				<td v-if="item.useYnc=='N'">
 					<div>승인 대기중</div>
-					<span><button @click="fnChangeY(item, 'Y')">사용 승인</button></span>
+					<span><button @click="fnChangeY(item, 'Y')" class="btn-dark">사용 승인</button></span>
 				</td>
 				<td v-else-if="item.useYnc=='Y'">
 					<div>사용 승인 완료</div>
-					<span><button @click="fnChangeN(item, 'N')">승인 취소</button></span>
+					<span><button @click="fnChangeN(item, 'N')" class="btn-red">승인 취소</button></span>
 				</td>
 				<td v-else>예약 취소</td>
 				<td v-if="item.useYnc=='C'">
@@ -171,13 +172,13 @@
 					<div>승인상태에서는 예약 취소가 불가능합니다.</div>
 				</td>
 				<td v-else-if="item.useYnc == 'N'">
-					<div><button @click="fnCancel(item, 'C')">예약취소</button></div>
+					<div><button @click="fnCancel(item, 'C')" class="btn-red">예약취소</button></div>
 				</td>
 			</tr>
 		</table>
 	</div>
 	<div class="btn">
-		<span><button @click="fnBack">뒤로가기</button></span>
+		<span><button @click="fnBack" class="btn-dark">뒤로가기</button></span>
 	</div>
 </div>
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>

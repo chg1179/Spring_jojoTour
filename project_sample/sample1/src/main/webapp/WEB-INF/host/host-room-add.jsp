@@ -6,6 +6,7 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <style>
 	table{
 		border : 1px solid black;
@@ -71,8 +72,8 @@
 				</tr>
 			</tbody>
 		</table>
-		<button @click="fnRoomAdd(info.roomNo)">객실 등록</button>
-		<button @click="fnBack">되돌아가기</button>
+		<button @click="fnRoomAdd(info.roomNo)" class="btn-dark">객실 등록</button>
+		<button @click="fnBack" class="btn-red">취소</button>
 	</div>
 	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>

@@ -7,7 +7,8 @@
 <title>렌터카 관리 페이지</title>
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
-<link href="../../css/paging-style.css" rel="stylesheet"/>
+<link href="../../css/basic/paging-style.css" rel="stylesheet"/>
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <style>
 	table{
 		border : 1px solid black;
@@ -52,8 +53,8 @@
 							<div>신청이 완료되었습니다.</div>
 							<div>취소는 1:1 문의를 남겨주세요.</div>
 						</span>
-						<button v-else-if="item.state=='D'" @click="fnPackDel(item.rentNo)">취소</button>
-						<button v-else @click="fnPackAdd(item.rentNo)">신청</button>
+						<button v-else-if="item.state=='D'" @click="fnPackDel(item.rentNo)" class="btn-red">취소</button>
+						<button v-else @click="fnPackAdd(item.rentNo)" class="btn-dark">신청</button>
 					</td>
 				</tr>
 			</table>
@@ -70,10 +71,10 @@
 			  </paginate>
 			</template>
 			<div>
-				<span><button @click="fnAdd">상품등록</button></span>
-				<span><button @click="fnView">상세정보열람</button></span>
-				<span><button @click="fnRemove">삭제</button></span>
-				<span><button @click="fnBack">뒤로가기</button></span>
+				<span><button @click="fnAdd" class="btn-dark">상품등록</button></span>
+				<span><button @click="fnView" class="btn-dark">상세정보열람</button></span>
+				<span><button @click="fnRemove" class="btn-red">삭제</button></span>
+				<span><button @click="fnBack" class="btn-dark">뒤로가기</button></span>
 			</div>
 		</div>
 	</div>

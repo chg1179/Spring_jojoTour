@@ -6,6 +6,7 @@
 <meta charset="EUC-KR">
 <title>레저 제품 추가 및 수정 페이지</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <style>
 	table{
 		border : 1px solid black;
@@ -78,7 +79,7 @@
 					<th>우편번호</th>
 					<td>
 						<input v-model="info.lZipno" type="text" name="lZipno" id="lZipno" disabled>
-						<button @click="fnSearchAddr">주소 검색</button>
+						<button @click="fnSearchAddr" class="btn-dark">주소 검색</button>
 					</td>
 				</tr>
 				<tr>
@@ -125,9 +126,9 @@
 				</tr>
 			</table>
 			<div>
-				<button v-if="leisureNo == ''" @click="fnAdd">등록</button>
-				<button v-else @click="fnEdit">수정</button>
-				<span><button @click="fnBack">취소</button></span>
+				<button v-if="leisureNo == ''" @click="fnAdd" class="btn-dark">등록</button>
+				<button v-else @click="fnEdit" class="btn-dark">수정</button>
+				<span><button @click="fnBack" class="btn-red">취소</button></span>
 			</div>
 		</div>
 	</div>

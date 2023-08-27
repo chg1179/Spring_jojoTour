@@ -5,6 +5,8 @@
 <head>
 <script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>객실 상세 정보</title>
 <style>
@@ -74,9 +76,9 @@
 			</tr>
 		</table>
 		<div>
-			<span><button @click="fnEdit">수정</button></span>
-			<span><button @click="fnRemove">삭제</button></span>
-			<span><button @click="fnBack">돌아가기</button></span>
+			<span><button @click="fnEdit" class="btn-dark">수정</button></span>
+			<span><button @click="fnRemove" class="btn-red">삭제</button></span>
+			<span><button @click="fnBack" class="btn-dark">돌아가기</button></span>
 		</div>
 	</div>
 	<jsp:include page="../footer.jsp" flush="true"></jsp:include>

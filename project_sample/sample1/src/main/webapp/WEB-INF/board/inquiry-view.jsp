@@ -5,8 +5,8 @@
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<link href="../css/board/board-view.css" rel="stylesheet"/>
-<link href="../../css/board-btn-style.css" rel="stylesheet"/>
+<link href="../../css/board/board-view.css" rel="stylesheet"/>
+<link href="../../css/board/board-btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>게시글 상세 페이지</title>
 <style>
@@ -70,17 +70,17 @@
 	.pwd1:focus ~ span, .pwd1:valid ~ span {
 	  width: 100%;
 	}
-	.btn1{
-	display:none
+	.btnCheck{
+		display:none;
 	}
-		.free_board_wrap{
+	.free_board_wrap{
 		margin-top: -500px;
 	}
 	.free_board_contents {
-    margin: 20px;
-    font-size: 18px;
-    margin-bottom: 200px;
-}
+	    margin: 20px;
+	    font-size: 18px;
+	    margin-bottom: 200px;
+	}
 </style>
 </head>
 <body>
@@ -92,7 +92,7 @@
 			<div v-if="!showApp" class="pwd"><input class="pwd1" v-model="enteredPwd" @keyup.enter="fnPwd" type="text" required>
 			<label class="pwd2">PASSWORD</label>
 			<span></span></div>
-			<button @click="fnPwd" class="btn1">확인</button>
+			<button @click="fnPwd" class="btnCheck">확인</button>
 			<div v-if="showApp">
 			
 				<div class="free_board_h2_wrap">
