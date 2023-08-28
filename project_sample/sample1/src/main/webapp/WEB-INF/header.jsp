@@ -187,7 +187,7 @@
 	                            </ul>
 	                        </li>
 	                        <li class="header_more">
-	                            <a href="javascript:;">더보기</a>
+	                            <a href="/terms.do">더보기</a>
 	                            <ul>
 	                                <li><a href="/terms.do">약관 및 정책</a></li>
 	                            </ul>

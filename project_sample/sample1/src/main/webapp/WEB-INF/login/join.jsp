@@ -272,7 +272,7 @@ var app = new Vue({
 		                    data: nparmap,
 		                    success: function(data) {
 		                        alert(self.user.nickName + "님 가입을 환영합니다.\n 포인트 5,000점이 적립되었습니다.");
-		                        /* location.href = "main.do"; */
+		                        location.href = "main.do";
 		                    }
 		                });
 		            }

@@ -11,6 +11,10 @@
 <meta charset="EUC-KR">
 <title>JOJO TOUR</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+    }
 		/* 스와이퍼 시작 */
 		.swiper {
           width: 100%;
@@ -67,21 +71,11 @@
 			<div class="swiper mySwiper banner_box">
 				<div class="banner_inbox">
 					<p class="banner_text">
-						여행 가기 전이나 여행중이라도 언제든지!<br>
-						관광지, 숙박, 음식점, 쇼핑, 축제, 교통, 문화 등 전국 여행에 관해서라면 어떤 것이라도 조조투어 지식iN에 물어보세요<br>
-						조조투어 상주 전문가를 비롯해 여행 잘 아는 사람이라면 누구에게라도 답변 받을 수 있습니다<br>
-						지금바로 시작하세요!!
+						여행 가기 전에도 여행 중에도 언제든지!<br>
+						숙박, 렌터카, 레저 등 다양한 상품을 한 사이트에서 비교할 수 있습니다!<br>
+						차별화된 여행 사이트 JOJO TOUR<br>
+						지금 바로 이용하세요!!
 					</p>
-					<div class="banner_img">
-						<img src="./img/main/banner_text.png" alt="">
-					</div>
-					<h3 class="banner_start">
-						<!-- <span>지금 시작하세요!</span> -->
-					</h3>
-					<button class="banner_question">
-						질문하기 >
-						<!-- 1:1문의게시판으로 연결 -->
-					</button>
 				</div>
 				<div class="swiper-wrapper">
 					<div class="swiper-slide slide-1">
