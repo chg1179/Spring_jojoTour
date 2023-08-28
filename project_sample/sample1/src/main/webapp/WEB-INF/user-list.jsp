@@ -25,7 +25,7 @@
 		text-align : center;
 		font-size : 14px;
 	}
-	th {}
+	th {
 		padding : 5px 10px;
 	}
 	tr {
@@ -55,7 +55,7 @@
 <jsp:include page="adminbar.jsp" flush="true"></jsp:include>
 <div id="app">
 <h2 style="color : #f8852a; text-align: center; margin-top: 30px;">유저 목록</h2>
-	<table class="table custom-table table-striped table-bordered">
+	<table class="table custom-table table-striped table-bordered ">
 	<thead class="thead-dark">
 		<tr>	
 			

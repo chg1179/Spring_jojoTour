@@ -15,7 +15,7 @@
 		font-weight: lighter;
 	}
 	
-	#tbl1 {
+	.tbl {
 			margin : 30px auto;
 			width : 1400px;
 			border-collapse: collapse;
@@ -37,7 +37,7 @@
 		height: 30px;
 	}
 	
-	#tbl1 tr:hover {
+	.tbl tr:hover {
 		    background-color: #EEEEEE;
 		    color : black;
 		  }
@@ -100,9 +100,9 @@
 	<div id="app">
 		<h1 style="color: #999; text-align: center; margin-top: 30px; margin-bottom: 20px;">장바구니</h1>
 
-		<div id="tbl">
+		<div class="tbl">
 		
-			<table id="tbl1" v-if=" roomlist.length === 0" style="margin-bottom : 30px;">
+			<table class="tbl" v-if=" roomlist.length === 0" style="margin-bottom : 30px;">
 				<thead>
 					<tr>
 						<td style="text-align: left; padding-left: 30px; font-size: 20px; color: #999; border-bottom: 2px solid #999;">
@@ -115,7 +115,7 @@
 				</thead>
 			</table>
 			
-			<table v-else style="margin: 30px auto;" id="tbl1">
+			<table v-else style="margin: 30px auto;" class="tbl">
 				<thead>
 					<tr>
 						<td colspan="6"
@@ -124,25 +124,25 @@
 						</td>
 					</tr>
 					<tr>
-						<th style="width: 400px;" colspan="3" style="width: 40px;">상품정보</th>
-						<th>인원</th>
-						<th>선택</th>
-						<th>결제금액</th>
+						<th style="width: 1000px;" colspan="3" style="width: 40px;">상품정보</th>
+						<th style="width: 100px;">인원</th>
+						<th style="width: 100px;">선택</th>
+						<th style="width: 200px;">결제금액</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr v-for="item in roomlist">
-						<td>
-							<input type="checkbox" name="room" v-model="selectRoom" :value="item">
+						<td style="width: 50px;">
+							<input type="checkbox" name="room" v-model="selectRoom" :value="item" >
 						</td>
-						<td style="border-right: 1px solid #999; width : 350px;">
+						<td style="border-right: 1px solid #999; width: 450px;">
 							<div style="font-weight: bold; margin: 5px;">{{item.stayName}}</div>
 							<div>{{item.roomName}}</div>
 						</td>
-						<td style="width : 400px;" v-if="item.sReserveDate == item.lReserveDate">
+						<td  v-if="item.sReserveDate == item.lReserveDate">
 							예약일 : {{item.sReserveDate}}
 						</td>
-						<td style="width : 400px; margin: 5px;" v-else>
+						<td style=" margin: 5px;" v-else>
 							<div style=" margin: 5px;">입실 : {{item.sReserveDate}}</div> 
 							<div>퇴실 : {{item.lReserveDate}}</div> 
 						</td>
@@ -170,7 +170,7 @@
 			</table >
 			
 			
-			<table id="tbl1" v-if=" rentlist.length === 0" style="margin-bottom : 30px;">
+			<table class="tbl" v-if=" rentlist.length === 0" style="margin-bottom : 30px;">
 				<thead>
 					<tr>
 						<td style="text-align: left; padding-left: 30px; font-size: 20px; color: #999; border-bottom: 2px solid #999;">
@@ -178,12 +178,12 @@
 						</td>
 					</tr>
 					<tr>
-						<th style="width: 400px;">장바구니에 담긴 렌트카 상품이 없습니다.</th>
+						<th >장바구니에 담긴 렌트카 상품이 없습니다.</th>
 					</tr>
 				</thead>
 			</table>
 			
-			<table v-else style="margin: 30px auto;" id="tbl1">
+			<table v-else style="margin: 30px auto;" class="tbl">
 				<thead>
 					<tr>
 						<td colspan="6"
@@ -192,24 +192,24 @@
 						</td>
 					</tr>
 					<tr>
-						<th style="width: 400px;" colspan="2">상품정보</th>
-						<th>선택</th>
-						<th>결제금액</th>
+						<th style="width:1100px;" colspan="3">상품정보</th>
+						<th style="width: 100px;">선택</th>
+						<th style="width: 200px;">결제금액</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr v-for="item in rentlist">
-						<td>
+						<td style="width: 50px;">
 							<input type="checkbox" name="rent" v-model="selectRent" :value="item">
 						</td>
-						<td style="border-right: 1px solid #999; width : 350px;">
-							<div style="font-weight: bold; margin: 5px;">{{item.rentName}}</div>
+						<td style="border-right: 1px solid #999; width: 450px;">
+							<div style="font-weight: bold; margin: 5px; ">{{item.rentName}}</div>
 							<div>{{item.rentKind}}</div>
 						</td>
-						<td style="width : 400px;" v-if="item.sReserveDate == item.lReserveDate">
+						<td v-if="item.sReserveDate == item.lReserveDate">
 							예약일 : {{item.sReserveDate}}
 						</td>
-						<td style="width : 400px; margin: 5px;" v-else>
+						<td style=" margin: 5px;" v-else>
 							<div style=" margin: 5px;">인수 : {{item.sReserveDate}}</div> 
 							<div>반납 : {{item.lReserveDate}}</div> 
 						</td>
@@ -233,7 +233,7 @@
 				</tbody>
 			</table >
 			
-			<table id="tbl1" v-if=" leisurelist.length === 0">
+			<table class="tbl" v-if=" leisurelist.length === 0">
 				<thead>
 					<tr>
 						<td style="text-align: left; padding-left: 30px; font-size: 20px; color: #999; border-bottom: 2px solid #999;">
@@ -241,12 +241,12 @@
 						</td>
 					</tr>
 					<tr>
-						<th style="width: 400px;">장바구니에 담긴 레저 상품이 없습니다.</th>
+						<th >장바구니에 담긴 레저 상품이 없습니다.</th>
 					</tr>
 				</thead>
 			</table>
 			
-			<table v-else style="margin: 30px auto;" id="tbl1">
+			<table v-else style="margin: 30px auto;" class="tbl">
 				<thead>
 					<tr>
 						<td colspan="6"
@@ -255,10 +255,10 @@
 						</td>
 					</tr>
 					<tr>
-						<th style="width: 400px;" colspan="2">상품정보</th>
-						<th>인원</th>
-						<th>선택</th>
-						<th>결제금액</th>
+						<th style="width: 600px;" colspan="2">상품정보</th>
+						<th style="width: 500px;">인원</th>
+						<th style="width: 100px;">선택</th>
+						<th style="width: 200px;">결제금액</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -266,11 +266,11 @@
 						<td>
 							<input type="checkbox" name="leisure" v-model="selectLeisure" :value="item">
 						</td>
-						<td style="border-right: 1px solid #999; width : 350px;">
-							<div style="font-weight: bold; margin: 5px;">{{item.leisureName}}</div>
+						<td style="border-right: 1px solid #999; width: 450px;">
+							<div style="font-weight: bold; margin: 5px; ">{{item.leisureName}}</div>
 							<div>{{item.leisureKind}}</div>
 						</td>
-						<td style="width : 400px;">
+						<td>
 							<input type="number" min="1" max="10" style="width: 80px;" v-model="item.people">
 						</td>
 						<td><input type="button" value="삭 제" id="delBtn" @click="fnRemove(item)"></td>
