@@ -119,7 +119,7 @@
 				</span>
 				<span v-else>
 					<a @click="fnDelWish(info.rentNo)" href="javascript:;">
-						<i class="fa-solid fa-heart fa-bounce fa-2x " style="color: #ff0000;"></i>
+						<i class="fa-solid fa-heart fa-2x " style="color: #ff0000;"></i>
 					</a>
 				</span>
 				<span><input type="button" value="장바구니" class="btn" @click="fnCart"></span>

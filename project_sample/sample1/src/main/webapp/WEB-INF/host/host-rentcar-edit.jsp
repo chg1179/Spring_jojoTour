@@ -7,8 +7,30 @@
 <title>렌터카 제품 추가 및 수정 페이지</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
-<link href="../../css/basic/host-edit-style.css" rel="stylesheet"/>
 <style>
+	table {
+		margin : 30px auto;
+		width : 700px;
+		border: 1px solid black;
+		border-collapse: collapse;
+		font-size : 14px;
+	}
+	th, td{
+		border : 1px solid gray;
+		padding: 30px 12px;
+	}
+	th{
+		background-color:#f2f2f2;
+	}
+	tr {
+		
+		padding : 5px 10px;
+	}
+	h2{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
+	}
 	.filebox .upload-name {
 	    display: inline-block;
 	    height: 40px;
@@ -36,14 +58,65 @@
 	    overflow: hidden;
 	    border: 0;
 	}
+		.btnbtn{
+	text-align: center;
+	margin-bottom:50px;
+	}
+	body{
+	background-color:#f2f2f2;
+	}
+	#container{
+		width:1100px;
+	background-color:white;
+	border-radius:6px;
+	box-shadow:1px 1px 2px darkgray;
+	padding: 5px;
+	    margin: 50px auto;
+	}
+	input[type="text" i] {
+    padding: 5px 5px;
+    border-radius:4px;
+    font-size:14px;
+    height : 24px;
+	}
+	select {
+	  padding: 10px;
+	  font-size: 16px;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
+	  background-color: white;
+	  width: 200px;
+	  cursor: pointer;
+	}
+	
+	/* 셀렉트 박스 선택된 아이템 스타일 */
+	select option:checked {
+	  background-color: #49a09d;
+	  color: white;
+	}
+	
+	/* 셀렉트 박스 드롭다운 화살표 스타일 */
+	select::after {
+	  content: '\25BC'; /* Unicode 화살표 코드 */
+	  position: absolute;
+	  top: 50%;
+	  right: 10px;
+	  transform: translateY(-50%);
+	  pointer-events: none;
+	}
+	
+	/* 호버 효과 */
+	select:hover {
+	  border-color: #5f2c82;
+	}
 </style>
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<div id="container">
-		<h3 v-if="rentNo== ''">렌터카 등록</h3>
-		<h3 v-else>렌터카 수정</h3>
+		<h2 v-if="rentNo== ''">렌터카 등록</h2>
+		<h2 v-else>렌터카 수정</h2>
 			<table>
 				<tr>
 					<th>분류</th>
@@ -110,7 +183,7 @@
 					</td>
 				</tr>
 			</table>
-			<div class="btn-con">
+			<div class="btnbtn">
 				<button v-if="rentNo == ''" @click="fnAdd" class="btn-dark">등록</button>
 				<button v-else @click="fnEdit" class="btn-dark">수정</button>
 				<span><button @click="fnBack" class="btn-red">취소</button></span>
@@ -124,6 +197,10 @@
 function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
 	app.fnResult(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo);
 }
+Vue.filter('comma', function(value) {
+	  if (!value) return '';
+	  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	});
 var app = new Vue({
 	el : '#app',
 	data : {
