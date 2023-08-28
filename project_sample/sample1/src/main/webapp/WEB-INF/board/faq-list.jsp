@@ -32,7 +32,7 @@
 		<div id="board-search">
 			<div class="container">
 				<div class="search-window">
-				<form action="">
+				
 					<div class="search-wrap">
 						
 						<select id="mySelect" v-model="mySelect" @click="fnGetList">
@@ -49,7 +49,7 @@
 							<input v-model="search" placeholder="검색어를 입력해주세요."  @keyup.enter="fnGetList" id="search">
 							<button @click="fnGetList" class="btn btn-dark">검색</button>							
 					</div>
-				</form>
+				
 				</div>
 			</div>
 		</div>
@@ -127,7 +127,7 @@ var app = new Vue({
     		var lastNum = 9;
 			var param = {search : self.search, category : self.mySelect, startNum : startNum, lastNum : lastNum};
 			$.ajax({
-                url : "list.dox",
+                url : "/faq/list.dox",
                 dataType:"json",	
                 type : "POST",
                 data : param,
