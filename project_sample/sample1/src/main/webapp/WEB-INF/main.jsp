@@ -5,248 +5,12 @@
 <head>
 <script src="../js/jquery.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+<link href="../css/main.css" rel="stylesheet"/>
    
 <meta charset="EUC-KR">
 <title>JOJO TOUR</title>
 <style>
-	*{
-            margin: 0;
-            padding: 0;
-        }
-        a{
-            text-decoration: none;
-            color: inherit;
-        }
-        ul, li{
-            list-style: none;
-        }
-        img{
-            width: 100%;
-            height: 100%;
-        }
-        .inner_con{
-            width: 1200px;
-            margin: 0 auto;
-        }
-        .banner_box{
-            height: 700px;
-			position: relative;
-        }
-		.banner_inbox{
-			position: absolute;
-			z-index: 99;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			width: 100%;
-			padding: 30px;
-			margin-top: -100px;
-		}
-        .banner_text{
-            text-align: center;
-            font-size: 20px;
-            font-weight: 400;
-            color: #fff;
-            margin-bottom: 30px;
-			background-color: rgba(0, 0, 0, 0.5);
-			width: 100%;
-			padding: 30px 0px;
-        }
-
-        .banner_img{
-            display: flex;
-            justify-content: center;
-            margin-bottom: 50px;
-        }
-        .banner_img>img{
-            width: 600px;
-        }
-        .banner_start{
-            text-align: center;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 30px;
-        }
-		.banner_start span{
-			background-color: rgba(0, 0, 0, 0.5);
-			padding: 5px 20px;
-		}
-        .banner_question{
-            width: 200px;
-            height: 50px;
-            margin: 0 auto;
-            display: block;
-            background-image: url(./img/main/icon_question.svg);
-            background-repeat: no-repeat;
-            background-color: #213555;
-            background-position: 10px;
-            border: none;
-            color: #fff;
-            font-size: 20px;
-            cursor : pointer;
-        }
-        /* 배너 끝 */
-        .accommodation_title{
-            margin-left: 30px;
-			margin-bottom: 30px;
-        }
-        .accommodation>ul{
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 50px;
-        }
-        .accommodation>ul>li{
-            width: 230px;
-			height: 230px;
-			border-radius: 20px;
-			overflow: hidden;
-            text-align: center;
-            font-weight: 700;
-        }
-        /* 숙소예약 끝 */
-        .retal_car{
-            margin-top: 70px;
-        }
-        .retal_car_title{
-            margin: 30px;
-        }
-        .retal_car>ul{
-            display: flex;
-            justify-content: space-around;
-            margin: 30px 0;
-        }
-        .retal_car>ul>li{
-            width: 290px;
-            height: 290px;
-            text-align: center;
-            font-weight: 700;
-			border-radius: 20px;
-			overflow: hidden;
-            text-align: center;
-            font-weight: 700;
-        }
-        .retal_car>ul>li:last-child>a{
-			display: flex;
-			align-items: center;
-			justify-content: center;
-        }
-		.retal_car>ul>li:last-child>a>.rotate_box{
-			width: 200px;
-			height: 200px;
-		}
-        /* 렌터카 예약 끝 */
-        .water_leisure{
-            margin-top: 70px;
-        }
-        .water_leisure_title{
-            margin: 30px;
-        }
-        .water_leisure>ul{
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-            margin: 30px 0;
-            font-weight: 700;
-        }
-        .water_leisure>ul>li{
-            width: 290px;
-            height: 290px;
-            text-align: center;
-            font-weight: 700;
-			border-radius: 20px;
-			overflow: hidden;
-            text-align: center;
-            font-weight: 700;
-        }
-        .w_img_box{
-            width: 290px;
-            height: 290px;
-            margin-bottom: 30px;
-        }
-        /* 수상레저 예약 끝 */
-        .land_leisure{
-            margin-top: 70px;
-        }
-        .land_leisure_title{
-			margin-left: 200px;
-        }
-		.land_leisure_inbox{
-			display: flex;
-			justify-content: center;
-		}
-        .land_leisure>.land_leisure_inbox>ul{
-            display: flex;
-            justify-content: space-around;
-            text-align: center;
-            margin: 30px 0;
-            font-weight: 700;
-			width: 900px;
-        }
-        .land_leisure>.land_leisure_inbox>ul>li{
-            width: 290px;
-            height: 290px;
-            text-align: center;
-            font-weight: 700;
-			border-radius: 20px;
-			overflow: hidden;
-            text-align: center;
-            font-weight: 700;
-        }
-        .l_img_box{
-            width: 290px;
-            height: 290px;
-            margin-bottom: 30px;
-        }
-        /* 지상레져 끝 */
-
-		/* 이미지 돌아가면서 글씨 올리기 */
-		.out_box{
-			position: relative;
-			display: block;
-			transform: rotateY(0);
-			transition-duration: 1s;
-			height : 100%;
-			width : 100%;
-			
-		}
-		.rotate_box{
-		    transform: rotateY(0);
-		    transition-duration: 1s;
-			height : 100%;
-			width : 100%;
-		
-		}
-		.out_box:hover .rotate_box{
-			transform: rotateY(360deg);
-		}
-		.out_box .out_box_txt{
-			position: absolute;
-			bottom: -40px;
-			left: 50%;
-			transform: translateX(-50%);
-			background-color: rgba(0, 0, 0, 0.5);
-			width: 100%;
-			color: #fff;
-			font-size: 20px;
-			transition-duration: 1s;
-		}
-		.out_box:hover .out_box_txt{
-			bottom: 0;
-		}
-		.out_box .out_box_txt div:first-child{
-			margin-top: 10px;
-		}
-		.out_box .out_box_txt div:last-child{
-			color : yellow;
-		}
-		.out_box .out_box_txt div{
-			margin-bottom: 10px;
-		}
-		.a_img_box, .r_img_box, .w_img_box, .l_img_box{
-			height : 100%;
-			width : 100%;
-		}
-
 		/* 스와이퍼 시작 */
 		.swiper {
           width: 100%;
@@ -254,7 +18,7 @@
           margin-top: -100px;
         }
     	.swiper-wrapper {
-    	height:90%
+    	height:100vh;
     	}
         .swiper-slide {
           text-align: center;
@@ -288,65 +52,16 @@
           background-color: #000;
         }
 
-		
-		.link_list{
-			width: 1000px;
-			margin: 0 auto;
-			margin-top: 50px;
-		}
-		.link_list ul{
-			border-top: 1px solid #ccc;
-			border-bottom: 1px solid #ccc;
-			width: 100%;
-			display: flex;
-			justify-content: space-around;
-			margin: 20px 0;
-			font-weight: bold;
-			font-size: 20px;
-		}
-		.link_list ul li{
-			width: 250px;
-			height: 100%;
-			text-align: center;
-		}
-		
-		.link_list ul li a{
-			width: 100%;
-			height: 100%;
-			display: block;
-			position: relative;
-			z-index: 9;
-			padding: 20px 0;
-		}
-		
-		.link_list ul li a:hover{
-			color: #F86F03;
-		}
-		.link_list ul li a::after{
-			content: "";
-			position: absolute;
-			left: 50%;
-			bottom: -1px;
-			width: 0;
-			height: 2px;
-			background-color: #F86F03;
-		}
-		.link_list ul li a:hover::after{
-			width: 100%;
-			left: 0;
-			transition-duration: 0.8s;
-		}
 		.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
-    bottom: var(--swiper-pagination-bottom,85px);
-    top: var(--swiper-pagination-top,auto);
-    left: 0;
-    width: 100%;
-}
+	    bottom: var(--swiper-pagination-bottom,85px);
+	    top: var(--swiper-pagination-top,auto);
+	    left: 0;
+	    width: 100%;
+		}
 </style>
 </head>
 <body>
 	<jsp:include page="header.jsp" flush="true"></jsp:include>
-	<%-- <%@ include file="header.jsp" %> --%>
 	<div id="app">
 		<div id="container">
 			<div class="swiper mySwiper banner_box">
@@ -408,9 +123,9 @@
 	            <div class="accommodation">
 	                <h2 class="accommodation_title" style="margin-top: 50px;">숙소 예약</h2>
 	                <ul>
-	                    <li>
+	                    <li class="shadow_class">
 	                        <a href="javascript:;" @click="checkStayKind('HOTEL')" class="out_box">
-								<div class="rotate_box">
+								<div class="scale_box">
 									<div class="a_img_box">
 										<img class="hotel_img" src="./img/main/hotel.jpg" alt="">
 									</div>
@@ -421,9 +136,9 @@
 								</div>
 	                        </a>
 	                    </li>
-	                    <li>
+	                    <li class="shadow_class">
 	                        <a href="javascript:;" @click="checkStayKind('MOTEL')" class="out_box">
-								<div class="rotate_box">
+								<div class="scale_box">
 									<div class="a_img_box">
 										<img src="./img/main/motel.jpg" alt="">
 									</div>
@@ -434,9 +149,9 @@
 								</div>
 	                        </a>
 	                    </li>
-	                    <li>
+	                    <li class="shadow_class">
 	                        <a href="javascript:;" @click="checkStayKind('GUEST')" class="out_box">
-								<div class="rotate_box">
+								<div class="scale_box">
 									<div class="a_img_box">
 										<img src="./img/main/guest.jpg" alt="">
 									</div>
@@ -447,9 +162,9 @@
 								</div>
 	                        </a>
 	                    </li>
-	                    <li>
+	                    <li class="shadow_class">
 	                        <a href="javascript:;" @click="checkStayKind('PENSION')" class="out_box">
-								<div class="rotate_box">
+								<div class="scale_box">
 									<div class="a_img_box">
 										<img src="./img/main/pension.jpg" alt="">
 									</div>
@@ -460,9 +175,9 @@
 								</div>
 	                        </a>
 	                    </li>
-	                    <li>
+	                    <li class="shadow_class">
 	                        <a href="javascript:;" @click="checkStayKind('CAMPING')" class="out_box">
-								<div class="rotate_box">
+								<div class="scale_box">
 									<div class="a_img_box">
 										<img src="./img/main/camping.jpg" alt="">
 									</div>
@@ -478,9 +193,9 @@
 	            <div class="retal_car">
 	                <h2 class="retal_car_title">렌터카 예약</h2>
 	                <ul>
-	                    <li>
+	                    <li class="shadow_class">
 	                        <a href="javascript:;" @click="checkKind('SMALL')" class="out_box">
-								<div class="rotate_box">
+								<div class="scale_box">
 									<div class="r_img_box">
 										<img src="./img/main/small.png" alt="">
 									</div>
@@ -491,9 +206,9 @@
 								</div>
 	                        </a>
 	                    </li>
-	                    <li>
+	                    <li class="shadow_class">
 	                        <a href="javascript:;" @click="checkKind('MIDDLE')" class="out_box">
-								<div class="rotate_box">
+								<div class="scale_box">
 									<div class="r_img_box">
 										<img src="./img/main/midium.png" alt="">
 									</div>
@@ -504,9 +219,9 @@
 								</div>
 	                        </a>
 	                    </li>
-	                    <li>
+	                    <li class="shadow_class">
 	                        <a href="javascript:;" @click="checkKind('LARGE')" class="out_box">
-								<div class="rotate_box">
+								<div class="scale_box">
 									<div class="r_img_box">
 										<img src="./img/main/large.png" alt="">
 									</div>
@@ -517,9 +232,9 @@
 								</div>
 	                        </a>
 	                    </li>
-	                    <li>
+	                    <li class="shadow_class">
 	                        <a href="javascript:;" @click="checkKind('VAN')" class="out_box">
-								<div class="rotate_box">
+								<div class="scale_box">
 									<div class="r_img_box">
 										<img src="./img/main/very_large.png" alt="">
 									</div>
@@ -535,9 +250,9 @@
 	            <div class="water_leisure">
 	                <h2 class="water_leisure_title">수상 레저 예약</h2>
 	                <ul>
-	                    <li>
+	                    <li class="shadow_class">
 	                        <a href="javascript:;" @click="checkWaterKind('SNORKE')" class="out_box">
-								<div class="rotate_box">
+								<div class="scale_box">
 									<div class="w_img_box">
 										<img src="./img/main/snorkeling.jpg" alt="">
 									</div>
@@ -548,9 +263,9 @@
 								</div>
 	                        </a>
 	                    </li>
-	                    <li>
+	                    <li class="shadow_class">
 	                        <a href="javascript:;" @click="checkWaterKind('SURFING')" class="out_box">
-								<div class="rotate_box">
+								<div class="scale_box">
 									<div class="w_img_box">
 										<img src="./img/main/surfing.jpg" alt="">
 									</div>
@@ -561,9 +276,9 @@
 								</div>
 	                        </a>
 	                    </li>
-	                    <li>
+	                    <li class="shadow_class">
 	                        <a href="javascript:;" @click="checkWaterKind('YACHT')" class="out_box">
-								<div class="rotate_box">
+								<div class="scale_box">
 									<div class="w_img_box">
 										<img src="./img/main/yarcht.jpg" alt="">
 									</div>
@@ -574,9 +289,9 @@
 								</div>
 	                        </a>
 	                    </li>
-	                    <li>
+	                    <li class="shadow_class">
 	                        <a href="javascript:;" @click="checkWaterKind('JETSKI')" class="out_box">
-								<div class="rotate_box">
+								<div class="scale_box">
 									<div class="w_img_box">
 										<img src="./img/main/jetSki.jpg" alt="">
 									</div>
@@ -593,9 +308,9 @@
 	                <h2 class="land_leisure_title">지상 레저 예약</h2>
 					<div class="land_leisure_inbox">
 						<ul>
-							<li>
+							<li class="shadow_class">
 								<a href="javascript:;" @click="checkGroundKind('ATV')" class="out_box">
-									<div class="rotate_box">
+									<div class="scale_box">
 										<div class="l_img_box">
 											<img src="./img/main/atv.jpg" alt="">
 										</div>
@@ -606,9 +321,9 @@
 									</div>
 								</a>
 							</li>  
-							<li>
+							<li class="shadow_class">
 								<a href="javascript:;" @click="checkGroundKind('GLIDER')" class="out_box">
-									<div class="rotate_box">
+									<div class="scale_box">
 										<div class="l_img_box">
 											<img src="./img/main/paragliding.jpg" alt="">
 										</div>
@@ -619,9 +334,9 @@
 									</div>
 								</a>
 							</li>
-							<li>
+							<li class="shadow_class">
 								<a href="javascript:;" @click="checkGroundKind('HORSE')" class="out_box">
-									<div class="rotate_box">
+									<div class="scale_box">
 										<div class="l_img_box">
 											<img src="./img/main/horse.png" alt="">
 										</div>
