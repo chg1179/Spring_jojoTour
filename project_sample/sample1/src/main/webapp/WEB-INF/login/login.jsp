@@ -27,7 +27,9 @@
            justify-content: center;
            align-items: center;
            height: 90vh;
-           background-color: #eee;
+            background-color: #eee; 
+/*            background-image:url('https://tvstore-phinf.pstatic.net/20201124_289/1606182617321ComBh_JPEG/00086.jpg');
+       		background-size: cover; */
        }
       .login_header {
           display: flex;
@@ -41,7 +43,7 @@
            border: 1px solid;
             margin: 0 auto;
             border-radius: 6px;
-            box-shadow: 6px 6px 12px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2)
        }
        .login_tab{
            display: flex;
@@ -116,13 +118,29 @@
 	    font-weight: 900;
 	    margin-right: 5px;
 	}
+	body{
+	background-color:white;
+	}
+	.login_main {
+	    text-align: center;
+	    width: 1100px;
+	    height: 650px;
+	     background-color: #f4f4f4; 
+	    padding: 50px 1px;
+	    border-radius: 6px;
+	    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+	}
+	.join_input_wrap{
+	
+	}
    </style>
    </head>
    <body>
       <jsp:include page="../header.jsp" flush="true"></jsp:include>
       <div id="app">
           <div id="login_container">
-          		<span style="color:yellowgreen;">w e l c o m e</span>
+			<div class="login_main">
+          		<span style="color:orange;">w e l c o m e</span>
                 <h1 style="color:#213555;"><i class="fa-solid fa-plane-departure fa-bounce"></i>JOJO TOUR</h1>
               <div class="login_box">
                   <div class="login_tab">
@@ -159,6 +177,7 @@
                       </div>
                   </div>
               </div>
+			</div>
           </div>
       </div>
       <jsp:include page="../footer.jsp" flush="true"></jsp:include>

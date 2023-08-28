@@ -8,25 +8,25 @@
 <title>회원 가입</title>
 <style>
     #join_container{
-        height: 90vh;
+        height: 100vh;
         background-color: #eee;
     }
     .join_inner_con{
         background-color: #213555;
-        margin-top: 70px;
-        margin-bottom: 20px;
+        margin-top: 100px;
+        margin-bottom: 100px;
         border : 1px solid #213555;
          border-top-right-radius: 6px;
    		 border-top-left-radius: 6px;
-   		 box-shadow: 4px 4px 12px;
+   		 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     }
     .join_inner_con input{
-	    width: 350px;
+	    width: 400px;
 	    height: 35px;
 	    margin: 10px 10px;
 	    outline: none;
 	    border: 1px solid;
-	    padding: 0 10px;
+	    padding: 5px 10px;
 	    border-radius: 6PX;
 	    margin-bottom: 5px;
 	    border : 1px solid #213555;
@@ -76,9 +76,14 @@
         color: #fff;
         font-weight: 700;
         cursor: pointer;
+            padding: 20px;
+    padding-bottom: 35px;
     }
     .join_btn button:hover{
         background-color: #FFA41B;
+    }
+    .join_inner_main{
+    
     }
 </style>
 </head>
@@ -86,7 +91,7 @@
    <jsp:include page="../header.jsp" flush="true"></jsp:include>
    <div id="app">
        <div id="join_container">
-       
+       		<div class="join_inner_main">
            <div class="join_inner_con">
            
                <h1 class="join_title"><span style="color : white;"><i class="fa-regular fa-paper-plane"></i> JOJO TOUR</span></h1>
@@ -98,7 +103,7 @@
                            <span class="join_check" v-if="user.userId != ''">{{message}}</span>
                        </div>
                            <div style="margin-left:25px"><i class="fa-solid fa-lock"></i><label><input type="password" v-model="user.pw1" maxlength="15" placeholder="비밀번호"></label></div>
-                           <div style="margin-left:25px"><i class="fa-solid fa-lock"></i><label><input type="password" v-model="user.pw2" maxlength="15" placeholder="비밀번호 확인"></label></div>
+                           <div style="margin-left:25px"><i class="fa-solid fa-lock"></i><label><input type="password" v-model="user.pw2" maxlength="15" placeholder="비밀번호 확인"></label></div><br><br>
                            <div style="margin-left:25px"><i class="fa-regular fa-user"></i><label><input type="text" v-model="user.name" maxlength="8" placeholder="이름"></label></div>
                            <div style="margin-left:25px"><i class="fa-regular fa-user"></i><label><input type="text" v-model="user.nickName" maxlength="20" placeholder="닉네임"></label></div>
                            <div style="margin-left:25px"><i class="fa-regular fa-calendar-check"></i><label><input type="date" v-model="user.birth" id="birth"></label></div>
@@ -115,6 +120,7 @@
                    </div>
                    <div class="join_btn"><button @click="fnJoin" style="margin-bottom:25px">가입하기</button></div>
                </div>
+           </div>
            </div>
        </div>
    </div>

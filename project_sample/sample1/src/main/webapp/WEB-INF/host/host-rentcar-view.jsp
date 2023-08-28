@@ -46,7 +46,7 @@
 	width:1100px;
 	background-color:white;
 	border-radius:6px;
-	box-shadow:1px 1px 2px darkgray;
+	box-shadow:0px 0px 10px rgba(0, 0, 0, 0.2);
 	padding: 5px;
 	    margin: 50px auto;
 	    

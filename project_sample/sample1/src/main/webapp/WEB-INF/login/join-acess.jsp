@@ -31,6 +31,8 @@
 	    border-radius: 6px;
 	    border: 1px solid #d6d6d6;
 	    padding: 20px;
+	      background: #f7f7f7;
+	      color: #808080;
     }
     .box-terms h2{
     	margin : 10px 0;
@@ -47,6 +49,7 @@
 	.join_acess_btn_wrap{
 		display: flex;
 		justify-content: center;
+		text-align: center;
 	}
 	.join_acess_btn_box button, .join_acess_btn_host button{
 	    width: 70%;
@@ -62,7 +65,7 @@
 		background-color: #FFA41B;
 	}
 	h2{
-	font-size: 1.6em;
+	font-size: 1.2em;
 	}
 
 </style>
@@ -72,7 +75,7 @@
 	<div id="app">
         <div id="join_acess_container">
 			<div class="join_acess_wrap">
-			<br><br>
+			<br><br><h1>회원가입</h1><span style="color:gray;">조조투어 회원이 되시고 회원만의 다양한 해택을 받아가세요</span><br><br>
 			
 				<h2>조조투어 회원약관 동의<span>(필수)</span></h2>
 				<section class="box-terms">
