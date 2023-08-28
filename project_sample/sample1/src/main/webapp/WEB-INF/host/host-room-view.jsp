@@ -10,6 +10,10 @@
 <meta charset="EUC-KR">
 <title>객실 상세 정보</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+	}
 	table{
 		margin : 30px auto;
 		border : 1px solid black;
@@ -62,12 +66,12 @@
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
-	<div id="app">
-		<div class="container">
+<div id="app">
+	<div class="container">
 		<h2>객실 상세정보</h2>
 			<table>
 				<tr>
-					<td>No.</td>
+					<th>No.</th>
 					<td>{{info.roomNo}}</td>
 				</tr>
 				<tr>
@@ -114,14 +118,15 @@
 					</td>
 				</tr>
 			</table>
-		</div>
+		
 		<div class="btnbtn">
 			<span><button @click="fnEdit" class="btn-dark">수정</button></span>
 			<span><button @click="fnRemove" class="btn-red">삭제</button></span>
 			<span><button @click="fnBack" class="btn-dark">돌아가기</button></span>
 		</div>
 	</div>
-	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
+</div>
+<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

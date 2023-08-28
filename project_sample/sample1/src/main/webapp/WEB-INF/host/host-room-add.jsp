@@ -9,11 +9,14 @@
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <link href="../../css/basic/host-edit-style.css" rel="stylesheet"/>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+	}
 	table{
 		margin : 30px auto;
 		border : 1px solid black;
 		border-collapse: collapse;
-		text-align : center;
 		font-size : 14px;
 		padding:5px 10px;
 	}
@@ -49,12 +52,65 @@
 		background-color:white;
 		border-radius:6px;
 		box-shadow:0px 0px 10px rgba(0, 0, 0, 0.2);
-		padding: 5px;
+		padding: 1px;
 	    margin: 50px auto;
 	    
 	}
 	body{
 		background-color:#f2f2f2
+	}
+	.container input{
+		background: none;
+	    width: 50%;
+	    font-size: 16px;
+	    line-height: 1;
+	    color: rgba(0, 0, 0, 0.56);
+	    border: 1px solid rgba(0, 0, 0, 0.08);
+	    height: 40px;
+	    padding: 2px;
+	    border-radius: 4px;
+	    font-family: 'Jeju Gothic', sans-serif;
+	}
+	.filebox .upload-name {
+	    display: inline-block;
+	    height: 40px;
+	    padding: 0 10px;
+	    vertical-align: middle;
+	    border: 1px solid #dddddd;
+	    width: 50%;
+	    color: #999999;
+	}
+	.filebox label {
+	    display: inline-block;
+	    padding: 10px 10px;
+	    color: #fff;
+	    vertical-align: middle;
+	    background-color: #999999;
+	    cursor: pointer;
+	    height: 20px;
+	    margin-left: 5px;
+	}
+	
+	.filebox input[type="file"] {
+	    position: absolute;
+	    width: 0;
+	    height: 0;
+	    padding: 0;
+	    overflow: hidden;
+	    border: 0;
+	}
+	select{
+		background: none;
+	    width: 20%;
+	    margin-top: 10px;
+	    font-size: 16px;
+	    line-height: 1;
+	    color: rgba(0, 0, 0, 0.56);
+	    border: 1px solid rgba(0, 0, 0, 0.08);
+	    height: 40px;
+	    padding: 2px;
+	    border-radius: 4px;
+	    font-family: 'Jeju Gothic', sans-serif;
 	}
 </style>
 </head>
@@ -91,18 +147,19 @@
 							<div class="filebox">
 							    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly>
 							    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
-							    <label for="fileY">이미지선택</label> 
+							    <label for="fileY" >이미지선택</label> 
 							    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
 							</div>
 						</td>
 					</tr>
 				</tbody>
 			</table>
+			<div class="btnbtn">
+				<button @click="fnRoomAdd(info.roomNo)" class="btn-dark">객실 등록</button>
+				<button @click="fnBack" class="btn-red">취소</button>
+			</div>
 		</div>
-		<div class="btnbtn">
-			<button @click="fnRoomAdd(info.roomNo)" class="btn-dark">객실 등록</button>
-			<button @click="fnBack" class="btn-red">취소</button>
-		</div>
+		
 	</div>
 	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>

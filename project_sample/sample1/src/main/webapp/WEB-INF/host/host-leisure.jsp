@@ -12,8 +12,19 @@
 <link href="../css/basic/custom-table-style.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+	}
 	.custom-table{
-		margin-top: 60px;
+		margin-top: 100px;
+	}
+	.container {
+		height: 80vh;
+	}
+	.btnbtn{
+		text-align: center;
+		margin-bottom:50px;
 	}
 </style>
 </head>
@@ -71,7 +82,7 @@
 			    :page-class="'page-item'">
 			  </paginate>
 			</template>
-			<div class="btn-con">
+			<div class="btnbtn">
 				<span><button @click="fnAdd" class="btn-dark">상품등록</button></span>
 				<span><button @click="fnView" class="btn-dark">상세정보열람</button></span>
 				<span><button @click="fnRemove" class="btn-red">삭제</button></span>

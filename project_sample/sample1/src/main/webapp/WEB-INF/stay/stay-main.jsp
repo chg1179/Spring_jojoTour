@@ -82,12 +82,7 @@
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="app">
 	<div class="banner_box">
-		<p v-if="stayKind == ''" class="banner_text">숙소</p>
-		<p v-else-if="stayKind == 'HOTEL'" class="banner_text">호텔</p>
-		<p v-else-if="stayKind == 'MOTEL'" class="banner_text">모텔</p>
-		<p v-else-if="stayKind == 'PENSION'" class="banner_text">펜션</p>
-		<p v-else-if="stayKind == 'GUEST'" class="banner_text">게스트하우스</p>
-		<p v-else class="banner_text">캠핑</p>
+		<p class="banner_text">숙소</p>
 	</div>
 	<div class="stay-container">
 		<div class="filter">

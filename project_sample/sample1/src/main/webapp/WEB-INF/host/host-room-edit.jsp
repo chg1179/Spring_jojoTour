@@ -11,12 +11,116 @@
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <link href="../../css/basic/host-edit-style.css" rel="stylesheet"/>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+	}
+	table{
+		margin : 30px auto;
+		border : 1px solid black;
+		border-collapse: collapse;
+		font-size : 14px;
+		padding:5px 10px;
+	}
+
+	th, td {
+		border : 1px solid gray;
+		padding: 30px 12px;
+	}
+	th{
+		background-color:#f2f2f2;
+	}
+	h3{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+	h2{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
+		color:black;
+	}
+	img {
+	  max-width: 600px; /* 최대 너비를 800px로 설정 */
+	  height: auto; /* 높이를 자동으로 조절하여 비율 유지 */
+	}
+	.btnbtn{
+		text-align: center;
+		margin-bottom:50px;
+	}
+	.container{
+		width:1100px;
+		background-color:white;
+		border-radius:6px;
+		box-shadow:0px 0px 10px rgba(0, 0, 0, 0.2);
+		padding: 5px;
+	    margin: 50px auto;
+	    
+	}
+	body{
+		background-color:#f2f2f2
+	}
+	.container input[type="text"]{
+		background: none;
+	    width: 50%;
+	    font-size: 16px;
+	    line-height: 1;
+	    color: rgba(0, 0, 0, 0.56);
+	    border: 1px solid rgba(0, 0, 0, 0.08);
+	    height: 40px;
+	    padding: 2px;
+	    border-radius: 4px;
+	    font-family: 'Jeju Gothic', sans-serif;
+	}
+	.filebox .upload-name {
+	    display: inline-block;
+	    height: 40px;
+	    padding: 0 10px;
+	    vertical-align: middle;
+	    border: 1px solid #dddddd;
+	    border-radius: 4px;
+	    width: 50%;
+	    color: #999999;
+	}
+	.filebox label {
+	    display: inline-block;
+	    padding: 10px 10px;
+	    color: #fff;
+	    vertical-align: middle;
+	    background-color: #999999;
+	    cursor: pointer;
+	    height: 20px;
+	    margin-left: 5px;
+	}
+	.filebox input[type="file"] {
+	    position: absolute;
+	    width: 0;
+	    height: 0;
+	    padding: 0;
+	    overflow: hidden;
+	    border: 0;
+	}
+	select{
+		background: none;
+	    width: 50%;
+	    margin-top: 10px;
+	    font-size: 16px;
+	    line-height: 1;
+	    color: rgba(0, 0, 0, 0.56);
+	    border: 1px solid rgba(0, 0, 0, 0.08);
+	    height: 40px;
+	    padding: 2px;
+	    border-radius: 4px;
+	    font-family: 'Jeju Gothic', sans-serif;
+	}
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
-	<div id="app">
-		객실 수정 페이지
+<div id="app">
+	<div class="container">
+		<h3>객실 정보 수정</h3>
 		<table>
 			<tr>
 				<th>No.</th>
@@ -63,7 +167,8 @@
 			<button @click="fnBack" class="btn-red">취소</button>
 		</div>
 	</div>
-	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
+</div>
+<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

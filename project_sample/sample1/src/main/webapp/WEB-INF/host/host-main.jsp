@@ -6,13 +6,16 @@
 <meta charset="EUC-KR">
 <title>호스트 제품 관리 페이지</title>
 <style>
-	body{
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
 		background-color: #f2f2f2;
 	}
 	#host_container{
 		margin: 50px auto;
 		text-align: center;
 		max-width: 900px;
+		
 	}
 	#host_container input{
 		margin: 20px;
@@ -24,6 +27,7 @@
 		cursor: pointer;
 		border: none;
 		font-weight: bold;
+		box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	}
 	.btn-box {
 		background-color: #fff;
@@ -46,10 +50,12 @@
 	.host-img-box{
 		width: 900px;
 		box-shadow: -1px 1px 2px #aaa;
+		border-radius: 5px;
 	}
 	.host-img-box img{
 		width: 100%;
 		height: 100%;
+		border-radius: 5px;
 	}
 </style>
 </head>
@@ -68,9 +74,6 @@
 				<input type="button" value="레저" @click="fnLeisurePage"/>
 				<input type="button" value="렌트카" @click="fnRentcarPage"/>
 			</div>
-			<div class="host-img-box">
-				<img src="../img/host/host.jpg" alt="호스트 이미지">
-			</div>
 			<div class="btn-box">
 				<div class="main-text">
 					<div class="main-text">
@@ -79,6 +82,10 @@
 					<input type="button" value="고객 예약 정보" @click="fnOrderPage"/>
 				</div>
 			</div>
+			<div class="host-img-box">
+				<img src="../img/host/host.jpg" alt="호스트 이미지">
+			</div>
+			
 		</div>
 	</div>
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>

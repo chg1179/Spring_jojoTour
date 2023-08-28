@@ -9,11 +9,14 @@
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <link href="../../css/basic/host-edit-style.css" rel="stylesheet"/>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+	}
 	table{
 		margin : 30px auto;
 		border : 1px solid black;
 		border-collapse: collapse;
-		text-align : center;
 		font-size : 14px;
 		padding:5px 10px;
 	}
@@ -56,82 +59,135 @@
 	body{
 		background-color:#f2f2f2
 	}
+	.container input[type="text"]{
+		background: none;
+	    width: 50%;
+	    font-size: 16px;
+	    line-height: 1;
+	    color: rgba(0, 0, 0, 0.56);
+	    border: 1px solid rgba(0, 0, 0, 0.08);
+	    height: 40px;
+	    padding: 2px;
+	    border-radius: 4px;
+	    font-family: 'Jeju Gothic', sans-serif;
+	}
+	.filebox .upload-name {
+	    display: inline-block;
+	    height: 40px;
+	    padding: 0 10px;
+	    vertical-align: middle;
+	    border: 1px solid #dddddd;
+	    border-radius: 4px;
+	    width: 50%;
+	    color: #999999;
+	}
+	.filebox label {
+	    display: inline-block;
+	    padding: 10px 10px;
+	    color: #fff;
+	    vertical-align: middle;
+	    background-color: #999999;
+	    cursor: pointer;
+	    height: 20px;
+	    margin-left: 5px;
+	}
+	.filebox input[type="file"] {
+	    position: absolute;
+	    width: 0;
+	    height: 0;
+	    padding: 0;
+	    overflow: hidden;
+	    border: 0;
+	}
+	select{
+		background: none;
+	    width: 50%;
+	    margin-top: 10px;
+	    font-size: 16px;
+	    line-height: 1;
+	    color: rgba(0, 0, 0, 0.56);
+	    border: 1px solid rgba(0, 0, 0, 0.08);
+	    height: 40px;
+	    padding: 2px;
+	    border-radius: 4px;
+	    font-family: 'Jeju Gothic', sans-serif;
+	}
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
-	<div id="app">
-		<div class="container">
-		<h3>숙소 정보 수정</h3>
-			<table>
-				<tr>
-					<th>No.</th>
-					<td><input v-model="info.stayNo" type="text" name="stayNo" id="stayNo" disabled></td>
-				</tr>
-				<tr>
-					<th>이름</th>
-					<td><input v-model="info.stayName" type="text" name="stayName" id="stayName"></td>
-				</tr>
-				<tr>
-					<th>분류</th>
-					<td>
-						<select v-model="info.stayKind">
-							<option v-for="item in typeList" :value="item.cKind">{{item.cName}}</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th>우편번호</th>
-					<td>
-						<input v-model="info.sZipno" type="text" name="sZipno" id="sZipno" disabled>
-						<button @click="fnSearchAddr" class="btn-dark">주소 검색</button>
-					</td>
-				</tr>
-				<tr>
-					<th>주소</th>
-					<td><input v-model="info.sAddr" type="text" name="sAddr" id="sAddr" disabled></td>
-				</tr>
-				<tr>
-					<th>상세주소</th>
-					<td><input v-model="info.sDetailAddr" type="text" name="sDetailAddr" id="sDetailAddr"></td>
-				</tr>
-				<tr>
-					<th>
-						편의시설
-						<br>
-						서비스 안내
-					</th>
-					<td>
-						<div v-for="item in serviceList">
-						    <label>
-						        <input type="checkbox" :value="item.serviceNo" :checked="isServiceChecked(item)" @change="updateCheck($event, item)">
-						        {{ item.serviceName }}
-						    </label>
-						</div>			
-					</td>
-				</tr>
-				<tr>
-				<tr>
-					<th>상세정보이미지</th>
-					<td>
-						<div class="filebox">
-						    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly :value="imgInfo.imgName">
-						    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
-						    <label for="fileY">이미지선택</label> 
-						    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
-						</div>
-					</td>
-				</tr>
-			</table>
-		</div>
+<div id="app">
+	<div class="container">
+	<h3>숙소 정보 수정</h3>
+		<table>
+			<tr>
+				<th>No.</th>
+				<td><input v-model="info.stayNo" type="text" name="stayNo" id="stayNo" disabled></td>
+			</tr>
+			<tr>
+				<th>이름</th>
+				<td><input v-model="info.stayName" type="text" name="stayName" id="stayName"></td>
+			</tr>
+			<tr>
+				<th>분류</th>
+				<td>
+					<select v-model="info.stayKind">
+						<option v-for="item in typeList" :value="item.cKind">{{item.cName}}</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>우편번호</th>
+				<td>
+					<input v-model="info.sZipno" type="text" name="sZipno" id="sZipno" disabled>
+					<button @click="fnSearchAddr" class="btn-dark">주소 검색</button>
+				</td>
+			</tr>
+			<tr>
+				<th>주소</th>
+				<td><input v-model="info.sAddr" type="text" name="sAddr" id="sAddr" disabled></td>
+			</tr>
+			<tr>
+				<th>상세주소</th>
+				<td><input v-model="info.sDetailAddr" type="text" name="sDetailAddr" id="sDetailAddr"></td>
+			</tr>
+			<tr>
+				<th>
+					편의시설
+					<br>
+					서비스 안내
+				</th>
+				<td>
+					<div v-for="item in serviceList">
+					    <label>
+					        <input type="checkbox" :value="item.serviceNo" :checked="isServiceChecked(item)" @change="updateCheck($event, item)">
+					        {{ item.serviceName }}
+					    </label>
+					</div>			
+				</td>
+			</tr>
+			<tr>
+			<tr>
+				<th>상세정보이미지</th>
+				<td>
+					<div class="filebox">
+					    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly :value="imgInfo.imgName">
+					    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
+					    <label for="fileY" class="btn-dark">이미지선택</label> 
+					    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
+					</div>
+				</td>
+			</tr>
+		</table>
 		<div>
-			<div class="btn-con">
+			<div class="btnbtn">
 				<span><button @click="fnUpdate" class="btn-dark">수정</button></span>
 				<span><button @click="fnBack" class="btn-red">되돌아가기</button></span>
 			</div>
 		</div>
 	</div>
-	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
+</div>
+<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

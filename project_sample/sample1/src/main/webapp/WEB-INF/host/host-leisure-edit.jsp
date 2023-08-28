@@ -9,11 +9,14 @@
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <link href="../../css/basic/host-edit-style.css" rel="stylesheet"/>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+	}
 	table{
 		margin : 30px auto;
 		border : 1px solid black;
 		border-collapse: collapse;
-		text-align : center;
 		font-size : 14px;
 		padding:5px 10px;
 	}
@@ -51,8 +54,34 @@
 		box-shadow:0px 0px 10px rgba(0, 0, 0, 0.2);
 		padding: 5px;
 	    margin: 50px auto;
-	    
 	}
+	select{
+      background: none;
+       width: 20%;
+       margin-top: 10px;
+       font-size: 16px;
+       line-height: 1;
+       color: rgba(0, 0, 0, 0.56);
+       border: 1px solid rgba(0, 0, 0, 0.08);
+       height: 40px;
+       padding: 2px;
+       border-radius: 4px;
+       font-family: 'Jeju Gothic', sans-serif;
+   }
+	.container input[type="text"]{
+      background: none;
+       width: 50%;
+       margin-top: 10px;
+       font-size: 16px;
+       line-height: 1;
+       color: rgba(0, 0, 0, 0.56);
+       border: 1px solid rgba(0, 0, 0, 0.08);
+       height: 40px;
+       padding: 2px;
+       border-radius: 4px;
+       font-family: 'Jeju Gothic', sans-serif;
+   }
+	
 	body{
 		background-color:#f2f2f2
 	}

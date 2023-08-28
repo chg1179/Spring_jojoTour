@@ -10,11 +10,14 @@
 <meta charset="EUC-KR">
 <title>숙박 관리 페이지</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+	}
 	table{
 		margin : 30px auto;
 		border : 1px solid black;
 		border-collapse: collapse;
-		text-align : center;
 		font-size : 14px;
 		padding:5px 10px;
 	}
@@ -57,7 +60,70 @@
 	body{
 		background-color:#f2f2f2
 	}
+	.container input[type="text"]{
+		background: none;
+	    width: 50%;
+	    margin-top: 10px;
+	    font-size: 16px;
+	    line-height: 1;
+	    color: rgba(0, 0, 0, 0.56);
+	    border: 1px solid rgba(0, 0, 0, 0.08);
+	    height: 40px;
+	    padding: 2px;
+	    border-radius: 4px;
+	    font-family: 'Jeju Gothic', sans-serif;
+	}
+	.service-checkbox input[type="checkbox"]{
+		background: none;
+	    margin-top: 5px;
+	    font-size: 16px;
+	    color: rgba(0, 0, 0, 0.56);
+	    border: 1px solid rgba(0, 0, 0, 0.08);
+	    border-radius: 4px;
+		
+	}
+	.filebox .upload-name {
+	    display: inline-block;
+	    height: 40px;
+	    padding: 0 10px;
+	    vertical-align: middle;
+	    border: 1px solid #dddddd;
+	    width: 50%;
+	    color: #999999;
+	}
+	.filebox label {
+	    display: inline-block;
+	    padding: 10px 10px;
+	    color: #fff;
+	    vertical-align: middle;
+	    background-color: #999999;
+	    cursor: pointer;
+	    height: 20px;
+	    margin-left: 5px;
+	}
 	
+	.filebox input[type="file"] {
+	    position: absolute;
+	    width: 0;
+	    height: 0;
+	    padding: 0;
+	    overflow: hidden;
+	    border: 0;
+	    font-family: 'Jeju Gothic', sans-serif;
+	}
+	select{
+		background: none;
+	    width: 50%;
+	    margin-top: 10px;
+	    font-size: 16px;
+	    line-height: 1;
+	    color: rgba(0, 0, 0, 0.56);
+	    border: 1px solid rgba(0, 0, 0, 0.08);
+	    height: 40px;
+	    padding: 2px;
+	    border-radius: 4px;
+	    font-family: 'Jeju Gothic', sans-serif;
+	}
 </style>
 </head>
 <body>
@@ -68,41 +134,41 @@
 		<table>
 		<tbody>
 			<tr>
-				<th>기본 정보</th>
+				<th>숙소이름</th>
 				<td>
-					<div>
-						<span>업체명</span>
-						<span>
-							<input type="text" v-model="info.stayName" name="stayName">
-						</span>
-					</div>
-					<div>
-						<div>우편번호<input disabled type="text" v-model="info.sZipno"></div>
-						
-					 	<input disabled type="text" v-model="info.sAddr" placeholder="업체 주소를 입력하세요.">
-                        <button @click="fnSearchAddr" class="btn-dark">주소 검색</button>
-                        
-                        <div><input type="text" v-model="info.sDetailAddr" placeholder="나머지 주소를 입력해주세요."></div>
-					</div>
+					<input type="text" v-model="info.stayName" name="stayName">
 				</td>
 			</tr>
+			<tr>
+				<th>우편번호</th>	
+				<td><input disabled type="text" v-model="info.sZipno"></td>
+			<tr>		
+			<tr>
+				<th>주소</th>	
+				<td>
+					<input disabled type="text" v-model="info.sAddr" placeholder="업체 주소를 입력하세요.">
+                    <button @click="fnSearchAddr" class="btn-dark">주소 검색</button>
+                </td>
+			<tr>		
+			<tr>
+				<th>상세주소</th>
+				<td><input type="text" v-model="info.sDetailAddr" placeholder="나머지 주소를 입력해주세요."></td>
+			</tr>	 	
 			<tr>
 				<th>
 					숙소 유형				
 				</th>
 				<td>
-					<div>
-						<select v-model="selectStayType">
-							<option value="">선택하세요</option>
-							<option v-for="stayType in typeList" :value="stayType.cKind">{{stayType.cName}}</option>
-						</select>
-					</div>
+					<select v-model="selectStayType">
+						<option value="">선택하세요</option>
+						<option v-for="stayType in typeList" :value="stayType.cKind">{{stayType.cName}}</option>
+					</select>
 				</td>
 			</tr>
 			<tr>
 				<th>편의시설</th>
 				<td>
-					<div v-for="item in serviceList">
+					<div v-for="item in serviceList" class="service-checkbox">
 						<label><input type="checkbox" :value="item.serviceNo" v-model="selectServiceList">{{item.serviceName}}</label>
 					</div>					
 				</td>
@@ -176,7 +242,6 @@ var app = new Vue({
 				alert("숙소 주소를 입력해주세요.");
 				return;
 			}
-			
 			if(!confirm("숙소를 등록하시겠습니까?")){
 				alert("취소되었습니다.");
 				return;

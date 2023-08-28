@@ -10,6 +10,10 @@
 <meta charset="EUC-KR">
 <title>제품 예약 관리 페이지</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+	}
 	.heading-box h2{
 		margin: 50px 10px auto; 
 		text-align: center;

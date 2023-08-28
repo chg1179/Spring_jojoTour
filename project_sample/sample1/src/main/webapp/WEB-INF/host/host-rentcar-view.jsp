@@ -7,6 +7,10 @@
 <title>렌터카 상세정보 페이지</title>
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+	}
 	table{
 		margin : 30px auto;
 		border : 1px solid black;
