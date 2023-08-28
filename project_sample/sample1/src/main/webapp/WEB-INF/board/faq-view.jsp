@@ -13,6 +13,11 @@
 <title>FAQ 상세 조회</title>
 
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-weight: lighter;
+	}
 	table{
 		border : 1px solid black;
 		border-collapse: collapse;
