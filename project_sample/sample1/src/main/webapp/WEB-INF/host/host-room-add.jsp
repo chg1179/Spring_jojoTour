@@ -9,48 +9,97 @@
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <link href="../../css/basic/host-edit-style.css" rel="stylesheet"/>
 <style>
+	table{
+		margin : 30px auto;
+		border : 1px solid black;
+		border-collapse: collapse;
+		text-align : center;
+		font-size : 14px;
+		padding:5px 10px;
+	}
+
+	th, td {
+		border : 1px solid gray;
+		padding: 30px 12px;
+	}
+	th{
+		background-color:#f2f2f2;
+	}
+	h3{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+	h2{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
+		color:black;
+	}
+	img {
+		 max-width: 600px; /* 최대 너비를 800px로 설정 */
+		 height: auto; /* 높이를 자동으로 조절하여 비율 유지 */
+	}
+	.btnbtn{
+		text-align: center;
+		margin-bottom:50px;
+	}
+	.container{
+		width:1100px;
+		background-color:white;
+		border-radius:6px;
+		box-shadow:0px 0px 10px rgba(0, 0, 0, 0.2);
+		padding: 5px;
+	    margin: 50px auto;
+	    
+	}
+	body{
+		background-color:#f2f2f2
+	}
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		객실 추가 페이지
-		<table>
-			<tbody>
-				<tr>
-					<th>객실 유형</th>
-					<td><input type="text"  v-model="info.roomName" maxlength="30" name="roomName" id="roomName"></td>
-				</tr>
-				<tr>
-					<th>객실 금액</th>
-					<td><input type="text" v-model="info.roomPrice" maxlength="10" name="roomPrice" id="roomPrice"></td>
-				</tr>
-				<tr>
-					<th>할인율(%)</th>
-					<td><input type="text" v-model="sales" maxlength="2" placeholder="0" name="roomSales" id="roomSales"  @keyup="fnPercent"></td>
-				</tr>
-				<tr>
-					<th>인원</th>
-					<td>
-						<select v-model="peopleMaxValue" >
-							<option :key="index" :value="item.value" v-for="(item, index) in selectList">{{item.text}}</option>
-						</select>
-					</td>
-				<tr>
-				<tr>		
-					<th>상세정보이미지</th>
-					<td>
-						<div class="filebox">
-						    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly>
-						    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
-						    <label for="fileY">이미지선택</label> 
-						    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<div class="btn-con">
+		<div class="container">
+			<h2>객실 등록</h2>
+			<table>
+				<tbody>
+					<tr>
+						<th>객실 유형</th>
+						<td><input type="text"  v-model="info.roomName" maxlength="30" name="roomName" id="roomName"></td>
+					</tr>
+					<tr>
+						<th>객실 금액</th>
+						<td><input type="text" v-model="info.roomPrice" maxlength="10" name="roomPrice" id="roomPrice"></td>
+					</tr>
+					<tr>
+						<th>할인율(%)</th>
+						<td><input type="text" v-model="sales" maxlength="2" placeholder="0" name="roomSales" id="roomSales"  @keyup="fnPercent"></td>
+					</tr>
+					<tr>
+						<th>인원</th>
+						<td>
+							<select v-model="peopleMaxValue" >
+								<option :key="index" :value="item.value" v-for="(item, index) in selectList">{{item.text}}</option>
+							</select>
+						</td>
+					<tr>
+					<tr>		
+						<th>상세정보이미지</th>
+						<td>
+							<div class="filebox">
+							    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly>
+							    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
+							    <label for="fileY">이미지선택</label> 
+							    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="btnbtn">
 			<button @click="fnRoomAdd(info.roomNo)" class="btn-dark">객실 등록</button>
 			<button @click="fnBack" class="btn-red">취소</button>
 		</div>

@@ -9,71 +9,121 @@
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <link href="../../css/basic/host-edit-style.css" rel="stylesheet"/>
 <style>
+	table{
+		margin : 30px auto;
+		border : 1px solid black;
+		border-collapse: collapse;
+		text-align : center;
+		font-size : 14px;
+		padding:5px 10px;
+	}
+
+	th, td {
+		border : 1px solid gray;
+		padding: 30px 12px;
+	}
+	th{
+		background-color:#f2f2f2;
+	}
+	h3{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+	h2{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
+		color:black;
+	}
+	img {
+	  max-width: 600px; /* 최대 너비를 800px로 설정 */
+	  height: auto; /* 높이를 자동으로 조절하여 비율 유지 */
+	}
+	.btnbtn{
+		text-align: center;
+		margin-bottom:50px;
+	}
+	.container{
+		width:1100px;
+		background-color:white;
+		border-radius:6px;
+		box-shadow:0px 0px 10px rgba(0, 0, 0, 0.2);
+		padding: 5px;
+	    margin: 50px auto;
+	    
+	}
+	body{
+		background-color:#f2f2f2
+	}
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<table>
-			<tr>
-				<th>No.</th>
-				<td><input v-model="info.stayNo" type="text" name="stayNo" id="stayNo" disabled></td>
-			</tr>
-			<tr>
-				<th>이름</th>
-				<td><input v-model="info.stayName" type="text" name="stayName" id="stayName"></td>
-			</tr>
-			<tr>
-				<th>분류</th>
-				<td>
-					<select v-model="info.stayKind">
-						<option v-for="item in typeList" :value="item.cKind">{{item.cName}}</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<th>우편번호</th>
-				<td>
-					<input v-model="info.sZipno" type="text" name="sZipno" id="sZipno" disabled>
-					<button @click="fnSearchAddr" class="btn-dark">주소 검색</button>
-				</td>
-			</tr>
-			<tr>
-				<th>주소</th>
-				<td><input v-model="info.sAddr" type="text" name="sAddr" id="sAddr" disabled></td>
-			</tr>
-			<tr>
-				<th>상세주소</th>
-				<td><input v-model="info.sDetailAddr" type="text" name="sDetailAddr" id="sDetailAddr"></td>
-			</tr>
-			<tr>
-				<th>
-					편의시설
-					<br>
-					서비스 안내
-				</th>
-				<td>
-					<div v-for="item in serviceList">
-					    <label>
-					        <input type="checkbox" :value="item.serviceNo" :checked="isServiceChecked(item)" @change="updateCheck($event, item)">
-					        {{ item.serviceName }}
-					    </label>
-					</div>			
-				</td>
-			</tr>
-			<tr>
-			<tr>
-				<th>상세정보이미지</th>
-				<td>
-					<div class="filebox">
-					    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly :value="imgInfo.imgName">
-					    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
-					    <label for="fileY">이미지선택</label> 
-					    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
-					</div>
-				</td>
-			</tr>
-		</table>
+		<div class="container">
+		<h3>숙소 정보 수정</h3>
+			<table>
+				<tr>
+					<th>No.</th>
+					<td><input v-model="info.stayNo" type="text" name="stayNo" id="stayNo" disabled></td>
+				</tr>
+				<tr>
+					<th>이름</th>
+					<td><input v-model="info.stayName" type="text" name="stayName" id="stayName"></td>
+				</tr>
+				<tr>
+					<th>분류</th>
+					<td>
+						<select v-model="info.stayKind">
+							<option v-for="item in typeList" :value="item.cKind">{{item.cName}}</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>우편번호</th>
+					<td>
+						<input v-model="info.sZipno" type="text" name="sZipno" id="sZipno" disabled>
+						<button @click="fnSearchAddr" class="btn-dark">주소 검색</button>
+					</td>
+				</tr>
+				<tr>
+					<th>주소</th>
+					<td><input v-model="info.sAddr" type="text" name="sAddr" id="sAddr" disabled></td>
+				</tr>
+				<tr>
+					<th>상세주소</th>
+					<td><input v-model="info.sDetailAddr" type="text" name="sDetailAddr" id="sDetailAddr"></td>
+				</tr>
+				<tr>
+					<th>
+						편의시설
+						<br>
+						서비스 안내
+					</th>
+					<td>
+						<div v-for="item in serviceList">
+						    <label>
+						        <input type="checkbox" :value="item.serviceNo" :checked="isServiceChecked(item)" @change="updateCheck($event, item)">
+						        {{ item.serviceName }}
+						    </label>
+						</div>			
+					</td>
+				</tr>
+				<tr>
+				<tr>
+					<th>상세정보이미지</th>
+					<td>
+						<div class="filebox">
+						    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly :value="imgInfo.imgName">
+						    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
+						    <label for="fileY">이미지선택</label> 
+						    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
 		<div>
 			<div class="btn-con">
 				<span><button @click="fnUpdate" class="btn-dark">수정</button></span>

@@ -17,11 +17,10 @@
 		color: black;
 		cursor: pointer;
 	}
-	
 </style>
 </head>
 <body>
-	<jsp:include page="../header.jsp" flush="true"></jsp:include>
+<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<div>
 			<h3>숙박 업체 등록</h3>
@@ -71,9 +70,9 @@
 			</template>
 		</div>
 		<div class="btn-con">
-			<span><button @click="fnAdd" class="btn-dark">숙박 업체 추가</button></span> 
-			<span><button @click="fnUpdate" class="btn-dark">업체 정보 수정</button></span> 
-			<span><button @click="fnRemove" class="btn-red">업체 정보 삭제</button></span>
+			<span><button @click="fnAdd" class="btn-dark">숙소 등록</button></span> 
+			<span><button @click="fnUpdate" class="btn-dark">숙소 정보 수정</button></span> 
+			<span><button @click="fnRemove" class="btn-red">숙소 삭제</button></span>
 		</div>
 		
 	</div>

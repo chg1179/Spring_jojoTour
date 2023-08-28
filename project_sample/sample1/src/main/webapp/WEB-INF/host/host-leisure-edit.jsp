@@ -9,7 +9,53 @@
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <link href="../../css/basic/host-edit-style.css" rel="stylesheet"/>
 <style>
-	
+	table{
+		margin : 30px auto;
+		border : 1px solid black;
+		border-collapse: collapse;
+		text-align : center;
+		font-size : 14px;
+		padding:5px 10px;
+	}
+
+	th, td {
+		border : 1px solid gray;
+		padding: 30px 12px;
+	}
+	th{
+		background-color:#f2f2f2;
+	}
+	h3{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+	h2{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
+		color:black;
+	}
+	img {
+	  max-width: 600px; /* 최대 너비를 800px로 설정 */
+	  height: auto; /* 높이를 자동으로 조절하여 비율 유지 */
+	}
+	.btnbtn{
+		text-align: center;
+		margin-bottom:50px;
+	}
+	.container{
+		width:1100px;
+		background-color:white;
+		border-radius:6px;
+		box-shadow:0px 0px 10px rgba(0, 0, 0, 0.2);
+		padding: 5px;
+	    margin: 50px auto;
+	    
+	}
+	body{
+		background-color:#f2f2f2
+	}
 	.filebox .upload-name {
 	    display: inline-block;
 	    height: 40px;
@@ -42,7 +88,7 @@
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div id="container">
+		<div class="container">
 			<table>
 				<tr>
 					<th>분류</th>
@@ -118,7 +164,7 @@
 					</td>
 				</tr>
 			</table>
-			<div class="btn-con">
+			<div class="btnbtn">
 				<button v-if="leisureNo == ''" @click="fnAdd" class="btn-dark">등록</button>
 				<button v-else @click="fnEdit" class="btn-dark">수정</button>
 				<span><button @click="fnBack" class="btn-red">취소</button></span>

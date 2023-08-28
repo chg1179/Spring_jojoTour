@@ -28,13 +28,13 @@
 		text-align: center;
 		margin-bottom: 30px;
 	}
-		h2{
+	h2{
 		margin: 50px auto;
 		text-align: center;
 		margin-bottom: 30px;
 		color:black;
 	}
-		img {
+	img {
 	  max-width: 600px; /* 최대 너비를 800px로 설정 */
 	  height: auto; /* 높이를 자동으로 조절하여 비율 유지 */
 	}

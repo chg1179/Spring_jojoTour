@@ -10,12 +10,59 @@
 <meta charset="EUC-KR">
 <title>숙박 관리 페이지</title>
 <style>
+	table{
+		margin : 30px auto;
+		border : 1px solid black;
+		border-collapse: collapse;
+		text-align : center;
+		font-size : 14px;
+		padding:5px 10px;
+	}
+
+	th, td {
+		border : 1px solid gray;
+		padding: 30px 12px;
+	}
+	th{
+		background-color:#f2f2f2;
+	}
+	h3{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+	h2{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
+		color:black;
+	}
+	img {
+	  max-width: 600px; /* 최대 너비를 800px로 설정 */
+	  height: auto; /* 높이를 자동으로 조절하여 비율 유지 */
+	}
+	.btnbtn{
+		text-align: center;
+		margin-bottom:50px;
+	}
+	.container{
+		width:1100px;
+		background-color:white;
+		border-radius:6px;
+		box-shadow:0px 0px 10px rgba(0, 0, 0, 0.2);
+		padding: 5px;
+	    margin: 50px auto;
+	    
+	}
+	body{
+		background-color:#f2f2f2
+	}
+	
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="app">
-	
 	<div class="container">
 		<h3>숙소 업체 등록</h3>
 		<table>
@@ -73,7 +120,7 @@
 			</tr>
 		</tbody>
 		</table>
-		<div class="btn-con">
+		<div class="btnbtn">
 			<span><button @click="fnStayAdd" class="btn-dark">숙소 등록</button></span>
 			<span><button @click="fnBack" class="btn-red">되돌아가기</button></span>
 		</div>
