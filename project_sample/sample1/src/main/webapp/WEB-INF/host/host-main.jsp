@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <title>호스트 제품 관리 페이지</title>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
@@ -15,7 +16,6 @@
 		margin: 50px auto;
 		text-align: center;
 		max-width: 900px;
-		
 	}
 	#host_container input{
 		margin: 20px;
@@ -33,9 +33,10 @@
 		background-color: #fff;
 		width: 100%;
 		border-radius: 5px;
-		margin: 30px auto;
+		margin: 20px auto;
 		text-align: center;
 		display: inline-block;
+		box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 	}
 	.btn-box .main-text{
 		text-align: center;
@@ -49,13 +50,15 @@
 	}
 	.host-img-box{
 		width: 900px;
-		box-shadow: -1px 1px 2px #aaa;
+		box-shadow: 0px 4px -5px rgba(0, 0, 0, 0.1);
 		border-radius: 5px;
 	}
 	.host-img-box img{
 		width: 100%;
 		height: 100%;
 		border-radius: 5px;
+		margin-top: 20px;
+		margin-bottom: 30px;
 	}
 </style>
 </head>

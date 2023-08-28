@@ -98,7 +98,7 @@
 	    vertical-align: middle;
 	    background-color: #999999;
 	    cursor: pointer;
-	    height: 20px;
+	    height: 13px;
 	    margin-left: 5px;
 	}
 	
@@ -179,7 +179,7 @@
 					<div class="filebox">
 					    <input class="upload-name" id="fileYName" placeholder="첨부파일" readonly>
 					    <a href="javascript:;" v-if="fileYFlg" @click="fnDelFile('Y')"><i class="fa-solid fa-xmark fa-2xs"></i></a>
-					    <label for="fileY">이미지선택</label> 
+					    <label class="btn"for="fileY">이미지선택</label> 
 					    <input type="file" accept=".gif, .jpg, .png" id="fileY" name="fileY" @change="fnFlgChange('Y')">
 					</div>
 				</td>

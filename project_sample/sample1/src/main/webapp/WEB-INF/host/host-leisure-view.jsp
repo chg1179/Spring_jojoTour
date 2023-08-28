@@ -38,10 +38,6 @@
 		margin-bottom: 30px;
 		color:black;
 	}
-	img {
-		 max-width: 600px; /* 최대 너비를 800px로 설정 */
-		 height: auto; /* 높이를 자동으로 조절하여 비율 유지 */
-	}
 	.btnbtn{
 		text-align: center;
 		margin-bottom:50px;

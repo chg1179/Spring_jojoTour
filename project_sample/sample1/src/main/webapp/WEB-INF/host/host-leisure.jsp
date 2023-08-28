@@ -17,14 +17,28 @@
 		font-family: 'Jeju Gothic', sans-serif;
 	}
 	.custom-table{
-		margin-top: 100px;
+		margin-top: 50px;
 	}
 	.container {
-		height: 80vh;
+		height: 1000px;
 	}
 	.btnbtn{
 		text-align: center;
 		margin-bottom:50px;
+	}
+	.pagination {
+	    display: flex;
+	    justify-content: center; 
+	    margin-top: 20px; 
+	}
+
+	.page-item {
+	    margin: 0 5px; 
+	}
+	h3{
+		margin-top: 100px;
+		margin-bottom: 0px;
+		text-align: center;
 	}
 </style>
 </head>
@@ -32,6 +46,7 @@
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<div class="container">
+		<h3>레저 등록</h3>
 			<table class=" table custom-table table-striped table-bordered ">
 				<tr>
 					<th>선택</th>
@@ -70,7 +85,7 @@
 					</td>
 				</tr>
 			</table>
-			<template>
+			<div class="pagination">
 			  <paginate
 			    :page-count="pageCount"
 			    :page-range="3"
@@ -81,7 +96,7 @@
 			    :container-class="'pagination'"
 			    :page-class="'page-item'">
 			  </paginate>
-			</template>
+			</div>
 			<div class="btnbtn">
 				<span><button @click="fnAdd" class="btn-dark">상품등록</button></span>
 				<span><button @click="fnView" class="btn-dark">상세정보열람</button></span>

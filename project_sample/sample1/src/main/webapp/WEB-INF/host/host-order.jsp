@@ -6,7 +6,6 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
-<!-- <link href="../css/basic/custom-table-style.css" rel="stylesheet"/> -->
 <meta charset="EUC-KR">
 <title>제품 예약 관리 페이지</title>
 <style>
@@ -14,17 +13,15 @@
 	body {
 		font-family: 'Jeju Gothic', sans-serif;
 	}
+	#app{
+		height: 1000px;
+	}
 	.heading-box h2{
-		margin: 50px 10px auto; 
+		margin: 60px auto;
 		text-align: center;
-		width: 1400px;
+		margin-bottom: 20px;
 	}
 	
-	h3{
-		margin: 30px 0px auto; 
-		text-align: center;
-		width : 1400px;
-	}
 	table {
 		margin : 20px auto;
 		width : 1400px;
@@ -38,11 +35,36 @@
 	}
 	tr {
 		border-bottom: 1px solid #ccc;
-		padding : 5px 10px;
+		padding : 20px 10px;
 	}
 	td {
-		padding : 5px 10px;
+		padding : 20px 20px;
 	}
+	.tab-navigation {
+	    text-align: center;
+	    margin: 20px 0;
+	}
+
+	.tab-navigation button {
+	    color: white;
+	    transform: scale(1.02);
+	    margin: 10px;
+	}
+	.container h3{
+		margin: 0px auto;
+		text-align: center;
+	}
+	.btn-container {
+		margin: 0px auto;
+		text-align: center;
+	}
+	.tab-navigation button.active {
+	    background-color: #213555; 
+	}
+	.container{
+		margin-top: 50px;
+	}
+	
 </style>
 </head>
 <body>
@@ -51,11 +73,16 @@
 	<div class="heading-box">
    		<h2>상품 예약 내역 관리</h2>
    	</div>
+   	<div class="tab-navigation"  style="text-align: center;">
+	  	<button class="btn" :class="{ 'active': activeTab === 'stay' }" @click="activeTab = 'stay'">숙소</button>
+	    <button class="btn" :class="{ 'active': activeTab === 'rent' }" @click="activeTab = 'rent'">렌트카</button>
+	    <button class="btn" :class="{ 'active': activeTab === 'leisure' }" @click="activeTab = 'leisure'">레저</button>
+	</div>
 	<div class="container">
-		<h3>[숙소 예약 내역]</h3>
-		<table>
+		<h3 v-if="activeTab === 'stay'">[숙소 예약 내역]</h3>
+    	<table v-if="activeTab === 'stay'">
 			<thead>
-				<tr>
+				<tr >
 					<th>주문번호</th>
 					<th>객실 이름</th>
 					<th>예약자</th>
@@ -81,7 +108,7 @@
 					<td>{{ item.lReserveDate }}</td>
 					
 					<td v-if="item.useYnc=='N'">
-						<div>승인 대기중</div>
+						<div style="margin-bottom: 5px;">승인 대기중</div>
 						<span><button @click="fnChangeY(item, 'Y')" class="btn-dark">예약 승인</button></span>
 					</td>
 					<td v-else-if="item.useYnc=='Y'">
@@ -104,8 +131,8 @@
 	</div>
 	
 	<div class="container">
-		<h3>[렌트카 예약 내역]</h3>
-		<table>
+		 <h3 v-if="activeTab === 'rent'">[렌트카 예약 내역]</h3>
+   		 <table v-if="activeTab === 'rent'">
 			<thead>
 				<tr>
 					<th>주문번호</th>
@@ -129,11 +156,11 @@
 				<td>{{ item.lReserveDate }}</td>
 				
 				<td v-if="item.useYnc=='N'">
-					<div>승인 대기중</div>
+					<div style="margin-bottom: 5px;">승인 대기중</div>
 					<span><button @click="fnChangeY(item, 'Y')" class="btn-dark">사용 승인</button></span>
 				</td>
 				<td v-else-if="item.useYnc=='Y'">
-					<div>사용 승인 완료</div>
+					<div style="margin-bottom: 5px;">사용 승인 완료</div>
 					<span><button @click="fnChangeN(item, 'N')" class="btn-red">승인 취소</button></span>
 				</td>
 				<td v-else>예약 취소</td>
@@ -151,8 +178,8 @@
 	</div>
 	
 	<div class="container">
-		<h3>[레저 예약 내역]</h3>
-		<table>
+		<h3 v-if="activeTab === 'leisure'">[레저 예약 내역]</h3>
+    	<table v-if="activeTab === 'leisure'">
 			<thead>
 				<tr>
 					<th>주문번호</th>
@@ -171,11 +198,11 @@
 				<td>{{ item.uId }}</td>
 				<td>{{ item.payment }}</td>
 				<td v-if="item.useYnc=='N'">
-					<div>승인 대기중</div>
+					<div style="margin-bottom: 5px;">승인 대기중</div>
 					<span><button @click="fnChangeY(item, 'Y')" class="btn-dark">사용 승인</button></span>
 				</td>
 				<td v-else-if="item.useYnc=='Y'">
-					<div>사용 승인 완료</div>
+					<div style="margin-bottom: 5px;">사용 승인 완료</div>
 					<span><button @click="fnChangeN(item, 'N')" class="btn-red">승인 취소</button></span>
 				</td>
 				<td v-else>예약 취소</td>
@@ -191,8 +218,8 @@
 			</tr>
 		</table>
 	</div>
-	<div>
-		<span><button @click="fnBack" class="btn">뒤로가기</button></span>
+	<div class="btn-container">
+		<span><button @click="fnBack" class="btn-red">뒤로가기</button></span>
 	</div>
 </div>
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>
@@ -206,7 +233,8 @@ var app = new Vue({
       userId : "${sessionId}",
       list : [],
       useYnc : "",
-      productKind : ""
+      productKind : "",
+      activeTab : 'stay'
       
    },// data
    methods : {

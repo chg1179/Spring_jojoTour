@@ -17,7 +17,21 @@
 		font-family: 'Jeju Gothic', sans-serif;
 	}
 	.custom-table{
-		margin-top: 60px;
+		margin-top: 20px;
+	}
+	.pagination {
+	    display: flex;
+	    justify-content: center; 
+	    margin-top: 20px; 
+	}
+
+	.page-item {
+	    margin: 0 5px; 
+	}
+	h3{
+		margin-top: 100px;
+		margin-bottom: 0px;
+		text-align: center;
 	}
 </style>
 </head>
@@ -25,6 +39,7 @@
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<div class="container">
+		<h3>렌트카 등록</h3>
 			<table class=" table custom-table table-striped table-bordered " >
 				<tr>
 					<th>선택</th>
@@ -58,18 +73,18 @@
 					</td>
 				</tr>
 			</table>
-			<template>
-			  <paginate
-			    :page-count="pageCount"
-			    :page-range="3"
-			    :margin-pages="2"
-			    :click-handler="fnSearch"
-			    :prev-text="'<'"
-			    :next-text="'>'"
-			    :container-class="'pagination'"
-			    :page-class="'page-item'">
-			  </paginate>
-			</template>
+			<div class="pagination">
+				<paginate 
+					:page-count="pageCount" 
+					:page-range="3" 
+					:margin-pages="2"
+					:click-handler="fnSearch" 
+					:prev-text="'<'" 
+					:next-text="'>'"
+					:container-class="'pagination'" 
+					:page-class="'page-item'">
+				</paginate>
+			</div>
 			<div class="btn-con">
 				<span><button @click="fnAdd" class="btn-dark">상품등록</button></span>
 				<span><button @click="fnView" class="btn-dark">상세정보열람</button></span>

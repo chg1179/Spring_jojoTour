@@ -16,20 +16,38 @@
 	body {
 		font-family: 'Jeju Gothic', sans-serif;
 	}
+	.custom-table{
+		margin-top: 30px;
+	}
+	.btnbtn{
+		text-align: center;
+		margin-bottom: 50px;
+	} 
 	a{
 		text-decoration: none;
 		color: black;
 		cursor: pointer;
+	}
+	.pagination {
+	    display: flex;
+	    justify-content: center; 
+	    margin-top: 20px; 
+	}
+	h3{
+		margin-top: 100px;
+		margin-bottom: 0px;
+		text-align: center;
+	}
+	.page-item {
+	    margin: 0 5px; 
 	}
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div>
-			<h3>숙박 업체 등록</h3>
-		</div>
 		<!-- stay list area -->
+		<h3>숙박 업체 등록</h3>
 		<div class="container">
 			<table class=" table custom-table table-striped table-bordered ">
 				<thead class="thead-dark">
@@ -59,21 +77,19 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="container">
-			<template>
-				<paginate 
-					:page-count="pageCount" 
-					:page-range="3" 
-					:margin-pages="2"
-					:click-handler="fnSearch" 
-					:prev-text="'<'" 
-					:next-text="'>'"
-					:container-class="'pagination'" 
-					:page-class="'page-item'">
-				</paginate>
-			</template>
+	 	<div class="pagination">
+			<paginate 
+				:page-count="pageCount" 
+				:page-range="3" 
+				:margin-pages="2"
+				:click-handler="fnSearch" 
+				:prev-text="'<'" 
+				:next-text="'>'"
+				:container-class="'pagination'" 
+				:page-class="'page-item'">
+			</paginate>
 		</div>
-		<div class="btn-con">
+		<div class="btnbtn">
 			<span><button @click="fnAdd" class="btn-dark">숙소 등록</button></span> 
 			<span><button @click="fnUpdate" class="btn-dark">숙소 정보 수정</button></span> 
 			<span><button @click="fnRemove" class="btn-red">숙소 삭제</button></span>

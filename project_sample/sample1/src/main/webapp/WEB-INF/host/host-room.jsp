@@ -13,15 +13,34 @@
 	body {
 		font-family: 'Jeju Gothic', sans-serif;
 	}
+	#app{
+		display: flex;
+	    flex-direction: column;
+	    min-height: 100vh;
+	}
+	.container {
+		flex: 1;
+		margin-top: 60px;
+		margin-bottom: 60px;
+	}
+	.container h3{
+		text-align: center;
+	}
+	tr, td, th{
+		padding: 20px;
+	}
+	h3{
+		margin-top: 100px;
+		margin-bottom: 0px;
+		text-align: center;
+	}
 </style>
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<div class="container">
-			<h3>숙소 방 등록 페이지</h3>
-		</div>
-		<div class="container">
+			<h3>객실 등록</h3>
 			<table class=" table custom-table table-striped table-bordered ">
 				<thead>
 					<tr>
@@ -42,7 +61,7 @@
 						</td>
 						<td>{{item.roomNo}}</td>
 						<td>{{item.roomName}}</td>
-						<td>{{item.roomPrice}}</td>
+						<td>{{item.roomPrice}}원</td>
 						<td>{{item.roomResidue}}</td>
 						<td>{{item.peopleMax}}명</td>
 						<td>
