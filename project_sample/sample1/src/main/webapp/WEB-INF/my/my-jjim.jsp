@@ -268,9 +268,9 @@
     	<div id="board-list">
     		<div class="container">
 				<div class="tab-buttons" style="text-align: center;">
-				  	<button :class="{ 'active-btn': activeTab === 'STAY' }" @click="setActiveTab('STAY')" class="btn" style="width: 160px;">¼÷¹Ú</button>
-  					<button :class="{ 'active-btn': activeTab === 'RENT' }" @click="setActiveTab('RENT')" class="btn" style="width: 160px;">·»Æ®Ä«</button>
-  					<button :class="{ 'active-btn': activeTab === 'LEISURE' }" @click="setActiveTab('LEISURE')" class="btn" style="width: 160px;">·¹Àú</button>
+				  	<button :class="{ 'active-btn': activeTab === 'STAY' }" @click="setActiveTab('STAY')" class="btn" style="width: 160px;font-size:18px;">¼÷¹Ú</button>
+  					<button :class="{ 'active-btn': activeTab === 'RENT' }" @click="setActiveTab('RENT')" class="btn" style="width: 160px;font-size:18px;">·»Æ®Ä«</button>
+  					<button :class="{ 'active-btn': activeTab === 'LEISURE' }" @click="setActiveTab('LEISURE')" class="btn" style="width: 160px;font-size:18px;">·¹Àú</button>
 				</div>
 			    <table class="board-table">
 			      <tr class="board-tr">

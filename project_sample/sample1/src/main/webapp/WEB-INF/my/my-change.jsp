@@ -53,16 +53,18 @@
         background-color: #213555;
 		color: #fff;
 		font-weight: bold;
-		padding-right: 30px;
+		padding: 19px;
 		box-sizing: border-box;
 	}
 	.change_table tr td:last-child{
-		padding-right: 100px;
+		padding-right: 55px;
 		box-sizing: border-box;
 	}
 	.change_table tr td input{
 		display: inline-block;
-		height: 40px;
+		height: 37px;
+		border-radius: 6px;
+    	padding-left: 5px;
 	}
 	.change_email input{
 		width: 300px;
@@ -99,6 +101,9 @@
 		padding: 10px 35px;
 		font-weight: bold;
 		font-size: 16px;
+	}
+	button{
+	border-radius: 5px;
 	}
 
 </style>
@@ -137,7 +142,7 @@
 					</tr>
 					<tr>
 						<td class="change_addr_title">주소</td>
-						<td class="change_addr"><input disabled type="text" value="user.addr" v-model="user.addr"><button @click="fnSearchAddr" style="width: 50px; height: 30px; margin-top: 10px;">검색</button></td>
+						<td class="change_addr" style="display: flex;"><input disabled type="text" value="user.addr" v-model="user.addr"><button @click="fnSearchAddr" style="width: 50px; height: 42px;color:white;background-color:#213555;margin-left:5px;">검색</button></td>
 					</tr>
 					<tr>
 						<td>우편번호</td>
@@ -149,7 +154,7 @@
 					</tr>
 					
 				</table>
-				<div class="change_del_btn"><button @click="fnDelYn">회원탈퇴</button></div>
+				<div class="change_del_btn"><button @click="fnDelYn" style="padding: 10px;">회원탈퇴</button></div>
 				<div class="change_update_btn"><button @click="fnMyChange">수정완료</button></div>
 			</div>
 		</div>

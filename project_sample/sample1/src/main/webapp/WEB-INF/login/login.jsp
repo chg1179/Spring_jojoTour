@@ -24,10 +24,11 @@
        #login_container{
            display: flex;
            flex-direction: column;
-           justify-content: center;
+           
            align-items: center;
            height: 90vh;
             background-color: #eee; 
+            margin-top: 65px
 /*            background-image:url('https://tvstore-phinf.pstatic.net/20201124_289/1606182617321ComBh_JPEG/00086.jpg');
        		background-size: cover; */
        }
@@ -39,8 +40,8 @@
       }
        .login_box{
            background-color: white;
-           width: 501px;
-           border: 1px solid;
+           width: 520px;
+/*            border: 0.1px solid #213555; */
             margin: 0 auto;
             border-radius: 6px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2)
@@ -56,8 +57,7 @@
            width: 100%;
            text-align: center;
            padding: 15px 0;
-           border-right : 1px solid;
-           border : 1px solid #213555;
+           /* border : 1px solid #213555; */
        }
        .login_tab label:last-child{
           border-right : none;
@@ -119,7 +119,7 @@
 	    margin-right: 5px;
 	}
 	body{
-	background-color:white;
+	background-color:#eee;
 	}
 	.login_main {
 	    text-align: center;
@@ -130,16 +130,14 @@
 	    border-radius: 6px;
 	    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 	}
-	.join_input_wrap{
-	
-	}
+
    </style>
    </head>
    <body>
       <jsp:include page="../header.jsp" flush="true"></jsp:include>
       <div id="app">
           <div id="login_container">
-			<div class="login_main">
+			
           		<span style="color:orange;">w e l c o m e</span>
                 <h1 style="color:#213555;"><i class="fa-solid fa-plane-departure fa-bounce"></i>JOJO TOUR</h1>
               <div class="login_box">
@@ -177,7 +175,7 @@
                       </div>
                   </div>
               </div>
-			</div>
+			
           </div>
       </div>
       <jsp:include page="../footer.jsp" flush="true"></jsp:include>

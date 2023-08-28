@@ -58,6 +58,24 @@
 	.page_order_wrap table th, .page_order_wrap table td{
 		padding : 5px 20px;
 	}
+		.btn1 {
+	  display: inline-block;
+	  padding: 8px 16px;;
+	  font-size: 12px;
+	  font-weight: 400;
+	  background: #445069;
+	  border:1px solid #445069;
+	  color: white;
+	  border-radius: 5px;
+	  cursor: pointer;
+	}
+
+	.btn1:hover {
+	  background-color : #213555;
+	  border:1px solid #213555;
+	  transform: scale(1.05);
+	  color: white;
+	}
 </style>
 </head>
 <body>
@@ -92,7 +110,7 @@
 						<td><a @click="fnView(item.orderNo)" href="javascript:;">{{item.orderNo}}</a></td>
 						<td>{{ item.paymentDate }}</td>
 						<td>{{ item.totalPay }}원</td>
-						<td><input type="button" value="상세보기" @click="fnView(item.orderNo)"></td>
+						<td><input class="btn1" type="button" value="상세보기" @click="fnView(item.orderNo)"></td>
 					</tr>
 				</table>
 			</div>
