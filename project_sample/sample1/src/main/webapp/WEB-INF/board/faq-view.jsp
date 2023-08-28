@@ -22,10 +22,29 @@
 		border : 1px solid black;
 		padding : 5px 10px;
 	}
-	.free_board_wrap{
-		margin-top: -500px;
+	#free_board_container{
+		margin-top: 0px;
 	}
-	
+	.free_board_wrap{
+		margin-top:100px;
+		align-items: auto;
+	}
+	.free_board_h2_wrap{
+		width : 876px;
+	}
+	.free_board_user{
+		width : 876px;
+	}
+    .content-wrap {
+        width: 100%;
+        max-width: 876px;
+    }
+
+    .free_board_contents {
+        width: 100%;
+        max-width: 876px;
+        
+    }
 </style>
 </head>
 <body>
@@ -46,9 +65,10 @@
 						<div>작성시간 : {{info.fWriteTime}}</div>
 					</div>	
 			</div>
-
 					<div class="free_board_contents">
-						<pre v-html="info.fContent"></pre>
+					    <div class="content-wrap">
+							<p v-html="info.fContent"></p>
+						</div>
 					</div>
 					
 					<div>

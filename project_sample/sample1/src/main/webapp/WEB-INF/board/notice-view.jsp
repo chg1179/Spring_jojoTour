@@ -21,8 +21,15 @@
 		border : 1px solid black;
 		padding : 5px 10px;
 	}
+	#free_board_container{
+		margin-top: 0px;
+	}
 	.free_board_wrap{
-		margin-top: -500px;
+		margin-top:0;
+		align-items: auto;
+	}
+	.free_board_title, .free_board_wrap{
+		width : 876px;
 	}
 </style>
 </head>
@@ -45,7 +52,7 @@
 					</div>
 				</div>
 				
-				<div class="free_board_contents"><pre v-html="info.nContent"></pre></div>
+				<div class="free_board_contents"><p v-html="info.nContent"></p></div>
 				<div>
 					<button @click="fnEdit" v-if="status == 'A'" class="btn1" >수정하기</button>
 				</div> 

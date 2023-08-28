@@ -15,6 +15,9 @@
 	.free_board_title{
 		display: flex; justify-content: space-between; align-items: center;
 	}
+	.free_board_wrap{
+		width : 876px;
+	}
 </style>
 </head>
 <body>
@@ -44,7 +47,7 @@
 				</div>
 
 				<div class="free_board_contents">
-					<pre v-html="info.freeContent"></pre>
+					<p v-html="info.freeContent"></p>
 				</div>
 				<div class="free_board_good">
 					<a @click="fnRecommend" href="javascript:;" class="free_board_good_a">

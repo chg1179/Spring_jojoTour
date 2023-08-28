@@ -39,7 +39,7 @@
 	.pwd1::placeholder { color: #aaaaaa; }
 	.pwd1:focus { outline: none; }
 	
-	span {
+	#free_board_container span {
 	  display: block;
 	  position: absolute;
 	  bottom: 0;
@@ -81,6 +81,9 @@
 	    font-size: 18px;
 	    margin-bottom: 200px;
 	}
+	.free_board_title, .free_board_wrap{
+		width : 876px;
+	}
 </style>
 </head>
 <body>
@@ -109,7 +112,7 @@
 					</div>
 				</div>
 				
-				<div class="free_board_contents"><pre v-html="info.iContent"></pre></div>
+				<div class="free_board_contents"><p v-html="info.iContent"></p></div>
 				<div>
 					<button @click="fnEdit('U')" v-if="uId == info.uId && info.answerYn == 'N'" class="btn1">수정하기</button>
 					<button @click="fnEdit('A')" v-if="status == 'A' && info.answerYn == 'N'" class="btn1">답변하기</button>
