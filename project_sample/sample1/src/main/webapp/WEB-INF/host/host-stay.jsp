@@ -9,36 +9,13 @@
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <link href="../../css/basic/paging-style.css" rel="stylesheet"/>
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
+<link href="../css/basic/custom-table-style.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
-	.container {
-		display: flex;
-		justify-content: center;
-		margin-top: 30px;
-	}
-	
-	h3 {
-		text-align: center;
-		padding: 14px;
-	}
-	
-	.host-table {
-		width: 1000px;
-		border-top: 1px solid black;
-		border-botton: 1px solid black;
-		border-collapse: collapse;
-	}
-	th, td {
-		border: 1px solid black;
-	}
-	
-	.host-table a {
-		color: #333;
-		display: inline-block;
-		line-height: 1.4;
-	}
-	
-	.host-table a:hover {
-		text-decoration: underline;
+	a{
+		text-decoration: none;
+		color: black;
+		cursor: pointer;
 	}
 	
 </style>
@@ -50,36 +27,34 @@
 			<h3>숙박 업체 등록</h3>
 		</div>
 		<!-- stay list area -->
-		<div id="host-list">
-			<div class="container">
-				<table class="host-table">
-					<thead>
-						<tr>
-							<th>선택</th>
-							<th>No.</th>
-							<th>숙소타입</th>
-							<th>업체명</th>
-							<th>주소</th>
-							<th>상세 주소</th>
-							<th>등록일</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr v-for="(item, index) in list">
-							<td>
-								<input v-if="index==indexNo" type="radio" :value="item.stayNo" @input="changeStayNo(item.stayNo)" name="stayNo" checked="checked"> 
-								<input v-else type="radio" :value="item.stayNo" @input="changeStayNo(item.stayNo)" name="stayNo">
-							</td>
-							<td>{{item.stayNo}}</td>
-							<td>{{item.cName}}</td>
-							<td><a @click="fnMove(item.stayNo)" href="javascript:;">{{item.stayName}}</a></td>
-							<td>{{item.sAddr}}</td>
-							<td>{{item.sDetailAddr}}</td>
-							<td>{{item.sInsertTime}}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+		<div class="container">
+			<table class=" table custom-table table-striped table-bordered ">
+				<thead class="thead-dark">
+					<tr>
+						<th>선택</th>
+						<th>No.</th>
+						<th>숙소타입</th>
+						<th>업체명</th>
+						<th>주소</th>
+						<th>상세 주소</th>
+						<th>등록일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(item, index) in list">
+						<td>
+							<input v-if="index==indexNo" type="radio" :value="item.stayNo" @input="changeStayNo(item.stayNo)" name="stayNo" checked="checked"> 
+							<input v-else type="radio" :value="item.stayNo" @input="changeStayNo(item.stayNo)" name="stayNo">
+						</td>
+						<td>{{item.stayNo}}</td>
+						<td>{{item.cName}}</td>
+						<td><a @click="fnMove(item.stayNo)" href="javascript:;">{{item.stayName}}</a></td>
+						<td>{{item.sAddr}}</td>
+						<td>{{item.sDetailAddr}}</td>
+						<td>{{item.sInsertTime}}</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		<div class="container">
 			<template>
@@ -95,7 +70,7 @@
 				</paginate>
 			</template>
 		</div>
-		<div class="container">
+		<div class="btn-con">
 			<span><button @click="fnAdd" class="btn-dark">숙박 업체 추가</button></span> 
 			<span><button @click="fnUpdate" class="btn-dark">업체 정보 수정</button></span> 
 			<span><button @click="fnRemove" class="btn-red">업체 정보 삭제</button></span>

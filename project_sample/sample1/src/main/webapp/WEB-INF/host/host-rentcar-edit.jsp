@@ -8,14 +8,25 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <style>
-	table{
-		border : 1px solid black;
+	table {
+		margin : 30px auto;
+		width : 700px;
+		border: 1px solid black;
 		border-collapse: collapse;
-		text-align : center;
+		font-size : 14px;
 	}
-	th, td {
-		border : 1px solid black;
+	th, td{
+		border: 1px solid black;
 		padding : 5px 10px;
+	}
+	tr {
+		
+		padding : 5px 10px;
+	}
+	h3{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
 	}
 	.filebox .upload-name {
 	    display: inline-block;
@@ -50,6 +61,8 @@
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<div id="container">
+		<h3 v-if="rentNo== ''">렌터카 등록</h3>
+		<h3 v-else>렌터카 수정</h3>
 			<table>
 				<tr>
 					<th>분류</th>

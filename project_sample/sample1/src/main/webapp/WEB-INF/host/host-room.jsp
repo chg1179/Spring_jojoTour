@@ -6,48 +6,9 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
+<link href="../css/basic/custom-table-style.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
-	.container {
-		display: flex;
-		justify-content: center;
-		margin-top: 30px;
-	}
-	.container h3{
-		text-align: center;
-		padding: 14px;
-	}
-	.host-table{
-		width: 1000px;
-		border-top: 1px solid black;
-		border-botton: 1px solid black;
-		border-collapse: collapse;
-	}
-	
-	.host-table a {
-		color: #333;
-		display: inline-block;
-		line-height : 1.4;
-	}
-	.host-table a:hover{
-		text-decoration: underline;
-	}
-	
-	.host-table th, .host-table td{
-		text-align: center;
-		padding: 14px 0;
-		border-bottom: 1px solid black;
-		border-left: 1px solid #ccc; 
-		border-right: 1px solid #ccc; 
-	}
-	.host-table th:first-child,
-	.host-table td:first-child {
-		border-left: none;
-	}
-
-	.host-table th:last-child,
-	.host-table td:last-child {
-		border-right: none;
-	}
 </style>
 </head>
 <body>
@@ -57,7 +18,7 @@
 			<h3>숙소 방 등록 페이지</h3>
 		</div>
 		<div class="container">
-			<table class="host-table">
+			<table class=" table custom-table table-striped table-bordered ">
 				<thead>
 					<tr>
 						<th>선택</th>
@@ -92,7 +53,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="container">
+		<div  class="btn-con">
 			<span><button @click="fnAdd" class="btn-dark">객실 추가</button></span>
 			<span><button @click="fnView" class="btn-dark">객실 상세 정보</button></span>
 			<span><button @click="fnRemove" class="btn-red">객실 삭제</button></span>

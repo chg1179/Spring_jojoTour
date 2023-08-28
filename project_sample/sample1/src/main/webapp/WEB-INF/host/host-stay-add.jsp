@@ -8,26 +8,34 @@
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>숙박 관리 페이지</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <style>
-	table{
-		border : 1px solid black;
+	table {
+		margin : 30px auto;
+		width : 700px;
+		border: 1px solid black;
 		border-collapse: collapse;
-		
+		font-size : 14px;
 	}
-	th, td {
-		border : 1px solid black;
-		padding : 10px 20px;
+	th, td{
+		border: 1px solid black;
+		padding : 5px 10px;
 	}
-	a {
-		
+	tr {
+		padding : 5px 10px;
+	}
+	h3{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
 	}
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
-	<div id="app">
-	숙소 업체 추가 페이지
+<div id="app">
+	
+	<div class="container">
+		<h3>숙소 업체 등록</h3>
 		<table>
 		<tbody>
 			<tr>
@@ -86,6 +94,7 @@
 		<button @click="fnStayAdd" class="btn-dark">숙소 등록</button>
 		<span><button @click="fnBack" class="btn-red">되돌아가기</button></span>
 	</div>
+</div>
 	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>

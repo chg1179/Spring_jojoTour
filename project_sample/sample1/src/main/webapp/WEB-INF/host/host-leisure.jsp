@@ -9,23 +9,19 @@
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <link href="../../css/basic/paging-style.css" rel="stylesheet"/>
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
+<link href="../css/basic/custom-table-style.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
-	table{
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
-	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
+	.custom-table{
+		margin-top: 60px;
 	}
 </style>
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div id="container">
-			<table>
+		<div class="container">
+			<table class=" table custom-table table-striped table-bordered ">
 				<tr>
 					<th>선택</th>
 					<th>No.</th>
@@ -75,7 +71,7 @@
 			    :page-class="'page-item'">
 			  </paginate>
 			</template>
-			<div>
+			<div class="btn-con">
 				<span><button @click="fnAdd" class="btn-dark">상품등록</button></span>
 				<span><button @click="fnView" class="btn-dark">상세정보열람</button></span>
 				<span><button @click="fnRemove" class="btn-red">삭제</button></span>

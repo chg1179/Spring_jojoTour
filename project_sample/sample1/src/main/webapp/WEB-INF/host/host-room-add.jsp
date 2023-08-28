@@ -26,40 +26,26 @@
 		<table>
 			<tbody>
 				<tr>
-					<th>
-						객실 유형
-					</th>
-					<td>
-						<div>
-							<span>객실유형</span>
-							<span>
-								<input type="text" v-model="info.roomName" name="roomName" id="roomName">
-							</span>
-						</div>
-						<div>
-							<span>가격</span>
-							<span>
-								<input type="text" v-model="info.roomPrice" maxlength="10" name="roomPrice" id="roomPrice">
-							</span>
-						</div>
-						<div>
-							<span>할인율(%)</span>
-							<span>
-								<input type="text" v-model="sales" maxlength="2" placeholder="0" name="roomSales" id="roomSales"  @keyup="fnPercent">
-							</span>
-						</div>
-						<div>
-							<span>인원</span>
-							<span>
-								<select v-model="peopleMaxValue" >
-									<option :key="index" :value="item.value" v-for="(item, index) in selectList">{{item.text}}</option>
-								</select>
-							</span>
-						</div>
-					</td>
+					<th>객실 유형</th>
+					<td><input type="text"  v-model="info.roomName" maxlength="30" name="roomName" id="roomName"></td>
 				</tr>
-				
 				<tr>
+					<th>객실 금액</th>
+					<td><input type="text" v-model="info.roomPrice" maxlength="10" name="roomPrice" id="roomPrice"></td>
+				</tr>
+				<tr>
+					<th>할인율(%)</th>
+					<td><input type="text" v-model="sales" maxlength="2" placeholder="0" name="roomSales" id="roomSales"  @keyup="fnPercent"></td>
+				</tr>
+				<tr>
+					<th>인원</th>
+					<td>
+						<select v-model="peopleMaxValue" >
+							<option :key="index" :value="item.value" v-for="(item, index) in selectList">{{item.text}}</option>
+						</select>
+					</td>
+				<tr>
+				<tr>		
 					<th>상세정보이미지</th>
 					<td>
 						<div class="filebox">
@@ -110,6 +96,47 @@ var app = new Vue({
 		// 룸 추가
 		fnRoomAdd : function(roomNo){
 			var self = this;
+			if(self.roomName==""){
+				alert("객실 유형을 입력해주세요.");
+				return;
+			}
+			
+			var regex = new RegExp(/^[0-9]+$/);
+			if(self.info.roomPrice==""){
+				alert("객실 금액을 입력해주세요.");
+				return;
+			}
+			if(!regex.test(self.info.roomPrice)){
+				alert("객실 금액은 숫자만 입력해주세요.");
+				return;
+			}
+			if(self.info.roomPrice < 1000){
+				alert("렌트 금액은 1000원 이상으로 입력해주세요.");
+				return;
+			}
+			if(!regex.test(self.sales)){
+				if(!(self.sales=="")){
+					alert("할인율은 숫자만 입력해주세요.");
+					return;
+				}
+			}
+			if(self.sales < 0 || self.sales >= 100){
+				alert("할인율은 0~99 사이의 숫자만 입력해주세요.");
+				return;
+			}
+			if(self.peopleMaxValue==""){
+				alert("최대 인원을 선택해주세요.");
+				return;
+			}
+			var fileCheck = document.getElementById("fileY").value;
+			if(!fileCheck){
+				alert("상세정보 이미지를 첨부해 주세요");
+				return;
+			}
+			if(!confirm("객실을 등록하시겠습니까?")){
+				alert("취소되었습니다.");
+				return;
+			}
 			var param = self.info;
 			var param = {
 				roomName : self.info.roomName,
@@ -131,6 +158,7 @@ var app = new Vue({
 	       	     	console.log(data.roomNo);
 	           		self.upload(form);
 	           		
+	           		self.sales = 100 - (self.roomSales * 100);
             		alert("객실이 등록되었습니다.");
             		$.pageChange("../host/room.do", {stayNo : self.stayNo});
             		self.selectServiceList = [];

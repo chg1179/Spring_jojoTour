@@ -88,7 +88,8 @@
 	</div>
 	<div class="stay-container">
 		<div class="filter">
-			<h2>상세조건</h2>
+		
+			<h2><i class="fa-solid fa-filter"></i> 상세조건</h2>
             <div class="btn-wrap">
                 <span><button @click="fnReset">초기화</button></span> 
             </div>

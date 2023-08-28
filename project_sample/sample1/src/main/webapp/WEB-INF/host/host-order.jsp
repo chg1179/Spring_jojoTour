@@ -6,39 +6,51 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
+<!-- <link href="../css/basic/custom-table-style.css" rel="stylesheet"/> -->
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
-	.stay-box, .rent-box, .leisure-box, .btn {
-		display: flex;
-		justify-content: center;
-		margin-top: 30px;
-	}
-	table {
-	    width: 1000px;
-	    border-collapse: collapse;
-	}
-	th, td{
+	.heading-box h2{
+		margin: 50px 10px auto; 
 		text-align: center;
-		padding: 14px 0;
-		border-bottom: 1px solid black;
-		border-left: 1px solid #ccc;
+		width: 1400px;
 	}
 	
+	h3{
+		margin: 30px 0px auto; 
+		text-align: center;
+		width : 1400px;
+	}
+	table {
+		margin : 20px auto;
+		width : 1400px;
+		border-collapse: collapse;
+		text-align : center;
+		font-size : 14px;
+	}
+	th {
+		padding : 5px 10px;
+		background-color: #e9ecef;
+	}
+	tr {
+		border-bottom: 1px solid #ccc;
+		padding : 5px 10px;
+	}
+	td {
+		padding : 5px 10px;
+	}
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="app">
 	<div class="heading-box">
-   		<h3>상품 예약 내역 관리</h3>
+   		<h2>상품 예약 내역 관리</h2>
    	</div>
-	<div class="stay-box">
+	<div class="container">
+		<h3>[숙소 예약 내역]</h3>
 		<table>
 			<thead>
-				<th colspan="9">
-					<h3 class="table-heading">숙소 예약 내역</h3>
-				</th>
 				<tr>
 					<th>주문번호</th>
 					<th>객실 이름</th>
@@ -87,22 +99,21 @@
 		</table>
 	</div>
 	
-	<div class="rent-box">
+	<div class="container">
+		<h3>[렌트카 예약 내역]</h3>
 		<table>
-			<th colspan="9">
-				<h3 class="table-heading">렌트 예약 내역</h3>
-			</th>
-			<tr>
-				<th>주문번호</th>
-				<th>차종</th>
-				<th>예약자</th>
-				<th>결제금액</th>
-				<th>인수일</th>
-				<th>반납일</th>
-				<th>예약상태</th>
-				<th>예약취소</th>
-			</tr>
-				  
+			<thead>
+				<tr>
+					<th>주문번호</th>
+					<th>차종</th>
+					<th>예약자</th>
+					<th>결제금액</th>
+					<th>인수일</th>
+					<th>반납일</th>
+					<th>예약상태</th>
+					<th>예약취소</th>
+				</tr>
+			</thead>  
 			<tr v-for="item in list" v-if="item.productKind == 'RENT'">
 				<td>{{ item.orderNo }}</td>
 				<td>
@@ -135,20 +146,19 @@
 		</table>
 	</div>
 	
-	<div class="leisure-box">
+	<div class="container">
+		<h3>[레저 예약 내역]</h3>
 		<table>
-			<th colspan="9">
-				<h3 class="table-heading">렌트 예약 내역</h3>
-			</th>
-			<tr>
-				<th>주문번호</th>
-				<th>레저이름</th>
-				<th>예약자</th>
-				<th>결제금액</th>
-				<th>예약상태</th>
-				<th>예약취소</th>
-			</tr>
-				  
+			<thead>
+				<tr>
+					<th>주문번호</th>
+					<th>레저이름</th>
+					<th>예약자</th>
+					<th>결제금액</th>
+					<th>예약상태</th>
+					<th>예약취소</th>
+				</tr>
+			</thead>
 			<tr v-for="item in list" v-if="item.productKind == 'LEISURE'">
 				<td>{{ item.orderNo }}</td>
 				<td>

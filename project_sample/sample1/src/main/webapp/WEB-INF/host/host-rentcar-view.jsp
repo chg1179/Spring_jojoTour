@@ -8,20 +8,28 @@
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <style>
 	table{
+		margin : 30px auto;
 		border : 1px solid black;
 		border-collapse: collapse;
 		text-align : center;
+		font-size : 14px;
 	}
 	th, td {
 		border : 1px solid black;
 		padding : 5px 10px;
+	}
+	h3{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
 	}
 </style>
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div id="container">
+		<div class="container">
+			<h3>렌터카 상세 정보</h3>
 			<table>
 				<tr>
 					<th>No.</th>

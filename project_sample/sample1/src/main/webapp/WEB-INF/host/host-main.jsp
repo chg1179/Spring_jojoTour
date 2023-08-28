@@ -6,18 +6,22 @@
 <meta charset="EUC-KR">
 <title>호스트 제품 관리 페이지</title>
 <style>
-
+	.container{
+		margin: 30px auto;
+	}
 </style>
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<input type="button" value="숙소관리" @click="fnStayPage"/>
-		<input type="button" value="레저관리" @click="fnLeisurePage"/>
-		<input type="button" value="렌트카관리" @click="fnRentcarPage"/>
-		<input type="button" value="예약상품관리" @click="fnOrderPage"/>
+		<div class="container">
+			<input type="button" value="숙소관리" @click="fnStayPage"/>
+			<input type="button" value="레저관리" @click="fnLeisurePage"/>
+			<input type="button" value="렌트카관리" @click="fnRentcarPage"/>
+			<input type="button" value="예약상품관리" @click="fnOrderPage"/>
+		</div>
 	</div>
-	<%-- <jsp:include page="../footer.jsp" flush="true"></jsp:include> --%>
+<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>
