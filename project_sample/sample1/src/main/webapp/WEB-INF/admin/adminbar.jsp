@@ -46,6 +46,10 @@
         font-weight: 500;
         position: relative;
     }
+    .active-btn {
+    	background-color: #213555;
+    	color: white;
+  	}
 </style>
 </head>
 <body>
@@ -53,9 +57,9 @@
 		<div id="adminbar_container">
             <div class="adminbar_title">관리페이지</div>
             <div class="adminbar_btn_box">
-                <a href="javascript:;" class="page_btn user" @click="fnUser">회원관리</a>
-                <a href="javascript:;" class="page_btn pack" @click="fnPackage">패키지 관리</a>
-                <a href="javascript:;" class="page_btn packreq" @click="fnPackageReq">패키지 신청 관리</a>
+                <a :class="{ 'active-btn': activePage === 'user' }" href="javascript:;" class="adminbar_btn user" @click="fnUser">회원관리</a>
+  				<a :class="{ 'active-btn': activePage === 'package' }" href="javascript:;" class="adminbar_btn pack" @click="fnPackage">패키지 관리</a>
+  				<a :class="{ 'active-btn': activePage === 'packagereq' }" href="javascript:;" class="adminbar_btn packreq" @click="fnPackageReq">패키지 신청 관리</a>
             </div>
         </div>
 	</div>
@@ -65,7 +69,8 @@
 var app = new Vue({
 	el : '#adminbar',
 	data : {
-		list : []
+		list : [],
+		 activePage: ''
 	},// data
 	methods : {
 		fnGetList : function(){
@@ -82,15 +87,18 @@ var app = new Vue({
                 }
             }); 
 		},
-		fnUser : function(){
-			location.href="/admin/user.do";
-		},
-		fnPackage : function(){
-			location.href="/admin/packagelist.do";
-		},
-		fnPackageReq : function(){
-			location.href="/admin/packagereq.do";
-		}
+		fnUser: function() {
+		      this.activePage = 'user';
+		      location.href = "/admin/user.do";
+		    },
+		fnPackage: function() {
+		      this.activePage = 'package';
+		      location.href = "/admin/packagelist.do";
+		    },
+		fnPackageReq: function() {
+		      this.activePage = 'packagereq';
+		      location.href = "/admin/packagereq.do";
+		    }
 	},
 	created : function() {
 		var self = this;

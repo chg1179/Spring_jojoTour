@@ -10,7 +10,8 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <link href="../../css/pay/payment-style.css" rel="stylesheet"/>
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
-<link href="../../css/basic/table-style.css" rel="stylesheet"/>
+<link href="../../css/basic/table custom-table table-striped table-bordered-style.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
 	@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 	body {
@@ -32,7 +33,7 @@
 		        <div v-if="roomList.length != 0" class="productBox">
 		            <div class="productTxt">숙소 상품</div>
 		            
-		            <table class="tbl" style="margin-left: 100px;">
+		            <table class="table custom-table table-striped table-bordered" style="margin-left: 100px;">
 		                <thead>
 			                <tr>
 								<td colspan="5" style="text-align: left; padding-left: 30px; font-size: 16px; color: #213555; border-bottom: 2px solid #999;">
@@ -63,7 +64,7 @@
 		        <div v-if="rentList.length != 0" class="productBox">
 		            <div class="productTxt">렌트카 상품</div>
 		            
-		            <table class="tbl" style="margin-left: 100px;">
+		            <table class="table custom-table table-striped table-bordered" style="margin-left: 100px;">
 		                <thead>
 		                <tr>
 						<td colspan="4"
@@ -93,7 +94,7 @@
 		        <div v-if="leisureList.length != 0" class="productBox">
 		            <div class="productTxt">레저 상품</div>
 		            
-		            <table class="tbl" style="margin-left: 100px;">
+		            <table class="table custom-table table-striped table-bordered" style="margin-left: 100px;">
 		                <thead>
 		                <tr>
 						<td colspan="3"
@@ -121,7 +122,7 @@
 			<div class="box">
 			    <div class="coreTxt"><span class="bar">ㅣ</span> 요금 상세 정보</div>
 			    <div>
-			        <table class="tbl" style="margin-left: 110px; width: 600px;">
+			        <table class="table custom-table table-striped table-bordered" style="margin-left: 110px; width: 600px;">
 			            <thead>
 			            <tr>
 						<td colspan="2"
