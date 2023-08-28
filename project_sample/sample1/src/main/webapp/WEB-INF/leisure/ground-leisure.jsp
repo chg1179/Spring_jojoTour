@@ -13,6 +13,11 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-weight: lighter;
+	}
 </style>
 </head>
 <body>
@@ -89,6 +94,13 @@
 								<p class="ground_leisure_price">상품 가격 : <del>{{item.leisurePrice | comma }}원</del></p>
 								<p class="ground_leisure_last_price">최종 가격 : <span>{{item.leisurePrice-item.leisurePrice*(100-(item.leisureSales*100))/100 | comma }}원</span></p>
 								<p class="ground_leisure_update_time">상품 등록 날짜 : {{item.lInsertTime}}</p>
+							</div>
+							<div style="margin: 5px; bold; font-size: 16px;">{{item.leisureName}}</div>
+							<div style="text-align: center;">
+								<hr style=" width:90%; margin:5px auto; background-color: grey; ">
+							</div>
+							<div style="margin: 10px; color: #ff7a95; font-weight: bold; font-size:18px;">
+								{{item.leisurePrice-item.leisurePrice*(100-(item.leisureSales*100))/100 | comma }}원~
 							</div>
 						</div>
 						<div class="paginate_box">

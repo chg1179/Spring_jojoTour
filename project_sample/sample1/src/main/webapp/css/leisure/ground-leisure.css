@@ -63,19 +63,19 @@
 		font-weight: bold;
 	}
    .ground_leisure_main_box{
-	width: calc(33.333% - 10px);
+	width: calc(25% - 10px);
 	box-sizing: border-box;
 	overflow: hidden;
 	position: relative;
-	margin: 10px 0;
+	margin: 30px 30px 100px 0px;
 	cursor : pointer;
-	border-radius: 30px;
+	border-radius: 0px 30px 0px 0px;
 	background-color: #fff;
 	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-	height: 300px;
+	height: 370px;
    }
    .ground_leisure_main_box img{
-	width: 100%;
+	width: 110%;
 	height: 300px;
    }
    .ground_leisure_txt_box{
