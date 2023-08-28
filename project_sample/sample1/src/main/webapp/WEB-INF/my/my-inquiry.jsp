@@ -27,9 +27,8 @@
 	  #inquiry_container{
 		display: flex;
 	    justify-content: center;
-	    height: 59vh;
 	    margin-top: 50px;
-	    margin-bottom: -4px;
+	    margin-bottom: 368px;
 	  }
 	  .inquiry_wrap table, .inquiry_wrap tr, .inquiry_wrap th, .inquiry_wrap td{
 		border-collapse: collapse;

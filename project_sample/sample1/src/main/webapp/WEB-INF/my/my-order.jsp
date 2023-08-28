@@ -23,8 +23,8 @@
 	#page_order_container{
 		display: flex;
 		justify-content: center;
-		height: 100vh;
 		margin-top: 50px;
+		margin-bottom: 346px;
 	}
 	.page_order_booking_box{
 		display: flex;
@@ -84,7 +84,7 @@
 						<div><span>{{orderCancel}}건</span></div>
 					</div>
 				</div>
-				<table>
+				<table v-if="orderList != ''">
 					<tr>
 						<th>주문번호</th>
 						<th>주문일</th>

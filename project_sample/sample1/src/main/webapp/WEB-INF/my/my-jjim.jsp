@@ -36,8 +36,7 @@
 		margin-top : 50px;
 		display: flex;
 		justify-content: center;
-		height: 100vh;
-		margin-bottom: -250px;
+		margin-bottom: 231px;
 	}
 	.jjim_wrap{
 	}
