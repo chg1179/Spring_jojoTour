@@ -93,6 +93,29 @@
 	#pbtn:hover {
 	    background-color: #f1f1f1;
 	}
+	.numBtn {
+		appearance: none;
+		text-align: center;
+		border-radius: 4px;
+        border: none;
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;　　
+        } 
+        &::-webkit-outer-spin-button {
+            -webkit-appearance: none;　　　
+        }
+    .numBtn_minus {
+    	width: 10px;
+        height: 10px;
+        border: none;
+    }
+    .numBtn_plus {
+    	width: 30px;
+        height: 30px;
+        border: none;
+    }
+    
+}
 </style>
 </head>
 <body>
@@ -271,7 +294,9 @@
 							<div>{{item.leisureKind}}</div>
 						</td>
 						<td>
-							<input type="number" min="1" max="10" style="width: 80px;" v-model="item.people">
+							<button class="numBtn_minus" @click="decreaseValue(item)" style="border:none;"><img src="../img/cart/DownArrow.png" style="width: 12px;height: 12px;"></button>
+							<input type="number" min="1" max="10" style="width: 80px;" v-model="item.people" class="numBtn">
+							<button class="numBtn_plus" @click="increaseValue(item)" style="border:none;"><img src="../img/cart/UpArrow.png" style="width: 12px;height: 12px;"></button>
 						</td>
 						<td><input type="button" value="삭 제" id="delBtn" @click="fnRemove(item)"></td>
 						
@@ -402,7 +427,20 @@ var app = new Vue({
 		            window.location.href = redirectUrl;
 		        }
 		    });
-		}
+		},
+		increaseValue(item) {
+		    if (item.people < 10) {
+		      item.people++;
+		    }
+		  },
+
+		  // 감소 버튼 클릭 처리
+		  decreaseValue(item) {
+		    if (item.people > 1) {
+		      item.people--;
+		    }
+		  }
+		
 	}, // methods
 	computed: {
         // 계산된 속성 추가

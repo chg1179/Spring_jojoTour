@@ -13,6 +13,7 @@
 	}
 	table {
 		margin : 30px auto;
+		width: 1200px;
 		border-collapse: collapse;
 		text-align : center;
 		font-size : 14px;
