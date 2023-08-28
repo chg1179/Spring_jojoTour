@@ -384,7 +384,12 @@ var app = new Vue({
 		    ];
 
 		    productData = productData.concat(self.selectRoom, self.selectRent, self.selectLeisure);
-
+			
+		    if(productData.length == 0){
+		    	alert("결제할 제품을 선택해주세요.");
+		    	return;
+		    }
+		    
 		    // AJAX 통신
 		    $.ajax({
 		        url: "/goPayment.dox",

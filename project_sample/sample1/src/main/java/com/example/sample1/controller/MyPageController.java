@@ -69,7 +69,7 @@ public class MyPageController {
         return "/my/my-review";
     }	
 
-	
+	// 마이페이지 1:1문의 내역
 	@RequestMapping("/my/inquiry.do") 
     public String inquiry(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 
@@ -160,7 +160,7 @@ public class MyPageController {
 		return new Gson().toJson(resultMap);
 	}
 	
-	
+	// 마이페이지 1:1문의내역 출력
 	@RequestMapping(value = "/my/inquiry.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String myInquiry(Model model, @RequestParam HashMap<String, Object> map) throws Exception {

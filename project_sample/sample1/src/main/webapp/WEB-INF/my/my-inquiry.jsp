@@ -7,7 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link href="../css/my/my-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title></title>
 <style>
 	.inquiry{
 		background-color : buttonface;
@@ -71,26 +71,26 @@
 				<div class="coreTxt"><span class="bar">ㅣ</span> 1:1 문의 내역</div>
 				<table>
 					<tr>
-						<th>선택</th>
+						<!-- <th>선택</th> -->
 						<th>게시글 번호</th>
 						<th class="inquiry_th_title">제목</th>
 						<th>조회수</th>
 						<th>등록날짜</th>
 					</tr>
 					<tr v-for="(item, index) in list" v-if="item.delyn =='N'">
-						<td>
+						<!-- <td>
 							<input v-if="index == 0" type="radio" :value="item.iNo" @input="changeINo(item)" name="iNo" checked="checked">
-							<input v-else type="radio" :value="item.iNo" @input="changeINo(item)" name="iNo">
-						</td>
+							<input v-else type="radio" :value="item.iNo" @input="fnIContent(item)" name="iNo">
+						</td> -->
 						<td>{{item.iNo}}</td>
-						<td><a href="javascript:;" @click="fnIContent">{{item.iTitle}}</a></td>
+						<td><a href="javascript:;" @click="fnIContent(item.iNo)">{{item.iTitle}}</a></td>
 						<td>{{item.iHits}}</td>
 						<td>{{item.iWriteTime}}</td>
 					</tr>
 				</table>
-				<div class="inquiry_btn">
+				<!-- <div class="inquiry_btn">
 					<button @click="fnRemove">삭제하기</button>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</div>
@@ -110,16 +110,18 @@ var app = new Vue({
 			var param = {userId : self.userId};
 			$.ajax({
                 url : "inquiry.dox",
-                dataType:"json",	
+                dataType:"json",
                 type : "POST",
                 data : param,
                 success : function(data) {
                 	self.list = data.list;
-                	if(data.list.length > 0){
-                		self.iNo = self.list[0].iNo;
-                	}
+                	console.log(self.list);
                 }
             }); 
+		},
+		fnIContent : function(iNo){
+			var self = this;
+			$.pageChange("../inquiry/view.do", {iNo : iNo, uId : self.userId});
 		},
 		changeINo : function(item){
 			var self = this;
@@ -141,14 +143,7 @@ var app = new Vue({
                 	self.fnGetList();
                 }
             });
-		},
-
-		fnIContent : function(){
-			var self = this;
-			$.pageChange("../inquiry/view.do", {iNo : self.iNo, uId : self.userId});
-		},
-		
-		
+		}
 	}, // methods
 	created : function() {
 		var self = this;

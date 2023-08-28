@@ -251,6 +251,7 @@
 			</div>
 			<div class="box">
 				<button class="btn" @click="fnRequestPay">결제하기</button>
+				<button class="btn" @click="fnBack">결제취소</button>
 			</div>
 		</div>
 	</div>
@@ -465,6 +466,12 @@ var app = new Vue({
                 	location.href="/my/order.do";
                 }
             });
+		},
+		fnBack : function(orderNo){
+			if(!confirm("결제를 취소하시겠습니까?")){
+	          	return;
+	        }
+			location.href="/cart.do";
 		}
 	}, // methods
 	created : function() {

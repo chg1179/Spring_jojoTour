@@ -141,9 +141,14 @@
 
 	<!-- 나의 1:1문의 불러오기 -->
 	<select id="selectInquiry" parameterType="hashmap" resultType="com.example.sample1.model.Inquiry">
-		SELECT *
-		FROM T2_INQUIRY_TBL
-		WHERE U_ID = #{userId}
+		SELECT T1.*
+		FROM T2_INQUIRY_TBL T1
+		JOIN (
+		    SELECT I_NO, I_NO + 1 AS ANSWER_I_NO
+		    FROM T2_INQUIRY_TBL
+		    WHERE U_ID = #{userId}
+		) T2 ON T1.I_NO IN (T2.I_NO, T2.ANSWER_I_NO)
+		ORDER BY T1.I_NO DESC
 	</select>
 	<!--나의 1:1문의 삭제 -->
 	<update id="deleteInquiry" parameterType="hashmap">

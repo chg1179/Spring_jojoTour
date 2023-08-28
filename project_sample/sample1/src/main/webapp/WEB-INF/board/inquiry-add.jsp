@@ -86,9 +86,9 @@
 						<label v-if="privateYN=='Y'" ><i class="fas fa-regular fa-lock fa-bounce fa-xl" style="color: #7926df;  margin-right: 10px;"></i> 
 							<input v-model="info.iPassword" type="password" class="password-input">
 						</label>
-						<button v-if="answer == 'A'" @click="fnAdd" class="btn2">답변등록</button>					
-				        <button v-if="iNo === ''" @click="fnAdd" class="btn1">등록</button>
-				        <button v-else-if="iNo !='' && info.answerYn=='N'" @click="fnEdit" class="btn1">수정</button>
+						<button v-if="answer == 'A'" @click="fnAdd" class="btn1">답변등록</button>					
+				        <button v-if="iNo == ''" @click="fnAdd" class="btn1">등록</button>
+				        <button v-else-if="iNo !='' && info.answerYn=='Y'" @click="fnEdit" class="btn1">수정</button>
 			        	<button @click="fnBack" class="btn1">뒤로가기</button>
 			        </div>
 			 </div>	

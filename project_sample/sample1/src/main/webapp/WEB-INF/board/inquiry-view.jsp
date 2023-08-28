@@ -89,7 +89,7 @@
 		<div id="free_board_container">
 			<div class="free_board_wrap">
 			
-			<div v-if="!showApp" class="pwd"><input class="pwd1" v-model="enteredPwd" @keyup.enter="fnPwd" type="text" required>
+			<div v-if="!showApp" class="pwd"><input class="pwd1" v-model="enteredPwd" @keyup.enter="fnPwd" type="password" required>
 			<label class="pwd2">PASSWORD</label>
 			<span></span></div>
 			<button @click="fnPwd" class="btnCheck">»Æ¿Œ</button>
