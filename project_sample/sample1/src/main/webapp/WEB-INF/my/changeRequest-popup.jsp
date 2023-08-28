@@ -5,32 +5,43 @@
 <head>
 <script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link href="../../css/board/board-style.css" rel="stylesheet"/>
+<link href="../../css/board/board-btn-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>요구사항 수정</title>
 <style>
 	.wrap input, textarea {
 	    border: 1px solid rgba(0, 0, 0, 0.08);
 	    background: none;
-	    width: 96%;
+	    width: 78%;
 	    margin-top: 10px;
 	    font-size: 16px;
 	    line-height: 1;
 	    color: rgba(0, 0, 0, 0.56);
 	    border: 1px solid rgba(0, 0, 0, 0.08);
-	    height: 40px;
+	    height: 150px;
 	    padding: 10px;
 	    border-radius: 4px;
+	}
+	.btn1{
+	    
+	}
+	#container{
+	margin-left: 50px;
 	}
 </style>
 </head>
 <body>
 	<div id="app">
 		<div id="container">
-			<div>요청사항 수정</div>
+		<br>
+			<h2>요청사항 수정</h2>
+			<br><hr style="width:77%;float:left;"><br>
 			<div class="wrap">
-				<textarea rows="3" cols="50" v-model="request" maxlength="50" placeholder="요청사항이 있는 경우 자유롭게 입력해 주세요."></textarea>
+				<textarea rows="3" cols="50" v-model="request" maxlength="200" placeholder="요청사항이 있는 경우 자유롭게 입력해 주세요."></textarea>
 			</div>
-			<div><input type="button" @click="fnSubmit" value="수정하기"></div>
+			<br>
+			<div><input type="button" @click="fnSubmit" value="수정하기" class="btn1"></div>
 		</div>
 	</div>
 </body>
