@@ -75,7 +75,7 @@
         <h2>자유 게시판 글쓰기</h2>
         <div class="tool_area">
           <button v-if="freeNo === ''" @click="fnAdd" class="btn1">등록</button>
-          <button @click="fnBack" class="btn2">뒤로가기</button>
+          <button @click="fnBack" class="btn1">뒤로가기</button>
         </div>
       </div>
 

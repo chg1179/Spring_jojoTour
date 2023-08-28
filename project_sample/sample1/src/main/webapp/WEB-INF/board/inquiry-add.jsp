@@ -89,7 +89,7 @@
 						<button v-if="answer == 'A'" @click="fnAdd" class="btn2">답변등록</button>					
 				        <button v-if="iNo === ''" @click="fnAdd" class="btn1">등록</button>
 				        <button v-else-if="iNo !='' && info.answerYn=='N'" @click="fnEdit" class="btn1">수정</button>
-			        	<button @click="fnBack" class="btn2">뒤로가기</button>
+			        	<button @click="fnBack" class="btn1">뒤로가기</button>
 			        </div>
 			 </div>	
 			 	<label><input type="checkbox" v-model="fnSecret"> 비밀글</label>

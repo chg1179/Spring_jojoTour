@@ -1,0 +1,21 @@
+	/*테이블 클래스 명 : class= "table custom-table table-striped table-bordered"  */
+	
+	.custom-table {
+		margin : 30px auto;
+		width : 1400px;
+		border-collapse: collapse;
+		text-align : center;
+		font-size : 14px;
+	}
+	th {
+		padding : 5px 10px;
+	}
+	tr {
+		border-bottom: 1px solid black;
+		padding : 5px 10px;
+	}
+	td {
+		padding : 5px 10px;
+	}
+	
+	

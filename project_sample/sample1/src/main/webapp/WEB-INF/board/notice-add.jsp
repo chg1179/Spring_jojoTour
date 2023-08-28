@@ -88,7 +88,7 @@
 			        <div class="tool_area">
 			          <button v-if="nNo === ''" @click="fnAdd" class="btn1">등록</button>
 			          <button v-else @click="fnEdit" class="btn1">수정</button>
-			          <button @click="fnBack" class="btn2">뒤로가기</button>
+			          <button @click="fnBack" class="btn1">뒤로가기</button>
 			        </div>
 		    </div>
 		<input type="text" id="myInput" v-model="info.nTitle" placeholder="제목">
