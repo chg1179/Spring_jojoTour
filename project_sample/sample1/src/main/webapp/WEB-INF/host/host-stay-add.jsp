@@ -6,28 +6,10 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
+<link href="../../css/basic/host-edit-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>숙박 관리 페이지</title>
 <style>
-	table {
-		margin : 30px auto;
-		width : 700px;
-		border: 1px solid black;
-		border-collapse: collapse;
-		font-size : 14px;
-	}
-	th, td{
-		border: 1px solid black;
-		padding : 5px 10px;
-	}
-	tr {
-		padding : 5px 10px;
-	}
-	h3{
-		margin: 50px auto;
-		text-align: center;
-		margin-bottom: 30px;
-	}
 </style>
 </head>
 <body>
@@ -91,8 +73,10 @@
 			</tr>
 		</tbody>
 		</table>
-		<button @click="fnStayAdd" class="btn-dark">숙소 등록</button>
-		<span><button @click="fnBack" class="btn-red">되돌아가기</button></span>
+		<div class="btn-con">
+			<span><button @click="fnStayAdd" class="btn-dark">숙소 등록</button></span>
+			<span><button @click="fnBack" class="btn-red">되돌아가기</button></span>
+		</div>
 	</div>
 </div>
 	<jsp:include page="../footer.jsp" flush="true"></jsp:include>

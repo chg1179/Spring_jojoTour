@@ -7,16 +7,8 @@
 <title>숙소 정보 수정 페이지</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
+<link href="../../css/basic/host-edit-style.css" rel="stylesheet"/>
 <style>
-	table{
-		border : 1px solid black;
-		border-collapse: collapse;
-		text-align : center;
-	}
-	th, td {
-		border : 1px solid black;
-		padding : 5px 10px;
-	}
 </style>
 </head>
 <body>
@@ -83,8 +75,10 @@
 			</tr>
 		</table>
 		<div>
-			<button @click="fnUpdate" class="btn-dark">수정</button>
-			<span><button @click="fnBack" class="btn-red">되돌아가기</button></span>
+			<div class="btn-con">
+				<span><button @click="fnUpdate" class="btn-dark">수정</button></span>
+				<span><button @click="fnBack" class="btn-red">되돌아가기</button></span>
+			</div>
 		</div>
 	</div>
 	<jsp:include page="../footer.jsp" flush="true"></jsp:include>

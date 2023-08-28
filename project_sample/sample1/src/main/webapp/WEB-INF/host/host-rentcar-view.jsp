@@ -23,6 +23,10 @@
 		text-align: center;
 		margin-bottom: 30px;
 	}
+	.btn-con {
+		margin: 10px auto;
+		text-align: center;
+	}
 </style>
 </head>
 <body>
@@ -100,7 +104,7 @@
 					<td v-if="imgList.length == 0"></td>
 				</tr>
 			</table>
-			<div>
+			<div class="btn-con">
 				<span v-if="rCnt == 0">
 					<span><button @click="fnUpdate" class="btn-dark">수정</button></span>
 					<span><button @click="fnRemove" class="btn-red">삭제</button></span>

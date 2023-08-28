@@ -7,27 +7,8 @@
 <title>렌터카 제품 추가 및 수정 페이지</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
+<link href="../../css/basic/host-edit-style.css" rel="stylesheet"/>
 <style>
-	table {
-		margin : 30px auto;
-		width : 700px;
-		border: 1px solid black;
-		border-collapse: collapse;
-		font-size : 14px;
-	}
-	th, td{
-		border: 1px solid black;
-		padding : 5px 10px;
-	}
-	tr {
-		
-		padding : 5px 10px;
-	}
-	h3{
-		margin: 50px auto;
-		text-align: center;
-		margin-bottom: 30px;
-	}
 	.filebox .upload-name {
 	    display: inline-block;
 	    height: 40px;
@@ -129,7 +110,7 @@
 					</td>
 				</tr>
 			</table>
-			<div>
+			<div class="btn-con">
 				<button v-if="rentNo == ''" @click="fnAdd" class="btn-dark">등록</button>
 				<button v-else @click="fnEdit" class="btn-dark">수정</button>
 				<span><button @click="fnBack" class="btn-red">취소</button></span>

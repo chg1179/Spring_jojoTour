@@ -11,14 +11,24 @@
 <title>객실 상세 정보</title>
 <style>
 	table{
-		width : 
+		margin : 30px auto;
 		border : 1px solid black;
 		border-collapse: collapse;
 		text-align : center;
+		font-size : 14px;
 	}
 	th, td {
 		border : 1px solid black;
 		padding : 5px 10px;
+	}
+	h3{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+	.btn-con {
+		margin: 10px auto;
+		text-align: center;
 	}
 </style>
 </head>
@@ -75,7 +85,7 @@
 				</td>
 			</tr>
 		</table>
-		<div>
+		<div class="btn-con">
 			<span><button @click="fnEdit" class="btn-dark">수정</button></span>
 			<span><button @click="fnRemove" class="btn-red">삭제</button></span>
 			<span><button @click="fnBack" class="btn-dark">돌아가기</button></span>

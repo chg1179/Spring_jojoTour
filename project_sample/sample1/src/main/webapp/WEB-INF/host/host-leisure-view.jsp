@@ -8,13 +8,24 @@
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <style>
 	table{
+		margin : 30px auto;
 		border : 1px solid black;
 		border-collapse: collapse;
 		text-align : center;
+		font-size : 14px;
 	}
 	th, td {
 		border : 1px solid black;
 		padding : 5px 10px;
+	}
+	h3{
+		margin: 50px auto;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+	.btn-con {
+		margin: 10px auto;
+		text-align: center;
 	}
 </style>
 </head>
@@ -99,7 +110,7 @@
 					<td v-if="imgList.length == 0"></td>
 				</tr>
 			</table>
-			<div>
+			<div class="btn-con">
 				<span v-if="lCnt == 0">
 					<span><button @click="fnUpdate" class="btn-dark">수정</button></span>
 					<span><button @click="fnRemove" class="btn-red">삭제</button></span>
