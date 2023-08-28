@@ -5,6 +5,7 @@
 <head>
 <script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link href="../css/my/my-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
@@ -24,8 +25,10 @@
 		padding: 0;
 	}
 	#my_change_container{
-		margin-top : 50px;
-		float : left;
+		margin : 30px 0;
+		display: flex;
+		justify-content: center;
+		
 	}
 	.change_box{
 		margin: 20px;
@@ -46,7 +49,8 @@
 		box-sizing: border-box;
 	}
 	.change_table tr td:first-child{
-		background-color: #FFA41B;
+		
+        background-color: #213555;
 		color: #fff;
 		font-weight: bold;
 		padding-right: 30px;
@@ -65,8 +69,8 @@
 	}
 	.change_addr_title button{
 		padding: 2px;
-		background-color: #F86F03;
-		color: #fff;
+		background-color: #fff;
+		color: #213555;;
 
 	}
 	.change_addr input{
@@ -89,7 +93,7 @@
 		justify-content: center;
 	}
 	.change_update_btn button{
-		background-color: #F86F03;
+        background-color: #213555;
 		color: #fff;
 		border: none;
 		padding: 10px 35px;
@@ -105,7 +109,7 @@
 	<div id="app">
 		<div id="my_change_container">
 			<div class="change_box">
-				<h2>회원정보수정</h2>
+				<div class="coreTxt"><span class="bar">ㅣ</span> 회원정보 수정</div>
 				<table class="change_table">
 					<tr>
 						<td>아이디</td>

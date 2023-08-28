@@ -5,6 +5,7 @@
 <head>
 <script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link href="../css/my/my-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>예약내역</title>
 <style>
@@ -21,10 +22,9 @@
     }
 	#page_order_container{
 		display: flex;
-		align-items: center;
 		justify-content: center;
 		height: 100vh;
-		margin-top: -200px;
+		margin-top: 50px;
 	}
 	.page_order_booking_box{
 		display: flex;
@@ -69,7 +69,7 @@
 	<div id="app">
 		<div id="page_order_container">
 			<div class="page_order_wrap">
-				<h2>예약 내역</h2>
+				<div class="coreTxt"><span class="bar">ㅣ</span> 예약내역</div>
 				<div class="page_order_booking_box">
 					<div class="page_order_accept">
 						<div>예약완료</div>

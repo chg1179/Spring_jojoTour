@@ -26,7 +26,7 @@
 		align-items: center;
 		justify-content: center;
 		height: 100vh;
-		margin-top: -200px;
+		margin-top: 100px;
 	}
 	table, tr, th, td{
 		border: 1px solid;

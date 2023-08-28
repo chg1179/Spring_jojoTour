@@ -8,6 +8,8 @@
 <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
 <link href="../../css/basic/paging-style.css" rel="stylesheet"/>
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
+<link href="../css/my/my-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>찜목록</title>
 <style>
@@ -31,10 +33,13 @@
 	  border-spacing: 0;
 	}
 	#jjim_container {
-		float: left;
+		margin-top : 50px;
+		display: flex;
+		justify-content: center;
+		height: 100vh;
+		margin-bottom: -250px;
 	}
 	.jjim_wrap{
-		margin-top: 50px;
 	}
 	
 	.page-title {
@@ -130,34 +135,6 @@
 	  display: none;
 	}
 	
-	.btn {
-	  display: inline-block;
-	  padding: 0 30px;
-	  font-size: 15px;
-	  font-weight: 400;
-	  background: transparent;
-	  text-align: center;
-	  white-space: nowrap;
-	  vertical-align: middle;
-	  -ms-touch-action: manipulation;
-	  touch-action: manipulation;
-	  cursor: pointer;
-	  -webkit-user-select: none;
-	  -moz-user-select: none;
-	  -ms-user-select: none;
-	  user-select: none;
-	  border: 1px solid transparent;
-	  text-transform: uppercase;
-	  -webkit-border-radius: 0;
-	  -moz-border-radius: 0;
-	  border-radius: 0;
-	  -webkit-transition: all 0.3s;
-	  -moz-transition: all 0.3s;
-	  -ms-transition: all 0.3s;
-	  -o-transition: all 0.3s;
-	  transition: all 0.3s;
-	}
-	
 	.btn-dark {
 	  background: #555;
 	  color: #fff;
@@ -218,39 +195,31 @@
 	}
 
 	.btn1:hover {
-	  background: linear-gradient(to right, #ff9900, #ff3333); /* 호박색 (마우스 호버 시 색 변경) */
+	  background:  #213555;
 	  transform: scale(1.05);
 	  color: white;
 	}
 	.btn2 {
-	
-		margin:10px;
+	  margin:10px;
 	  display: inline-block;
 	  padding: 6px 12px;;
 	  font-size: 12px;
 	  font-weight: 400;
-		border:1px solid #eee;
+	  border:1px solid #eee;
 	  color: black;
 	  border-radius: 5px;
 	  cursor: pointer;
 	}
 
 	.btn2:hover {
-	  background: linear-gradient(to right, #ff9900, #ff3333); 
+	  background: #213555;
 	  transform: scale(1.05);
 	  color: white;
 	}
 
-	.page-title h2 {
-	  font-size: 35px;
-	  color: #333333;
-	  font-weight: 400;
-	  text-align: center;
-	  font-weight: 600px;
-	}
 	.board-tr {
 	font-weight: bold;
-	background: linear-gradient(to right, #ff9900, #ff3333);
+    background-color: #213555;
 	color:white;
 	}
 	.board-tr td{
@@ -288,16 +257,16 @@
 			<div class="jjim_wrap">
 	      	<div class="page-title">
 	      		<div class="container">
-	    			<h2>찜목록</h2>
+				<div class="coreTxt"><span class="bar">ㅣ</span> 찜목록</div>
 	    		</div>
 			</div>
 			
     	<div id="board-list">
     		<div class="container">
 				<div class="tab-buttons">
-				  	<button @click="setActiveTab('STAY')">숙박</button>
-					<button @click="setActiveTab('RENT')">렌트카</button>
-					<button @click="setActiveTab('LEISURE')">레저</button>
+				  	<button @click="setActiveTab('STAY')" class="btn">숙박</button>
+					<button @click="setActiveTab('RENT')" class="btn">렌트카</button>
+					<button @click="setActiveTab('LEISURE')" class="btn">레저</button>
 				</div>
 			    <table class="board-table">
 			      <tr class="board-tr">
@@ -368,7 +337,7 @@
 		</div>
   		</div>
 	</div>
-<%-- <jsp:include page="../footer.jsp" flush="true"></jsp:include> --%>
+	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

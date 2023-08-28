@@ -8,6 +8,9 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
+	#foot{
+		clear: both;
+	}
 	#wrapper {position:relative;min-height:100%;min-width: 1150px;}
 	#footer { left:0; bottom:0; width:100%;height:250px;background:#2b2d2e;}
 	#footer .area_comp {overflow:hidden;width:1100px;margin:0 auto;padding-top:48px;}

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="../css/my/my-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>포인트 조회</title>
 <style>
@@ -22,19 +23,18 @@
         right: 0;
     }
 	#my_point_container{
-		margin-top: 50px;
-		float : left;
-	}
-	.point_wrap h2{
-		margin-bottom: 20px;
+		display: flex;
+		margin-top : 50px;
+		justify-content: center;
+		margin-bottom: 329px;
 	}
 	.point_box{
 		width: 500px;
 		height: 80px;
-		background-color: rgba(255, 168, 69, 0.3);
+		background-color: rgb(69 137 255 / 30%);
 		padding: 30px;
 		border-radius: 30px;
-		color: #F86F03;
+		color:  #213555;
 		font-weight: bold;
 		position: relative;
 	}
@@ -46,7 +46,7 @@
 		position: absolute;
 		top: 20px;
 		right: 20px;
-		background-color: #F86F03;
+		background-color: #213555;
 		color: #fff;
 		width: 20px;
 		height: 20px;
@@ -78,7 +78,6 @@
 		border-radius: 20px;
 		line-height: 23px;
 		font-size: 14px;
-		font-weight: bold;
 	}
 	.active_inbox h3{
 		margin-bottom: 20px;
@@ -86,7 +85,7 @@
 	.active_inbox button{
 		width: 100%;
 		height: 40px;
-		background-color: #F86F03;
+        background-color: #213555;
 		font-weight: bold;
 		font-size: 20px;
 		color: #fff;
@@ -103,7 +102,7 @@
 	<div id="app">
 		<div id="my_point_container">
 			<div class="point_wrap">
-				<h2>포인트</h2>
+				<div class="coreTxt"><span class="bar">ㅣ</span> 포인트</div>
 				<div class="point_box">
 					<p>내 포인트</p>
 					<h3>
@@ -123,14 +122,15 @@
 				<p>
 					포인트 사용 기간은 적립 일에 따라 각각 달라요.<br>
 					사용 기간 내에 쓰지 않은 포인트는 자동으로 소멸돼요.<br>
-					포인트 사용 기간 내에 포인트를 취소한다면 그대로 돌려 드려요. 단, 사용 기간은 처음 지급한 날과 같아요.<br>
+					포인트 사용 기간 내에 포인트를 취소한다면 그대로 돌려 드려요.<br>
+					단, 사용 기간은 처음 지급한 날과 같아요.<br>
 					포인트 사용 기간 만료 후에 포인트를 취소한다면 자동으로 소멸돼요.<br>
 				</p>
 				<button class="active_remove">확인</button>
 			</div>
 		</div>
 	</div>
-	<%-- <jsp:include page="../footer.jsp" flush="true"></jsp:include> --%>
+	<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script src="../js/jquery-1.12.4.js"></script>

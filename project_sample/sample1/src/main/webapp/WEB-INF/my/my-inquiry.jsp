@@ -5,6 +5,7 @@
 <head>
 <script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link href="../css/my/my-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
@@ -25,13 +26,10 @@
 	  }
 	  #inquiry_container{
 		display: flex;
-		align-items: center;
-		justify-content: center;
-		height: 100vh;
-		margin-top: -200px;
-	  }
-	  .inquiry_wrap h2{
-		margin-bottom: 20px;
+	    justify-content: center;
+	    height: 59vh;
+	    margin-top: 50px;
+	    margin-bottom: -4px;
 	  }
 	  .inquiry_wrap table, .inquiry_wrap tr, .inquiry_wrap th, .inquiry_wrap td{
 		border-collapse: collapse;
@@ -58,7 +56,7 @@
 		transition-duration: 0.5s;
 	  }
 	  .inquiry_btn button:hover{
-		background: linear-gradient(to right, #ff9900, #ff3333);
+        background-color: #213555;
 	  }
 	  .inquiry_th_title{
 		width: 300px;
@@ -71,7 +69,7 @@
 	<div id="app">
 		<div id="inquiry_container">
 			<div class="inquiry_wrap">
-				<h2>1:1 문의 내역</h2>
+				<div class="coreTxt"><span class="bar">ㅣ</span> 1:1 문의 내역</div>
 				<table>
 					<tr>
 						<th>선택</th>
