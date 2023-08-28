@@ -40,7 +40,7 @@
 			transform: translate(-50%, -50%);
 			width: 100%;
 			padding: 30px;
-			margin-top: 50px;
+			margin-top: -100px;
 		}
         .banner_text{
             text-align: center;
@@ -78,7 +78,7 @@
             display: block;
             background-image: url(./img/main/icon_question.svg);
             background-repeat: no-repeat;
-            background-color: #F86F03;
+            background-color: #213555;
             background-position: 10px;
             border: none;
             color: #fff;
@@ -253,7 +253,9 @@
           height: 100vh;
           margin-top: -100px;
         }
-    
+    	.swiper-wrapper {
+    	height:90%
+    	}
         .swiper-slide {
           text-align: center;
           font-size: 18px;
@@ -263,15 +265,23 @@
           align-items: center;
         }
         .slide-1{
-          background: url(./img/main/main.jpg) no-repeat center;
+          background: url(./img/main/img1.jpg) no-repeat center;
           background-size: cover;
         }
         .slide-2{
-          background: url(./img/main/main2.jpg) no-repeat center;
+          background: url(./img/main/img2.jpg) no-repeat center;
           background-size: cover;
         }
         .slide-3{
-          background: url(./img/main/main3.jpg) no-repeat center;
+          background: url(./img/main/img3.jpg) no-repeat center;
+          background-size: cover;
+        }
+        .slide-4{
+          background: url(./img/main/img4.jpg) no-repeat center;
+          background-size: cover;
+        }
+        .slide-5{
+          background: url(./img/main/img5.jpg) no-repeat center;
           background-size: cover;
         }
         .swiper-pagination-bullet-active{
@@ -326,6 +336,12 @@
 			left: 0;
 			transition-duration: 0.8s;
 		}
+		.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+    bottom: var(--swiper-pagination-bottom,85px);
+    top: var(--swiper-pagination-top,auto);
+    left: 0;
+    width: 100%;
+}
 </style>
 </head>
 <body>
@@ -338,13 +354,14 @@
 					<p class="banner_text">
 						여행 가기 전이나 여행중이라도 언제든지!<br>
 						관광지, 숙박, 음식점, 쇼핑, 축제, 교통, 문화 등 전국 여행에 관해서라면 어떤 것이라도 조조투어 지식iN에 물어보세요<br>
-						조조투어 상주 전문가를 비롯해 여행 잘 아는 사람이라면 누구에게라도 답변 받을 수 있습니다
+						조조투어 상주 전문가를 비롯해 여행 잘 아는 사람이라면 누구에게라도 답변 받을 수 있습니다<br>
+						지금바로 시작하세요!!
 					</p>
 					<div class="banner_img">
 						<img src="./img/main/banner_text.png" alt="">
 					</div>
 					<h3 class="banner_start">
-						<span>지금 시작하세요!</span>
+						<!-- <span>지금 시작하세요!</span> -->
 					</h3>
 					<button class="banner_question">
 						질문하기 >
@@ -357,6 +374,10 @@
 					<div class="swiper-slide slide-2">
 					</div>
 					<div class="swiper-slide slide-3">
+					</div>
+					<div class="swiper-slide slide-4">
+					</div>
+					<div class="swiper-slide slide-5">
 					</div>
 				</div>
 				<div class="swiper-pagination"></div>
