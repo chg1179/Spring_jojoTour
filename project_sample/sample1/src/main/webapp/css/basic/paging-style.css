@@ -12,6 +12,11 @@
     color:#666;
     display : inline;
     transition: 0.3s, color 0.3s;
+    background-color: #fff;
+}
+.pagination li a{
+	width: 100%;
+	height: 100%;
 }
 .pagination li:hover {
     background: #445069;

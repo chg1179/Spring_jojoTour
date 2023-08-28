@@ -11,7 +11,7 @@
 <link href="../css/rentcar/rentcar.css" rel="stylesheet"/>
 <link href="../../css/basic/paging-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
-<title>메인 상세 페이지</title>
+<title>렌터카 메인 페이지</title>
 <style>
 </style>
 </head>

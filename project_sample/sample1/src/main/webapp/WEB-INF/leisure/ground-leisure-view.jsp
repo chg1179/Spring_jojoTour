@@ -11,7 +11,7 @@
 <title>지상 레저 상세 페이지</title>
 <style>
 		body {
-			      font-family: Arial, sans-serif;
+	  font-family: Arial, sans-serif;
       background-color: #f0f0f0;
       margin: 0;
       padding: 0;
@@ -39,7 +39,7 @@
 		}
 		.btn {
 			color : white;
-			width: 400px;
+			width: 300px;
 			height : 60px;
 			border : 1px solid #213555;
 			background: #213555;

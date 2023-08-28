@@ -1,28 +1,7 @@
 
-   .pagination {
-       margin:24px;
-       display: inline-flex;
-   }
-   .pagination li {
-      min-width:32px;
-      padding:2px 6px;
-      text-align:center;
-      margin:0 3px;
-      border-radius: 6px;
-      border:1px solid #eee;
-      color:#666;
-      display : inline;
-   }
-   .pagination li:hover {
-       background: #E4DBD6;
-   }
-   .pagination li.active {
-       background-color : #E7AA8D;
-       color:#fff;
-   }
-   .pagination li.active a {
-       color:#fff;
-   }
+  	body{
+		background-color: #f2f2f2;
+	}
    *{
 	margin: 0;
 	padding: 0;
@@ -31,7 +10,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin: 30px;
+	margin: 0 30px 30px 30px;
    }
    .rentcar_main_wrap{
 	width : 1200px;
@@ -50,7 +29,9 @@
 		display: flex;
 		justify-content: space-between;
 		width: 500px;
-		margin: 50px auto;
+		margin: 0 auto;
+		margin-top: 80px;
+		margin-bottom: -40px;
 
 	}
 	.rentcar_list li{
@@ -58,6 +39,8 @@
 		width: 100px;
 		height: 50px;
 		line-height: 50px;
+		background-color: #fff;
+		z-index: 99;
 	}
 	.rentcar_list li input{
 		display: none;
@@ -69,6 +52,7 @@
 		height: 100%;
 		display: block;
 		text-align: center;
+		cursor: pointer;
 	}
 	.rentcar_list li input:checked + label{
 		border: 1px solid black;
@@ -84,14 +68,17 @@
 	position: relative;
 	margin: 10px 0;
 	cursor : pointer;
-	border-radius: 30px;
+	border-radius: 10px;
+	background-color: #fff;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+	height: 300px;
    }
    .rentcar_main_box img{
 	width: 100%;
 	height: 300px;
    }
    .rentcar_txt_box{
-	background-color: rgba(65, 65, 65, 0.5);
+	background-color: rgba(65, 65, 65, 0.8);
 	padding : 10px;
 	width: 100%;
 	position: absolute;
@@ -120,8 +107,8 @@
    	/* 검색기능 */
    .rentcar_search_box_wrap{    
    	position: absolute;
-    z-index: 99;
     right: 0;
+	z-index: 900;
     
    }
    .rentcar_search_box{
@@ -234,7 +221,7 @@
 	cursor: pointer;
    }
 	.rent_name span, .rent_last_price span{
-		color : yellow;
+		color : #FFA41B;
 		font-size : 20px;
 		font-weight: bold;
 	}
@@ -243,4 +230,12 @@
 		align-items: center;
 		justify-content: center;
 		width: 100%;
+	}
+	.rentcar_list li:hover {
+    background: #445069;
+    color:#fff;
+	}
+	.rentcar_list li.active {
+	    background-color : #213555;
+	    color:#fff;
 	}
