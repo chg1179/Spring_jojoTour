@@ -23,22 +23,25 @@
 		text-decoration: none;
 		color: red;
 	}
+	.stay-name a{
+		color: black;
+		cursor: pointer;
+	}
 	/* 베너 스타일 */
 	.banner_box {
-		background-image: url(../img/main/main.jpg);
-		background-repeat: no-repeat;
+		background: url(../../img/stay/background_img_stay.jpg) no-repeat;
 		background-size: cover;
-		height: 100px;
-		padding-top: 50px;
+		height: 444px;
+		position: relative;
 	}
 	
 	.banner_text {
 		text-align: center;
 		font-size: 40px;
-		font-weight: 400;
-		line-height: 32px;
+		font-weight: 400px;
+		line-height: 400px;
 		color: #fff;
-		margin-bottom: 30px;
+		margin: 10px;
 	}
 	
 	.banner_img {
@@ -131,7 +134,9 @@
                 
                 <div class="stay-info">
                 	<span class="caption">실시간 예약</span>
-                   	<p class="stay-name">{{item.stayName}}</p>
+                   	<p class="stay-name" >
+                   		<a @click="fnDetail(item.stayNo)">{{item.stayName}}</a>
+                   	</p>
                     <p class="stay-address">
 	                    {{item.cName}} | {{item.sAddr}}
                     </p>

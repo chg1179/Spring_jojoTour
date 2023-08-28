@@ -1,6 +1,6 @@
  hr {
-        width: 1000px;
-        margin: 20px auto;
+        width: 960px;
+        margin: 40px auto;
         border: none;
         height: 1px; 
         background-color: #ccc; 
@@ -14,11 +14,13 @@
 	    position: relative;
     }
 	.stay-view-container {
+		background-color: #fff;
 		display: flex;
-		max-width: 100%;
+		max-width: 92%;
 		margin: 0px auto;
 		margin-top: 30px;
 		padding: 20px;
+		border-radius: 5px;
 	}
 
 	.stay-img {
