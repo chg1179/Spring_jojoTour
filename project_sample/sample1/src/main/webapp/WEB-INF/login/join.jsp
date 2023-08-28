@@ -16,11 +16,14 @@
         margin-top: 70px;
         margin-bottom: 20px;
         border : 1px solid #213555;
+         border-top-right-radius: 6px;
+   		 border-top-left-radius: 6px;
+   		 box-shadow: 4px 4px 12px;
     }
     .join_inner_con input{
 	    width: 350px;
 	    height: 35px;
-	    margin: 5px 10px;
+	    margin: 10px 10px;
 	    outline: none;
 	    border: 1px solid;
 	    padding: 0 10px;
@@ -43,11 +46,12 @@
         margin: 0px 25px;
     }
     .join_check{
-        position: absolute;
-        top: 10px;
-        font-size: 16px;
-        width : 200px;
-        margin-left : 10px;
+	position: absolute;
+    bottom: -15px;
+    font-size: 16px;
+    width: 250px;
+    margin-left: 10px;
+    left: 22px;
     }
 
     #join_container, .join_tab, .join_addr, .join_btn{
@@ -82,7 +86,9 @@
    <jsp:include page="../header.jsp" flush="true"></jsp:include>
    <div id="app">
        <div id="join_container">
+       
            <div class="join_inner_con">
+           
                <h1 class="join_title"><span style="color : white;"><i class="fa-regular fa-paper-plane"></i> JOJO TOUR</span></h1>
                <div class="join_inner_box">
                    <div class="join_input_wrap">
@@ -96,12 +102,12 @@
                            <div style="margin-left:25px"><i class="fa-regular fa-user"></i><label><input type="text" v-model="user.name" maxlength="8" placeholder="이름"></label></div>
                            <div style="margin-left:25px"><i class="fa-regular fa-user"></i><label><input type="text" v-model="user.nickName" maxlength="20" placeholder="닉네임"></label></div>
                            <div style="margin-left:25px"><i class="fa-regular fa-calendar-check"></i><label><input type="date" v-model="user.birth" id="birth"></label></div>
-                           <div style="margin-left:25px"><i class="fa-solid fa-mobile-screen"></i><label><input type="text" v-model="user.phone" maxlength="11" id ="phone" placeholder="핸드폰 번호"></label></div>
-                           <div style="margin-left:25px"><i class="fa-regular fa-envelope"></i><label><input type="text" v-model="user.email" maxlength="30" placeholder="이메일"></label></div>
+                           <div style="margin-left:26px"><i class="fa-solid fa-mobile-screen"></i><label><input type="text" v-model="user.phone" maxlength="11" id ="phone" placeholder="핸드폰 번호"></label></div>
+                           <div style="margin-left:22px"><i class="fa-regular fa-envelope"></i><label><input type="text" v-model="user.email" maxlength="30" placeholder="이메일"></label></div>
    
                            
                                
-                           <div><label class="join_btn"><button @click="fnSearchAddr">주소 검색</button></label></div>
+                           <div><label class="join_btn" style="margin-top: 16px"><button @click="fnSearchAddr">주소 검색</button></label></div>
                            <div v-if="user.addr != ''" style="margin-left:25px"><i class="fa-solid fa-location-dot"></i><label><input disabled type="text" v-model="user.addr"></label></div>
                            <div v-if="user.zipNo != ''" style="margin-left:25px"><i class="fa-solid fa-location-dot"></i><label><input disabled type="text" v-model="user.zipNo"></label></div>
                            <div v-if="user.addrDetail != ''" style="margin-left:25px"><i class="fa-solid fa-location-dot"></i><label><input type="text" v-model="user.addrDetail"></label></div>
@@ -169,7 +175,7 @@ var app = new Vue({
 				return;
 			}
 			if(self.user.pw1.length < 8){
-				alert("패스워드는 8자리 이상 입력하세요.");
+				alert("비밀번호는 8자리 이상 입력하세요.");
 				return;
 			}
 			if (self.user.pw1.match(/\s/)) {
@@ -177,9 +183,10 @@ var app = new Vue({
 			    return;
 			}
 			if(self.user.pw1 != self.user.pw2){
-				alert("패스워드가 일치하지 않습니다.");
+				alert("비밀번호가 일치하지 않습니다.");
 				return;
 			}
+
 			if(self.user.name == ""){
 				alert("이름을 입력하세요.");
 				return;
@@ -259,7 +266,7 @@ var app = new Vue({
 		                    data: nparmap,
 		                    success: function(data) {
 		                        alert(self.user.nickName + "님 가입을 환영합니다.\n 포인트 5,000점이 적립되었습니다.");
-		                        location.href = "main.do";
+		                        /* location.href = "main.do"; */
 		                    }
 		                });
 		            }

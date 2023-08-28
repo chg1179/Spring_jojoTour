@@ -20,15 +20,17 @@
 		cursor: pointer;
 	}
 	.join_acess_wrap h2 span{
-		color: #F86F03;
+		color: #213555;
 	}
     .box-terms{
-        overflow: hidden;
-        height: 260px;
-        overflow-y: auto;
-        border: 1px solid black;
-        width: 800px;
-        line-height : 30px;
+	    overflow: hidden;
+	    height: 260px;
+	    overflow-y: auto;
+	    width: 800px;
+	    line-height: 30px;
+	    border-radius: 6px;
+	    border: 1px solid #d6d6d6;
+	    padding: 20px;
     }
     .box-terms h2{
     	margin : 10px 0;
@@ -47,17 +49,22 @@
 		justify-content: center;
 	}
 	.join_acess_btn_box button, .join_acess_btn_host button{
-		width: 80%;
-		display: block;
-		margin: 0 auto;
-		border: none;
-		background-color: #F86F03;
-		padding: 10px 20px;
-		color: #fff;
+	    width: 70%;
+	    display: block;
+	    margin: 0 auto;
+	    background-color: #213555;
+	    padding: 22px 32px;
+	    color: #fff;
+	    border-radius: 6px;
+	    font-size: 22px;
 	}
 	.join_acess_btn_wrap .join_acess_btn_box:last-child button{
 		background-color: #FFA41B;
 	}
+	h2{
+	font-size: 1.6em;
+	}
+
 </style>
 </head>
 <body>
@@ -65,6 +72,8 @@
 	<div id="app">
         <div id="join_acess_container">
 			<div class="join_acess_wrap">
+			<br><br>
+			
 				<h2>조조투어 회원약관 동의<span>(필수)</span></h2>
 				<section class="box-terms">
 					<p v-if="status == 'U'"><strong>조조 투어의 이용약관<span style="color : red;">(개인회원)</span></strong></p>								
@@ -275,7 +284,7 @@
 						</ol>
 						
 				</section>
-				<div class="join_acess_checkbox"><label><input type="checkbox" v-model="acess" value="1">동의</label></div>
+				<div class="join_acess_checkbox"><label><input type="checkbox" v-model="acess" value="1"> 동의</label></div>
 				<h2>개인정보 수집·이용 동의<span>(필수)</span></h2>
 				<section class="box-terms">
 					<ol>
@@ -331,7 +340,7 @@
 					</p>	
 										
 				</section>
-				<div class="join_acess_checkbox"><label><input type="checkbox" v-model="acess" value="2">동의</label></div>
+				<div class="join_acess_checkbox"><label><input type="checkbox" v-model="acess" value="2"> 동의</label></div>
 				<h2>이메일·문자 수신 동의<span>(선택)</span></h2>
 				<section class="box-terms join_email_box">
 					<li> 수집목적 : 조조투어에서 제공하는 취업정보, 행사, 뉴스레터, 이벤트, 세미나 박람회 소식 등 제공</li>
@@ -339,8 +348,8 @@
 					<li class="font-bold font-blue font-size-20"> 보유 및 이용기간 : 회원탈퇴시 (2년 후 재동의) </li>
 				</section>
 				<div class="join_acess_checkbox">
-					<label><input type="radio" v-model="acessRadio" value="3" name="agree">동의</label>
-					<label><input type="radio" v-model="acessRadio" value="4" name="agree">동의하지 않음</label>
+					<label><input type="radio" v-model="acessRadio" value="3" name="agree"> 동의　</label>
+					<label><input type="radio" v-model="acessRadio" value="4" name="agree"> 동의하지 않음</label>
 				</div>
 				<div class="join_acess_btn_wrap" v-if="status == 'U'">
 					<div class="join_acess_btn_box">

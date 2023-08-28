@@ -14,7 +14,8 @@
            padding: 0;
        }
        h1{
-       	   margin-bottom : 50px;
+       	   margin-bottom : 35px;
+       	   font-size:3em;
        }
        a{
            text-decoration: none;
@@ -36,10 +37,11 @@
       }
        .login_box{
            background-color: white;
-           width: 500px;
+           width: 501px;
            border: 1px solid;
             margin: 0 auto;
-            border-radius: 2px;
+            border-radius: 6px;
+            box-shadow: 6px 6px 12px;
        }
        .login_tab{
            display: flex;
@@ -49,9 +51,9 @@
            cursor: pointer;
            box-sizing: border-box;
            margin-bottom: 20px;
-           width: 33.333%;
+           width: 100%;
            text-align: center;
-           padding: 12px 0;
+           padding: 15px 0;
            border-right : 1px solid;
            border : 1px solid #213555;
        }
@@ -110,28 +112,33 @@
           font-weight: 400;
           margin-right: 5px;
       }
+      .fa-solid, .fas {
+	    font-weight: 900;
+	    margin-right: 5px;
+	}
    </style>
    </head>
    <body>
       <jsp:include page="../header.jsp" flush="true"></jsp:include>
       <div id="app">
           <div id="login_container">
-                <h1>JOJO TOUR</h1>
+          		<span style="color:yellowgreen;">w e l c o m e</span>
+                <h1 style="color:#213555;"><i class="fa-solid fa-plane-departure fa-bounce"></i>JOJO TOUR</h1>
               <div class="login_box">
                   <div class="login_tab">
                       <input type="radio" name="selectLogin" id="user" @input="checkStatus('U')" checked="checked">
-                      <label for="user">일반회원</label>
+                      <label for="user"  style="border-top-left-radius: 4px;">일반회원</label>
                       <input type="radio" name="selectLogin" id="host" @input="checkStatus('H')">
                       <label for="host">호스트</label>
                       <input type="radio" name="selectLogin" id="admin" @input="checkStatus('A')">
-                      <label for="admin">관리자</label>
+                      <label for="admin"  style="border-top-right-radius: 4px;">관리자</label>
                   </div>
                   <div class="login_background">
                       <div class="login_back_inner">
                           
                           <div class="login_id_pw">
                           <span>
-                          <i class="fa-regular fa-user"></i>
+                          <i class="fa-solid fa-user"></i>
                           </span>
                               <label><input v-model="userId" placeholder="아이디"></label>
                           </div>
