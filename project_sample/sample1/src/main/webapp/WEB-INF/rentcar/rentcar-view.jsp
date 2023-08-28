@@ -92,8 +92,8 @@
 				<br>
 				
 				<span style="color : red; font-size: 20px; padding-left : 10px;">{{sales}}%
-				<span style="color : black;  font-size: 24px;  padding-left : 10px;">{{info.rentPrice * info.rentSales}}</span></span>
-				<span style="font-size: 16px; color : grey; text-decoration : line-through;">{{info.rentPrice}}</span>
+				<span style="color : black;  font-size: 24px;  padding-left : 10px;">{{info.rentPrice * info.rentSales | comma }}</span></span>
+				<span style="font-size: 16px; color : grey; text-decoration : line-through;">{{info.rentPrice | comma }}</span>
 				<br><br><br>
 				<div class="check-date">
 					<div>
@@ -114,12 +114,12 @@
 				<br><br><br><br>
 				<span v-if="!isWished">
 					<a @click="fnWish(info.rentNo)" href="javascript:;">
-						<i class="fa-regular fa-heart fa-bounce fa-2x" style="color: #ff0000;"></i>찜하기
+						<i class="fa-regular fa-heart fa-bounce fa-2x" style="color: #ff0000;"></i>
 					</a>
 				</span>
 				<span v-else>
 					<a @click="fnDelWish(info.rentNo)" href="javascript:;">
-						<i class="fa-solid fa-heart fa-bounce fa-2x " style="color: #ff0000;"></i>찜해제
+						<i class="fa-solid fa-heart fa-bounce fa-2x " style="color: #ff0000;"></i>
 					</a>
 				</span>
 				<span><input type="button" value="장바구니" class="btn" @click="fnCart"></span>
@@ -140,6 +140,10 @@
 </body>
 </html>
 <script>
+Vue.filter('comma', function(value) {
+	  if (!value) return '';
+	  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	});
 var app = new Vue({
 	el : '#app',
 	data : {

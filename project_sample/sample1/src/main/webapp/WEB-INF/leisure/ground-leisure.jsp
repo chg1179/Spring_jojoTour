@@ -83,8 +83,8 @@
 								<p class="ground_leisure_name">상품명 : <span>{{item.leisureName}}</span></p>
 								<p class="ground_leisure_kind">종류 : {{item.leisureKind}}</p>
 								<p class="ground_leisure_sale">할인율 : {{100-(item.leisureSales*100)}}%</p>
-								<p class="ground_leisure_price">상품 가격 : <del>{{item.leisurePrice}}원</del></p>
-								<p class="ground_leisure_last_price">최종 가격 : <span>{{item.leisurePrice-item.leisurePrice*(100-(item.leisureSales*100))/100}}원</span></p>
+								<p class="ground_leisure_price">상품 가격 : <del>{{item.leisurePrice | comma }}원</del></p>
+								<p class="ground_leisure_last_price">최종 가격 : <span>{{item.leisurePrice-item.leisurePrice*(100-(item.leisureSales*100))/100 | comma }}원</span></p>
 								<p class="ground_leisure_update_time">상품 등록 날짜 : {{item.lInsertTime}}</p>
 							</div>
 						</div>
@@ -111,6 +111,10 @@
 </body>
 </html>
 <script>
+Vue.filter('comma', function(value) {
+	  if (!value) return '';
+	  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	});
 Vue.component('paginate', VuejsPaginate)
 var app = new Vue({
 	el : '#app',

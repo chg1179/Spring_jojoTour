@@ -92,8 +92,8 @@
 								<p class="rent_name">차량명 : <span>{{item.rentName}}</span></p>
 								<p class="rent_kind">차종 : {{item.rentKind}}</p>
 								<p class="rent_sale">할인률 : {{100-(item.rentSales*100)}}%</p>
-								<p class="rent_price">렌트 금액 : <del>{{item.rentPrice}}원</del></p>
-								<p class="rent_last_price">최종 금액 : <span>{{item.rentPrice-item.rentPrice*(100-(item.rentSales*100))/100}}원</span></p>
+								<p class="rent_price">렌트 금액 : <del>{{item.rentPrice | comma }}원</del></p>
+								<p class="rent_last_price">최종 금액 : <span>{{item.rentPrice-item.rentPrice*(100-(item.rentSales*100))/100 | comma }}원</span></p>
 								<p class="rent_update_time">차량 등록 날짜 : {{item.rUpdateTime}}</p>
 							</div>
 						</div>
@@ -121,6 +121,10 @@
 </html>
 <script>
 Vue.component('paginate', VuejsPaginate)
+Vue.filter('comma', function(value) {
+	  if (!value) return '';
+	  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	});
 var app = new Vue({
 	el : '#app',
 	data : {
