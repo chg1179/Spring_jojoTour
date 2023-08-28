@@ -74,14 +74,14 @@
 						</div>
 					</div>
 					<div class="ground_leisure_main_wrap_box">
-							<div v-if="list.length==0"class="tung_container">
-								<div class="tung_wrap">
-									<div class="tung_img_box">
-										<img src="../img/main/tung.png">
-									</div>
-									<h2 class="tung_txt">조건에 충족하는 상품이 없습니다.</h2>
+						<div v-if="list.length==0"class="tung_container">
+							<div class="tung_wrap">
+								<div class="tung_img_box">
+									<img src="../img/main/tung.png">
 								</div>
+								<h2 class="tung_txt">조건에 충족하는 상품이 없습니다.</h2>
 							</div>
+						</div>
 						<div v-for="item in list" class="ground_leisure_main_box" @click="fnGroundLeisureView(item.leisureNo)" v-else>
 							<div class="ground_leisure_main_img">
 								<img :src="item.imgPath" alt="">
@@ -89,18 +89,18 @@
 							<div class="ground_leisure_txt_box">
 								<p class="ground_leisure_cnt">조회수 : {{item.lRead}}</p>
 								<p class="ground_leisure_name">상품명 : <span>{{item.leisureName}}</span></p>
-								<p class="ground_leisure_kind">종류 : {{item.leisureKind}}</p>
 								<p class="ground_leisure_sale">할인율 : <span>{{100-(item.leisureSales*100)}}%</span></p>
 								<p class="ground_leisure_price">상품 가격 : <del>{{item.leisurePrice | comma }}원</del></p>
 								<p class="ground_leisure_last_price">최종 가격 : <span>{{item.leisurePrice-item.leisurePrice*(100-(item.leisureSales*100))/100 | comma }}원</span></p>
-								<p class="ground_leisure_update_time">상품 등록 날짜 : {{item.lInsertTime}}</p>
 							</div>
-							<div style="margin: 5px; bold; font-size: 16px;">{{item.leisureName}}</div>
-							<div style="text-align: center;">
-								<hr style=" width:90%; margin:5px auto; background-color: grey; ">
-							</div>
-							<div style="margin: 10px; color: #ff7a95; font-weight: bold; font-size:18px;">
-								{{item.leisurePrice-item.leisurePrice*(100-(item.leisureSales*100))/100 | comma }}원~
+							<div class="white_title">
+								<div style="margin: 5px; bold; font-size: 16px;">{{item.leisureName}}</div>
+								<div style="text-align: center;">
+									<hr style=" width:90%; margin:5px auto; background-color: grey; ">
+								</div>
+								<div style="margin: 10px; color: #ff7a95; font-weight: bold; font-size:18px;">
+									{{item.leisurePrice-item.leisurePrice*(100-(item.leisureSales*100))/100 | comma }}원~
+								</div>
 							</div>
 						</div>
 						<div class="paginate_box">
