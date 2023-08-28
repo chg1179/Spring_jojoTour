@@ -13,12 +13,21 @@
 <meta charset="EUC-KR">
 <title>렌터카 메인 페이지</title>
 <style>
+.banner_text {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 400px;
+    line-height: 400px;
+    color: #fff;
+    margin: 10px;
+}
+
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div class="banner"></div>
+		<div class="banner"><p class="banner_text">렌터카</p></div>
 		<div id="rentcar_main_container">
 			<div class="rentcar_list_box">
 				<ul class="rentcar_list">

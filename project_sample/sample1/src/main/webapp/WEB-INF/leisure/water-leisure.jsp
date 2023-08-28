@@ -18,12 +18,20 @@
 	font-family: 'Jeju Gothic', sans-serif;
 	font-weight: lighter;
 	}
+	.banner_text {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 400px;
+    line-height: 400px;
+    color: #fff;
+    margin: 10px;
+	}
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div class="banner"></div>
+		<div class="banner"><p class="banner_text">수상레저</p></div>
 		<div id="water_leisure_main_container">
 		<div class="water_leisure_list_box">
 				<ul class="water_leisure_list">
