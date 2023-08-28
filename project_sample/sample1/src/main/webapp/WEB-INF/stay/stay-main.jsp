@@ -170,15 +170,15 @@
 	                    {{item.cName}} | {{item.sAddr}}
                     </p>
                     <!-- ÂòÇÏ±â -->
-                    <span v-if="item.jjimcheck == 1">
-		               <a @click="fnJjim(item.stayNo)" href="javascript:;">
+                    <span v-if="item.jjimcheck > 0">
+		               <a @click="fnJjimDel(item.stayNo)" href="javascript:;">
 		               	  <!-- ²ËÂùÇÏÆ® -->
 		                  <i class="fa-solid fa-heart"></i>	
 		                  
 		               </a>
 		            </span>
-		            <span v-else>
-		               <a @click="fnJjimDel(item.stayNo)" href="javascript:;">
+		            <span v-else-if="item.jjimcheck != 1">
+		               <a @click="fnJjim(item.stayNo)" href="javascript:;">
 		               	  <!-- ºóÇÏÆ® -->
 		                  <i class="fa-regular fa-heart"></i>
 		               </a>

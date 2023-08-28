@@ -9,12 +9,18 @@
 <link href="../css/stay/stay-view.css" rel="stylesheet"/>
 <title>숙소 상세 페이지</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 	body {
-        margin: 0;
+		font-family: 'Jeju Gothic', sans-serif;
         padding: 0;
         background-color: #f2f2f2;
     }
-    
+    .room-date input{
+    	font-family: 'Jeju Gothic', sans-serif;
+    }
+    .cart-button{
+    	font-family: 'Jeju Gothic', sans-serif;
+    }
 </style>
 </head>
 <body>
