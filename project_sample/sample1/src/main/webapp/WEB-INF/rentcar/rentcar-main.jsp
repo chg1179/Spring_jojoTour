@@ -18,35 +18,37 @@
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
+		<div class="banner"></div>
 		<div id="rentcar_main_container">
-			<ul class="rentcar_list">
-				<li>
-					<input v-if='rentKind==""' type="radio" name="rentcar" id="all_rentcar" @input="checkKind('')" checked="checked">
-					<input v-else type="radio" name="rentcar" id="all_rentcar" @input="checkKind('')">
-					<label class="rentcar_btn" for="all_rentcar">전체</label>
-				</li>
-				<li>
-					<input v-if='rentKind=="SMALL"' type="radio" name="rentcar" id="s_rentcar" @input="checkKind('SMALL')" checked="checked">
-					<input v-else type="radio" name="rentcar" id="s_rentcar" @input="checkKind('SMALL')">
-					<label class="rentcar_btn" for="s_rentcar">소형차</label>
-				</li>
-				<li>
-					<input v-if='rentKind=="MIDDLE"' type="radio" name="rentcar" id="m_rentcar" @input="checkKind('MIDDLE')" checked="checked">
-					<input v-else type="radio" name="rentcar" id="m_rentcar" @input="checkKind('MIDDLE')">
-					<label class="rentcar_btn" for="m_rentcar">중형차</label>
-				</li>
-				<li>
-					<input v-if='rentKind=="LARGE"' type="radio" name="rentcar" id="l_rentcar" @input="checkKind('LARGE')" checked="checked">
-					<input v-else type="radio" name="rentcar" id="l_rentcar" @input="checkKind('LARGE')">
-					<label class="rentcar_btn" for="l_rentcar">대형차</label>
-				</li>
-				<li>
-					<input v-if='rentKind=="VAN"' type="radio" name="rentcar" id="v_rentcar" @input="checkKind('VAN')" checked="checked">
-					<input v-else type="radio" name="rentcar" id="v_rentcar" @input="checkKind('VAN')">
-					<label class="rentcar_btn" for="v_rentcar">승합차</label>
-				</li>
-			</ul>
-
+			<div class="rentcar_list_box">
+				<ul class="rentcar_list">
+					<li>
+						<input v-if='rentKind==""' type="radio" name="rentcar" id="all_rentcar" @input="checkKind('')" checked="checked">
+						<input v-else type="radio" name="rentcar" id="all_rentcar" @input="checkKind('')">
+						<label class="rentcar_btn" for="all_rentcar">전체</label>
+					</li>
+					<li>
+						<input v-if='rentKind=="SMALL"' type="radio" name="rentcar" id="s_rentcar" @input="checkKind('SMALL')" checked="checked">
+						<input v-else type="radio" name="rentcar" id="s_rentcar" @input="checkKind('SMALL')">
+						<label class="rentcar_btn" for="s_rentcar">소형차</label>
+					</li>
+					<li>
+						<input v-if='rentKind=="MIDDLE"' type="radio" name="rentcar" id="m_rentcar" @input="checkKind('MIDDLE')" checked="checked">
+						<input v-else type="radio" name="rentcar" id="m_rentcar" @input="checkKind('MIDDLE')">
+						<label class="rentcar_btn" for="m_rentcar">중형차</label>
+					</li>
+					<li>
+						<input v-if='rentKind=="LARGE"' type="radio" name="rentcar" id="l_rentcar" @input="checkKind('LARGE')" checked="checked">
+						<input v-else type="radio" name="rentcar" id="l_rentcar" @input="checkKind('LARGE')">
+						<label class="rentcar_btn" for="l_rentcar">대형차</label>
+					</li>
+					<li>
+						<input v-if='rentKind=="VAN"' type="radio" name="rentcar" id="v_rentcar" @input="checkKind('VAN')" checked="checked">
+						<input v-else type="radio" name="rentcar" id="v_rentcar" @input="checkKind('VAN')">
+						<label class="rentcar_btn" for="v_rentcar">승합차</label>
+					</li>
+				</ul>
+			</div>
 			<div class="rentcar_main_con">
 				<div class="rentcar_main_wrap">
 					<div class="rentcar_search_box_wrap">
@@ -91,7 +93,7 @@
 								<p class="rent_cnt">조회수 : {{item.rRead}}</p>
 								<p class="rent_name">차량명 : <span>{{item.rentName}}</span></p>
 								<p class="rent_kind">차종 : {{item.rentKind}}</p>
-								<p class="rent_sale">할인률 : {{100-(item.rentSales*100)}}%</p>
+								<p class="rent_sale">할인률 : <span>{{100-(item.rentSales*100)}}%</span></p>
 								<p class="rent_price">렌트 금액 : <del>{{item.rentPrice | comma }}원</del></p>
 								<p class="rent_last_price">최종 금액 : <span>{{item.rentPrice-item.rentPrice*(100-(item.rentSales*100))/100 | comma }}원</span></p>
 								<p class="rent_update_time">차량 등록 날짜 : {{item.rUpdateTime}}</p>

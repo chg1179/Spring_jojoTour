@@ -10,12 +10,13 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin: 0 30px 30px 30px;
+	margin: -50px 30px 60px 30px;
    }
    .rentcar_main_wrap{
 	width : 1200px;
 	position: relative;
 	overflow: hidden;
+	padding-top : 50px;
    }
    .rentcar_main_wrap_box{
 	display: flex;
@@ -24,19 +25,21 @@
 	margin-top: 50px;
 
    }
+   .rentcar_list_box{
+	   width: 1200px;
+	   margin:0 auto;
+   }
    
 	.rentcar_list{
 		display: flex;
 		justify-content: space-between;
-		width: 500px;
-		margin: 0 auto;
-		margin-top: 80px;
-		margin-bottom: -40px;
+		width: 700px;
+		margin-top: 25px;
 
 	}
 	.rentcar_list li{
 		display: block;
-		width: 100px;
+		width: 140px;
 		height: 50px;
 		line-height: 50px;
 		background-color: #fff;
@@ -55,7 +58,7 @@
 		cursor: pointer;
 	}
 	.rentcar_list li input:checked + label{
-		border: 1px solid black;
+		border: 1px solid #324666;
 		/*background: linear-gradient(to right, #ff9900, #ff3333);*/
 		background: #324666;
 		color: #fff;
@@ -109,7 +112,7 @@
    	position: absolute;
     right: 0;
 	z-index: 900;
-    
+	top:10px;    
    }
    .rentcar_search_box{
 	display: flex;
@@ -220,7 +223,7 @@
 	border-bottom: 1px solid;
 	cursor: pointer;
    }
-	.rent_name span, .rent_last_price span{
+	.rentcar_txt_box span{
 		color : #FFA41B;
 		font-size : 20px;
 		font-weight: bold;
@@ -238,4 +241,10 @@
 	.rentcar_list li.active {
 	    background-color : #213555;
 	    color:#fff;
+	}
+	.banner{
+		background: url(../../img/rentCar/background_image_rentcar.png) no-repeat;
+		background-size: cover;
+		height: 444px;
+		position: relative;
 	}

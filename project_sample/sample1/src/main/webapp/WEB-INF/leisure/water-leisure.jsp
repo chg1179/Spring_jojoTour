@@ -18,30 +18,33 @@
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
+		<div class="banner"></div>
 		<div id="water_leisure_main_container">
-			<ul class="water_leisure_list">
-				<li>
-					<input v-if='leisureKind == ""' type="radio" name="waterLeisure" id="all_waterLeisure" @input="checkKind('')" checked="checked">
-					<input v-else type="radio" name="waterLeisure" id="all_waterLeisure" @input="checkKind('')">
-					<label class="water_leisure_btn" for="all_waterLeisure">전체</label>
-				</li>
-				<li><input v-if='leisureKind == "SNORKE"' type="radio" name="waterLeisure" id="snorke" @input="checkKind('SNORKE')" checked="checked">
-					<input v-else type="radio" name="waterLeisure" id="snorke" @input="checkKind('SNORKE')">
-					<label class="water_leisure_btn" for="snorke">스노쿨링</label>
-				</li>
-				<li><input  v-if='leisureKind == "SURFING"' type="radio" name="waterLeisure" id="surfing" @input="checkKind('SURFING')" checked="checked">
-					<input  v-else type="radio" name="waterLeisure" id="surfing" @input="checkKind('SURFING')">
-					<label class="water_leisure_btn" for="surfing">서핑</label>
-				</li>
-				<li><input  v-if='leisureKind == "YACHT"' type="radio" name="waterLeisure" id="yacht" @input="checkKind('YACHT')" checked="checked">
-					<input  v-else type="radio" name="waterLeisure" id="yacht" @input="checkKind('YACHT')">
-					<label class="water_leisure_btn" for="yacht">요트</label>
-				</li>
-				<li><input  v-if='leisureKind == "JETSKI"' type="radio" name="waterLeisure" id="jetski" @input="checkKind('JETSKI')" checked="checked">
-					<input  v-else type="radio" name="waterLeisure" id="jetski" @input="checkKind('JETSKI')">
-					<label class="water_leisure_btn" for="jetski">제트스키</label>
-				</li>
-			</ul>
+		<div class="water_leisure_list_box">
+				<ul class="water_leisure_list">
+					<li>
+						<input v-if='leisureKind == ""' type="radio" name="waterLeisure" id="all_waterLeisure" @input="checkKind('')" checked="checked">
+						<input v-else type="radio" name="waterLeisure" id="all_waterLeisure" @input="checkKind('')">
+						<label class="water_leisure_btn" for="all_waterLeisure">전체</label>
+					</li>
+					<li><input v-if='leisureKind == "SNORKE"' type="radio" name="waterLeisure" id="snorke" @input="checkKind('SNORKE')" checked="checked">
+						<input v-else type="radio" name="waterLeisure" id="snorke" @input="checkKind('SNORKE')">
+						<label class="water_leisure_btn" for="snorke">스노쿨링</label>
+					</li>
+					<li><input  v-if='leisureKind == "SURFING"' type="radio" name="waterLeisure" id="surfing" @input="checkKind('SURFING')" checked="checked">
+						<input  v-else type="radio" name="waterLeisure" id="surfing" @input="checkKind('SURFING')">
+						<label class="water_leisure_btn" for="surfing">서핑</label>
+					</li>
+					<li><input  v-if='leisureKind == "YACHT"' type="radio" name="waterLeisure" id="yacht" @input="checkKind('YACHT')" checked="checked">
+						<input  v-else type="radio" name="waterLeisure" id="yacht" @input="checkKind('YACHT')">
+						<label class="water_leisure_btn" for="yacht">요트</label>
+					</li>
+					<li><input  v-if='leisureKind == "JETSKI"' type="radio" name="waterLeisure" id="jetski" @input="checkKind('JETSKI')" checked="checked">
+						<input  v-else type="radio" name="waterLeisure" id="jetski" @input="checkKind('JETSKI')">
+						<label class="water_leisure_btn" for="jetski">제트스키</label>
+					</li>
+				</ul>
+			</div>
 			<div class="water_leisure_main_con">
 				<div class="water_leisure_main_wrap">
 					<div class="water_leisure_search_box_wrap">
@@ -86,7 +89,7 @@
 								<p class="water_leisure_cnt">조회수 : {{item.lRead}}</p>
 								<p class="water_leisure_name">상품명 : <span>{{item.leisureName}}</span></p>
 								<p class="water_leisure_kind">종류 : {{item.leisureKind}}</p>
-								<p class="water_leisure_sale">할인율 : {{100-(item.leisureSales*100)}}%</p>
+								<p class="water_leisure_sale">할인율 : <span>{{100-(item.leisureSales*100)}}%</span></p>
 								<p class="water_leisure_price">상품 가격 : <del>{{item.leisurePrice | comma }}원</del></p>
 								<p class="water_leisure_last_price">최종 가격 : <span>{{item.leisurePrice-item.leisurePrice*(100-(item.leisureSales*100))/100 | comma }}원</span></p>
 								<p class="water_leisure_update_time">상품 등록 날짜 : {{item.lInsertTime}}</p>

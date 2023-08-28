@@ -18,26 +18,29 @@
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
+		<div class="banner"></div>
 		<div id="ground_leisure_main_container">
-			<ul class="ground_leisure_list">
-				<li>
-					<input v-if='leisureKind == ""' type="radio" name="groundLeisure" id="all_groundLeisure" @input="checkKind('')" checked="checked">
-					<input v-else type="radio" name="groundLeisure" id="all_groundLeisure" @input="checkKind('')">
-					<label class="ground_leisure_btn" for="all_groundLeisure">전체</label>
-				</li>
-				<li><input v-if='leisureKind == "ATV"' type="radio" name="groundLeisure" id="atv" @input="checkKind('ATV')" checked="checked">
-					<input v-else type="radio" name="groundLeisure" id="atv" @input="checkKind('ATV')">
-					<label class="ground_leisure_btn" for="atv">ATV</label>
-				</li>
-				<li><input  v-if='leisureKind == "GLIDER"' type="radio" name="groundLeisure" id="glider" @input="checkKind('GLIDER')" checked="checked">
-					<input  v-else type="radio" name="groundLeisure" id="glider" @input="checkKind('GLIDER')">
-					<label class="ground_leisure_btn" for="glider">패러글라이딩</label>
-				</li>
-				<li><input  v-if='leisureKind == "HORSE"' type="radio" name="groundLeisure" id="horse" @input="checkKind('HORSE')" checked="checked">
-					<input  v-else type="radio" name="groundLeisure" id="horse" @input="checkKind('HORSE')">
-					<label class="ground_leisure_btn" for="horse">승마</label>
-				</li>
-			</ul>
+			<div class="ground_leisure_list_box">
+				<ul class="ground_leisure_list">
+					<li>
+						<input v-if='leisureKind == ""' type="radio" name="groundLeisure" id="all_groundLeisure" @input="checkKind('')" checked="checked">
+						<input v-else type="radio" name="groundLeisure" id="all_groundLeisure" @input="checkKind('')">
+						<label class="ground_leisure_btn" for="all_groundLeisure">전체</label>
+					</li>
+					<li><input v-if='leisureKind == "ATV"' type="radio" name="groundLeisure" id="atv" @input="checkKind('ATV')" checked="checked">
+						<input v-else type="radio" name="groundLeisure" id="atv" @input="checkKind('ATV')">
+						<label class="ground_leisure_btn" for="atv">ATV</label>
+					</li>
+					<li><input  v-if='leisureKind == "GLIDER"' type="radio" name="groundLeisure" id="glider" @input="checkKind('GLIDER')" checked="checked">
+						<input  v-else type="radio" name="groundLeisure" id="glider" @input="checkKind('GLIDER')">
+						<label class="ground_leisure_btn" for="glider">패러글라이딩</label>
+					</li>
+					<li><input  v-if='leisureKind == "HORSE"' type="radio" name="groundLeisure" id="horse" @input="checkKind('HORSE')" checked="checked">
+						<input  v-else type="radio" name="groundLeisure" id="horse" @input="checkKind('HORSE')">
+						<label class="ground_leisure_btn" for="horse">승마</label>
+					</li>
+				</ul>
+			</div>
 			<div class="ground_leisure_main_con">
 				<div class="ground_leisure_main_wrap">
 					<div class="ground_leisure_search_box_wrap">
@@ -82,7 +85,7 @@
 								<p class="ground_leisure_cnt">조회수 : {{item.lRead}}</p>
 								<p class="ground_leisure_name">상품명 : <span>{{item.leisureName}}</span></p>
 								<p class="ground_leisure_kind">종류 : {{item.leisureKind}}</p>
-								<p class="ground_leisure_sale">할인율 : {{100-(item.leisureSales*100)}}%</p>
+								<p class="ground_leisure_sale">할인율 : <span>{{100-(item.leisureSales*100)}}%</span></p>
 								<p class="ground_leisure_price">상품 가격 : <del>{{item.leisurePrice | comma }}원</del></p>
 								<p class="ground_leisure_last_price">최종 가격 : <span>{{item.leisurePrice-item.leisurePrice*(100-(item.leisureSales*100))/100 | comma }}원</span></p>
 								<p class="ground_leisure_update_time">상품 등록 날짜 : {{item.lInsertTime}}</p>

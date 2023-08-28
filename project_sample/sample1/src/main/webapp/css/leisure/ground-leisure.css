@@ -7,12 +7,13 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin: 30px;
+	margin: -70px 30px 60px 30px;
    }
    .ground_leisure_main_wrap{
 	width : 1200px;
 	position: relative;
 	overflow: hidden;
+	padding-top : 60px;
    }
    .ground_leisure_main_wrap_box{
 	display: flex;
@@ -21,19 +22,22 @@
 	margin-top: 50px;
 
    }
+   .ground_leisure_list_box{
+	   width: 1200px;
+	   margin:0 auto;
+   }
    
 	.ground_leisure_list{
 		display: flex;
 		justify-content: space-between;
-		width: 500px;
-		margin: 0 auto;
-		margin-top: 80px;
-		margin-bottom: -65px;
+		width: 700px;
+		margin-top: 25px;
+		margin-bottom: 25px;
 
 	}
 	.ground_leisure_list li{
 		display: block;
-		width: 125px;
+		width: 175px;
 		height: 50px;
 		line-height: 50px;
 		background-color: #fff;
@@ -52,7 +56,7 @@
 		cursor: pointer;
 	}
 	.ground_leisure_list li input:checked + label{
-		border: 1px solid black;
+		border: 1px solid #324666;
 		/*background: linear-gradient(to right, #ff9900, #ff3333);*/
 		background: #324666;
 		color: #fff;
@@ -106,6 +110,7 @@
    	position: absolute;
     z-index: 900;
     right: 0;
+	top: 5px;
     
    }
    .ground_leisure_search_box{
@@ -217,7 +222,7 @@
 	border-bottom: 1px solid;
 	cursor: pointer;
    }
-	.ground_leisure_name span, .ground_leisure_last_price span{
+	.ground_leisure_txt_box span{
 		color : #FFA41B;
 		font-size : 20px;
 		font-weight: bold;
@@ -238,4 +243,10 @@
 	.ground_leisure_list li.active {
 	    background-color : #213555;
 	    color:#fff;
+	}
+	.banner{
+		background: url(../../img/leisure/background_image_ground.jpg) no-repeat;
+		background-size: cover;
+		height: 444px;
+		position: relative;
 	}
