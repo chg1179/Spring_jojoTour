@@ -15,7 +15,6 @@
 	}
 	table {
 		margin : 30px auto;
-		width : 1400px;
 		border-collapse: collapse;
 		text-align : center;
 		font-size : 14px;
@@ -49,10 +48,13 @@
 <jsp:include page="adminbar.jsp" flush="true"></jsp:include>
 <div id="app">
 	<div style="text-align : center; margin: 20px auto;">
-		<h2 style="color : #213555">패키지 목록</h2>
+		<h1 style="color : #213555; text-align: center; margin: 50px; font-weight : 20;">패키지 목록</h1>
 	</div>
 	<table>
 		<thead>
+			<tr> 
+				<td colspan="4" style="text-align:left; padding-left: 30px; font-size: 20px; color:#213555;">패키지 리스트</td>
+			</tr>
 			<tr>	
 				<th>번호</th>
 				<th>패키지명</th>	

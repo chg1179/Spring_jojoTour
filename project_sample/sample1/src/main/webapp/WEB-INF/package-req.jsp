@@ -15,7 +15,6 @@
 	}
 	table {
 		margin : 30px auto;
-		width : 1400px;
 		border-collapse: collapse;
 		text-align : center;
 		font-size : 14px;
@@ -73,7 +72,7 @@
 <jsp:include page="adminbar.jsp" flush="true"></jsp:include>
 <div id="app">
 	<div style="text-align : center; margin: 20px auto;">
-		<h2 style="color : #213555;">패키지 신청 목록</h2>
+		<h1 style="color : #213555; text-align: center; margin: 50px; font-weight : 20;">패키지 신청 목록</h1>
 	</div>
 	<table>
 		<thead>
@@ -193,7 +192,7 @@
 		</tbody>
 	</table>
 	<div style="text-align : center;">
-		<input style="width : 150px" type="button" value="패 키 지 등 록" id="abtn" @click="fnYbtn(selectRoom, selectRent, selectLeisure)">
+		<input style="width : 150px; " type="button" value="패 키 지 등 록" id="abtn" @click="fnYbtn(selectRoom, selectRent, selectLeisure)">
 	</div>
 </div>
 <jsp:include page="footer.jsp" flush="true"></jsp:include>

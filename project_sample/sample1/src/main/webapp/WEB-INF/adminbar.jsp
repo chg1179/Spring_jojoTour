@@ -8,29 +8,25 @@
 <meta charset="EUC-KR">
 <title>adminbar</title>
 <style>
-    *{
-        margin: 0;
-        padding: 0;
-        
-    }
+    
     a{
         text-decoration: none;
         color: inherit;
     }
     #adminbar {
     	
-        position: fixed;
+        position: float;
         top: 200px;
-        left: 0;
         height: 100%;
         background-color: rgba(255, 255, 255, 0);
-        z-index: 1000;
     }
     #adminbar_container{
         float: left;
-        margin : 10px;
+        margin-top : 100px;
         margin-left : 50px;
-        height: 100%;
+        height: 600px;
+        width : 300px;
+        
        
     }
     .adminbar_btn_box a{

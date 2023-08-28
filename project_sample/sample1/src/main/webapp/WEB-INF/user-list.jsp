@@ -54,7 +54,7 @@
 <jsp:include page="header.jsp" flush="true"></jsp:include>
 <jsp:include page="adminbar.jsp" flush="true"></jsp:include>
 <div id="app">
-<h2 style="color : #f8852a; text-align: center; margin-top: 30px;">蜡历 格废</h2>
+<h1 style="color : #213555; text-align: center; margin: 50px; font-weight : 20;">蜡历 格废</h1>
 	<table class="table custom-table table-striped table-bordered ">
 	<thead class="thead-dark">
 		<tr>	
