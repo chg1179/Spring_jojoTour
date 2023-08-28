@@ -6,6 +6,8 @@
 <script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/basic/table custom-table table-striped table-bordered-style.css" rel="stylesheet"/>
 <link href="../../css/pay/payment-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>주문번호 별 상세 내역</title>
@@ -27,10 +29,6 @@
 		justify-content: center;
 		height: 100vh;
 		margin-top: 100px;
-	}
-	table, tr, th, td{
-		border: 1px solid;
-		border-collapse: collapse;
 	}
 	.page_order_wrap table{
 		margin-top: 30px;
@@ -66,6 +64,7 @@
 	<div id="app">
 		<div id="page_order_container">
 			<div class="page_order_wrap">
+			<h2 style="color : #213555; text-align: center; margin-top: 400px; font-weight : 20;"><span style="font-weight: bold;">ㅣ</span> 상세 예약 내역</h2>
 				<div class="coreTxt"><span class="bar">ㅣ</span> 주문 번호 조회</div>
 				<div class="box">
 					<div>
@@ -99,7 +98,7 @@
 				<!-- 숙박 업소 상품 -->
 		        <div v-if="roomList.length != 0" class="productBox">
 		            <div class="productTxt">숙소 상품</div>
-		            <table>
+		            <table class="table custom-table table-striped table-bordered" style="width: 1000px;">
 		                <thead>
 		                    <tr>
 		                    	<th>숙박업소명</th>
@@ -158,7 +157,7 @@
 		        <!-- 렌트카 상품 -->
 		        <div v-if="rentList.length != 0" class="productBox">
 		            <div class="productTxt">렌트카 상품</div>
-		            <table>
+		            <table class="table custom-table table-striped table-bordered" style="width: 1000px;">
 		                <thead>
 		                    <tr>
 		                        <th>렌트명</th>
@@ -215,7 +214,7 @@
 		        <!-- 레저 상품 -->
 		        <div v-if="leisureList.length != 0" class="productBox">
 		            <div class="productTxt">레저 상품</div>
-		            <table>
+		            <table class="table custom-table table-striped table-bordered" style="width: 1000px;">
 		                <thead>
 		                    <tr>
 		                        <th>레저명</th>

@@ -16,6 +16,11 @@
 <meta charset="EUC-KR">
 <title>FAQ 게시판</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-weight: lighter;
+	}
 </style>
 </head>
 <body>

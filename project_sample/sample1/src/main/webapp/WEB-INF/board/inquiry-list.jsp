@@ -15,6 +15,11 @@
 <meta charset="EUC-KR">
 <title>1:1 문의 게시판</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-weight: lighter;
+	}
 	section.inquiry {
 	  padding: 80px 0;
 	}

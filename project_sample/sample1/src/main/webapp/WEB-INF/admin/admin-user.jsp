@@ -34,6 +34,11 @@
 	 width : 200px;
 	 height : 200px; 
 	}
+	.user{
+		background-color : #213555;
+		color : white;
+	}
+   
 </style>
 </head>
 <body>

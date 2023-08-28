@@ -47,6 +47,10 @@
        height : 100%;
        display : block;
    }
+   .user{
+		background-color : #213555;
+		color : white;
+	}
 </style>
 </head>
 <body>

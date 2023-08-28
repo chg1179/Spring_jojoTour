@@ -10,6 +10,11 @@
 <meta charset="EUC-KR">
 <title>게시글 상세 페이지</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-weight: lighter;
+	}
 	* {
   margin: 0;
   padding: 0;

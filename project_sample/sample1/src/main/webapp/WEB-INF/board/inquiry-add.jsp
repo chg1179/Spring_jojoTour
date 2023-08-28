@@ -13,6 +13,11 @@
 <meta charset="EUC-KR">
 <title>1:1 문의 작성</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-weight: lighter;
+	}
     body {
       font-family: Arial, sans-serif;
       background-color: #f0f0f0;
