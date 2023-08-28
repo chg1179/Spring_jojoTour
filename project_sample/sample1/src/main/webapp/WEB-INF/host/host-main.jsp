@@ -9,29 +9,29 @@
 	body{
 		background-color: #f2f2f2;
 	}
-	.container{
+	#host_container{
 		margin: 50px auto;
 		text-align: center;
 		max-width: 900px;
-		height: 70vh;
 	}
-	.container input{
+	#host_container input{
 		margin: 20px;
 		width: 100px;
 		height: 40px;
 		border-radius: 5px;
 		background-color: #213555;
 		color: #fff;
-		
+		cursor: pointer;
+		border: none;
+		font-weight: bold;
 	}
-	.btn-box, host-img-box {
+	.btn-box {
 		background-color: #fff;
 		width: 100%;
 		border-radius: 5px;
 		margin: 30px auto;
 		text-align: center;
 		display: inline-block;
-		box-shadow: -1px 1px 2px #aaa;
 	}
 	.btn-box .main-text{
 		text-align: center;
@@ -40,15 +40,23 @@
 	}
 	
 	.user-text{
-		 font-weight: bord; 
+		 font-weight: bold; 
 		 font-size: 24px;
+	}
+	.host-img-box{
+		width: 900px;
+		box-shadow: -1px 1px 2px #aaa;
+	}
+	.host-img-box img{
+		width: 100%;
+		height: 100%;
 	}
 </style>
 </head>
 <body>
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
-		<div class="container">
+		<div id="host_container">
 			<div class="text-box">
 				<div class="user-text">{{uId}}님 환영합니다!</div>
 			</div>
@@ -61,12 +69,12 @@
 				<input type="button" value="렌트카" @click="fnRentcarPage"/>
 			</div>
 			<div class="host-img-box">
-				<img src="" alt="호스트 이미지">
+				<img src="../img/host/host.jpg" alt="호스트 이미지">
 			</div>
 			<div class="btn-box">
 				<div class="main-text">
 					<div class="main-text">
-						<div>예약 고객의 정보를 확인하세요.</div>
+						<div>고객의 예약 정보를 확인하세요.</div>
 					</div>
 					<input type="button" value="고객 예약 정보" @click="fnOrderPage"/>
 				</div>
