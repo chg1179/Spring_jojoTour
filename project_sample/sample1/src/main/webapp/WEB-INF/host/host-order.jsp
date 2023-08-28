@@ -8,7 +8,7 @@
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <!-- <link href="../css/basic/custom-table-style.css" rel="stylesheet"/> -->
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>제품 예약 관리 페이지</title>
 <style>
 	.heading-box h2{
 		margin: 50px 10px auto; 
@@ -266,9 +266,24 @@ var app = new Vue({
     		 alert("취소를 철회합니다.");
     		 return;
     	  }
-          var param = {productNo : item.productNo, useYnc : useYnc};
+    	  
+
+		  var returnPoint = item.usePoint;
+		  // 사용한 포인트가 결제 금액이 많으면 취소하는 제품의 금액만큼만 포인트 차감
+		  if(returnPoint > item.payment){
+			returnPoint = item.payment;
+		  }
+			
+		  var param = {
+			uId : self.userId,
+			orderNo : item.orderNo,
+			productKind : item.productKind,
+			productNo : item.productNo,
+			usePoint : returnPoint
+		  };
+		
           $.ajax({
-                 url : "signUpdate.dox",
+                 url : "../revokeOrder.dox",
                  dataType:"json",   
                  type : "POST",
                  data : param,

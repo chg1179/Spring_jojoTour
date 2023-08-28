@@ -17,7 +17,7 @@ public class Order {
 	private String sReserveDate;
 	private String lReserveDate;
 	private String useYnc;
-	private int deduPoint;
+	private int usePoint;
 	private int payment;
 	private String request;
 	
