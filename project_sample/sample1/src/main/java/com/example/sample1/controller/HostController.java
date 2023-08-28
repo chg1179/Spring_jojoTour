@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.example.sample1.model.Test;
-import com.example.sample1.service.TestService;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpServletRequest;

@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.example.sample1.model.Board;
-import com.example.sample1.model.Test;
 
 public interface BoardService {
 	//공지사항 검색

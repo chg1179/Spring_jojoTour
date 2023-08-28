@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.example.sample1.model.Board;
 import com.example.sample1.model.Faq;
-import com.example.sample1.model.Test;
 
 public interface FaqService {
 

@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.sample1.model.Faq;
-import com.example.sample1.model.Test;
 import com.example.sample1.service.BoardService;
 import com.example.sample1.service.FaqService;
-import com.example.sample1.service.TestService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;

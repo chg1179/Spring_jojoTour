@@ -8,10 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.sample1.mapper.BoardMapper;
 import com.example.sample1.mapper.FaqMapper;
-import com.example.sample1.mapper.TestMapper;
 import com.example.sample1.model.Board;
 import com.example.sample1.model.Faq;
-import com.example.sample1.model.Test;
 
 @Service
 public class FaqServiceImpl implements FaqService{

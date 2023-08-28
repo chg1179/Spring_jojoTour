@@ -3,8 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="../js/jquery.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <title>Package List Page</title>
 <link href="../../css/basic/table-style.css" rel="stylesheet"/>
@@ -45,7 +43,7 @@
 </style>
 </head>
 <body>
-<jsp:include page="header.jsp" flush="true"></jsp:include>
+<jsp:include page="../header.jsp" flush="true"></jsp:include>
 <jsp:include page="adminbar.jsp" flush="true"></jsp:include>
 <div id="app">
 	<div style="text-align : center; margin: 20px auto;">
@@ -97,7 +95,7 @@
 	
 	
 </div>
-<jsp:include page="footer.jsp" flush="true"></jsp:include>
+<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

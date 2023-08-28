@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.example.sample1.model.Board;
 import com.example.sample1.model.Faq;
-import com.example.sample1.model.Test;
 
 @Mapper
 public interface FaqMapper {

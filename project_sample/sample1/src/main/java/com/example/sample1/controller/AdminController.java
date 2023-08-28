@@ -30,28 +30,28 @@ public class AdminController {
 	
 	@RequestMapping("/user-list.do") 
     public String userList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/user-list";
+        return "/admin/user-list";
     }
 
 	@RequestMapping("/host-list.do") 
     public String hostList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/host-list";
+        return "/admin/host-list";
     }
 	@RequestMapping("/admin/user.do") 
     public String userhost(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/admin-user";
+        return "/admin/admin-user";
     }
 	@RequestMapping("/admin/main.do")
     public String adminMain(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/admin-main";
+        return "/admin/admin-main";
     }
 	@RequestMapping("/admin/packagereq.do")
     public String adminPackage(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/package-req";
+        return "/admin/package-req";
     }
 	@RequestMapping("/admin/packagelist.do")
     public String packageList(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-        return "/package-list";
+        return "/admin/package-list";
     }
 	
 	@RequestMapping(value = "/userList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.sample1.mapper.BoardMapper;
-import com.example.sample1.mapper.TestMapper;
 import com.example.sample1.model.Board;
-import com.example.sample1.model.Test;
 
 @Service
 public class BoardServiceImpl implements BoardService{

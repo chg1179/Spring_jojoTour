@@ -51,7 +51,7 @@
 </style>
 </head>
 <body>
-<jsp:include page="header.jsp" flush="true"></jsp:include>
+<jsp:include page="../header.jsp" flush="true"></jsp:include>
 <jsp:include page="adminbar.jsp" flush="true"></jsp:include>
 <div id="app">
 <h1 style="color : #213555; text-align: center; margin: 50px; font-weight : 20;">유저 목록</h1>
@@ -104,7 +104,7 @@
 	</div>
 	</tbody>	
 </div>
-<jsp:include page="footer.jsp" flush="true"></jsp:include>
+<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>

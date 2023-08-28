@@ -11,7 +11,7 @@
 <meta charset="EUC-KR">
 <title>Host List</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="../css/paging-style.css" rel="stylesheet"/>
+<link href="../../css/paging-style.css" rel="stylesheet"/>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 	body {
@@ -50,7 +50,7 @@
 </style>
 </head>
 <body>
-<jsp:include page="header.jsp" flush="true"></jsp:include>
+<jsp:include page="../header.jsp" flush="true"></jsp:include>
 <jsp:include page="adminbar.jsp" flush="true"></jsp:include>
 <div id="app">
 <h1 style="color : #213555; text-align: center; margin: 50px; font-weight : 20;">호스트 목록</h1>
@@ -101,7 +101,7 @@
 		</template>
 	</div>
 </div>
-<jsp:include page="footer.jsp" flush="true"></jsp:include>
+<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>
