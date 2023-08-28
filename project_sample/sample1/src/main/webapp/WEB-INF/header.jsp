@@ -174,6 +174,9 @@
 	                                <li><a href="javascript:;" @click="checkGroundKind('HORSE')">승마</a></li>
 	                            </ul>
 	                        </li>
+	                        <li class="s_header">
+	                            <a href="javascript:;" @click="fnPackage">패키지</a>
+	                        </li>
 	                        <li class="header_board">
 	                            <a href="javascript:;" @click="fnNotice">게시판</a>
 	                            <ul>
@@ -285,6 +288,9 @@ var app = new Vue({
 			var self = this;
 			$.pageChange("/stay.do", {stayKind : kind});
 		},
+		fnPackage: function(){
+			location.href="/package.do";
+		}
 	}, // methods
 	created : function() {
 		var self = this;

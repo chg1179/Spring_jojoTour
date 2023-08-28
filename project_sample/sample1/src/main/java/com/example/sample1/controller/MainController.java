@@ -32,4 +32,9 @@ public class MainController {
 	}
 	
 	
+	//패키지
+	@RequestMapping("/package.do") 
+    public String packageMain(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
+        return "/package/package-main";
+    }
 }
