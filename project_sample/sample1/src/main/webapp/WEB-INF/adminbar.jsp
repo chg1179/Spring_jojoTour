@@ -6,49 +6,52 @@
 <script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
-<title>adminbar</title>
+<title>AdminBar</title>
 <style>
-    
+    *{
+        margin: 0;
+        padding: 0;
+    }
     a{
         text-decoration: none;
         color: inherit;
     }
-    #adminbar {
-    	
-        position: float;
-        top: 200px;
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0);
-    }
     #adminbar_container{
         float: left;
-        margin-top : 100px;
-        margin-left : 50px;
-        height: 600px;
-        width : 300px;
-        
-       
+        margin : 50px;
+        border: 1px solid #ccc;
+    }
+    .adminbar_title{
+        width: 200px;
+        background-color: #213555;
+        text-align: center;
+        padding: 5px;
+        box-sizing: border-box;
+        color: #fff;
+        font-weight: bold;
+        height: 70px;
+        font-size: 24px;
+        line-height: 60px;
     }
     .adminbar_btn_box a{
         display: block;
-        width: 100%;
+        width: 200px;
         box-sizing: border-box;
         text-align: left;
-        padding: 20px;
+        padding: 5px;
         height: 50px;
-        line-height: 10px;
-        border-bottom : 1px solid #ccc;
+        line-height: 40px;
+        border: 1px solid #ccc;
         font-size: 16px;
         font-weight: 500;
         position: relative;
-         font-size : 18px;
     }
 </style>
 </head>
 <body>
 	<div id="adminbar">
 		<div id="adminbar_container">
-           
+            <div class="adminbar_title">관리페이지</div>
             <div class="adminbar_btn_box">
                 <a href="javascript:;" class="page_btn user" @click="fnUser">회원관리</a>
                 <a href="javascript:;" class="page_btn pack" @click="fnPackage">패키지 관리</a>
@@ -91,7 +94,6 @@ var app = new Vue({
 	},
 	created : function() {
 		var self = this;
-		/* self.fnGetList(); */
 	}// created
 });
 </script>

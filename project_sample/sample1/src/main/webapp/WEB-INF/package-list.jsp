@@ -7,6 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
 <title>Package List Page</title>
+<link href="../../css/basic/table-style.css" rel="stylesheet"/>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 	body {
@@ -50,7 +51,7 @@
 	<div style="text-align : center; margin: 20px auto;">
 		<h1 style="color : #213555; text-align: center; margin: 50px; font-weight : 20;">패키지 목록</h1>
 	</div>
-	<table>
+	<table style="width: 1400px;">
 		<thead>
 			<tr> 
 				<td colspan="4" style="text-align:left; padding-left: 30px; font-size: 20px; color:#213555;">패키지 리스트</td>

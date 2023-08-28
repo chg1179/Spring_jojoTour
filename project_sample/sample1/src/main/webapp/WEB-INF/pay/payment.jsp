@@ -10,37 +10,14 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <link href="../../css/pay/payment-style.css" rel="stylesheet"/>
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
+<link href="../../css/basic/table-style.css" rel="stylesheet"/>
 <style>
 	@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 	body {
 		font-family: 'Jeju Gothic', sans-serif;
 		font-weight: lighter;
 	}
-	.tbl {
-			margin : 30px;
-			border-collapse: collapse;
-			text-align : center;
-			font-size : 14px;
-	    	border-radius: 20px;
-	    	background-color: #fafafa;
-	  	 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-	}
 	
-	th {
-		font-size : 16px;
-		font-weight : bold;
-		padding: 5px 10px;
-		height: 30px;
-	}
-	td {
-		padding: 5px 10px;
-		height: 30px;
-	}
-	
-	.tbl tr:hover {
-		    background-color: #EEEEEE;
-		    color : black;
-		  }
 </style>
 </head>
 <body>
@@ -55,11 +32,11 @@
 		        <div v-if="roomList.length != 0" class="productBox">
 		            <div class="productTxt">숙소 상품</div>
 		            
-		            <table class="tbl">
+		            <table class="tbl" style="margin-left: 100px;">
 		                <thead>
 			                <tr>
-								<td colspan="5" style="text-align: left; padding-left: 30px; font-size: 20px; color: #213555; border-bottom: 2px solid #999;">
-									숙소상품
+								<td colspan="5" style="text-align: left; padding-left: 30px; font-size: 16px; color: #213555; border-bottom: 2px solid #999;">
+									숙소 상세 정보
 								</td>
 							</tr>
 			                <tr>
@@ -86,12 +63,12 @@
 		        <div v-if="rentList.length != 0" class="productBox">
 		            <div class="productTxt">렌트카 상품</div>
 		            
-		            <table class="tbl">
+		            <table class="tbl" style="margin-left: 100px;">
 		                <thead>
 		                <tr>
 						<td colspan="4"
-							style="text-align: left; padding-left: 30px; font-size: 20px; color: #213555; border-bottom: 2px solid #999;">
-							렌트카 상품
+							style="text-align: left; padding-left: 30px; font-size: 16px; color: #213555; border-bottom: 2px solid #999;">
+							렌트카 상세 정보
 						</td>
 					</tr>
 		                    <tr>
@@ -116,12 +93,12 @@
 		        <div v-if="leisureList.length != 0" class="productBox">
 		            <div class="productTxt">레저 상품</div>
 		            
-		            <table class="tbl">
+		            <table class="tbl" style="margin-left: 100px;">
 		                <thead>
 		                <tr>
 						<td colspan="3"
-							style="text-align: left; padding-left: 30px; font-size: 20px; color: #213555; border-bottom: 2px solid #999;">
-							숙소상품
+							style="text-align: left; padding-left: 30px; font-size: 16px; color: #213555; border-bottom: 2px solid #999;">
+							레저 상세 정보
 						</td>
 					</tr>
 		                    <tr>
@@ -144,7 +121,7 @@
 			<div class="box">
 			    <div class="coreTxt"><span class="bar">ㅣ</span> 요금 상세 정보</div>
 			    <div>
-			        <table class="tbl">
+			        <table class="tbl" style="margin-left: 110px; width: 600px;">
 			            <thead>
 			            <tr>
 						<td colspan="2"
@@ -212,16 +189,16 @@
 							예약자와 사용자 동일
 						</label>
 						<label>
-							<input type="radio" class="radioBtn" name="infoCheck" @click="infoView('notSame')">
+							<input type="radio" class="radioBtn" name="infoCheck" @click="infoView('notSame')" style="margin-left: 40px;">
 							새로 입력
 						</label>
 					</div>
 					<div>
-						<div>성명</div>
+						<div style="font-size: 18px; margin-top: 30px;">성명</div>
 						<div class="wrap"><input type="text" v-model="userInfo.uName"></div>
 					</div>
 					<div>
-						<div>연락처</div>
+						<div style="font-size: 18px; margin-top: 30px;">연락처</div>
 						<div>
 							<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone1" maxlength="3"></span>-
 							<span class="wrapPhone"><input type="text" v-model="phoneSplit.phone2" maxlength="4"></span>-
@@ -229,11 +206,11 @@
 						</div>
 					</div>
 					<div>
-						<div>이메일</div>
+						<div style="font-size: 18px; margin-top: 30px;">이메일</div>
 						<div class="wrap"><input type="text" v-model="userInfo.email"></div>
 					</div>
 					<div>
-						<div>요청사항</div>
+						<div style="font-size: 18px; margin-top: 30px;">요청사항</div>
 						<div class="wrap"><textarea rows="3" cols="50"  v-model="request" maxlength="50" placeholder="요청사항이 있는 경우 자유롭게 입력해 주세요."></textarea></div>
 					</div>
 				</div>
@@ -244,13 +221,13 @@
 				<div class="coreTxt"><span class="bar">ㅣ</span> 포인트 사용</div>
 				<div>
 					<div>
-						<div>보유 {{userInfo.point}}P</div>
+						<div>보유 : <span style="font-weight: bold;">{{userInfo.point}}P</span></div>
 					</div>
 					<div>
-						<div>사용</div>
+						<div style="margin-top: 30px;">사용</div>
 						<div>
 							<span class="wrapPhone"><input type="text" v-model="usePoint" @input="pointOverCheck" placeholder="0"></span>
-							<input type="button" class="btn" @click="allPoint" value="전액사용">
+							<input type="button" class="btn" @click="allPoint" value="전액사용" style="font-size: 18px;">
 						</div>
 					</div>
 				</div>

@@ -1,12 +1,12 @@
 	.tbl {
-		margin : 30px auto;
-		width : 1400px;
+		margin-left : 10px;
+		width: 1000px;
 		border-collapse: collapse;
 		text-align : center;
 		font-size : 14px;
 	    border-radius: 20px;
 	    background-color: #fafafa;
-	  	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+	  	box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 	}
 	
 	th {
@@ -24,3 +24,4 @@
 		    background-color: #EEEEEE;
 		    color : black;
 	}
+	
