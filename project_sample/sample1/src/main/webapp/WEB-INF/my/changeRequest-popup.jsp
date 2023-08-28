@@ -35,7 +35,7 @@
 	<div id="app">
 		<div id="container">
 		<br>
-			<h2>요청사항 수정</h2>
+			<h2><span style="color:#213555">ㅣ</span>요청사항 수정</h2>
 			<br><hr style="width:77%;float:left;"><br>
 			<div class="wrap">
 				<textarea rows="3" cols="50" v-model="request" maxlength="200" placeholder="요청사항이 있는 경우 자유롭게 입력해 주세요."></textarea>
