@@ -82,10 +82,10 @@
 			<div class="join_acess_wrap">
 			<br><br><h1>회원가입</h1><span style="color:gray;">조조투어 회원이 되시고 회원만의 다양한 해택을 받아가세요</span><br><br>
 			
-				<h2>조조투어 회원약관 동의<span>(필수)</span></h2>
+				<h2>조조투어 회원약관 동의<span style="color:#FA163F">(필수)</span></h2>
 				<section class="box-terms">
-					<p v-if="status == 'U'"><strong>조조 투어의 이용약관<span style="color : red;">(개인회원)</span></strong></p>								
-					<p v-else><strong>조조 투어의 이용약관<span style="color : red;">(호스트회원)</span></strong></p>								
+					<p v-if="status == 'U'"><strong>조조 투어의 이용약관<span style="color:#FA163F">(개인회원)</span></strong></p>								
+					<p v-else><strong>조조 투어의 이용약관<span style="color:#FA163F">(호스트회원)</span></strong></p>								
 						<h2>제 1 장 총칙</h2>
 												
 						<h3>제 1 조 (목적)</h3>
@@ -293,7 +293,7 @@
 						
 				</section>
 				<div class="join_acess_checkbox"><label><input type="checkbox" v-model="acess" value="1"> 동의</label></div>
-				<h2>개인정보 수집·이용 동의<span>(필수)</span></h2>
+				<h2>개인정보 수집·이용 동의<span style="color:#FA163F">(필수)</span></h2>
 				<section class="box-terms">
 					<ol>
 						<li>1. 개인정보의 수집·이용 목적
@@ -321,7 +321,7 @@
 										<li>&middot;선택 항목 : 연락처 정보 중 필수로 입력한 이외의 정보</li>
 									</ul>
 								</li> -->
-								<li>- 14세 이상 / 만 14세 미만
+								<li>- 14세 이상
 									<ul>
 										<li>·필수 항목 : 아이디, 비밀번호, 성명, 연락처(전화번호, 휴대전화번호 중 택1), 사용자의 GPS 위치좌표</li>
 										<li>·선택 항목 : 연락처 정보 중 필수로 입력한 이외의 정보, 이메일, 주소</li>
@@ -349,7 +349,7 @@
 										
 				</section>
 				<div class="join_acess_checkbox"><label><input type="checkbox" v-model="acess" value="2"> 동의</label></div>
-				<h2>이메일·문자 수신 동의<span>(선택)</span></h2>
+				<h2>이메일·문자 수신 동의<span  style="color:#FA163F">(선택)</span></h2>
 				<section class="box-terms join_email_box">
 					<li> 수집목적 : 조조투어에서 제공하는 취업정보, 행사, 뉴스레터, 이벤트, 세미나 박람회 소식 등 제공</li>
 					<li> 수집항목 : 이메일, 휴대전화번호</li>
@@ -366,12 +366,12 @@
 						</div>
 						<button @click="fnAcess('up')">14세 이상 회원가입</button>
 					</div>
-					<div class="join_acess_btn_box">
+					<!-- <div class="join_acess_btn_box">
 						<div class="join_acess_img_box">
 							<img src="../img/join/join_down.png" alt="">
 						</div>
 						<button @click="fnAcess('down')">14세 미만 회원가입</button>
-					</div>
+					</div> -->
 				</div>
 
 				<div class="join_acess_btn_host" v-else>

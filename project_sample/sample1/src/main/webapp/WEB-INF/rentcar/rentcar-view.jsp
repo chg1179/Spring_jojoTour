@@ -99,7 +99,7 @@
 					<div>
 						<input type="date" name="checkInDate" v-model="checkInDate"> ~
 						<input type="date" name="checkOutDate" v-model="checkOutDate">
-						<button @click="fnCheck" class="datebtn" style="cursor: pointer;">검색</button>
+						<!-- <button @click="fnCheck" class="datebtn" style="cursor: pointer;">검색</button> -->
 					</div>
 				</div>
 				<br>
@@ -293,8 +293,8 @@ var app = new Vue({
                 type : "POST",
                 data : param,
                 success : function(data) { 
-	                	alert("추가되었습니다");
-						location.reload();
+	                alert("추가되었습니다");
+					location.reload();
                 }
             }); 
 		},

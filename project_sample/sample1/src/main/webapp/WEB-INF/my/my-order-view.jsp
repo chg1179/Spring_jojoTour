@@ -417,8 +417,8 @@ var app = new Vue({
 		},
 		// 요구사항 변경
 		fnChangeRequest : function(productKind, productNo, request){
-			var popWidth = 800;
-		    var popHeight = 500;
+			var popWidth = 650;
+		    var popHeight = 380;
 		    
 		    // 화면 정 중앙에 띄우기 위한 변수
 		    var screenWidth = window.screen.width;
