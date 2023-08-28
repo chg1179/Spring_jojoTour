@@ -20,7 +20,7 @@
     }
 
     #app {
-      margin: 20px auto;
+      margin: 35px auto;
       max-width: 1000px;
       background-color: #fff;
       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
@@ -53,7 +53,7 @@
       border-radius: 5px;
       padding: 10px;
       font-size: 16px;
-      height:800px;
+      height:825px;
     }
 
     button[disabled] {

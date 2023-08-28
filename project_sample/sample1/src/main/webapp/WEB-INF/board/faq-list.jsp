@@ -37,12 +37,12 @@
 						
 						<select id="mySelect" v-model="mySelect" @click="fnGetList">
 							<option value="">:: 전체 ::</option>
-							<option value="<숙박>">숙박</option>
-							<option value="<렌트>">렌트</option>
-							<option value="<레저>">레저</option>
-							<option value="<패키지>">패키지</option>
-							<option value="<포인트>">포인트</option>
-							<option value="<기타문의>">기타문의</option>
+							<option value="[숙박]">숙박</option>
+							<option value="[렌트]">렌트</option>
+							<option value="[레저]">레저</option>
+							<option value="[패키지]">패키지</option>
+							<option value="[포인트]">포인트</option>
+							<option value="[기타문의]">기타문의</option>
 						</select>
 						
 							<label for="search" class="blind">FAQ 내용 검색</label>
