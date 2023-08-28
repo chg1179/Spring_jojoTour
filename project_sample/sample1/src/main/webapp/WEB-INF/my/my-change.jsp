@@ -112,8 +112,8 @@
 				<div class="coreTxt"><span class="bar">ㅣ</span> 회원정보 수정</div>
 				<table class="change_table">
 					<tr>
-						<td>아이디</td>
-						<td>{{user.userId}}</td>
+						<td style="width: 160px;">아이디</td>
+						<td style="width: 340px;">{{user.userId}}</td>
 					</tr>
 					<tr>
 						<td>이름</td>
@@ -136,8 +136,8 @@
 						<td class="change_email"><input type="text" value="user.email" v-model="user.email" maxlength="30"></td>
 					</tr>
 					<tr>
-						<td class="change_addr_title">주소 <button @click="fnSearchAddr">검색</button></td>
-						<td class="change_addr"><input disabled type="text" value="user.addr" v-model="user.addr"></td>
+						<td class="change_addr_title">주소</td>
+						<td class="change_addr"><input disabled type="text" value="user.addr" v-model="user.addr"><button @click="fnSearchAddr" style="width: 50px; height: 30px; margin-top: 10px;">검색</button></td>
 					</tr>
 					<tr>
 						<td>우편번호</td>

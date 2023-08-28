@@ -6,6 +6,7 @@
 <script src="/js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <link href="../css/my/my-style.css" rel="stylesheet"/>
+<link href="../../css/basic/table-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
 <title>예약내역</title>
 <style>
@@ -50,10 +51,6 @@
 		font-size: 30px;
 		font-weight: bold;
 	}
-	table, tr, th, td{
-		border: 1px solid;
-		border-collapse: collapse;
-	}
 	.page_order_wrap table{
 		margin-top: 30px;
 		text-align: center;
@@ -84,8 +81,8 @@
 						<div><span>{{orderCancel}}건</span></div>
 					</div>
 				</div>
-				<table v-if="orderList != ''">
-					<tr>
+				<table v-if="orderList != ''" class="tbl">
+					<tr style="border-bottom: 2px solid black">
 						<th>주문번호</th>
 						<th>주문일</th>
 						<th>제품금액</th>
