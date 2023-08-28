@@ -85,11 +85,17 @@ public class FreeServiceImpl implements FreeService{
 		// TODO Auto-generated method stub
 		return freeMapper.deleteFree(map);
 	}
-
+	//게시글 삭제
 	@Override
 	public int addReport(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
-		return freeMapper.updateReport(map);
+		freeMapper.updateReport(map);
+		Free free = freeMapper.selectFreeInfo(map);
+		// 신고 횟수가 5회 이상일 때 게시글 삭제
+		if(free.getNotifyCnt() >= 5) {
+			freeMapper.updateDelyn(map);
+		}
+		return 1;
 	}
 
 	@Override

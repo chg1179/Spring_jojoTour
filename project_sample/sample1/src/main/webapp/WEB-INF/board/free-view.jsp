@@ -242,7 +242,7 @@ var app = new Vue({
 	                type : "POST",
 	                data : param,
 	                success : function(data) { 
-	                	alert("신고되었습니다..");
+	                	alert("신고되었습니다.");
 	                	self.fnGetList();
 	                	window.location.href = "list.do";
 	                }

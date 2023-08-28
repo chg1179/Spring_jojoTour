@@ -12,14 +12,15 @@
 	
 	<select id="selectFreeList" parameterType="hashmap" 
 	resultType="com.example.sample1.model.Free">
-		SELECT *
+	  SELECT *
       FROM T2_FREE_TBL F
       LEFT JOIN (
          SELECT COUNT(*) COMM_CNT, FREE_NO
          FROM T2_COMMENT_TBL
+         WHERE DELYN = 'N'
          GROUP BY FREE_NO
       ) C ON  F.FREE_NO = C.FREE_NO
-      WHERE 1=1
+      WHERE F.DELYN = 'N'
       <if test="search != '' and search != null"> 
       AND (FREE_TITLE LIKE CONCAT('%',#{search},'%')
             OR U_ID LIKE CONCAT('%',#{search},'%'))
@@ -31,23 +32,28 @@
 	</select>
 	
 	<select id="selectCnt" resultType="int">
-		SELECT COUNT(*) FROM T2_FREE_TBL
+		SELECT COUNT(*) FROM T2_FREE_TBL WHERE DELYN = 'N'
 	</select>
 		
-		<select id="selectFreeInfo" parameterType="hashmap" 
-		resultType="com.example.sample1.model.Free">
-			SELECT *
-			FROM T2_FREE_TBL
-			WHERE FREE_NO = #{freeNo}
-		</select>
+	<select id="selectFreeInfo" parameterType="hashmap" resultType="com.example.sample1.model.Free">
+		SELECT *
+		FROM T2_FREE_TBL
+		WHERE FREE_NO = #{freeNo}
+	</select>
 		
+	<update id="updateDelyn" parameterType="hashmap">
+		UPDATE T2_FREE_TBL
+		SET
+			DELYN = 'Y'
+		WHERE FREE_NO = #{freeNo}
+	</update>
 				
-		<select id="selectFreeComment" parameterType="hashmap" resultType="com.example.sample1.model.Free">
-			SELECT *
-			FROM T2_COMMENT_TBL
-			WHERE FREE_NO = #{freeNo} AND DELYN = 'N'
-			ORDER BY C_WRITE_TIME ASC
-		</select>
+	<select id="selectFreeComment" parameterType="hashmap" resultType="com.example.sample1.model.Free">
+		SELECT *
+		FROM T2_COMMENT_TBL
+		WHERE FREE_NO = #{freeNo} AND DELYN = 'N'
+		ORDER BY C_WRITE_TIME ASC
+	</select>
 		
 	<insert id="insertFreeComment" parameterType="hashmap">
 	    INSERT INTO T2_COMMENT_TBL 
@@ -79,55 +85,47 @@
 		WHERE FREE_NO = #{freeNo}
 	</update>
 	
-		<delete id="deleteFreeCheck" parameterType="hashmap">
-			DELETE
-			FROM T2_FREE_TBL
-			WHERE FREE_NO IN
-			<foreach collection="list" item="item" open="(" close=")" separator=",">
-				#{item}
-			</foreach>
-		</delete>
+	<delete id="deleteFreeCheck" parameterType="hashmap">
+		DELETE
+		FROM T2_FREE_TBL
+		WHERE FREE_NO IN
+		<foreach collection="list" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
 		
-		<delete id="deleteFree" parameterType="hashmap">
-			DELETE
-			FROM T2_FREE_TBL
-			WHERE FREE_NO = #{freeNo}
-		</delete>
+	<delete id="deleteFree" parameterType="hashmap">
+		DELETE
+		FROM T2_FREE_TBL
+		WHERE FREE_NO = #{freeNo}
+	</delete>
+	
+	<update id="updateReport" parameterType="hashmap">
+		UPDATE T2_FREE_TBL
+		SET
+			NOTIFY_CNT = NOTIFY_CNT + 1
+		WHERE FREE_NO = #{freeNo}
+	</update>
 		
-		<update id="updateReport" parameterType="hashmap">
-			UPDATE T2_FREE_TBL
-			SET
-				NOTIFY_CNT = NOTIFY_CNT + 1
-			WHERE FREE_NO = #{freeNo}
-		</update>
+	<update id="updateRecommend" parameterType="hashmap">
+		UPDATE T2_FREE_TBL
+		SET
+			RECOMMEND = RECOMMEND + 1
+		WHERE FREE_NO = #{freeNo}
+	</update>
 		
-		<update id="updateDelyn" parameterType="hashmap">
-			UPDATE T2_FREE_TBL
-			SET
-				DELYN = 'Y'
-			WHERE NOTIFY_CNT > 10
-		</update>
-		
-		<update id="updateRecommend" parameterType="hashmap">
-			UPDATE T2_FREE_TBL
-			SET
-				RECOMMEND = RECOMMEND + 1
-			WHERE FREE_NO = #{freeNo}
-		</update>
-		
-		<select id="selectNextTitle" parameterType="hashmap" resultType="com.example.sample1.model.Free">
-			SELECT FREE_NO, FREE_TITLE, F_WRITE_TIME
-			FROM T2_FREE_TBL
-			WHERE
-			<if test='search == "UP"'> 
-				FREE_NO > #{freeNo}
-				ORDER BY FREE_NO ASC
-			</if>
-			<if test='search == "DOWN"'>
-				<![CDATA[ FREE_NO < #{freeNo} ]]>
-				ORDER BY FREE_NO DESC
-			</if>
-			LIMIT 1
-		</select>
-
+	<select id="selectNextTitle" parameterType="hashmap" resultType="com.example.sample1.model.Free">
+		SELECT FREE_NO, FREE_TITLE, F_WRITE_TIME
+		FROM T2_FREE_TBL
+		WHERE
+		<if test='search == "UP"'> 
+			FREE_NO > #{freeNo}
+			ORDER BY FREE_NO ASC
+		</if>
+		<if test='search == "DOWN"'>
+			<![CDATA[ FREE_NO < #{freeNo} ]]>
+			ORDER BY FREE_NO DESC
+		</if>
+		LIMIT 1
+	</select>
 </mapper>

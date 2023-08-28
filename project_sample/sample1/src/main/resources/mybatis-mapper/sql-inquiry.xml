@@ -7,6 +7,7 @@
 	<select id="selectInquiryList" resultType="com.example.sample1.model.Inquiry">
 		SELECT * 
 		FROM T2_INQUIRY_TBL
+		WHERE DELYN = 'N'
 		ORDER BY I_NO DESC
 		<if test="lastNum != '' and lastNum != null"> 
 			LIMIT #{startNum}, #{lastNum}

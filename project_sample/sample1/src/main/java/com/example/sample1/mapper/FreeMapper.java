@@ -35,7 +35,9 @@ public interface FreeMapper {
 	
 	int deleteFree(HashMap<String, Object> map);
 	
+	// 게시글 신고
 	int updateReport(HashMap<String, Object> map);
+	int updateDelyn(HashMap<String, Object> map);
 	
 	int updateRecommend(HashMap<String, Object> map);
 	

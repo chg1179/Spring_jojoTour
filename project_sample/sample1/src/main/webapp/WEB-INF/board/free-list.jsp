@@ -115,7 +115,7 @@ var app = new Vue({
 		fnGetList : function(){
 			var self = this;
 			var startNum = ((self.selectPage-1) * 9);
-    		var lastNum = 9;
+    		var lastNum = 10;
 			var param = {search : self.search, startNum : startNum, lastNum : lastNum};
 			console.log(param);
 			$.ajax({
