@@ -9,6 +9,11 @@
    <meta charset="EUC-KR">
    <title>로그인</title>
    <style>
+   @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-weight: lighter;
+	}
        *{
            margin: 0;
            padding: 0;

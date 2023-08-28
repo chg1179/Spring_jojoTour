@@ -7,6 +7,11 @@
 <meta charset="EUC-KR">
 <title>회원 가입</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-weight: lighter;
+	}
     #join_container{
         height: 100vh;
         background-color: #eee;

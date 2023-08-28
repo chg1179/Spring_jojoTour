@@ -8,6 +8,11 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-weight: lighter;
+	}
 	#pwd_change_container{
 		display: flex;
 		align-items: center;

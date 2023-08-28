@@ -9,6 +9,11 @@
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+	font-family: 'Jeju Gothic', sans-serif;
+	font-weight: lighter;
+	}
 	*{
 		margin: 0;
 		padding: 0;
@@ -182,6 +187,7 @@
 	            <span></span>
 	            <span></span>
 	            <span></span>
+	            <img src="../img/cart/loading.png" style="position: absolute; top: -34px; left: -27px; z-index: -1">
 	        </div>
 	    </div>
     <div class="loading_btn">사라져</div>
