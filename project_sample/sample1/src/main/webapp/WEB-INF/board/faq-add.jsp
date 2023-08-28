@@ -65,7 +65,7 @@
     border: 1px solid #ccc;
     height: 750px;
 	}
-	 .search-wrap {
+	.search-wrap {
       display: flex;
       align-items: center;
 
@@ -89,7 +89,7 @@
 		        <div class="tool_area">
 		          <button v-if="fNo === ''" @click="fnAdd" class="btn1">등록</button>
 		          <button v-else @click="fnEdit" class="btn1">수정</button>
-		          <button @click="fnBack" class="btn2">뒤로가기</button>
+		          <button @click="fnBack" class="btn1">뒤로가기</button>
 		        </div>
 		    </div>
 	

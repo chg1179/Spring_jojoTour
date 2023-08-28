@@ -16,7 +16,7 @@
 		font-family: 'Jeju Gothic', sans-serif;
 		font-weight: lighter;
 	}
-	#tbl {
+	.tbl {
 			margin : 30px;
 			border-collapse: collapse;
 			text-align : center;
@@ -37,7 +37,7 @@
 		height: 30px;
 	}
 	
-	#tbl tr:hover {
+	.tbl tr:hover {
 		    background-color: #EEEEEE;
 		    color : black;
 		  }
@@ -55,15 +55,14 @@
 		        <div v-if="roomList.length != 0" class="productBox">
 		            <div class="productTxt">숙소 상품</div>
 		            
-		            <table id="tbl">
+		            <table class="tbl">
 		                <thead>
-		                <tr>
-						<td colspan="5"
-							style="text-align: left; padding-left: 30px; font-size: 20px; color: #213555; border-bottom: 2px solid #999;">
-							숙소상품
-						</td>
-					</tr>
-		                    <tr>
+			                <tr>
+								<td colspan="5" style="text-align: left; padding-left: 30px; font-size: 20px; color: #213555; border-bottom: 2px solid #999;">
+									숙소상품
+								</td>
+							</tr>
+			                <tr>
 		                    	<th>숙박업소명</th>
 		                        <th>숙소명</th>
 		                        <th>입실</th>
@@ -87,7 +86,7 @@
 		        <div v-if="rentList.length != 0" class="productBox">
 		            <div class="productTxt">렌트카 상품</div>
 		            
-		            <table id="tbl">
+		            <table class="tbl">
 		                <thead>
 		                <tr>
 						<td colspan="4"
@@ -117,7 +116,7 @@
 		        <div v-if="leisureList.length != 0" class="productBox">
 		            <div class="productTxt">레저 상품</div>
 		            
-		            <table id="tbl">
+		            <table class="tbl">
 		                <thead>
 		                <tr>
 						<td colspan="3"
@@ -145,14 +144,14 @@
 			<div class="box">
 			    <div class="coreTxt"><span class="bar">ㅣ</span> 요금 상세 정보</div>
 			    <div>
-			        <table>
+			        <table class="tbl">
 			            <thead>
 			            <tr>
 						<td colspan="2"
 							style="text-align: left; padding-left: 30px; font-size: 20px; color: #213555; border-bottom: 2px solid #999;">
 							요금 상세 정보
 						</td>
-					</tr>
+						</tr>
 			                <tr>
 			                    <th>상품명</th>
 			                    <th>금액</th>
@@ -161,7 +160,7 @@
 			            <tbody>
 			                <!-- 숙소 상품 -->
 			                <tr v-if="roomList.length != 0">
-			                    <td>숙소 상품</td>
+			                    <th>숙소 상품</th>
 			                    <td>
 			                        <ul>
 			                            <li v-for="product in roomList" :key="product.productNo">
@@ -172,7 +171,7 @@
 			                </tr>
 			                <!-- 렌트카 상품 -->
 			                <tr v-if="rentList.length != 0">
-			                    <td>렌트카 상품</td>
+			                    <th>렌트카 상품</th>
 			                    <td>
 			                        <ul>
 			                            <li v-for="product in rentList" :key="product.productNo">
@@ -183,7 +182,7 @@
 			                </tr>
 			                <!-- 레저 상품 -->
 			                <tr  v-if="leisureList.length != 0">
-			                    <td>레저 상품</td>
+			                    <th>레저 상품</th>
 			                    <td>
 			                        <ul>
 			                            <li v-for="product in leisureList" :key="product.productNo">
