@@ -41,6 +41,8 @@
     .join_title{
         text-align: center;
         margin: 15px;
+        
+		padding-top: 15px;
     }
     .join_check_wrap{
         position: relative;
@@ -104,8 +106,8 @@
                    <div class="join_input_wrap">
                        <div class="join_check_wrap">
                            <span><i class="fa-solid fa-user"></i> </span>
-                           <label><input type="text" v-model="user.userId" @keyup="fnCheck" maxlength="15" placeholder="아이디"></label>
-                           <span class="join_check" v-if="user.userId != ''">{{message}}</span>
+                           <label><input type="text" v-model="user.userId" @keyup="fnCheck" maxlength="15" placeholder="아이디" style="margin-bottom: 12px;"></label>
+                           <span class="join_check" v-if="user.userId != ''" style="line-height: 26px;">{{message}}</span>
                        </div>
                            <div style="margin-left:25px"><i class="fa-solid fa-lock"></i><label><input type="password" v-model="user.pw1" maxlength="15" placeholder="비밀번호"></label></div>
                            <div style="margin-left:25px"><i class="fa-solid fa-lock"></i><label><input type="password" v-model="user.pw2" maxlength="15" placeholder="비밀번호 확인"></label></div><br><br>
