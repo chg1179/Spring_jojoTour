@@ -83,14 +83,13 @@
         font-weight: 700;
         cursor: pointer;
             padding: 20px;
-    padding-bottom: 35px;
+    	padding-bottom: 35px;
+    	font-family: 'Jeju Gothic', sans-serif;
     }
     .join_btn button:hover{
         background-color: #213555;
     }
-    .join_inner_main{
-    
-    }
+   
 </style>
 </head>
 <body>

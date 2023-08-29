@@ -53,6 +53,8 @@
 		background: #213555;
 		border-radius : 8px;
 		font-size: 30px;
+		font-family: 'Jeju Gothic', sans-serif;
+		
 	}
 	.datebtn{
     color: white;
@@ -74,7 +76,9 @@
 	  border: 0;
 	  box-shadow: 0 10px 10px -10px #bbb inset;
 	}
-	
+	input[type=date]{
+		font-family: 'Jeju Gothic', sans-serif;
+	}
 
 </style>
 </head>

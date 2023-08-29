@@ -9,7 +9,6 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 <link href="../../css/pay/payment-style.css" rel="stylesheet"/>
-<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <link href="../../css/basic/table custom-table table-striped table-bordered-style.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
@@ -17,6 +16,24 @@
 	body {
 		font-family: 'Jeju Gothic', sans-serif;
 		font-weight: lighter;
+	}
+	.btn {
+		width: 100px;
+		height: 50px;
+		color: white;
+		background-color: #aaa;
+	   	border: none;
+	   	border-radius: 5%;
+	   	padding: 7px;
+	   	font-size: 12px;
+	   	text-align: center;
+	   	margin: 10px auto;
+	   	cursor: pointer;
+	}
+	
+	.btn:hover{
+		color: white;
+		background-color: #213555;
 	}
 	
 </style>

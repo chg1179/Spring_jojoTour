@@ -33,7 +33,7 @@
            align-items: center;
            height: 90vh;
             background-color: #eee; 
-            margin-top: 65px
+            margin-top: 160px
 /*            background-image:url('https://tvstore-phinf.pstatic.net/20201124_289/1606182617321ComBh_JPEG/00086.jpg');
        		background-size: cover; */
        }

@@ -42,8 +42,8 @@
     }
     .edit-text {
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 18px;
+        left: -30px;
         background-color: rgba(0, 0, 0, 0.7);
         padding: 5px 10px;
         color: white;
@@ -51,10 +51,17 @@
         border-radius: 4px;
         opacity: 0;
         transition: opacity 0.3s ease;
+        width: 80px;
     }
 
     .edit-link:hover .edit-text {
         opacity: 1;
+    }
+    .btn-dark{
+    	margin-top: 5px;
+    }
+    .btn-red{
+    	margin-top: 5px;
     }
 </style>
 </head>
