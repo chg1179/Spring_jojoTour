@@ -29,6 +29,9 @@
     		justify-content: center;
             
         }
+        .condiv img{
+        	width : 800px;
+        }
         .linediv {
         	display: flex;
         	padding: 20px;

@@ -144,7 +144,7 @@
             justify-content: center;
             align-items: center;
             width : 100%;
-            height: 139vh;
+            height: 100%;
             background-color: rgba(211, 211, 211, 0.4);
             z-index : 1000;
         }
