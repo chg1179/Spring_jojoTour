@@ -213,7 +213,7 @@ var app = new Vue({
 				return;
 			}
 			var regex = new RegExp(/^[0-9]+$/);
-			if(!regex.test(self.orderUserInfo.phone)){
+			if(!regex.test(self.user.phone)){
 				alert("연락처는 숫자만 입력해주세요.");
 				return;
 			}
