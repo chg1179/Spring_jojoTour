@@ -325,7 +325,7 @@
 					<div> 
 						<button @click="fnRemove" class="btn1">삭제하기</button>
 					</div>
-<%-- 				<template>
+				<template>
 					<paginate
 						:page-count="pageCount"
 						:page-range="3"
@@ -336,7 +336,7 @@
 						:container-class="'pagination'"
 						:page-class="'page-item'">
 						</paginate>
-					</template> --%>
+					</template>
 				</div>
 			</div>
 		</div>
