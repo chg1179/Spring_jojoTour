@@ -148,7 +148,7 @@ var app = new Vue({
 	             	
 	             	if(self.answer=='A'){
 	             		self.info.iTitle += "글에 답변드립니다!";
-	             		self.info.iContent += "<br>-----------------------------------<br>안녕하세요.<br>조조투어를 이용해주셔서 감사드립니다.<br>";
+	             		self.info.iContent += "<br>-----------------------------------<br> 안녕하세요.<br> 조조투어를 이용해주셔서 감사드립니다.<br>";
 	             	}
 				}
 			}); 
