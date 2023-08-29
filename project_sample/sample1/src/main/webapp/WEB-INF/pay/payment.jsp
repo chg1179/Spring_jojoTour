@@ -35,7 +35,9 @@
 		color: white;
 		background-color: #213555;
 	}
-	
+	.redTxt{
+		color: red;
+	}
 </style>
 </head>
 <body>
