@@ -45,10 +45,10 @@
 	#delBtn {
 		margin : 5px auto;
 		border-radius : 20px;
-		border : 1px solid #0FABBC;
+		border : 1px solid #213555;
 		width : 60px;
 		height: 30px;
-		background-color: #0FABBC;
+		background-color: #213555;
 		color : white;
 	} 
 	#delBtn:hover {

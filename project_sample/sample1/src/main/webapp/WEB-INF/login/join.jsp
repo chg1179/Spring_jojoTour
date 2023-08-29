@@ -19,7 +19,6 @@
         background-color: #213555;
         margin-top: 100px;
         margin-bottom: 100px;
-        border : 1px solid #213555;
          border-top-right-radius: 6px;
    		 border-top-left-radius: 6px;
    		 box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
