@@ -24,6 +24,9 @@
 .page_move > ul > li:first-child {
     border-top: 1px solid #e3e3e3;
 }
+.page_move a{
+	text-decoration: none;
+}
 
 .notice_title {
     float: left;

@@ -26,11 +26,7 @@
 		border : 1px solid black;
 		padding : 5px 10px;
 	}
-	#free_board_container{
-		margin-top: 0px;
-	}
 	.free_board_wrap{
-		margin-top:0;
 		align-items: auto;
 	}
 	.free_board_title, .free_board_wrap{

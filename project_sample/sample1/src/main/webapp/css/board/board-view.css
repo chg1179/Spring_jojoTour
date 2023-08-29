@@ -6,8 +6,8 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		height: 100vh;
 		margin-top: 100px;
+		margin-bottom: 100px;
 	}
 	.free_board_h2_wrap{
 		display: flex;

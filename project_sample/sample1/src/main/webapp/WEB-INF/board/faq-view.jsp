@@ -48,8 +48,10 @@
     .free_board_contents {
         width: 100%;
         max-width: 876px;
-        
     }
+	.free_board_title, .free_board_wrap{
+		width : 876px;
+	}
 </style>
 </head>
 <body>

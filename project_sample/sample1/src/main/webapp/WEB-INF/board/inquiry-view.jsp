@@ -24,8 +24,8 @@
 	.pwd {
 	  position: relative;
 	  width: 300px;
-	  margin-left: 50px;
-	  margin-top: 100px;
+	  margin : 100px auto;
+	  margin-bottom: 286px;
 	}
 	
 	.pwd1 {
@@ -78,9 +78,6 @@
 	.btnCheck{
 		display:none;
 	}
-	.free_board_wrap{
-		margin-top: -500px;
-	}
 	.free_board_contents {
 	    margin: 20px;
 	    font-size: 18px;
@@ -124,7 +121,7 @@
 				</div> 
 			</div>
 			
-			<hr>
+			<hr v-if="showApp">
 			</div>
 			<hr>
 		</div>
