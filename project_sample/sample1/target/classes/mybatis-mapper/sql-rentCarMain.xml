@@ -146,18 +146,9 @@
 	</select>
 	
 	<insert id="insertRentCart" parameterType="hashmap">
-	    INSERT INTO T2_CART_TBL(
-	        U_ID, PRODUCT_KIND, PRODUCT_NO, PEOPLE, S_RESERVE_DATE, L_RESERVE_DATE
-	    )
-	    SELECT
-	        #{uId}, 'RENT', #{rentNo}, '1', #{checkInDate}, #{checkOutDate}
-	    FROM T2_CART_TBL
-	    WHERE NOT EXISTS (
-	        SELECT 1
-	        FROM T2_CART_TBL
-	        WHERE PRODUCT_KIND = 'RENT'
-	          AND PRODUCT_NO = #{rentNo}
-	    )
-	    LIMIT 1
+	    INSERT INTO T2_CART_TBL VALUES
+      (#{uId}, 'RENT', #{rentNo}, '1', #{checkInDate}, #{checkOutDate})
 	</insert>
+	
+	
 </mapper>
