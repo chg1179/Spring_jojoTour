@@ -13,7 +13,6 @@
 	font-weight: lighter;
 	}
     #join_container{
-        height: 100vh;
         background-color: #eee;
     }
     .join_inner_con{
@@ -35,7 +34,6 @@
 	    border-radius: 6PX;
 	    margin-bottom: 5px;
 	    border : 1px solid #213555;
-	   
     }
     .join_inner_box{
         background-color: #f5f6f7;
@@ -50,6 +48,7 @@
         display: flex;
         align-items: center;
         margin: 0px 25px;
+        margin-bottom: 13px;
     }
     .join_check{
 	position: absolute;
@@ -83,13 +82,14 @@
         font-weight: 700;
         cursor: pointer;
             padding: 20px;
-    	padding-bottom: 35px;
-    	font-family: 'Jeju Gothic', sans-serif;
+    padding-bottom: 35px;
     }
     .join_btn button:hover{
-        background-color: #213555;
+        background-color: #FFA41B;
     }
-   
+    .join_inner_main{
+    
+    }
 </style>
 </head>
 <body>
@@ -206,6 +206,11 @@ var app = new Vue({
 			    alert("이름에 공백을 포함할 수 없습니다.");
 			    return;
 			}
+
+			if(self.user.nickName == ""){
+				alert("닉네임을 입력하세요.");
+				return;
+			}
 			if (self.user.nickName.match(/\s/)) {
 			    alert("닉네임에 공백을 포함할 수 없습니다.");
 			    return;
@@ -228,10 +233,6 @@ var app = new Vue({
 		            return;
 		         }
 	        }
-			if(self.user.addr == ""){
-				alert("주소를 입력하세요.");
-				return;
-			}
 			
 			if(self.user.phone == ""){
 				alert("핸드폰 번호를 입력하세요.");
@@ -242,7 +243,7 @@ var app = new Vue({
 				alert("연락처는 숫자만 입력해주세요.");
 				return;
 			}
-			
+
 			if(self.user.email == ""){
 				alert("이메일 주소를 입력하세요.");
 				return;
@@ -252,7 +253,11 @@ var app = new Vue({
 			    alert("이메일 주소를 정확하게 입력하세요.");
 			    return;
 			}
-			var nparmap = { userId: self.user.userId , nickName : self.user.nickName, email : self.user.email};
+			if(self.user.addr == ""){
+				alert("주소를 입력하세요.");
+				return;
+			}
+			var nparmap = { userId: self.user.userId , nickName : self.user.nickName, email : self.user.email, phone : self.user.phone};
 		    $.ajax({
 		        url: "check.dox",
 		        dataType: "json",    
@@ -267,6 +272,9 @@ var app = new Vue({
 		                return;
 		            } else if(data.emailCnt > 0){
 		                alert("중복된 이메일이 있습니다. 다른 이메일을 선택해주세요.");
+		                return;
+		            } else if(data.phoneCnt > 0){
+		                alert("중복된 핸드폰번호가 있습니다. 가입확인을 해주세요.");
 		                return;
 		            } else {
 		                var nparmap = self.user;

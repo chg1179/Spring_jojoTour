@@ -124,6 +124,8 @@ public class LoginController {
 		resultMap.put("nickCnt", nickCnt);
 		int emailCnt = userService.emailCnt(map);
 		resultMap.put("emailCnt", emailCnt);
+		int phoneCnt = userService.phoneCnt(map);
+		resultMap.put("phoneCnt", phoneCnt);
 		return new Gson().toJson(resultMap);
 	}
 	@RequestMapping(value = "/ban.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")

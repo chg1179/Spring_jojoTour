@@ -17,6 +17,8 @@ public interface UserMapper {
 	int nickNameCnt(HashMap<String, Object> map);
 	// 이메일 중복 체크
 	int emailCnt(HashMap<String, Object> map);
+	// 핸드폰 중복 체크
+	int phoneCnt(HashMap<String, Object> map);
 	
 	User selectUser(HashMap<String, Object> map);
 	

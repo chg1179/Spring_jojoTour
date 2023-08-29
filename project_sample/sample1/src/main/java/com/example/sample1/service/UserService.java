@@ -13,6 +13,8 @@ public interface UserService {
 	int nickNameCnt(HashMap<String, Object> map);
 	// 이메일 중복 체크
 	int emailCnt(HashMap<String, Object> map);
+	// 핸드폰 중복 체크
+	int phoneCnt(HashMap<String, Object> map);
 	
 	int banUser(HashMap<String, Object> map);
 	int resetUser(HashMap<String, Object> map);

@@ -175,5 +175,11 @@ public class UserServiceImpl implements UserService{
 		return userMapper.emailCnt(map);
 	}
 
+	@Override
+	public int phoneCnt(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userMapper.phoneCnt(map);
+	}
+
 
 }
