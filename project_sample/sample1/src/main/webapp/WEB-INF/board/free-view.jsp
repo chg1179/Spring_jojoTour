@@ -65,7 +65,7 @@
 				</div>
 				<div>
 					<button @click="fnDel" v-if="uId == info.uId || status == 'A'" class="btn2">삭제하기</button>
-					<button @click="fnEdit" v-if="uId == info.uId" class="btn1">수정하기</button>
+					<button @click="fnEdit" v-if="uId == info.uId" class="btn1">수정하기</button><br><br>
 				</div> 
 				<div class="free_board_reply_title">
 					<h3>댓글</h3>

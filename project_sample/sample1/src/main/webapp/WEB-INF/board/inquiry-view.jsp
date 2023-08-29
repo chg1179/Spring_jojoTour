@@ -118,6 +118,7 @@
 				<div>
 					<button @click="fnEdit('U')" v-if="uId == info.uId && info.answerYn == 'N'" class="btn1">수정하기</button>
 					<button @click="fnEdit('A')" v-if="status == 'A' && info.answerYn == 'N'" class="btn1">답변하기</button>
+					<br><br>
 				</div> 
 			</div>
 			
