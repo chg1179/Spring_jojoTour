@@ -97,6 +97,10 @@
        .login_button{
           display : flex;
           justify-content: center;
+          font-family: 'Jeju Gothic', sans-serif;
+       }
+       .login_button button{
+       	 font-family: 'Jeju Gothic', sans-serif;
        }
        .login_button button{
           width: 100%;
@@ -135,7 +139,6 @@
 	    border-radius: 6px;
 	    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 	}
-
    </style>
    </head>
    <body>

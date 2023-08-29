@@ -173,13 +173,15 @@
    .rentcar_search_name{
 	margin-bottom: 20px;
    }
+   
    .rentcar_search_name input{
 	width: 200px;
 	padding: 5px 20px;
 	border-radius: 10px;
-	border: 1px solid;
+	border: 1px solid #ccc;
 	display: block;
 	margin: 0 auto;
+	font-family: 'Jeju Gothic', sans-serif;
    }
    .rentcar_search_price{
 	display: flex;
@@ -202,13 +204,13 @@
 	border-radius: 20px;
 	border: none;
 	cursor: pointer;
-	background: rgb(82, 82, 82);
+	background: #aaa;
 	transition-duration: 1s;
 	color: #fff;
 	font-weight: bold;
    }
    .rentcar_search_btn button:hover{
-    background: linear-gradient(to right, #ff9900, #ff3333);
+    background: #213555;
    }
    /*조회수 높은순, 가격순 버튼*/
    .rentcar_search_button{

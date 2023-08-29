@@ -204,9 +204,10 @@
 	width: 200px;
 	padding: 5px 20px;
 	border-radius: 10px;
-	border: 1px solid;
+	border: 1px solid #ccc;
 	display: block;
 	margin: 0 auto;
+	font-family: 'Jeju Gothic', sans-serif;
    }
    .water_leisure_search_btn{
 	margin-top: 20px;
@@ -219,25 +220,27 @@
 	border-radius: 20px;
 	border: none;
 	cursor: pointer;
-	background: rgb(82, 82, 82);
+	background: #aaa;
 	transition-duration: 1s;
 	color: #fff;
 	font-weight: bold;
    }
    .water_leisure_search_btn button:hover{
-    background: linear-gradient(to right, #ff9900, #ff3333);
+    background: #213555;
    }
    .water_leisure_search_button{
 	display: flex;
 	justify-content: space-between;
 	width: 180px;
 	margin: 0px auto 20px;
+	
    }
    .water_leisure_search_button button{
 	background-color: #fff;
 	border: none;
 	border-bottom: 1px solid;
 	cursor: pointer;
+	font-family: 'Jeju Gothic', sans-serif;
    }
 	.water_leisure_txt_box span{
 		color : #FFA41B;

@@ -10,12 +10,14 @@
 <meta charset="EUC-KR">
 <title>지상 레저 상세 페이지</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
 		body {
-	  font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-      margin: 0;
-      padding: 0;
+		  font-family: 'Jeju Gothic', sans-serif;
+	      background-color: #f0f0f0;
+	      margin: 0;
+	      padding: 0;
 		}
+		
         .condiv {
         	display: flex; 
     		justify-content: center;
@@ -27,7 +29,9 @@
             box-sizing: border-box;
             flex-direction : column;
         }
-        
+        input[type=button]{
+        	
+        }
         
 		.mainimg {
 			width : auto;
@@ -45,6 +49,8 @@
 			background: #213555;
 			border-radius : 8px;
 			font-size: 30px;
+			font-family: 'Jeju Gothic', sans-serif;
+			
 		}
 		       	#app{
 		margin: 20px auto;
@@ -59,6 +65,7 @@
 	  border: 0;
 	  box-shadow: 0 10px 10px -10px #bbb inset;
 	}
+	
 	
 </style>
 </head>

@@ -13,15 +13,25 @@
 <meta charset="EUC-KR">
 <title>렌터카 메인 페이지</title>
 <style>
-.banner_text {
-    text-align: center;
-    font-size: 40px;
-    font-weight: 400px;
-    line-height: 400px;
-    color: #fff;
-    margin: 10px;
-}
-
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+		font-family: 'Jeju Gothic', sans-serif;
+	}
+	.banner_text {
+	    text-align: center;
+	    font-size: 40px;
+	    font-weight: 400px;
+	    line-height: 400px;
+	    color: #fff;
+	    margin: 10px;
+	}
+	.rentcar_search_box, .rentcar_search_box button{
+		font-family: 'Jeju Gothic', sans-serif;
+	}
+	.rentcar_search_price_inbox input{
+		border: 1px solid #ccc;
+		border-radius: 3px;
+	}
 </style>
 </head>
 <body>

@@ -92,7 +92,7 @@
 							<div class="wrap"><input type="text" v-model="orderUserInfo.email"></div>
 						</div>
 					</div>
-					<div><input type="button" @click="fnEditUserInfo" value="수정하기"></div>
+					<div><input class="btn-dark" type="button" @click="fnEditUserInfo" value="수정하기"></div>
 				</div>
 				
 				<!-- 숙박 업소 상품 -->
@@ -128,7 +128,7 @@
 		                        			</a>
 		                        		</span>
 		                        		<span v-else>
-		                        			<input type="button" value="요청사항작성하기" @click="fnChangeRequest(product.productKind, product.productNo, product.request)">
+		                        			<input class="btn-dark" type="button" value="요청사항작성하기" @click="fnChangeRequest(product.productKind, product.productNo, product.request)">
 		                       			</span>
 		                       		</span>
 		                        	<span v-else>
@@ -146,7 +146,7 @@
 		                        </td>
 		                        <td v-if="!roomFlg">
 		                        	<span v-if="product.useYnc == 'N'">
-		                        		<input type="button" value="예약취소" @click="fnOrderCancle(product.productKind, product.productNo, product.payment)">
+		                        		<input class="btn-red" type="button" value="예약취소" @click="fnOrderCancle(product.productKind, product.productNo, product.payment)">
 		                        	</span>
 		                        </td>
 		                    </tr>
@@ -185,7 +185,7 @@
 		                        			</a>
 		                        		</span>
 		                        		<span v-else>
-		                        			<input type="button" value="요청사항작성하기" @click="fnChangeRequest(product.productKind, product.productNo, product.request)">
+		                        			<input type="button" class="btn-dark" value="요청사항작성하기" @click="fnChangeRequest(product.productKind, product.productNo, product.request)">
 		                       			</span>
 		                       		</span>
 		                        	<span v-else>
@@ -203,7 +203,7 @@
 		                        </td>
 		                        <td v-if="!rentFlg">
 		                        	<span v-if="product.useYnc == 'N'">
-		                        		<input type="button" value="예약취소" @click="fnOrderCancle(product.productKind, product.productNo, product.payment)">
+		                        		<input type="button" class="btn-red" value="예약취소" @click="fnOrderCancle(product.productKind, product.productNo, product.payment)">
 		                        	</span>
 		                        </td>
 		                    </tr>
@@ -240,7 +240,7 @@
 		                        			</a>
 		                        		</span>
 		                        		<span v-else>
-		                        			<input type="button" value="요청사항작성하기" @click="fnChangeRequest(product.productKind, product.productNo, product.request)">
+		                        			<input class="btn-dark" type="button" value="요청사항작성하기" @click="fnChangeRequest(product.productKind, product.productNo, product.request)">
 		                       			</span>
 		                       		</span>
 		                        	<span v-else>
@@ -258,7 +258,7 @@
 		                        </td>
 		                        <td v-if="!leisureFlg">
 		                        	<span v-if="product.useYnc == 'N'">
-		                        		<input type="button" value="예약취소" @click="fnOrderCancle(product.productKind, product.productNo, product.payment)">
+		                        		<input class="btn-red" type="button" value="예약취소" @click="fnOrderCancle(product.productKind, product.productNo, product.payment)">
 		                        	</span>
 		                        </td>
 		                    </tr>

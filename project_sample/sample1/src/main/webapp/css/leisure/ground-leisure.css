@@ -202,9 +202,10 @@
 	width: 200px;
 	padding: 5px 20px;
 	border-radius: 10px;
-	border: 1px solid;
+	border: 1px solid #ccc;
 	display: block;
 	margin: 0 auto;
+	font-family: 'Jeju Gothic', sans-serif;
    }
    .ground_leisure_search_btn{
 	margin-top: 20px;
@@ -230,12 +231,15 @@
 	justify-content: space-between;
 	width: 180px;
 	margin: 0px auto 20px;
+	font-family: 'Jeju Gothic', sans-serif;
+	
    }
    .ground_leisure_search_button button{
 	background-color: #fff;
 	border: none;
 	border-bottom: 1px solid;
 	cursor: pointer;
+	font-family: 'Jeju Gothic', sans-serif;
    }
 	.ground_leisure_txt_box span{
 		color : #FFA41B;

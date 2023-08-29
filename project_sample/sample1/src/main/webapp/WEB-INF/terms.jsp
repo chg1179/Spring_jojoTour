@@ -8,6 +8,10 @@
 <meta charset="EUC-KR">
 <title>약관 및 정책</title>
 <style>
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+body {
+	font-family: 'Jeju Gothic', sans-serif;
+}
 .panel.border .fs15 dt {
   color: #333; /* 원하는 글자색 */
   font-size: 18px; /* 원하는 글자 크기 */

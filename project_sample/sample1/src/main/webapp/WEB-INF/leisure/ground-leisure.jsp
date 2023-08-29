@@ -26,6 +26,10 @@
     color: #fff;
     margin: 10px;
 	}
+	.ground_leisure_search_price_inbox input{
+		border: 1px solid #ccc;
+		border-radius: 3px;
+	}
 </style>
 </head>
 <body>

@@ -35,6 +35,7 @@
 	    border-radius: 6PX;
 	    margin-bottom: 5px;
 	    border : 1px solid #213555;
+	   
     }
     .join_inner_box{
         background-color: #f5f6f7;
@@ -85,7 +86,7 @@
     padding-bottom: 35px;
     }
     .join_btn button:hover{
-        background-color: #FFA41B;
+        background-color: #213555;
     }
     .join_inner_main{
     

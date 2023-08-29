@@ -6,6 +6,7 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <title>Insert title here</title>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
@@ -35,11 +36,12 @@
     }
     .id_search_input input{
         width: 300px;
-        height: 30px;
-        padding: 0 20px;
-        border-radius: 10px;
-        outline: none;
-        border: 1px solid;
+	    padding: 10px 23px;
+	    border-radius: 5px;
+	    border: 1px solid;
+	    outline: none;
+	    height: 20px;
+	    font-family: 'Jeju Gothic', sans-serif;
     }
     .id_search_btn_box{
         display: flex;
@@ -48,15 +50,18 @@
     .id_search_btn_box button{
         width: 120px;
         height: 30px;
-        border-radius: 10px;
+        border-radius: 6px;
         outline: none;
         border: none;
         cursor: pointer;
-        background-color: rgb(82, 82, 82);
         color: white;
+        font-family: 'Jeju Gothic', sans-serif;
+        cursor: pointer;
+	    background-color: #213555;
+	    
     }
     .id_search_btn_box button:hover{
-        background: linear-gradient(to right, #ff9900, #ff3333);
+        background: #445069;
     }
 </style>
 </head>
@@ -70,8 +75,8 @@
                     <div class="id_search_name id_search_input"><input type="text" placeholder="이름을 입력하세요." v-model="name"></div>
                     <div class="id_search_phone id_search_input"><input type="text" placeholder="핸드폰 번호를 입력하세요." v-model="phone"></div>
                     <div class="id_search_btn_box">
-                        <button class="id_search_btn" @click="fnIdsearch">아이디 검색</button>
-                        <button class="id_search_btn" @click="fnPwdSearch">비밀번호 찾기</button>
+                        <button class="btn" @click="fnIdsearch">아이디 검색</button>
+                        <button class="btn" @click="fnPwdSearch">비밀번호 찾기</button>
                     </div>
                 </div>
                 <div v-else>

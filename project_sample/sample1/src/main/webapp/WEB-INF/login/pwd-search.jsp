@@ -6,6 +6,7 @@
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <meta charset="EUC-KR">
+<link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <title>Insert title here</title>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
@@ -26,33 +27,36 @@
 		margin-bottom: 20px;
 	}
 	.pwd_search_wrap input{
-        width: 300px;
-        height: 30px;
-        padding: 0 20px;
-        border-radius: 10px;
-        outline: none;
-        border: 1px solid;
+       width: 300px;
+	    padding: 10px 23px;
+	    border-radius: 5px;
+	    border: 1px solid;
+	    outline: none;
+	    height: 20px;
+	    font-family: 'Jeju Gothic', sans-serif;
 	}
-	.pwd_search_input{
+	.pwd_search_input input{
 		margin-bottom: 20px;
+		
 	}
 	.pwd_search_btn{
 		display: flex;
 		justify-content: center;
 	}
 	.pwd_search_btn button{
-		width: 80%;
-		padding: 10px 20px;
-		border-radius: 20px;
-		border: none;
-		cursor: pointer;
-        background-color: rgb(82, 82, 82);
-		color: #fff;
-		font-weight: bold;
-		font-size: 16px;
+		 width: 120px;
+        height: 30px;
+        border-radius: 6px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        color: white;
+        font-family: 'Jeju Gothic', sans-serif;
+        cursor: pointer;
+	    background-color: #213555;
 	}
 	.pwd_search_btn button:hover{
-		background: linear-gradient(to right, #ff9900, #ff3333);
+		background: #445069;
 	}
 	.pwd_search_alert{
 		margin : 20px;

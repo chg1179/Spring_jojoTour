@@ -9,9 +9,9 @@
 <meta charset="EUC-KR">
 <title>수상 레저 상세 페이지</title>
 <style>
-
-		body {
-			      font-family: Arial, sans-serif;
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+	body {
+	  font-family: 'Jeju Gothic', sans-serif;
       background-color: #f0f0f0;
       margin: 0;
       padding: 0;
@@ -53,6 +53,7 @@
 			background: #213555;
 			border-radius : 8px;
 			font-size: 30px;
+			font-family: 'Jeju Gothic', sans-serif;
 		}
 		hr {
 	  		height: 10px;

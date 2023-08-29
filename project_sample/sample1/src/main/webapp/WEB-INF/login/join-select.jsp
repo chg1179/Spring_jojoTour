@@ -63,7 +63,7 @@
 		background-color: #F86F03;
 	}
 	.select_host_btn{
-		background-color: #FFA41B;
+		background-color: #213555;
 	}
 	.loading_active{
 			position : absolute;

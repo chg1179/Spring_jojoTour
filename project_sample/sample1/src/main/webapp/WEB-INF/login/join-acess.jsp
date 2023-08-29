@@ -67,7 +67,8 @@
 	    font-size: 22px;
 	}
 	.join_acess_btn_wrap .join_acess_btn_box:last-child button{
-		background-color: #FFA41B;
+		background-color: #213555;
+		font-family: 'Jeju Gothic', sans-serif;
 	}
 	h2{
 	font-size: 1.2em;
@@ -364,7 +365,7 @@
 						<div class="join_acess_img_box">
 							<img src="../img/join/join_up.png" alt="">
 						</div>
-						<button @click="fnAcess('up')">14세 이상 회원가입</button>
+						<button class="btn" @click="fnAcess('up')">14세 이상 회원가입</button>
 					</div>
 					<!-- <div class="join_acess_btn_box">
 						<div class="join_acess_img_box">
