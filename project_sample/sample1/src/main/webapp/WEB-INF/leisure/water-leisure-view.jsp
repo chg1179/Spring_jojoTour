@@ -171,7 +171,6 @@ var app = new Vue({
 			var self = this;
 			if(this.uId=="" || this.uId == null){
         		alert("로그인 후 이용이 가능합니다.");
-        		location.href="/login.do";
         		return;
         	} 
 			var param = {leisureNo : leisureNo, uId:self.uId};
@@ -210,7 +209,6 @@ var app = new Vue({
 			var self = this;
 			if(this.uId=="" || this.uId == null){
         		alert("로그인 후 이용이 가능합니다.");
-        		location.href="/login.do";
         		return;
         	} 
 			

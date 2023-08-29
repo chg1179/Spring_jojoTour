@@ -180,13 +180,9 @@ var app = new Vue({
  		 fnMove : function(){
  			var self = this;
  			if (self.status !== 'A' && self.status !== 'U' && self.status !== 'H'){
-	            if (confirm("로그인 후 이용해주세요. 로그인 페이지로 이동하시겠습니까?")) {
-	                window.location.href = "/login.do";
-	            }	    
- 			}else{
-				location.href = "add.do";
-			
- 			}	
+	            alert("로그인 후 이용해주세요.") 
+	                return;
+ 				}
 	        }, 
 	        
  	     fnView : function(freeNo){
