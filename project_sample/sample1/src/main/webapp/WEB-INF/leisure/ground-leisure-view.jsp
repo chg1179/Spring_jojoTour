@@ -46,7 +46,7 @@
 		}
 		.btn {
 			color : white;
-			width: 300px;
+			width: 400px;
 			height : 60px;
 			border : 1px solid #213555;
 			background: #213555;
