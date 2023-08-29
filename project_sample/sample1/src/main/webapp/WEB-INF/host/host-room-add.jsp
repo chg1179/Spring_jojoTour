@@ -196,7 +196,7 @@ var app = new Vue({
 		// 룸 추가
 		fnRoomAdd : function(roomNo){
 			var self = this;
-			if(self.roomName==""){
+			if(self.info.roomName==""){
 				alert("객실 유형을 입력해주세요.");
 				return;
 			}
@@ -237,11 +237,14 @@ var app = new Vue({
 				alert("취소되었습니다.");
 				return;
 			}
+			
+			self.info.roomSales = (100 - self.sales) / 100; 
 			var param = self.info;
 			var param = {
 				roomName : self.info.roomName,
 				roomPrice : self.info.roomPrice,
 				peopleMax : self.peopleMaxValue,
+				roomSales : self.info.roomSales,
 				stayNo : self.stayNo,
 				uId : self.uId,
 				roomNo : roomNo,
@@ -258,7 +261,6 @@ var app = new Vue({
 	       	     	console.log(data.roomNo);
 	           		self.upload(form);
 	           		
-	           		self.sales = 100 - (self.roomSales * 100);
             		alert("객실이 등록되었습니다.");
             		$.pageChange("../host/room.do", {stayNo : self.stayNo});
             		self.selectServiceList = [];

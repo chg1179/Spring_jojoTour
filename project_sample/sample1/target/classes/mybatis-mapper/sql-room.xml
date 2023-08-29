@@ -36,7 +36,7 @@
 	
 	<insert id="insertRoom" parameterType="hashmap" useGeneratedKeys="true" keyProperty="roomNo" keyColumn="roomNo">
 		INSERT INTO T2_ROOM_TBL (STAY_NO, ROOM_NAME, ROOM_PRICE, ROOM_SALES, PEOPLE_MAX, ROOM_INSERT_TIME, ROOM_UPDATE_TIME, ROOM_RESIDUE, ROOM_DELYN) 
-		VALUES (#{stayNo}, #{roomName}, #{roomPrice}, 1, #{peopleMax}, NOW(), NOW(), 1, 'N')
+		VALUES (#{stayNo}, #{roomName}, #{roomPrice}, #{roomSales}, #{peopleMax}, NOW(), NOW(), 1, 'N')
 	</insert>
 	
 	<update id="updateRoom" parameterType="hashmap">
