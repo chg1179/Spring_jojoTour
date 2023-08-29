@@ -48,7 +48,6 @@
         display: flex;
         align-items: center;
         margin: 0px 25px;
-        margin-bottom: 13px;
     }
     .join_check{
 	position: absolute;
@@ -81,11 +80,13 @@
         color: #fff;
         font-weight: 700;
         cursor: pointer;
-            padding: 20px;
-    padding-bottom: 35px;
+        padding: 20px;
+		padding-bottom: 35px;
+      	font-family: 'Jeju Gothic', sans-serif;
+    
     }
     .join_btn button:hover{
-        background-color: #FFA41B;
+        background-color:  #213555;
     }
     .join_inner_main{
     

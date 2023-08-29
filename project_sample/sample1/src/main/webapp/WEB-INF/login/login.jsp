@@ -10,17 +10,17 @@
    <title>로그인</title>
    <style>
    @import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
-	body {
-	font-family: 'Jeju Gothic', sans-serif;
-	font-weight: lighter;
-	}
+   body {
+   font-family: 'Jeju Gothic', sans-serif;
+   font-weight: lighter;
+   }
        *{
            margin: 0;
            padding: 0;
        }
        h1{
-       	   margin-bottom : 35px;
-       	   font-size:3em;
+             margin-bottom : 35px;
+             font-size:3em;
        }
        a{
            text-decoration: none;
@@ -33,9 +33,9 @@
            align-items: center;
            height: 90vh;
             background-color: #eee; 
-            margin-top: 65px
+            margin-top: 165px
 /*            background-image:url('https://tvstore-phinf.pstatic.net/20201124_289/1606182617321ComBh_JPEG/00086.jpg');
-       		background-size: cover; */
+             background-size: cover; */
        }
       .login_header {
           display: flex;
@@ -74,7 +74,7 @@
            background-color: #f8f9fa;
        }
        .login_tab input:checked + label{
-       	   color : white;
+             color : white;
            background-color: #213555;
        }
        .login_background{
@@ -120,26 +120,26 @@
           margin-right: 5px;
       }
       .fa-solid, .fas {
-	    font-weight: 900;
-	    margin-right: 5px;
-	}
-	body{
-	background-color:#eee;
-	}
-	.login_main {
-	    text-align: center;
-	    width: 1100px;
-	    height: 650px;
-	     background-color: #f4f4f4; 
-	    padding: 50px 1px;
-	    border-radius: 6px;
-	    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-	}
-	
-	.loading_active{
-			position : absolute;
-			top : 0;
-			left : 0;
+       font-weight: 900;
+       margin-right: 5px;
+   }
+   body{
+   background-color:#eee;
+   }
+   .login_main {
+       text-align: center;
+       width: 1100px;
+       height: 650px;
+        background-color: #f4f4f4; 
+       padding: 50px 1px;
+       border-radius: 6px;
+       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+   }
+   
+   .loading_active{
+         position : absolute;
+         top : 0;
+         left : 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -154,10 +154,8 @@
             height: 50px;
             border-radius: 50%;
             position: absolute;
-            top: 29%;
-            left : 45%;
-            transform: translateX(-50%);
-            
+            top: 33%;
+            left : 43%;
         }
         .loading_active span{
             display: inline-block;
@@ -227,8 +225,8 @@
       <jsp:include page="../header.jsp" flush="true"></jsp:include>
       <div id="app">
           <div id="login_container">
-			
-          		<span style="color:orange;">w e l c o m e</span>
+         
+                <span style="color:orange;">w e l c o m e</span>
                 <h1 style="color:#213555;"><i class="fa-solid fa-plane-departure fa-bounce"></i>JOJO TOUR</h1>
               <div class="login_box">
                   <div class="login_tab">
@@ -265,22 +263,22 @@
                       </div>
                   </div>
               </div>
-			
+         
           </div>
           
-	    <div class="loading_active">
-	        <div class="loading">
-	            <span></span>
-	            <span></span>
-	            <span></span>
-	            <span></span>
-	            <span></span>
-	            <span></span>
-	            <span></span>
-	            <span></span>
-	            <img src="../img/cart/loading.png" style="position: absolute; top: -34px; left: -27px; z-index: -1">
-	        </div>
-	    </div>
+       <div class="loading_active">
+           <div class="loading">
+               <span></span>
+               <span></span>
+               <span></span>
+               <span></span>
+               <span></span>
+               <span></span>
+               <span></span>
+               <span></span>
+               <img src="../img/cart/loading.png" style="position: absolute; top: -34px; left: -27px; z-index: -1">
+           </div>
+       </div>
     <div class="loading_btn">사라져</div>
       </div>
       <jsp:include page="../footer.jsp" flush="true"></jsp:include>
@@ -345,12 +343,12 @@
           self.fnGetList();
       }// created
    });
-     $(document).ready(function(){
-	    setTimeout(function(){
-	        $('.loading_btn').click(function(){
-	        $('.loading_active').fadeOut();
-	    });
-	        $('.loading_btn').trigger('click');
-	    },2500);
-	}); 
+    $(document).ready(function(){
+       setTimeout(function(){
+           $('.loading_btn').click(function(){
+           $('.loading_active').fadeOut();
+       });
+           $('.loading_btn').trigger('click');
+       },2500);
+   }); 
    </script>

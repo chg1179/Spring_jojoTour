@@ -60,9 +60,11 @@
 	}
 	.select_user_btn{
 		background-color: #F86F03;
+		border-radius: 3px;
 	}
 	.select_host_btn{
-		background-color: #FFA41B;
+		background-color: #213555;
+		border-radius: 3px;
 	}
 </style>
 </head>
