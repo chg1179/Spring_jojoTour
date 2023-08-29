@@ -154,8 +154,10 @@
             height: 50px;
             border-radius: 50%;
             position: absolute;
-            top: 33%;
-            left : 43%;
+            top: 29%;
+            left : 45%;
+            transform: translateX(-50%);
+            
         }
         .loading_active span{
             display: inline-block;
@@ -343,7 +345,7 @@
           self.fnGetList();
       }// created
    });
-    $(document).ready(function(){
+     $(document).ready(function(){
 	    setTimeout(function(){
 	        $('.loading_btn').click(function(){
 	        $('.loading_active').fadeOut();
