@@ -44,6 +44,12 @@
 		background-color : #213555;
 		color : white;
 	}
+	#app{
+		  display: flex;
+	  flex-direction: column;
+	  height: 100vh;
+	}
+	
 </style>
 </head>
 <body>

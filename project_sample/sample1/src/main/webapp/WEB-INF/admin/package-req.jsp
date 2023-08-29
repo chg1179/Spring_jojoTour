@@ -68,6 +68,12 @@
 		background-color : #213555;
 		color : white;
 	}
+	#app {
+	  display: flex;
+	  flex-direction: column;
+	  height: 100vh;
+    margin-bottom: 200px;
+	}
 </style>
 </head>
 <body>
@@ -77,6 +83,7 @@
 	<div style="text-align : center; margin: 20px auto;">
 		<h1 style="color : #213555; text-align: center; margin: 50px; font-weight : 20;">패키지 신청 목록</h1>
 	</div>
+	<div class="main">
 	<table>
 		<thead>
 			<tr > 
@@ -194,6 +201,7 @@
 			</tr>
 		</tbody>
 	</table>
+	</div>
 	<div style="text-align : center;">
 		<input style="width : 150px; " type="button" value="패 키 지 등 록" id="abtn" @click="fnYbtn(selectRoom, selectRent, selectLeisure)">
 	</div>
