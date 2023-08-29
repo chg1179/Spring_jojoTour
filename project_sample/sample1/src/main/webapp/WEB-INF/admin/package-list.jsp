@@ -85,17 +85,17 @@
 				
 			   <td style="width: 100px;"> {{item.roomPrice*item.roomSales}}원</td>
 			   
-			    <td rowspan="3" style="width: 200px; border-left-style:dotted; border-left-color: #f8852a;"><span style="color:#f8852a">TOTAL : 
+			    <td rowspan="3" style="width: 200px; border-left-style:dotted; border-left-color: #213555;"><span style="color:#213555">TOTAL : 
 			    </span>{{ item.roomPrice*item.roomSales + item.leisurePrice*item.leisureSales + item.rentPrice*item.rentSales }}원</td>
 			</tr>
 			<tr>
-				<td style="background-color:#f8852a; color : white;">레저</td>
+				<td style="background-color:#213555; color : white;">레저</td>
 				<td><a href="javascript:;" @click="fnLeisureView">{{item.leisureName}}</a></td>
 				<td>{{item.leisureKind}}</td>
 				<td>{{item.leisurePrice*item.leisureSales}}원</td>
 			</tr>
 			<tr>
-				<td style="background-color:#f8852a; color : white;">렌트카</td>
+				<td style="background-color:#213555; color : white;">렌트카</td>
 				<td><a href="javascript:;" @click="fnRentView">{{item.rentName}}</a></td>
 				<td>{{item.rentKind}}</td>
 				<td>{{item.rentPrice*item.rentSales}}원</td>
