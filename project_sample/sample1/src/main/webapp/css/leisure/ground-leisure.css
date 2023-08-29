@@ -218,13 +218,13 @@
 	border-radius: 20px;
 	border: none;
 	cursor: pointer;
-	background: rgb(82, 82, 82);
+	background: #aaa;
 	transition-duration: 1s;
 	color: #fff;
 	font-weight: bold;
    }
    .ground_leisure_search_btn button:hover{
-    background: linear-gradient(to right, #ff9900, #ff3333);
+    background: #213555;
    }
    .ground_leisure_search_button{
 	display: flex;

@@ -114,7 +114,7 @@
 								<div style="text-align: center;">
 									<hr style=" width:90%; margin:5px auto; background-color: grey; ">
 								</div>
-								<div style="margin: 10px; color: #ff7a95; font-weight: bold; font-size:18px;">
+								<div style="margin: 10px; color: #FFA41B; font-weight: bold; font-size:18px;">
 									{{item.leisurePrice-item.leisurePrice*(100-(item.leisureSales*100))/100 | comma }}¿ø~
 								</div>
 							</div>
