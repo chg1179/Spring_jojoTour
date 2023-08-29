@@ -135,7 +135,7 @@
 						<select v-if='info.cType=="GROUND"' v-model="info.leisureKind">
 							<option value="ATV">ATV</option>
 							<option value="GLIDER">패러글라이딩</option>
-							<option value="HORSE">말타기</option>
+							<option value="HORSE">승마</option>
 						</select>
 					</td>
 				</tr>
