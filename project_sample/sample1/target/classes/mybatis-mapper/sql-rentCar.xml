@@ -19,7 +19,7 @@
 			LIMIT #{startNum}, #{lastNum}
 		</if>
 	</select>
-	
+	 
 	<select id="selectCnt" resultType="int">
 		SELECT COUNT(*)
 		FROM T2_RENT_CAR_TBL

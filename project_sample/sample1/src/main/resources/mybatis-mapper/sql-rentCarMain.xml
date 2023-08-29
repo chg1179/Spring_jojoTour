@@ -50,7 +50,7 @@
 		FROM T2_RENT_IMG_TBL
 		WHERE RENT_NO = #{rentNo} AND MAIN_YN = 'N' AND IMG_DELYN = 'N'
 	</select>
-	
+	 
 	<select id="selectCarSearchList" parameterType="hashmap" resultType="com.example.sample1.model.RentCar">
 		SELECT *
 		FROM T2_RENT_CAR_TBL C

@@ -24,7 +24,7 @@ public class RentCarServiceImpl implements RentCarService{
 		resultMap.put("carList", rentCarMapper.selectRentCarList(map));
 		resultMap.put("cnt", rentCarMapper.selectCnt(map));
 		return resultMap;
-	}
+	} 
 
 	//상세정보 출력
 	@Override

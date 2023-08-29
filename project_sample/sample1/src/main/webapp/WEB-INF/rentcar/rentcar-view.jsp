@@ -308,6 +308,7 @@ var app = new Vue({
 		self.fnGetList();
 	}// created
 });
+
 $(document).ready(function(){
     $('.detail_btn').click(function(){
         var detailWrap = $('.detail_wrap');

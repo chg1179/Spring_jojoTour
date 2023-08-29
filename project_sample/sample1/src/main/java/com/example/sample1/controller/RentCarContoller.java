@@ -125,7 +125,7 @@ public class RentCarContoller {
 		resultMap = rentCarService.addRentCar(map);
 		return new Gson().toJson(resultMap);
 	}
-	
+	 
 	//렌트카 정보 수정
 	@RequestMapping(value = "/host/rentcar/editRentCar.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
