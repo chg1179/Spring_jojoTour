@@ -45,13 +45,13 @@
 		border-radius: 20px;
 		border: none;
 		cursor: pointer;
-        background-color: rgb(82, 82, 82);
+        background-color: #445069;
 		color: #fff;
 		font-weight: bold;
 		font-size: 16px;
 	}
 	.pwd_change_btn button:hover{
-		background: linear-gradient(to right, #ff9900, #ff3333);
+		background-color: #213555;
 	}
 </style>
 </head>

@@ -57,11 +57,11 @@
         color: white;
         font-family: 'Jeju Gothic', sans-serif;
         cursor: pointer;
-	    background-color: #213555;
+	    background-color: #445069;
 	    
     }
     .id_search_btn_box button:hover{
-        background: #445069;
+        background-color: #213555;
     }
 </style>
 </head>

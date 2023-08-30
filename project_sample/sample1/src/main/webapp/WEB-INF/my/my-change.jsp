@@ -216,7 +216,7 @@ var app = new Vue({
 				alert("핸드폰 번호를 입력하세요.");
 				return;
 			}
-			var regex = new RegExp(/^[0-9]+$/);
+			var regex = /^[0-9]+$/;
 			if(!regex.test(self.user.phone)){
 				alert("연락처는 숫자만 입력해주세요.");
 				return;
@@ -226,7 +226,7 @@ var app = new Vue({
 				alert("이메일 주소를 입력하세요.");
 				return;
 			}
-			regex = new RegExp(/^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/);
+			regex = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
 			if (!regex.test(self.user.email)) {
 			    alert("이메일 주소를 정확하게 입력하세요.");
 			    return;
