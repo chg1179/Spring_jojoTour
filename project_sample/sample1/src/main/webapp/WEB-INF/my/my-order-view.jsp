@@ -28,7 +28,7 @@
 		align-items: center;
 		justify-content: center;
 		height: 100vh;
-		margin-top: 100px;
+		margin-bottom: 300px;
 	}
 	.page_order_wrap table{
 		margin-top: 30px;
@@ -285,7 +285,7 @@
 			</div>
 		</div>
 	</div>
-<%-- <jsp:include page="../footer.jsp" flush="true"></jsp:include> --%>
+<jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
 </html>
 <script>
