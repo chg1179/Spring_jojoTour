@@ -77,7 +77,7 @@
 							<div> {{item.uId}} {{item.cWriteTime}} </div>
 							<div>
 								{{item.comm}} 
-								<a @click="fnRemoveComm(item.cNo)" href="javascript:;">
+								<a @click="fnRemoveComm(item.cNo)" href="javascript:;" v-if="item.uId == uId || status == 'A'">
 									<i class="fa-solid fa-circle-xmark fa-xs"></i>
 								</a> 
 							</div>
