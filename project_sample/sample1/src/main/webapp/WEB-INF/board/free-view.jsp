@@ -87,7 +87,8 @@
 				</ul>
 				<br>
 				<div class="free_board_reply_contents">
-					<textarea rows="10" cols="50" v-model="comment" @keyup.enter="fnComment" placeholder="로그인 후, 이용해주세요"></textarea>
+					<textarea v-if="uId != null && uId != ''" rows="10" cols="50" v-model="comment" @keyup.enter="fnComment"></textarea>
+					<textarea v-else rows="10" cols="50" v-model="comment" @keyup.enter="fnComment" placeholder="로그인 후, 이용해주세요"></textarea>
 					<div class="free_board_reply_contents_btn">
 						<button style="vertical-align: middle; margin-bottom: 35px;" @click="fnComment" >등록</button>
 					</div>

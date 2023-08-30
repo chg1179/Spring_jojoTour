@@ -78,7 +78,7 @@
 							<button @click="fnACheck" class="btn1" v-if="status == 'A'">전체선택</button>
 							<button @click="fnNCheck" class="btn1" v-if="status == 'A'">전체해제</button>
 							<button @click="fnRemove" class="btn2" v-if="status == 'A'">삭제</button>
-							<button @click="fnMove"  class="btn1">글쓰기</button>
+							<button @click="fnMove" class="btn1">글쓰기</button>
 						</div>
 					<template>
 						<paginate
@@ -182,8 +182,9 @@ var app = new Vue({
  			if (self.status !== 'A' && self.status !== 'U' && self.status !== 'H'){
 	            alert("로그인 후 이용해주세요.") 
 	                return;
- 				}
-	        }, 
+ 			}
+			location.href = "add.do";
+	    },
 	        
  	     fnView : function(freeNo){
  	    	$.pageChange("view.do", {freeNo : freeNo});	 

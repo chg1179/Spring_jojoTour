@@ -80,6 +80,7 @@
         <h2>자유 게시판 글쓰기</h2>
         <div class="tool_area">
           <button v-if="freeNo === ''" @click="fnAdd" class="btn1">등록</button>
+          <button v-else @click="fnEdit" :disabled="disableEditButton" class="btn1">수정</button>
           <button @click="fnBack" class="btn1">뒤로가기</button>
         </div>
       </div>
@@ -90,10 +91,6 @@
       <br>
       <div class="vue-editor">
         <vue-editor v-model="info.freeContent"></vue-editor>
-      </div>
-
-      <div>
-        <button v-else @click="fnEdit" :disabled="disableEditButton" class="btn1">수정</button>
       </div>
     </div>
   </div>
