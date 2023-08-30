@@ -133,8 +133,8 @@
 	                        <li v-if="status == 'H' || status == 'U'">
 	                        	<a href="javascript:;" @click="fnMyHome">마이홈</a>
 	                        </li>
-	                        <li><a href="javascript:;" @click="fnJJim">찜목록</a></li>
-	                        <li><a href="javascript:;" @click="fnCart">장바구니</a></li>
+	                        <li v-if="status!='A'"><a href="javascript:;" @click="fnJJim">찜목록</a></li>
+	                        <li v-if="status!='A'"><a href="javascript:;" @click="fnCart">장바구니</a></li>
 	                        <li v-if="status == 'H'">
 	                        	<a href="javascript:;" @click="fnProduct">상품관리</a>
 	                        </li>
