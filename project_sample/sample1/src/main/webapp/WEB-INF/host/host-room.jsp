@@ -16,7 +16,7 @@
 	#app{
 		display: flex;
 	    flex-direction: column;
-	    min-height: 100vh;
+	    min-height: 80vh;
 	}
 	.container {
 		flex: 1;
@@ -33,6 +33,9 @@
 		margin-top: 100px;
 		margin-bottom: 0px;
 		text-align: center;
+	}
+	.btn-con{
+		margin-bottom: 300px;
 	}
 </style>
 </head>
@@ -76,6 +79,7 @@
 				</tbody>
 			</table>
 		</div>
+		
 		<div class="btn-con">
 			<span><button @click="fnAdd" class="btn-dark">°´½Ç Ãß°¡</button></span>
 			<span><button @click="fnView" class="btn-dark">°´½Ç »ó¼¼ Á¤º¸</button></span>

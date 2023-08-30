@@ -34,9 +34,9 @@ public class StayController {
 	//숙박 관리 페이지
 	@RequestMapping("/host/stay.do") 
     public String stay(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		HttpSession session = request.getSession(); String status = (String)
-		session.getAttribute("sessionStatus"); //다운캐스팅
-		
+		HttpSession session = request.getSession(); 
+		String status = (String)session.getAttribute("sessionStatus"); //다운캐스팅
+	//	session.setMaxInactiveInterval(3600);
 		request.setAttribute("map", map);
 		return "/host/host-stay";
     }
@@ -44,20 +44,20 @@ public class StayController {
 	// 숙박 업체 추가 페이지
 	@RequestMapping("/host/stayAdd.do") 
 	public String stayAdd(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		HttpSession session = request.getSession(); String status = (String)
-		session.getAttribute("sessionStatus"); //다운캐스팅
-		
+		HttpSession session = request.getSession(); 
+		String status = (String)session.getAttribute("sessionStatus"); //다운캐스팅
 		request.setAttribute("map", map);
+	//	session.setMaxInactiveInterval(3600);
 		return "/host/host-stay-add";
 	}
 	
 	// 숙박 업체 수정 페이지
 	@RequestMapping("/host/stayEdit.do") 
 	public String stayEdit(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
-		HttpSession session = request.getSession(); String status = (String)
-		session.getAttribute("sessionStatus"); //다운캐스팅
-
+		HttpSession session = request.getSession(); 
+		String status = (String)session.getAttribute("sessionStatus"); //다운캐스팅
 		request.setAttribute("map", map);
+	//	session.setMaxInactiveInterval(3600);
 		return "/host/host-stay-edit";
 	}
 	

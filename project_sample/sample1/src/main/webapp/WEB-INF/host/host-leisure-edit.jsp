@@ -118,6 +118,9 @@
 	<jsp:include page="../header.jsp" flush="true"></jsp:include>
 	<div id="app">
 		<div class="container">
+			<div v-if="leisureNo == ''">
+				<h3>레저 등록</h3>
+			</div>
 			<table>
 				<tr>
 					<th>분류</th>

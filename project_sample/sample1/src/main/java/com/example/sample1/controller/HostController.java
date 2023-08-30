@@ -23,6 +23,7 @@ public class HostController {
 	@RequestMapping("/host/main.do") 
     public String test(HttpServletRequest request, Model model, @RequestParam HashMap<String, Object> map) throws Exception{
 		HttpSession session = request.getSession(); 
+		session.setMaxInactiveInterval(3600);
 		return "/host/host-main";
     }
 	

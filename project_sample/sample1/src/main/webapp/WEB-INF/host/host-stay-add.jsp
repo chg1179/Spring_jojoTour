@@ -5,6 +5,7 @@
 <head>
 <script src="../js/jquery.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="../../css/basic/btn-style.css" rel="stylesheet"/>
 <link href="../../css/basic/host-edit-style.css" rel="stylesheet"/>
 <meta charset="EUC-KR">
@@ -146,7 +147,7 @@
 			<tr>
 				<th>주소</th>	
 				<td>
-					<input disabled type="text" v-model="info.sAddr" placeholder="업체 주소를 입력하세요.">
+					<input style="width:60%"disabled type="text" v-model="info.sAddr" placeholder="업체 주소를 입력하세요.">
                     <button @click="fnSearchAddr" class="btn-dark">주소 검색</button>
                 </td>
 			<tr>		
@@ -228,6 +229,8 @@ var app = new Vue({
                 	
                 	self.serviceList = data.stayServiceList;
                 	console.log(self.serviceList);
+                	
+                	console.log(self.info.sAddr);
                 }
             }); 
 		},
@@ -281,9 +284,13 @@ var app = new Vue({
 		
 		fnResult : function(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
     		var self = this;
-    		self.info.sZipno = zipNo;
+    		/* self.info.sZipno = zipNo;
     		self.info.sAddr = roadAddrPart1;
-            self.info.sDetailAddr = addrDetail;
+            self.info.sDetailAddr = addrDetail; */
+            
+            self.$set(self.info, 'sZipno', zipNo);
+            self.$set(self.info, 'sAddr', roadAddrPart1);
+            self.$set(self.info, 'sDetailAddr', addrDetail);
             
             self.$nextTick(function() {
                 console.log(roadFullAddr);

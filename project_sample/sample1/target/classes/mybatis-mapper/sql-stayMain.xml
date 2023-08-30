@@ -35,6 +35,7 @@
 	              )
 	         </foreach>
 	      </if>
+	      AND S_DELYN = 'N'
 	</select>
 	
 	<!-- 편의시설 리스트 -->

@@ -41,6 +41,7 @@
 	.page-item {
 	    margin: 0 5px; 
 	}
+	
 </style>
 </head>
 <body>
@@ -93,6 +94,7 @@
 			<span><button @click="fnAdd" class="btn-dark">숙소 등록</button></span> 
 			<span><button @click="fnUpdate" class="btn-dark">숙소 정보 수정</button></span> 
 			<span><button @click="fnRemove" class="btn-red">숙소 삭제</button></span>
+			<span><button @click="fnBack" class="btn-dark">뒤로가기</button></span>
 		</div>
 		
 	</div>
@@ -200,6 +202,9 @@ Vue.component('paginate', VuejsPaginate)
 			changeStayNo : function(stayNo) { //라디오박스를 선택할 때 마다 pk 값 변경
 				var self = this;
 				self.stayNo = stayNo;
+			},
+			fnBack : function(){
+				location.href="../host/main.do";
 			}
 
 		}, // methods

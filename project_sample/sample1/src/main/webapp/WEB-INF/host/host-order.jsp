@@ -14,7 +14,7 @@
 		font-family: 'Jeju Gothic', sans-serif;
 	}
 	#app{
-		height: 1000px;
+		height: auto;
 	}
 	.heading-box h2{
 		margin: 60px auto;
@@ -57,19 +57,26 @@
 	.btn-container {
 		margin: 0px auto;
 		text-align: center;
+		margin-bottom: 30px;;
 	}
 	.tab-navigation button.active {
 	    background-color: #213555; 
 	}
-	.container{
+	.tbl-container{
 		margin-top: 50px;
 	}
+	.container{
+		height: 100%;
+	}
 	
+}
 </style>
 </head>
 <body>
 <jsp:include page="../header.jsp" flush="true"></jsp:include>
 <div id="app">
+
+<div class="container">
 	<div class="heading-box">
    		<h2>상품 예약 내역 관리</h2>
    	</div>
@@ -78,7 +85,7 @@
 	    <button class="btn" :class="{ 'active': activeTab === 'rent' }" @click="activeTab = 'rent'">렌트카</button>
 	    <button class="btn" :class="{ 'active': activeTab === 'leisure' }" @click="activeTab = 'leisure'">레저</button>
 	</div>
-	<div class="container">
+	<div class="tbl-container">
 		<h3 v-if="activeTab === 'stay'">[숙소 예약 내역]</h3>
     	<table v-if="activeTab === 'stay'">
 			<thead>
@@ -221,6 +228,7 @@
 	<div class="btn-container">
 		<span><button @click="fnBack" class="btn-red">뒤로가기</button></span>
 	</div>
+</div>
 </div>
 <jsp:include page="../footer.jsp" flush="true"></jsp:include>
 </body>
