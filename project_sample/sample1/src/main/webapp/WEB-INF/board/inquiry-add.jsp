@@ -93,7 +93,7 @@
 						</label>
 						<button v-if="answer == 'A'" @click="fnAdd" class="btn1">답변등록</button>					
 				        <button v-if="iNo == ''" @click="fnAdd" class="btn1">등록</button>
-				        <button v-else-if="iNo !='' && info.answerYn=='Y'" @click="fnEdit" class="btn1">수정</button>
+				        <button v-else-if="iNo !='' && info.answerYn=='N'" @click="fnEdit" class="btn1">수정</button>
 			        	<button @click="fnBack" class="btn1">뒤로가기</button>
 			        </div>
 			 </div>	
@@ -148,7 +148,7 @@ var app = new Vue({
 	             	
 	             	if(self.answer=='A'){
 	             		self.info.iTitle += "글에 답변드립니다!";
-	             		self.info.iContent += "<br>-----------------------------------<br> 안녕하세요.<br> 조조투어를 이용해주셔서 감사드립니다.<br>";
+	             		self.info.iContent += "<br>-----------------------------------<br> 안녕하세요.<br> 조조투어를 이용해주셔서 감사드립니다.<br><br>";
 	             	}
 				}
 			}); 
