@@ -350,16 +350,17 @@ var app = new Vue({
 	       	     	form.append( "mainYN",  "Y");
 	           		self.upload(form);
 	           		
-	           		setTimeout(self.waiting("wait"), 3000);
-	           		
-	           		var form2 = new FormData();
-	       	        form2.append( "files",  $("#fileN")[0].files[0]);
-	       	     	form2.append( "rentNo",  data.rentNo); // 제품 pk
-	       	     	form2.append( "mainYN",  "N");
-	           		self.upload(form2);
-	           		
-	           		alert("등록이 완료되었습니다.");
-                	location.href = '../rentcar.do'; 
+	           		// 시간을 이용한 고유 식별자 값을 다르게 하기 위해 setTimeout 사용
+	                setTimeout(function () {
+	                    var form2 = new FormData();
+	                    form2.append("files", $("#fileN")[0].files[0]);
+	                    form2.append("rentNo", data.rentNo);
+	                    form2.append("mainYN", "N");
+	                    self.upload(form2);
+
+	                    alert("등록이 완료되었습니다.");
+	                    location.href = '../rentcar.do';
+	                }, 1000);
                 }
             });
 		},
@@ -454,24 +455,23 @@ var app = new Vue({
                 data : param,
                 success : function(data) {
                 	//파일을 수정하지 않았다면 변경X
-                	for(var i=0;i< self.imgList.length;i++){
+                	for(let i=0;i< self.imgList.length;i++){
                 		if(self.imgList[i].mainYN == 'Y' && $("#fileY")[0].files[0]){
                 			var form = new FormData();
                 			form.append( "files", $("#fileY")[0].files[0]);
                 			form.append( "imgNo", self.imgList[i].imgNo); //사진 pk
                 			self.fileChange(form);
-                			setTimeout(self.waiting("wait"), 3000);
                 		} else if(self.imgList[i].mainYN == 'N' && $("#fileN")[0].files[0]){
-                			var form2 = new FormData();
-        	       	        form2.append( "files", $("#fileN")[0].files[0]);
-        	       	     	form2.append( "imgNo", self.imgList[i].imgNo); //사진 pk
-        	       	     	self.fileChange(form2);
-        	       	     	setTimeout(self.waiting("wait"), 3000);
+                			setTimeout(function () {
+	                			var form2 = new FormData();
+	        	       	        form2.append( "files", $("#fileN")[0].files[0]);
+	        	       	     	form2.append( "imgNo", self.imgList[i].imgNo); //사진 pk
+	        	       	        self.fileChange(form2);
+                			}, 500);
                 		}
                 	}
 	           		alert("정보 수정이 완료되었습니다.");
-                	$.pageChange("view.do", {rentNo : self.rentNo, rCnt : 0});
-	       	     	
+                	$.pageChange("../rentcar.do", {rentNo : self.rentNo, rCnt : 0});
                 }
             });
 		},
@@ -573,9 +573,6 @@ var app = new Vue({
 				document.getElementById("fileNName").value = "";
 				self.fileNFlg = false;
 			}
-		},
-		waiting : function (wait) {
-			console.log(wait);
 		}
 	}, // methods
 	created : function() {

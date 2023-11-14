@@ -114,7 +114,7 @@
 					<th>상세정보 이미지</th>
 					<td>
 						<div>{{imgInfo.imgName}}</div>
-						<img :src="imgInfo.imgPath">
+						<img :src="imgInfo.imgPath" :style="{ width: '500px'}">
 					</td>
 				</tr>
 			</table>

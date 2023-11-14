@@ -127,7 +127,7 @@
 					<th>썸네일 이미지</th>
 					<td v-for="(item, index) in imgList" v-if="item.mainYN =='Y'">
 						<div>{{item.imgName}}</div>
-						<img :src="item.imgPath">
+						<img :src="item.imgPath" :style="{ width: '500px'}">
 					</td>
 					<td v-if="imgList.length == 0"></td>
 				</tr>
@@ -137,7 +137,7 @@
 						<div>{{item.imgName}}</div>
 						<img :src="item.imgPath">
 					</td>
-					<td v-if="imgList.length == 0"></td>
+					<td v-if="imgList.length == 0" :style="{ width: '500px'}"></td>
 				</tr>
 			</table>
 			<div class="btnbtn">
