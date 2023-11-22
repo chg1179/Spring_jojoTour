@@ -123,5 +123,11 @@
 
 
 
+---
 
+[USER시연영상](https://www.youtube.com/watch?v=NkgS9ZHN0hE)
+[HOST시연영상](https://www.youtube.com/watch?v=-mdFvWraILs)
+[ADMIN시연영상](https://www.youtube.com/watch?v=bi7xUZXAWKk)
+
+---
 [발표용PPT](https://github.com/lim997/jojoTour/blob/main/%EC%A1%B0%EC%A1%B0%ED%88%AC%EC%96%B4_ppt.pdf)
