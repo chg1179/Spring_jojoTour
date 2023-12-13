@@ -180,5 +180,5 @@
 [ADMIN시연영상](https://www.youtube.com/watch?v=bi7xUZXAWKk)
 
 
-# 발표용 PPT
+# PPT
 [PPT](https://github.com/lim997/jojoTour/blob/main/%EC%A1%B0%EC%A1%B0%ED%88%AC%EC%96%B4_ppt.pdf)
