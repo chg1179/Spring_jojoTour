@@ -4,7 +4,7 @@
 
 
 
-# 프로젝트 개요
+# 🔎프로젝트 개요
 
 코로나 규정이 완화됨에 따라 여가활동에 대한 관심이 급증하면서, 관광과 여행에 대한 관심이 큰 폭으로 상승하고 있다.
 전문 연구기관인 컨슈머인사이트에서 조사한 여가활동 관심도 변화에 따르면 관광에 대한 관심도가 61%로 가장 높은 지표를 보였으며, 국내 여행이 관심 여가 활동 1위를 차지한 것을 확인할 수 있다.
@@ -12,22 +12,22 @@
 
 
 
-# 프로젝트 목표
+# ✨프로젝트 목표
 
  - 기존 사이트의 단점을 보완하고 차별성을 가지기 위한 사이트 제작을 기획.
  - 장바구니 기능을 추가하여 숙박, 레저, 렌트 제품을 하나의 장바구니에 넣어 한 번에 결제할 수 있음.
  - 자유롭게 소통하고 정보를 공유할 수 있는 커뮤니티 기능을 추가하여 사이트의 이용률을 높임.
 
 
-# 내 역할
+# 👩‍🔧내 역할
 호스트 상품 관리 페이지
 
 숙박 상품 페이지
 
 
-# 프로젝트 일정
+# 📆프로젝트 일정
 
-2023.08.04 ~ 2023.08.28
+2023.08.04 ~ 2023.08.28(3주)
 
  - 매주 월요일과 목요일 10시 20분, 모든 팀원이 모여 회의 진행. 각자의 진행률 보고 및 피드백 시간을 가짐.
    
@@ -38,24 +38,27 @@
 
 
 
-# 개발 환경
+# 🛠 개발 환경
 
-- 운영 체제 (OS): Windows 10 Pro (64-bit)
-- 프로세서: Intel Core i5-9400F @ 2.90GHz
-- JDK: JDK 17
-- IDE: Spring Tools 4 for Eclipse
-- 데이터베이스 관리 도구: HeidiSQL
-- 개발 언어: JAVA, HTML, CSS, Javascript
-- 프론트엔드 프레임워크: jQuery, vue.js
-- 백엔드 프레임워크: Spring Boot
-- ORM 프레임워크: MyBatis
-- 데이터베이스: MySQL
-- 형상 관리: Git
+- **운영 체제 (OS):** Windows 10 Pro (64-bit)
+- **프로세서:** Intel Core i5-9400F @ 2.90GHz
+- **JDK:** ![JDK 17](https://img.shields.io/badge/JDK_17-007396?style=for-the-badge&logo=java&logoColor=white)
+- **IDE:** ![Spring Tools 4 for Eclipse](https://img.shields.io/badge/Spring_Tools_4-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
+- **데이터베이스 관리 도구:** ![HeidiSQL](https://img.shields.io/badge/HeidiSQL-FFD700?style=for-the-badge&logo=mysql&logoColor=white)
+- **개발 언어:** ![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white) ![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+- **프론트엔드 프레임워크:** ![jQuery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white) ![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white) 
+- **백엔드 프레임워크:** ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white) 
+- **ORM 프레임워크:** ![MyBatis](https://img.shields.io/badge/MyBatis-7A43B6?style=for-the-badge&logo=java&logoColor=white)
+- **데이터베이스:** ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white) 
+- **형상 관리:** ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) 
 
 
 
-# 프로젝트 설계
 
+
+# ⚙프로젝트 설계 및 구현
+
+프로젝트 설계
 1. 일반 사용자 
   - 숙소, 렌터카, 레저 상품을 장바구니에 넣고, 원하는 제품을 선택하여 한 번에 구매할 수 있음.
   - 원하는 제품을 찜하여 모아볼 수 있음.
@@ -70,24 +73,23 @@
   - 일반 회원이 문의글을 작성하면, 관리자는 등록한 문의 글에 대해 답변을 작성할 수 있음.
   - 5회 이상 신고 받은 게시글은 감춰짐.
 
-
-
-# 프로젝트 구현
-
-- 세션을 이용한 로그인 서비스 구현.
-- 상품 CRUD.
-- 사용자가 입력한 값과 선택된 조건이 모두 일치하는 결과값 도출.
-- 선택한 체크박스의 값을 JSON 형태로 이용.
-- 반복문을 사용하여 사용자가 선택한 체크박스의 값을 삽입 및 출력.
-- 테이블을 조인하여 상품 테이블 컬럼에 없는 찜 여부와 게시글 테이블에 없는 댓글 수를 출력.
-- 리스트 출력 시 페이징 기능 사용.
-- 첨부파일 업로드 및 다운로드. 파일 수정 시 테이블에서 이미지 경로 수정.
-- 장바구니에서 선택한 상품의 목록을 JSON 형태로 변환하고, RESTful API를 통해 서버로 전송하여 상품의 목록을 결제페이지로 리턴.
-- 주소 API, 결제 API 사용.
+ 프로젝트 구현
+ - 세션을 이용한 로그인 서비스 구현.
+ - 상품 CRUD.
+ - 사용자가 입력한 값과 선택된 조건이 모두 일치하는 결과값 도출.
+ - 선택한 체크박스의 값을 JSON 형태로 이용.
+ - 반복문을 사용하여 사용자가 선택한 체크박스의 값을 삽입 및 출력.
+ - 테이블을 조인하여 상품 테이블 컬럼에 없는 찜 여부와 게시글 테이블에 없는 댓글 수를 출력.
+ - 리스트 출력 시 페이징 기능 사용.
+ - 첨부파일 업로드 및 다운로드. 파일 수정 시 테이블에서 이미지 경로 수정.
+ - 장바구니에서 선택한 상품의 목록을 JSON 형태로 변환하고, RESTful API를 통해 서버로 전송하여 상품의 목록을 결제페이지로 리턴.
+ - 주소 API, 결제 API 사용.
 
 
 
-# 프로젝트 페이지 및 기능 소개
+
+
+# 🧐프로젝트 페이지 및 기능 소개
 
 1. 로그인, 로그아웃
   - 세션 기능을 이용하여 로그인 된 아이디와 권한 정보를 저장.
@@ -135,7 +137,7 @@
 
 
 
-# 화면 구현
+# 💻화면 구현
 
 1. 홈페이지: 사용자가 사이트에 처음 접속했을 때 보이는 페이지. 간결하고 직관적인 디자인을 통해 정보를 제공.
 2. 상품 페이지: 카테고리 별로 상품을 출력. 사용자가 입력하거나 선택한 조건에 모두 만족하는 상품 리스트를 출력.
@@ -147,7 +149,7 @@
 
 
 
-# 기대효과
+# 📈기대효과
 
 - 숙박, 렌터카, 레저 상품을 한 번에 결제할 수 있다는 큰 장점을 갖고 있어, 앞으로 더 많은 사용자들이 해당 사이트를 찾을 것임.
 - 세 개의 카테고리 상품 외에도 더 다채로운 상품을 제공할 수 있기 때문에, 사이트의 발전 가능성이 높음.
@@ -156,7 +158,7 @@
 
 
 
-# 자체 평가
+# 👨‍👩‍👧‍👦자체 평가
 
 본 프로젝트는 클라우드 DB와 AWS의 RDS를 활용하여 데이터베이스를 연결하는 작업을 수행하여 테스트를 완료했다.
 현재, 관리자 페이지에서 패키지 상품을 관리하는 기능을 개발했지만, 시간 부족으로 패키지 상품을 출력하는 기능을 완성하지 못했다.
@@ -164,7 +166,7 @@
 
 
 
-# 시연 영상
+# 📽시연 영상
 
 [USER시연영상](https://www.youtube.com/watch?v=NkgS9ZHN0hE)
 
@@ -173,5 +175,5 @@
 [ADMIN시연영상](https://www.youtube.com/watch?v=bi7xUZXAWKk)
 
 
-# PPT
+# 📋PPT
 [PPT](https://github.com/lim997/jojoTour/blob/main/%EC%A1%B0%EC%A1%B0%ED%88%AC%EC%96%B4_ppt.pdf)
