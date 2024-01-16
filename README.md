@@ -20,11 +20,49 @@
 
 
 # 👩‍🔧내 역할
-호스트 상품 관리 페이지
-- 숙
-<img src="https://github.com/chg1179/Spring_jojoTour/assets/133517881/d8998389-6e34-42b8-9553-561bcb5dd7d3" alt="검색페이지" width="400">
+- 호스트 상품 관리 페이지
 
-숙박 상품 페이지
+<img src="https://github.com/chg1179/Spring_jojoTour/assets/133517881/d8998389-6e34-42b8-9553-561bcb5dd7d3" alt="상품리스트" width="400">
+
+> 호스트가 등록한 숙소와 객실 리스트를 볼 수 있다.
+
+<br>
+
+<img src="https://github.com/chg1179/Spring_jojoTour/assets/133517881/9f18e0c2-be6d-4822-91c7-67a4a16e8d8e" alt="객실상세정보" width="300">
+<img src="https://github.com/chg1179/Spring_jojoTour/assets/133517881/8d68bd8d-1081-4772-800b-194f865e8e2a" alt="객실삭제" width="400">
+
+> 숙소 및 객실 정보를 등록 , 수정, 삭제가 가능하다.
+
+<br>
+
+<img src="https://github.com/chg1179/Spring_jojoTour/assets/133517881/1838a3c3-d42a-49b3-ad55-1e2d7b7c5c85" alt="예약관리페이지" width="400">
+
+> 유저가 예약한 숙소, 렌터카, 레저 예약을 승인, 취소 할 수 있다.
+
+<br>
+
+- 숙박 상품 페이지 
+<img src="https://github.com/chg1179/Spring_jojoTour/assets/133517881/68690029-55f5-4164-9ca8-642e18a70d3d" alt="hotel_array" widht="50">
+<img src="https://github.com/chg1179/Spring_jojoTour/assets/133517881/658b3236-8d6c-4d62-8110-cc2a2ad3d2e9" alt="motel_array" widht="50">
+<img src="https://github.com/chg1179/Spring_jojoTour/assets/133517881/63202056-ac6b-4dd5-a006-9f530e4051ca" alt="pension_array" widht="50">
+<img src="https://github.com/chg1179/Spring_jojoTour/assets/133517881/6d6b71f2-b274-431e-a7d3-59e8c0e410ad" alt="camping_array" widht="50">
+
+> 드롭다운 박스로 숙소 종류를 선택하면 해당 숙소 리스트가 정렬되어 화면에 표시된다. 또한 하트를 누르면 찜 목록에 해당 숙소를 추가할 수 있다. 
+
+<br>
+
+<img src="https://github.com/chg1179/Spring_jojoTour/assets/133517881/aeefeef4-2961-40d8-bb85-68426f3953c3" alt="camping_array" widht="50">
+
+> 해당 숙소의 편의시설 체크박스를 통한 카테고리 검색이 가능하다.
+
+<br>
+
+<img src="https://github.com/chg1179/Spring_jojoTour/assets/133517881/7f95374a-cc48-49a5-9f1b-e9dd816af090" alt="camping_array" widht="50">
+
+> 숙소 상세페이지에서는 예약 날짜를 선택하여 원하는 객실을 장바구니에 추가할 수 있다. 당일 이전의 날짜는 선택이 불가능하고 반드시 체크인 날짜와 체크아웃 날짜를 모두 선택해야한다.
+
+<br>
+
 
 
 # 📆프로젝트 일정
