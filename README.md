@@ -21,6 +21,7 @@
 
 # 👩‍🔧내 역할
 호스트 상품 관리 페이지
+<img src="https://github.com/chg1179/Spring_jojoTour/raw/main/assets/133517881/780dffd6-e1fd-4a94-ba4e-b952384e7999" alt="host_main">
 
 숙박 상품 페이지
 
